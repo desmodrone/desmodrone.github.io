@@ -14,15 +14,25 @@
         <lastmod>2023-03-07</lastmod>
     </url>
     <url>
+        <loc>https://desmodrone.github.io/posts/rust-closures/</loc>
+        <lastmod>2023-03-08</lastmod>
+    </url>
+    <url>
         <loc>https://desmodrone.github.io/tags/</loc>
     </url>
     <url>
         <loc>https://desmodrone.github.io/tags/blog/</loc>
     </url>
     <url>
+        <loc>https://desmodrone.github.io/tags/closures/</loc>
+    </url>
+    <url>
         <loc>https://desmodrone.github.io/tags/first/</loc>
     </url>
     <url>
         <loc>https://desmodrone.github.io/tags/hello/</loc>
+    </url>
+    <url>
+        <loc>https://desmodrone.github.io/tags/rust/</loc>
     </url>
 </urlset>

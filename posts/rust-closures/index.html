@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <meta itemprop="name" content="desmo" />
+  <meta itemprop="description" content="Random Ideas" />
+
+  <link rel="apple-touch-icon" sizes="180x180" href="https://desmodrone.github.io/apple-touch-icon.png"/>
+  <link rel="icon" type="image/png" sizes="32x32" href="https://desmodrone.github.io/favicon-32x32.png" />
+  <link
+    rel="icon"
+    type="image/png"
+    sizes="16x16"
+    href="https://desmodrone.github.io/favicon-16x16.png"
+  />
+  <link
+    rel="shortcut icon"
+    href="https://desmodrone.github.io/favicon.ico"
+  />
+  <link rel="stylesheet" href="https://desmodrone.github.io/style.css"/>
+  
+  <title>Rust Closures</title>
+  
+
+  
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="https://desmodrone.github.io/rss.xml">
+  
+
+  <body id="page">
+
+	
+<header id="site-header" class="animated slideInUp faster">
+  <div class="hdr-wrapper section-inner">
+    <div class="hdr-left">
+      <div class="site-branding">
+        <a href="https:&#x2F;&#x2F;desmodrone.github.io">desmo</a>
+      </div>
+      <nav class="site-nav hide-in-mobile">
+            
+        
+        <a href="https://desmodrone.github.io/posts">posts</a>
+        
+        <a href="https://desmodrone.github.io/about">about</a>
+        
+      </nav>
+    </div>
+    <div class="hdr-right hdr-icons">
+      <span class="hdr-social hide-in-mobile">
+        
+
+<a href="https:&#x2F;&#x2F;twitter.com&#x2F;desmodrone_" target="_blank" rel="noopener me"
+   title="twitter">
+  
+  <svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg>
+  
+</a>
+
+<a href="https:&#x2F;&#x2F;github.com&#x2F;desmodrone" target="_blank" rel="noopener me"
+   title="github">
+  
+  <svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+  
+</a>
+
+<a href="mailto:erick@apexwins.com" target="_blank" rel="noopener me"
+   title="email">
+  
+  <svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+  
+</a>
+
+
+      </span>
+      <button id="menu-btn" class="hdr-btn" title="Menu">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="feather feather-menu"
+        >
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+  </div>
+</header>
+<div id="mobile-menu" class="animated fast">
+  <ul>
+    
+    <li><a href="https://desmodrone.github.io/posts">posts</a></li>
+    
+    <li><a href="https://desmodrone.github.io/about">about</a></li>
+    
+  </ul>
+</div>
+
+	
+	
+
+		
+<main class="site-main section-inner animated fadeIn faster">
+  <article class="thin">
+	<header class="post-header">
+	  <div class="post-meta">
+		
+		<span>Mar 08, 2023</span>
+		<small> - 
+<span class="reading-time" title="Estimated read time">
+  
+  7 min read
+  
+</span>
+</small>
+		
+            
+	  </div>
+	  <h1>Rust Closures</h1>
+	</header>
+
+	<div class="content">
+        
+	  <h2 id="intro">Intro</h2>
+<p>I'm new to Rust and programming in general, and while I've dabbled in different languages and technologies, I've never gone headfirst into any language to become proficient. I'm trying to change that now with Rust. Please forgive my inaccuracies or lack of understanding of more complex topics, but I'll get there eventually. For now, I thought closures were an interesting topic, so I decided to write about this this topic first.</p>
+<h2 id="what-are-closures">What are closures?</h2>
+<p>A closure can be thought of as a quick function that doesn't need a name, or an anonymous function that can be saved in a variable or passed into other functions as arguments. A unique thing about closures is that they can capture their environment and this makes them a versatile tool that can be fun and efficient to use.</p>
+<p>Closures are easy to identify because they use pipes <code>||</code> instead of the typical parentheses <code>()</code> that functions use. There are a few different ways you can use closures in Rust, but first, let's look at how a closure is created.</p>
+<h2 id="how-are-closures-created-in-rust">How are closures created in Rust?</h2>
+<p>Before we look at closures let us take a quick look at the syntax of how a function is defined in Rust. Below is a simple function definition that adds 1 to its parameter.</p>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">&#x2F;&#x2F; function definition syntax
+fn plus_one_v1 (x: u32) -&gt; u32 { x + 1 }
+</code></pre>
+<p>If you're familiar with Rust's functions this should be pretty easy to understand, so we won't go through the details, if you're not familiar with creating a function in Rust here's a <a href="https://youtu.be/2V0JaMVjzws?t=465">Let's Get Rusty</a> tutorial on functions that will bring you up to speed.  Now let's look at how we'd create a closure using similar syntax to a function. </p>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">&#x2F;&#x2F;closure definition syntax
+let plus_one_v2 = | x: u32| -&gt; u32 { x + 1 };
+</code></pre>
+<p>As you can see the syntax is very similar to a function other than we use the <code>let</code>  keyword to bind the closure to <code>plus_one_v2</code> , and use the equal sign before the pipes <code>||</code>.  One thing to note is that a lot of this syntax is optional for closure definitions, the Rust compiler is usually able to infer the types in closures. Keep in mind that when the Rust compiler infers the type, it will take the first type we pass through as the type it uses. So you can't change the type later in your code and expect it to work. </p>
+<h2 id="simplifying-syntax">Simplifying Syntax</h2>
+<p>Since the Rust compiler can infer the types, to declare this closure in the most succinct manner you could do so like this:</p>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">&#x2F;&#x2F; closure definition stripped down
+let plus_one_v2 = |x| x + 1;
+</code></pre>
+<p>Let's go step by step and see what we removed.</p>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">&#x2F;&#x2F; closure syntax defined
+let plus_one_v2 = | x: u32| -&gt; u32 { x + 1 };
+
+&#x2F;&#x2F; removing the return type and curly braces
+let plus_one_v2 = | x: u32| -&gt; x + 1;
+
+&#x2F;&#x2F; removing the u32 type in closure
+let plus_one_v2 = |x| x + 1;
+</code></pre>
+<p>Again because the rust compiler can infer the type we can make this line of code much cleaner.</p>
+<p>Just like in functions where the parentheses <code>()</code>  can be empty, we can leave the <code>||</code> empty or add variables and types.  Let's look at another example.</p>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">&#x2F;&#x2F; empty `||`
+fn main() {
+	let simple_closure = || println!(&quot;A simple closure&quot;);
+	simple_closure();
+}
+</code></pre>
+<p>Here we define a closure to the variable <code>simple_closure</code> and this has nothing in between <code>||</code>.  If we run this code it prints: </p>
+<pre><code>A simple closure.
+</code></pre>
+<h2 id="passing-in-parameters">Passing in Parameters</h2>
+<p>Now let's look at what happens when we add something in between the pipes <code>||</code> similar to how we would to the parenthesis <code>()</code> of a function. We define <code>x</code> as and <code>i32</code> which means that when we call <code>simple_closure</code> we can pass in an <code>i32</code> into it.</p>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">&#x2F;&#x2F; pipes with an i32
+fn main() {
+	let simple_closure = |x: i32| println!(&quot;{}&quot;, x);
+
+	simple_closure(3);
+	simple_closure(3+16);
+}
+</code></pre>
+<p>This prints:</p>
+<pre><code>3
+19
+</code></pre>
+<p>So far so good, I hope. This behavior here is just like a function, we're not doing anything too different. </p>
+<h2 id="capturing-the-environment">Capturing the Environment</h2>
+<p>Now let's look at what makes closures special, &quot;capture their environment&quot;, meaning they can take variables that are outside of the closure.</p>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">&#x2F;&#x2F; Capturing the environment
+fn main() {
+	let first = 12
+	let second = 3
+
+	let capture_closure = || println!(&quot;{}&quot;, first + second);
+	capture_closure();
+}
+</code></pre>
+<p>This prints:</p>
+<pre><code>15
+</code></pre>
+<p>So what is going on here? We didn't put anything in between the <code>||</code> but closures can just 'take' the variables <code>first</code> and <code>second</code> and add them because closures can capture their environment -- pretty cool huh?</p>
+<h2 id="the-3-closure-traits-fn-fnmut-and-fnonce">The 3 closure traits (Fn, FnMut,  and FnOnce)</h2>
+<p>Now, let's dive a little deeper and take a look at the <code>Fn</code>, <code>FnMut</code>, and <code>FnOnce</code> traits and how they work with closures. This happens behind the scenes when using closures with variables but in order to understand closures and be able to use them to their full potential we must understand what is happening with these 3 traits.</p>
+<ul>
+<li><code>Fn</code>: using this with an upper case <code>F</code> means we are not mutating the captured variables and they are read-only.</li>
+<li><code>FnMut</code>: allows us to change captured variables, creating a mutable borrow of these captured variables.</li>
+<li><code>FnOnce</code>: this lets us move ownership into the closure. In essence, consuming the variable. </li>
+</ul>
+<p>Again, Rust infers these traits when using closures with variables, different than when they're being used with functions where they have to be explicitly defined, but we'll look at that later. </p>
+<h3 id="fn-trait"><code>Fn</code> Trait</h3>
+<p>Let's take a quick look at what each of these looks like in code.</p>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">&#x2F;&#x2F; using `Fn` trait
+fn main() {
+	let str1 = &quot;Hello&quot;.to_string();
+	let closure = |x| println!(&quot;{} {}&quot;, str1, x);
+	closure(&quot;rustaceans!&quot;)
+
+}
+</code></pre>
+<p>Here we capturing the variable and printing it with the <code>Fn</code> trait because we are immutably borrowing that variable and printing it to screen. which prints:</p>
+<pre><code>Hello rustaceans!
+</code></pre>
+<p>As you can tell we didn't actually have to define the <code>Fn</code> trait it was implied by how it the code is constructed. </p>
+<h3 id="fnmut-trait"><code>FnMut</code> Trait</h3>
+<p>Here in the 2nd block of code with <code>clsr2</code> we are declaring a closure that actually mutates the <code>str1</code> variable, so here we are using the <code>FnMut</code> trait because we are mutating our variable. </p>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">
+fn main() {
+	&#x2F;&#x2F; using Fn trait
+	let mut str1 = &quot;Hello&quot;.to_string();
+	let closure = |x| println!(&quot;{} {}&quot;, str1, x);
+	closure(&quot;rustaceans!&quot;);
+
+	&#x2F;&#x2F; using FnMut trait
+	let mut closure2 = |x| str1.push_str(x);
+	closure2(&quot; welcome back, rustaceans!&quot;); 
+	println!(&quot;{}&quot;, str1);
+}
+</code></pre>
+<p>This now prints:</p>
+<pre><code>Hello rustaceans!
+Hello welcome back, rustaceans!
+</code></pre>
+<h3 id="fnonce-trait"><code>FnOnce</code> Trait</h3>
+<p>In this last example, we take a look at the <code>FnOnce</code> trait</p>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">
+fn main() {
+	&#x2F;&#x2F; using Fn trait
+	let mut str1 = &quot;Hello&quot;.to_string();
+	let closure = |x| println!(&quot;{} {}&quot;, str1, x);
+	closure(&quot;rustaceans!&quot;);
+
+	&#x2F;&#x2F; using FnMut trait
+	let mut closure2 = |x| str1.push_str(x);
+	closure2(&quot; welcome back, rustaceans!&quot;);
+	println!(&quot;{}&quot;, str1);
+
+	&#x2F;&#x2F; using FnOnce trait
+	let closure3 = || drop(str1);
+    println!(&quot;before dropping str1&quot;);
+    closure3();
+    println!(&quot;str1 has been dropped&quot;);
+}
+</code></pre>
+<p>We see the <code>FnOnce</code> trait in action here when using  <code>drop(str1)</code>.  However, if we try to call <code>str1</code> again, our code would not compile and give us an error message, so we don't call it in this instance.</p>
+<h2 id="the-move-keyword"><strong>The <code>move</code> keyword</strong></h2>
+<p>The <code>move</code> keyword comes in handy when you want to force a closure to take ownership of the values it captures, even though the closure doesn't need it. <code>move</code> can specifically come into action when passing a closure into a new thread and thus moving the data so it's owned by this new thread. Threads are something we can cover at a different time, but let's look at this example on how to use the <code>move</code> keyword with closures:</p>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">use std::thread;
+
+fn main() {
+    let list = vec![1, 2, 3];
+    println!(&quot;Before defining closure: {:?}&quot;, list);
+
+    thread::spawn(move || println!(&quot;From thread: {:?}&quot;, list))
+        .join()
+        .unwrap();
+}
+</code></pre>
+<p>A new thread is spawned and we force the closure to take ownership of the <code>list</code> by using the <code>move</code>  keyword.  In this way even if we implement the <code>Fn</code> or <code>FnMut</code> traits, ownership is moved to the closure allowing more flexibility in the closure. </p>
+<h2 id="passing-closures-or-other-functions-as-inputs-to-functions"><strong>Passing closures(or other functions) as inputs to functions</strong></h2>
+<p>Now let's look at a couple of different ways we can use closures as inputs to functions, building on what we saw above with the <code>Fn</code>, <code>FnMut</code>. </p>
+<p>As mentioned outside of a function, a closure can decide by itself which trait to use, but inside of a function, you have to be explicit and define one of these traits. </p>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">&#x2F;&#x2F; using `Fn`
+fn add_num&lt;F&gt;(func: F)
+	where F: Fn(i32){
+		func(7)
+	}
+
+fn main(){
+	let num = 6;
+	add_num(|x|println!(&quot;{}&quot;, num + x));
+	
+}
+</code></pre>
+<p>This prints:</p>
+<pre><code>13
+</code></pre>
+<p>Here we are defining the <code>Fn</code> trait to add two numbers and since we are not changing the number in the <code>add_num</code>  function and simply passing it through we can define the <code>Fn</code> trait without major fuss. </p>
+<p>However, if we try to make our <code>num</code> mutable by incrementing it, we might run into some problems. Let's see what happens.</p>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">fn add_num&lt;F&gt;(func: F)
+	where F: Fn(i32){
+		func(7)
+	}
+
+fn main(){
+	let mut num = 6; &#x2F;&#x2F; mutable to allow incrementation
+	add_num(|x|{num +=x; println!(&quot;{}&quot;, num + x)}); 
+	
+}
+</code></pre>
+<p>As expected we get an error message:</p>
+<pre><code>error[E0594]: cannot assign to `num`, as it is a captured variable in a `Fn` closure
+ --&gt; src&#x2F;main.rs:8:14
+  |
+1 | fn add_num&lt;F&gt;(func: F)
+  |                     - change this to accept `FnMut` instead of `Fn`
+...
+8 |     add_num(|x|{num +=x; println!(&quot;{}&quot;, num + x)});
+  |     ------- --- ^^^^^^^ cannot assign
+  |     |       |
+  |     |       in this closure
+  |     expects `Fn` instead of `FnMut`
+</code></pre>
+<p>The compiler actually tells us what we should be doing here (very nice), changing the <code>Fn</code> to <code>FnMut</code> .</p>
+<p>If we update our code to in the <code>add_num</code> function to what is shown below, our problems will be solved:</p>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">fn add_num&lt;F&gt;(mut func: F) &#x2F;&#x2F; add mut here
+	where F: FnMut(i32){ &#x2F;&#x2F; change Fn to FnMut here
+		func(7) 
+	}
+
+fn main(){
+	let mut num = 6;
+	add_num(|x|{num +=x; println!(&quot;{}&quot;, num + x)}); 	
+}
+</code></pre>
+<p>This now compiles and prints:</p>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">20
+</code></pre>
+<h2 id="conclusion">Conclusion</h2>
+<p>Phew, we covered a lot but there's still more we can do with closures, like storing them in structs and using them in conjunction with iterators, but we'll leave that for another time. For now, I hope I have been able to explain what a closure is, how to create a closure, and how to use its traits. This should help you get started with getting familiar with closures and understanding how to use them in your own code. </p>
+<p>Please let me know if I got something wrong or was unclear on anything, I'm doing this to help me better learn these concepts, so any feedback is appreciated. </p>
+
+	</div>
+	<hr class="post-end">
+	<footer class="post-info">
+    
+	  <p>
+		<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg>
+		
+		
+		<span class="tag"><a href="https://desmodrone.github.io/tags/rust/">rust</a></span>
+		
+		<span class="tag"><a href="https://desmodrone.github.io/tags/blog/">blog</a></span>
+		
+		<span class="tag"><a href="https://desmodrone.github.io/tags/closures/">closures</a></span>
+		
+		
+    </p>
+    
+    <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>1734 Words</p>
+    
+    <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2023-03-08</p>
+    
+	</footer>
+  </article>
+    
+  
+  <div class="post-nav thin">
+	
+	
+  </div>
+
+  
+</main>
+
+	  </div>
+	  
+	  
+
+
+
+<footer id="site-footer" class="section-inner thin animated fadeIn faster">
+  <p>&copy; 2023 <a href="https:&#x2F;&#x2F;desmodrone.github.io">erick</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
+  <p>Made with <a href="https://www.getzola.org" target="_blank" rel="noopener">Zola</a> &#183; Theme <a href="https://github.com/VersBinarii/hermit_zola" target="_blank" rel="noopener">Hermit_Zola</a>
+	
+	&#183; <a href="https://desmodrone.github.io/rss.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
+	
+  </p>
+</footer>
+
+
+
+
+	</div>
+	
+	<script src="https://desmodrone.github.io/js/main.js"></script>
+
+	<!-- Math rendering -->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css" integrity="sha384-zB1R0rpPzHqg7Kpt0Aljp8JPLqbXI3bhnPWROx27a9N0Ll6ZP/+DiW/UqRcLbRjq" crossorigin="anonymous">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js" integrity="sha384-y23I5Q6l+B6vatafAwxRu/0oK/79VlbSz7Q9aiSZUvyWYIYsd+qj+o24G5ZU2zJz" crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous"
+        onload="renderMathInElement(document.body, { delimiters: [ {left: '$$', right: '$$', display: true}, {left: '$', right: '$', display: false}, {left: '\\[', right: '\\]', display: true}, {left: '\\(', right: '\\)', display: false}]});"></script>
+
+    
+		<link href="https://unpkg.com/highlightjs-badge/highlightjs/styles/railscasts.css" rel="stylesheet">
+		<!-- https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.1/build/styles/  for min version -->
+		<script src="https://unpkg.com/highlightjs-badge/highlightjs/highlight.pack.js"></script>
+		<script src="https://unpkg.com/highlightjs-badge/highlightjs-badge.min.js"></script>
+		<script>
+			var pres = document.querySelectorAll("pre>code");
+			for (var i = 0; i < pres.length; i++) {
+				hljs.highlightBlock(pres[i]);
+			}
+		</script>
+		
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js"></script>
+			<script>
+				var options = {
+					copyIconClass: "gg-clipboard",
+					checkIconClass: "gg-check"
+				};
+				window.highlightJsBadge(options);
+			</script>
+		
+
+	
+
+	
+	<script src="https://desmodrone.github.io/js/main.js"></script>
+
+    
+    
+
+	
+    <!-- Global Site Tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-9MNTYXYNHK"></script>
+    <script>
+     window.dataLayer = window.dataLayer || [];
+     function gtag(){dataLayer.push(arguments);}
+     gtag('js', new Date());
+     gtag('config', 'G-9MNTYXYNHK');
+    </script>
+    
+  </body>
+</html>

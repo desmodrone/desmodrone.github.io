@@ -7,14 +7,232 @@
       <generator>Zola</generator>
       <language>en</language>
       <atom:link href="https://desmodrone.github.io/rss.xml" rel="self" type="application/rss+xml"/>
-      <lastBuildDate>Tue, 07 Mar 2023 00:00:00 +0000</lastBuildDate>
+      <lastBuildDate>Wed, 08 Mar 2023 00:00:00 +0000</lastBuildDate>
       <item>
-          <title>hello world</title>
+          <title>Rust Closures</title>
+          <pubDate>Wed, 08 Mar 2023 00:00:00 +0000</pubDate>
+          <author>Unknown</author>
+          <link>https://desmodrone.github.io/posts/rust-closures/</link>
+          <guid>https://desmodrone.github.io/posts/rust-closures/</guid>
+          <description>&lt;h2 id=&quot;intro&quot;&gt;Intro&lt;&#x2F;h2&gt;
+&lt;p&gt;I&#x27;m new to Rust and programming in general, and while I&#x27;ve dabbled in different languages and technologies, I&#x27;ve never gone headfirst into any language to become proficient. I&#x27;m trying to change that now with Rust. Please forgive my inaccuracies or lack of understanding of more complex topics, but I&#x27;ll get there eventually. For now, I thought closures were an interesting topic, so I decided to write about this this topic first.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;what-are-closures&quot;&gt;What are closures?&lt;&#x2F;h2&gt;
+&lt;p&gt;A closure can be thought of as a quick function that doesn&#x27;t need a name, or an anonymous function that can be saved in a variable or passed into other functions as arguments. A unique thing about closures is that they can capture their environment and this makes them a versatile tool that can be fun and efficient to use.&lt;&#x2F;p&gt;
+&lt;p&gt;Closures are easy to identify because they use pipes &lt;code&gt;||&lt;&#x2F;code&gt; instead of the typical parentheses &lt;code&gt;()&lt;&#x2F;code&gt; that functions use. There are a few different ways you can use closures in Rust, but first, let&#x27;s look at how a closure is created.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;how-are-closures-created-in-rust&quot;&gt;How are closures created in Rust?&lt;&#x2F;h2&gt;
+&lt;p&gt;Before we look at closures let us take a quick look at the syntax of how a function is defined in Rust. Below is a simple function definition that adds 1 to its parameter.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;&amp;#x2F;&amp;#x2F; function definition syntax
+fn plus_one_v1 (x: u32) -&amp;gt; u32 { x + 1 }
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;If you&#x27;re familiar with Rust&#x27;s functions this should be pretty easy to understand, so we won&#x27;t go through the details, if you&#x27;re not familiar with creating a function in Rust here&#x27;s a &lt;a href=&quot;https:&#x2F;&#x2F;youtu.be&#x2F;2V0JaMVjzws?t=465&quot;&gt;Let&#x27;s Get Rusty&lt;&#x2F;a&gt; tutorial on functions that will bring you up to speed.  Now let&#x27;s look at how we&#x27;d create a closure using similar syntax to a function. &lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;&amp;#x2F;&amp;#x2F;closure definition syntax
+let plus_one_v2 = | x: u32| -&amp;gt; u32 { x + 1 };
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;As you can see the syntax is very similar to a function other than we use the &lt;code&gt;let&lt;&#x2F;code&gt;  keyword to bind the closure to &lt;code&gt;plus_one_v2&lt;&#x2F;code&gt; , and use the equal sign before the pipes &lt;code&gt;||&lt;&#x2F;code&gt;.  One thing to note is that a lot of this syntax is optional for closure definitions, the Rust compiler is usually able to infer the types in closures. Keep in mind that when the Rust compiler infers the type, it will take the first type we pass through as the type it uses. So you can&#x27;t change the type later in your code and expect it to work. &lt;&#x2F;p&gt;
+&lt;h2 id=&quot;simplifying-syntax&quot;&gt;Simplifying Syntax&lt;&#x2F;h2&gt;
+&lt;p&gt;Since the Rust compiler can infer the types, to declare this closure in the most succinct manner you could do so like this:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;&amp;#x2F;&amp;#x2F; closure definition stripped down
+let plus_one_v2 = |x| x + 1;
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Let&#x27;s go step by step and see what we removed.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;&amp;#x2F;&amp;#x2F; closure syntax defined
+let plus_one_v2 = | x: u32| -&amp;gt; u32 { x + 1 };
+
+&amp;#x2F;&amp;#x2F; removing the return type and curly braces
+let plus_one_v2 = | x: u32| -&amp;gt; x + 1;
+
+&amp;#x2F;&amp;#x2F; removing the u32 type in closure
+let plus_one_v2 = |x| x + 1;
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Again because the rust compiler can infer the type we can make this line of code much cleaner.&lt;&#x2F;p&gt;
+&lt;p&gt;Just like in functions where the parentheses &lt;code&gt;()&lt;&#x2F;code&gt;  can be empty, we can leave the &lt;code&gt;||&lt;&#x2F;code&gt; empty or add variables and types.  Let&#x27;s look at another example.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;&amp;#x2F;&amp;#x2F; empty `||`
+fn main() {
+	let simple_closure = || println!(&amp;quot;A simple closure&amp;quot;);
+	simple_closure();
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Here we define a closure to the variable &lt;code&gt;simple_closure&lt;&#x2F;code&gt; and this has nothing in between &lt;code&gt;||&lt;&#x2F;code&gt;.  If we run this code it prints: &lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;A simple closure.
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h2 id=&quot;passing-in-parameters&quot;&gt;Passing in Parameters&lt;&#x2F;h2&gt;
+&lt;p&gt;Now let&#x27;s look at what happens when we add something in between the pipes &lt;code&gt;||&lt;&#x2F;code&gt; similar to how we would to the parenthesis &lt;code&gt;()&lt;&#x2F;code&gt; of a function. We define &lt;code&gt;x&lt;&#x2F;code&gt; as and &lt;code&gt;i32&lt;&#x2F;code&gt; which means that when we call &lt;code&gt;simple_closure&lt;&#x2F;code&gt; we can pass in an &lt;code&gt;i32&lt;&#x2F;code&gt; into it.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;&amp;#x2F;&amp;#x2F; pipes with an i32
+fn main() {
+	let simple_closure = |x: i32| println!(&amp;quot;{}&amp;quot;, x);
+
+	simple_closure(3);
+	simple_closure(3+16);
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;This prints:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;3
+19
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;So far so good, I hope. This behavior here is just like a function, we&#x27;re not doing anything too different. &lt;&#x2F;p&gt;
+&lt;h2 id=&quot;capturing-the-environment&quot;&gt;Capturing the Environment&lt;&#x2F;h2&gt;
+&lt;p&gt;Now let&#x27;s look at what makes closures special, &amp;quot;capture their environment&amp;quot;, meaning they can take variables that are outside of the closure.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;&amp;#x2F;&amp;#x2F; Capturing the environment
+fn main() {
+	let first = 12
+	let second = 3
+
+	let capture_closure = || println!(&amp;quot;{}&amp;quot;, first + second);
+	capture_closure();
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;This prints:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;15
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;So what is going on here? We didn&#x27;t put anything in between the &lt;code&gt;||&lt;&#x2F;code&gt; but closures can just &#x27;take&#x27; the variables &lt;code&gt;first&lt;&#x2F;code&gt; and &lt;code&gt;second&lt;&#x2F;code&gt; and add them because closures can capture their environment -- pretty cool huh?&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;the-3-closure-traits-fn-fnmut-and-fnonce&quot;&gt;The 3 closure traits (Fn, FnMut,  and FnOnce)&lt;&#x2F;h2&gt;
+&lt;p&gt;Now, let&#x27;s dive a little deeper and take a look at the &lt;code&gt;Fn&lt;&#x2F;code&gt;, &lt;code&gt;FnMut&lt;&#x2F;code&gt;, and &lt;code&gt;FnOnce&lt;&#x2F;code&gt; traits and how they work with closures. This happens behind the scenes when using closures with variables but in order to understand closures and be able to use them to their full potential we must understand what is happening with these 3 traits.&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;Fn&lt;&#x2F;code&gt;: using this with an upper case &lt;code&gt;F&lt;&#x2F;code&gt; means we are not mutating the captured variables and they are read-only.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;code&gt;FnMut&lt;&#x2F;code&gt;: allows us to change captured variables, creating a mutable borrow of these captured variables.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;code&gt;FnOnce&lt;&#x2F;code&gt;: this lets us move ownership into the closure. In essence, consuming the variable. &lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;Again, Rust infers these traits when using closures with variables, different than when they&#x27;re being used with functions where they have to be explicitly defined, but we&#x27;ll look at that later. &lt;&#x2F;p&gt;
+&lt;h3 id=&quot;fn-trait&quot;&gt;&lt;code&gt;Fn&lt;&#x2F;code&gt; Trait&lt;&#x2F;h3&gt;
+&lt;p&gt;Let&#x27;s take a quick look at what each of these looks like in code.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;&amp;#x2F;&amp;#x2F; using `Fn` trait
+fn main() {
+	let str1 = &amp;quot;Hello&amp;quot;.to_string();
+	let closure = |x| println!(&amp;quot;{} {}&amp;quot;, str1, x);
+	closure(&amp;quot;rustaceans!&amp;quot;)
+
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Here we capturing the variable and printing it with the &lt;code&gt;Fn&lt;&#x2F;code&gt; trait because we are immutably borrowing that variable and printing it to screen. which prints:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;Hello rustaceans!
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;As you can tell we didn&#x27;t actually have to define the &lt;code&gt;Fn&lt;&#x2F;code&gt; trait it was implied by how it the code is constructed. &lt;&#x2F;p&gt;
+&lt;h3 id=&quot;fnmut-trait&quot;&gt;&lt;code&gt;FnMut&lt;&#x2F;code&gt; Trait&lt;&#x2F;h3&gt;
+&lt;p&gt;Here in the 2nd block of code with &lt;code&gt;clsr2&lt;&#x2F;code&gt; we are declaring a closure that actually mutates the &lt;code&gt;str1&lt;&#x2F;code&gt; variable, so here we are using the &lt;code&gt;FnMut&lt;&#x2F;code&gt; trait because we are mutating our variable. &lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;
+fn main() {
+	&amp;#x2F;&amp;#x2F; using Fn trait
+	let mut str1 = &amp;quot;Hello&amp;quot;.to_string();
+	let closure = |x| println!(&amp;quot;{} {}&amp;quot;, str1, x);
+	closure(&amp;quot;rustaceans!&amp;quot;);
+
+	&amp;#x2F;&amp;#x2F; using FnMut trait
+	let mut closure2 = |x| str1.push_str(x);
+	closure2(&amp;quot; welcome back, rustaceans!&amp;quot;); 
+	println!(&amp;quot;{}&amp;quot;, str1);
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;This now prints:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;Hello rustaceans!
+Hello welcome back, rustaceans!
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h3 id=&quot;fnonce-trait&quot;&gt;&lt;code&gt;FnOnce&lt;&#x2F;code&gt; Trait&lt;&#x2F;h3&gt;
+&lt;p&gt;In this last example, we take a look at the &lt;code&gt;FnOnce&lt;&#x2F;code&gt; trait&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;
+fn main() {
+	&amp;#x2F;&amp;#x2F; using Fn trait
+	let mut str1 = &amp;quot;Hello&amp;quot;.to_string();
+	let closure = |x| println!(&amp;quot;{} {}&amp;quot;, str1, x);
+	closure(&amp;quot;rustaceans!&amp;quot;);
+
+	&amp;#x2F;&amp;#x2F; using FnMut trait
+	let mut closure2 = |x| str1.push_str(x);
+	closure2(&amp;quot; welcome back, rustaceans!&amp;quot;);
+	println!(&amp;quot;{}&amp;quot;, str1);
+
+	&amp;#x2F;&amp;#x2F; using FnOnce trait
+	let closure3 = || drop(str1);
+    println!(&amp;quot;before dropping str1&amp;quot;);
+    closure3();
+    println!(&amp;quot;str1 has been dropped&amp;quot;);
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;We see the &lt;code&gt;FnOnce&lt;&#x2F;code&gt; trait in action here when using  &lt;code&gt;drop(str1)&lt;&#x2F;code&gt;.  However, if we try to call &lt;code&gt;str1&lt;&#x2F;code&gt; again, our code would not compile and give us an error message, so we don&#x27;t call it in this instance.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;the-move-keyword&quot;&gt;&lt;strong&gt;The &lt;code&gt;move&lt;&#x2F;code&gt; keyword&lt;&#x2F;strong&gt;&lt;&#x2F;h2&gt;
+&lt;p&gt;The &lt;code&gt;move&lt;&#x2F;code&gt; keyword comes in handy when you want to force a closure to take ownership of the values it captures, even though the closure doesn&#x27;t need it. &lt;code&gt;move&lt;&#x2F;code&gt; can specifically come into action when passing a closure into a new thread and thus moving the data so it&#x27;s owned by this new thread. Threads are something we can cover at a different time, but let&#x27;s look at this example on how to use the &lt;code&gt;move&lt;&#x2F;code&gt; keyword with closures:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;use std::thread;
+
+fn main() {
+    let list = vec![1, 2, 3];
+    println!(&amp;quot;Before defining closure: {:?}&amp;quot;, list);
+
+    thread::spawn(move || println!(&amp;quot;From thread: {:?}&amp;quot;, list))
+        .join()
+        .unwrap();
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;A new thread is spawned and we force the closure to take ownership of the &lt;code&gt;list&lt;&#x2F;code&gt; by using the &lt;code&gt;move&lt;&#x2F;code&gt;  keyword.  In this way even if we implement the &lt;code&gt;Fn&lt;&#x2F;code&gt; or &lt;code&gt;FnMut&lt;&#x2F;code&gt; traits, ownership is moved to the closure allowing more flexibility in the closure. &lt;&#x2F;p&gt;
+&lt;h2 id=&quot;passing-closures-or-other-functions-as-inputs-to-functions&quot;&gt;&lt;strong&gt;Passing closures(or other functions) as inputs to functions&lt;&#x2F;strong&gt;&lt;&#x2F;h2&gt;
+&lt;p&gt;Now let&#x27;s look at a couple of different ways we can use closures as inputs to functions, building on what we saw above with the &lt;code&gt;Fn&lt;&#x2F;code&gt;, &lt;code&gt;FnMut&lt;&#x2F;code&gt;. &lt;&#x2F;p&gt;
+&lt;p&gt;As mentioned outside of a function, a closure can decide by itself which trait to use, but inside of a function, you have to be explicit and define one of these traits. &lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;&amp;#x2F;&amp;#x2F; using `Fn`
+fn add_num&amp;lt;F&amp;gt;(func: F)
+	where F: Fn(i32){
+		func(7)
+	}
+
+fn main(){
+	let num = 6;
+	add_num(|x|println!(&amp;quot;{}&amp;quot;, num + x));
+	
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;This prints:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;13
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Here we are defining the &lt;code&gt;Fn&lt;&#x2F;code&gt; trait to add two numbers and since we are not changing the number in the &lt;code&gt;add_num&lt;&#x2F;code&gt;  function and simply passing it through we can define the &lt;code&gt;Fn&lt;&#x2F;code&gt; trait without major fuss. &lt;&#x2F;p&gt;
+&lt;p&gt;However, if we try to make our &lt;code&gt;num&lt;&#x2F;code&gt; mutable by incrementing it, we might run into some problems. Let&#x27;s see what happens.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;fn add_num&amp;lt;F&amp;gt;(func: F)
+	where F: Fn(i32){
+		func(7)
+	}
+
+fn main(){
+	let mut num = 6; &amp;#x2F;&amp;#x2F; mutable to allow incrementation
+	add_num(|x|{num +=x; println!(&amp;quot;{}&amp;quot;, num + x)}); 
+	
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;As expected we get an error message:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;error[E0594]: cannot assign to `num`, as it is a captured variable in a `Fn` closure
+ --&amp;gt; src&amp;#x2F;main.rs:8:14
+  |
+1 | fn add_num&amp;lt;F&amp;gt;(func: F)
+  |                     - change this to accept `FnMut` instead of `Fn`
+...
+8 |     add_num(|x|{num +=x; println!(&amp;quot;{}&amp;quot;, num + x)});
+  |     ------- --- ^^^^^^^ cannot assign
+  |     |       |
+  |     |       in this closure
+  |     expects `Fn` instead of `FnMut`
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;The compiler actually tells us what we should be doing here (very nice), changing the &lt;code&gt;Fn&lt;&#x2F;code&gt; to &lt;code&gt;FnMut&lt;&#x2F;code&gt; .&lt;&#x2F;p&gt;
+&lt;p&gt;If we update our code to in the &lt;code&gt;add_num&lt;&#x2F;code&gt; function to what is shown below, our problems will be solved:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;fn add_num&amp;lt;F&amp;gt;(mut func: F) &amp;#x2F;&amp;#x2F; add mut here
+	where F: FnMut(i32){ &amp;#x2F;&amp;#x2F; change Fn to FnMut here
+		func(7) 
+	}
+
+fn main(){
+	let mut num = 6;
+	add_num(|x|{num +=x; println!(&amp;quot;{}&amp;quot;, num + x)}); 	
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;This now compiles and prints:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;20
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h2 id=&quot;conclusion&quot;&gt;Conclusion&lt;&#x2F;h2&gt;
+&lt;p&gt;Phew, we covered a lot but there&#x27;s still more we can do with closures, like storing them in structs and using them in conjunction with iterators, but we&#x27;ll leave that for another time. For now, I hope I have been able to explain what a closure is, how to create a closure, and how to use its traits. This should help you get started with getting familiar with closures and understanding how to use them in your own code. &lt;&#x2F;p&gt;
+&lt;p&gt;Please let me know if I got something wrong or was unclear on anything, I&#x27;m doing this to help me better learn these concepts, so any feedback is appreciated. &lt;&#x2F;p&gt;
+</description>
+      </item>
+      <item>
+          <title>Hello World</title>
           <pubDate>Tue, 07 Mar 2023 00:00:00 +0000</pubDate>
           <author>Unknown</author>
           <link>https://desmodrone.github.io/posts/hello-world/</link>
           <guid>https://desmodrone.github.io/posts/hello-world/</guid>
-          <description>&lt;p&gt;Yes, the obligatory hello world post...and code.&lt;&#x2F;p&gt;
+          <description>&lt;p&gt;Yes, the obligatory Hello World post...and code.&lt;&#x2F;p&gt;
 &lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;fn main(){
     println!(&amp;quot;hello world!&amp;quot;)
 }
