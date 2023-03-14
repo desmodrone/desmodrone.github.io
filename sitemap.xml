@@ -18,6 +18,10 @@
         <lastmod>2023-03-08</lastmod>
     </url>
     <url>
+        <loc>https://desmodrone.github.io/posts/traits-101/</loc>
+        <lastmod>2023-03-14</lastmod>
+    </url>
+    <url>
         <loc>https://desmodrone.github.io/tags/</loc>
     </url>
     <url>
@@ -34,5 +38,8 @@
     </url>
     <url>
         <loc>https://desmodrone.github.io/tags/rust/</loc>
+    </url>
+    <url>
+        <loc>https://desmodrone.github.io/tags/traits/</loc>
     </url>
 </urlset>

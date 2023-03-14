@@ -7,7 +7,196 @@
       <generator>Zola</generator>
       <language>en</language>
       <atom:link href="https://desmodrone.github.io/rss.xml" rel="self" type="application/rss+xml"/>
-      <lastBuildDate>Wed, 08 Mar 2023 00:00:00 +0000</lastBuildDate>
+      <lastBuildDate>Tue, 14 Mar 2023 00:00:00 +0000</lastBuildDate>
+      <item>
+          <title>Notes on Traits and You: A Deep Dive Part 1</title>
+          <pubDate>Tue, 14 Mar 2023 00:00:00 +0000</pubDate>
+          <author>Unknown</author>
+          <link>https://desmodrone.github.io/posts/traits-101/</link>
+          <guid>https://desmodrone.github.io/posts/traits-101/</guid>
+          <description>&lt;h4 id=&quot;original-content-by-nell-shamrell-harrington&quot;&gt;Original content by Nell Shamrell-Harrington&lt;&#x2F;h4&gt;
+&lt;p&gt;When looking for resources to help me better understand Rust Traits, I found &lt;a href=&quot;https:&#x2F;&#x2F;youtu.be&#x2F;grU-4u0Okto&quot;&gt;this video&lt;&#x2F;a&gt;from &lt;a href=&quot;https:&#x2F;&#x2F;twitter.com&#x2F;nellshamrell?s=21&amp;amp;t=EhxGdIZ2VJ9HIqIS1LXcpw&quot;&gt;Nell Shamrell-Harrington&lt;&#x2F;a&gt;. It&#x27;s a great intro and overview into using Traits, which can be a little confusing when you first start learning Rust. &lt;&#x2F;p&gt;
+&lt;p&gt;So these are my notes on this talk, if you haven&#x27;t watched it and are struggling with learning Traits, I strongly suggest that you watch the video above before you do anything else. But if you&#x27;re short on time and just want to reference my notes -- here they are. Disclaimer: these notes are my own interpretation of the talk and may not necessarily reflect the views of the original speaker. These note are primarily for me to learn these concepts, and I publish them for others to see and maybe benefit from. Feel free to let me know if I have errors or have misrepresentations. &lt;&#x2F;p&gt;
+&lt;h2 id=&quot;introduction&quot;&gt;Introduction&lt;&#x2F;h2&gt;
+&lt;p&gt;The talk goes covers 3 different ways that we can use Traits&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;Traits 101 Introduction&lt;&#x2F;li&gt;
+&lt;li&gt;Traits 201 Trait Bounds&lt;&#x2F;li&gt;
+&lt;li&gt;Traits 301 Trait Objects&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;Nell brilliantly uses D&amp;amp;D as a metaphor to help explain Traits. It should be clear that the use of D&amp;amp;D is just to help grasp some concepts, and the D&amp;amp;D rules do not strictly apply in these concepts, so now that we have that out of the way let&#x27;s begin.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;traits-101&quot;&gt;Traits: 101&lt;&#x2F;h2&gt;
+&lt;p&gt;On this post we will cover Traits 101, this will keep each post shorter and easier to digest.&lt;&#x2F;p&gt;
+&lt;p&gt;In D&amp;amp;D there are many different races, but we&#x27;ll start by using these 4 different races:&lt;&#x2F;p&gt;
+&lt;ol&gt;
+&lt;li&gt;Dwarves&lt;&#x2F;li&gt;
+&lt;li&gt;Elf&lt;&#x2F;li&gt;
+&lt;li&gt;HalfOrc&lt;&#x2F;li&gt;
+&lt;li&gt;Human&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;h2 id=&quot;creating-our-structs&quot;&gt;Creating our Structs&lt;&#x2F;h2&gt;
+&lt;p&gt;Now let&#x27;s create these races as structs in Rust&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;struct Dwarf {
+	name:String
+}
+
+struct Elf {
+	name:String
+}
+
+struct HalfOrc {
+	name:String
+}
+
+struct Human {
+	name:String
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;As you can see this is pretty straight forward code where we define the struct name (&lt;code&gt;Dwarf&lt;&#x2F;code&gt;, &lt;code&gt;Elf&lt;&#x2F;code&gt; etc.) and then add the &lt;code&gt;name:String&lt;&#x2F;code&gt; to allow our characters to be named.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;creating-our-dwarf&quot;&gt;Creating our Dwarf&lt;&#x2F;h2&gt;
+&lt;p&gt;First, let&#x27;s create a Dwarf character.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;let my_dwarf = Dwarf {
+	name: String::from(&amp;quot;DanDwarf&amp;quot;)
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;A variable &lt;code&gt;my_dwarf&lt;&#x2F;code&gt; that stores our &lt;code&gt;Dwarf&lt;&#x2F;code&gt; type and we name him &lt;code&gt;DanDwarf&lt;&#x2F;code&gt;&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;d-d-core-traits&quot;&gt;D&amp;amp;D Core Traits&lt;&#x2F;h2&gt;
+&lt;p&gt;In D&amp;amp;D each character has core traits:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;Strength&lt;&#x2F;li&gt;
+&lt;li&gt;Dexterity&lt;&#x2F;li&gt;
+&lt;li&gt;Constitution&lt;&#x2F;li&gt;
+&lt;li&gt;Intelligence&lt;&#x2F;li&gt;
+&lt;li&gt;Wisdom&lt;&#x2F;li&gt;
+&lt;li&gt;Charisma&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;If you are not familiar in D&amp;amp;D, character&#x27;s core traits are defined in numbers, so an example would be that a character could have a Strength of: 8, a Dexterity of: 4, and a Constitution of 2, etc. as a base and depending on equipment or spells cast these traits could be boosted (or lowered).&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;defining-a-trait&quot;&gt;Defining a Trait&lt;&#x2F;h2&gt;
+&lt;p&gt;Let&#x27;s first define a &lt;code&gt;Constitution&lt;&#x2F;code&gt; trait that we can use on our soon to be defined Characters&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;&amp;#x2F;&amp;#x2F; Let&amp;#x27;s make a constitution trait
+&amp;#x2F;&amp;#x2F; where we define one function `constitution_bonus`
+pub triat Constitution {
+	fn constitution_bonus(&amp;amp;self) -&amp;gt; u8;
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h2 id=&quot;implementing-constitution-for-dwarf&quot;&gt;Implementing &lt;code&gt;Constitution&lt;&#x2F;code&gt; for &lt;code&gt;Dwarf&lt;&#x2F;code&gt;&lt;&#x2F;h2&gt;
+&lt;p&gt;So let&#x27;s take one of these traits, in our case Constitution and define it in Rust for our Dwarf.  We&#x27;ll say that Dwarves have a Constitution bonus of 2.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;&amp;#x2F;&amp;#x2F;implemeting the trait
+impl Constitution for Dwarf {
+	fn constitution_bonus(&amp;amp;self) -&amp;gt; u8 {
+	2 &amp;#x2F;&amp;#x2F; this returns 2, anytime the instance of a dwarf is called.
+	}
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Now that we&#x27;ve defined our trait we go back to our Dwarf, using our just defined  &lt;code&gt;constitution_bounus&lt;&#x2F;code&gt; that we can call on &lt;code&gt;my_dwarf&lt;&#x2F;code&gt; as shown below. &lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;&amp;#x2F;&amp;#x2F; back to making the character 
+let my_dwarf = Dwarf {
+	name: String::from(&amp;quot;DanDwarf&amp;quot;)
+};
+
+my_dwarf.constitution_bonus(); &amp;#x2F;&amp;#x2F; Returns 2
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;In this way no matter how many Dwarves we create, every single one of them will have the &lt;code&gt;constitution_bonus&lt;&#x2F;code&gt; of &lt;code&gt;2&lt;&#x2F;code&gt; attached.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;creating-a-halforc&quot;&gt;Creating a HalfOrc&lt;&#x2F;h2&gt;
+&lt;p&gt;Now, let&#x27;s create a &lt;code&gt;HalfOrc&lt;&#x2F;code&gt; and we&#x27;ll start by implementing the &lt;code&gt;constituion_bonus&lt;&#x2F;code&gt;, the Constitution bonus for a HalfOrc is &lt;code&gt;1&lt;&#x2F;code&gt;&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;impl Constitution for HalfOrc {
+	fn constitution_bonus(&amp;amp;self) -&amp;gt; u8 {
+	1
+	}
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;This is the same as our Dwarf &lt;code&gt;impl&lt;&#x2F;code&gt; but instead returning a 2, it returns 1&lt;&#x2F;p&gt;
+&lt;p&gt;Now we create the HalfOrc with:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;let my_half_orc = HalfOrc {
+	name: String::from(&amp;quot;OscarOrc&amp;quot;)
+}
+
+my_half_orc.constitution_bonus();&amp;#x2F;&amp;#x2F; Returns 1
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Pretty straightforward right? We bind &lt;code&gt;my_half_orc&lt;&#x2F;code&gt; to our &lt;code&gt;HalfOrc&lt;&#x2F;code&gt; and name him &lt;code&gt;OscarOrc&lt;&#x2F;code&gt; and when we call the &lt;code&gt;constitution_bonus&lt;&#x2F;code&gt; and we know that it will return &lt;code&gt;1&lt;&#x2F;code&gt;, as we have defined in the &lt;code&gt;impl&lt;&#x2F;code&gt; block above.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;humans-and-elves&quot;&gt;Humans and Elves&lt;&#x2F;h2&gt;
+&lt;p&gt;Let&#x27;s define our last 2 races of Humans and Elves, but let&#x27;s say that both of these races have a constitution bonus of &lt;code&gt;0&lt;&#x2F;code&gt;.
+Our first instinct might be to do the same as we did above and do this:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;&amp;#x2F;&amp;#x2F; we can implement like this but this is repetitive 
+impl Constitution for Elf {
+	fn constitution_bonus(&amp;amp;self) -&amp;gt; u8 {
+	0
+	}
+}
+
+impl Constitution for Human {
+	fn constitution_bonus(&amp;amp;self) -&amp;gt; u8 {
+	0
+	}
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;This is clearly repetitive and not ideal. Another thing to note is that most races actually have a constitution bonus of &lt;code&gt;0&lt;&#x2F;code&gt;
+So how do we deal with this? &lt;&#x2F;p&gt;
+&lt;p&gt;Let&#x27;s add a default value the &lt;code&gt;Constitution&lt;&#x2F;code&gt; trait we first created.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;&amp;#x2F;&amp;#x2F; making `0` the default
+pub triat Constitution {
+	fn constitution_bonus(&amp;amp;self) -&amp;gt; u8 {
+	0
+	}
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;In this way unless we have a struct that implements this trait and overrides this default value it will always return &lt;code&gt;0&lt;&#x2F;code&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;We still have to implement the traits on the struct, but we don&#x27;t have to define how the constitution bonus works since it&#x27;s default value is &lt;code&gt;0&lt;&#x2F;code&gt; and Humans and Elves&#x27; &lt;code&gt;constitution_bonus&lt;&#x2F;code&gt; matches the default value.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;
+impl Constitution for Elf{
+}
+
+impl Constitution for Human{
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h2 id=&quot;creating-our-elf-and-human&quot;&gt;Creating our Elf and Human&lt;&#x2F;h2&gt;
+&lt;p&gt;We know the drill here, we define both of these in the same way that we did for our &lt;code&gt;my_dwarf&lt;&#x2F;code&gt; and &lt;code&gt;my_half_orc&lt;&#x2F;code&gt;, the only difference is that since we have defined a default value on the &lt;code&gt;Constitution&lt;&#x2F;code&gt; trait we have access to it automatically unless we further define the &lt;code&gt;consitution_bonus&lt;&#x2F;code&gt; like we did previously.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;let my_elf = Elf{
+	name:String::from(&amp;quot;ElleElf&amp;quot;)
+};
+
+my_elf.constituion_bonus(); &amp;#x2F;&amp;#x2F; Retuns 0
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;let my_human = Human {
+	name:String::from(&amp;quot;HarryHuman&amp;quot;)
+};
+
+my_human.constitution_bonus(); &amp;#x2F;&amp;#x2F; Returns 0
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;There it is, we have created 4 D&amp;amp;D characters and defined their &lt;code&gt;constitution_bonus&lt;&#x2F;code&gt; in a couple of different ways using Triats.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;summary&quot;&gt;Summary&lt;&#x2F;h2&gt;
+&lt;p&gt;Let&#x27;s summarize what we did here, in a quick step-by-step so we can see how easy it actually is to use traits in this way.&lt;&#x2F;p&gt;
+&lt;ol&gt;
+&lt;li&gt;Create a &lt;code&gt;struct&lt;&#x2F;code&gt; for each of the races.&lt;&#x2F;li&gt;
+&lt;li&gt;Create a character with a variable &lt;code&gt;my_&amp;lt;race&amp;gt;&lt;&#x2F;code&gt;  and defined it&#x27;s type and name.&lt;&#x2F;li&gt;
+&lt;li&gt;Create a &lt;code&gt;trait&lt;&#x2F;code&gt;, in our case &lt;code&gt;constitution_bonus&lt;&#x2F;code&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;Implement the &lt;code&gt;triat&lt;&#x2F;code&gt; on the &lt;code&gt;Dwarf&lt;&#x2F;code&gt; struct 
+&lt;ul&gt;
+&lt;li&gt;define constitution bonus as &lt;code&gt;2&lt;&#x2F;code&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;calling &lt;code&gt;constitution_bonus()&lt;&#x2F;code&gt; on our character it returns &lt;code&gt;2&lt;&#x2F;code&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;if we create more &lt;code&gt;Dwarf&lt;&#x2F;code&gt; characters they&#x27;d all have a constitution bonus of &lt;code&gt;2&lt;&#x2F;code&gt; &lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;Implement the &lt;code&gt;trait&lt;&#x2F;code&gt; on the &lt;code&gt;HalfOrc&lt;&#x2F;code&gt; struct 
+&lt;ul&gt;
+&lt;li&gt;define constitution bonus as &lt;code&gt;1&lt;&#x2F;code&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;calling &lt;code&gt;constitution_bonus()&lt;&#x2F;code&gt; on our character returns &lt;code&gt;1&lt;&#x2F;code&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;if we create more &lt;code&gt;HalfOrc&lt;&#x2F;code&gt; characters they&#x27;d all have a constitution bonus of &lt;code&gt;1&lt;&#x2F;code&gt; &lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;Add a default value to our &lt;code&gt;Constitution&lt;&#x2F;code&gt; trait&lt;&#x2F;li&gt;
+&lt;li&gt;Implement the &lt;code&gt;trait&lt;&#x2F;code&gt; on &lt;code&gt;Elves&lt;&#x2F;code&gt; and &lt;code&gt;Humans&lt;&#x2F;code&gt;(with no additional definition)&lt;&#x2F;li&gt;
+&lt;li&gt;Created our &lt;code&gt;Elves&lt;&#x2F;code&gt; and &lt;code&gt;Humans&lt;&#x2F;code&gt; 
+&lt;ul&gt;
+&lt;li&gt;calling &lt;code&gt;constitution_bonus()&lt;&#x2F;code&gt; on our elf and human characters returns &lt;code&gt;0&lt;&#x2F;code&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;creating other races with no function definition in their implementation will always return &lt;code&gt;0&lt;&#x2F;code&gt;&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;p&gt;Alright, as you can see there&#x27;s not a lot of tricky parts here, it&#x27;s all pretty straight forward, especially when laid out in this way where we can see how easy it is, in a few easy steps start using Traits in Rust. &lt;&#x2F;p&gt;
+&lt;p&gt;Next we&#x27;ll dive into Traits 201, it will build on what we&#x27;ve learned here with Trait bounds. See you next time. &lt;&#x2F;p&gt;
+</description>
+      </item>
       <item>
           <title>Rust Closures</title>
           <pubDate>Wed, 08 Mar 2023 00:00:00 +0000</pubDate>
