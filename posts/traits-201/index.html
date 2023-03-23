@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <meta itemprop="name" content="desmo" />
+  <meta itemprop="description" content="Random Ideas" />
+
+  <link rel="apple-touch-icon" sizes="180x180" href="https://desmodrone.github.io/apple-touch-icon.png"/>
+  <link rel="icon" type="image/png" sizes="32x32" href="https://desmodrone.github.io/favicon-32x32.png" />
+  <link
+    rel="icon"
+    type="image/png"
+    sizes="16x16"
+    href="https://desmodrone.github.io/favicon-16x16.png"
+  />
+  <link
+    rel="shortcut icon"
+    href="https://desmodrone.github.io/favicon.ico"
+  />
+  <link rel="stylesheet" href="https://desmodrone.github.io/style.css"/>
+  
+  <title>Notes on Traits and You: A Deep Dive Part 2</title>
+  
+
+  
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="https://desmodrone.github.io/rss.xml">
+  
+
+  <body id="page">
+
+	
+<header id="site-header" class="animated slideInUp faster">
+  <div class="hdr-wrapper section-inner">
+    <div class="hdr-left">
+      <div class="site-branding">
+        <a href="https:&#x2F;&#x2F;desmodrone.github.io">desmo</a>
+      </div>
+      <nav class="site-nav hide-in-mobile">
+            
+        
+        <a href="https://desmodrone.github.io/posts">posts</a>
+        
+        <a href="https://desmodrone.github.io/about">about</a>
+        
+      </nav>
+    </div>
+    <div class="hdr-right hdr-icons">
+      <span class="hdr-social hide-in-mobile">
+        
+
+<a href="https:&#x2F;&#x2F;twitter.com&#x2F;desmodrone_" target="_blank" rel="noopener me"
+   title="twitter">
+  
+  <svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg>
+  
+</a>
+
+<a href="https:&#x2F;&#x2F;github.com&#x2F;desmodrone" target="_blank" rel="noopener me"
+   title="github">
+  
+  <svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+  
+</a>
+
+<a href="mailto:erick@apexwins.com" target="_blank" rel="noopener me"
+   title="email">
+  
+  <svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+  
+</a>
+
+
+      </span>
+      <button id="menu-btn" class="hdr-btn" title="Menu">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="feather feather-menu"
+        >
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+  </div>
+</header>
+<div id="mobile-menu" class="animated fast">
+  <ul>
+    
+    <li><a href="https://desmodrone.github.io/posts">posts</a></li>
+    
+    <li><a href="https://desmodrone.github.io/about">about</a></li>
+    
+  </ul>
+</div>
+
+	
+	
+
+		
+<main class="site-main section-inner animated fadeIn faster">
+  <article class="thin">
+	<header class="post-header">
+	  <div class="post-meta">
+		
+		<span>Mar 23, 2023</span>
+		<small> - 
+<span class="reading-time" title="Estimated read time">
+  
+  3 min read
+  
+</span>
+</small>
+		
+            
+	  </div>
+	  <h1>Notes on Traits and You: A Deep Dive Part 2</h1>
+	</header>
+
+	<div class="content">
+        
+	  <h4 id="original-content-by-nell-shamrell-harrington">Original content by Nell Shamrell-Harrington</h4>
+<p>When looking for resources to help me better understand Rust Traits, I found <a href="https://youtu.be/grU-4u0Okto">this video</a>from <a href="https://twitter.com/nellshamrell?s=21&amp;t=EhxGdIZ2VJ9HIqIS1LXcpw">Nell Shamrell-Harrington</a>. It's a great intro and overview into using Traits, which can be a little confusing when you first start learning Rust.</p>
+<p>So these are my notes on this talk, if you haven't watched it and are struggling with learning Traits, I strongly suggest that you watch the video above before you do anything else. But if you're short on time and just want to reference my notes -- here they are. Disclaimer: these notes are my own interpretation of the talk and may not necessarily reflect the views of the original speaker. These note are primarily for me to learn these concepts, and I publish them for others to see and maybe benefit from. Feel free to let me know if I have errors or have misrepresentations.</p>
+<h2 id="introduction">Introduction</h2>
+<p>The talk goes covers 3 different ways that we can use Traits, I have already written down my first part of these notes, you can see those linked below.</p>
+<ul>
+<li><a href="https://desmodrone.github.io/posts/traits-101/">Traits 101 Introduction</a></li>
+<li>Traits 201 Trait Bounds</li>
+<li>Traits 301 Trait Objects</li>
+</ul>
+<p>Nell brilliantly uses D&amp;D as a metaphor to help explain Traits. It should be clear that the use of D&amp;D is just to help grasp some concepts, and the D&amp;D rules do not strictly apply in these concepts, so now that we have that out of the way let's begin.</p>
+<h2 id="traits-201-trait-bounds">Traits 201: Trait Bounds</h2>
+<p>Today we cover Traits Bounds. In my previous notes we used 4 different races to explain how traits can be used with those races.
+But now, we're going to add a 5th race: the Half-Elf</p>
+<ol>
+<li>Dwarves</li>
+<li>Elf</li>
+<li>HalfOrc</li>
+<li>Human</li>
+<li><em>Half-Elf</em></li>
+</ol>
+<h2 id="trait-bounds">Trait Bounds</h2>
+<p>In our <a href="https://desmodrone.github.io/posts/traits-101/">previous note</a> we went through the process of how to define a Trait, in that case we used <code>Constitution</code> as the trait we wanted to apply to the 4 different races in different ways. If you haven't looked at that note it might help to do so first to help understand the basics of creating our characters, creating a Trait, defining race specific values as well as default values.</p>
+<p>To help us understand Trait bounds, let's look at how these races communicate. Each race has core races that they speak, for example.</p>
+<ul>
+<li>Dwarves: Common, Dwarvish</li>
+<li>Elf: Common, Elvish</li>
+<li>Half-Elf: Common, Elvish</li>
+</ul>
+<h2 id="defining-the-elvish-language-trait">Defining the  <code>Elvish</code> language Trait</h2>
+<p>Let's focus on the Elvish language first and define a trait for the language and define a <code>impl</code> for the <code>Elf</code> and <code>HalfElf</code> races.</p>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">&#x2F;&#x2F; Define the Elvish trait
+pub trait Elvish {
+
+}
+
+&#x2F;&#x2F; Implement the Elvish trait for the Elf struct
+impl Elvish for Elf {
+
+}
+
+&#x2F;&#x2F; Implement the Elvish trait for the HalfElf struct
+impl Elvish for HalfElf {
+</code></pre>
+<p>This should be pretty straight-forward so far as it's just like we started Traits 101.</p>
+<p>Now let's make a function to allow our characters to actually speak <code>Elvish</code></p>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">pub fn speak_elvish(character: T) -&gt; String{
+	String::from(&quot;yes&quot;)
+}
+</code></pre>
+<p>Right now this function can be called on anything with no arguments, so we add an argument called character, but this character doesn't need to be a specific type it can be any of the structs we've already created.</p>
+<p>But if we add the <code>&lt;T: Elvish&gt;</code> this means we will only accept the <code>Elvish</code> trait.</p>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">pub fn speak_elvish&lt;T: Elvish&gt;(character: T) -&gt; String {
+	String::from(&quot;yes&quot;)
+}
+
+let my_elf = Elf { name: String::from(&quot;ElleElf&quot;)};
+
+&#x2F;&#x2F; we use our previously defined variable with the `speak_elvish` function
+speak_elvish(my_elf)
+</code></pre>
+<p>So now if we call our <code>Elf</code> (<code>my_elf</code>) with <code>speak_elvish(my_elf)</code> it would return a <code>yes</code> because we have implemented <code>Elvish</code> for <code>Elf</code>.</p>
+<p>Let's look at our <code>HalfElf</code></p>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">&#x2F;&#x2F; This is the same function that we defined before
+pub fn speak_elvish&lt;T: Elvish&gt;(character: T) -&gt; String {
+	String::from(&quot;yes&quot;)
+}
+&#x2F;&#x2F; here we bind our HalfElf to `my_half_elf`
+let my_half_elf = HalfElf { name: String::from(&quot;HarryHalfElf&quot;)};
+
+speak_elvish(my_half_elf) &#x2F;&#x2F; again this returns &#x27;yes&#x27; since we&#x27;ve implemented `Elvish` for `HalfElf`
+</code></pre>
+<p>So far so good right, I hope it's pretty easy to see why both the <code>my_elf</code> and <code>my_half_elf</code> both return <code>yes</code> when we call them using the <code>speak_elvish</code> function.</p>
+<h2 id="halforcs-incoming">HalfOrcs Incoming</h2>
+<p>We've successfully implemented our <code>speak_elvish</code> trait on both our <code>Elf</code> type races, but let's see what happens when we try to call our HalfOrc.</p>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">pub fn speak_elvish&lt;T: Elvish&gt;(character: T) -&gt; String {
+	String::from(&quot;yes&quot;)
+}
+
+let my_half_orc = HalfOrc { name: String::from(&quot;OscarOrc&quot;)};
+
+speak_elvish(my_half_orc)
+</code></pre>
+<p>So what happens if wet try to call <code>my_half_orc</code> with <code>speaks_elvish</code>? Well in this case our code would not compile because we have not implemented <code>Evlish</code> for <code>HalfOrc</code>. Of course, Orcs tend to break everything 😉.</p>
+<h2 id="recap">Recap</h2>
+<p><em><strong>Trait bounds</strong></em> allow a function to <em><strong>only</strong></em> accept types that implement a certain trait or combination of traits. This provides a powerful way to enforce specific behaviors and characteristics for the types used in your functions. Furthermore, you can combine multiple traits as criteria for a function, allowing for even greater flexibility and control.</p>
+<p>This was a short and straightforward introduction to Trait Bounds, and we'll dive deeper into Rust Traits in the upcoming post on Traits 301: Trait Objects, where the real magic happens</p>
+
+	</div>
+	<hr class="post-end">
+	<footer class="post-info">
+    
+	  <p>
+		<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg>
+		
+		
+		<span class="tag"><a href="https://desmodrone.github.io/tags/rust/">rust</a></span>
+		
+		<span class="tag"><a href="https://desmodrone.github.io/tags/blog/">blog</a></span>
+		
+		<span class="tag"><a href="https://desmodrone.github.io/tags/traits/">traits</a></span>
+		
+		
+    </p>
+    
+    <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>881 Words</p>
+    
+    <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2023-03-23</p>
+    
+	</footer>
+  </article>
+    
+  
+  <div class="post-nav thin">
+	
+	
+  </div>
+
+  
+</main>
+
+	  </div>
+	  
+	  
+
+
+
+<footer id="site-footer" class="section-inner thin animated fadeIn faster">
+  <p>&copy; 2023 <a href="https:&#x2F;&#x2F;desmodrone.github.io">erick</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
+  <p>Made with <a href="https://www.getzola.org" target="_blank" rel="noopener">Zola</a> &#183; Theme <a href="https://github.com/VersBinarii/hermit_zola" target="_blank" rel="noopener">Hermit_Zola</a>
+	
+	&#183; <a href="https://desmodrone.github.io/rss.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
+	
+  </p>
+</footer>
+
+
+
+
+	</div>
+	
+	<script src="https://desmodrone.github.io/js/main.js"></script>
+
+	<!-- Math rendering -->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css" integrity="sha384-zB1R0rpPzHqg7Kpt0Aljp8JPLqbXI3bhnPWROx27a9N0Ll6ZP/+DiW/UqRcLbRjq" crossorigin="anonymous">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js" integrity="sha384-y23I5Q6l+B6vatafAwxRu/0oK/79VlbSz7Q9aiSZUvyWYIYsd+qj+o24G5ZU2zJz" crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous"
+        onload="renderMathInElement(document.body, { delimiters: [ {left: '$$', right: '$$', display: true}, {left: '$', right: '$', display: false}, {left: '\\[', right: '\\]', display: true}, {left: '\\(', right: '\\)', display: false}]});"></script>
+
+    
+		<link href="https://unpkg.com/highlightjs-badge/highlightjs/styles/railscasts.css" rel="stylesheet">
+		<!-- https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.1/build/styles/  for min version -->
+		<script src="https://unpkg.com/highlightjs-badge/highlightjs/highlight.pack.js"></script>
+		<script src="https://unpkg.com/highlightjs-badge/highlightjs-badge.min.js"></script>
+		<script>
+			var pres = document.querySelectorAll("pre>code");
+			for (var i = 0; i < pres.length; i++) {
+				hljs.highlightBlock(pres[i]);
+			}
+		</script>
+		
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js"></script>
+			<script>
+				var options = {
+					copyIconClass: "gg-clipboard",
+					checkIconClass: "gg-check"
+				};
+				window.highlightJsBadge(options);
+			</script>
+		
+
+	
+
+	
+	<script src="https://desmodrone.github.io/js/main.js"></script>
+
+    
+    
+
+	
+    <!-- Global Site Tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-9MNTYXYNHK"></script>
+    <script>
+     window.dataLayer = window.dataLayer || [];
+     function gtag(){dataLayer.push(arguments);}
+     gtag('js', new Date());
+     gtag('config', 'G-9MNTYXYNHK');
+    </script>
+    
+  </body>
+</html>

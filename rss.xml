@@ -7,7 +7,102 @@
       <generator>Zola</generator>
       <language>en</language>
       <atom:link href="https://desmodrone.github.io/rss.xml" rel="self" type="application/rss+xml"/>
-      <lastBuildDate>Tue, 14 Mar 2023 00:00:00 +0000</lastBuildDate>
+      <lastBuildDate>Thu, 23 Mar 2023 00:00:00 +0000</lastBuildDate>
+      <item>
+          <title>Notes on Traits and You: A Deep Dive Part 2</title>
+          <pubDate>Thu, 23 Mar 2023 00:00:00 +0000</pubDate>
+          <author>Unknown</author>
+          <link>https://desmodrone.github.io/posts/traits-201/</link>
+          <guid>https://desmodrone.github.io/posts/traits-201/</guid>
+          <description>&lt;h4 id=&quot;original-content-by-nell-shamrell-harrington&quot;&gt;Original content by Nell Shamrell-Harrington&lt;&#x2F;h4&gt;
+&lt;p&gt;When looking for resources to help me better understand Rust Traits, I found &lt;a href=&quot;https:&#x2F;&#x2F;youtu.be&#x2F;grU-4u0Okto&quot;&gt;this video&lt;&#x2F;a&gt;from &lt;a href=&quot;https:&#x2F;&#x2F;twitter.com&#x2F;nellshamrell?s=21&amp;amp;t=EhxGdIZ2VJ9HIqIS1LXcpw&quot;&gt;Nell Shamrell-Harrington&lt;&#x2F;a&gt;. It&#x27;s a great intro and overview into using Traits, which can be a little confusing when you first start learning Rust.&lt;&#x2F;p&gt;
+&lt;p&gt;So these are my notes on this talk, if you haven&#x27;t watched it and are struggling with learning Traits, I strongly suggest that you watch the video above before you do anything else. But if you&#x27;re short on time and just want to reference my notes -- here they are. Disclaimer: these notes are my own interpretation of the talk and may not necessarily reflect the views of the original speaker. These note are primarily for me to learn these concepts, and I publish them for others to see and maybe benefit from. Feel free to let me know if I have errors or have misrepresentations.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;introduction&quot;&gt;Introduction&lt;&#x2F;h2&gt;
+&lt;p&gt;The talk goes covers 3 different ways that we can use Traits, I have already written down my first part of these notes, you can see those linked below.&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;desmodrone.github.io&#x2F;posts&#x2F;traits-101&#x2F;&quot;&gt;Traits 101 Introduction&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;Traits 201 Trait Bounds&lt;&#x2F;li&gt;
+&lt;li&gt;Traits 301 Trait Objects&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;Nell brilliantly uses D&amp;amp;D as a metaphor to help explain Traits. It should be clear that the use of D&amp;amp;D is just to help grasp some concepts, and the D&amp;amp;D rules do not strictly apply in these concepts, so now that we have that out of the way let&#x27;s begin.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;traits-201-trait-bounds&quot;&gt;Traits 201: Trait Bounds&lt;&#x2F;h2&gt;
+&lt;p&gt;Today we cover Traits Bounds. In my previous notes we used 4 different races to explain how traits can be used with those races.
+But now, we&#x27;re going to add a 5th race: the Half-Elf&lt;&#x2F;p&gt;
+&lt;ol&gt;
+&lt;li&gt;Dwarves&lt;&#x2F;li&gt;
+&lt;li&gt;Elf&lt;&#x2F;li&gt;
+&lt;li&gt;HalfOrc&lt;&#x2F;li&gt;
+&lt;li&gt;Human&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;em&gt;Half-Elf&lt;&#x2F;em&gt;&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;h2 id=&quot;trait-bounds&quot;&gt;Trait Bounds&lt;&#x2F;h2&gt;
+&lt;p&gt;In our &lt;a href=&quot;https:&#x2F;&#x2F;desmodrone.github.io&#x2F;posts&#x2F;traits-101&#x2F;&quot;&gt;previous note&lt;&#x2F;a&gt; we went through the process of how to define a Trait, in that case we used &lt;code&gt;Constitution&lt;&#x2F;code&gt; as the trait we wanted to apply to the 4 different races in different ways. If you haven&#x27;t looked at that note it might help to do so first to help understand the basics of creating our characters, creating a Trait, defining race specific values as well as default values.&lt;&#x2F;p&gt;
+&lt;p&gt;To help us understand Trait bounds, let&#x27;s look at how these races communicate. Each race has core races that they speak, for example.&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;Dwarves: Common, Dwarvish&lt;&#x2F;li&gt;
+&lt;li&gt;Elf: Common, Elvish&lt;&#x2F;li&gt;
+&lt;li&gt;Half-Elf: Common, Elvish&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h2 id=&quot;defining-the-elvish-language-trait&quot;&gt;Defining the  &lt;code&gt;Elvish&lt;&#x2F;code&gt; language Trait&lt;&#x2F;h2&gt;
+&lt;p&gt;Let&#x27;s focus on the Elvish language first and define a trait for the language and define a &lt;code&gt;impl&lt;&#x2F;code&gt; for the &lt;code&gt;Elf&lt;&#x2F;code&gt; and &lt;code&gt;HalfElf&lt;&#x2F;code&gt; races.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;&amp;#x2F;&amp;#x2F; Define the Elvish trait
+pub trait Elvish {
+
+}
+
+&amp;#x2F;&amp;#x2F; Implement the Elvish trait for the Elf struct
+impl Elvish for Elf {
+
+}
+
+&amp;#x2F;&amp;#x2F; Implement the Elvish trait for the HalfElf struct
+impl Elvish for HalfElf {
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;This should be pretty straight-forward so far as it&#x27;s just like we started Traits 101.&lt;&#x2F;p&gt;
+&lt;p&gt;Now let&#x27;s make a function to allow our characters to actually speak &lt;code&gt;Elvish&lt;&#x2F;code&gt;&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;pub fn speak_elvish(character: T) -&amp;gt; String{
+	String::from(&amp;quot;yes&amp;quot;)
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Right now this function can be called on anything with no arguments, so we add an argument called character, but this character doesn&#x27;t need to be a specific type it can be any of the structs we&#x27;ve already created.&lt;&#x2F;p&gt;
+&lt;p&gt;But if we add the &lt;code&gt;&amp;lt;T: Elvish&amp;gt;&lt;&#x2F;code&gt; this means we will only accept the &lt;code&gt;Elvish&lt;&#x2F;code&gt; trait.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;pub fn speak_elvish&amp;lt;T: Elvish&amp;gt;(character: T) -&amp;gt; String {
+	String::from(&amp;quot;yes&amp;quot;)
+}
+
+let my_elf = Elf { name: String::from(&amp;quot;ElleElf&amp;quot;)};
+
+&amp;#x2F;&amp;#x2F; we use our previously defined variable with the `speak_elvish` function
+speak_elvish(my_elf)
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;So now if we call our &lt;code&gt;Elf&lt;&#x2F;code&gt; (&lt;code&gt;my_elf&lt;&#x2F;code&gt;) with &lt;code&gt;speak_elvish(my_elf)&lt;&#x2F;code&gt; it would return a &lt;code&gt;yes&lt;&#x2F;code&gt; because we have implemented &lt;code&gt;Elvish&lt;&#x2F;code&gt; for &lt;code&gt;Elf&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;Let&#x27;s look at our &lt;code&gt;HalfElf&lt;&#x2F;code&gt;&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;&amp;#x2F;&amp;#x2F; This is the same function that we defined before
+pub fn speak_elvish&amp;lt;T: Elvish&amp;gt;(character: T) -&amp;gt; String {
+	String::from(&amp;quot;yes&amp;quot;)
+}
+&amp;#x2F;&amp;#x2F; here we bind our HalfElf to `my_half_elf`
+let my_half_elf = HalfElf { name: String::from(&amp;quot;HarryHalfElf&amp;quot;)};
+
+speak_elvish(my_half_elf) &amp;#x2F;&amp;#x2F; again this returns &amp;#x27;yes&amp;#x27; since we&amp;#x27;ve implemented `Elvish` for `HalfElf`
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;So far so good right, I hope it&#x27;s pretty easy to see why both the &lt;code&gt;my_elf&lt;&#x2F;code&gt; and &lt;code&gt;my_half_elf&lt;&#x2F;code&gt; both return &lt;code&gt;yes&lt;&#x2F;code&gt; when we call them using the &lt;code&gt;speak_elvish&lt;&#x2F;code&gt; function.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;halforcs-incoming&quot;&gt;HalfOrcs Incoming&lt;&#x2F;h2&gt;
+&lt;p&gt;We&#x27;ve successfully implemented our &lt;code&gt;speak_elvish&lt;&#x2F;code&gt; trait on both our &lt;code&gt;Elf&lt;&#x2F;code&gt; type races, but let&#x27;s see what happens when we try to call our HalfOrc.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;pub fn speak_elvish&amp;lt;T: Elvish&amp;gt;(character: T) -&amp;gt; String {
+	String::from(&amp;quot;yes&amp;quot;)
+}
+
+let my_half_orc = HalfOrc { name: String::from(&amp;quot;OscarOrc&amp;quot;)};
+
+speak_elvish(my_half_orc)
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;So what happens if wet try to call &lt;code&gt;my_half_orc&lt;&#x2F;code&gt; with &lt;code&gt;speaks_elvish&lt;&#x2F;code&gt;? Well in this case our code would not compile because we have not implemented &lt;code&gt;Evlish&lt;&#x2F;code&gt; for &lt;code&gt;HalfOrc&lt;&#x2F;code&gt;. Of course, Orcs tend to break everything 😉.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;recap&quot;&gt;Recap&lt;&#x2F;h2&gt;
+&lt;p&gt;&lt;em&gt;&lt;strong&gt;Trait bounds&lt;&#x2F;strong&gt;&lt;&#x2F;em&gt; allow a function to &lt;em&gt;&lt;strong&gt;only&lt;&#x2F;strong&gt;&lt;&#x2F;em&gt; accept types that implement a certain trait or combination of traits. This provides a powerful way to enforce specific behaviors and characteristics for the types used in your functions. Furthermore, you can combine multiple traits as criteria for a function, allowing for even greater flexibility and control.&lt;&#x2F;p&gt;
+&lt;p&gt;This was a short and straightforward introduction to Trait Bounds, and we&#x27;ll dive deeper into Rust Traits in the upcoming post on Traits 301: Trait Objects, where the real magic happens&lt;&#x2F;p&gt;
+</description>
+      </item>
       <item>
           <title>Notes on Traits and You: A Deep Dive Part 1</title>
           <pubDate>Tue, 14 Mar 2023 00:00:00 +0000</pubDate>
