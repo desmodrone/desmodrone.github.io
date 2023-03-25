@@ -116,7 +116,7 @@
 		<small> - 
 <span class="reading-time" title="Estimated read time">
   
-  3 min read
+  4 min read
   
 </span>
 </small>
@@ -132,7 +132,7 @@
 <p>When looking for resources to help me better understand Rust Traits, I found <a href="https://youtu.be/grU-4u0Okto">this video</a>from <a href="https://twitter.com/nellshamrell?s=21&amp;t=EhxGdIZ2VJ9HIqIS1LXcpw">Nell Shamrell-Harrington</a>. It's a great intro and overview into using Traits, which can be a little confusing when you first start learning Rust.</p>
 <p>So these are my notes on this talk, if you haven't watched it and are struggling with learning Traits, I strongly suggest that you watch the video above before you do anything else. But if you're short on time and just want to reference my notes -- here they are. Disclaimer: these notes are my own interpretation of the talk and may not necessarily reflect the views of the original speaker. These note are primarily for me to learn these concepts, and I publish them for others to see and maybe benefit from. Feel free to let me know if I have errors or have misrepresentations.</p>
 <h2 id="introduction">Introduction</h2>
-<p>The talk goes covers 3 different ways that we can use Traits, I have already written down my first part of these notes, you can see those linked below.</p>
+<p>The talk covers 3 different ways that we can use Traits, I have already written my first part of these notes, you can see those linked below.</p>
 <ul>
 <li><a href="https://desmodrone.github.io/posts/traits-101/">Traits 101 Introduction</a></li>
 <li>Traits 201 Trait Bounds</li>
@@ -141,17 +141,19 @@
 <p>Nell brilliantly uses D&amp;D as a metaphor to help explain Traits. It should be clear that the use of D&amp;D is just to help grasp some concepts, and the D&amp;D rules do not strictly apply in these concepts, so now that we have that out of the way let's begin.</p>
 <h2 id="traits-201-trait-bounds">Traits 201: Trait Bounds</h2>
 <p>Today we cover Traits Bounds. In my previous notes we used 4 different races to explain how traits can be used with those races.
-But now, we're going to add a 5th race: the Half-Elf</p>
+Now, we're going to add a 5th race: the <em>Half-Elf</em>.</p>
+<p>Here's our full list:</p>
 <ol>
 <li>Dwarves</li>
 <li>Elf</li>
 <li>HalfOrc</li>
 <li>Human</li>
-<li><em>Half-Elf</em></li>
+<li>Half-Elf</li>
 </ol>
+<h2 id="traits-101">Traits 101</h2>
+<p>In our <a href="https://desmodrone.github.io/posts/traits-101/">previous note</a> we went through the process of how to define a Trait, we used <code>Constitution</code> as the trait we wanted to apply to the 4 different races in a couple of different ways. If you haven't read that note, it might help to do so first to help better understand the basics of creating our characters, creating a Trait, defining race specific values as well as default values.</p>
 <h2 id="trait-bounds">Trait Bounds</h2>
-<p>In our <a href="https://desmodrone.github.io/posts/traits-101/">previous note</a> we went through the process of how to define a Trait, in that case we used <code>Constitution</code> as the trait we wanted to apply to the 4 different races in different ways. If you haven't looked at that note it might help to do so first to help understand the basics of creating our characters, creating a Trait, defining race specific values as well as default values.</p>
-<p>To help us understand Trait bounds, let's look at how these races communicate. Each race has core races that they speak, for example.</p>
+<p>To help us understand Trait bounds, let's look at how these races communicate. Each race has core languages that they speak, for example.</p>
 <ul>
 <li>Dwarves: Common, Dwarvish</li>
 <li>Elf: Common, Elvish</li>
@@ -214,6 +216,13 @@ speak_elvish(my_half_orc)
 <p>So what happens if wet try to call <code>my_half_orc</code> with <code>speaks_elvish</code>? Well in this case our code would not compile because we have not implemented <code>Evlish</code> for <code>HalfOrc</code>. Of course, Orcs tend to break everything 😉.</p>
 <h2 id="recap">Recap</h2>
 <p><em><strong>Trait bounds</strong></em> allow a function to <em><strong>only</strong></em> accept types that implement a certain trait or combination of traits. This provides a powerful way to enforce specific behaviors and characteristics for the types used in your functions. Furthermore, you can combine multiple traits as criteria for a function, allowing for even greater flexibility and control.</p>
+<p>Let's walk through each step like we did in Traits 101 on how we define Trait bounds:</p>
+<ol>
+<li>Define our Trait in our case it was the language trait <code>Elvish</code></li>
+<li>Implement <code>Elvish</code> for the races that speak it, in our case <code>Elf</code> and <code>HelfElf</code>.</li>
+<li>Define a function <code>speak_elvish</code> that only accepts the race we define within  the function. In our case we did it for both <code>Elf</code> and <code>HalfElf</code>. This function returns a <code>yes</code> if we call a race that has <code>Elvish</code> implemented, for example: <code>speak_elvish(my_half_elf) </code></li>
+<li>If we try to do the same with our <code>HalfOrc</code>: <code>speak_elvish(my_half_orc)</code>, our code won't compile.</li>
+</ol>
 <p>This was a short and straightforward introduction to Trait Bounds, and we'll dive deeper into Rust Traits in the upcoming post on Traits 301: Trait Objects, where the real magic happens</p>
 
 	</div>
@@ -233,7 +242,7 @@ speak_elvish(my_half_orc)
 		
     </p>
     
-    <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>881 Words</p>
+    <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>990 Words</p>
     
     <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2023-03-23</p>
     
