@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <meta itemprop="name" content="desmo" />
+  <meta itemprop="description" content="Random Ideas" />
+
+  <link rel="apple-touch-icon" sizes="180x180" href="https://desmodrone.github.io/apple-touch-icon.png"/>
+  <link rel="icon" type="image/png" sizes="32x32" href="https://desmodrone.github.io/favicon-32x32.png" />
+  <link
+    rel="icon"
+    type="image/png"
+    sizes="16x16"
+    href="https://desmodrone.github.io/favicon-16x16.png"
+  />
+  <link
+    rel="shortcut icon"
+    href="https://desmodrone.github.io/favicon.ico"
+  />
+  <link rel="stylesheet" href="https://desmodrone.github.io/style.css"/>
+  
+  <title>Notes on Traits and You: A Deep Dive Part 3</title>
+  
+
+  
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="https://desmodrone.github.io/rss.xml">
+  
+
+  <body id="page">
+
+	
+<header id="site-header" class="animated slideInUp faster">
+  <div class="hdr-wrapper section-inner">
+    <div class="hdr-left">
+      <div class="site-branding">
+        <a href="https:&#x2F;&#x2F;desmodrone.github.io">desmo</a>
+      </div>
+      <nav class="site-nav hide-in-mobile">
+            
+        
+        <a href="https://desmodrone.github.io/posts">posts</a>
+        
+        <a href="https://desmodrone.github.io/about">about</a>
+        
+      </nav>
+    </div>
+    <div class="hdr-right hdr-icons">
+      <span class="hdr-social hide-in-mobile">
+        
+
+<a href="https:&#x2F;&#x2F;twitter.com&#x2F;desmodrone_" target="_blank" rel="noopener me"
+   title="twitter">
+  
+  <svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg>
+  
+</a>
+
+<a href="https:&#x2F;&#x2F;github.com&#x2F;desmodrone" target="_blank" rel="noopener me"
+   title="github">
+  
+  <svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+  
+</a>
+
+<a href="mailto:erick@apexwins.com" target="_blank" rel="noopener me"
+   title="email">
+  
+  <svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+  
+</a>
+
+
+      </span>
+      <button id="menu-btn" class="hdr-btn" title="Menu">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="feather feather-menu"
+        >
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+  </div>
+</header>
+<div id="mobile-menu" class="animated fast">
+  <ul>
+    
+    <li><a href="https://desmodrone.github.io/posts">posts</a></li>
+    
+    <li><a href="https://desmodrone.github.io/about">about</a></li>
+    
+  </ul>
+</div>
+
+	
+	
+
+		
+<main class="site-main section-inner animated fadeIn faster">
+  <article class="thin">
+	<header class="post-header">
+	  <div class="post-meta">
+		
+		<span>Mar 31, 2023</span>
+		<small> - 
+<span class="reading-time" title="Estimated read time">
+  
+  6 min read
+  
+</span>
+</small>
+		
+            
+	  </div>
+	  <h1>Notes on Traits and You: A Deep Dive Part 3</h1>
+	</header>
+
+	<div class="content">
+        
+	  <h4 id="original-content-by-nell-shamrell-harrington">Original content by Nell Shamrell-Harrington</h4>
+<p>When looking for resources to help me better understand Rust Traits, I found <a href="https://youtu.be/grU-4u0Okto">this video</a>from <a href="https://twitter.com/nellshamrell?s=21&amp;t=EhxGdIZ2VJ9HIqIS1LXcpw">Nell Shamrell-Harrington</a>. It's a great intro and overview into using Traits, which can be a little confusing when you first start learning Rust.</p>
+<p>So these are my notes on this talk, if you haven't watched it and are struggling with learning Traits, I strongly suggest that you watch the video above before you do anything else. But if you're short on time and just want to reference my notes -- here they are. Disclaimer: these notes are my own interpretation of the talk and may not necessarily reflect the views of the original speaker. These note are primarily for me to learn these concepts, and I publish them for others to see and maybe benefit from. Feel free to let me know if I have errors or have misrepresentations.</p>
+<h2 id="introduction">Introduction</h2>
+<p>The talk covers 3 different ways that we can use Traits, I have already published the first two parts of these notes, you can see those linked below. So today we'll cover the final note with Trait Objects.</p>
+<ul>
+<li><a href="https://desmodrone.github.io/posts/traits-101/">Traits 101 Introduction</a></li>
+<li><a href="https://desmodrone.github.io/posts/traits-201/">Traits 201 Trait Bounds</a></li>
+<li>Traits 301 Trait Objects</li>
+</ul>
+<p>Nell brilliantly uses D&amp;D as a metaphor to help explain Traits. It should be clear that the use of D&amp;D is just to help grasp some concepts, and the D&amp;D rules do not strictly apply in these concepts, so now that we have that out of the way let's begin.</p>
+<h2 id="traits-301-trait-objects">Traits 301: Trait Objects</h2>
+<p>This is where the magic really starts to happen and it might take a little to wrap your head around this concept but let's take a look at how traditional object oriented programming languages hand this.</p>
+<p>In traditional Object Oriented Programming we have Data &amp; Behavior in one &quot;place&quot;. With Rust we can say that we use <code>enums</code> and <code>structs</code> for data, and <code>traits</code> for behavior, this actually gives us more flexibility and control</p>
+<ul>
+<li>Object Oriented Programming = (data and behaviour together)</li>
+<li>Rust = enums/structs (data), traits (behavior)</li>
+</ul>
+<p>This is actually one of the powers that Rust has as we can mix and match behaviours as we need it in our code.</p>
+<blockquote>
+<p>Note:
+Trait Objects allow us to work with types that implement a specific trait without knowing their exact type. They enable a more dynamic approach similar to traditional object-oriented programming languages but maintain Rust's separation of data and behavior.</p>
+</blockquote>
+<p>So how does a Trait Object store it's data? Well, a Trait Object contains the data in a trait pointer to a value on the heap.</p>
+<p><em><strong>Trait Object: Pointer(Data) -&gt; Value(Heap)</strong></em>
+The advantage of doing this is that even if the size of the value on the heap varies, the size of the pointer will always be the same and it's more predictable as well.</p>
+<p><em><strong>Trait Object: Trait(Behavior)</strong></em>
+Although the Data is located on the heap, one thing to note is you cannot add data to a trait object, this is key to understanding trait objects and how to use them. We point to the data at one specific point in time.</p>
+<h2 id="back-to-d-d">Back to D&amp;D</h2>
+<p>Let's go back our D&amp;D analogy and this time we'll look at different spells that can be cast in the game. Let's say we have a wizard that needs to cast a bunch of different spells.</p>
+<ul>
+<li>Cantrip</li>
+<li>Transmutation</li>
+<li>Enchantment</li>
+<li>Necromancy</li>
+</ul>
+<p>Let's start by creating these spells as structs</p>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">&#x2F;&#x2F; let&#x27;s create these structs
+struct Cantrip {
+
+}
+
+struct Enchantment {
+
+}
+
+struct Transmutation {
+
+}
+
+struct Necromancy {
+
+}
+</code></pre>
+<p>Although these are 4 different kinds of spells, the thing that they all have in common is that they all need to be cast, even if they specific way that they are cast is different from spell to spell.</p>
+<p>So with this information let's make a <code>Cast</code> trait</p>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">&#x2F;&#x2F; let&#x27;s make a trait, for now we won&#x27;t define a default behaviour
+pub trait Cast {
+	fn cast(&amp;self);
+}
+</code></pre>
+<p>Now let's implement the <code>Cast</code> trait on one our spells, let's use <code>Cantrip</code></p>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">&#x2F;&#x2F; now we implement this trait for the Cantrip struct
+impl Cast for Cantrip{
+	fn cast(&amp;self){
+		&#x2F;&#x2F; We&#x27;d put details of casting a Cantrip spell here
+	}
+}
+</code></pre>
+<p>Let's do the same for the <code>Transmutation</code> spell</p>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">&#x2F;&#x2F; we do the same for the transmutation struct
+impl Cast for Transmutation
+	fn cast(&amp;self){
+		&#x2F;&#x2F; We&#x27;d put details of casting a Transmutation spell here
+	}
+</code></pre>
+<p>We can do the same for our <code>Enchament</code> and <code>Necromancy</code> spells, so each of the spells can now be cast, although each spell is defined differently, below is the full list of spells with <code>Cast</code> implemented on them.</p>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">&#x2F;&#x2F; now we implement this trait for the Cantrip struct
+impl Cast for Cantrip{
+	fn cast(&amp;self){
+		&#x2F;&#x2F; We&#x27;d put details of casting a Cantrip spell here
+	}
+}
+
+&#x2F;&#x2F; we do the same for the transmutation struct
+impl Cast for Transmutation
+	fn cast(&amp;self){
+		&#x2F;&#x2F; We&#x27;d put details of casting a Transmutation spell here
+	}
+
+
+&#x2F;&#x2F; we do the same for the Enchantment struct
+impl Cast for Enchantment
+	fn cast(&amp;self){
+		&#x2F;&#x2F; We&#x27;d put details of casting a Enchantment spell here
+	}
+
+&#x2F;&#x2F; we do the same for the Necromancy struct
+impl Cast for Necromancy
+	fn cast(&amp;self){
+		&#x2F;&#x2F; We&#x27;d put details of casting a Necromancy spell here
+	}
+
+</code></pre>
+<p>Cool, we're building up a little library of spells, so how do we organize these spells, where do we keep them? In a spell book of course! We'll represent our spell book as a struct</p>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">struct Spellbook {
+	pub spells: Vec&lt;Box&gt;&lt;Cast&gt;&gt;, &#x2F;&#x2F; here is where we define the spell field
+}
+</code></pre>
+<p>Let's break this line of code a little bit. As you can see we define <code>spells</code> as a <code>Vec&lt;T&gt;</code>, (we don't go into generics in this blog but that's what the T represent, a generic type), a Vector that contains an object of a type, the Type that we are grouping in our vector for spells is a <code>&lt;Box&lt;T&gt;&gt;</code>. A <code>Box</code> in Rust is a pointer to a value on the heap (remember we talked about that earlier?).
+The reason we choose to use <code>Box</code> in <code>Vec&lt;Box&gt;&lt;&lt;Cast&gt;&gt;</code> is because it allows us to store the trait object in a dynamically sized container, such as a vector, since trait objects have an unknown size at compile time.</p>
+<p>With a <code>Vec&lt;Box&lt;T&gt;&gt;</code> we can only point to a value of a certain type (T) as we see here, in our case we say that we can contain any type that implements the <code>Cast</code> trait: <code>Vec&lt;Box&lt;Cast&gt;&gt;</code> so <code>Box</code> must point to a value that implements the <code>Cast</code> trait. It doesn't matter what type as long as it implements that particular trait.</p>
+<p>Let's review: The <code>pub spells</code> field is a vector <code>Vec</code>, that vector contains <code>Boxes</code> and those boxes point to values that implement the <code>Cast</code> trait represented as: <code>pub spells: Vec&lt;Box&gt;&lt;Cast&gt;&gt;</code>.</p>
+<p>What this means is that our Wizard can now cast ALL of these spells, one right after the other and we can do this in Rust by defining the behavior in our <code>Spellbook</code> struct.</p>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">impl Spellbook {
+	pub fn run(&amp;self) { &#x2F;&#x2F; implementing a function called run
+		for spell in self.spells.iter(){ &#x2F;&#x2F; this will iterate through the spells
+			spell.cast(); &#x2F;&#x2F; and casting spells one after the other
+		}
+	}
+}
+</code></pre>
+<p>This is a function that &quot;runs&quot; the spells essentially iterating through them and casting them one after the other.</p>
+<p>Let's see a visual representation of our Wizard in action.</p>
+<p><img src="/images/wizard.png" alt="wizard" /></p>
+<p>Now let's look at how this code would look like:</p>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">let spell_book = Spellbook {
+	spells: vec![
+	&#x2F;&#x2F; different types of spells, each implement the `cast`trait
+		Box::new(Cantrip{}),
+		Box::new(Transmutation{}),
+		Box::new(Enchantment{}),
+		Box::new(Necromancy{}),
+	],
+};
+spell_book.run(); &#x2F;&#x2F; this casts each spell, in which ever way they need to be cast
+</code></pre>
+<p>What this highlights is that Trait Object are great for heterogeneous collections or diverse and mixed collections. Where we can have objects of different types stored in the same place <em>It doesn't matter what type something is</em> as long as it <em>implements a certain trait</em>, this gives us a ton of flexibility when using Rust.</p>
+<h2 id="recap">Recap</h2>
+<p>In this blog post, we explored Rust Traits, focusing on Trait Objects. By diving into a D&amp;D-themed example, we demonstrated the power and flexibility of Traits in Rust. Here are the key takeaways:</p>
+<ul>
+<li>Rust separates data (enums/structs) and behavior (traits), which allows for greater flexibility and control compared to traditional object-oriented programming languages.</li>
+<li>Trait Objects enable us to work with types that implement a specific trait without knowing their exact type. This approach is similar to traditional object-oriented programming languages but maintains Rust's separation of data and behavior.</li>
+<li>Trait Objects are particularly useful for heterogeneous collections or diverse and mixed collections. They allow us to store objects of different types in the same place as long as they implement a certain trait.</li>
+<li>The <code>Box</code> pointer is utilized for storing trait objects in dynamically sized containers, such as vectors, since trait objects have an unknown size at compile time.</li>
+<li>The D&amp;D example illustrated how to create structs, implement traits, and use Trait Objects to organize and execute a collection of diverse spells.</li>
+</ul>
+<p>By understanding and leveraging Rust Traits and Trait Objects, you can harness the flexibility and power of the Rust programming language to build efficient and maintainable code. With practice and review of <a href="https://youtu.be/grU-4u0Okto">Nell's excellent video</a>, you'll be mastering Traits in no time.</p>
+
+	</div>
+	<hr class="post-end">
+	<footer class="post-info">
+    
+	  <p>
+		<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg>
+		
+		
+		<span class="tag"><a href="https://desmodrone.github.io/tags/rust/">rust</a></span>
+		
+		<span class="tag"><a href="https://desmodrone.github.io/tags/blog/">blog</a></span>
+		
+		<span class="tag"><a href="https://desmodrone.github.io/tags/traits/">traits</a></span>
+		
+		
+    </p>
+    
+    <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>1578 Words</p>
+    
+    <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2023-03-31</p>
+    
+	</footer>
+  </article>
+    
+  
+  <div class="post-nav thin">
+	
+	
+  </div>
+
+  
+</main>
+
+	  </div>
+	  
+	  
+
+
+
+<footer id="site-footer" class="section-inner thin animated fadeIn faster">
+  <p>&copy; 2023 <a href="https:&#x2F;&#x2F;desmodrone.github.io">erick</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
+  <p>Made with <a href="https://www.getzola.org" target="_blank" rel="noopener">Zola</a> &#183; Theme <a href="https://github.com/VersBinarii/hermit_zola" target="_blank" rel="noopener">Hermit_Zola</a>
+	
+	&#183; <a href="https://desmodrone.github.io/rss.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
+	
+  </p>
+</footer>
+
+
+
+
+	</div>
+	
+	<script src="https://desmodrone.github.io/js/main.js"></script>
+
+	<!-- Math rendering -->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css" integrity="sha384-zB1R0rpPzHqg7Kpt0Aljp8JPLqbXI3bhnPWROx27a9N0Ll6ZP/+DiW/UqRcLbRjq" crossorigin="anonymous">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js" integrity="sha384-y23I5Q6l+B6vatafAwxRu/0oK/79VlbSz7Q9aiSZUvyWYIYsd+qj+o24G5ZU2zJz" crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous"
+        onload="renderMathInElement(document.body, { delimiters: [ {left: '$$', right: '$$', display: true}, {left: '$', right: '$', display: false}, {left: '\\[', right: '\\]', display: true}, {left: '\\(', right: '\\)', display: false}]});"></script>
+
+    
+		<link href="https://unpkg.com/highlightjs-badge/highlightjs/styles/railscasts.css" rel="stylesheet">
+		<!-- https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.1/build/styles/  for min version -->
+		<script src="https://unpkg.com/highlightjs-badge/highlightjs/highlight.pack.js"></script>
+		<script src="https://unpkg.com/highlightjs-badge/highlightjs-badge.min.js"></script>
+		<script>
+			var pres = document.querySelectorAll("pre>code");
+			for (var i = 0; i < pres.length; i++) {
+				hljs.highlightBlock(pres[i]);
+			}
+		</script>
+		
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js"></script>
+			<script>
+				var options = {
+					copyIconClass: "gg-clipboard",
+					checkIconClass: "gg-check"
+				};
+				window.highlightJsBadge(options);
+			</script>
+		
+
+	
+
+	
+	<script src="https://desmodrone.github.io/js/main.js"></script>
+
+    
+    
+
+	
+    <!-- Global Site Tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-9MNTYXYNHK"></script>
+    <script>
+     window.dataLayer = window.dataLayer || [];
+     function gtag(){dataLayer.push(arguments);}
+     gtag('js', new Date());
+     gtag('config', 'G-9MNTYXYNHK');
+    </script>
+    
+  </body>
+</html>

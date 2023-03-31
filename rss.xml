@@ -7,7 +7,163 @@
       <generator>Zola</generator>
       <language>en</language>
       <atom:link href="https://desmodrone.github.io/rss.xml" rel="self" type="application/rss+xml"/>
-      <lastBuildDate>Thu, 23 Mar 2023 00:00:00 +0000</lastBuildDate>
+      <lastBuildDate>Fri, 31 Mar 2023 00:00:00 +0000</lastBuildDate>
+      <item>
+          <title>Notes on Traits and You: A Deep Dive Part 3</title>
+          <pubDate>Fri, 31 Mar 2023 00:00:00 +0000</pubDate>
+          <author>Unknown</author>
+          <link>https://desmodrone.github.io/posts/traits-301/</link>
+          <guid>https://desmodrone.github.io/posts/traits-301/</guid>
+          <description>&lt;h4 id=&quot;original-content-by-nell-shamrell-harrington&quot;&gt;Original content by Nell Shamrell-Harrington&lt;&#x2F;h4&gt;
+&lt;p&gt;When looking for resources to help me better understand Rust Traits, I found &lt;a href=&quot;https:&#x2F;&#x2F;youtu.be&#x2F;grU-4u0Okto&quot;&gt;this video&lt;&#x2F;a&gt;from &lt;a href=&quot;https:&#x2F;&#x2F;twitter.com&#x2F;nellshamrell?s=21&amp;amp;t=EhxGdIZ2VJ9HIqIS1LXcpw&quot;&gt;Nell Shamrell-Harrington&lt;&#x2F;a&gt;. It&#x27;s a great intro and overview into using Traits, which can be a little confusing when you first start learning Rust.&lt;&#x2F;p&gt;
+&lt;p&gt;So these are my notes on this talk, if you haven&#x27;t watched it and are struggling with learning Traits, I strongly suggest that you watch the video above before you do anything else. But if you&#x27;re short on time and just want to reference my notes -- here they are. Disclaimer: these notes are my own interpretation of the talk and may not necessarily reflect the views of the original speaker. These note are primarily for me to learn these concepts, and I publish them for others to see and maybe benefit from. Feel free to let me know if I have errors or have misrepresentations.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;introduction&quot;&gt;Introduction&lt;&#x2F;h2&gt;
+&lt;p&gt;The talk covers 3 different ways that we can use Traits, I have already published the first two parts of these notes, you can see those linked below. So today we&#x27;ll cover the final note with Trait Objects.&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;desmodrone.github.io&#x2F;posts&#x2F;traits-101&#x2F;&quot;&gt;Traits 101 Introduction&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;desmodrone.github.io&#x2F;posts&#x2F;traits-201&#x2F;&quot;&gt;Traits 201 Trait Bounds&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;Traits 301 Trait Objects&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;Nell brilliantly uses D&amp;amp;D as a metaphor to help explain Traits. It should be clear that the use of D&amp;amp;D is just to help grasp some concepts, and the D&amp;amp;D rules do not strictly apply in these concepts, so now that we have that out of the way let&#x27;s begin.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;traits-301-trait-objects&quot;&gt;Traits 301: Trait Objects&lt;&#x2F;h2&gt;
+&lt;p&gt;This is where the magic really starts to happen and it might take a little to wrap your head around this concept but let&#x27;s take a look at how traditional object oriented programming languages hand this.&lt;&#x2F;p&gt;
+&lt;p&gt;In traditional Object Oriented Programming we have Data &amp;amp; Behavior in one &amp;quot;place&amp;quot;. With Rust we can say that we use &lt;code&gt;enums&lt;&#x2F;code&gt; and &lt;code&gt;structs&lt;&#x2F;code&gt; for data, and &lt;code&gt;traits&lt;&#x2F;code&gt; for behavior, this actually gives us more flexibility and control&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;Object Oriented Programming = (data and behaviour together)&lt;&#x2F;li&gt;
+&lt;li&gt;Rust = enums&#x2F;structs (data), traits (behavior)&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;This is actually one of the powers that Rust has as we can mix and match behaviours as we need it in our code.&lt;&#x2F;p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Note:
+Trait Objects allow us to work with types that implement a specific trait without knowing their exact type. They enable a more dynamic approach similar to traditional object-oriented programming languages but maintain Rust&#x27;s separation of data and behavior.&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;p&gt;So how does a Trait Object store it&#x27;s data? Well, a Trait Object contains the data in a trait pointer to a value on the heap.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;em&gt;&lt;strong&gt;Trait Object: Pointer(Data) -&amp;gt; Value(Heap)&lt;&#x2F;strong&gt;&lt;&#x2F;em&gt;
+The advantage of doing this is that even if the size of the value on the heap varies, the size of the pointer will always be the same and it&#x27;s more predictable as well.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;em&gt;&lt;strong&gt;Trait Object: Trait(Behavior)&lt;&#x2F;strong&gt;&lt;&#x2F;em&gt;
+Although the Data is located on the heap, one thing to note is you cannot add data to a trait object, this is key to understanding trait objects and how to use them. We point to the data at one specific point in time.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;back-to-d-d&quot;&gt;Back to D&amp;amp;D&lt;&#x2F;h2&gt;
+&lt;p&gt;Let&#x27;s go back our D&amp;amp;D analogy and this time we&#x27;ll look at different spells that can be cast in the game. Let&#x27;s say we have a wizard that needs to cast a bunch of different spells.&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;Cantrip&lt;&#x2F;li&gt;
+&lt;li&gt;Transmutation&lt;&#x2F;li&gt;
+&lt;li&gt;Enchantment&lt;&#x2F;li&gt;
+&lt;li&gt;Necromancy&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;Let&#x27;s start by creating these spells as structs&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;&amp;#x2F;&amp;#x2F; let&amp;#x27;s create these structs
+struct Cantrip {
+
+}
+
+struct Enchantment {
+
+}
+
+struct Transmutation {
+
+}
+
+struct Necromancy {
+
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Although these are 4 different kinds of spells, the thing that they all have in common is that they all need to be cast, even if they specific way that they are cast is different from spell to spell.&lt;&#x2F;p&gt;
+&lt;p&gt;So with this information let&#x27;s make a &lt;code&gt;Cast&lt;&#x2F;code&gt; trait&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;&amp;#x2F;&amp;#x2F; let&amp;#x27;s make a trait, for now we won&amp;#x27;t define a default behaviour
+pub trait Cast {
+	fn cast(&amp;amp;self);
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Now let&#x27;s implement the &lt;code&gt;Cast&lt;&#x2F;code&gt; trait on one our spells, let&#x27;s use &lt;code&gt;Cantrip&lt;&#x2F;code&gt;&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;&amp;#x2F;&amp;#x2F; now we implement this trait for the Cantrip struct
+impl Cast for Cantrip{
+	fn cast(&amp;amp;self){
+		&amp;#x2F;&amp;#x2F; We&amp;#x27;d put details of casting a Cantrip spell here
+	}
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Let&#x27;s do the same for the &lt;code&gt;Transmutation&lt;&#x2F;code&gt; spell&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;&amp;#x2F;&amp;#x2F; we do the same for the transmutation struct
+impl Cast for Transmutation
+	fn cast(&amp;amp;self){
+		&amp;#x2F;&amp;#x2F; We&amp;#x27;d put details of casting a Transmutation spell here
+	}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;We can do the same for our &lt;code&gt;Enchament&lt;&#x2F;code&gt; and &lt;code&gt;Necromancy&lt;&#x2F;code&gt; spells, so each of the spells can now be cast, although each spell is defined differently, below is the full list of spells with &lt;code&gt;Cast&lt;&#x2F;code&gt; implemented on them.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;&amp;#x2F;&amp;#x2F; now we implement this trait for the Cantrip struct
+impl Cast for Cantrip{
+	fn cast(&amp;amp;self){
+		&amp;#x2F;&amp;#x2F; We&amp;#x27;d put details of casting a Cantrip spell here
+	}
+}
+
+&amp;#x2F;&amp;#x2F; we do the same for the transmutation struct
+impl Cast for Transmutation
+	fn cast(&amp;amp;self){
+		&amp;#x2F;&amp;#x2F; We&amp;#x27;d put details of casting a Transmutation spell here
+	}
+
+
+&amp;#x2F;&amp;#x2F; we do the same for the Enchantment struct
+impl Cast for Enchantment
+	fn cast(&amp;amp;self){
+		&amp;#x2F;&amp;#x2F; We&amp;#x27;d put details of casting a Enchantment spell here
+	}
+
+&amp;#x2F;&amp;#x2F; we do the same for the Necromancy struct
+impl Cast for Necromancy
+	fn cast(&amp;amp;self){
+		&amp;#x2F;&amp;#x2F; We&amp;#x27;d put details of casting a Necromancy spell here
+	}
+
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Cool, we&#x27;re building up a little library of spells, so how do we organize these spells, where do we keep them? In a spell book of course! We&#x27;ll represent our spell book as a struct&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;struct Spellbook {
+	pub spells: Vec&amp;lt;Box&amp;gt;&amp;lt;Cast&amp;gt;&amp;gt;, &amp;#x2F;&amp;#x2F; here is where we define the spell field
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Let&#x27;s break this line of code a little bit. As you can see we define &lt;code&gt;spells&lt;&#x2F;code&gt; as a &lt;code&gt;Vec&amp;lt;T&amp;gt;&lt;&#x2F;code&gt;, (we don&#x27;t go into generics in this blog but that&#x27;s what the T represent, a generic type), a Vector that contains an object of a type, the Type that we are grouping in our vector for spells is a &lt;code&gt;&amp;lt;Box&amp;lt;T&amp;gt;&amp;gt;&lt;&#x2F;code&gt;. A &lt;code&gt;Box&lt;&#x2F;code&gt; in Rust is a pointer to a value on the heap (remember we talked about that earlier?).
+The reason we choose to use &lt;code&gt;Box&lt;&#x2F;code&gt; in &lt;code&gt;Vec&amp;lt;Box&amp;gt;&amp;lt;&amp;lt;Cast&amp;gt;&amp;gt;&lt;&#x2F;code&gt; is because it allows us to store the trait object in a dynamically sized container, such as a vector, since trait objects have an unknown size at compile time.&lt;&#x2F;p&gt;
+&lt;p&gt;With a &lt;code&gt;Vec&amp;lt;Box&amp;lt;T&amp;gt;&amp;gt;&lt;&#x2F;code&gt; we can only point to a value of a certain type (T) as we see here, in our case we say that we can contain any type that implements the &lt;code&gt;Cast&lt;&#x2F;code&gt; trait: &lt;code&gt;Vec&amp;lt;Box&amp;lt;Cast&amp;gt;&amp;gt;&lt;&#x2F;code&gt; so &lt;code&gt;Box&lt;&#x2F;code&gt; must point to a value that implements the &lt;code&gt;Cast&lt;&#x2F;code&gt; trait. It doesn&#x27;t matter what type as long as it implements that particular trait.&lt;&#x2F;p&gt;
+&lt;p&gt;Let&#x27;s review: The &lt;code&gt;pub spells&lt;&#x2F;code&gt; field is a vector &lt;code&gt;Vec&lt;&#x2F;code&gt;, that vector contains &lt;code&gt;Boxes&lt;&#x2F;code&gt; and those boxes point to values that implement the &lt;code&gt;Cast&lt;&#x2F;code&gt; trait represented as: &lt;code&gt;pub spells: Vec&amp;lt;Box&amp;gt;&amp;lt;Cast&amp;gt;&amp;gt;&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;What this means is that our Wizard can now cast ALL of these spells, one right after the other and we can do this in Rust by defining the behavior in our &lt;code&gt;Spellbook&lt;&#x2F;code&gt; struct.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;impl Spellbook {
+	pub fn run(&amp;amp;self) { &amp;#x2F;&amp;#x2F; implementing a function called run
+		for spell in self.spells.iter(){ &amp;#x2F;&amp;#x2F; this will iterate through the spells
+			spell.cast(); &amp;#x2F;&amp;#x2F; and casting spells one after the other
+		}
+	}
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;This is a function that &amp;quot;runs&amp;quot; the spells essentially iterating through them and casting them one after the other.&lt;&#x2F;p&gt;
+&lt;p&gt;Let&#x27;s see a visual representation of our Wizard in action.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;img src=&quot;&#x2F;images&#x2F;wizard.png&quot; alt=&quot;wizard&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;Now let&#x27;s look at how this code would look like:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;let spell_book = Spellbook {
+	spells: vec![
+	&amp;#x2F;&amp;#x2F; different types of spells, each implement the `cast`trait
+		Box::new(Cantrip{}),
+		Box::new(Transmutation{}),
+		Box::new(Enchantment{}),
+		Box::new(Necromancy{}),
+	],
+};
+spell_book.run(); &amp;#x2F;&amp;#x2F; this casts each spell, in which ever way they need to be cast
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;What this highlights is that Trait Object are great for heterogeneous collections or diverse and mixed collections. Where we can have objects of different types stored in the same place &lt;em&gt;It doesn&#x27;t matter what type something is&lt;&#x2F;em&gt; as long as it &lt;em&gt;implements a certain trait&lt;&#x2F;em&gt;, this gives us a ton of flexibility when using Rust.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;recap&quot;&gt;Recap&lt;&#x2F;h2&gt;
+&lt;p&gt;In this blog post, we explored Rust Traits, focusing on Trait Objects. By diving into a D&amp;amp;D-themed example, we demonstrated the power and flexibility of Traits in Rust. Here are the key takeaways:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;Rust separates data (enums&#x2F;structs) and behavior (traits), which allows for greater flexibility and control compared to traditional object-oriented programming languages.&lt;&#x2F;li&gt;
+&lt;li&gt;Trait Objects enable us to work with types that implement a specific trait without knowing their exact type. This approach is similar to traditional object-oriented programming languages but maintains Rust&#x27;s separation of data and behavior.&lt;&#x2F;li&gt;
+&lt;li&gt;Trait Objects are particularly useful for heterogeneous collections or diverse and mixed collections. They allow us to store objects of different types in the same place as long as they implement a certain trait.&lt;&#x2F;li&gt;
+&lt;li&gt;The &lt;code&gt;Box&lt;&#x2F;code&gt; pointer is utilized for storing trait objects in dynamically sized containers, such as vectors, since trait objects have an unknown size at compile time.&lt;&#x2F;li&gt;
+&lt;li&gt;The D&amp;amp;D example illustrated how to create structs, implement traits, and use Trait Objects to organize and execute a collection of diverse spells.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;By understanding and leveraging Rust Traits and Trait Objects, you can harness the flexibility and power of the Rust programming language to build efficient and maintainable code. With practice and review of &lt;a href=&quot;https:&#x2F;&#x2F;youtu.be&#x2F;grU-4u0Okto&quot;&gt;Nell&#x27;s excellent video&lt;&#x2F;a&gt;, you&#x27;ll be mastering Traits in no time.&lt;&#x2F;p&gt;
+</description>
+      </item>
       <item>
           <title>Notes on Traits and You: A Deep Dive Part 2</title>
           <pubDate>Thu, 23 Mar 2023 00:00:00 +0000</pubDate>
