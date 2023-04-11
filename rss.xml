@@ -7,7 +7,25 @@
       <generator>Zola</generator>
       <language>en</language>
       <atom:link href="https://desmodrone.github.io/rss.xml" rel="self" type="application/rss+xml"/>
-      <lastBuildDate>Fri, 31 Mar 2023 00:00:00 +0000</lastBuildDate>
+      <lastBuildDate>Tue, 11 Apr 2023 00:00:00 +0000</lastBuildDate>
+      <item>
+          <title>Hello (again) Rustlings</title>
+          <pubDate>Tue, 11 Apr 2023 00:00:00 +0000</pubDate>
+          <author>Unknown</author>
+          <link>https://desmodrone.github.io/posts/hello-rustlings/</link>
+          <guid>https://desmodrone.github.io/posts/hello-rustlings/</guid>
+          <description>&lt;p&gt;Inspired by Tris Oaten&#x27;s recent video &lt;a href=&quot;https:&#x2F;&#x2F;youtu.be&#x2F;2hXNd6x9sZs&quot;&gt;How to Learn Rust&lt;&#x2F;a&gt; on his excellent YouTube channel &lt;a href=&quot;https:&#x2F;&#x2F;www.youtube.com&#x2F;@NoBoilerplate&quot;&gt;No Boilerplate&lt;&#x2F;a&gt;, I&#x27;ve decided to refocus my journey with the Rust programming language. In hopes of effectively learning Rust, I&#x27;ll be following the holy trinity of Rust learning resources as recommended by Tris:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;doc.rust-lang.org&#x2F;stable&#x2F;book&#x2F;&quot;&gt;The Rust Programming Language&lt;&#x2F;a&gt; aka &amp;quot;The Book&amp;quot; (read it twice, first quickly)&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;rust-lang&#x2F;rustlings&quot;&gt;Rustlings&lt;&#x2F;a&gt; (do it and then continue to practice your favorites)&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;doc.rust-lang.org&#x2F;rust-by-example&#x2F;&quot;&gt;Rust by Example&lt;&#x2F;a&gt; (supplement where needed)&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;While I&#x27;ve been studying Rust for a few months now, I&#x27;ve been mostly focused on &amp;quot;The Book&amp;quot; and doing random tutorials on YouTube, and small personal projects, etc.&lt;&#x2F;p&gt;
+&lt;p&gt;Tris&#x27;s video was a timely reminder that Rustlings is a fantastic resource. Although it starts off easy, it gradually becomes more challenging. For some reason, I stopped doing these exercises in the past, but now that I started a blog, I thought it would be a good idea to share my learnings and document my progress as I go.&lt;&#x2F;p&gt;
+&lt;p&gt;As I embark on this journey, I&#x27;ll start with the basics, following the structure of The Rust Book and practicing Rustlings exercises as Tris suggests.&lt;&#x2F;p&gt;
+&lt;p&gt;By sharing my experiences, I hope to inspire others to explore Rust and motivate myself to stay committed to mastering this powerful language. Stay tuned for updates on my progress and insights into the world of Rust!&lt;&#x2F;p&gt;
+</description>
+      </item>
       <item>
           <title>Notes on Traits and You: A Deep Dive Part 3</title>
           <pubDate>Fri, 31 Mar 2023 00:00:00 +0000</pubDate>

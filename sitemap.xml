@@ -10,6 +10,10 @@
         <loc>https://desmodrone.github.io/posts/</loc>
     </url>
     <url>
+        <loc>https://desmodrone.github.io/posts/hello-rustlings/</loc>
+        <lastmod>2023-04-11</lastmod>
+    </url>
+    <url>
         <loc>https://desmodrone.github.io/posts/hello-world/</loc>
         <lastmod>2023-03-07</lastmod>
     </url>
@@ -46,6 +50,9 @@
     </url>
     <url>
         <loc>https://desmodrone.github.io/tags/rust/</loc>
+    </url>
+    <url>
+        <loc>https://desmodrone.github.io/tags/rustlings/</loc>
     </url>
     <url>
         <loc>https://desmodrone.github.io/tags/traits/</loc>
