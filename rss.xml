@@ -7,7 +7,97 @@
       <generator>Zola</generator>
       <language>en</language>
       <atom:link href="https://desmodrone.github.io/rss.xml" rel="self" type="application/rss+xml"/>
-      <lastBuildDate>Tue, 11 Apr 2023 00:00:00 +0000</lastBuildDate>
+      <lastBuildDate>Mon, 17 Apr 2023 00:00:00 +0000</lastBuildDate>
+      <item>
+          <title>01 Rustlings variables</title>
+          <pubDate>Mon, 17 Apr 2023 00:00:00 +0000</pubDate>
+          <author>Unknown</author>
+          <link>https://desmodrone.github.io/posts/01-rustlings-variables/</link>
+          <guid>https://desmodrone.github.io/posts/01-rustlings-variables/</guid>
+          <description>&lt;p&gt;In Rust, variables are immutable by default.
+When a variable is immutable, once a value is bound to a name, you can’t change that value.
+You can however, make a variable mutable by adding &lt;code&gt;mut&lt;&#x2F;code&gt; in front of the variable name.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;further-reading&quot;&gt;Further reading:&lt;&#x2F;h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;doc.rust-lang.org&#x2F;book&#x2F;ch03-01-variables-and-mutability.html&quot;&gt;Variables and Mutability&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h2 id=&quot;variables1-rs&quot;&gt;&lt;code&gt;variables1.rs&lt;&#x2F;code&gt;&lt;&#x2F;h2&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;&amp;#x2F;&amp;#x2F; variables1.rs
+&amp;#x2F;&amp;#x2F; Make me compile!
+&amp;#x2F;&amp;#x2F; Execute `rustlings hint variables1` or use the `hint` watch subcommand for a hint.
+
+fn main() {
+    let x = 5; &amp;#x2F;&amp;#x2F; very simple excerize that is missing the `let`
+    println!(&amp;quot;x has the value {}&amp;quot;, x);
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Adding the &lt;code&gt;let&lt;&#x2F;code&gt; to the statement allows &lt;code&gt;x&lt;&#x2F;code&gt; to bind to &lt;code&gt;5&lt;&#x2F;code&gt;, very straight forward solution&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;variables2-rs&quot;&gt;&lt;code&gt;variables2.rs&lt;&#x2F;code&gt;&lt;&#x2F;h2&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;&amp;#x2F;&amp;#x2F; variables2.rs
+&amp;#x2F;&amp;#x2F; Execute `rustlings hint variables2` or use the `hint` watch subcommand for a hint.
+
+fn main() {
+    let x: u8 = 5; &amp;#x2F;&amp;#x2F; you could also just write `let x = 5`
+    if x == 10 {
+        println!(&amp;quot;x is ten!&amp;quot;);
+    } else {
+        println!(&amp;quot;x is not ten!&amp;quot;);
+    }
+}
+
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;This is basically the opposite of what we saw before with the variable binding in the &lt;code&gt;variables1.rs&lt;&#x2F;code&gt; example, except in this case we&#x27;re missing the number that &lt;code&gt;x&lt;&#x2F;code&gt; should be bound to.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;variables3-rs&quot;&gt;&lt;code&gt;variables3.rs&lt;&#x2F;code&gt;&lt;&#x2F;h2&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;&amp;#x2F;&amp;#x2F; variables3.rs
+&amp;#x2F;&amp;#x2F; Execute `rustlings hint variables3` or use the `hint` watch subcommand for a hint.
+
+fn main() {
+    let x: i32 = -123; &amp;#x2F;&amp;#x2F; adding `= -123` for the code to compile.
+    println!(&amp;quot;Number {}&amp;quot;, x);
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Since we have &lt;code&gt;x&lt;&#x2F;code&gt; as an &lt;code&gt;i32&lt;&#x2F;code&gt; let&#x27;s have some fun and add a negative number. Again this was missing the second half of the statement.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;variables4-rs&quot;&gt;&lt;code&gt;variables4.rs&lt;&#x2F;code&gt;&lt;&#x2F;h2&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;&amp;#x2F;&amp;#x2F; variables4.rs
+&amp;#x2F;&amp;#x2F; Execute `rustlings hint variables4` or use the `hint` watch subcommand for a hint.
+
+fn main() {
+    let mut x = 3; &amp;#x2F;&amp;#x2F; mut is the key here
+    println!(&amp;quot;Number {}&amp;quot;, x);
+    x = 5; &amp;#x2F;&amp;#x2F; don&amp;#x27;t change this line
+    println!(&amp;quot;Number {}&amp;quot;, x);
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;As the opening text declares variables are immutable by default so this code doesn&#x27;t compile because &lt;code&gt;x&lt;&#x2F;code&gt; is being  bound twice to different numbers without declaring it &lt;code&gt;mut&lt;&#x2F;code&gt;, this code will not compile.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;variables5-rs&quot;&gt;&lt;code&gt;variables5.rs&lt;&#x2F;code&gt;&lt;&#x2F;h2&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;&amp;#x2F;&amp;#x2F; variables5.rs
+&amp;#x2F;&amp;#x2F; Execute `rustlings hint variables5` or use the `hint` watch subcommand for a hint.
+
+fn main() {
+    let number = &amp;quot;T-H-R-E-E&amp;quot;; &amp;#x2F;&amp;#x2F; don&amp;#x27;t change this line
+    println!(&amp;quot;Spell a Number : {}&amp;quot;, number);
+    let number = 3; &amp;#x2F;&amp;#x2F; don&amp;#x27;t rename this variable
+    println!(&amp;quot;Number plus two is : {}&amp;quot;, number + 2);
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;In this exercise we don&#x27;t rename the variable &lt;code&gt;number&lt;&#x2F;code&gt; but we shadow it by declaring it again with &lt;code&gt;let&lt;&#x2F;code&gt; this allows us to change the type from a &lt;code&gt;&amp;amp;Str&lt;&#x2F;code&gt; to a integer.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;variables6-rs&quot;&gt;&lt;code&gt;variables6.rs&lt;&#x2F;code&gt;&lt;&#x2F;h2&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;&amp;#x2F;&amp;#x2F; variables6.rs
+&amp;#x2F;&amp;#x2F; Execute `rustlings hint variables6` or use the `hint` watch subcommand for a hint.
+
+
+const NUMBER: i32 = 3; &amp;#x2F;&amp;#x2F; added `:i32`
+fn main() {
+    println!(&amp;quot;Number {}&amp;quot;, NUMBER);
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Constants are another type of variable that is available, but these are &lt;em&gt;always&lt;&#x2F;em&gt; immutable they&#x27;re declared with &lt;code&gt;const&lt;&#x2F;code&gt; instead of let and types must always be annotated. So we have to add &lt;code&gt;: i32&lt;&#x2F;code&gt; to make the code compile.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;conclusion&quot;&gt;Conclusion&lt;&#x2F;h2&gt;
+&lt;p&gt;Understanding variables and their mutability is an essential aspect of learning Rust. This blog post covered the Rustlings exercises that demonstrated the usage of variables in different scenarios, including how to declare and shadow variables, work with constants, and use the &lt;code&gt;mut&lt;&#x2F;code&gt; keyword to make variables mutable. These fundamental concepts lay the groundwork for grasping more advanced topics in Rust programming.&lt;&#x2F;p&gt;
+&lt;p&gt;As you continue your Rust journey, always remember that variables in Rust are immutable by default, providing safety and predictability in your code. When needed, you can use the &lt;code&gt;mut&lt;&#x2F;code&gt; keyword to allow a variable to be mutable. Constants are also available, providing values that cannot be changed and must have their types annotated.&lt;&#x2F;p&gt;
+&lt;p&gt;We encourage you to explore the Rust documentation and practice further exercises to strengthen your understanding of these concepts. Happy coding!&lt;&#x2F;p&gt;
+</description>
+      </item>
       <item>
           <title>Hello (again) Rustlings</title>
           <pubDate>Tue, 11 Apr 2023 00:00:00 +0000</pubDate>

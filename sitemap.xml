@@ -10,6 +10,10 @@
         <loc>https://desmodrone.github.io/posts/</loc>
     </url>
     <url>
+        <loc>https://desmodrone.github.io/posts/01-rustlings-variables/</loc>
+        <lastmod>2023-04-17</lastmod>
+    </url>
+    <url>
         <loc>https://desmodrone.github.io/posts/hello-rustlings/</loc>
         <lastmod>2023-04-11</lastmod>
     </url>

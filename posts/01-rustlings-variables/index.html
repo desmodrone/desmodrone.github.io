@@ -20,7 +20,7 @@
   />
   <link rel="stylesheet" href="https://desmodrone.github.io/style.css"/>
   
-  <title>work experience</title>
+  <title>01 Rustlings variables</title>
   
 
   
@@ -116,97 +116,125 @@
 	<header class="post-header">
 	  <div class="post-meta">
 		
+		<span>Apr 17, 2023</span>
+		<small> - 
+<span class="reading-time" title="Estimated read time">
+  
+  2 min read
+  
+</span>
+</small>
+		
             
 	  </div>
-	  <h1>work experience</h1>
+	  <h1>01 Rustlings variables</h1>
 	</header>
 
 	<div class="content">
         
-	  <h2 id="professional-summary">Professional Summary</h2>
-<p>With over a decade of experience in the video game industry managing projects with budgets exceeding $10M, I bring a unique combination of technical expertise and project management skills to the table. While my background in game development has provided me with a strong foundation in programming concepts, I'm fully committed to programming and focused on computer science studies. I am passionate about utilizing my self-taught programming knowledge to help create innovative programs. My proficiency in project management and creative fields, combined with my technical aptitude, makes me a valuable asset to any development team. I am eager to apply my skills and knowledge to contribute to the success of future projects.</p>
-<h2 id="experience">Experience:</h2>
-<p><strong>DiscoSea / Blendhit Labs, Italy | 2022 - Current</strong></p>
+	  <p>In Rust, variables are immutable by default.
+When a variable is immutable, once a value is bound to a name, you can’t change that value.
+You can however, make a variable mutable by adding <code>mut</code> in front of the variable name.</p>
+<h2 id="further-reading">Further reading:</h2>
 <ul>
-<li>Developing apps and APIs on the Solana blockchain using Rust, TypeScript, and JavaScript.</li>
-<li>Participated in the Solana Grizzlython with an innovative meta-mint platform.</li>
+<li><a href="https://doc.rust-lang.org/book/ch03-01-variables-and-mutability.html">Variables and Mutability</a></li>
 </ul>
-<p><strong>Stellar Soroban Contract Work, Italy | 2023 - Current</strong></p>
-<ul>
-<li>Contributing to the development of a liquidity provision platform for the Stellar network using Soroban Rust.</li>
-<li>Utilized Soroban Rust to implement smart contract functionality and ensure secure and efficient transactions on the platform.</li>
-<li>Collaborating with the team in the design and testing of the platform's liquidity provision algorithms.</li>
-</ul>
-<p><strong>AI Start-Up, (remote) Italy | 2023 - Current</strong></p>
-<ul>
-<li>Generating visually striking imagesusing Stable Diffusion AI technology to convey our brand messaging effectively.</li>
-<li>Creating and executing a comprehensive brand communication strategy that includes social media, email marketing, and other channels.</li>
-<li>Generating tweets and other communications that resonates with our target audience and drives engagement and conversions.</li>
-</ul>
-<p><strong>Co-Founder: Apexwins srls, Italy | 2018 - Current</strong></p>
-<ul>
-<li>Advising and working with brand strategy and communications, primarily in motorsports. Current and previous clients include: Magicmotorsport, Domino Racing, and Bep's.</li>
-<li>Creating content for digital channels (photo/video/animations), developing social media strategy, managing e-commerce development.</li>
-</ul>
-<p><strong>Digital Content Manager / Creator : Alpinestars, Los Angeles | 2014 - 2018</strong></p>
-<ul>
-<li>Developed digital content strategies for social media, website, and blogs, including video and photography content.</li>
-<li>Curated and managed all digital content for social media feeds.</li>
-<li>Served as official photographer for company events.</li>
-</ul>
-<p><strong>Owner: Cycle World, Los Angeles | 2005 - 2014</strong></p>
-<ul>
-<li>Managed e-commerce development and management, social media and marketing management, graphic design, and lead generation.</li>
-</ul>
-<p><strong>Producer: Activision - Los Angeles | 2003 - 2005</strong></p>
-<ul>
-<li>Managed project management of video games and software development.</li>
-<li>Coordinated internationally distributed teams, oversaw budget and time management.</li>
-<li>Projects included Rome: Total War, The Movies.</li>
-</ul>
-<p><strong>Producer: Atari - Los Angeles | 2000 - 2003</strong></p>
-<ul>
-<li>Managed game development teams and oversaw budget and time management.</li>
-<li>Projects included the Mission Impossible franchise as well as Magic The Gathering.</li>
-</ul>
-<p><strong>QA - Associate Producer: THQ, Los Angeles | 1995 - 2000</strong></p>
-<ul>
-<li>Worked in the art department and managed the QA process for submission to Sony, Sega, and Nintendo.</li>
-<li>Worked on over 60+ titles in 5 years.</li>
-</ul>
-<h2 id="skills">Skills</h2>
-<p>Programming Languages:</p>
-<ul>
-<li>Rust: Intermediate</li>
-<li>TypeScript: Intermediate</li>
-<li>Python: Intermediate</li>
-<li>Solidity: Beginner</li>
-</ul>
-<p>Web Development:</p>
-<ul>
-<li>HTML: Intermediate</li>
-<li>CSS: Intermediate</li>
-<li>Node.js: Intermediate</li>
-</ul>
-<p>Creative Software:</p>
-<ul>
-<li>Adobe Photoshop: Advanced</li>
-<li>Adobe Lightroom: Advanced</li>
-<li>Final Cut: Advanced</li>
-<li>Motion: Intermediate</li>
-</ul>
-<p>Languages:</p>
-<ul>
-<li>English: Native</li>
-<li>Spanish: Native</li>
-<li>Italian: Conversational</li>
-</ul>
+<h2 id="variables1-rs"><code>variables1.rs</code></h2>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">&#x2F;&#x2F; variables1.rs
+&#x2F;&#x2F; Make me compile!
+&#x2F;&#x2F; Execute `rustlings hint variables1` or use the `hint` watch subcommand for a hint.
+
+fn main() {
+    let x = 5; &#x2F;&#x2F; very simple excerize that is missing the `let`
+    println!(&quot;x has the value {}&quot;, x);
+}
+</code></pre>
+<p>Adding the <code>let</code> to the statement allows <code>x</code> to bind to <code>5</code>, very straight forward solution</p>
+<h2 id="variables2-rs"><code>variables2.rs</code></h2>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">&#x2F;&#x2F; variables2.rs
+&#x2F;&#x2F; Execute `rustlings hint variables2` or use the `hint` watch subcommand for a hint.
+
+fn main() {
+    let x: u8 = 5; &#x2F;&#x2F; you could also just write `let x = 5`
+    if x == 10 {
+        println!(&quot;x is ten!&quot;);
+    } else {
+        println!(&quot;x is not ten!&quot;);
+    }
+}
+
+</code></pre>
+<p>This is basically the opposite of what we saw before with the variable binding in the <code>variables1.rs</code> example, except in this case we're missing the number that <code>x</code> should be bound to.</p>
+<h2 id="variables3-rs"><code>variables3.rs</code></h2>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">&#x2F;&#x2F; variables3.rs
+&#x2F;&#x2F; Execute `rustlings hint variables3` or use the `hint` watch subcommand for a hint.
+
+fn main() {
+    let x: i32 = -123; &#x2F;&#x2F; adding `= -123` for the code to compile.
+    println!(&quot;Number {}&quot;, x);
+}
+</code></pre>
+<p>Since we have <code>x</code> as an <code>i32</code> let's have some fun and add a negative number. Again this was missing the second half of the statement.</p>
+<h2 id="variables4-rs"><code>variables4.rs</code></h2>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">&#x2F;&#x2F; variables4.rs
+&#x2F;&#x2F; Execute `rustlings hint variables4` or use the `hint` watch subcommand for a hint.
+
+fn main() {
+    let mut x = 3; &#x2F;&#x2F; mut is the key here
+    println!(&quot;Number {}&quot;, x);
+    x = 5; &#x2F;&#x2F; don&#x27;t change this line
+    println!(&quot;Number {}&quot;, x);
+}
+</code></pre>
+<p>As the opening text declares variables are immutable by default so this code doesn't compile because <code>x</code> is being  bound twice to different numbers without declaring it <code>mut</code>, this code will not compile.</p>
+<h2 id="variables5-rs"><code>variables5.rs</code></h2>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">&#x2F;&#x2F; variables5.rs
+&#x2F;&#x2F; Execute `rustlings hint variables5` or use the `hint` watch subcommand for a hint.
+
+fn main() {
+    let number = &quot;T-H-R-E-E&quot;; &#x2F;&#x2F; don&#x27;t change this line
+    println!(&quot;Spell a Number : {}&quot;, number);
+    let number = 3; &#x2F;&#x2F; don&#x27;t rename this variable
+    println!(&quot;Number plus two is : {}&quot;, number + 2);
+}
+</code></pre>
+<p>In this exercise we don't rename the variable <code>number</code> but we shadow it by declaring it again with <code>let</code> this allows us to change the type from a <code>&amp;Str</code> to a integer.</p>
+<h2 id="variables6-rs"><code>variables6.rs</code></h2>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">&#x2F;&#x2F; variables6.rs
+&#x2F;&#x2F; Execute `rustlings hint variables6` or use the `hint` watch subcommand for a hint.
+
+
+const NUMBER: i32 = 3; &#x2F;&#x2F; added `:i32`
+fn main() {
+    println!(&quot;Number {}&quot;, NUMBER);
+}
+</code></pre>
+<p>Constants are another type of variable that is available, but these are <em>always</em> immutable they're declared with <code>const</code> instead of let and types must always be annotated. So we have to add <code>: i32</code> to make the code compile.</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>Understanding variables and their mutability is an essential aspect of learning Rust. This blog post covered the Rustlings exercises that demonstrated the usage of variables in different scenarios, including how to declare and shadow variables, work with constants, and use the <code>mut</code> keyword to make variables mutable. These fundamental concepts lay the groundwork for grasping more advanced topics in Rust programming.</p>
+<p>As you continue your Rust journey, always remember that variables in Rust are immutable by default, providing safety and predictability in your code. When needed, you can use the <code>mut</code> keyword to allow a variable to be mutable. Constants are also available, providing values that cannot be changed and must have their types annotated.</p>
+<p>We encourage you to explore the Rust documentation and practice further exercises to strengthen your understanding of these concepts. Happy coding!</p>
 
 	</div>
 	<hr class="post-end">
 	<footer class="post-info">
     
-    <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>494 Words</p>
+	  <p>
+		<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg>
+		
+		
+		<span class="tag"><a href="https://desmodrone.github.io/tags/rust/">rust</a></span>
+		
+		<span class="tag"><a href="https://desmodrone.github.io/tags/blog/">blog</a></span>
+		
+		<span class="tag"><a href="https://desmodrone.github.io/tags/rustlings/">rustlings</a></span>
+		
+		
+    </p>
+    
+    <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>609 Words</p>
+    
+    <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2023-04-17</p>
     
 	</footer>
   </article>
