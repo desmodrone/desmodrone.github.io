@@ -7,7 +7,326 @@
       <generator>Zola</generator>
       <language>en</language>
       <atom:link href="https://desmodrone.github.io/rss.xml" rel="self" type="application/rss+xml"/>
-      <lastBuildDate>Mon, 17 Apr 2023 00:00:00 +0000</lastBuildDate>
+      <lastBuildDate>Wed, 19 Apr 2023 00:00:00 +0000</lastBuildDate>
+      <item>
+          <title>02 Rustlings functions</title>
+          <pubDate>Wed, 19 Apr 2023 00:00:00 +0000</pubDate>
+          <author>Unknown</author>
+          <link>https://desmodrone.github.io/posts/02-rustlings-functions/</link>
+          <guid>https://desmodrone.github.io/posts/02-rustlings-functions/</guid>
+          <description>&lt;p&gt;With function we can learn to write more complex code and lean on the Rust debug errors for help.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;further-information&quot;&gt;Further information&lt;&#x2F;h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;doc.rust-lang.org&#x2F;book&#x2F;ch03-03-how-functions-work.html&quot;&gt;How Functions Work&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h2 id=&quot;functions1-rs&quot;&gt;&lt;code&gt;functions1.rs&lt;&#x2F;code&gt;&lt;&#x2F;h2&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;&amp;#x2F;&amp;#x2F; functions1.rs
+&amp;#x2F;&amp;#x2F; Execute `rustlings hint functions1` or use the `hint` watch subcommand for a hint.
+
+&amp;#x2F;&amp;#x2F; I AM NOT DONE
+
+fn main() {
+    call_me();
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h3 id=&quot;rust-error-for-function1-rs&quot;&gt;Rust Error for &lt;code&gt;function1.rs&lt;&#x2F;code&gt;&lt;&#x2F;h3&gt;
+&lt;p&gt;Let&#x27;s take a look at the compiler output so we can see what it&#x27;s telling us fix.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;zsh&quot; class=&quot;language-zsh &quot;&gt;&lt;code class=&quot;language-zsh&quot; data-lang=&quot;zsh&quot;&gt;⚠️ Compiling of exercises&amp;#x2F;functions&amp;#x2F;functions1.rs failed! Please try again. Here&amp;#x27;s the output:
+error[E0425]: cannot find function `call_me` in this scope
+ --&amp;gt; exercises&amp;#x2F;functions&amp;#x2F;functions1.rs:7:5
+  |
+7 |     call_me();
+  |     ^^^^^^^ not found in this scope
+
+error: aborting due to previous error
+
+For more information about this error, try `rustc --explain E0425`.
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;So what is this telling us? It&#x27;s essentially saying that &lt;code&gt;call me&lt;&#x2F;code&gt; is not defined within &lt;code&gt;fn main()&lt;&#x2F;code&gt; because we&#x27;re trying to call it, but it doesn&#x27;t know what to do with it. So let&#x27;s fix it.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;function1-rs-solution&quot;&gt;&lt;code&gt;function1.rs&lt;&#x2F;code&gt; Solution&lt;&#x2F;h2&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;&amp;#x2F;&amp;#x2F; functions1.rs
+&amp;#x2F;&amp;#x2F; Execute `rustlings hint functions1` or use the `hint` watch subcommand for a hint.
+
+fn main() {
+    fn call_me() {  &amp;#x2F;&amp;#x2F; we define a basic function called call_me()
+    }
+    call_me();
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;It&#x27;s easy enough we create a functioned called &lt;code&gt;call_me()&lt;&#x2F;code&gt; inside of our &lt;code&gt;fn main()&lt;&#x2F;code&gt; so when we call it, the compiler knows where to look. Of course at this point it&#x27;s not doing much of anything.&lt;&#x2F;p&gt;
+&lt;p&gt;We can modify this a little and make the function do something, like this:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;fn main() {
+    fn call_me() {
+        println!(&amp;quot;Call me please&amp;quot;) &amp;#x2F;&amp;#x2F; add a println! with at string inside the call_me() function
+    }
+    call_me();
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Putting a &lt;code&gt;println!&lt;&#x2F;code&gt; with some text will print out the text when &lt;code&gt;call_me()&lt;&#x2F;code&gt; is called. In this case: &lt;code&gt;Call me please&lt;&#x2F;code&gt; or if we wanted to some math, we could do:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;&amp;#x2F;&amp;#x2F; functions1.rs
+&amp;#x2F;&amp;#x2F; Execute `rustlings hint functions1` or use the `hint` watch subcommand for a hint.
+
+fn main() {
+    fn call_me() {
+        println!(&amp;quot;{}&amp;quot;, 4+4) &amp;#x2F;&amp;#x2F; here we change the string into a simple addition
+    }
+    call_me();
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;This would print: &lt;code&gt;8&lt;&#x2F;code&gt;&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;function2-rs&quot;&gt;&lt;code&gt;function2.rs&lt;&#x2F;code&gt;&lt;&#x2F;h2&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;&amp;#x2F;&amp;#x2F; functions2.rs
+&amp;#x2F;&amp;#x2F; Execute `rustlings hint functions2` or use the `hint` watch subcommand for a hint.
+
+&amp;#x2F;&amp;#x2F; I AM NOT DONE
+
+fn main() {
+    call_me(3);
+}
+
+fn call_me(num:) {
+    for i in 0..num {
+        println!(&amp;quot;Ring! Call number {}&amp;quot;, i + 1);
+    }
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h3 id=&quot;rust-errors-for-function2-rs&quot;&gt;Rust Errors for &lt;code&gt;function2.rs&lt;&#x2F;code&gt;&lt;&#x2F;h3&gt;
+&lt;pre data-lang=&quot;zsh&quot; class=&quot;language-zsh &quot;&gt;&lt;code class=&quot;language-zsh&quot; data-lang=&quot;zsh&quot;&gt;⚠️  Compiling of exercises&amp;#x2F;functions&amp;#x2F;functions2.rs failed! Please try again. Here&amp;#x27;s the output:
+error: expected type, found `)`
+  --&amp;gt; exercises&amp;#x2F;functions&amp;#x2F;functions2.rs:10:16
+   |
+10 | fn call_me(num:) {
+   |                ^ expected type
+
+error[E0425]: cannot find value `num` in this scope
+  --&amp;gt; exercises&amp;#x2F;functions&amp;#x2F;functions2.rs:11:17
+   |
+11 |     for i in 0..num {
+   |                 ^^^ not found in this scope
+   |
+help: you might have meant to write `.` instead of `..`
+   |
+11 -     for i in 0..num {
+11 +     for i in 0.num {
+   |
+
+error: aborting due to 2 previous errors
+
+For more information about this error, try `rustc --explain E0425`.
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Alright so I&#x27;ve got a couple of errors here:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;Line 10, there&#x27;s a type expected, so we fix that by adding &lt;code&gt;i32&lt;&#x2F;code&gt;&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;Adding the type solved all of our problems, nothing else do here.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;function2-rs-solution&quot;&gt;&lt;code&gt;function2.rs&lt;&#x2F;code&gt; Solution&lt;&#x2F;h2&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;&amp;#x2F;&amp;#x2F; functions2.rs
+&amp;#x2F;&amp;#x2F; Execute `rustlings hint functions2` or use the `hint` watch subcommand for a hint.
+
+fn main() {
+    call_me(3);
+}
+
+fn call_me(num: i32) { &amp;#x2F;&amp;#x2F; added the `i32` type here
+    for i in 0..num {
+        println!(&amp;quot;Ring! Call number {}&amp;quot;, i + 1);
+    }
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;This reminds us that Rust&#x27;s function signatures require type annotations. Once we fixed the function&#x27;s signature we get the following:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;zsh&quot; class=&quot;language-zsh &quot;&gt;&lt;code class=&quot;language-zsh&quot; data-lang=&quot;zsh&quot;&gt;Output:
+====================
+Ring! Call number 1
+Ring! Call number 2
+Ring! Call number 3
+
+====================
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h2 id=&quot;function3-rs&quot;&gt;&lt;code&gt;function3.rs&lt;&#x2F;code&gt;&lt;&#x2F;h2&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;&amp;#x2F;&amp;#x2F; functions3.rs
+&amp;#x2F;&amp;#x2F; Execute `rustlings hint functions3` or use the `hint` watch subcommand for a hint.
+
+&amp;#x2F;&amp;#x2F; I AM NOT DONE
+
+fn main() {
+    call_me();
+}
+
+fn call_me(num: u32) {
+    for i in 0..num {
+        println!(&amp;quot;Ring! Call number {}&amp;quot;, i + 1);
+    }
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h3 id=&quot;rust-errors-for-function3-rs&quot;&gt;Rust errors for &lt;code&gt;function3.rs&lt;&#x2F;code&gt;&lt;&#x2F;h3&gt;
+&lt;pre data-lang=&quot;zsh&quot; class=&quot;language-zsh &quot;&gt;&lt;code class=&quot;language-zsh&quot; data-lang=&quot;zsh&quot;&gt;⚠️  Compiling of exercises&amp;#x2F;functions&amp;#x2F;functions3.rs failed! Please try again. Here&amp;#x27;s the output:
+error[E0061]: this function takes 1 argument but 0 arguments were supplied
+  --&amp;gt; exercises&amp;#x2F;functions&amp;#x2F;functions3.rs:7:5
+   |
+7  |     call_me();
+   |     ^^^^^^^-- an argument of type `u32` is missing
+   |
+note: function defined here
+  --&amp;gt; exercises&amp;#x2F;functions&amp;#x2F;functions3.rs:10:4
+   |
+10 | fn call_me(num: u32) {
+   |    ^^^^^^^ --------
+help: provide the argument
+   |
+7  |     call_me(&amp;#x2F;* u32 *&amp;#x2F;);
+   |            ~~~~~~~~~~~
+
+error: aborting due to previous error
+
+For more information about this error, try `rustc --explain E0061`.
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Once again the Rust compiler comes through with a very clear suggestion pointing out that &lt;code&gt;call_me()&lt;&#x2F;code&gt; is missing an argument of type &lt;code&gt;u32&lt;&#x2F;code&gt; it even provides &lt;code&gt;help&lt;&#x2F;code&gt; in the last segment showing us where to put the &lt;code&gt;u32&lt;&#x2F;code&gt;: &lt;code&gt;call_me(&#x2F;* u32 *&#x2F;);&lt;&#x2F;code&gt; How great is that. So what &lt;code&gt;u32&lt;&#x2F;code&gt; should we put in there? Let&#x27;s try &lt;code&gt;6&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;functions3-rs-solution&quot;&gt;&lt;code&gt;functions3.rs&lt;&#x2F;code&gt; Solution&lt;&#x2F;h2&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;&amp;#x2F;&amp;#x2F; functions3.rs
+&amp;#x2F;&amp;#x2F; Execute `rustlings hint functions3` or use the `hint` watch subcommand for a hint.
+
+fn main() {
+    call_me(6); &amp;#x2F;&amp;#x2F; we&amp;#x27;ve added 6 here
+}
+
+fn call_me(num: u32) {
+    for i in 0..num {
+        println!(&amp;quot;Ring! Call number {}&amp;quot;, i + 1);
+    }
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;And just like that we&#x27;re back in business. Our &lt;code&gt;fn main()&lt;&#x2F;code&gt; runs and calls &lt;code&gt;call_me&lt;&#x2F;code&gt; six times because that&#x27;s the number we&#x27;ve passed in to &lt;code&gt;call_me(6)&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;zsh&quot; class=&quot;language-zsh &quot;&gt;&lt;code class=&quot;language-zsh&quot; data-lang=&quot;zsh&quot;&gt;Output:
+====================
+Ring! Call number 1
+Ring! Call number 2
+Ring! Call number 3
+Ring! Call number 4
+Ring! Call number 5
+Ring! Call number 6
+
+====================
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Just to be clear in this case we could put any &lt;code&gt;u32&lt;&#x2F;code&gt; we wanted, including &lt;code&gt;0&lt;&#x2F;code&gt;, but that doesn&#x27;t print anything. We can&#x27;t pass in a negative number in this case either because defined a &lt;code&gt;u32&lt;&#x2F;code&gt; and exceeding the limit of a &lt;code&gt;u32&lt;&#x2F;code&gt; would also fail.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;function4-rs&quot;&gt;&lt;code&gt;function4.rs&lt;&#x2F;code&gt;&lt;&#x2F;h2&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;&amp;#x2F;&amp;#x2F; functions4.rs
+&amp;#x2F;&amp;#x2F; Execute `rustlings hint functions4` or use the `hint` watch subcommand for a hint.
+
+&amp;#x2F;&amp;#x2F; This store is having a sale where if the price is an even number, you get
+&amp;#x2F;&amp;#x2F; 10 Rustbucks off, but if it&amp;#x27;s an odd number, it&amp;#x27;s 3 Rustbucks off.
+&amp;#x2F;&amp;#x2F; (Don&amp;#x27;t worry about the function bodies themselves, we&amp;#x27;re only interested
+&amp;#x2F;&amp;#x2F; in the signatures for now. If anything, this is a good way to peek ahead
+&amp;#x2F;&amp;#x2F; to future exercises!)
+
+&amp;#x2F;&amp;#x2F; I AM NOT DONE
+
+fn main() {
+    let original_price = 51;
+    println!(&amp;quot;Your sale price is {}&amp;quot;, sale_price(original_price));
+}
+
+fn sale_price(price: i32) -&amp;gt; {
+    if is_even(price) {
+        price - 10
+    } else {
+        price - 3
+    }
+}
+
+fn is_even(num: i32) -&amp;gt; bool {
+    num % 2 == 0
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;We&#x27;re getting a little more instruction here, but as always the key lies in looking at the Rust compiler&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;zsh&quot; class=&quot;language-zsh &quot;&gt;&lt;code class=&quot;language-zsh&quot; data-lang=&quot;zsh&quot;&gt;⚠️  Compiling of exercises&amp;#x2F;functions&amp;#x2F;functions4.rs failed! Please try again. Here&amp;#x27;s the output:
+error: expected type, found `{`
+  --&amp;gt; exercises&amp;#x2F;functions&amp;#x2F;functions4.rs:17:30
+   |
+17 | fn sale_price(price: i32) -&amp;gt; {
+   |                              ^ expected type
+
+error: aborting due to previous error
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Looks pretty straight forward, line 17 is missing a type in the function&#x27;s signature, looks like we should expect to return an &lt;code&gt;i32&lt;&#x2F;code&gt;, so let&#x27;s try that.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;fn main() {
+    let original_price = 51;
+    println!(&amp;quot;Your sale price is {}&amp;quot;, sale_price(original_price));
+}
+
+fn sale_price(price: i32) -&amp;gt; i32 { &amp;#x2F;&amp;#x2F; added return type here: `i32`
+    if is_even(price) {
+        price - 10
+    } else {
+        price - 3
+    }
+}
+
+fn is_even(num: i32) -&amp;gt; bool {
+    num % 2 == 0
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;And it works. Nothing too difficult, if you look at the &lt;code&gt;is_even&lt;&#x2F;code&gt; function there the function is returning a &lt;code&gt;bool&lt;&#x2F;code&gt; instead of an &lt;code&gt;i32&lt;&#x2F;code&gt;&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;zsh&quot; class=&quot;language-zsh &quot;&gt;&lt;code class=&quot;language-zsh&quot; data-lang=&quot;zsh&quot;&gt;Output:
+====================
+Your sale price is 48
+
+====================
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h2 id=&quot;function5-rs&quot;&gt;&lt;code&gt;function5.rs&lt;&#x2F;code&gt;&lt;&#x2F;h2&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;&amp;#x2F;&amp;#x2F; functions5.rs
+&amp;#x2F;&amp;#x2F; Execute `rustlings hint functions5` or use the `hint` watch subcommand for a hint.
+
+&amp;#x2F;&amp;#x2F; I AM NOT DONE
+
+fn main() {
+    let answer = square(3);
+    println!(&amp;quot;The square of 3 is {}&amp;quot;, answer);
+}
+
+fn square(num: i32) -&amp;gt; i32 {
+    num * num;
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h3 id=&quot;function5-rs-errors&quot;&gt;&lt;code&gt;function5.rs&lt;&#x2F;code&gt; Errors&lt;&#x2F;h3&gt;
+&lt;pre data-lang=&quot;zsh&quot; class=&quot;language-zsh &quot;&gt;&lt;code class=&quot;language-zsh&quot; data-lang=&quot;zsh&quot;&gt;⚠️  Compiling of exercises&amp;#x2F;functions&amp;#x2F;functions5.rs failed! Please try again. Here&amp;#x27;s the output:
+error[E0308]: mismatched types
+  --&amp;gt; exercises&amp;#x2F;functions&amp;#x2F;functions5.rs:11:24
+   |
+11 | fn square(num: i32) -&amp;gt; i32 {
+   |    ------              ^^^ expected `i32`, found `()`
+   |    |
+   |    implicitly returns `()` as its body has no tail or `return` expression
+12 |     num * num;
+   |              - help: remove this semicolon to return this value
+
+error: aborting due to previous error
+
+For more information about this error, try `rustc --explain E0308`.
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;This is once again a very helpful explanation from the compiler, if we look at the &lt;code&gt;help: remove this semicolon to return this value&lt;&#x2F;code&gt; note, it tells why we are getting the error on line 11. Because with a &lt;code&gt;;&lt;&#x2F;code&gt; semicolon this function has no return value and this function expects a return value as we have defined in the function signature. So how do we solve this?&lt;&#x2F;p&gt;
+&lt;p&gt;The easiest way is to remove the semicolon as the Rust compiler suggests, but just so we have another solution we can also use the &lt;code&gt;return&lt;&#x2F;code&gt; keyword. From my understanding it&#x27;s more idiomatic to just remove the &lt;code&gt;;&lt;&#x2F;code&gt; but I wanted to also bring up the possibility of using &lt;code&gt;return&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;The reason this happens in Rust is because the compiler distinguishes between expressions and statements. Expressions return a value based on their operands(s), and statements simply return a &lt;code&gt;()&lt;&#x2F;code&gt; type.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;function5-rs-solution&quot;&gt;&lt;code&gt;function5.rs&lt;&#x2F;code&gt; Solution&lt;&#x2F;h2&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;fn main() {
+    let answer = square(3);
+    println!(&amp;quot;The square of 3 is {}&amp;quot;, answer);
+}
+
+fn square(num: i32) -&amp;gt; i32 {
+    num * num
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;pre data-lang=&quot;zsh&quot; class=&quot;language-zsh &quot;&gt;&lt;code class=&quot;language-zsh&quot; data-lang=&quot;zsh&quot;&gt;Output:
+====================
+The square of 3 is 9
+
+====================
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h2 id=&quot;conclusion&quot;&gt;Conclusion&lt;&#x2F;h2&gt;
+&lt;p&gt;In this blog post, we&#x27;ve explored various Rust functions and the importance of function signatures, including specifying the correct types for both input parameters and return values. We have also seen how the Rust compiler provides helpful error messages and suggestions to guide us in fixing issues with our code. Additionally, we&#x27;ve briefly touched upon the differences between expressions and statements in Rust, which determine whether a value is returned or not.&lt;&#x2F;p&gt;
+&lt;p&gt;Remember that Rust functions are powerful tools for writing clean, maintainable code. Keep practicing and exploring different function patterns, and you&#x27;ll soon become proficient in writing complex Rust programs.&lt;&#x2F;p&gt;
+</description>
+      </item>
       <item>
           <title>01 Rustlings variables</title>
           <pubDate>Mon, 17 Apr 2023 00:00:00 +0000</pubDate>
