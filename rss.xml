@@ -7,7 +7,261 @@
       <generator>Zola</generator>
       <language>en</language>
       <atom:link href="https://desmodrone.github.io/rss.xml" rel="self" type="application/rss+xml"/>
-      <lastBuildDate>Wed, 19 Apr 2023 00:00:00 +0000</lastBuildDate>
+      <lastBuildDate>Fri, 21 Apr 2023 00:00:00 +0000</lastBuildDate>
+      <item>
+          <title>03 Rustlings if</title>
+          <pubDate>Fri, 21 Apr 2023 00:00:00 +0000</pubDate>
+          <author>Unknown</author>
+          <link>https://desmodrone.github.io/posts/03-rustlings-if/</link>
+          <guid>https://desmodrone.github.io/posts/03-rustlings-if/</guid>
+          <description>&lt;p&gt;&lt;code&gt;if&lt;&#x2F;code&gt;, is the most basic but still very versatile type of control flow, these next couple of exercises will go through this little word.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;additional-reading&quot;&gt;Additional Reading&lt;&#x2F;h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;doc.rust-lang.org&#x2F;book&#x2F;ch03-05-control-flow.html#if-expressions&quot;&gt;Control Flow - if expressions&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h2 id=&quot;if1-rs&quot;&gt;&lt;code&gt;if1.rs&lt;&#x2F;code&gt;&lt;&#x2F;h2&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;&amp;#x2F;&amp;#x2F; if1.rs
+&amp;#x2F;&amp;#x2F; Execute `rustlings hint if1` or use the `hint` watch subcommand for a hint.
+
+&amp;#x2F;&amp;#x2F; I AM NOT DONE
+
+pub fn bigger(a: i32, b: i32) -&amp;gt; i32 {
+    &amp;#x2F;&amp;#x2F; Complete this function to return the bigger number!
+    &amp;#x2F;&amp;#x2F; Do not use:
+    &amp;#x2F;&amp;#x2F; - another function call
+    &amp;#x2F;&amp;#x2F; - additional variables
+}
+
+&amp;#x2F;&amp;#x2F; Don&amp;#x27;t mind this for now :)
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn ten_is_bigger_than_eight() {
+        assert_eq!(10, bigger(10, 8));
+    }
+
+    #[test]
+    fn fortytwo_is_bigger_than_thirtytwo() {
+        assert_eq!(42, bigger(32, 42));
+    }
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Alright looks like we have our first real writing of some basic code -- we need to create an &lt;code&gt;if&lt;&#x2F;code&gt; statement that will compare 2 numbers or variables &lt;code&gt;a&lt;&#x2F;code&gt; or &lt;code&gt;b&lt;&#x2F;code&gt; and return which on is bigger.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;if1-rs-errors&quot;&gt;&lt;code&gt;if1.rs&lt;&#x2F;code&gt; errors&lt;&#x2F;h2&gt;
+&lt;pre data-lang=&quot;zsh&quot; class=&quot;language-zsh &quot;&gt;&lt;code class=&quot;language-zsh&quot; data-lang=&quot;zsh&quot;&gt;⚠️  Compiling of exercises&amp;#x2F;if&amp;#x2F;if1.rs failed! Please try again. Here&amp;#x27;s the output:
+error[E0308]: mismatched types
+ --&amp;gt; exercises&amp;#x2F;if&amp;#x2F;if1.rs:6:34
+  |
+6 | pub fn bigger(a: i32, b: i32) -&amp;gt; i32 {
+  |        ------                    ^^^ expected `i32`, found `()`
+  |        |
+  |        implicitly returns `()` as its body has no tail or `return` expression
+  |
+note: consider returning one of these bindings
+ --&amp;gt; exercises&amp;#x2F;if&amp;#x2F;if1.rs:6:15
+  |
+6 | pub fn bigger(a: i32, b: i32) -&amp;gt; i32 {
+  |               ^       ^
+
+error: aborting due to previous error
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Let&#x27;s look at what the &lt;code&gt;rust_errors&lt;&#x2F;code&gt; are telling us here, well it&#x27;s pretty obvious here that there is no return expression because there is nothing in the body of the function &lt;code&gt;bigger&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;So my solution is pretty simple it&#x27;s just to add an &lt;code&gt;if&lt;&#x2F;code&gt; &lt;code&gt;a &amp;lt; b&lt;&#x2F;code&gt; expression.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;if1-rs-solution&quot;&gt;&lt;code&gt;if1.rs&lt;&#x2F;code&gt; Solution&lt;&#x2F;h2&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;pub fn bigger(a: i32, b: i32) -&amp;gt; i32 {
+    if a &amp;lt; b {
+        b
+    } else {
+        a
+    }
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;This compiles but the hint reminds me that it can also be done in one line, let&#x27;s try that, it works just fine and looks like this&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;pub fn bigger(a: i32, b:i32) -&amp;gt; i32 {
+	if a &amp;lt; b { b } else { a }
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;I&#x27;m also reminded that :&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;in Rust the &lt;code&gt;if&lt;&#x2F;code&gt; condition doesn&#x27;t need to be surrounded by parentheses&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;code&gt;if&#x2F;else&lt;&#x2F;code&gt; conditionals are expressions&lt;&#x2F;li&gt;
+&lt;li&gt;Each condition is followed by a &lt;code&gt;{}&lt;&#x2F;code&gt; block&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h2 id=&quot;if2-rs&quot;&gt;&lt;code&gt;if2.rs&lt;&#x2F;code&gt;&lt;&#x2F;h2&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;&amp;#x2F;&amp;#x2F; if2.rs
+
+&amp;#x2F;&amp;#x2F; Step 1: Make me compile!
+&amp;#x2F;&amp;#x2F; Step 2: Get the bar_for_fuzz and default_to_baz tests passing!
+&amp;#x2F;&amp;#x2F; Execute `rustlings hint if2` or use the `hint` watch subcommand for a hint.
+
+&amp;#x2F;&amp;#x2F; I AM NOT DONE
+
+pub fn foo_if_fizz(fizzish: &amp;amp;str) -&amp;gt; &amp;amp;str {
+    if fizzish == &amp;quot;fizz&amp;quot; {
+        &amp;quot;foo&amp;quot;
+    } else {
+        1
+    }
+}
+
+&amp;#x2F;&amp;#x2F; No test changes needed!
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn foo_for_fizz() {
+        assert_eq!(foo_if_fizz(&amp;quot;fizz&amp;quot;), &amp;quot;foo&amp;quot;)
+    }
+
+    #[test]
+    fn bar_for_fuzz() {
+        assert_eq!(foo_if_fizz(&amp;quot;fuzz&amp;quot;), &amp;quot;bar&amp;quot;)
+    }
+
+    #[test]
+    fn default_to_baz() {
+        assert_eq!(foo_if_fizz(&amp;quot;literally anything&amp;quot;), &amp;quot;baz&amp;quot;)
+    }
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h2 id=&quot;if2-rs-errors&quot;&gt;&lt;code&gt;if2.rs&lt;&#x2F;code&gt; errors&lt;&#x2F;h2&gt;
+&lt;pre data-lang=&quot;zsh&quot; class=&quot;language-zsh &quot;&gt;&lt;code class=&quot;language-zsh&quot; data-lang=&quot;zsh&quot;&gt;⚠️  Compiling of exercises&amp;#x2F;if&amp;#x2F;if2.rs failed! Please try again. Here&amp;#x27;s the output:
+error[E0308]: mismatched types
+  --&amp;gt; exercises&amp;#x2F;if&amp;#x2F;if2.rs:13:9
+   |
+9  | pub fn foo_if_fizz(fizzish: &amp;amp;str) -&amp;gt; &amp;amp;str {
+   |                                      ---- expected `&amp;amp;str` because of return type
+...
+13 |         1
+   |         ^ expected `&amp;amp;str`, found integer
+
+error: aborting due to previous error
+
+For more information about this error, try `rustc --explain E0308`.
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;The first comments state that we first have to make the code compile, so the first thing to do in this case is to add the &lt;code&gt;bar&lt;&#x2F;code&gt; by replacing the &lt;code&gt;1&lt;&#x2F;code&gt; which the Rust compile clearly states that it expected an &lt;code&gt;&amp;amp;str&lt;&#x2F;code&gt; and this is an integer.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;&amp;#x2F;&amp;#x2F; if2.rs
+
+&amp;#x2F;&amp;#x2F; Step 1: Make me compile!
+&amp;#x2F;&amp;#x2F; Step 2: Get the bar_for_fuzz and default_to_baz tests passing!
+&amp;#x2F;&amp;#x2F; Execute `rustlings hint if2` or use the `hint` watch subcommand for a hint.
+
+&amp;#x2F;&amp;#x2F; I AM NOT DONE
+
+pub fn foo_if_fizz(fizzish: &amp;amp;str) -&amp;gt; &amp;amp;str {
+    if fizzish == &amp;quot;fizz&amp;quot; {
+        &amp;quot;foo&amp;quot;
+    } else {
+        &amp;quot;bar&amp;quot; &amp;#x2F;&amp;#x2F; add bar to get it to compile
+    }
+}
+
+&amp;#x2F;&amp;#x2F; No test changes needed!
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn foo_for_fizz() {
+        assert_eq!(foo_if_fizz(&amp;quot;fizz&amp;quot;), &amp;quot;foo&amp;quot;)
+    }
+
+    #[test]
+    fn bar_for_fuzz() {
+        assert_eq!(foo_if_fizz(&amp;quot;fuzz&amp;quot;), &amp;quot;bar&amp;quot;)
+    }
+
+    #[test]
+    fn default_to_baz() {
+        assert_eq!(foo_if_fizz(&amp;quot;literally anything&amp;quot;), &amp;quot;baz&amp;quot;)
+    }
+}
+
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Once we replace this with &lt;code&gt;bar&lt;&#x2F;code&gt; it compiles, but it still doesn&#x27;t pass the test, which is our step 2. in the comments.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;zsh&quot; class=&quot;language-zsh &quot;&gt;&lt;code class=&quot;language-zsh&quot; data-lang=&quot;zsh&quot;&gt;⚠️  Testing of exercises&amp;#x2F;if&amp;#x2F;if2.rs failed! Please try again. Here&amp;#x27;s the output:
+
+running 3 tests
+test tests::bar_for_fuzz ... ok
+test tests::foo_for_fizz ... ok
+test tests::default_to_baz ... FAILED
+
+successes:
+
+successes:
+    tests::bar_for_fuzz
+    tests::foo_for_fizz
+
+failures:
+
+---- tests::default_to_baz stdout ----
+thread &amp;#x27;tests::default_to_baz&amp;#x27; panicked at &amp;#x27;assertion failed: `(left == right)`
+  left: `&amp;quot;bar&amp;quot;`,
+ right: `&amp;quot;baz&amp;quot;`&amp;#x27;, exercises&amp;#x2F;if&amp;#x2F;if2.rs:34:9
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    tests::default_to_baz
+
+test result: FAILED. 2 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;So here we see that the first two test are passing &lt;code&gt;bar_for_fuzz&lt;&#x2F;code&gt; and &lt;code&gt;foo_for_fizz&lt;&#x2F;code&gt; but &lt;code&gt;default_to_baz&lt;&#x2F;code&gt; is not. So let&#x27;s take a closer look at the tests and see why this is happening.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;foo-for-fizz-test&quot;&gt;&lt;code&gt;foo_for_fizz&lt;&#x2F;code&gt; test&lt;&#x2F;h2&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;    #[test]
+    fn foo_for_fizz() {
+        assert_eq!(foo_if_fizz(&amp;quot;fizz&amp;quot;), &amp;quot;foo&amp;quot;) &amp;#x2F;&amp;#x2F; first test clearly defined in our `if` statement
+    }
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;which is in our code with&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;if fizzish == &amp;quot;fizz&amp;quot; {
+	&amp;quot;foo&amp;quot;
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h2 id=&quot;bar-for-fuzz-test&quot;&gt;&lt;code&gt;bar_for_fuzz&lt;&#x2F;code&gt; test&lt;&#x2F;h2&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;    #[test]
+    fn bar_for_fuzz() {
+        assert_eq!(foo_if_fizz(&amp;quot;fuzz&amp;quot;), &amp;quot;bar&amp;quot;) &amp;#x2F;&amp;#x2F; if we have &amp;quot;fuzz&amp;quot; we should get &amp;quot;bar&amp;quot;
+    }
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;This tells us that if have &lt;code&gt;Fuzz&lt;&#x2F;code&gt; then we get bar, but this is working only because we have &lt;code&gt;&amp;quot;bar&amp;quot;&lt;&#x2F;code&gt; as our &lt;code&gt;else&lt;&#x2F;code&gt; not because we have &lt;code&gt;&amp;quot;fuzz&amp;quot;&lt;&#x2F;code&gt; defined.&lt;&#x2F;p&gt;
+&lt;p&gt;We do so by adding an &lt;code&gt;else if&lt;&#x2F;code&gt; statement like this:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;else if fizzish == &amp;quot;fuzz&amp;quot; {
+	&amp;quot;bar&amp;quot;
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;This will meet the conditions of our second test&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;default-to-baz-test&quot;&gt;&lt;code&gt;default_to_baz&lt;&#x2F;code&gt; test&lt;&#x2F;h2&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;#[test]
+    fn default_to_baz() {
+        assert_eq!(foo_if_fizz(&amp;quot;literally anything&amp;quot;), &amp;quot;baz&amp;quot;)
+    }
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;In our final test we see that it&#x27;s saying whatever else, doesn&#x27;t matter what it is, just give me &lt;code&gt;&amp;quot;baz&amp;quot;&lt;&#x2F;code&gt; so we can easily do that by adding our final &lt;code&gt;else&lt;&#x2F;code&gt; condition to our &lt;code&gt;foo_if_fizz&lt;&#x2F;code&gt; function, that would look like this:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;pub fn foo_if_fizz(fizzish: &amp;amp;str) -&amp;gt; &amp;amp;str {
+    if fizzish == &amp;quot;fizz&amp;quot; {
+        &amp;quot;foo&amp;quot;
+    } else if fizzish == &amp;quot;fuzz&amp;quot; {
+        &amp;quot;bar&amp;quot;
+    } else { &amp;#x2F;&amp;#x2F; whatever else it is, just make it `&amp;quot;baz&amp;quot;`
+        &amp;quot;baz&amp;quot;
+    }
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;This gets our code to compile and pass it&#x27;s tests successfully.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;zsh&quot; class=&quot;language-zsh &quot;&gt;&lt;code class=&quot;language-zsh&quot; data-lang=&quot;zsh&quot;&gt;Progress: [########&amp;gt;---------------------------------------------------] 14&amp;#x2F;94
+✅ Successfully tested exercises&amp;#x2F;if&amp;#x2F;if2.rs!
+
+🎉 🎉  The code is compiling, and the tests pass! 🎉 🎉
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Alright, I guess we get our first quiz after this 😧.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;conclusion&quot;&gt;Conclusion&lt;&#x2F;h2&gt;
+&lt;p&gt;In this blog post, we delved into Rust &lt;code&gt;if&lt;&#x2F;code&gt; expressions, which are a fundamental part of the language&#x27;s control flow. We explored how to use &lt;code&gt;if&lt;&#x2F;code&gt;, &lt;code&gt;else if&lt;&#x2F;code&gt;, and &lt;code&gt;else&lt;&#x2F;code&gt; statements to create conditionals and solve problems in Rust. Additionally, we learned about Rust&#x27;s unique features, such as not requiring parentheses around &lt;code&gt;if&lt;&#x2F;code&gt; conditions and the treatment of &lt;code&gt;if&#x2F;else&lt;&#x2F;code&gt; conditionals as expressions. By understanding and mastering Rust &lt;code&gt;if&lt;&#x2F;code&gt; expressions, you&#x27;ll be better equipped to write efficient and clean Rust code for various applications.&lt;&#x2F;p&gt;
+</description>
+      </item>
       <item>
           <title>02 Rustlings functions</title>
           <pubDate>Wed, 19 Apr 2023 00:00:00 +0000</pubDate>
@@ -427,6 +681,7 @@ fn main() {
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;desmodrone.github.io&#x2F;posts&#x2F;01-rustlings-variables&#x2F;&quot;&gt;01_rustlings_variables&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
 &lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;desmodrone.github.io&#x2F;posts&#x2F;02-rustlings-functions&#x2F;&quot;&gt;02_rustlings_functions&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;desmodrone.github.io&#x2F;posts&#x2F;03-rustlings-if&#x2F;&quot;&gt;03_rustlings_functions&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
 &lt;&#x2F;ul&gt;
 &lt;p&gt;Inspired by Tris Oaten&#x27;s recent video &lt;a href=&quot;https:&#x2F;&#x2F;youtu.be&#x2F;2hXNd6x9sZs&quot;&gt;How to Learn Rust&lt;&#x2F;a&gt; on his excellent YouTube channel &lt;a href=&quot;https:&#x2F;&#x2F;www.youtube.com&#x2F;@NoBoilerplate&quot;&gt;No Boilerplate&lt;&#x2F;a&gt;, I&#x27;ve decided to refocus my journey with the Rust programming language. In hopes of effectively learning Rust, I&#x27;ll be following the holy trinity of Rust learning resources as recommended by Tris:&lt;&#x2F;p&gt;
 &lt;ul&gt;

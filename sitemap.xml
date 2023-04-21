@@ -18,6 +18,10 @@
         <lastmod>2023-04-19</lastmod>
     </url>
     <url>
+        <loc>https://desmodrone.github.io/posts/03-rustlings-if/</loc>
+        <lastmod>2023-04-21</lastmod>
+    </url>
+    <url>
         <loc>https://desmodrone.github.io/posts/hello-rustlings/</loc>
         <lastmod>2023-04-11</lastmod>
     </url>
@@ -54,7 +58,13 @@
         <loc>https://desmodrone.github.io/tags/first/</loc>
     </url>
     <url>
+        <loc>https://desmodrone.github.io/tags/functions/</loc>
+    </url>
+    <url>
         <loc>https://desmodrone.github.io/tags/hello/</loc>
+    </url>
+    <url>
+        <loc>https://desmodrone.github.io/tags/if/</loc>
     </url>
     <url>
         <loc>https://desmodrone.github.io/tags/rust/</loc>
@@ -64,6 +74,9 @@
     </url>
     <url>
         <loc>https://desmodrone.github.io/tags/traits/</loc>
+    </url>
+    <url>
+        <loc>https://desmodrone.github.io/tags/variables/</loc>
     </url>
     <url>
         <loc>https://desmodrone.github.io/work/</loc>
