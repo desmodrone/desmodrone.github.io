@@ -48,7 +48,7 @@ mod tests {
     }
 }
 &lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
-&lt;p&gt;Alright looks like we have our first real writing of some basic code -- we need to create an &lt;code&gt;if&lt;&#x2F;code&gt; statement that will compare 2 numbers or variables &lt;code&gt;a&lt;&#x2F;code&gt; or &lt;code&gt;b&lt;&#x2F;code&gt; and return which on is bigger.&lt;&#x2F;p&gt;
+&lt;p&gt;Alright looks like we have our first real writing of some basic code -- we need to create an &lt;code&gt;if&lt;&#x2F;code&gt; statement that will compare 2 numbers or variables &lt;code&gt;a&lt;&#x2F;code&gt; or &lt;code&gt;b&lt;&#x2F;code&gt; and return which one is bigger.&lt;&#x2F;p&gt;
 &lt;h2 id=&quot;if1-rs-errors&quot;&gt;&lt;code&gt;if1.rs&lt;&#x2F;code&gt; errors&lt;&#x2F;h2&gt;
 &lt;pre data-lang=&quot;zsh&quot; class=&quot;language-zsh &quot;&gt;&lt;code class=&quot;language-zsh&quot; data-lang=&quot;zsh&quot;&gt;⚠️  Compiling of exercises&amp;#x2F;if&amp;#x2F;if1.rs failed! Please try again. Here&amp;#x27;s the output:
 error[E0308]: mismatched types
@@ -67,8 +67,9 @@ note: consider returning one of these bindings
 
 error: aborting due to previous error
 &lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
-&lt;p&gt;Let&#x27;s look at what the &lt;code&gt;rust_errors&lt;&#x2F;code&gt; are telling us here, well it&#x27;s pretty obvious here that there is no return expression because there is nothing in the body of the function &lt;code&gt;bigger&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
-&lt;p&gt;So my solution is pretty simple it&#x27;s just to add an &lt;code&gt;if&lt;&#x2F;code&gt; &lt;code&gt;a &amp;lt; b&lt;&#x2F;code&gt; expression.&lt;&#x2F;p&gt;
+&lt;p&gt;Let&#x27;s look at what the &lt;code&gt;rust_errors&lt;&#x2F;code&gt; are telling us here.&lt;&#x2F;p&gt;
+&lt;p&gt;The line &lt;code&gt;^^^ expected&lt;&#x2F;code&gt;i32&lt;code&gt;, found &lt;&#x2F;code&gt;()`` is essentially telling us that there is no return expression because there is nothing in the body of the function &lt;code&gt;bigger&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;The solution is pretty simple, it&#x27;s  to add an &lt;code&gt;if&lt;&#x2F;code&gt; &lt;code&gt;a &amp;lt; b&lt;&#x2F;code&gt; expression.&lt;&#x2F;p&gt;
 &lt;h2 id=&quot;if1-rs-solution&quot;&gt;&lt;code&gt;if1.rs&lt;&#x2F;code&gt; Solution&lt;&#x2F;h2&gt;
 &lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;pub fn bigger(a: i32, b: i32) -&amp;gt; i32 {
     if a &amp;lt; b {
@@ -89,6 +90,7 @@ error: aborting due to previous error
 &lt;li&gt;&lt;code&gt;if&#x2F;else&lt;&#x2F;code&gt; conditionals are expressions&lt;&#x2F;li&gt;
 &lt;li&gt;Each condition is followed by a &lt;code&gt;{}&lt;&#x2F;code&gt; block&lt;&#x2F;li&gt;
 &lt;&#x2F;ul&gt;
+&lt;p&gt;Okay, let&#x27;s move on to the next exercise.&lt;&#x2F;p&gt;
 &lt;h2 id=&quot;if2-rs&quot;&gt;&lt;code&gt;if2.rs&lt;&#x2F;code&gt;&lt;&#x2F;h2&gt;
 &lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;&amp;#x2F;&amp;#x2F; if2.rs
 
