@@ -7,7 +7,169 @@
       <generator>Zola</generator>
       <language>en</language>
       <atom:link href="https://desmodrone.github.io/rss.xml" rel="self" type="application/rss+xml"/>
-      <lastBuildDate>Fri, 21 Apr 2023 00:00:00 +0000</lastBuildDate>
+      <lastBuildDate>Wed, 26 Apr 2023 00:00:00 +0000</lastBuildDate>
+      <item>
+          <title>04 Rustlings quiz1</title>
+          <pubDate>Wed, 26 Apr 2023 00:00:00 +0000</pubDate>
+          <author>Unknown</author>
+          <link>https://desmodrone.github.io/posts/04-rustlings-quiz1/</link>
+          <guid>https://desmodrone.github.io/posts/04-rustlings-quiz1/</guid>
+          <description>&lt;p&gt;Now we have our first quiz building on what we&#x27;ve learned so far. Here is the code and instructions written in the comments.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;quiz1-rs&quot;&gt;&lt;code&gt;quiz1.rs&lt;&#x2F;code&gt;&lt;&#x2F;h2&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;&amp;#x2F;&amp;#x2F; quiz1.rs
+&amp;#x2F;&amp;#x2F; This is a quiz for the following sections:
+&amp;#x2F;&amp;#x2F; - Variables
+&amp;#x2F;&amp;#x2F; - Functions
+&amp;#x2F;&amp;#x2F; - If
+
+&amp;#x2F;&amp;#x2F; Mary is buying apples. The price of an apple is calculated as follows:
+&amp;#x2F;&amp;#x2F; - An apple costs 2 rustbucks.
+&amp;#x2F;&amp;#x2F; - If Mary buys more than 40 apples, each apple only costs 1 rustbuck!
+&amp;#x2F;&amp;#x2F; Write a function that calculates the price of an order of apples given
+&amp;#x2F;&amp;#x2F; the quantity bought. No hints this time!
+
+&amp;#x2F;&amp;#x2F; I AM NOT DONE
+
+&amp;#x2F;&amp;#x2F; Put your function here!
+&amp;#x2F;&amp;#x2F; fn calculate_price_of_apples {
+
+&amp;#x2F;&amp;#x2F; Don&amp;#x27;t modify this function!
+#[test]
+fn verify_test() {
+    let price1 = calculate_price_of_apples(35);
+    let price2 = calculate_price_of_apples(40);
+    let price3 = calculate_price_of_apples(41);
+    let price4 = calculate_price_of_apples(65);
+
+    assert_eq!(70, price1);
+    assert_eq!(80, price2);
+    assert_eq!(41, price3);
+    assert_eq!(65, price4);
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;This is pretty straight forward, it&#x27;s clear we have to write a little bit of code, let&#x27;s recap what we know.&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;Mary is buying apples.&lt;&#x2F;li&gt;
+&lt;li&gt;each apple is worth 2 rustbucks.&lt;&#x2F;li&gt;
+&lt;li&gt;If Mary purchases more than 40 apples, the apple price for each goes down to 1 rust buck for each apple.&lt;&#x2F;li&gt;
+&lt;li&gt;We need to create a function that calculates the correct price given the amount of apples purchased&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h2 id=&quot;quiz1-rs-errors&quot;&gt;&lt;code&gt;quiz1.rs&lt;&#x2F;code&gt; errors&lt;&#x2F;h2&gt;
+&lt;pre data-lang=&quot;zsh&quot; class=&quot;language-zsh &quot;&gt;&lt;code class=&quot;language-zsh&quot; data-lang=&quot;zsh&quot;&gt;⚠️  Compiling of exercises&amp;#x2F;quiz1.rs failed! Please try again. Here&amp;#x27;s the output:
+error[E0425]: cannot find function `calculate_price_of_apples` in this scope
+  --&amp;gt; exercises&amp;#x2F;quiz1.rs:21:18
+   |
+21 |     let price1 = calculate_price_of_apples(35);
+   |                  ^^^^^^^^^^^^^^^^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find function `calculate_price_of_apples` in this scope
+  --&amp;gt; exercises&amp;#x2F;quiz1.rs:22:18
+   |
+22 |     let price2 = calculate_price_of_apples(40);
+   |                  ^^^^^^^^^^^^^^^^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find function `calculate_price_of_apples` in this scope
+  --&amp;gt; exercises&amp;#x2F;quiz1.rs:23:18
+   |
+23 |     let price3 = calculate_price_of_apples(41);
+   |                  ^^^^^^^^^^^^^^^^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find function `calculate_price_of_apples` in this scope
+  --&amp;gt; exercises&amp;#x2F;quiz1.rs:24:18
+   |
+24 |     let price4 = calculate_price_of_apples(65);
+   |                  ^^^^^^^^^^^^^^^^^^^^^^^^^ not found in this scope
+
+error: aborting due to 4 previous errors
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;We are getting are getting 4 errors all related to the &lt;code&gt;calculate_price_of_apples&lt;&#x2F;code&gt; function being out of scope. Well, that should be pretty obvious as to why, it&#x27;s not there...or in this case commented out.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;working-on-a-solution&quot;&gt;Working on a Solution&lt;&#x2F;h2&gt;
+&lt;p&gt;As noted in the errors, we need to implement the function &lt;code&gt;fn_calculate_price_of_apples&lt;&#x2F;code&gt; so let&#x27;s start there, by removing the comment forward slashes. We&#x27;ll just add the code here without the additional comments.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;&amp;#x2F;&amp;#x2F; Put your function here!
+   fn calculate_price_of_apples {
+
+&amp;#x2F;&amp;#x2F; Don&amp;#x27;t modify this function!
+#[test]
+fn verify_test() {
+    let price1 = calculate_price_of_apples(35);
+    let price2 = calculate_price_of_apples(40);
+    let price3 = calculate_price_of_apples(41);
+    let price4 = calculate_price_of_apples(65);
+
+    assert_eq!(70, price1);
+    assert_eq!(80, price2);
+    assert_eq!(41, price3);
+    assert_eq!(65, price4);
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;If we think of what we&#x27;ve learned so far: &lt;code&gt;variables&lt;&#x2F;code&gt;, &lt;code&gt;if&lt;&#x2F;code&gt; statements and &lt;code&gt;functions&lt;&#x2F;code&gt; we should be able to use these and apply them to our quiz here, let&#x27;s start the function signature, we need to be explicit when defining our function signatures in Rust, so our function signature is missing a whole lot of information.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;completing-our-function-signature&quot;&gt;Completing our Function Signature&lt;&#x2F;h2&gt;
+&lt;p&gt;If we need any hints we can go back to our &lt;code&gt;function&lt;&#x2F;code&gt; lesson and see how this current function looks incomplete, we should quickly notice that our current function signature looks incomplete compared to our previous exercises, so let&#x27;s fix that, by defining a variable that gets passed through the function as an &lt;code&gt;i32&lt;&#x2F;code&gt;, as well as adding a return value of &lt;code&gt;i32&lt;&#x2F;code&gt;&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;&amp;#x2F;&amp;#x2F; how it&amp;#x27;s currently defined
+fn calculate_price_of_apples {
+
+
+&amp;#x2F;&amp;#x2F; by adding `apples:i32` we allow the function to pass through an `i32` that we define as apples
+&amp;#x2F;&amp;#x2F; we also add the ` -&amp;gt; i32` to show that we&amp;#x27;ll also return an `i32` for our final price
+fn calculate_price_of_apples(apples:i32) -&amp;gt; i32 {
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h2 id=&quot;adding-variables&quot;&gt;Adding Variables&lt;&#x2F;h2&gt;
+&lt;p&gt;Now let&#x27;s look at variables we have to create inside of our function to complete the calculation of our price.
+I guess the most logical variables would be the price right, we have the regular price and the discount price.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;fn calculate_price_of_apples(apples: i32) -&amp;gt; i32 {
+	let regular_price: i32 = 2; &amp;#x2F;&amp;#x2F; defining a regular price
+	let discount_price: i32 = 1; &amp;#x2F;&amp;#x2F; defining a dicount price
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Easy enough right? We have defined a &lt;code&gt;regular_price&lt;&#x2F;code&gt; and a &lt;code&gt;discount_price&lt;&#x2F;code&gt; is based on the information we were given. Now let&#x27;s go to the next step in our function defining our &lt;code&gt;if&lt;&#x2F;code&gt; expression.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;controlling-our-conditions-with-if&quot;&gt;Controlling our Conditions with &lt;code&gt;if&lt;&#x2F;code&gt;&lt;&#x2F;h2&gt;
+&lt;p&gt;Let&#x27;s quickly recap what we tools we have made so far:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;We&#x27;ve defined our function signature so it takes and returns and &lt;code&gt;i32&lt;&#x2F;code&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;We&#x27;ve created two different variables that define a &lt;code&gt;regular_price&lt;&#x2F;code&gt; or a &lt;code&gt;discounted_price&lt;&#x2F;code&gt;.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;Now we need a way to let our function choose a branch of code depending the quantity of apples. The &lt;code&gt;if&lt;&#x2F;code&gt; keyword let&#x27;s us do this as we previously learned in lesson 3 so let&#x27;s implement this within our function.&lt;&#x2F;p&gt;
+&lt;p&gt;First let&#x27;s think about this in plain English, remembering that Mary get&#x27;s a price break &lt;em&gt;after&lt;&#x2F;em&gt; apple number 40, we can say that &amp;quot;if Mary buys 40 or less apples&amp;quot; it&#x27;s regular price, &amp;quot;if Mary buys 41 or more apples&amp;quot; it&#x27;s a discount price. Of course in code it&#x27;s a little different and we can always reference the &lt;code&gt;if&lt;&#x2F;code&gt; lesson for the syntax.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;fn calculate_price_of_apples(apples: i32) -&amp;gt; i32 {
+	let regular_price: i32 = 2;
+	let discount_price: i32 = 1;
+		if apples &amp;lt;= 40 { &amp;#x2F;&amp;#x2F; defining if the quantity of `apples` purchased are 40 or less
+			apples * regular_price &amp;#x2F;&amp;#x2F; here&amp;#x27;s the simple math to calculate the result
+		} else { &amp;#x2F;&amp;#x2F; `else` let&amp;#x27;s us add the other part of the expression
+			apples * discount_price &amp;#x2F;&amp;#x2F; this multiples the number of apples which are above 40 at the discount
+		}
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;And that&#x27;s it, our code compiles and passes all tests, so we&#x27;ve finished our first quiz. This is what the final full code will look like:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;fn calculate_price_of_apples(apples: i32) -&amp;gt; i32 {
+    let regular_price: i32 = 2;
+    let discount_price: i32 = 1;
+
+    if apples &amp;lt;= 40 {
+        &amp;#x2F;&amp;#x2F; less than or equal to
+        apples * regular_price
+    } else {
+        apples * discount_price
+    }
+}
+&amp;#x2F;&amp;#x2F; Don&amp;#x27;t modify this function!
+#[test]
+fn verify_test() {
+    let price1 = calculate_price_of_apples(35);
+    let price2 = calculate_price_of_apples(40);
+    let price3 = calculate_price_of_apples(41);
+    let price4 = calculate_price_of_apples(65);
+
+    assert_eq!(70, price1);
+    assert_eq!(80, price2);
+    assert_eq!(41, price3);
+    assert_eq!(65, price4);
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h2 id=&quot;conclusion&quot;&gt;Conclusion&lt;&#x2F;h2&gt;
+&lt;p&gt;In this blog post, we reviewed a Rust quiz about variables, functions, and if statements. We worked through the errors provided by the compiler and wrote a solution to calculate the price of apples based on the quantity bought. We first defined the function signature, which was incomplete, and added the appropriate information to pass and return an &lt;code&gt;i32&lt;&#x2F;code&gt;. We then created variables for the regular and discounted prices of the apples. Finally, we used an &lt;code&gt;if&lt;&#x2F;code&gt; expression to control the calculation of the price based on the quantity of apples bought, with a break for the discounted price starting at 40 apples.&lt;&#x2F;p&gt;
+&lt;p&gt;By working through this quiz, we demonstrated how to apply the concepts of variables, functions, and if statements in Rust to solve a problem. We hope this blog post provides a clear and helpful review of these concepts and helps you better understand how to use them in your own Rust programming.&lt;&#x2F;p&gt;
+</description>
+      </item>
       <item>
           <title>03 Rustlings if</title>
           <pubDate>Fri, 21 Apr 2023 00:00:00 +0000</pubDate>
