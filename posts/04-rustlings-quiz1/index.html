@@ -223,12 +223,23 @@ fn verify_test() {
 <h2 id="completing-our-function-signature">Completing our Function Signature</h2>
 <p>If we need any hints we can go back to our <code>function</code> lesson and see how this current function looks incomplete, we should quickly notice that our current function signature looks incomplete compared to our previous exercises, so let's fix that, by defining a variable that gets passed through the function as an <code>i32</code>, as well as adding a return value of <code>i32</code></p>
 <pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">&#x2F;&#x2F; how it&#x27;s currently defined
+
 fn calculate_price_of_apples {
 
+}
+</code></pre>
+<p>This is how we're going to update the function signature:</p>
+<ul>
+<li>add the parameters of <code>apples:i32</code></li>
+<li>add a return value of <code>i32</code> so we can get that number from the function.</li>
+</ul>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">&#x2F;&#x2F; passing through an `i32` that we define as `apples`
 
-&#x2F;&#x2F; by adding `apples:i32` we allow the function to pass through an `i32` that we define as apples
-&#x2F;&#x2F; we also add the ` -&gt; i32` to show that we&#x27;ll also return an `i32` for our final price
 fn calculate_price_of_apples(apples:i32) -&gt; i32 {
+
+&#x2F;&#x2F; also adding the ` -&gt; i32` to show that we&#x27;ll also return an `i32`
+
+}
 </code></pre>
 <h2 id="adding-variables">Adding Variables</h2>
 <p>Now let's look at variables we have to create inside of our function to complete the calculation of our price.
@@ -250,20 +261,24 @@ I guess the most logical variables would be the price right, we have the regular
 <pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">fn calculate_price_of_apples(apples: i32) -&gt; i32 {
 	let regular_price: i32 = 2;
 	let discount_price: i32 = 1;
-		if apples &lt;= 40 { &#x2F;&#x2F; defining if the quantity of `apples` purchased are 40 or less
-			apples * regular_price &#x2F;&#x2F; here&#x27;s the simple math to calculate the result
-		} else { &#x2F;&#x2F; `else` let&#x27;s us add the other part of the expression
-			apples * discount_price &#x2F;&#x2F; this multiples the number of apples which are above 40 at the discount
-		}
+	   &#x2F;&#x2F; defining if the quantity of `apples` purchased are 40 or less
+	   if apples &lt;= 40 {
+		&#x2F;&#x2F; here&#x27;s the simple math to calculate the result
+		apples * regular_price
+		&#x2F;&#x2F; `else` let&#x27;s us add the other part of the expression
+		} else {
+		 &#x2F;&#x2F; this multiples the number of apples which are above 40
+		apples * discount_price
+	}
 }
 </code></pre>
-<p>And that's it, our code compiles and passes all tests, so we've finished our first quiz. This is what the final full code will look like:</p>
+<p>And that's it, our code compiles and passes all tests, so we've finished our first quiz. This is what the final full code will look like, without all the comments for visual clarity:</p>
 <pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">fn calculate_price_of_apples(apples: i32) -&gt; i32 {
     let regular_price: i32 = 2;
     let discount_price: i32 = 1;
 
     if apples &lt;= 40 {
-        &#x2F;&#x2F; less than or equal to
+
         apples * regular_price
     } else {
         apples * discount_price
@@ -310,7 +325,7 @@ fn verify_test() {
 		
     </p>
     
-    <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>1152 Words</p>
+    <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>1169 Words</p>
     
     <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2023-04-26</p>
     

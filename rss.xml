@@ -105,12 +105,23 @@ fn verify_test() {
 &lt;h2 id=&quot;completing-our-function-signature&quot;&gt;Completing our Function Signature&lt;&#x2F;h2&gt;
 &lt;p&gt;If we need any hints we can go back to our &lt;code&gt;function&lt;&#x2F;code&gt; lesson and see how this current function looks incomplete, we should quickly notice that our current function signature looks incomplete compared to our previous exercises, so let&#x27;s fix that, by defining a variable that gets passed through the function as an &lt;code&gt;i32&lt;&#x2F;code&gt;, as well as adding a return value of &lt;code&gt;i32&lt;&#x2F;code&gt;&lt;&#x2F;p&gt;
 &lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;&amp;#x2F;&amp;#x2F; how it&amp;#x27;s currently defined
+
 fn calculate_price_of_apples {
 
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;This is how we&#x27;re going to update the function signature:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;add the parameters of &lt;code&gt;apples:i32&lt;&#x2F;code&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;add a return value of &lt;code&gt;i32&lt;&#x2F;code&gt; so we can get that number from the function.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;&amp;#x2F;&amp;#x2F; passing through an `i32` that we define as `apples`
 
-&amp;#x2F;&amp;#x2F; by adding `apples:i32` we allow the function to pass through an `i32` that we define as apples
-&amp;#x2F;&amp;#x2F; we also add the ` -&amp;gt; i32` to show that we&amp;#x27;ll also return an `i32` for our final price
 fn calculate_price_of_apples(apples:i32) -&amp;gt; i32 {
+
+&amp;#x2F;&amp;#x2F; also adding the ` -&amp;gt; i32` to show that we&amp;#x27;ll also return an `i32`
+
+}
 &lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
 &lt;h2 id=&quot;adding-variables&quot;&gt;Adding Variables&lt;&#x2F;h2&gt;
 &lt;p&gt;Now let&#x27;s look at variables we have to create inside of our function to complete the calculation of our price.
@@ -132,20 +143,24 @@ I guess the most logical variables would be the price right, we have the regular
 &lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;fn calculate_price_of_apples(apples: i32) -&amp;gt; i32 {
 	let regular_price: i32 = 2;
 	let discount_price: i32 = 1;
-		if apples &amp;lt;= 40 { &amp;#x2F;&amp;#x2F; defining if the quantity of `apples` purchased are 40 or less
-			apples * regular_price &amp;#x2F;&amp;#x2F; here&amp;#x27;s the simple math to calculate the result
-		} else { &amp;#x2F;&amp;#x2F; `else` let&amp;#x27;s us add the other part of the expression
-			apples * discount_price &amp;#x2F;&amp;#x2F; this multiples the number of apples which are above 40 at the discount
-		}
+	   &amp;#x2F;&amp;#x2F; defining if the quantity of `apples` purchased are 40 or less
+	   if apples &amp;lt;= 40 {
+		&amp;#x2F;&amp;#x2F; here&amp;#x27;s the simple math to calculate the result
+		apples * regular_price
+		&amp;#x2F;&amp;#x2F; `else` let&amp;#x27;s us add the other part of the expression
+		} else {
+		 &amp;#x2F;&amp;#x2F; this multiples the number of apples which are above 40
+		apples * discount_price
+	}
 }
 &lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
-&lt;p&gt;And that&#x27;s it, our code compiles and passes all tests, so we&#x27;ve finished our first quiz. This is what the final full code will look like:&lt;&#x2F;p&gt;
+&lt;p&gt;And that&#x27;s it, our code compiles and passes all tests, so we&#x27;ve finished our first quiz. This is what the final full code will look like, without all the comments for visual clarity:&lt;&#x2F;p&gt;
 &lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;fn calculate_price_of_apples(apples: i32) -&amp;gt; i32 {
     let regular_price: i32 = 2;
     let discount_price: i32 = 1;
 
     if apples &amp;lt;= 40 {
-        &amp;#x2F;&amp;#x2F; less than or equal to
+
         apples * regular_price
     } else {
         apples * discount_price
