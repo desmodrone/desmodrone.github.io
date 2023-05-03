@@ -26,6 +26,10 @@
         <lastmod>2023-04-26</lastmod>
     </url>
     <url>
+        <loc>https://desmodrone.github.io/posts/05-rustlings-primitive-types/</loc>
+        <lastmod>2023-05-03</lastmod>
+    </url>
+    <url>
         <loc>https://desmodrone.github.io/posts/hello-rustlings/</loc>
         <lastmod>2023-04-11</lastmod>
     </url>
@@ -71,6 +75,9 @@
         <loc>https://desmodrone.github.io/tags/if/</loc>
     </url>
     <url>
+        <loc>https://desmodrone.github.io/tags/primitive/</loc>
+    </url>
+    <url>
         <loc>https://desmodrone.github.io/tags/quiz/</loc>
     </url>
     <url>
@@ -81,6 +88,9 @@
     </url>
     <url>
         <loc>https://desmodrone.github.io/tags/traits/</loc>
+    </url>
+    <url>
+        <loc>https://desmodrone.github.io/tags/types/</loc>
     </url>
     <url>
         <loc>https://desmodrone.github.io/tags/variables/</loc>

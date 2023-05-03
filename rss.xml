@@ -7,7 +7,459 @@
       <generator>Zola</generator>
       <language>en</language>
       <atom:link href="https://desmodrone.github.io/rss.xml" rel="self" type="application/rss+xml"/>
-      <lastBuildDate>Wed, 26 Apr 2023 00:00:00 +0000</lastBuildDate>
+      <lastBuildDate>Wed, 03 May 2023 00:00:00 +0000</lastBuildDate>
+      <item>
+          <title>05 Rustlings Primitive Types</title>
+          <pubDate>Wed, 03 May 2023 00:00:00 +0000</pubDate>
+          <author>Unknown</author>
+          <link>https://desmodrone.github.io/posts/05-rustlings-primitive-types/</link>
+          <guid>https://desmodrone.github.io/posts/05-rustlings-primitive-types/</guid>
+          <description>&lt;p&gt;Rust has a couple of basic types that are directly implemented into the
+compiler. In this section, we&#x27;ll go through the most important ones.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;further-information&quot;&gt;Further information&lt;&#x2F;h2&gt;
+&lt;p&gt;Additional reading resources can be found here:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;doc.rust-lang.org&#x2F;stable&#x2F;book&#x2F;ch03-02-data-types.html&quot;&gt;Data Types&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;doc.rust-lang.org&#x2F;stable&#x2F;book&#x2F;ch04-03-slices.html&quot;&gt;The Slice Type&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h2 id=&quot;primitive-types1-rs&quot;&gt;&lt;code&gt;primitive_types1.rs&lt;&#x2F;code&gt;&lt;&#x2F;h2&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;&amp;#x2F;&amp;#x2F; primitive_types1.rs
+&amp;#x2F;&amp;#x2F; Fill in the rest of the line that has code missing!
+&amp;#x2F;&amp;#x2F; No hints, there&amp;#x27;s no tricks, just get used to typing these :)
+
+&amp;#x2F;&amp;#x2F; I AM NOT DONE
+
+fn main() {
+    &amp;#x2F;&amp;#x2F; Booleans (`bool`)
+
+    let is_morning = true;
+    if is_morning {
+        println!(&amp;quot;Good morning!&amp;quot;);
+    }
+
+    let &amp;#x2F;&amp;#x2F; Finish the rest of this line like the example! Or make it be false!
+    if is_evening {
+        println!(&amp;quot;Good evening!&amp;quot;);
+    }
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;In the code comments it&#x27;s clear that we are looking at &lt;strong&gt;Booleans&lt;&#x2F;strong&gt; which are a type that is either &lt;code&gt;true&lt;&#x2F;code&gt; or &lt;code&gt;false&lt;&#x2F;code&gt; . With that in mind, let&#x27;s take a look at what the errors are to make sure we have a complete picture.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;primitive-trype1-rs-errors&quot;&gt;&lt;code&gt;primitive_trype1.rs&lt;&#x2F;code&gt; errors&lt;&#x2F;h2&gt;
+&lt;pre data-lang=&quot;zsh&quot; class=&quot;language-zsh &quot;&gt;&lt;code class=&quot;language-zsh&quot; data-lang=&quot;zsh&quot;&gt;⚠️  Compiling of exercises&amp;#x2F;primitive_types&amp;#x2F;primitive_types1.rs failed! Please try again. Here&amp;#x27;s the output:
+error: expected identifier, found keyword `if`
+  --&amp;gt; exercises&amp;#x2F;primitive_types&amp;#x2F;primitive_types1.rs:16:5
+   |
+16 |     if is_evening {
+   |     ^^ expected identifier, found keyword
+
+error: expected one of `:`, `;`, `=`, `@`, or `|`, found `is_evening`
+  --&amp;gt; exercises&amp;#x2F;primitive_types&amp;#x2F;primitive_types1.rs:16:8
+   |
+16 |     if is_evening {
+   |        ^^^^^^^^^^ expected one of `:`, `;`, `=`, `@`, or `|`
+
+error: aborting due to 2 previous errors
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;These errors point to the fact that the &lt;code&gt;if_evening&lt;&#x2F;code&gt; portion of the code is incomplete, in fact it&#x27;s almost like the compiler is saying &amp;quot;wait a minute, shouldn&#x27;t you let me know what &lt;code&gt;is_evening&lt;&#x2F;code&gt; is?&amp;quot; instead, it found the keyword &lt;code&gt;if&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;primitive-types1-rs-solution&quot;&gt;&lt;code&gt;primitive_types1.rs&lt;&#x2F;code&gt; solution&lt;&#x2F;h2&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;&amp;#x2F;&amp;#x2F; primitive_types1.rs
+&amp;#x2F;&amp;#x2F; Fill in the rest of the line that has code missing!
+&amp;#x2F;&amp;#x2F; No hints, there&amp;#x27;s no tricks, just get used to typing these :)
+
+&amp;#x2F;&amp;#x2F; I AM NOT DONE
+
+fn main() {
+    &amp;#x2F;&amp;#x2F; Booleans (`bool`)
+
+    let is_morning = true;
+    if is_morning {
+        println!(&amp;quot;Good morning!&amp;quot;);
+    }
+
+    let is_evening = false; &amp;#x2F;&amp;#x2F; easy enough to complete this as above
+    if is_evening {
+        println!(&amp;quot;Good evening!&amp;quot;);
+    }
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;This works out pretty quickly, by just defining what &lt;code&gt;is_evening&lt;&#x2F;code&gt; is with &lt;code&gt;let is_evening = false;&lt;&#x2F;code&gt; we get the code to compile and it prints:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;zsh&quot; class=&quot;language-zsh &quot;&gt;&lt;code class=&quot;language-zsh&quot; data-lang=&quot;zsh&quot;&gt;🎉 🎉  The code is compiling! 🎉 🎉
+
+Output:
+====================
+Good morning!
+
+====================
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Great, but what would happen if we make the both of them &lt;code&gt;true&lt;&#x2F;code&gt;? Let&#x27;s find out.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;
+fn main() {
+    &amp;#x2F;&amp;#x2F; Booleans (`bool`)
+
+    let is_morning = true;
+    if is_morning {
+        println!(&amp;quot;Good morning!&amp;quot;);
+    }
+
+    let is_evening = true; &amp;#x2F;&amp;#x2F; making both `true`
+    if is_evening {
+        println!(&amp;quot;Good evening!&amp;quot;);
+    }
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;This time we get a slightly different print, but the code still compiles.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;zsh&quot; class=&quot;language-zsh &quot;&gt;&lt;code class=&quot;language-zsh&quot; data-lang=&quot;zsh&quot;&gt;🎉 🎉  The code is compiling! 🎉 🎉
+
+Output:
+====================
+Good morning!
+Good evening!
+
+====================
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Simple enough, we&#x27;re on to the next one.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;primitive-types2-rs&quot;&gt;&lt;code&gt;primitive_types2.rs&lt;&#x2F;code&gt;&lt;&#x2F;h2&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;&amp;#x2F;&amp;#x2F; primitive_types2.rs
+&amp;#x2F;&amp;#x2F; Fill in the rest of the line that has code missing!
+&amp;#x2F;&amp;#x2F; No hints, there&amp;#x27;s no tricks, just get used to typing these :)
+
+&amp;#x2F;&amp;#x2F; I AM NOT DONE
+
+fn main() {
+    &amp;#x2F;&amp;#x2F; Characters (`char`)
+
+    &amp;#x2F;&amp;#x2F; Note the _single_ quotes, these are different from the double quotes
+    &amp;#x2F;&amp;#x2F; you&amp;#x27;ve been seeing around.
+    let my_first_initial = &amp;#x27;C&amp;#x27;;
+    if my_first_initial.is_alphabetic() {
+        println!(&amp;quot;Alphabetical!&amp;quot;);
+    } else if my_first_initial.is_numeric() {
+        println!(&amp;quot;Numerical!&amp;quot;);
+    } else {
+        println!(&amp;quot;Neither alphabetic nor numeric!&amp;quot;);
+    }
+
+    let &amp;#x2F;&amp;#x2F; Finish this line like the example! What&amp;#x27;s your favorite character?
+    &amp;#x2F;&amp;#x2F; Try a letter, try a number, try a special character, try a character
+    &amp;#x2F;&amp;#x2F; from a different language than your own, try an emoji!
+    if your_character.is_alphabetic() {
+        println!(&amp;quot;Alphabetical!&amp;quot;);
+    } else if your_character.is_numeric() {
+        println!(&amp;quot;Numerical!&amp;quot;);
+    } else {
+        println!(&amp;quot;Neither alphabetic nor numeric!&amp;quot;);
+    }
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Again we have no hints, so we have pay close attention to the code and the errors we get from the Rust compiler.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;zsh&quot; class=&quot;language-zsh &quot;&gt;&lt;code class=&quot;language-zsh&quot; data-lang=&quot;zsh&quot;&gt;⚠️  Compiling of exercises&amp;#x2F;primitive_types&amp;#x2F;primitive_types2.rs failed! Please try again. Here&amp;#x27;s the output:
+error: expected identifier, found keyword `if`
+  --&amp;gt; exercises&amp;#x2F;primitive_types&amp;#x2F;primitive_types2.rs:24:5
+   |
+24 |     if your_character.is_alphabetic() {
+   |     ^^ expected identifier, found keyword
+
+error: expected one of `:`, `;`, `=`, `@`, or `|`, found `your_character`
+  --&amp;gt; exercises&amp;#x2F;primitive_types&amp;#x2F;primitive_types2.rs:24:8
+   |
+24 |     if your_character.is_alphabetic() {
+   |        ^^^^^^^^^^^^^^ expected one of `:`, `;`, `=`, `@`, or `|`
+
+error: aborting due to 2 previous errors
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;This looks similar to what we got in our previous exercise, essentially telling us that the &lt;code&gt;your_character&lt;&#x2F;code&gt; part of the code is incomplete.&lt;&#x2F;p&gt;
+&lt;p&gt;Let&#x27;s go through the comments in the code.&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;The first comment in &lt;code&gt;fn main()&lt;&#x2F;code&gt;  tells us that we are looking at &lt;strong&gt;Characters&lt;&#x2F;strong&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;Second comment makes sure that we notice the use of single quotes on the line &lt;code&gt;let my_first_intial = &#x27;C&#x27; &lt;&#x2F;code&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;The third comment tells us to finish the &lt;code&gt;let&lt;&#x2F;code&gt; statement using the example we&#x27;ve seen but use our favorite character.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;Looking at how the rest of the code is written, to make it easier on us, we can use the &lt;code&gt;your_character&lt;&#x2F;code&gt; variable that is being used, but of course as the errors tells us, is undefined. Let&#x27;s define it.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;
+fn main() {
+
+    let my_first_initial = &amp;#x27;C&amp;#x27;;
+    if my_first_initial.is_alphabetic() {
+        println!(&amp;quot;Alphabetical!&amp;quot;);
+    } else if my_first_initial.is_numeric() {
+        println!(&amp;quot;Numerical!&amp;quot;);
+    } else {
+        println!(&amp;quot;Neither alphabetic nor numeric!&amp;quot;);
+    }
+
+    let your_character = &amp;#x27;🦀&amp;#x27;; &amp;#x2F;&amp;#x2F; we define it as a crab emoji just for fun.
+    if your_character.is_alphabetic() {
+        println!(&amp;quot;Alphabetical!&amp;quot;);
+    } else if your_character.is_numeric() {
+        println!(&amp;quot;Numerical!&amp;quot;);
+    } else {
+        println!(&amp;quot;Neither alphabetic nor numeric!&amp;quot;);
+    }
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h2 id=&quot;primitive-types3-rs&quot;&gt;&lt;code&gt;primitive_types3.rs&lt;&#x2F;code&gt;&lt;&#x2F;h2&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;&amp;#x2F;&amp;#x2F; primitive_types3.rs
+&amp;#x2F;&amp;#x2F; Create an array with at least 100 elements in it where the ??? is.
+&amp;#x2F;&amp;#x2F; Execute `rustlings hint primitive_types3` or use the `hint` watch subcommand for a hint.
+
+&amp;#x2F;&amp;#x2F; I AM NOT DONE
+
+fn main() {
+    let a = ???
+
+    if a.len() &amp;gt;= 100 {
+        println!(&amp;quot;Wow, that&amp;#x27;s a big array!&amp;quot;);
+    } else {
+        println!(&amp;quot;Meh, I eat arrays like that for breakfast.&amp;quot;);
+    }
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Here we have clear instructions on what we need to do, and we even have a hint if we need it.  But let&#x27;s look at the errors first:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;zsh&quot; class=&quot;language-zsh &quot;&gt;&lt;code class=&quot;language-zsh&quot; data-lang=&quot;zsh&quot;&gt;⚠️  Compiling of exercises&amp;#x2F;primitive_types&amp;#x2F;primitive_types3.rs failed! Please try again. Here&amp;#x27;s the output:
+error: expected expression, found `?`
+ --&amp;gt; exercises&amp;#x2F;primitive_types&amp;#x2F;primitive_types3.rs:8:13
+  |
+8 |     let a = ???
+  |             ^ expected expression
+
+error: aborting due to previous error
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Short and sweet, we see that on line 8, there&#x27;s an expected expression where we need to replace the &lt;code&gt;???&lt;&#x2F;code&gt; question marks. So what kind of expression do we need, well the instructions tell us it should be an array with at least 100 elements in it.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;array-review&quot;&gt;Array Review&lt;&#x2F;h2&gt;
+&lt;p&gt;Let&#x27;s quickly review the ways that we can create an array in Rust.&lt;&#x2F;p&gt;
+&lt;p&gt;One of the simplest ways we can create an array in Rust is by using the &lt;code&gt;[]&lt;&#x2F;code&gt; square brackets and listing the elements inside of it, like this:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;let a = [1, 2, 3, 4, 5, 6];
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;We can also define the array&#x27;s type by using another set of square brackets before the definition of the array, in a similar what that you define types when defining variables.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;let a: [i32; 6] = [1, 2, 3, 4, 5, 6];
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;These are both valid, but remember in our exercise we have to make an array with at least 100 elements in it -- there must be a better way. Luckily there is, as long as we want the array to contain the same value we can initialize the array like this:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;let a = [3;5];
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;This will give us an array called &lt;code&gt;a&lt;&#x2F;code&gt; with that will contain &lt;code&gt;5&lt;&#x2F;code&gt; elements with their value set to &lt;code&gt;3&lt;&#x2F;code&gt; this is the same as writing&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;let a = [3, 3, 3, 3, 3];
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;but clearly in a more concise way.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;primitive-types3-rs-solution&quot;&gt;&lt;code&gt;primitive_types3.rs&lt;&#x2F;code&gt; Solution&lt;&#x2F;h2&gt;
+&lt;p&gt;Now that we have this information fresh in our minds we can clearly see the winning solution for our problem of having 100 elements in an array.
+Let&#x27;s do it.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;
+fn main() {
+    let a = [1; 100];
+
+    if a.len() &amp;gt;= 100 {
+        println!(&amp;quot;Wow, that is a big array!&amp;quot;);
+    } else {
+        println!(&amp;quot;Meh, I eat arrays like that for breakfast.&amp;quot;);
+    }
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;We get this back from the compiler:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;zsh&quot; class=&quot;language-zsh &quot;&gt;&lt;code class=&quot;language-zsh&quot; data-lang=&quot;zsh&quot;&gt;Output:
+====================
+Wow, that is a big array!
+
+====================
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;and just to confirm, what if we make the array less than 100 elements? Let&#x27;s just change the &lt;code&gt;100&lt;&#x2F;code&gt; to &lt;code&gt;99&lt;&#x2F;code&gt; like this: &lt;code&gt;let a = [1; 99];&lt;&#x2F;code&gt;&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;zsh&quot; class=&quot;language-zsh &quot;&gt;&lt;code class=&quot;language-zsh&quot; data-lang=&quot;zsh&quot;&gt;Output:
+====================
+Meh, I eat arrays like that for breakfast.
+
+====================
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h2 id=&quot;primitive-types4-rs&quot;&gt;&lt;code&gt;primitive_types4.rs&lt;&#x2F;code&gt;&lt;&#x2F;h2&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;&amp;#x2F;&amp;#x2F; primitive_types4.rs
+&amp;#x2F;&amp;#x2F; Get a slice out of Array a where the ??? is so that the test passes.
+&amp;#x2F;&amp;#x2F; Execute `rustlings hint primitive_types4` or use the `hint` watch subcommand for a hint.
+
+&amp;#x2F;&amp;#x2F; I AM NOT DONE
+
+#[test]
+fn slice_out_of_array() {
+    let a = [1, 2, 3, 4, 5];
+
+    let nice_slice = ???
+
+    assert_eq!([2, 3, 4], nice_slice)
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h2 id=&quot;primitive-types4-rs-error&quot;&gt;&lt;code&gt;primitive_types4.rs&lt;&#x2F;code&gt; error&lt;&#x2F;h2&gt;
+&lt;pre data-lang=&quot;zsh&quot; class=&quot;language-zsh &quot;&gt;&lt;code class=&quot;language-zsh&quot; data-lang=&quot;zsh&quot;&gt;⚠️  Compiling of exercises&amp;#x2F;primitive_types&amp;#x2F;primitive_types4.rs failed! Please try again. Here&amp;#x27;s the output:
+error: expected expression, found `?`
+  --&amp;gt; exercises&amp;#x2F;primitive_types&amp;#x2F;primitive_types4.rs:11:22
+   |
+11 |     let nice_slice = ???
+   |                      ^ expected expression
+
+error: aborting due to previous error
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;In this piece of code we see almost the exact same set-up having to define a variable, in this case we need to define it with a slice.  Remembering a slice is essentially how we refer to part of an array, remember when we had the 100 element array in the previous exercise, or even a bigger array that had thousands of elements. Well what if only needed to access part of the array? We would use a slice in this scenario so let&#x27;s do it.&lt;&#x2F;p&gt;
+&lt;p&gt;We define a slice by using &lt;code&gt;&amp;amp;[ ]&lt;&#x2F;code&gt; the &lt;code&gt;&amp;amp;&lt;&#x2F;code&gt; makes it like a reference, so we don&#x27;t have ownership of the array, but we can go deeper into this another time, let&#x27;s just define this slice.&lt;&#x2F;p&gt;
+&lt;p&gt;The error code is also very straightforward, we&#x27;re being told that we&#x27;re missing an expression.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;primitive-types4-rs-solution&quot;&gt;&lt;code&gt;primitive_types4.rs&lt;&#x2F;code&gt; solution&lt;&#x2F;h2&gt;
+&lt;p&gt;we get a hint by the &lt;code&gt;assert_eq!&lt;&#x2F;code&gt; part of the code as to what it&#x27;s looking for, elements &lt;code&gt;2&lt;&#x2F;code&gt;, &lt;code&gt;3&lt;&#x2F;code&gt;, and &lt;code&gt;4&lt;&#x2F;code&gt; so that&#x27;s what we&#x27;ll do.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;fn slice_out_of_array() {
+    let a = [1, 2, 3, 4, 5];
+
+    let nice_slice = &amp;amp;a[1..4]; &amp;#x2F;&amp;#x2F; using `a&amp;amp;[]` to create a slice we use the `..` to define the range
+
+    assert_eq!([2, 3, 4], nice_slice)
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;So in this case we define the range to to be between &lt;code&gt;1 and 4&lt;&#x2F;code&gt; but remember that the first element in the array is at index &lt;code&gt;0&lt;&#x2F;code&gt; and element &lt;code&gt;4&lt;&#x2F;code&gt; is index &lt;code&gt;5&lt;&#x2F;code&gt;. Rust excludes the final element and therefore we get numbers &lt;code&gt;2, 3, 4&lt;&#x2F;code&gt; which correspond to index &lt;code&gt;1, 2, 3&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;All we get on this one is that the test is passing and code is compiling.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;zsh&quot; class=&quot;language-zsh &quot;&gt;&lt;code class=&quot;language-zsh&quot; data-lang=&quot;zsh&quot;&gt;🎉 🎉  The code is compiling, and the tests pass! 🎉 🎉
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Just to confirm what we&#x27;re talking about above, let&#x27;s use a different slice range that what know is the solution, let&#x27;s use &lt;code&gt;&amp;amp;a[0..5]&lt;&#x2F;code&gt; and see what happens.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;let nice_slice = &amp;amp;a[0..5];
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h2 id=&quot;test-failed&quot;&gt;Test Failed&lt;&#x2F;h2&gt;
+&lt;pre data-lang=&quot;zsh&quot; class=&quot;language-zsh &quot;&gt;&lt;code class=&quot;language-zsh&quot; data-lang=&quot;zsh&quot;&gt;running 1 test
+test slice_out_of_array ... FAILED
+
+successes:
+
+successes:
+
+failures:
+
+---- slice_out_of_array stdout ----
+thread &amp;#x27;slice_out_of_array&amp;#x27; panicked at &amp;#x27;assertion failed: `(left == right)`
+  left: `[2, 3, 4]`,
+ right: `[1, 2, 3, 4, 5]`&amp;#x27;, exercises&amp;#x2F;primitive_types&amp;#x2F;primitive_types4.rs:13:5
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    slice_out_of_array
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;As expected the test fails, and we see the elements that we select by using the &lt;code&gt;&amp;amp;a[0..5]&lt;&#x2F;code&gt; makes the test panic because the &lt;code&gt;assertion failed: (left == right)&lt;&#x2F;code&gt; in our code the left doesn&#x27;t equal the right and we can see that we are accessing the elements starting at index &lt;code&gt;0&lt;&#x2F;code&gt; and ending at index &lt;code&gt;5&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;primitive-types5-rs&quot;&gt;&lt;code&gt;primitive_types5.rs&lt;&#x2F;code&gt;&lt;&#x2F;h2&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;&amp;#x2F;&amp;#x2F; primitive_types5.rs
+&amp;#x2F;&amp;#x2F; Destructure the `cat` tuple so that the println will work.
+&amp;#x2F;&amp;#x2F; Execute `rustlings hint primitive_types5` or use the `hint` watch subcommand for a hint.
+
+&amp;#x2F;&amp;#x2F; I AM NOT DONE
+
+fn main() {
+    let cat = (&amp;quot;Furry McFurson&amp;quot;, 3.5);
+    let &amp;#x2F;* your pattern here *&amp;#x2F; = cat;
+
+    println!(&amp;quot;{} is {} years old.&amp;quot;, name, age);
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h2 id=&quot;primitive-types5-rs-error&quot;&gt;&lt;code&gt;primitive_types5.rs&lt;&#x2F;code&gt;  error&lt;&#x2F;h2&gt;
+&lt;pre data-lang=&quot;zsh&quot; class=&quot;language-zsh &quot;&gt;&lt;code class=&quot;language-zsh&quot; data-lang=&quot;zsh&quot;&gt;⚠️  Compiling of exercises&amp;#x2F;primitive_types&amp;#x2F;primitive_types5.rs failed! Please try again. Here&amp;#x27;s the output:
+error: expected pattern, found `=`
+ --&amp;gt; exercises&amp;#x2F;primitive_types&amp;#x2F;primitive_types5.rs:9:33
+  |
+9 |     let &amp;#x2F;* your pattern here *&amp;#x2F; = cat;
+  |                                 ^ expected pattern
+
+error: aborting due to previous error
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Our instructions are to destructure the &lt;code&gt;cat&lt;&#x2F;code&gt; tuple so that the &lt;code&gt;println&lt;&#x2F;code&gt; will work, seems simple enough we have a clear indication in the code where this should take place, in our &lt;code&gt;let&lt;&#x2F;code&gt; variable assignment on line 8.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;the-tuple-type&quot;&gt;The Tuple Type&lt;&#x2F;h2&gt;
+&lt;p&gt;So let&#x27;s quickly recap a Tuple and how we destructure it. A tuple is a compound type meaning that it can group together elements of different types, for example in our &lt;code&gt;let cat = (&amp;quot;Furry McFurson&amp;quot;, 3.5)&lt;&#x2F;code&gt; we can see that we have a &amp;amp;str and a floating-point type.
+Let&#x27;s keep things simple for now and not go too deep into the &lt;code&gt;&amp;amp;str&lt;&#x2F;code&gt; and what it means, for now we know it represents a string in our code.&lt;&#x2F;p&gt;
+&lt;p&gt;So, another way we could have defined this tuple to be more explicit would have been like so (similar to our array in a previous exercise, where we defined the type for an array):&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;let cat: (&amp;amp;str, f64) = (&amp;quot;Furry McFurson&amp;quot;, 3.5);
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;When we bind tuple to a variable, like in this case &lt;code&gt;cat&lt;&#x2F;code&gt; the variable is bound to the entire tuple as it&#x27;s considered a single compound element. So to get a single element out of the tuple we have to &lt;em&gt;destructure&lt;&#x2F;em&gt; the tuple by sort of inverting the variable like this:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;let (a, b) = variable
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h2 id=&quot;primitive-types5-rs-solution&quot;&gt;&lt;code&gt;primitive_types5.rs&lt;&#x2F;code&gt;  solution&lt;&#x2F;h2&gt;
+&lt;p&gt;In our case we can see that in the &lt;code&gt;println!&lt;&#x2F;code&gt; statement we are looking for a &lt;code&gt;name&lt;&#x2F;code&gt; and &lt;code&gt;age&lt;&#x2F;code&gt; elements, so let&#x27;s plug these into our code.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;fn main() {
+    let cat = (&amp;quot;Furry McFurson&amp;quot;, 3.5);
+    let (name, age) = cat;
+
+    println!(&amp;quot;{} is {} years old.&amp;quot;, name, age);
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Let&#x27;s check our output&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;zsh&quot; class=&quot;language-zsh &quot;&gt;&lt;code class=&quot;language-zsh&quot; data-lang=&quot;zsh&quot;&gt;Output:
+====================
+Furry McFurson is 3.5 years old.
+
+====================
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h2 id=&quot;primitive-types6-rs&quot;&gt;&lt;code&gt;primitive_types6.rs&lt;&#x2F;code&gt;&lt;&#x2F;h2&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;&amp;#x2F;&amp;#x2F; primitive_types6.rs
+&amp;#x2F;&amp;#x2F; Use a tuple index to access the second element of `numbers`.
+&amp;#x2F;&amp;#x2F; You can put the expression for the second element where ??? is so that the test passes.
+&amp;#x2F;&amp;#x2F; Execute `rustlings hint primitive_types6` or use the `hint` watch subcommand for a hint.
+
+&amp;#x2F;&amp;#x2F; I AM NOT DONE
+
+#[test]
+fn indexing_tuple() {
+    let numbers = (1, 2, 3);
+    &amp;#x2F;&amp;#x2F; Replace below ??? with the tuple indexing syntax.
+    let second = ???;
+
+    assert_eq!(2, second,
+        &amp;quot;This is not the 2nd number in the tuple!&amp;quot;)
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h2 id=&quot;primitive-types6-rs-error&quot;&gt;&lt;code&gt;primitive_types6.rs&lt;&#x2F;code&gt;  error&lt;&#x2F;h2&gt;
+&lt;pre data-lang=&quot;zsh&quot; class=&quot;language-zsh &quot;&gt;&lt;code class=&quot;language-zsh&quot; data-lang=&quot;zsh&quot;&gt;⚠️  Compiling of exercises&amp;#x2F;primitive_types&amp;#x2F;primitive_types6.rs failed! Please try again. Here&amp;#x27;s the output:
+error: expected expression, found `?`
+  --&amp;gt; exercises&amp;#x2F;primitive_types&amp;#x2F;primitive_types6.rs:12:18
+   |
+12 |     let second = ???;
+   |                  ^ expected expression
+
+error: aborting due to previous error
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Our instructions say to use a tuple index to access the second element of &lt;code&gt;numbers&lt;&#x2F;code&gt; and we can use place the expression in line 12 where the &lt;code&gt;let second = ???&lt;&#x2F;code&gt;, simple enough.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;tuple-indexing&quot;&gt;Tuple Indexing&lt;&#x2F;h2&gt;
+&lt;p&gt;But how do we access a tuple directly? By using the variable a period &lt;code&gt;.&lt;&#x2F;code&gt; followed by the index value.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;let indexing = variable.0
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Alright then, let&#x27;s apply this to our problem.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;primitive-types6-rs-solution&quot;&gt;&lt;code&gt;primitive_types6.rs&lt;&#x2F;code&gt;  solution&lt;&#x2F;h2&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;#[test]
+fn indexing_tuple() {
+    let numbers = (1, 2, 3);
+
+    let second = numbers.1; &amp;#x2F;&amp;#x2F; using the tuple indexing syntax to get the 2nd element which is at index `1`
+
+    assert_eq!(2, second, &amp;quot;This is not the 2nd number in the tuple!&amp;quot;)
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;The only tricky part is to remember that indexes start at &lt;code&gt;0&lt;&#x2F;code&gt; so the second element is at index &lt;code&gt;1&lt;&#x2F;code&gt;. So if we were for example to change the &lt;code&gt;number.1&lt;&#x2F;code&gt; to &lt;code&gt;number.2&lt;&#x2F;code&gt;, if we mistakenly thought the correct index was &lt;code&gt;2&lt;&#x2F;code&gt; we&#x27;d get this text in our test:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;zsh&quot; class=&quot;language-zsh &quot;&gt;&lt;code class=&quot;language-zsh&quot; data-lang=&quot;zsh&quot;&gt;running 1 test
+test indexing_tuple ... FAILED
+
+successes:
+
+successes:
+
+failures:
+
+---- indexing_tuple stdout ----
+thread &amp;#x27;indexing_tuple&amp;#x27; panicked at &amp;#x27;assertion failed: `(left == right)`
+  left: `2`,
+ right: `3`: This is not the 2nd number in the tuple!&amp;#x27;, exercises&amp;#x2F;primitive_types&amp;#x2F;primitive_types6.rs:14:5
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    indexing_tuple
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;With the correct index number we don&#x27;t get anything special but a celebratory &lt;code&gt;code is compiling &lt;&#x2F;code&gt; message.  &lt;&#x2F;p&gt;
+&lt;h2 id=&quot;conclusion&quot;&gt;Conclusion&lt;&#x2F;h2&gt;
+&lt;p&gt;In this post, we tackled various exercises related to primitive types in Rust. We explored arrays, tuples, slices, and tuple indexing while understanding how to create and manipulate them. We also learned about the error messages provided by the Rust compiler and how to interpret and resolve them to make our code work as expected.&lt;&#x2F;p&gt;
+&lt;p&gt;These exercises are essential for building a strong foundation in Rust, as primitive types are the building blocks for more complex data structures and programs. By mastering these concepts, you&#x27;ll be well-prepared to tackle more advanced Rust topics and further enhance your Rust programming skills.&lt;&#x2F;p&gt;
+&lt;p&gt;Keep practicing and exploring the Rust language, and don&#x27;t forget to consult the official Rust documentation when in doubt!&lt;&#x2F;p&gt;
+</description>
+      </item>
       <item>
           <title>04 Rustlings quiz1</title>
           <pubDate>Wed, 26 Apr 2023 00:00:00 +0000</pubDate>
