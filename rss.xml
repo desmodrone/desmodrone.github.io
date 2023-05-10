@@ -7,7 +7,269 @@
       <generator>Zola</generator>
       <language>en</language>
       <atom:link href="https://desmodrone.github.io/rss.xml" rel="self" type="application/rss+xml"/>
-      <lastBuildDate>Wed, 03 May 2023 00:00:00 +0000</lastBuildDate>
+      <lastBuildDate>Wed, 10 May 2023 00:00:00 +0000</lastBuildDate>
+      <item>
+          <title>06 Rustlings Vectors</title>
+          <pubDate>Wed, 10 May 2023 00:00:00 +0000</pubDate>
+          <author>Unknown</author>
+          <link>https://desmodrone.github.io/posts/06-rustlings-vecs/</link>
+          <guid>https://desmodrone.github.io/posts/06-rustlings-vecs/</guid>
+          <description>&lt;h1 id=&quot;vectors&quot;&gt;Vectors&lt;&#x2F;h1&gt;
+&lt;p&gt;Vectors are a widely-used data structure in Rust programming. In many programming languages, they might be referred to as Arrays. However, Rust operates at a lower level, which leads to a distinction between arrays and vectors. In Rust, an array is usually stored on the stack, which means it cannot grow or shrink, and its size must be determined at compile time. On the other hand, a vector is stored in the heap, allowing for greater flexibility as these size restrictions do not apply.&lt;&#x2F;p&gt;
+&lt;p&gt;Let&#x27;s look at these couple of exercises from Rustlings&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;further-information&quot;&gt;Further information&lt;&#x2F;h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;doc.rust-lang.org&#x2F;stable&#x2F;book&#x2F;ch08-01-vectors.html&quot;&gt;Storing Lists of Values with Vectors&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;doc.rust-lang.org&#x2F;std&#x2F;primitive.slice.html#method.iter_mut&quot;&gt;&lt;code&gt;iter_mut&lt;&#x2F;code&gt;&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;doc.rust-lang.org&#x2F;std&#x2F;iter&#x2F;trait.Iterator.html#method.map&quot;&gt;&lt;code&gt;map&lt;&#x2F;code&gt;&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h2 id=&quot;vecs1-rs&quot;&gt;&lt;code&gt;vecs1.rs&lt;&#x2F;code&gt;&lt;&#x2F;h2&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;&amp;#x2F;&amp;#x2F; vecs1.rs
+&amp;#x2F;&amp;#x2F; Your task is to create a `Vec` which holds the exact same elements
+&amp;#x2F;&amp;#x2F; as in the array `a`.
+&amp;#x2F;&amp;#x2F; Make me compile and pass the test!
+&amp;#x2F;&amp;#x2F; Execute `rustlings hint vecs1` or use the `hint` watch subcommand for a hint.
+
+&amp;#x2F;&amp;#x2F; I AM NOT DONE
+
+fn array_and_vec() -&amp;gt; ([i32; 4], Vec&amp;lt;i32&amp;gt;) {
+    let a = [10, 20, 30, 40]; &amp;#x2F;&amp;#x2F; a plain array
+    let v = &amp;#x2F;&amp;#x2F; TODO: declare your vector here with the macro for vectors
+
+    (a, v)
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_array_and_vec_similarity() {
+        let (a, v) = array_and_vec();
+        assert_eq!(a, v[..]);
+    }
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Our instructions are clear here in the comments create a vector that holds the elements&lt;code&gt; [10, 20, 30, 40]&lt;&#x2F;code&gt; just like &lt;code&gt;a&lt;&#x2F;code&gt; does. Simple enough.&lt;&#x2F;p&gt;
+&lt;p&gt;For completeness let&#x27;s also log what we are seeing as the errors.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;vecs1-rs-errors&quot;&gt;&lt;code&gt;vecs1.rs&lt;&#x2F;code&gt; errors&lt;&#x2F;h2&gt;
+&lt;pre data-lang=&quot;zsh&quot; class=&quot;language-zsh &quot;&gt;&lt;code class=&quot;language-zsh&quot; data-lang=&quot;zsh&quot;&gt;⚠️  Compiling of exercises&amp;#x2F;vecs&amp;#x2F;vecs1.rs failed! Please try again. Here&amp;#x27;s the output:
+error: expected `;`, found `}`
+  --&amp;gt; exercises&amp;#x2F;vecs&amp;#x2F;vecs1.rs:13:11
+   |
+13 |     (a, v)
+   |           ^ help: add `;` here
+14 | }
+   | - unexpected token
+
+error[E0425]: cannot find value `v` in this scope
+  --&amp;gt; exercises&amp;#x2F;vecs&amp;#x2F;vecs1.rs:13:9
+   |
+13 |     (a, v)
+   |         ^ help: a local variable with a similar name exists: `a`
+
+error[E0308]: mismatched types
+ --&amp;gt; exercises&amp;#x2F;vecs&amp;#x2F;vecs1.rs:9:23
+  |
+9 | fn array_and_vec() -&amp;gt; ([i32; 4], Vec&amp;lt;i32&amp;gt;) {
+  |    -------------      ^^^^^^^^^^^^^^^^^^^^ expected tuple, found `()`
+  |    |
+  |    implicitly returns `()` as its body has no tail or `return` expression
+  |
+  = note:  expected tuple `([i32; 4], Vec&amp;lt;i32&amp;gt;)`
+          found unit type `()`
+
+error: aborting due to 3 previous errors
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;We can see that the Rust compiler is a little confused and is suggesting ways to complete our code that are not what we are trying to do, but it&#x27;s good to get a sense of what the compiler is doing in this situation so we can potentially understand other issues as we encounter them.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;vecs1-rs-solution&quot;&gt;&lt;code&gt;vecs1.rs&lt;&#x2F;code&gt; solution&lt;&#x2F;h2&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;fn array_and_vec() -&amp;gt; ([i32; 4], Vec&amp;lt;i32&amp;gt;) {
+    let a = [10, 20, 30, 40]; &amp;#x2F;&amp;#x2F; a plain array
+    let v = vec![10, 20, 30, 40]; &amp;#x2F;&amp;#x2F; using `vec!` macro to define a vector
+    (a, v)
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_array_and_vec_similarity() {
+        let (a, v) = array_and_vec();
+        assert_eq!(a, v[..]);
+    }
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Completing the &lt;code&gt;let v&lt;&#x2F;code&gt; line with &lt;code&gt;vec![10, 20, 30, 40];&lt;&#x2F;code&gt; easily solves our exercise here.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;additional-notes&quot;&gt;Additional Notes&lt;&#x2F;h2&gt;
+&lt;p&gt;Remember that there is more than one way to create a &lt;code&gt;vector&lt;&#x2F;code&gt; in Rust, we used the macro with &lt;code&gt;vec!&lt;&#x2F;code&gt; because it&#x27;s very convenient but we can also create vectors using the &lt;code&gt;Vec::new()&lt;&#x2F;code&gt; function to create a new vector and then fill it with the &lt;code&gt;push()&lt;&#x2F;code&gt; method.&lt;&#x2F;p&gt;
+&lt;p&gt;Let&#x27;s see what that would look like in this exercise:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;fn array_and_vec() -&amp;gt; ([i32; 4], Vec&amp;lt;i32&amp;gt;) {
+    let a = [10, 20, 30, 40]; &amp;#x2F;&amp;#x2F; a plain array
+    let mut v = Vec::new(); &amp;#x2F;&amp;#x2F; using `Vec::new()` function remembering to make it `mut`
+
+    &amp;#x2F;&amp;#x2F; placing elements into the array with `push()` method
+    v.push(10);
+    v.push(20);
+    v.push(30);
+    v.push(40);
+
+    (a, v)
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;This will also get our code to compile, but as you can see it&#x27;s a lot more effort to do, so in this case it&#x27;s much easier to use the &lt;code&gt;Vec!&lt;&#x2F;code&gt; macro.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;vecs2-rs&quot;&gt;&lt;code&gt;vecs2.rs&lt;&#x2F;code&gt;&lt;&#x2F;h2&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;&amp;#x2F;&amp;#x2F; vecs2.rs
+&amp;#x2F;&amp;#x2F; A Vec of even numbers is given. Your task is to complete the loop
+&amp;#x2F;&amp;#x2F; so that each number in the Vec is multiplied by 2.
+&amp;#x2F;&amp;#x2F;
+&amp;#x2F;&amp;#x2F; Make me pass the test!
+&amp;#x2F;&amp;#x2F;
+&amp;#x2F;&amp;#x2F; Execute `rustlings hint vecs2` or use the `hint` watch subcommand for a hint.
+
+&amp;#x2F;&amp;#x2F; I AM NOT DONE
+
+fn vec_loop(mut v: Vec&amp;lt;i32&amp;gt;) -&amp;gt; Vec&amp;lt;i32&amp;gt; {
+    for i in v.iter_mut() {
+        &amp;#x2F;&amp;#x2F; TODO: Fill this up so that each element in the Vec `v` is
+        &amp;#x2F;&amp;#x2F; multiplied by 2.
+        ???
+    }
+
+    &amp;#x2F;&amp;#x2F; At this point, `v` should be equal to [4, 8, 12, 16, 20].
+    v
+}
+
+fn vec_map(v: &amp;amp;Vec&amp;lt;i32&amp;gt;) -&amp;gt; Vec&amp;lt;i32&amp;gt; {
+    v.iter().map(|num| {
+        &amp;#x2F;&amp;#x2F; TODO: Do the same thing as above - but instead of mutating the
+        &amp;#x2F;&amp;#x2F; Vec, you can just return the new number!
+        ???
+    }).collect()
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_vec_loop() {
+        let v: Vec&amp;lt;i32&amp;gt; = (1..).filter(|x| x % 2 == 0).take(5).collect();
+        let ans = vec_loop(v.clone());
+
+        assert_eq!(ans, v.iter().map(|x| x * 2).collect::&amp;lt;Vec&amp;lt;i32&amp;gt;&amp;gt;());
+    }
+
+    #[test]
+    fn test_vec_map() {
+        let v: Vec&amp;lt;i32&amp;gt; = (1..).filter(|x| x % 2 == 0).take(5).collect();
+        let ans = vec_map(&amp;amp;v);
+
+        assert_eq!(ans, v.iter().map(|x| x * 2).collect::&amp;lt;Vec&amp;lt;i32&amp;gt;&amp;gt;());
+    }
+}
+
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Alright we have a more involved exercise here with 2 different areas that we need to write out. Our instructors are:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;Complete the loop so that each number in the Vec is multiplied by 2.&lt;&#x2F;li&gt;
+&lt;li&gt;First vector is mutable and the comments tell us that the vector we should have at the end of the calculations should be &lt;code&gt;[4, 8, 12, 16, 20]&lt;&#x2F;code&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;Our second vector is not mutable, so our instructions are to not mutate the vector but just return the new number.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h2 id=&quot;vecs2-rs-1&quot;&gt;&lt;code&gt;vecs2.rs&lt;&#x2F;code&gt;&lt;&#x2F;h2&gt;
+&lt;pre data-lang=&quot;zsh&quot; class=&quot;language-zsh &quot;&gt;&lt;code class=&quot;language-zsh&quot; data-lang=&quot;zsh&quot;&gt;⚠️  Compiling of exercises&amp;#x2F;vecs&amp;#x2F;vecs2.rs failed! Please try again. Here&amp;#x27;s the output:
+error: expected expression, found `?`
+  --&amp;gt; exercises&amp;#x2F;vecs&amp;#x2F;vecs2.rs:15:9
+   |
+15 |         ???
+   |         ^ expected expression
+
+error: expected expression, found `?`
+  --&amp;gt; exercises&amp;#x2F;vecs&amp;#x2F;vecs2.rs:26:9
+   |
+26 |         ???
+   |         ^ expected expression
+
+error: aborting due to 2 previous errors
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;These are the errors, pretty obvious as to why we are getting these.&lt;&#x2F;p&gt;
+&lt;p&gt;Let&#x27;s look the first loop and see how we complete it:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;fn vec_loop(mut v: Vec&amp;lt;i32&amp;gt;) -&amp;gt; Vec&amp;lt;i32&amp;gt; {
+    for i in v.iter_mut() {
+        *i *= 2; &amp;#x2F;&amp;#x2F; using the *i to access each element as well as `*=` to modify each element
+    }
+
+    &amp;#x2F;&amp;#x2F; At this point, `v` should be equal to [4, 8, 12, 16, 20].
+    v
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;It&#x27;s a pretty simple solution, using &lt;code&gt;*i *= 2&lt;&#x2F;code&gt;  to multiply each element by 2, the main thing to remember is the use of the dereference &lt;code&gt;*&lt;&#x2F;code&gt; operator when accessing each element and then &lt;code&gt;*=&lt;&#x2F;code&gt; to modify or update each element with the new number. If we run the code now, we see that we&#x27;re down to one error. So far so good.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;zsh&quot; class=&quot;language-zsh &quot;&gt;&lt;code class=&quot;language-zsh&quot; data-lang=&quot;zsh&quot;&gt;⚠️  Compiling of exercises&amp;#x2F;vecs&amp;#x2F;vecs2.rs failed! Please try again. Here&amp;#x27;s the output:
+error: expected expression, found `?`
+  --&amp;gt; exercises&amp;#x2F;vecs&amp;#x2F;vecs2.rs:25:13
+   |
+25 |             ???
+   |             ^ expected expression
+
+error: aborting due to previous error
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Now let&#x27;s work on the 2nd for loop.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;fn vec_map(v: &amp;amp;Vec&amp;lt;i32&amp;gt;) -&amp;gt; Vec&amp;lt;i32&amp;gt; {
+    v.iter().map(|num| {
+        &amp;#x2F;&amp;#x2F; TODO: Do the same thing as above - but instead of mutating the
+        &amp;#x2F;&amp;#x2F; Vec, you can just return the new number!
+        ???
+    }).collect()
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Here we see the use of a &lt;code&gt;map&lt;&#x2F;code&gt; and &lt;code&gt;closure&lt;&#x2F;code&gt; which we haven&#x27;t covered yet in our Rustlings journey, so let&#x27;s just ignore those for now, but we have to complete the iterator but as they tell us in the comments, instead of mutating the vector just return a new number, so since we don&#x27;t have to update each element and only multiply each element, we can simply use the multiplication &lt;code&gt;*&lt;&#x2F;code&gt; operator and use the &lt;code&gt;num&lt;&#x2F;code&gt; that&#x27;s being passed in through the closure to do so. It would look something like this: &lt;code&gt;num * 2&lt;&#x2F;code&gt; .&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;fn vec_map(v: &amp;amp;Vec&amp;lt;i32&amp;gt;) -&amp;gt; Vec&amp;lt;i32&amp;gt; {
+    v.iter().map(|num| {
+        num * 2
+    }).collect()
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;For the &lt;code&gt;vec_map&lt;&#x2F;code&gt; function, we use &lt;code&gt;v.iter().map(|num| num * 2).collect()&lt;&#x2F;code&gt;. Here, &lt;code&gt;num&lt;&#x2F;code&gt; represents each element in the vector, and &lt;code&gt;num * 2&lt;&#x2F;code&gt; returns a new number that is twice the original value. We use &lt;code&gt;collect()&lt;&#x2F;code&gt; to gather the resulting items into a collection, in this case, another vector. Notice the function signature &lt;code&gt;vec_map(v: &amp;amp;Vec&amp;lt;i32&amp;gt;) -&amp;gt; Vec&amp;lt;i32&amp;gt;&lt;&#x2F;code&gt;, where &lt;code&gt;v&lt;&#x2F;code&gt; is borrowed (&lt;code&gt;&amp;amp;v&lt;&#x2F;code&gt;). This concept, known as borrowing, is fundamental to Rust&#x27;s system of ownership.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;vecs2-rs-solution&quot;&gt;&lt;code&gt;vecs2.rs&lt;&#x2F;code&gt; solution&lt;&#x2F;h2&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;fn vec_loop(mut v: Vec&amp;lt;i32&amp;gt;) -&amp;gt; Vec&amp;lt;i32&amp;gt; {
+    for i in v.iter_mut() {
+        *i *= 2;
+    }
+    v
+}
+
+fn vec_map(v: &amp;amp;Vec&amp;lt;i32&amp;gt;) -&amp;gt; Vec&amp;lt;i32&amp;gt; {
+    v.iter().map(|num| num * 2).collect()
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_vec_loop() {
+        let v: Vec&amp;lt;i32&amp;gt; = (1..).filter(|x| x % 2 == 0).take(5).collect();
+        let ans = vec_loop(v.clone());
+
+        assert_eq!(ans, v.iter().map(|x| x * 2).collect::&amp;lt;Vec&amp;lt;i32&amp;gt;&amp;gt;());
+    }
+
+    #[test]
+    fn test_vec_map() {
+        let v: Vec&amp;lt;i32&amp;gt; = (1..).filter(|x| x % 2 == 0).take(5).collect();
+        let ans = vec_map(&amp;amp;v);
+
+        assert_eq!(ans, v.iter().map(|x| x * 2).collect::&amp;lt;Vec&amp;lt;i32&amp;gt;&amp;gt;());
+    }
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Here&#x27;s the complete block of code, clean-up a bit for clarity without the comments etc. With this code we will pass our test and we can move on to the next set of exercises.&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;conclusion&quot;&gt;Conclusion&lt;&#x2F;h1&gt;
+&lt;p&gt;In this blog post, we explored Rust Vectors, a powerful and flexible data structure for handling dynamic arrays. We learned the difference between arrays and vectors in Rust and looked at some examples to understand how to create and manipulate vectors. We covered two different exercises: creating a vector from an array and performing operations on vector elements.&lt;&#x2F;p&gt;
+&lt;p&gt;We learned how to create a vector using the &lt;code&gt;vec!&lt;&#x2F;code&gt; macro and how to create a vector with the &lt;code&gt;Vec::new()&lt;&#x2F;code&gt; function, and we also looked at the difference between mutable and immutable vectors. We discussed how to use loops and the &lt;code&gt;map&lt;&#x2F;code&gt; function for iterating over vectors and performing operations on their elements.&lt;&#x2F;p&gt;
+&lt;p&gt;By understanding and utilizing Rust vectors, you can create efficient and flexible programs that can handle a wide range of scenarios involving dynamic arrays.&lt;&#x2F;p&gt;
+</description>
+      </item>
       <item>
           <title>05 Rustlings Primitive Types</title>
           <pubDate>Wed, 03 May 2023 00:00:00 +0000</pubDate>
@@ -1315,6 +1577,7 @@ fn main() {
 &lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;desmodrone.github.io&#x2F;posts&#x2F;03-rustlings-if&#x2F;&quot;&gt;03_rustlings_functions&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
 &lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;desmodrone.github.io&#x2F;posts&#x2F;04-rustlings-quiz1&#x2F;&quot;&gt;04_rustlings_quiz1&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
 &lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;desmodrone.github.io&#x2F;posts&#x2F;05-rustlings-primitive-types&#x2F;&quot;&gt;05_rustlings_primitive_types&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;desmodrone.github.io&#x2F;posts&#x2F;06-rustlings-vecs&#x2F;&quot;&gt;06_rustlings_vecs&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
 &lt;&#x2F;ul&gt;
 &lt;p&gt;Inspired by Tris Oaten&#x27;s recent video &lt;a href=&quot;https:&#x2F;&#x2F;youtu.be&#x2F;2hXNd6x9sZs&quot;&gt;How to Learn Rust&lt;&#x2F;a&gt; on his excellent YouTube channel &lt;a href=&quot;https:&#x2F;&#x2F;www.youtube.com&#x2F;@NoBoilerplate&quot;&gt;No Boilerplate&lt;&#x2F;a&gt;, I&#x27;ve decided to refocus my journey with the Rust programming language. In hopes of effectively learning Rust, I&#x27;ll be following the holy trinity of Rust learning resources as recommended by Tris:&lt;&#x2F;p&gt;
 &lt;ul&gt;

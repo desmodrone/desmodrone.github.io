@@ -30,6 +30,10 @@
         <lastmod>2023-05-03</lastmod>
     </url>
     <url>
+        <loc>https://desmodrone.github.io/posts/06-rustlings-vecs/</loc>
+        <lastmod>2023-05-10</lastmod>
+    </url>
+    <url>
         <loc>https://desmodrone.github.io/posts/hello-rustlings/</loc>
         <lastmod>2023-04-11</lastmod>
     </url>
@@ -94,6 +98,12 @@
     </url>
     <url>
         <loc>https://desmodrone.github.io/tags/variables/</loc>
+    </url>
+    <url>
+        <loc>https://desmodrone.github.io/tags/vecs/</loc>
+    </url>
+    <url>
+        <loc>https://desmodrone.github.io/tags/vectors/</loc>
     </url>
     <url>
         <loc>https://desmodrone.github.io/work/</loc>

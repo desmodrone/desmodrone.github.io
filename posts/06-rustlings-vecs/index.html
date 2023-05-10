@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <meta itemprop="name" content="desmo" />
+  <meta itemprop="description" content="Random Ideas" />
+
+  <link rel="apple-touch-icon" sizes="180x180" href="https://desmodrone.github.io/apple-touch-icon.png"/>
+  <link rel="icon" type="image/png" sizes="32x32" href="https://desmodrone.github.io/favicon-32x32.png" />
+  <link
+    rel="icon"
+    type="image/png"
+    sizes="16x16"
+    href="https://desmodrone.github.io/favicon-16x16.png"
+  />
+  <link
+    rel="shortcut icon"
+    href="https://desmodrone.github.io/favicon.ico"
+  />
+  <link rel="stylesheet" href="https://desmodrone.github.io/style.css"/>
+  
+  <title>06 Rustlings Vectors</title>
+  
+
+  
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="https://desmodrone.github.io/rss.xml">
+  
+
+  <body id="page">
+
+	
+<header id="site-header" class="animated slideInUp faster">
+  <div class="hdr-wrapper section-inner">
+    <div class="hdr-left">
+      <div class="site-branding">
+        <a href="https:&#x2F;&#x2F;desmodrone.github.io">desmo</a>
+      </div>
+      <nav class="site-nav hide-in-mobile">
+            
+        
+        <a href="https://desmodrone.github.io/posts">posts</a>
+        
+        <a href="https://desmodrone.github.io/about">about</a>
+        
+        <a href="https://desmodrone.github.io/work">work</a>
+        
+      </nav>
+    </div>
+    <div class="hdr-right hdr-icons">
+      <span class="hdr-social hide-in-mobile">
+        
+
+<a href="https:&#x2F;&#x2F;twitter.com&#x2F;desmodrone_" target="_blank" rel="noopener me"
+   title="twitter">
+  
+  <svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg>
+  
+</a>
+
+<a href="https:&#x2F;&#x2F;github.com&#x2F;desmodrone" target="_blank" rel="noopener me"
+   title="github">
+  
+  <svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+  
+</a>
+
+<a href="mailto:erick@apexwins.com" target="_blank" rel="noopener me"
+   title="email">
+  
+  <svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+  
+</a>
+
+
+      </span>
+      <button id="menu-btn" class="hdr-btn" title="Menu">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="feather feather-menu"
+        >
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+  </div>
+</header>
+<div id="mobile-menu" class="animated fast">
+  <ul>
+    
+    <li><a href="https://desmodrone.github.io/posts">posts</a></li>
+    
+    <li><a href="https://desmodrone.github.io/about">about</a></li>
+    
+    <li><a href="https://desmodrone.github.io/work">work</a></li>
+    
+  </ul>
+</div>
+
+	
+	
+
+		
+<main class="site-main section-inner animated fadeIn faster">
+  <article class="thin">
+	<header class="post-header">
+	  <div class="post-meta">
+		
+		<span>May 10, 2023</span>
+		<small> - 
+<span class="reading-time" title="Estimated read time">
+  
+  6 min read
+  
+</span>
+</small>
+		
+            
+	  </div>
+	  <h1>06 Rustlings Vectors</h1>
+	</header>
+
+	<div class="content">
+        
+	  <h1 id="vectors">Vectors</h1>
+<p>Vectors are a widely-used data structure in Rust programming. In many programming languages, they might be referred to as Arrays. However, Rust operates at a lower level, which leads to a distinction between arrays and vectors. In Rust, an array is usually stored on the stack, which means it cannot grow or shrink, and its size must be determined at compile time. On the other hand, a vector is stored in the heap, allowing for greater flexibility as these size restrictions do not apply.</p>
+<p>Let's look at these couple of exercises from Rustlings</p>
+<h2 id="further-information">Further information</h2>
+<ul>
+<li><a href="https://doc.rust-lang.org/stable/book/ch08-01-vectors.html">Storing Lists of Values with Vectors</a></li>
+<li><a href="https://doc.rust-lang.org/std/primitive.slice.html#method.iter_mut"><code>iter_mut</code></a></li>
+<li><a href="https://doc.rust-lang.org/std/iter/trait.Iterator.html#method.map"><code>map</code></a></li>
+</ul>
+<h2 id="vecs1-rs"><code>vecs1.rs</code></h2>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">&#x2F;&#x2F; vecs1.rs
+&#x2F;&#x2F; Your task is to create a `Vec` which holds the exact same elements
+&#x2F;&#x2F; as in the array `a`.
+&#x2F;&#x2F; Make me compile and pass the test!
+&#x2F;&#x2F; Execute `rustlings hint vecs1` or use the `hint` watch subcommand for a hint.
+
+&#x2F;&#x2F; I AM NOT DONE
+
+fn array_and_vec() -&gt; ([i32; 4], Vec&lt;i32&gt;) {
+    let a = [10, 20, 30, 40]; &#x2F;&#x2F; a plain array
+    let v = &#x2F;&#x2F; TODO: declare your vector here with the macro for vectors
+
+    (a, v)
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_array_and_vec_similarity() {
+        let (a, v) = array_and_vec();
+        assert_eq!(a, v[..]);
+    }
+}
+</code></pre>
+<p>Our instructions are clear here in the comments create a vector that holds the elements<code> [10, 20, 30, 40]</code> just like <code>a</code> does. Simple enough.</p>
+<p>For completeness let's also log what we are seeing as the errors.</p>
+<h2 id="vecs1-rs-errors"><code>vecs1.rs</code> errors</h2>
+<pre data-lang="zsh" class="language-zsh "><code class="language-zsh" data-lang="zsh">⚠️  Compiling of exercises&#x2F;vecs&#x2F;vecs1.rs failed! Please try again. Here&#x27;s the output:
+error: expected `;`, found `}`
+  --&gt; exercises&#x2F;vecs&#x2F;vecs1.rs:13:11
+   |
+13 |     (a, v)
+   |           ^ help: add `;` here
+14 | }
+   | - unexpected token
+
+error[E0425]: cannot find value `v` in this scope
+  --&gt; exercises&#x2F;vecs&#x2F;vecs1.rs:13:9
+   |
+13 |     (a, v)
+   |         ^ help: a local variable with a similar name exists: `a`
+
+error[E0308]: mismatched types
+ --&gt; exercises&#x2F;vecs&#x2F;vecs1.rs:9:23
+  |
+9 | fn array_and_vec() -&gt; ([i32; 4], Vec&lt;i32&gt;) {
+  |    -------------      ^^^^^^^^^^^^^^^^^^^^ expected tuple, found `()`
+  |    |
+  |    implicitly returns `()` as its body has no tail or `return` expression
+  |
+  = note:  expected tuple `([i32; 4], Vec&lt;i32&gt;)`
+          found unit type `()`
+
+error: aborting due to 3 previous errors
+</code></pre>
+<p>We can see that the Rust compiler is a little confused and is suggesting ways to complete our code that are not what we are trying to do, but it's good to get a sense of what the compiler is doing in this situation so we can potentially understand other issues as we encounter them.</p>
+<h2 id="vecs1-rs-solution"><code>vecs1.rs</code> solution</h2>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">fn array_and_vec() -&gt; ([i32; 4], Vec&lt;i32&gt;) {
+    let a = [10, 20, 30, 40]; &#x2F;&#x2F; a plain array
+    let v = vec![10, 20, 30, 40]; &#x2F;&#x2F; using `vec!` macro to define a vector
+    (a, v)
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_array_and_vec_similarity() {
+        let (a, v) = array_and_vec();
+        assert_eq!(a, v[..]);
+    }
+}
+</code></pre>
+<p>Completing the <code>let v</code> line with <code>vec![10, 20, 30, 40];</code> easily solves our exercise here.</p>
+<h2 id="additional-notes">Additional Notes</h2>
+<p>Remember that there is more than one way to create a <code>vector</code> in Rust, we used the macro with <code>vec!</code> because it's very convenient but we can also create vectors using the <code>Vec::new()</code> function to create a new vector and then fill it with the <code>push()</code> method.</p>
+<p>Let's see what that would look like in this exercise:</p>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">fn array_and_vec() -&gt; ([i32; 4], Vec&lt;i32&gt;) {
+    let a = [10, 20, 30, 40]; &#x2F;&#x2F; a plain array
+    let mut v = Vec::new(); &#x2F;&#x2F; using `Vec::new()` function remembering to make it `mut`
+
+    &#x2F;&#x2F; placing elements into the array with `push()` method
+    v.push(10);
+    v.push(20);
+    v.push(30);
+    v.push(40);
+
+    (a, v)
+}
+</code></pre>
+<p>This will also get our code to compile, but as you can see it's a lot more effort to do, so in this case it's much easier to use the <code>Vec!</code> macro.</p>
+<h2 id="vecs2-rs"><code>vecs2.rs</code></h2>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">&#x2F;&#x2F; vecs2.rs
+&#x2F;&#x2F; A Vec of even numbers is given. Your task is to complete the loop
+&#x2F;&#x2F; so that each number in the Vec is multiplied by 2.
+&#x2F;&#x2F;
+&#x2F;&#x2F; Make me pass the test!
+&#x2F;&#x2F;
+&#x2F;&#x2F; Execute `rustlings hint vecs2` or use the `hint` watch subcommand for a hint.
+
+&#x2F;&#x2F; I AM NOT DONE
+
+fn vec_loop(mut v: Vec&lt;i32&gt;) -&gt; Vec&lt;i32&gt; {
+    for i in v.iter_mut() {
+        &#x2F;&#x2F; TODO: Fill this up so that each element in the Vec `v` is
+        &#x2F;&#x2F; multiplied by 2.
+        ???
+    }
+
+    &#x2F;&#x2F; At this point, `v` should be equal to [4, 8, 12, 16, 20].
+    v
+}
+
+fn vec_map(v: &amp;Vec&lt;i32&gt;) -&gt; Vec&lt;i32&gt; {
+    v.iter().map(|num| {
+        &#x2F;&#x2F; TODO: Do the same thing as above - but instead of mutating the
+        &#x2F;&#x2F; Vec, you can just return the new number!
+        ???
+    }).collect()
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_vec_loop() {
+        let v: Vec&lt;i32&gt; = (1..).filter(|x| x % 2 == 0).take(5).collect();
+        let ans = vec_loop(v.clone());
+
+        assert_eq!(ans, v.iter().map(|x| x * 2).collect::&lt;Vec&lt;i32&gt;&gt;());
+    }
+
+    #[test]
+    fn test_vec_map() {
+        let v: Vec&lt;i32&gt; = (1..).filter(|x| x % 2 == 0).take(5).collect();
+        let ans = vec_map(&amp;v);
+
+        assert_eq!(ans, v.iter().map(|x| x * 2).collect::&lt;Vec&lt;i32&gt;&gt;());
+    }
+}
+
+</code></pre>
+<p>Alright we have a more involved exercise here with 2 different areas that we need to write out. Our instructors are:</p>
+<ul>
+<li>Complete the loop so that each number in the Vec is multiplied by 2.</li>
+<li>First vector is mutable and the comments tell us that the vector we should have at the end of the calculations should be <code>[4, 8, 12, 16, 20]</code></li>
+<li>Our second vector is not mutable, so our instructions are to not mutate the vector but just return the new number.</li>
+</ul>
+<h2 id="vecs2-rs-1"><code>vecs2.rs</code></h2>
+<pre data-lang="zsh" class="language-zsh "><code class="language-zsh" data-lang="zsh">⚠️  Compiling of exercises&#x2F;vecs&#x2F;vecs2.rs failed! Please try again. Here&#x27;s the output:
+error: expected expression, found `?`
+  --&gt; exercises&#x2F;vecs&#x2F;vecs2.rs:15:9
+   |
+15 |         ???
+   |         ^ expected expression
+
+error: expected expression, found `?`
+  --&gt; exercises&#x2F;vecs&#x2F;vecs2.rs:26:9
+   |
+26 |         ???
+   |         ^ expected expression
+
+error: aborting due to 2 previous errors
+</code></pre>
+<p>These are the errors, pretty obvious as to why we are getting these.</p>
+<p>Let's look the first loop and see how we complete it:</p>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">fn vec_loop(mut v: Vec&lt;i32&gt;) -&gt; Vec&lt;i32&gt; {
+    for i in v.iter_mut() {
+        *i *= 2; &#x2F;&#x2F; using the *i to access each element as well as `*=` to modify each element
+    }
+
+    &#x2F;&#x2F; At this point, `v` should be equal to [4, 8, 12, 16, 20].
+    v
+}
+</code></pre>
+<p>It's a pretty simple solution, using <code>*i *= 2</code>  to multiply each element by 2, the main thing to remember is the use of the dereference <code>*</code> operator when accessing each element and then <code>*=</code> to modify or update each element with the new number. If we run the code now, we see that we're down to one error. So far so good.</p>
+<pre data-lang="zsh" class="language-zsh "><code class="language-zsh" data-lang="zsh">⚠️  Compiling of exercises&#x2F;vecs&#x2F;vecs2.rs failed! Please try again. Here&#x27;s the output:
+error: expected expression, found `?`
+  --&gt; exercises&#x2F;vecs&#x2F;vecs2.rs:25:13
+   |
+25 |             ???
+   |             ^ expected expression
+
+error: aborting due to previous error
+</code></pre>
+<p>Now let's work on the 2nd for loop.</p>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">fn vec_map(v: &amp;Vec&lt;i32&gt;) -&gt; Vec&lt;i32&gt; {
+    v.iter().map(|num| {
+        &#x2F;&#x2F; TODO: Do the same thing as above - but instead of mutating the
+        &#x2F;&#x2F; Vec, you can just return the new number!
+        ???
+    }).collect()
+}
+</code></pre>
+<p>Here we see the use of a <code>map</code> and <code>closure</code> which we haven't covered yet in our Rustlings journey, so let's just ignore those for now, but we have to complete the iterator but as they tell us in the comments, instead of mutating the vector just return a new number, so since we don't have to update each element and only multiply each element, we can simply use the multiplication <code>*</code> operator and use the <code>num</code> that's being passed in through the closure to do so. It would look something like this: <code>num * 2</code> .</p>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">fn vec_map(v: &amp;Vec&lt;i32&gt;) -&gt; Vec&lt;i32&gt; {
+    v.iter().map(|num| {
+        num * 2
+    }).collect()
+}
+</code></pre>
+<p>For the <code>vec_map</code> function, we use <code>v.iter().map(|num| num * 2).collect()</code>. Here, <code>num</code> represents each element in the vector, and <code>num * 2</code> returns a new number that is twice the original value. We use <code>collect()</code> to gather the resulting items into a collection, in this case, another vector. Notice the function signature <code>vec_map(v: &amp;Vec&lt;i32&gt;) -&gt; Vec&lt;i32&gt;</code>, where <code>v</code> is borrowed (<code>&amp;v</code>). This concept, known as borrowing, is fundamental to Rust's system of ownership.</p>
+<h2 id="vecs2-rs-solution"><code>vecs2.rs</code> solution</h2>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">fn vec_loop(mut v: Vec&lt;i32&gt;) -&gt; Vec&lt;i32&gt; {
+    for i in v.iter_mut() {
+        *i *= 2;
+    }
+    v
+}
+
+fn vec_map(v: &amp;Vec&lt;i32&gt;) -&gt; Vec&lt;i32&gt; {
+    v.iter().map(|num| num * 2).collect()
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_vec_loop() {
+        let v: Vec&lt;i32&gt; = (1..).filter(|x| x % 2 == 0).take(5).collect();
+        let ans = vec_loop(v.clone());
+
+        assert_eq!(ans, v.iter().map(|x| x * 2).collect::&lt;Vec&lt;i32&gt;&gt;());
+    }
+
+    #[test]
+    fn test_vec_map() {
+        let v: Vec&lt;i32&gt; = (1..).filter(|x| x % 2 == 0).take(5).collect();
+        let ans = vec_map(&amp;v);
+
+        assert_eq!(ans, v.iter().map(|x| x * 2).collect::&lt;Vec&lt;i32&gt;&gt;());
+    }
+}
+</code></pre>
+<p>Here's the complete block of code, clean-up a bit for clarity without the comments etc. With this code we will pass our test and we can move on to the next set of exercises.</p>
+<h1 id="conclusion">Conclusion</h1>
+<p>In this blog post, we explored Rust Vectors, a powerful and flexible data structure for handling dynamic arrays. We learned the difference between arrays and vectors in Rust and looked at some examples to understand how to create and manipulate vectors. We covered two different exercises: creating a vector from an array and performing operations on vector elements.</p>
+<p>We learned how to create a vector using the <code>vec!</code> macro and how to create a vector with the <code>Vec::new()</code> function, and we also looked at the difference between mutable and immutable vectors. We discussed how to use loops and the <code>map</code> function for iterating over vectors and performing operations on their elements.</p>
+<p>By understanding and utilizing Rust vectors, you can create efficient and flexible programs that can handle a wide range of scenarios involving dynamic arrays.</p>
+
+	</div>
+	<hr class="post-end">
+	<footer class="post-info">
+    
+	  <p>
+		<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg>
+		
+		
+		<span class="tag"><a href="https://desmodrone.github.io/tags/rust/">rust</a></span>
+		
+		<span class="tag"><a href="https://desmodrone.github.io/tags/vectors/">vectors</a></span>
+		
+		<span class="tag"><a href="https://desmodrone.github.io/tags/rustlings/">rustlings</a></span>
+		
+		<span class="tag"><a href="https://desmodrone.github.io/tags/vecs/">vecs</a></span>
+		
+		
+    </p>
+    
+    <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>1606 Words</p>
+    
+    <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2023-05-10</p>
+    
+	</footer>
+  </article>
+    
+  
+  <div class="post-nav thin">
+	
+	
+  </div>
+
+  
+</main>
+
+	  </div>
+	  
+	  
+
+
+
+<footer id="site-footer" class="section-inner thin animated fadeIn faster">
+  <p>&copy; 2023 <a href="https:&#x2F;&#x2F;desmodrone.github.io">erick</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
+  <p>Made with <a href="https://www.getzola.org" target="_blank" rel="noopener">Zola</a> &#183; Theme <a href="https://github.com/VersBinarii/hermit_zola" target="_blank" rel="noopener">Hermit_Zola</a>
+	
+	&#183; <a href="https://desmodrone.github.io/rss.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
+	
+  </p>
+</footer>
+
+
+
+
+	</div>
+	
+	<script src="https://desmodrone.github.io/js/main.js"></script>
+
+	<!-- Math rendering -->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css" integrity="sha384-zB1R0rpPzHqg7Kpt0Aljp8JPLqbXI3bhnPWROx27a9N0Ll6ZP/+DiW/UqRcLbRjq" crossorigin="anonymous">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js" integrity="sha384-y23I5Q6l+B6vatafAwxRu/0oK/79VlbSz7Q9aiSZUvyWYIYsd+qj+o24G5ZU2zJz" crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous"
+        onload="renderMathInElement(document.body, { delimiters: [ {left: '$$', right: '$$', display: true}, {left: '$', right: '$', display: false}, {left: '\\[', right: '\\]', display: true}, {left: '\\(', right: '\\)', display: false}]});"></script>
+
+    
+		<link href="https://unpkg.com/highlightjs-badge/highlightjs/styles/railscasts.css" rel="stylesheet">
+		<!-- https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.1/build/styles/  for min version -->
+		<script src="https://unpkg.com/highlightjs-badge/highlightjs/highlight.pack.js"></script>
+		<script src="https://unpkg.com/highlightjs-badge/highlightjs-badge.min.js"></script>
+		<script>
+			var pres = document.querySelectorAll("pre>code");
+			for (var i = 0; i < pres.length; i++) {
+				hljs.highlightBlock(pres[i]);
+			}
+		</script>
+		
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js"></script>
+			<script>
+				var options = {
+					copyIconClass: "gg-clipboard",
+					checkIconClass: "gg-check"
+				};
+				window.highlightJsBadge(options);
+			</script>
+		
+
+	
+
+	
+	<script src="https://desmodrone.github.io/js/main.js"></script>
+
+    
+    
+
+	
+    <!-- Global Site Tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-9MNTYXYNHK"></script>
+    <script>
+     window.dataLayer = window.dataLayer || [];
+     function gtag(){dataLayer.push(arguments);}
+     gtag('js', new Date());
+     gtag('config', 'G-9MNTYXYNHK');
+    </script>
+    
+  </body>
+</html>
