@@ -34,6 +34,10 @@
         <lastmod>2023-05-10</lastmod>
     </url>
     <url>
+        <loc>https://desmodrone.github.io/posts/07-rustlings-move-semantics1/</loc>
+        <lastmod>2023-05-15</lastmod>
+    </url>
+    <url>
         <loc>https://desmodrone.github.io/posts/hello-rustlings/</loc>
         <lastmod>2023-04-11</lastmod>
     </url>
@@ -64,6 +68,9 @@
         <loc>https://desmodrone.github.io/tags/blog/</loc>
     </url>
     <url>
+        <loc>https://desmodrone.github.io/tags/borrowing/</loc>
+    </url>
+    <url>
         <loc>https://desmodrone.github.io/tags/closures/</loc>
     </url>
     <url>
@@ -79,10 +86,16 @@
         <loc>https://desmodrone.github.io/tags/if/</loc>
     </url>
     <url>
+        <loc>https://desmodrone.github.io/tags/ownership/</loc>
+    </url>
+    <url>
         <loc>https://desmodrone.github.io/tags/primitive/</loc>
     </url>
     <url>
         <loc>https://desmodrone.github.io/tags/quiz/</loc>
+    </url>
+    <url>
+        <loc>https://desmodrone.github.io/tags/references/</loc>
     </url>
     <url>
         <loc>https://desmodrone.github.io/tags/rust/</loc>

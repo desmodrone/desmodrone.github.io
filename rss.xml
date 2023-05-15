@@ -7,7 +7,394 @@
       <generator>Zola</generator>
       <language>en</language>
       <atom:link href="https://desmodrone.github.io/rss.xml" rel="self" type="application/rss+xml"/>
-      <lastBuildDate>Wed, 10 May 2023 00:00:00 +0000</lastBuildDate>
+      <lastBuildDate>Mon, 15 May 2023 00:00:00 +0000</lastBuildDate>
+      <item>
+          <title>07 Rustlings Move Semantics Part 1</title>
+          <pubDate>Mon, 15 May 2023 00:00:00 +0000</pubDate>
+          <author>Unknown</author>
+          <link>https://desmodrone.github.io/posts/07-rustlings-move-semantics1/</link>
+          <guid>https://desmodrone.github.io/posts/07-rustlings-move-semantics1/</guid>
+          <description>&lt;p&gt;These exercises are adapted from &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;pnkfelix&quot;&gt;pnkfelix&lt;&#x2F;a&gt;&#x27;s &lt;a href=&quot;https:&#x2F;&#x2F;pnkfelix.github.io&#x2F;rust-examples-icfp2014&#x2F;&quot;&gt;Rust Tutorial&lt;&#x2F;a&gt; -- Thank you Felix!!!&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;further-information&quot;&gt;Further information&lt;&#x2F;h2&gt;
+&lt;p&gt;For this section, the book links are especially important.&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;doc.rust-lang.org&#x2F;book&#x2F;ch04-01-what-is-ownership.html&quot;&gt;Ownership&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;doc.rust-lang.org&#x2F;book&#x2F;ch04-02-references-and-borrowing.html&quot;&gt;Reference and borrowing&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h2 id=&quot;intro&quot;&gt;Intro&lt;&#x2F;h2&gt;
+&lt;p&gt;Ownership, References, and Borrowing are essential components of Rust&#x27;s unique characteristics. It&#x27;s crucial to have a solid understanding of these concepts to harness the full potential of Rust. In this introduction, we&#x27;ll provide a brief overview of each aspect, but you can find more detailed information in the links provided above.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;what-is-ownership&quot;&gt;What is Ownership?&lt;&#x2F;h2&gt;
+&lt;p&gt;Ownership in Rust is a set of rules that dictate how a program manages memory. All programs require a memory management system during execution. While some languages rely on garbage collection to automatically locate and clean up unused memory, and others require the programmer to allocate and free memory manually, Rust takes a different approach. Rust&#x27;s memory management is handled through ownership rules that are checked at compile time. If any of these rules are violated, the code will not compile. The advantage of this system is that it doesn&#x27;t slow down our program during runtime.&lt;&#x2F;p&gt;
+&lt;p&gt;For many programmers, the ownership concept is a novel idea and may require some adjustment. However, once you have a firm grasp of ownership, you&#x27;ll have a strong foundation on what sets Rust apart from other languages and makes it memory safe.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;references-and-borrowing&quot;&gt;References and Borrowing&lt;&#x2F;h2&gt;
+&lt;p&gt;Due to Rust&#x27;s strict ownership rules, the language provides tools to reference or borrow different parts of your code as a means of accessing or using data without &amp;quot;consuming&amp;quot; it. These tools introduce another set of rules that must be learned to fully leverage Rust&#x27;s features. With a thorough understanding of References and Borrowing, you can work efficiently within Rust&#x27;s ownership system, allowing for more reliable and performant programs.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;move-semantics1-rs&quot;&gt;&lt;code&gt;move_semantics1.rs&lt;&#x2F;code&gt;&lt;&#x2F;h2&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;&amp;#x2F;&amp;#x2F; move_semantics1.rs
+&amp;#x2F;&amp;#x2F; Execute `rustlings hint move_semantics1` or use the `hint` watch subcommand for a hint.
+
+&amp;#x2F;&amp;#x2F; I AM NOT DONE
+
+fn main() {
+    let vec0 = Vec::new();
+
+    let vec1 = fill_vec(vec0);
+
+    println!(&amp;quot;{} has length {} content `{:?}`&amp;quot;, &amp;quot;vec1&amp;quot;, vec1.len(), vec1);
+
+    vec1.push(88);
+
+    println!(&amp;quot;{} has length {} content `{:?}`&amp;quot;, &amp;quot;vec1&amp;quot;, vec1.len(), vec1);
+}
+
+fn fill_vec(vec: Vec&amp;lt;i32&amp;gt;) -&amp;gt; Vec&amp;lt;i32&amp;gt; {
+    let mut vec = vec;
+
+    vec.push(22);
+    vec.push(44);
+    vec.push(66);
+
+    vec
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Here&#x27;s our first exercise, which not much in the sense of instructions on how to solve our problem. As always let&#x27;s take a look at what the Rust compiler is telling us.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;move-semantics1-rs-errors&quot;&gt;&lt;code&gt;move_semantics1.rs&lt;&#x2F;code&gt; errors&lt;&#x2F;h2&gt;
+&lt;pre data-lang=&quot;zsh&quot; class=&quot;language-zsh &quot;&gt;&lt;code class=&quot;language-zsh&quot; data-lang=&quot;zsh&quot;&gt;⚠️  Compiling of exercises&amp;#x2F;move_semantics&amp;#x2F;move_semantics1.rs failed! Please try again. Here is the output:
+error[E0596]: cannot borrow `vec1` as mutable, as it is not declared as mutable
+  --&amp;gt; exercises&amp;#x2F;move_semantics&amp;#x2F;move_semantics1.rs:13:5
+   |
+13 |     vec1.push(88);
+   |     ^^^^^^^^^^^^^ cannot borrow as mutable
+   |
+help: consider changing this to be mutable
+   |
+9  |     let mut vec1 = fill_vec(vec0);
+   |         +++
+
+error: aborting due to previous error
+
+For more information about this error, try `rustc --explain E0596`.
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;We get a lot of help here from this output clearly telling us where and what the problem is.&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;where &lt;code&gt;line 13&lt;&#x2F;code&gt;: &lt;code&gt;vec1.push(88)&lt;&#x2F;code&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;what &lt;code&gt;cannot borrow as mutable&lt;&#x2F;code&gt;&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;We even a very clear suggestion on what we should add on line &lt;code&gt;9&lt;&#x2F;code&gt;, so let&#x27;s do this.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;zsh&quot; class=&quot;language-zsh &quot;&gt;&lt;code class=&quot;language-zsh&quot; data-lang=&quot;zsh&quot;&gt;9  |     let mut vec1 = fill_vec(vec0);
+   |         +++
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h2 id=&quot;move-semantics1-solution&quot;&gt;&lt;code&gt;move_semantics1&lt;&#x2F;code&gt; solution&lt;&#x2F;h2&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;fn main() {
+    let vec0 = Vec::new();
+
+    let mut vec1 = fill_vec(vec0); &amp;#x2F;&amp;#x2F; adding `mut`
+
+    println!(&amp;quot;{} has length {} content `{:?}`&amp;quot;, &amp;quot;vec1&amp;quot;, vec1.len(), vec1);
+
+    vec1.push(88);
+
+    println!(&amp;quot;{} has length {} content `{:?}`&amp;quot;, &amp;quot;vec1&amp;quot;, vec1.len(), vec1);
+}
+
+fn fill_vec(vec: Vec&amp;lt;i32&amp;gt;) -&amp;gt; Vec&amp;lt;i32&amp;gt; {
+    let mut vec = vec;
+
+    vec.push(22);
+    vec.push(44);
+    vec.push(66);
+
+    vec
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Doing exactly as the Rust compiler says gets us an easy win.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;zsh&quot; class=&quot;language-zsh &quot;&gt;&lt;code class=&quot;language-zsh&quot; data-lang=&quot;zsh&quot;&gt;Output:
+====================
+vec1 has length 3 content `[22, 44, 66]`
+vec1 has length 4 content `[22, 44, 66, 88]`
+
+====================
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Since this was such an easy exercise, let&#x27;s play around with the code, if you look at the hint by typing &lt;code&gt;hint&lt;&#x2F;code&gt; in terminal, you&#x27;ll see it gives you another little challenge.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;zsh&quot; class=&quot;language-zsh &quot;&gt;&lt;code class=&quot;language-zsh&quot; data-lang=&quot;zsh&quot;&gt;Also: Try accessing `vec0` after having called `fill_vec()`. See what happens!
+
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;See if you can get this to work, it should be pretty straight forward if you follow the compiler hints, I was able to get this to print.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;zsh&quot; class=&quot;language-zsh &quot;&gt;&lt;code class=&quot;language-zsh&quot; data-lang=&quot;zsh&quot;&gt;Output:
+====================
+vec1 has length 3 content `[22, 44, 66]`
+vec1 has length 4 content `[22, 44, 66, 88]`
+vec0 has length 1 content `[1]`
+
+====================
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;On to the next one!&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;move-semantics2-rs&quot;&gt;&lt;code&gt;move_semantics2.rs&lt;&#x2F;code&gt;&lt;&#x2F;h2&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;&amp;#x2F;&amp;#x2F; move_semantics2.rs
+&amp;#x2F;&amp;#x2F; Make me compile without changing line 13 or moving line 10!
+&amp;#x2F;&amp;#x2F; Execute `rustlings hint move_semantics2` or use the `hint` watch subcommand for a hint.
+
+&amp;#x2F;&amp;#x2F; I AM NOT DONE
+
+fn main() {
+    let vec0 = Vec::new();
+
+    let mut vec1 = fill_vec(vec0);
+
+    &amp;#x2F;&amp;#x2F; Do not change the following line!
+    println!(&amp;quot;{} has length {} content `{:?}`&amp;quot;, &amp;quot;vec0&amp;quot;, vec0.len(), vec0);
+
+    vec1.push(88);
+
+    println!(&amp;quot;{} has length {} content `{:?}`&amp;quot;, &amp;quot;vec1&amp;quot;, vec1.len(), vec1);
+}
+
+fn fill_vec(vec: Vec&amp;lt;i32&amp;gt;) -&amp;gt; Vec&amp;lt;i32&amp;gt; {
+    let mut vec = vec;
+
+    vec.push(22);
+    vec.push(44);
+    vec.push(66);
+
+    vec
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Here we get one line of instruction, make this code compile without changing line 13 or moving line 10. Now let&#x27;s take a look at what the Rust compiler is telling us.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;move-semantics2-rs-errors&quot;&gt;&lt;code&gt;move_semantics2.rs&lt;&#x2F;code&gt; errors&lt;&#x2F;h2&gt;
+&lt;pre data-lang=&quot;zsh&quot; class=&quot;language-zsh &quot;&gt;&lt;code class=&quot;language-zsh&quot; data-lang=&quot;zsh&quot;&gt;⚠️  Compiling of exercises&amp;#x2F;move_semantics&amp;#x2F;move_semantics2.rs failed! Please try again. Here is the output:
+error[E0382]: borrow of moved value: `vec0`
+  --&amp;gt; exercises&amp;#x2F;move_semantics&amp;#x2F;move_semantics2.rs:13:57
+   |
+8  |     let vec0 = Vec::new();
+   |         ---- move occurs because `vec0` has type `Vec&amp;lt;i32&amp;gt;`, which does not implement the `Copy` trait
+9  |
+10 |     let mut vec1 = fill_vec(vec0);
+   |                             ---- value moved here
+...
+13 |     println!(&amp;quot;{} has length {} content `{:?}`&amp;quot;, &amp;quot;vec0&amp;quot;, vec0.len(), vec0);
+   |                                                         ^^^^^^^^^^ value borrowed here after move
+   |
+note: consider changing this parameter type in function `fill_vec` to borrow instead if owning the value is not necessary
+  --&amp;gt; exercises&amp;#x2F;move_semantics&amp;#x2F;move_semantics2.rs:20:18
+   |
+20 | fn fill_vec(vec: Vec&amp;lt;i32&amp;gt;) -&amp;gt; Vec&amp;lt;i32&amp;gt; {
+   |    --------      ^^^^^^^^ this parameter takes ownership of the value
+   |    |
+   |    in this function
+help: consider cloning the value if the performance cost is acceptable
+   |
+10 |     let mut vec1 = fill_vec(vec0.clone());
+   |                                 ++++++++
+
+error: aborting due to previous error
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Alright, we have a lot to see here, the first error on line 8 tells us that &lt;code&gt;vec0&lt;&#x2F;code&gt; is being moved to line 10 to the line &lt;code&gt;let mut vec1 = fill_vec(0);&lt;&#x2F;code&gt;
+The note tells us to consider changing the parameter type, but that shouldn&#x27;t be where we should be looking because in this case we do want to return a &lt;code&gt;Vec&amp;lt;i32&amp;gt;&lt;&#x2F;code&gt;. If we continue reading our errors, we get the answer in the line  &lt;code&gt;help: consider cloning the value if the performanc cost is acceptable&lt;&#x2F;code&gt;. This is very helpful and clear answer.  If you played around with the code on [[#move_semantics1.rs]] you might have already encountered this solution. So let&#x27;s try this &lt;code&gt;clone()&lt;&#x2F;code&gt; solution.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;move-semantics2-solution&quot;&gt;&lt;code&gt;move_semantics2&lt;&#x2F;code&gt; solution&lt;&#x2F;h2&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;
+fn main() {
+    let vec0 = Vec::new();
+
+    let mut vec1 = fill_vec(vec0.clone()); &amp;#x2F;&amp;#x2F; adding clone() here
+
+    &amp;#x2F;&amp;#x2F; Do not change the following line!
+    println!(&amp;quot;{} has length {} content `{:?}`&amp;quot;, &amp;quot;vec0&amp;quot;, vec0.len(), vec0);
+
+    vec1.push(88);
+
+    println!(&amp;quot;{} has length {} content `{:?}`&amp;quot;, &amp;quot;vec1&amp;quot;, vec1.len(), vec1);
+}
+
+fn fill_vec(vec: Vec&amp;lt;i32&amp;gt;) -&amp;gt; Vec&amp;lt;i32&amp;gt; {
+    let mut vec = vec;
+
+    vec.push(22);
+    vec.push(44);
+    vec.push(66);
+
+    vec
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;It works. Again, you shouldn&#x27;t be too surprised if you played around with the previous code that we had since it&#x27;s pretty much the same code.
+Our code compiles and this is our output.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;zsh&quot; class=&quot;language-zsh &quot;&gt;&lt;code class=&quot;language-zsh&quot; data-lang=&quot;zsh&quot;&gt;Output:
+====================
+vec0 has length 0 content `[]`
+vec1 has length 4 content `[22, 44, 66, 88]`
+
+====================
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;If we look at the hint, we actually have a few different options to make this code compile. The compiler told us one solution with cloning along with the warning that we should be aware that there could be a performance cost if our data is big. In our case it works because it&#x27;s not, but using &lt;code&gt;clone()&lt;&#x2F;code&gt; is not always a good solution. So, let&#x27;s look at alternate solutions from the Rustlings hint.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;strong&gt;hint&lt;&#x2F;strong&gt;
+So, &lt;code&gt;vec0&lt;&#x2F;code&gt; is passed into the &lt;code&gt;fill_vec&lt;&#x2F;code&gt; function as an argument. In Rust,
+when an argument is passed to a function and it&#x27;s not explicitly returned,
+you can&#x27;t use the original variable anymore. We call this &amp;quot;moving&amp;quot; a variable.
+Variables that are moved into a function (or block scope) and aren&#x27;t explicitly
+returned get &amp;quot;dropped&amp;quot; at the end of that function. This is also what happens here.
+There&#x27;s a few ways to fix this, try them all if you want:&lt;&#x2F;p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Make another, separate version of the data that&#x27;s in &lt;code&gt;vec0&lt;&#x2F;code&gt; and pass that to &lt;code&gt;fill_vec&lt;&#x2F;code&gt; instead.&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;
+&lt;p&gt;Make &lt;code&gt;fill_vec&lt;&#x2F;code&gt; borrow its argument instead of taking ownership of it, and then copy the data within the function in order to return an owned &lt;code&gt;Vec&amp;lt;i32&amp;gt;&lt;&#x2F;code&gt;&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;
+&lt;p&gt;Make &lt;code&gt;fill_vec&lt;&#x2F;code&gt; &lt;em&gt;mutably&lt;&#x2F;em&gt; borrow a reference to its argument (which will need to be mutable), modify it directly, then not return anything. Then you can get rid of &lt;code&gt;vec1&lt;&#x2F;code&gt; entirely -- note that this will change what gets printed by the first &lt;code&gt;println!&lt;&#x2F;code&gt;&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;p&gt;Option 1, is what we already did by cloning the data inside of &lt;code&gt;vec0&lt;&#x2F;code&gt; we created a separate version so let&#x27;s look at the other 2 options.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;solution-2&quot;&gt;Solution 2&lt;&#x2F;h2&gt;
+&lt;p&gt;Tells us that we should make &lt;code&gt;fill_vec&lt;&#x2F;code&gt; borrow its arguments instead of owning them, then we copy the data within the function and return and owned &lt;code&gt;Vec&amp;lt;i32&amp;gt;&lt;&#x2F;code&gt;. Let&#x27;s see how we can implement this.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;fn main() {
+    let vec0 = Vec::new();
+
+    let mut vec1 = fill_vec(&amp;amp;vec0); &amp;#x2F;&amp;#x2F; ad the `&amp;amp;` to our `vec0`
+
+    &amp;#x2F;&amp;#x2F; Do not change the following line!
+    println!(&amp;quot;{} has length {} content `{:?}`&amp;quot;, &amp;quot;vec0&amp;quot;, vec0.len(), vec0);
+
+    vec1.push(88);
+
+    println!(&amp;quot;{} has length {} content `{:?}`&amp;quot;, &amp;quot;vec1&amp;quot;, vec1.len(), vec1);
+}
+&amp;#x2F;&amp;#x2F; change the paramter of our function here to be a reference with &amp;amp;Vec&amp;lt;i32&amp;gt;
+fn fill_vec(vec: &amp;amp;Vec&amp;lt;i32&amp;gt;) -&amp;gt; Vec&amp;lt;i32&amp;gt; {
+    let mut vec = vec.clone(); &amp;#x2F;&amp;#x2F; we use clone() here to copy the data
+
+    vec.push(22);
+    vec.push(44);
+    vec.push(66);
+
+    vec
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;So here&#x27;s the second solution and although it handles the problem a little differently it still has to copy the data using &lt;code&gt;clone()&lt;&#x2F;code&gt;. So it would still have similar performance hits if we had a huge vector of data. However, it&#x27;s worth noting that the second solution is more idiomatic Rust. In Rust, it&#x27;s common to use the clone method directly on the caller&#x27;s side, making it clear that a clone is being created and ownership is being transferred.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;solution-3&quot;&gt;Solution 3&lt;&#x2F;h2&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;fn main() {
+    let mut vec0 = Vec::new(); &amp;#x2F;&amp;#x2F; Make vec0 mutable
+
+    fill_vec(&amp;amp;mut vec0); &amp;#x2F;&amp;#x2F; Pass a mutable reference to vec0
+
+    &amp;#x2F;&amp;#x2F; Do not change the following line!
+    println!(&amp;quot;{} has length {} content `{:?}`&amp;quot;, &amp;quot;vec0&amp;quot;, vec0.len(), vec0);
+
+    vec0.push(88);
+
+    println!(&amp;quot;{} has length {} content `{:?}`&amp;quot;, &amp;quot;vec0&amp;quot;, vec0.len(), vec0); &amp;#x2F;&amp;#x2F; Update the label to &amp;quot;vec0&amp;quot;
+}
+
+&amp;#x2F;&amp;#x2F; Change the function parameter to accept a mutable reference with &amp;amp;mut Vec&amp;lt;i32&amp;gt;
+&amp;#x2F;&amp;#x2F; Remove the return type, as the function doesn&amp;#x27;t need to return anything
+fn fill_vec(vec: &amp;amp;mut Vec&amp;lt;i32&amp;gt;) {
+    vec.push(22);
+    vec.push(44);
+    vec.push(66);
+}
+
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Now let&#x27;s took at our final solution that changes a bit more how the code functions. In this modified version, &lt;code&gt;fill_vec&lt;&#x2F;code&gt; now takes a mutable reference to a &lt;code&gt;Vec&amp;lt;i32&amp;gt;&lt;&#x2F;code&gt; (indicated by &lt;code&gt;&amp;amp;mut Vec&amp;lt;i32&amp;gt;&lt;&#x2F;code&gt;), allowing it to modify the input vector directly. Since the input vector is modified in place, the function doesn&#x27;t need to return anything. As a result, there is no need for a separate &lt;code&gt;vec1&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;We also see that our output changes&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;zsh&quot; class=&quot;language-zsh &quot;&gt;&lt;code class=&quot;language-zsh&quot; data-lang=&quot;zsh&quot;&gt;Output:
+====================
+vec0 has length 3 content `[22, 44, 66]`
+vec0 has length 4 content `[22, 44, 66, 88]`
+
+====================
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h2 id=&quot;so-which-solution-is-best&quot;&gt;So which Solution is Best?&lt;&#x2F;h2&gt;
+&lt;p&gt;The best solution depends on your specific requirements:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;If you need to keep the original vector unchanged and create a modified version, choose either solution 1 or 2. Solution 2 is more idiomatic Rust.&lt;&#x2F;li&gt;
+&lt;li&gt;If you don&#x27;t need the original vector in its initial state and want to modify it directly, solution 3 is the best choice, as it avoids creating a new vector and is more efficient.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;In general, solution 3 is the most efficient because it directly modifies the original vector without creating a new one. However, this may not be suitable for every use case, as it changes the original vector&#x27;s content. Let&#x27;s move on to the next exercise.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;move-semantics3&quot;&gt;&lt;code&gt;move_semantics3&lt;&#x2F;code&gt;&lt;&#x2F;h2&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;&amp;#x2F;&amp;#x2F; move_semantics3.rs
+&amp;#x2F;&amp;#x2F; Make me compile without adding new lines-- just changing existing lines!
+&amp;#x2F;&amp;#x2F; (no lines with multiple semicolons necessary!)
+&amp;#x2F;&amp;#x2F; Execute `rustlings hint move_semantics3` or use the `hint` watch subcommand for a hint.
+
+&amp;#x2F;&amp;#x2F; I AM NOT DONE
+
+fn main() {
+    let vec0 = Vec::new();
+
+    let mut vec1 = fill_vec(vec0);
+
+    println!(&amp;quot;{} has length {} content `{:?}`&amp;quot;, &amp;quot;vec1&amp;quot;, vec1.len(), vec1);
+
+    vec1.push(88);
+
+    println!(&amp;quot;{} has length {} content `{:?}`&amp;quot;, &amp;quot;vec1&amp;quot;, vec1.len(), vec1);
+}
+
+fn fill_vec(vec: Vec&amp;lt;i32&amp;gt;) -&amp;gt; Vec&amp;lt;i32&amp;gt; {
+    vec.push(22);
+    vec.push(44);
+    vec.push(66);
+
+    vec
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;This exercise says we can&#x27;t add any additional lines of code, but we can change the lines. Let&#x27;s take a look at what the compiler is saying.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;move-semantics3-errors&quot;&gt;&lt;code&gt;move_semantics3&lt;&#x2F;code&gt; errors&lt;&#x2F;h2&gt;
+&lt;pre data-lang=&quot;zsh&quot; class=&quot;language-zsh &quot;&gt;&lt;code class=&quot;language-zsh&quot; data-lang=&quot;zsh&quot;&gt;⚠️  Compiling of exercises&amp;#x2F;move_semantics&amp;#x2F;move_semantics3.rs failed! Please try again. Here is the output:
+error[E0596]: cannot borrow `vec` as mutable, as it is not declared as mutable
+  --&amp;gt; exercises&amp;#x2F;move_semantics&amp;#x2F;move_semantics3.rs:20:13
+   |
+20 | fn fill_vec(vec: Vec&amp;lt;i32&amp;gt;) -&amp;gt; Vec&amp;lt;i32&amp;gt; {
+   |             ^^^ not mutable
+21 |     vec.push(22);
+   |     ------------ cannot borrow as mutable
+22 |     vec.push(44);
+   |     ------------ cannot borrow as mutable
+23 |     vec.push(66);
+   |     ------------ cannot borrow as mutable
+   |
+help: consider changing this to be mutable
+   |
+20 | fn fill_vec(mut vec: Vec&amp;lt;i32&amp;gt;) -&amp;gt; Vec&amp;lt;i32&amp;gt; {
+   |             +++
+
+error: aborting due to previous error
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;As always we get great help from the compiler. This seems pretty straight forward, let&#x27;s do what the compiler suggests and see what happens.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;move-semantics3-solution&quot;&gt;&lt;code&gt;move_semantics3&lt;&#x2F;code&gt; solution&lt;&#x2F;h2&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;fn main() {
+    let vec0 = Vec::new();
+
+    let mut vec1 = fill_vec(vec0);
+
+    println!(&amp;quot;{} has length {} content `{:?}`&amp;quot;, &amp;quot;vec1&amp;quot;, vec1.len(), vec1);
+
+    vec1.push(88);
+
+    println!(&amp;quot;{} has length {} content `{:?}`&amp;quot;, &amp;quot;vec1&amp;quot;, vec1.len(), vec1);
+}
+&amp;#x2F;&amp;#x2F; adding `mut` to the `vec` paramater
+fn fill_vec(mut vec: Vec&amp;lt;i32&amp;gt;) -&amp;gt; Vec&amp;lt;i32&amp;gt; {
+    vec.push(22);
+    vec.push(44);
+    vec.push(66);
+
+    vec
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Success!&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;zsh&quot; class=&quot;language-zsh &quot;&gt;&lt;code class=&quot;language-zsh&quot; data-lang=&quot;zsh&quot;&gt;Output:
+====================
+vec1 has length 3 content `[22, 44, 66]`
+vec1 has length 4 content `[22, 44, 66, 88]`
+
+====================
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Following the Rust compiler&#x27;s help is very easy  in this case, if we notice the code is very similar to the previous exercise but this code is missing the &lt;code&gt;let mut vec = vec;&lt;&#x2F;code&gt; line from the &lt;code&gt;fn fill_vec&lt;&#x2F;code&gt; function.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;wrapping-up-the-rustlings-move-semantics-journey-continues&quot;&gt;Wrapping Up: The Rustlings Move Semantics Journey Continues!&lt;&#x2F;h2&gt;
+&lt;p&gt;There you have it! We&#x27;ve explored the first three &lt;code&gt;move_semantics&lt;&#x2F;code&gt; exercises from the Rustlings course. To keep these blog posts digestible, we&#x27;ll be diving into the next 3 &lt;code&gt;move_semantics&lt;&#x2F;code&gt; challenges in a separate post, so keep an eye out for that!&lt;&#x2F;p&gt;
+&lt;p&gt;Now, let&#x27;s do a quick recap of what we&#x27;ve covered in this post: we guided you through the first 3 &lt;code&gt;move_semantics&lt;&#x2F;code&gt; exercises, shedding light on how to tackle each problem by interpreting the error messages and hints provided. We also compared various solutions for each exercise, highlighting the trade-offs and stressing the importance of choosing the right method based on your code&#x27;s specific needs. Our focus was on understanding the concepts of ownership, borrowing, and mutable borrowing in Rust – essential ingredients for writing efficient and safe code.&lt;&#x2F;p&gt;
+&lt;p&gt;By working through these exercises and comprehending the solutions, you&#x27;re now better prepared to handle ownership and borrowing situations in your Rust projects. Stay tuned for more Rustling adventures!&lt;&#x2F;p&gt;
+</description>
+      </item>
       <item>
           <title>06 Rustlings Vectors</title>
           <pubDate>Wed, 10 May 2023 00:00:00 +0000</pubDate>
