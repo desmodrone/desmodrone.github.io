@@ -14,7 +14,8 @@
           <author>Unknown</author>
           <link>https://desmodrone.github.io/posts/07-rustlings-move-semantics1/</link>
           <guid>https://desmodrone.github.io/posts/07-rustlings-move-semantics1/</guid>
-          <description>&lt;p&gt;These exercises are adapted from &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;pnkfelix&quot;&gt;pnkfelix&lt;&#x2F;a&gt;&#x27;s &lt;a href=&quot;https:&#x2F;&#x2F;pnkfelix.github.io&#x2F;rust-examples-icfp2014&#x2F;&quot;&gt;Rust Tutorial&lt;&#x2F;a&gt; -- Thank you Felix!!!&lt;&#x2F;p&gt;
+          <description>&lt;p&gt;From the Rustlings ReadMe:
+These exercises are adapted from &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;pnkfelix&quot;&gt;pnkfelix&lt;&#x2F;a&gt;&#x27;s &lt;a href=&quot;https:&#x2F;&#x2F;pnkfelix.github.io&#x2F;rust-examples-icfp2014&#x2F;&quot;&gt;Rust Tutorial&lt;&#x2F;a&gt; -- Thank you Felix!!!&lt;&#x2F;p&gt;
 &lt;h2 id=&quot;further-information&quot;&gt;Further information&lt;&#x2F;h2&gt;
 &lt;p&gt;For this section, the book links are especially important.&lt;&#x2F;p&gt;
 &lt;ul&gt;
@@ -1952,7 +1953,7 @@ fn main() {
 </description>
       </item>
       <item>
-          <title>Hello (again) Rustlings</title>
+          <title>Hello (again) Rustlings: Index</title>
           <pubDate>Tue, 11 Apr 2023 00:00:00 +0000</pubDate>
           <author>Unknown</author>
           <link>https://desmodrone.github.io/posts/hello-rustlings/</link>
@@ -1965,6 +1966,7 @@ fn main() {
 &lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;desmodrone.github.io&#x2F;posts&#x2F;04-rustlings-quiz1&#x2F;&quot;&gt;04_rustlings_quiz1&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
 &lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;desmodrone.github.io&#x2F;posts&#x2F;05-rustlings-primitive-types&#x2F;&quot;&gt;05_rustlings_primitive_types&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
 &lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;desmodrone.github.io&#x2F;posts&#x2F;06-rustlings-vecs&#x2F;&quot;&gt;06_rustlings_vecs&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;desmodrone.github.io&#x2F;posts&#x2F;07-rustlings-move-semantics1&#x2F;&quot;&gt;07_rustlings_move_semantics_part_1&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
 &lt;&#x2F;ul&gt;
 &lt;p&gt;Inspired by Tris Oaten&#x27;s recent video &lt;a href=&quot;https:&#x2F;&#x2F;youtu.be&#x2F;2hXNd6x9sZs&quot;&gt;How to Learn Rust&lt;&#x2F;a&gt; on his excellent YouTube channel &lt;a href=&quot;https:&#x2F;&#x2F;www.youtube.com&#x2F;@NoBoilerplate&quot;&gt;No Boilerplate&lt;&#x2F;a&gt;, I&#x27;ve decided to refocus my journey with the Rust programming language. In hopes of effectively learning Rust, I&#x27;ll be following the holy trinity of Rust learning resources as recommended by Tris:&lt;&#x2F;p&gt;
 &lt;ul&gt;
