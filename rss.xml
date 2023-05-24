@@ -7,7 +7,404 @@
       <generator>Zola</generator>
       <language>en</language>
       <atom:link href="https://desmodrone.github.io/rss.xml" rel="self" type="application/rss+xml"/>
-      <lastBuildDate>Mon, 15 May 2023 00:00:00 +0000</lastBuildDate>
+      <lastBuildDate>Wed, 24 May 2023 00:00:00 +0000</lastBuildDate>
+      <item>
+          <title>07 Rustlings Move Semantics Part 2</title>
+          <pubDate>Wed, 24 May 2023 00:00:00 +0000</pubDate>
+          <author>Unknown</author>
+          <link>https://desmodrone.github.io/posts/07-rustlings-move-semantics2/</link>
+          <guid>https://desmodrone.github.io/posts/07-rustlings-move-semantics2/</guid>
+          <description>&lt;p&gt;From the Rustlings ReadMe:
+These exercises are adapted from &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;pnkfelix&quot;&gt;pnkfelix&lt;&#x2F;a&gt;&#x27;s &lt;a href=&quot;https:&#x2F;&#x2F;pnkfelix.github.io&#x2F;rust-examples-icfp2014&#x2F;&quot;&gt;Rust Tutorial&lt;&#x2F;a&gt; -- Thank you Felix!!!&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;further-information&quot;&gt;Further information&lt;&#x2F;h2&gt;
+&lt;p&gt;For this section, the book links are especially important.&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;doc.rust-lang.org&#x2F;book&#x2F;ch04-01-what-is-ownership.html&quot;&gt;Ownership&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;doc.rust-lang.org&#x2F;book&#x2F;ch04-02-references-and-borrowing.html&quot;&gt;Reference and borrowing&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h2 id=&quot;move-semantics-part-2&quot;&gt;Move Semantics Part 2&lt;&#x2F;h2&gt;
+&lt;p&gt;We&#x27;ve already covered the first three exercises of &lt;a href=&quot;https:&#x2F;&#x2F;desmodrone.github.io&#x2F;posts&#x2F;07-rustlings-move-semantics1&#x2F;&quot;&gt;Move Semantics&lt;&#x2F;a&gt; in part one, in this episode we tackle the next three. Let&#x27;s get started!&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;move-semantics4-rs&quot;&gt;&lt;code&gt;move_semantics4.rs&lt;&#x2F;code&gt;&lt;&#x2F;h2&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;&amp;#x2F;&amp;#x2F; move_semantics4.rs
+&amp;#x2F;&amp;#x2F; Refactor this code so that instead of passing `vec0` into the `fill_vec` function,
+&amp;#x2F;&amp;#x2F; the Vector gets created in the function itself and passed back to the main
+&amp;#x2F;&amp;#x2F; function.
+&amp;#x2F;&amp;#x2F; Execute `rustlings hint move_semantics4` or use the `hint` watch subcommand for a hint.
+
+&amp;#x2F;&amp;#x2F; I AM NOT DONE
+
+fn main() {
+    let vec0 = Vec::new();
+
+    let mut vec1 = fill_vec(vec0);
+
+    println!(&amp;quot;{} has length {} content `{:?}`&amp;quot;, &amp;quot;vec1&amp;quot;, vec1.len(), vec1);
+
+    vec1.push(88);
+
+    println!(&amp;quot;{} has length {} content `{:?}`&amp;quot;, &amp;quot;vec1&amp;quot;, vec1.len(), vec1);
+}
+
+&amp;#x2F;&amp;#x2F; `fill_vec()` no longer takes `vec: Vec&amp;lt;i32&amp;gt;` as argument
+fn fill_vec() -&amp;gt; Vec&amp;lt;i32&amp;gt; {
+    let mut vec = vec;
+
+    vec.push(22);
+    vec.push(44);
+    vec.push(66);
+
+    vec
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Our instructions here are to refactor our code so that instead of passing &lt;code&gt;vec0&lt;&#x2F;code&gt; into the &lt;code&gt;fill_vec&lt;&#x2F;code&gt; function, the Vector gets created in the function itself and passed back to the main function.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;move-semantics4-rs-errors&quot;&gt;&lt;code&gt;move_semantics4.rs&lt;&#x2F;code&gt; errors&lt;&#x2F;h2&gt;
+&lt;pre data-lang=&quot;zsh&quot; class=&quot;language-zsh &quot;&gt;&lt;code class=&quot;language-zsh&quot; data-lang=&quot;zsh&quot;&gt;⚠️  Compiling of exercises&amp;#x2F;move_semantics&amp;#x2F;move_semantics4.rs failed! Please try again. Here is the output:
+error[E0423]: expected value, found macro `vec`
+  --&amp;gt; exercises&amp;#x2F;move_semantics&amp;#x2F;move_semantics4.rs:23:19
+   |
+23 |     let mut vec = vec;
+   |                   ^^^ not a value
+
+error[E0061]: this function takes 0 arguments but 1 argument was supplied
+  --&amp;gt; exercises&amp;#x2F;move_semantics&amp;#x2F;move_semantics4.rs:12:20
+   |
+12 |     let mut vec1 = fill_vec(vec0);
+   |                    ^^^^^^^^ ---- argument of type `Vec&amp;lt;_&amp;gt;` unexpected
+   |
+note: function defined here
+  --&amp;gt; exercises&amp;#x2F;move_semantics&amp;#x2F;move_semantics4.rs:22:4
+   |
+22 | fn fill_vec() -&amp;gt; Vec&amp;lt;i32&amp;gt; {
+   |    ^^^^^^^^
+help: remove the extra argument
+   |
+12 |     let mut vec1 = fill_vec();
+   |                            ~~
+
+error: aborting due to 2 previous errors
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Error&#x27;s  are telling us that on line 23, &lt;code&gt;vec&lt;&#x2F;code&gt; is not a value in addition it tells us that the function &lt;code&gt;fill_vec()&lt;&#x2F;code&gt; takes 0 arguments but one is being supplied.  So let&#x27;s remove the argument on line 12 from the &lt;code&gt;fill_vec(vec0)&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;After we do that we still get some errors, but they&#x27;re different now.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;zsh&quot; class=&quot;language-zsh &quot;&gt;&lt;code class=&quot;language-zsh&quot; data-lang=&quot;zsh&quot;&gt;⚠️  Compiling of exercises&amp;#x2F;move_semantics&amp;#x2F;move_semantics4.rs failed! Please try again. Here is the output:
+error[E0423]: expected value, found macro `vec`
+  --&amp;gt; exercises&amp;#x2F;move_semantics&amp;#x2F;move_semantics4.rs:23:19
+   |
+23 |     let mut vec = vec;
+   |                   ^^^ not a value
+
+error[E0282]: type annotations needed for `Vec&amp;lt;T&amp;gt;`
+  --&amp;gt; exercises&amp;#x2F;move_semantics&amp;#x2F;move_semantics4.rs:10:9
+   |
+10 |     let vec0 = Vec::new();
+   |         ^^^^
+   |
+help: consider giving `vec0` an explicit type, where the type for type parameter `T` is specified
+   |
+10 |     let vec0: Vec&amp;lt;T&amp;gt; = Vec::new();
+   |             ++++++++
+
+error: aborting due to 2 previous errors
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;The error&#x27;s start point us to using generics with &lt;code&gt;Vec&amp;lt;T&amp;gt;&lt;&#x2F;code&gt; but our solution should be must simpler than that, since our instructions are to refactor our code to not create &lt;code&gt;vec0&lt;&#x2F;code&gt; but to create a new vector in our &lt;code&gt;fill_vec()&lt;&#x2F;code&gt; function.&lt;&#x2F;p&gt;
+&lt;p&gt;Let&#x27;s see what happens if we simple remove the &lt;code&gt;let vec0 = Vec::new();&lt;&#x2F;code&gt; line from our code but and add the &lt;code&gt;let mut vec = Vec::new();&lt;&#x2F;code&gt; to our &lt;code&gt;fill_vec()&lt;&#x2F;code&gt; function. Hey guess what? It works. Below is the update code solution.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;move-semantics4-solution&quot;&gt;&lt;code&gt;move_semantics4&lt;&#x2F;code&gt; solution&lt;&#x2F;h2&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;fn main() {
+	&amp;#x2F;&amp;#x2F; removed previous vector creation here
+    let mut vec1 = fill_vec();
+
+    println!(&amp;quot;{} has length {} content `{:?}`&amp;quot;, &amp;quot;vec1&amp;quot;, vec1.len(), vec1);
+
+    vec1.push(88);
+
+    println!(&amp;quot;{} has length {} content `{:?}`&amp;quot;, &amp;quot;vec1&amp;quot;, vec1.len(), vec1);
+}
+
+fn fill_vec() -&amp;gt; Vec&amp;lt;i32&amp;gt; {
+    let mut vec = Vec::new(); &amp;#x2F;&amp;#x2F; added vector creation within the function
+
+    vec.push(22);
+    vec.push(44);
+    vec.push(66);
+
+    vec
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;This is our output:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;zsh&quot; class=&quot;language-zsh &quot;&gt;&lt;code class=&quot;language-zsh&quot; data-lang=&quot;zsh&quot;&gt;Output:
+====================
+vec1 has length 3 content `[22, 44, 66]`
+vec1 has length 4 content `[22, 44, 66, 88]`
+
+====================
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h2 id=&quot;move-semantics5-rs&quot;&gt;&lt;code&gt;move_semantics5.rs&lt;&#x2F;code&gt;&lt;&#x2F;h2&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;&amp;#x2F;&amp;#x2F; move_semantics5.rs
+&amp;#x2F;&amp;#x2F; Make me compile only by reordering the lines in `main()`, but without
+&amp;#x2F;&amp;#x2F; adding, changing or removing any of them.
+&amp;#x2F;&amp;#x2F; Execute `rustlings hint move_semantics5` or use the `hint` watch subcommand for a hint.
+
+&amp;#x2F;&amp;#x2F; I AM NOT DONE
+
+fn main() {
+    let mut x = 100;
+    let y = &amp;amp;mut x;
+    let z = &amp;amp;mut x;
+    *y += 100;
+    *z += 1000;
+    assert_eq!(x, 1200);
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;This looks like an easy one, no need to write anything we just need to re-order the sequence of the lines. Let&#x27;s look at the errors and see if we can get any hints on what we need to do.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;move-semantics5-rs-errors&quot;&gt;&lt;code&gt;move_semantics5.rs&lt;&#x2F;code&gt; errors&lt;&#x2F;h2&gt;
+&lt;pre data-lang=&quot;zsh&quot; class=&quot;language-zsh &quot;&gt;&lt;code class=&quot;language-zsh&quot; data-lang=&quot;zsh&quot;&gt;⚠️  Compiling of exercises&amp;#x2F;move_semantics&amp;#x2F;move_semantics5.rs failed! Please try again. Here is the output:
+error[E0499]: cannot borrow `x` as mutable more than once at a time
+  --&amp;gt; exercises&amp;#x2F;move_semantics&amp;#x2F;move_semantics5.rs:11:13
+   |
+10 |     let y = &amp;amp;mut x;
+   |             ------ first mutable borrow occurs here
+11 |     let z = &amp;amp;mut x;
+   |             ^^^^^^ second mutable borrow occurs here
+12 |     *y += 100;
+   |     --------- first borrow later used here
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;The Rust compiler tells us that we are borrowing &lt;code&gt;x&lt;&#x2F;code&gt; mutably too many times, so let&#x27;s go step by step and see what is happening on each line.&lt;&#x2F;p&gt;
+&lt;ol&gt;
+&lt;li&gt;We declare a mutable variable &lt;code&gt;x&lt;&#x2F;code&gt; and assign it the value &lt;code&gt;100&lt;&#x2F;code&gt;.&lt;&#x2F;li&gt;
+&lt;li&gt;We create a mutable reference &lt;code&gt;y&lt;&#x2F;code&gt; that borrows &lt;code&gt;x&lt;&#x2F;code&gt; using &lt;code&gt;&amp;amp;mut x&lt;&#x2F;code&gt;.&lt;&#x2F;li&gt;
+&lt;li&gt;Then, we create another mutable reference &lt;code&gt;z&lt;&#x2F;code&gt; that also borrows &lt;code&gt;x&lt;&#x2F;code&gt; using &lt;code&gt;&amp;amp;mut x&lt;&#x2F;code&gt;. This is where the problem arises.
+&lt;ul&gt;
+&lt;li&gt;The rules of borrowing state that you can have either one mutable reference or any number of immutable references to a value at a given time.&lt;&#x2F;li&gt;
+&lt;li&gt;In this case, we already have &lt;code&gt;y&lt;&#x2F;code&gt; as a mutable reference to &lt;code&gt;x&lt;&#x2F;code&gt;, so we can&#x27;t create another mutable reference &lt;code&gt;z&lt;&#x2F;code&gt;.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;The code tries to dereference &lt;code&gt;y&lt;&#x2F;code&gt; using &lt;code&gt;*y&lt;&#x2F;code&gt; and add &lt;code&gt;100&lt;&#x2F;code&gt; to the value of &lt;code&gt;x&lt;&#x2F;code&gt;. This is invalid because &lt;code&gt;y&lt;&#x2F;code&gt; is still in scope and holds a mutable reference to &lt;code&gt;x&lt;&#x2F;code&gt;, and at this point, &lt;code&gt;z&lt;&#x2F;code&gt; also exists.&lt;&#x2F;li&gt;
+&lt;li&gt;Similarly, when the code tries to dereference &lt;code&gt;z&lt;&#x2F;code&gt; using &lt;code&gt;*z&lt;&#x2F;code&gt; and add &lt;code&gt;1000&lt;&#x2F;code&gt; to the value of &lt;code&gt;x&lt;&#x2F;code&gt;, it violates the borrowing rules.&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;p&gt;So how do we solve this? Let&#x27;s try by dereferencing &lt;code&gt;y&lt;&#x2F;code&gt; before we try to borrow it again with &lt;code&gt;z&lt;&#x2F;code&gt; by moving the line &lt;code&gt;*y += 100;&lt;&#x2F;code&gt;
+above the 2nd attempt mutable borrow which is &lt;code&gt;let z = &amp;amp;mut x;&lt;&#x2F;code&gt;. Doing so should allow us to compile.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;move-semantics5-rs-solution&quot;&gt;&lt;code&gt;move_semantics5.rs&lt;&#x2F;code&gt; solution&lt;&#x2F;h2&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;fn main() {
+    let mut x = 100;
+    let y = &amp;amp;mut x;
+    *y += 100;
+    let z = &amp;amp;mut x;
+    *z += 1000;
+    assert_eq!(x, 1200);
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;It compiles! We don&#x27;t get an output because there is not &lt;code&gt;println!&lt;&#x2F;code&gt; statement instead we have an &lt;code&gt;assert_eq!&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;The code compiles successfully because it follows the borrowing rules in Rust. Here&#x27;s a step-by-step explanation:&lt;&#x2F;p&gt;
+&lt;ol&gt;
+&lt;li&gt;We start by declaring a mutable variable &lt;code&gt;x&lt;&#x2F;code&gt; and assigning it the value &lt;code&gt;100&lt;&#x2F;code&gt;.&lt;&#x2F;li&gt;
+&lt;li&gt;We then create a mutable reference &lt;code&gt;y&lt;&#x2F;code&gt; that borrows &lt;code&gt;x&lt;&#x2F;code&gt; using &lt;code&gt;&amp;amp;mut x&lt;&#x2F;code&gt;. This allows us to modify &lt;code&gt;x&lt;&#x2F;code&gt; through &lt;code&gt;y&lt;&#x2F;code&gt;.&lt;&#x2F;li&gt;
+&lt;li&gt;We dereference &lt;code&gt;y&lt;&#x2F;code&gt; using &lt;code&gt;*y&lt;&#x2F;code&gt; and add &lt;code&gt;100&lt;&#x2F;code&gt; to the value of &lt;code&gt;x&lt;&#x2F;code&gt;. This modifies &lt;code&gt;x&lt;&#x2F;code&gt; to &lt;code&gt;200&lt;&#x2F;code&gt;.&lt;&#x2F;li&gt;
+&lt;li&gt;Next, we create another mutable reference &lt;code&gt;z&lt;&#x2F;code&gt; that also borrows &lt;code&gt;x&lt;&#x2F;code&gt; using &lt;code&gt;&amp;amp;mut x&lt;&#x2F;code&gt;. This is allowed because there are no other references to &lt;code&gt;x&lt;&#x2F;code&gt; at this point.&lt;&#x2F;li&gt;
+&lt;li&gt;We dereference &lt;code&gt;z&lt;&#x2F;code&gt; using &lt;code&gt;*z&lt;&#x2F;code&gt; and add &lt;code&gt;1000&lt;&#x2F;code&gt; to the value of &lt;code&gt;x&lt;&#x2F;code&gt;. This modifies &lt;code&gt;x&lt;&#x2F;code&gt; to &lt;code&gt;1200&lt;&#x2F;code&gt;.&lt;&#x2F;li&gt;
+&lt;li&gt;Finally, we use &lt;code&gt;assert_eq!&lt;&#x2F;code&gt; to check if &lt;code&gt;x&lt;&#x2F;code&gt; is equal to &lt;code&gt;1200&lt;&#x2F;code&gt;. Since the value of &lt;code&gt;x&lt;&#x2F;code&gt; is indeed &lt;code&gt;1200&lt;&#x2F;code&gt;, the assertion passes.&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;p&gt;Let&#x27;s move on to our final &lt;code&gt;move_semantics&lt;&#x2F;code&gt; exercise.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;move-semantics6-rs&quot;&gt;&lt;code&gt;move_semantics6.rs&lt;&#x2F;code&gt;&lt;&#x2F;h2&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;&amp;#x2F;&amp;#x2F; move_semantics6.rs
+&amp;#x2F;&amp;#x2F; Execute `rustlings hint move_semantics6` or use the `hint` watch subcommand for a hint.
+&amp;#x2F;&amp;#x2F; You can&amp;#x27;t change anything except adding or removing references.
+
+&amp;#x2F;&amp;#x2F; I AM NOT DONE
+
+fn main() {
+    let data = &amp;quot;Rust is great!&amp;quot;.to_string();
+
+    get_char(data);
+
+    string_uppercase(&amp;amp;data);
+}
+
+&amp;#x2F;&amp;#x2F; Should not take ownership
+fn get_char(data: String) -&amp;gt; char {
+    data.chars().last().unwrap()
+}
+
+&amp;#x2F;&amp;#x2F; Should take ownership
+fn string_uppercase(mut data: &amp;amp;String) {
+    data = &amp;amp;data.to_uppercase();
+
+    println!(&amp;quot;{}&amp;quot;, data);
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Our instructions are to not change anything but the references, so we&#x27;ll look at the errors to get a better understanding as to where we are having issues.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;move-semantics6-rs-errors&quot;&gt;&lt;code&gt;move_semantics6.rs&lt;&#x2F;code&gt; errors&lt;&#x2F;h2&gt;
+&lt;pre data-lang=&quot;zsh&quot; class=&quot;language-zsh &quot;&gt;&lt;code class=&quot;language-zsh&quot; data-lang=&quot;zsh&quot;&gt;⚠️  Compiling of exercises&amp;#x2F;move_semantics&amp;#x2F;move_semantics6.rs failed! Please try again. Here is the output:
+error[E0382]: borrow of moved value: `data`
+  --&amp;gt; exercises&amp;#x2F;move_semantics&amp;#x2F;move_semantics6.rs:12:22
+   |
+8  |     let data = &amp;quot;Rust is great!&amp;quot;.to_string();
+   |         ---- move occurs because `data` has type `String`, which does not implement the `Copy` trait
+9  |
+10 |     get_char(data);
+   |              ---- value moved here
+11 |
+12 |     string_uppercase(&amp;amp;data);
+   |                      ^^^^^ value borrowed here after move
+   |
+note: consider changing this parameter type in function `get_char` to borrow instead if owning the value is not necessary
+  --&amp;gt; exercises&amp;#x2F;move_semantics&amp;#x2F;move_semantics6.rs:16:19
+   |
+16 | fn get_char(data: String) -&amp;gt; char {
+   |    --------       ^^^^^^ this parameter takes ownership of the value
+   |    |
+   |    in this function
+help: consider cloning the value if the performance cost is acceptable
+   |
+10 |     get_char(data.clone());
+   |                  ++++++++
+
+error[E0716]: temporary value dropped while borrowed
+  --&amp;gt; exercises&amp;#x2F;move_semantics&amp;#x2F;move_semantics6.rs:22:13
+   |
+21 | fn string_uppercase(mut data: &amp;amp;String) {
+   |                               - let us call the lifetime of this reference `&amp;#x27;1`
+22 |     data = &amp;amp;data.to_uppercase();
+   |     --------^^^^^^^^^^^^^^^^^^^- temporary value is freed at the end of this statement
+   |     |       |
+   |     |       creates a temporary value which is freed while still in use
+   |     assignment requires that borrow lasts for `&amp;#x27;1`
+
+error: aborting due to 2 previous errors
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Alright let&#x27;s go down the list understanding what there errors are telling us and see how we can fix them.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;zsh&quot; class=&quot;language-zsh &quot;&gt;&lt;code class=&quot;language-zsh&quot; data-lang=&quot;zsh&quot;&gt;8  |     let data = &amp;quot;Rust is great!&amp;quot;.to_string();
+   |         ---- move occurs because `data` has type `String`, which does not implement the `Copy` trait
+9  |
+10 |     get_char(data);
+   |              ---- value moved here
+11 |
+12 |     string_uppercase(&amp;amp;data);
+   |                      ^^^^^ value borrowed here after move
+   note: consider changing this parameter type in function `get_char` to borrow instead if owning the value is not necessary
+  --&amp;gt; exercises&amp;#x2F;move_semantics&amp;#x2F;move_semantics6.rs:16:19
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;here the compiler is telling us clearly where to look &lt;code&gt;data&lt;&#x2F;code&gt; does not implement the copy trait so we when we pass it through as a parameter in &lt;code&gt;get_char(data),&lt;&#x2F;code&gt; it becomes owned by &lt;code&gt;get_char()&lt;&#x2F;code&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;In the next batch of errors we get a suggestion about cloning, but we know that we can&#x27;t change any of the code other than changing the references, so this is not the path we want to take.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;zsh&quot; class=&quot;language-zsh &quot;&gt;&lt;code class=&quot;language-zsh&quot; data-lang=&quot;zsh&quot;&gt;16 | fn get_char(data: String) -&amp;gt; char {
+   |    --------       ^^^^^^ this parameter takes ownership of the value
+   |    |
+   |    in this function
+help: consider cloning the value if the performance cost is acceptable
+   |
+10 |     get_char(data.clone());
+   |                  ++++++++
+
+error[E0716]: temporary value dropped while borrowed
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;pre data-lang=&quot;zsh&quot; class=&quot;language-zsh &quot;&gt;&lt;code class=&quot;language-zsh&quot; data-lang=&quot;zsh&quot;&gt; |
+21 | fn string_uppercase(mut data: &amp;amp;String) {
+   |                               - let us call the lifetime of this reference `&amp;#x27;1&amp;#x27;`
+22 |     data = &amp;amp;data.to_uppercase();
+   |     --------^^^^^^^^^^^^^^^^^^^- temporary value is freed at the end of this statement
+   |     |       |
+   |     |       creates a temporary value which is freed while still in use
+   |     assignment requires that borrow lasts for `&amp;#x27;1`
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;We now get a message about the lifetime of a reference which we haven&#x27;t covered yet so let&#x27;s just keep this in mind for now, but again our task is to essentially just change how the functions handle ownership. So let&#x27;s go back and look at the functions in the code:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;&amp;#x2F;&amp;#x2F; Should not take ownership
+fn get_char(data: String) -&amp;gt; char {
+    data.chars().last().unwrap()
+}
+
+&amp;#x2F;&amp;#x2F; Should take ownership
+fn string_uppercase(mut data: &amp;amp;String) {
+    data = &amp;amp;data.to_uppercase();
+
+    println!(&amp;quot;{}&amp;quot;, data);
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Looking at these two code blocks it looks straightforward, it&#x27;s clear that we must change where the &lt;code&gt;&amp;amp;&lt;&#x2F;code&gt; symbol is being used and essentially swap positions in each function to this:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;&amp;#x2F;&amp;#x2F; Should not take ownership
+fn get_char(data: &amp;amp;String) -&amp;gt; char {
+    data.chars().last().unwrap()
+}
+
+&amp;#x2F;&amp;#x2F; Should take ownership
+fn string_uppercase(mut data: String) {
+    data = data.to_uppercase();
+
+    println!(&amp;quot;{}&amp;quot;, data);
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Once we&#x27;ve done this we get new error&#x27;s but it should be pretty clear what we need to do in the &lt;code&gt;fn main()&lt;&#x2F;code&gt;&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;zsh&quot; class=&quot;language-zsh &quot;&gt;&lt;code class=&quot;language-zsh&quot; data-lang=&quot;zsh&quot;&gt;⚠️  Compiling of exercises&amp;#x2F;move_semantics&amp;#x2F;move_semantics6.rs failed! Please try again. Here is the output:
+error[E0308]: mismatched types
+  --&amp;gt; exercises&amp;#x2F;move_semantics&amp;#x2F;move_semantics6.rs:10:14
+   |
+10 |     get_char(data);
+   |     -------- ^^^^
+   |     |        |
+   |     |        expected `&amp;amp;String`, found struct `String`
+   |     |        help: consider borrowing here: `&amp;amp;data`
+   |     arguments to this function are incorrect
+   |
+note: function defined here
+  --&amp;gt; exercises&amp;#x2F;move_semantics&amp;#x2F;move_semantics6.rs:16:4
+   |
+16 | fn get_char(data: &amp;amp;String) -&amp;gt; char {
+   |    ^^^^^^^^ -------------
+
+error[E0308]: mismatched types
+  --&amp;gt; exercises&amp;#x2F;move_semantics&amp;#x2F;move_semantics6.rs:12:22
+   |
+12 |     string_uppercase(&amp;amp;data);
+   |     ---------------- ^^^^^ expected struct `String`, found `&amp;amp;String`
+   |     |
+   |     arguments to this function are incorrect
+   |
+note: function defined here
+  --&amp;gt; exercises&amp;#x2F;move_semantics&amp;#x2F;move_semantics6.rs:21:4
+   |
+21 | fn string_uppercase(mut data: String) {
+   |    ^^^^^^^^^^^^^^^^ ----------------
+help: consider removing the borrow
+   |
+12 -     string_uppercase(&amp;amp;data);
+12 +     string_uppercase(data);
+   |
+
+error: aborting due to 2 previous errors
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;The compiler gives us great information on what we should do literally showing us what we can do to make the code compile. So let&#x27;s try it.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;move-semantics6-rs-solution&quot;&gt;&lt;code&gt;move_semantics6.rs&lt;&#x2F;code&gt; solution&lt;&#x2F;h2&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;fn main() {
+    let data = &amp;quot;Rust is great!&amp;quot;.to_string();
+
+    get_char(&amp;amp;data);
+
+    string_uppercase(data);
+}
+
+&amp;#x2F;&amp;#x2F; Should not take ownership
+fn get_char(data: &amp;amp;String) -&amp;gt; char {
+    data.chars().last().unwrap()
+}
+
+&amp;#x2F;&amp;#x2F; Should take ownership
+fn string_uppercase(mut data: String) {
+    data = data.to_uppercase();
+
+    println!(&amp;quot;{}&amp;quot;, data);
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;There we have it our solution is to again swap the &lt;code&gt;&amp;amp;&lt;&#x2F;code&gt; symbol&#x27;s position to match that of the function&#x27;s signature to make sure that we are borrowing and taking ownership as the function expects. With that we get our print out:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;zsh&quot; class=&quot;language-zsh &quot;&gt;&lt;code class=&quot;language-zsh&quot; data-lang=&quot;zsh&quot;&gt;Output:
+====================
+RUST IS GREAT!
+
+====================
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h3 id=&quot;conclusion&quot;&gt;Conclusion&lt;&#x2F;h3&gt;
+&lt;p&gt;Rust&#x27;s move semantics are important for understanding memory management and ownership in the language. By leveraging references, borrowing, and ownership, Rust ensures memory safety and eliminates many common programming errors like null pointer dereferences and dangling references.&lt;&#x2F;p&gt;
+&lt;p&gt;In this blog post, we explored three exercises related to move semantics. We refactored code, re-ordered lines, and adjusted ownership to solve the problems. Through these exercises, we gained a better understanding of how move semantics work in Rust and how to manipulate ownership and references effectively.&lt;&#x2F;p&gt;
+&lt;p&gt;Move semantics play a crucial role in Rust&#x27;s design philosophy, enabling high-performance and safe code without sacrificing expressiveness. By embracing move semantics and mastering the intricacies of ownership, borrowing, and references, Rust developers can write robust and efficient code.&lt;&#x2F;p&gt;
+&lt;p&gt;Remember, practice is key to mastering move semantics and other advanced features of Rust. Keep exploring, experimenting, and building projects to deepen your understanding and become a proficient Rust programmer. Happy coding!&lt;&#x2F;p&gt;
+</description>
+      </item>
       <item>
           <title>07 Rustlings Move Semantics Part 1</title>
           <pubDate>Mon, 15 May 2023 00:00:00 +0000</pubDate>
@@ -1967,6 +2364,7 @@ fn main() {
 &lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;desmodrone.github.io&#x2F;posts&#x2F;05-rustlings-primitive-types&#x2F;&quot;&gt;05_rustlings_primitive_types&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
 &lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;desmodrone.github.io&#x2F;posts&#x2F;06-rustlings-vecs&#x2F;&quot;&gt;06_rustlings_vecs&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
 &lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;desmodrone.github.io&#x2F;posts&#x2F;07-rustlings-move-semantics1&#x2F;&quot;&gt;07_rustlings_move_semantics_part_1&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;desmodrone.github.io&#x2F;posts&#x2F;07-rustlings-move-semantics2&#x2F;&quot;&gt;07_rustlings_move_semantics_part_2&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
 &lt;&#x2F;ul&gt;
 &lt;p&gt;Inspired by Tris Oaten&#x27;s recent video &lt;a href=&quot;https:&#x2F;&#x2F;youtu.be&#x2F;2hXNd6x9sZs&quot;&gt;How to Learn Rust&lt;&#x2F;a&gt; on his excellent YouTube channel &lt;a href=&quot;https:&#x2F;&#x2F;www.youtube.com&#x2F;@NoBoilerplate&quot;&gt;No Boilerplate&lt;&#x2F;a&gt;, I&#x27;ve decided to refocus my journey with the Rust programming language. In hopes of effectively learning Rust, I&#x27;ll be following the holy trinity of Rust learning resources as recommended by Tris:&lt;&#x2F;p&gt;
 &lt;ul&gt;

@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <meta itemprop="name" content="desmo" />
+  <meta itemprop="description" content="Random Ideas" />
+
+  <link rel="apple-touch-icon" sizes="180x180" href="https://desmodrone.github.io/apple-touch-icon.png"/>
+  <link rel="icon" type="image/png" sizes="32x32" href="https://desmodrone.github.io/favicon-32x32.png" />
+  <link
+    rel="icon"
+    type="image/png"
+    sizes="16x16"
+    href="https://desmodrone.github.io/favicon-16x16.png"
+  />
+  <link
+    rel="shortcut icon"
+    href="https://desmodrone.github.io/favicon.ico"
+  />
+  <link rel="stylesheet" href="https://desmodrone.github.io/style.css"/>
+  
+  <title>07 Rustlings Move Semantics Part 2</title>
+  
+
+  
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="https://desmodrone.github.io/rss.xml">
+  
+
+  <body id="page">
+
+	
+<header id="site-header" class="animated slideInUp faster">
+  <div class="hdr-wrapper section-inner">
+    <div class="hdr-left">
+      <div class="site-branding">
+        <a href="https:&#x2F;&#x2F;desmodrone.github.io">desmo</a>
+      </div>
+      <nav class="site-nav hide-in-mobile">
+            
+        
+        <a href="https://desmodrone.github.io/posts">posts</a>
+        
+        <a href="https://desmodrone.github.io/about">about</a>
+        
+        <a href="https://desmodrone.github.io/work">work</a>
+        
+      </nav>
+    </div>
+    <div class="hdr-right hdr-icons">
+      <span class="hdr-social hide-in-mobile">
+        
+
+<a href="https:&#x2F;&#x2F;twitter.com&#x2F;desmodrone_" target="_blank" rel="noopener me"
+   title="twitter">
+  
+  <svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg>
+  
+</a>
+
+<a href="https:&#x2F;&#x2F;github.com&#x2F;desmodrone" target="_blank" rel="noopener me"
+   title="github">
+  
+  <svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+  
+</a>
+
+<a href="mailto:erick@apexwins.com" target="_blank" rel="noopener me"
+   title="email">
+  
+  <svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+  
+</a>
+
+
+      </span>
+      <button id="menu-btn" class="hdr-btn" title="Menu">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="feather feather-menu"
+        >
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+  </div>
+</header>
+<div id="mobile-menu" class="animated fast">
+  <ul>
+    
+    <li><a href="https://desmodrone.github.io/posts">posts</a></li>
+    
+    <li><a href="https://desmodrone.github.io/about">about</a></li>
+    
+    <li><a href="https://desmodrone.github.io/work">work</a></li>
+    
+  </ul>
+</div>
+
+	
+	
+
+		
+<main class="site-main section-inner animated fadeIn faster">
+  <article class="thin">
+	<header class="post-header">
+	  <div class="post-meta">
+		
+		<span>May 24, 2023</span>
+		<small> - 
+<span class="reading-time" title="Estimated read time">
+  
+  9 min read
+  
+</span>
+</small>
+		
+            
+	  </div>
+	  <h1>07 Rustlings Move Semantics Part 2</h1>
+	</header>
+
+	<div class="content">
+        
+	  <p>From the Rustlings ReadMe:
+These exercises are adapted from <a href="https://github.com/pnkfelix">pnkfelix</a>'s <a href="https://pnkfelix.github.io/rust-examples-icfp2014/">Rust Tutorial</a> -- Thank you Felix!!!</p>
+<h2 id="further-information">Further information</h2>
+<p>For this section, the book links are especially important.</p>
+<ul>
+<li><a href="https://doc.rust-lang.org/book/ch04-01-what-is-ownership.html">Ownership</a></li>
+<li><a href="https://doc.rust-lang.org/book/ch04-02-references-and-borrowing.html">Reference and borrowing</a></li>
+</ul>
+<h2 id="move-semantics-part-2">Move Semantics Part 2</h2>
+<p>We've already covered the first three exercises of <a href="https://desmodrone.github.io/posts/07-rustlings-move-semantics1/">Move Semantics</a> in part one, in this episode we tackle the next three. Let's get started!</p>
+<h2 id="move-semantics4-rs"><code>move_semantics4.rs</code></h2>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">&#x2F;&#x2F; move_semantics4.rs
+&#x2F;&#x2F; Refactor this code so that instead of passing `vec0` into the `fill_vec` function,
+&#x2F;&#x2F; the Vector gets created in the function itself and passed back to the main
+&#x2F;&#x2F; function.
+&#x2F;&#x2F; Execute `rustlings hint move_semantics4` or use the `hint` watch subcommand for a hint.
+
+&#x2F;&#x2F; I AM NOT DONE
+
+fn main() {
+    let vec0 = Vec::new();
+
+    let mut vec1 = fill_vec(vec0);
+
+    println!(&quot;{} has length {} content `{:?}`&quot;, &quot;vec1&quot;, vec1.len(), vec1);
+
+    vec1.push(88);
+
+    println!(&quot;{} has length {} content `{:?}`&quot;, &quot;vec1&quot;, vec1.len(), vec1);
+}
+
+&#x2F;&#x2F; `fill_vec()` no longer takes `vec: Vec&lt;i32&gt;` as argument
+fn fill_vec() -&gt; Vec&lt;i32&gt; {
+    let mut vec = vec;
+
+    vec.push(22);
+    vec.push(44);
+    vec.push(66);
+
+    vec
+}
+</code></pre>
+<p>Our instructions here are to refactor our code so that instead of passing <code>vec0</code> into the <code>fill_vec</code> function, the Vector gets created in the function itself and passed back to the main function.</p>
+<h2 id="move-semantics4-rs-errors"><code>move_semantics4.rs</code> errors</h2>
+<pre data-lang="zsh" class="language-zsh "><code class="language-zsh" data-lang="zsh">⚠️  Compiling of exercises&#x2F;move_semantics&#x2F;move_semantics4.rs failed! Please try again. Here is the output:
+error[E0423]: expected value, found macro `vec`
+  --&gt; exercises&#x2F;move_semantics&#x2F;move_semantics4.rs:23:19
+   |
+23 |     let mut vec = vec;
+   |                   ^^^ not a value
+
+error[E0061]: this function takes 0 arguments but 1 argument was supplied
+  --&gt; exercises&#x2F;move_semantics&#x2F;move_semantics4.rs:12:20
+   |
+12 |     let mut vec1 = fill_vec(vec0);
+   |                    ^^^^^^^^ ---- argument of type `Vec&lt;_&gt;` unexpected
+   |
+note: function defined here
+  --&gt; exercises&#x2F;move_semantics&#x2F;move_semantics4.rs:22:4
+   |
+22 | fn fill_vec() -&gt; Vec&lt;i32&gt; {
+   |    ^^^^^^^^
+help: remove the extra argument
+   |
+12 |     let mut vec1 = fill_vec();
+   |                            ~~
+
+error: aborting due to 2 previous errors
+</code></pre>
+<p>Error's  are telling us that on line 23, <code>vec</code> is not a value in addition it tells us that the function <code>fill_vec()</code> takes 0 arguments but one is being supplied.  So let's remove the argument on line 12 from the <code>fill_vec(vec0)</code>.</p>
+<p>After we do that we still get some errors, but they're different now.</p>
+<pre data-lang="zsh" class="language-zsh "><code class="language-zsh" data-lang="zsh">⚠️  Compiling of exercises&#x2F;move_semantics&#x2F;move_semantics4.rs failed! Please try again. Here is the output:
+error[E0423]: expected value, found macro `vec`
+  --&gt; exercises&#x2F;move_semantics&#x2F;move_semantics4.rs:23:19
+   |
+23 |     let mut vec = vec;
+   |                   ^^^ not a value
+
+error[E0282]: type annotations needed for `Vec&lt;T&gt;`
+  --&gt; exercises&#x2F;move_semantics&#x2F;move_semantics4.rs:10:9
+   |
+10 |     let vec0 = Vec::new();
+   |         ^^^^
+   |
+help: consider giving `vec0` an explicit type, where the type for type parameter `T` is specified
+   |
+10 |     let vec0: Vec&lt;T&gt; = Vec::new();
+   |             ++++++++
+
+error: aborting due to 2 previous errors
+</code></pre>
+<p>The error's start point us to using generics with <code>Vec&lt;T&gt;</code> but our solution should be must simpler than that, since our instructions are to refactor our code to not create <code>vec0</code> but to create a new vector in our <code>fill_vec()</code> function.</p>
+<p>Let's see what happens if we simple remove the <code>let vec0 = Vec::new();</code> line from our code but and add the <code>let mut vec = Vec::new();</code> to our <code>fill_vec()</code> function. Hey guess what? It works. Below is the update code solution.</p>
+<h2 id="move-semantics4-solution"><code>move_semantics4</code> solution</h2>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">fn main() {
+	&#x2F;&#x2F; removed previous vector creation here
+    let mut vec1 = fill_vec();
+
+    println!(&quot;{} has length {} content `{:?}`&quot;, &quot;vec1&quot;, vec1.len(), vec1);
+
+    vec1.push(88);
+
+    println!(&quot;{} has length {} content `{:?}`&quot;, &quot;vec1&quot;, vec1.len(), vec1);
+}
+
+fn fill_vec() -&gt; Vec&lt;i32&gt; {
+    let mut vec = Vec::new(); &#x2F;&#x2F; added vector creation within the function
+
+    vec.push(22);
+    vec.push(44);
+    vec.push(66);
+
+    vec
+}
+</code></pre>
+<p>This is our output:</p>
+<pre data-lang="zsh" class="language-zsh "><code class="language-zsh" data-lang="zsh">Output:
+====================
+vec1 has length 3 content `[22, 44, 66]`
+vec1 has length 4 content `[22, 44, 66, 88]`
+
+====================
+</code></pre>
+<h2 id="move-semantics5-rs"><code>move_semantics5.rs</code></h2>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">&#x2F;&#x2F; move_semantics5.rs
+&#x2F;&#x2F; Make me compile only by reordering the lines in `main()`, but without
+&#x2F;&#x2F; adding, changing or removing any of them.
+&#x2F;&#x2F; Execute `rustlings hint move_semantics5` or use the `hint` watch subcommand for a hint.
+
+&#x2F;&#x2F; I AM NOT DONE
+
+fn main() {
+    let mut x = 100;
+    let y = &amp;mut x;
+    let z = &amp;mut x;
+    *y += 100;
+    *z += 1000;
+    assert_eq!(x, 1200);
+}
+</code></pre>
+<p>This looks like an easy one, no need to write anything we just need to re-order the sequence of the lines. Let's look at the errors and see if we can get any hints on what we need to do.</p>
+<h2 id="move-semantics5-rs-errors"><code>move_semantics5.rs</code> errors</h2>
+<pre data-lang="zsh" class="language-zsh "><code class="language-zsh" data-lang="zsh">⚠️  Compiling of exercises&#x2F;move_semantics&#x2F;move_semantics5.rs failed! Please try again. Here is the output:
+error[E0499]: cannot borrow `x` as mutable more than once at a time
+  --&gt; exercises&#x2F;move_semantics&#x2F;move_semantics5.rs:11:13
+   |
+10 |     let y = &amp;mut x;
+   |             ------ first mutable borrow occurs here
+11 |     let z = &amp;mut x;
+   |             ^^^^^^ second mutable borrow occurs here
+12 |     *y += 100;
+   |     --------- first borrow later used here
+</code></pre>
+<p>The Rust compiler tells us that we are borrowing <code>x</code> mutably too many times, so let's go step by step and see what is happening on each line.</p>
+<ol>
+<li>We declare a mutable variable <code>x</code> and assign it the value <code>100</code>.</li>
+<li>We create a mutable reference <code>y</code> that borrows <code>x</code> using <code>&amp;mut x</code>.</li>
+<li>Then, we create another mutable reference <code>z</code> that also borrows <code>x</code> using <code>&amp;mut x</code>. This is where the problem arises.
+<ul>
+<li>The rules of borrowing state that you can have either one mutable reference or any number of immutable references to a value at a given time.</li>
+<li>In this case, we already have <code>y</code> as a mutable reference to <code>x</code>, so we can't create another mutable reference <code>z</code>.</li>
+</ul>
+</li>
+<li>The code tries to dereference <code>y</code> using <code>*y</code> and add <code>100</code> to the value of <code>x</code>. This is invalid because <code>y</code> is still in scope and holds a mutable reference to <code>x</code>, and at this point, <code>z</code> also exists.</li>
+<li>Similarly, when the code tries to dereference <code>z</code> using <code>*z</code> and add <code>1000</code> to the value of <code>x</code>, it violates the borrowing rules.</li>
+</ol>
+<p>So how do we solve this? Let's try by dereferencing <code>y</code> before we try to borrow it again with <code>z</code> by moving the line <code>*y += 100;</code>
+above the 2nd attempt mutable borrow which is <code>let z = &amp;mut x;</code>. Doing so should allow us to compile.</p>
+<h2 id="move-semantics5-rs-solution"><code>move_semantics5.rs</code> solution</h2>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">fn main() {
+    let mut x = 100;
+    let y = &amp;mut x;
+    *y += 100;
+    let z = &amp;mut x;
+    *z += 1000;
+    assert_eq!(x, 1200);
+}
+</code></pre>
+<p>It compiles! We don't get an output because there is not <code>println!</code> statement instead we have an <code>assert_eq!</code>.</p>
+<p>The code compiles successfully because it follows the borrowing rules in Rust. Here's a step-by-step explanation:</p>
+<ol>
+<li>We start by declaring a mutable variable <code>x</code> and assigning it the value <code>100</code>.</li>
+<li>We then create a mutable reference <code>y</code> that borrows <code>x</code> using <code>&amp;mut x</code>. This allows us to modify <code>x</code> through <code>y</code>.</li>
+<li>We dereference <code>y</code> using <code>*y</code> and add <code>100</code> to the value of <code>x</code>. This modifies <code>x</code> to <code>200</code>.</li>
+<li>Next, we create another mutable reference <code>z</code> that also borrows <code>x</code> using <code>&amp;mut x</code>. This is allowed because there are no other references to <code>x</code> at this point.</li>
+<li>We dereference <code>z</code> using <code>*z</code> and add <code>1000</code> to the value of <code>x</code>. This modifies <code>x</code> to <code>1200</code>.</li>
+<li>Finally, we use <code>assert_eq!</code> to check if <code>x</code> is equal to <code>1200</code>. Since the value of <code>x</code> is indeed <code>1200</code>, the assertion passes.</li>
+</ol>
+<p>Let's move on to our final <code>move_semantics</code> exercise.</p>
+<h2 id="move-semantics6-rs"><code>move_semantics6.rs</code></h2>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">&#x2F;&#x2F; move_semantics6.rs
+&#x2F;&#x2F; Execute `rustlings hint move_semantics6` or use the `hint` watch subcommand for a hint.
+&#x2F;&#x2F; You can&#x27;t change anything except adding or removing references.
+
+&#x2F;&#x2F; I AM NOT DONE
+
+fn main() {
+    let data = &quot;Rust is great!&quot;.to_string();
+
+    get_char(data);
+
+    string_uppercase(&amp;data);
+}
+
+&#x2F;&#x2F; Should not take ownership
+fn get_char(data: String) -&gt; char {
+    data.chars().last().unwrap()
+}
+
+&#x2F;&#x2F; Should take ownership
+fn string_uppercase(mut data: &amp;String) {
+    data = &amp;data.to_uppercase();
+
+    println!(&quot;{}&quot;, data);
+}
+</code></pre>
+<p>Our instructions are to not change anything but the references, so we'll look at the errors to get a better understanding as to where we are having issues.</p>
+<h2 id="move-semantics6-rs-errors"><code>move_semantics6.rs</code> errors</h2>
+<pre data-lang="zsh" class="language-zsh "><code class="language-zsh" data-lang="zsh">⚠️  Compiling of exercises&#x2F;move_semantics&#x2F;move_semantics6.rs failed! Please try again. Here is the output:
+error[E0382]: borrow of moved value: `data`
+  --&gt; exercises&#x2F;move_semantics&#x2F;move_semantics6.rs:12:22
+   |
+8  |     let data = &quot;Rust is great!&quot;.to_string();
+   |         ---- move occurs because `data` has type `String`, which does not implement the `Copy` trait
+9  |
+10 |     get_char(data);
+   |              ---- value moved here
+11 |
+12 |     string_uppercase(&amp;data);
+   |                      ^^^^^ value borrowed here after move
+   |
+note: consider changing this parameter type in function `get_char` to borrow instead if owning the value is not necessary
+  --&gt; exercises&#x2F;move_semantics&#x2F;move_semantics6.rs:16:19
+   |
+16 | fn get_char(data: String) -&gt; char {
+   |    --------       ^^^^^^ this parameter takes ownership of the value
+   |    |
+   |    in this function
+help: consider cloning the value if the performance cost is acceptable
+   |
+10 |     get_char(data.clone());
+   |                  ++++++++
+
+error[E0716]: temporary value dropped while borrowed
+  --&gt; exercises&#x2F;move_semantics&#x2F;move_semantics6.rs:22:13
+   |
+21 | fn string_uppercase(mut data: &amp;String) {
+   |                               - let us call the lifetime of this reference `&#x27;1`
+22 |     data = &amp;data.to_uppercase();
+   |     --------^^^^^^^^^^^^^^^^^^^- temporary value is freed at the end of this statement
+   |     |       |
+   |     |       creates a temporary value which is freed while still in use
+   |     assignment requires that borrow lasts for `&#x27;1`
+
+error: aborting due to 2 previous errors
+</code></pre>
+<p>Alright let's go down the list understanding what there errors are telling us and see how we can fix them.</p>
+<pre data-lang="zsh" class="language-zsh "><code class="language-zsh" data-lang="zsh">8  |     let data = &quot;Rust is great!&quot;.to_string();
+   |         ---- move occurs because `data` has type `String`, which does not implement the `Copy` trait
+9  |
+10 |     get_char(data);
+   |              ---- value moved here
+11 |
+12 |     string_uppercase(&amp;data);
+   |                      ^^^^^ value borrowed here after move
+   note: consider changing this parameter type in function `get_char` to borrow instead if owning the value is not necessary
+  --&gt; exercises&#x2F;move_semantics&#x2F;move_semantics6.rs:16:19
+</code></pre>
+<p>here the compiler is telling us clearly where to look <code>data</code> does not implement the copy trait so we when we pass it through as a parameter in <code>get_char(data),</code> it becomes owned by <code>get_char()</code></p>
+<p>In the next batch of errors we get a suggestion about cloning, but we know that we can't change any of the code other than changing the references, so this is not the path we want to take.</p>
+<pre data-lang="zsh" class="language-zsh "><code class="language-zsh" data-lang="zsh">16 | fn get_char(data: String) -&gt; char {
+   |    --------       ^^^^^^ this parameter takes ownership of the value
+   |    |
+   |    in this function
+help: consider cloning the value if the performance cost is acceptable
+   |
+10 |     get_char(data.clone());
+   |                  ++++++++
+
+error[E0716]: temporary value dropped while borrowed
+</code></pre>
+<pre data-lang="zsh" class="language-zsh "><code class="language-zsh" data-lang="zsh"> |
+21 | fn string_uppercase(mut data: &amp;String) {
+   |                               - let us call the lifetime of this reference `&#x27;1&#x27;`
+22 |     data = &amp;data.to_uppercase();
+   |     --------^^^^^^^^^^^^^^^^^^^- temporary value is freed at the end of this statement
+   |     |       |
+   |     |       creates a temporary value which is freed while still in use
+   |     assignment requires that borrow lasts for `&#x27;1`
+</code></pre>
+<p>We now get a message about the lifetime of a reference which we haven't covered yet so let's just keep this in mind for now, but again our task is to essentially just change how the functions handle ownership. So let's go back and look at the functions in the code:</p>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">&#x2F;&#x2F; Should not take ownership
+fn get_char(data: String) -&gt; char {
+    data.chars().last().unwrap()
+}
+
+&#x2F;&#x2F; Should take ownership
+fn string_uppercase(mut data: &amp;String) {
+    data = &amp;data.to_uppercase();
+
+    println!(&quot;{}&quot;, data);
+}
+</code></pre>
+<p>Looking at these two code blocks it looks straightforward, it's clear that we must change where the <code>&amp;</code> symbol is being used and essentially swap positions in each function to this:</p>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">&#x2F;&#x2F; Should not take ownership
+fn get_char(data: &amp;String) -&gt; char {
+    data.chars().last().unwrap()
+}
+
+&#x2F;&#x2F; Should take ownership
+fn string_uppercase(mut data: String) {
+    data = data.to_uppercase();
+
+    println!(&quot;{}&quot;, data);
+}
+</code></pre>
+<p>Once we've done this we get new error's but it should be pretty clear what we need to do in the <code>fn main()</code></p>
+<pre data-lang="zsh" class="language-zsh "><code class="language-zsh" data-lang="zsh">⚠️  Compiling of exercises&#x2F;move_semantics&#x2F;move_semantics6.rs failed! Please try again. Here is the output:
+error[E0308]: mismatched types
+  --&gt; exercises&#x2F;move_semantics&#x2F;move_semantics6.rs:10:14
+   |
+10 |     get_char(data);
+   |     -------- ^^^^
+   |     |        |
+   |     |        expected `&amp;String`, found struct `String`
+   |     |        help: consider borrowing here: `&amp;data`
+   |     arguments to this function are incorrect
+   |
+note: function defined here
+  --&gt; exercises&#x2F;move_semantics&#x2F;move_semantics6.rs:16:4
+   |
+16 | fn get_char(data: &amp;String) -&gt; char {
+   |    ^^^^^^^^ -------------
+
+error[E0308]: mismatched types
+  --&gt; exercises&#x2F;move_semantics&#x2F;move_semantics6.rs:12:22
+   |
+12 |     string_uppercase(&amp;data);
+   |     ---------------- ^^^^^ expected struct `String`, found `&amp;String`
+   |     |
+   |     arguments to this function are incorrect
+   |
+note: function defined here
+  --&gt; exercises&#x2F;move_semantics&#x2F;move_semantics6.rs:21:4
+   |
+21 | fn string_uppercase(mut data: String) {
+   |    ^^^^^^^^^^^^^^^^ ----------------
+help: consider removing the borrow
+   |
+12 -     string_uppercase(&amp;data);
+12 +     string_uppercase(data);
+   |
+
+error: aborting due to 2 previous errors
+</code></pre>
+<p>The compiler gives us great information on what we should do literally showing us what we can do to make the code compile. So let's try it.</p>
+<h2 id="move-semantics6-rs-solution"><code>move_semantics6.rs</code> solution</h2>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">fn main() {
+    let data = &quot;Rust is great!&quot;.to_string();
+
+    get_char(&amp;data);
+
+    string_uppercase(data);
+}
+
+&#x2F;&#x2F; Should not take ownership
+fn get_char(data: &amp;String) -&gt; char {
+    data.chars().last().unwrap()
+}
+
+&#x2F;&#x2F; Should take ownership
+fn string_uppercase(mut data: String) {
+    data = data.to_uppercase();
+
+    println!(&quot;{}&quot;, data);
+}
+</code></pre>
+<p>There we have it our solution is to again swap the <code>&amp;</code> symbol's position to match that of the function's signature to make sure that we are borrowing and taking ownership as the function expects. With that we get our print out:</p>
+<pre data-lang="zsh" class="language-zsh "><code class="language-zsh" data-lang="zsh">Output:
+====================
+RUST IS GREAT!
+
+====================
+</code></pre>
+<h3 id="conclusion">Conclusion</h3>
+<p>Rust's move semantics are important for understanding memory management and ownership in the language. By leveraging references, borrowing, and ownership, Rust ensures memory safety and eliminates many common programming errors like null pointer dereferences and dangling references.</p>
+<p>In this blog post, we explored three exercises related to move semantics. We refactored code, re-ordered lines, and adjusted ownership to solve the problems. Through these exercises, we gained a better understanding of how move semantics work in Rust and how to manipulate ownership and references effectively.</p>
+<p>Move semantics play a crucial role in Rust's design philosophy, enabling high-performance and safe code without sacrificing expressiveness. By embracing move semantics and mastering the intricacies of ownership, borrowing, and references, Rust developers can write robust and efficient code.</p>
+<p>Remember, practice is key to mastering move semantics and other advanced features of Rust. Keep exploring, experimenting, and building projects to deepen your understanding and become a proficient Rust programmer. Happy coding!</p>
+
+	</div>
+	<hr class="post-end">
+	<footer class="post-info">
+    
+	  <p>
+		<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg>
+		
+		
+		<span class="tag"><a href="https://desmodrone.github.io/tags/rust/">rust</a></span>
+		
+		<span class="tag"><a href="https://desmodrone.github.io/tags/rustlings/">rustlings</a></span>
+		
+		<span class="tag"><a href="https://desmodrone.github.io/tags/vecs/">vecs</a></span>
+		
+		<span class="tag"><a href="https://desmodrone.github.io/tags/vectors/">vectors</a></span>
+		
+		<span class="tag"><a href="https://desmodrone.github.io/tags/borrowing/">borrowing</a></span>
+		
+		<span class="tag"><a href="https://desmodrone.github.io/tags/ownership/">ownership</a></span>
+		
+		<span class="tag"><a href="https://desmodrone.github.io/tags/references/">references</a></span>
+		
+		
+    </p>
+    
+    <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>2294 Words</p>
+    
+    <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2023-05-24</p>
+    
+	</footer>
+  </article>
+    
+  
+  <div class="post-nav thin">
+	
+	
+  </div>
+
+  
+</main>
+
+	  </div>
+	  
+	  
+
+
+
+<footer id="site-footer" class="section-inner thin animated fadeIn faster">
+  <p>&copy; 2023 <a href="https:&#x2F;&#x2F;desmodrone.github.io">erick</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
+  <p>Made with <a href="https://www.getzola.org" target="_blank" rel="noopener">Zola</a> &#183; Theme <a href="https://github.com/VersBinarii/hermit_zola" target="_blank" rel="noopener">Hermit_Zola</a>
+	
+	&#183; <a href="https://desmodrone.github.io/rss.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
+	
+  </p>
+</footer>
+
+
+
+
+	</div>
+	
+	<script src="https://desmodrone.github.io/js/main.js"></script>
+
+	<!-- Math rendering -->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css" integrity="sha384-zB1R0rpPzHqg7Kpt0Aljp8JPLqbXI3bhnPWROx27a9N0Ll6ZP/+DiW/UqRcLbRjq" crossorigin="anonymous">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js" integrity="sha384-y23I5Q6l+B6vatafAwxRu/0oK/79VlbSz7Q9aiSZUvyWYIYsd+qj+o24G5ZU2zJz" crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous"
+        onload="renderMathInElement(document.body, { delimiters: [ {left: '$$', right: '$$', display: true}, {left: '$', right: '$', display: false}, {left: '\\[', right: '\\]', display: true}, {left: '\\(', right: '\\)', display: false}]});"></script>
+
+    
+		<link href="https://unpkg.com/highlightjs-badge/highlightjs/styles/railscasts.css" rel="stylesheet">
+		<!-- https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.1/build/styles/  for min version -->
+		<script src="https://unpkg.com/highlightjs-badge/highlightjs/highlight.pack.js"></script>
+		<script src="https://unpkg.com/highlightjs-badge/highlightjs-badge.min.js"></script>
+		<script>
+			var pres = document.querySelectorAll("pre>code");
+			for (var i = 0; i < pres.length; i++) {
+				hljs.highlightBlock(pres[i]);
+			}
+		</script>
+		
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js"></script>
+			<script>
+				var options = {
+					copyIconClass: "gg-clipboard",
+					checkIconClass: "gg-check"
+				};
+				window.highlightJsBadge(options);
+			</script>
+		
+
+	
+
+	
+	<script src="https://desmodrone.github.io/js/main.js"></script>
+
+    
+    
+
+	
+    <!-- Global Site Tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-9MNTYXYNHK"></script>
+    <script>
+     window.dataLayer = window.dataLayer || [];
+     function gtag(){dataLayer.push(arguments);}
+     gtag('js', new Date());
+     gtag('config', 'G-9MNTYXYNHK');
+    </script>
+    
+  </body>
+</html>
