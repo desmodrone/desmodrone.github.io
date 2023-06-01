@@ -7,7 +7,749 @@
       <generator>Zola</generator>
       <language>en</language>
       <atom:link href="https://desmodrone.github.io/rss.xml" rel="self" type="application/rss+xml"/>
-      <lastBuildDate>Wed, 24 May 2023 00:00:00 +0000</lastBuildDate>
+      <lastBuildDate>Thu, 01 Jun 2023 00:00:00 +0000</lastBuildDate>
+      <item>
+          <title>08 Rustlings Structs</title>
+          <pubDate>Thu, 01 Jun 2023 00:00:00 +0000</pubDate>
+          <author>Unknown</author>
+          <link>https://desmodrone.github.io/posts/08-rustlings-structs/</link>
+          <guid>https://desmodrone.github.io/posts/08-rustlings-structs/</guid>
+          <description>&lt;p&gt;From the ReadMe:
+Rust has three struct types: a classic C struct, a tuple struct, and a unit struct.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;further-information&quot;&gt;Further information&lt;&#x2F;h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;doc.rust-lang.org&#x2F;book&#x2F;ch05-01-defining-structs.html&quot;&gt;Structures&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;doc.rust-lang.org&#x2F;book&#x2F;ch05-03-method-syntax.html&quot;&gt;Method Syntax&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h2 id=&quot;structs-in-rust&quot;&gt;Structs in Rust&lt;&#x2F;h2&gt;
+&lt;p&gt;In Rust, structs are versatile containers that bring together multiple values into a cohesive unit. They offer three types: classic C structs, tuple structs, and unit structs.&lt;&#x2F;p&gt;
+&lt;p&gt;Classic C structs allow you to define named fields, providing an intuitive way to organize and access related data. Tuple structs, on the other hand, resemble tuples, with fields accessed through indexing rather than names. Lastly, unit structs serve as simple markers or placeholders without any fields.&lt;&#x2F;p&gt;
+&lt;p&gt;Let&#x27;s take a quick dive into the types of structs:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Classic C Structs:&lt;&#x2F;strong&gt; These are essentially collections with named fields. They are ideal for larger and more complex data structures where each piece of data has a meaningful label.&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Tuple Structs:&lt;&#x2F;strong&gt; These are a kind of middle ground between tuples and classic structs. They are useful when you want to give a tuple a name for type checking or to better signify its purpose, but you don&#x27;t necessarily need to name each field.&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Unit Structs:&lt;&#x2F;strong&gt; These are used in cases where a struct doesn&#x27;t need to have any data associated with it. For example, they can be used to implement traits on some type, or as markers or flags.&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;With structs, you have the power to create custom data structures that suit your needs, enhancing code organization and efficiency. Explore the provided links to delve deeper into the world of structs in Rust and unlock their potential for your projects.&lt;&#x2F;p&gt;
+&lt;p&gt;Let&#x27;s look at our first exercise.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;structs1-rs&quot;&gt;&lt;code&gt;Structs1.rs&lt;&#x2F;code&gt;&lt;&#x2F;h2&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;&amp;#x2F;&amp;#x2F; structs1.rs
+    &amp;#x2F;&amp;#x2F; Address all the TODOs to make the tests pass!
+    &amp;#x2F;&amp;#x2F; Execute `rustlings hint structs1` or use the `hint` watch subcommand for a hint.
+
+    &amp;#x2F;&amp;#x2F; I AM NOT DONE
+
+    struct ColorClassicStruct {
+        &amp;#x2F;&amp;#x2F; TODO: Something goes here
+    }
+
+    struct ColorTupleStruct(&amp;#x2F;* TODO: Something goes here *&amp;#x2F;);
+
+    #[derive(Debug)]
+    struct UnitLikeStruct;
+
+    #[cfg(test)]
+    mod tests {
+        use super::*;
+
+        #[test]
+        fn classic_c_structs() {
+            &amp;#x2F;&amp;#x2F; TODO: Instantiate a classic c struct!
+            &amp;#x2F;&amp;#x2F; let green =
+
+            assert_eq!(green.red, 0);
+            assert_eq!(green.green, 255);
+            assert_eq!(green.blue, 0);
+        }
+
+        #[test]
+        fn tuple_structs() {
+            &amp;#x2F;&amp;#x2F; TODO: Instantiate a tuple struct!
+            &amp;#x2F;&amp;#x2F; let green =
+
+            assert_eq!(green.0, 0);
+            assert_eq!(green.1, 255);
+            assert_eq!(green.2, 0);
+        }
+
+        #[test]
+        fn unit_structs() {
+            &amp;#x2F;&amp;#x2F; TODO: Instantiate a unit-like struct!
+            &amp;#x2F;&amp;#x2F; let unit_like_struct =
+            let message = format!(&amp;quot;{:?}s are fun!&amp;quot;, unit_like_struct);
+
+            assert_eq!(message, &amp;quot;UnitLikeStructs are fun!&amp;quot;);
+        }
+    }
+
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;So here we&#x27;re getting clear instructions on what to do. We need to implement different types of structs in each &lt;code&gt;&#x2F;&#x2F;TODO&lt;&#x2F;code&gt; section. For completeness here are our errors.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;structs1-rs-errors&quot;&gt;&lt;code&gt;Structs1.rs&lt;&#x2F;code&gt;  errors&lt;&#x2F;h2&gt;
+&lt;pre data-lang=&quot;zsh&quot; class=&quot;language-zsh &quot;&gt;&lt;code class=&quot;language-zsh&quot; data-lang=&quot;zsh&quot;&gt;⚠️  Compiling of exercises&amp;#x2F;structs&amp;#x2F;structs1.rs failed! Please try again. Here is the output:
+error[E0425]: cannot find value `green` in this scope
+  --&amp;gt; exercises&amp;#x2F;structs&amp;#x2F;structs1.rs:25:20
+   |
+25 |         assert_eq!(green.red, 0);
+   |                    ^^^^^ not found in this scope
+
+error[E0425]: cannot find value `green` in this scope
+  --&amp;gt; exercises&amp;#x2F;structs&amp;#x2F;structs1.rs:26:20
+   |
+26 |         assert_eq!(green.green, 255);
+   |                    ^^^^^ not found in this scope
+
+error[E0425]: cannot find value `green` in this scope
+  --&amp;gt; exercises&amp;#x2F;structs&amp;#x2F;structs1.rs:27:20
+   |
+27 |         assert_eq!(green.blue, 0);
+   |                    ^^^^^ not found in this scope
+
+error[E0425]: cannot find value `green` in this scope
+  --&amp;gt; exercises&amp;#x2F;structs&amp;#x2F;structs1.rs:35:20
+   |
+35 |         assert_eq!(green.0, 0);
+   |                    ^^^^^ not found in this scope
+
+error[E0425]: cannot find value `green` in this scope
+  --&amp;gt; exercises&amp;#x2F;structs&amp;#x2F;structs1.rs:36:20
+   |
+36 |         assert_eq!(green.1, 255);
+   |                    ^^^^^ not found in this scope
+
+error[E0425]: cannot find value `green` in this scope
+  --&amp;gt; exercises&amp;#x2F;structs&amp;#x2F;structs1.rs:37:20
+   |
+37 |         assert_eq!(green.2, 0);
+   |                    ^^^^^ not found in this scope
+
+error[E0425]: cannot find value `unit_like_struct` in this scope
+  --&amp;gt; exercises&amp;#x2F;structs&amp;#x2F;structs1.rs:44:49
+   |
+14 | struct UnitLikeStruct;
+   | ---------------------- similarly named unit struct `UnitLikeStruct` defined here
+...
+44 |         let message = format!(&amp;quot;{:?}s are fun!&amp;quot;, unit_like_struct);
+   |                                                 ^^^^^^^^^^^^^^^^ help: a unit struct with a similar name exists: `UnitLikeStruct`
+
+warning: unused import: `super::*`
+  --&amp;gt; exercises&amp;#x2F;structs&amp;#x2F;structs1.rs:18:9
+   |
+18 |     use super::*;
+   |         ^^^^^^^^
+   |
+   = note: `#[warn(unused_imports)]` on by default
+
+error: aborting due to 7 previous errors; 1 warning emitted
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;We&#x27;re getting 7 different errors and it looks like most of them are related to the fact that we are missing our structs so they &lt;code&gt;assert_eq!&lt;&#x2F;code&gt; calls are failing. So let&#x27;s try and solve this.&lt;&#x2F;p&gt;
+&lt;p&gt;Notice that the errors reported here are not solely due to missing structs but also due to missing variable declarations. For example, the variables &lt;code&gt;green&lt;&#x2F;code&gt; and &lt;code&gt;unit_like_struct&lt;&#x2F;code&gt; are used in the test assertions but haven&#x27;t been defined yet in the tests. This will be addressed in the following sections as we instantiate these variables along with defining and instantiating the corresponding structs.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;defining-our-structs&quot;&gt;Defining our Structs&lt;&#x2F;h2&gt;
+&lt;p&gt;Starting from the top of our code we see our first &lt;code&gt;TODO&#x27;s&lt;&#x2F;code&gt; in comments.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;   struct ColorClassicStruct {
+        &amp;#x2F;&amp;#x2F; TODO: Something goes here
+    }
+
+    struct ColorTupleStruct(&amp;#x2F;* TODO: Something goes here *&amp;#x2F;);
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;We have 2 different styles of structs that we need to create a &amp;quot;classic&amp;quot; and &amp;quot;tuple&amp;quot; types struct.  We fill out the structs using their usual structure and we get an indication of what is needed by looking at the &lt;code&gt;assert_eq!&lt;&#x2F;code&gt; listed in each section. We can see that in the &lt;code&gt;assert_eq!&lt;&#x2F;code&gt; we have values that could fit and &lt;code&gt;i32&lt;&#x2F;code&gt;&#x27;s since we see the max value is &lt;code&gt;255&lt;&#x2F;code&gt; we&#x27;ll use &lt;code&gt;i32&lt;&#x2F;code&gt;s as it&#x27;s the default value in Rust.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;struct ColorClassicStruct {
+    red: i32,
+    green: i32,
+    blue: i32,
+}
+&amp;#x2F;&amp;#x2F; from the `assert_eq!` in `classic_c_structs` function
+    &amp;#x2F;&amp;#x2F; assert_eq!(green.red, 0);
+    &amp;#x2F;&amp;#x2F; assert_eq!(green.green, 255);
+    &amp;#x2F;&amp;#x2F; assert_eq!(green.blue, 0);
+
+
+struct ColorTupleStruct(i32, i32, i32);
+
+&amp;#x2F;&amp;#x2F; from the `assert_eq!` in the `tuple_structs` function
+    &amp;#x2F;&amp;#x2F; assert_eq!(green.0, 0);
+    &amp;#x2F;&amp;#x2F; assert_eq!(green.1, 255);
+    &amp;#x2F;&amp;#x2F; assert_eq!(green.2, 0);
+
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;We&#x27;ll do the same for the &lt;code&gt;ColorTupleStruct&lt;&#x2F;code&gt; getting hints as to how we need to define the Tuple struct with &lt;code&gt;(i32, i32, i32)&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;instantiating-our-classic-struct&quot;&gt;Instantiating our Classic Struct&lt;&#x2F;h2&gt;
+&lt;p&gt;Now that we&#x27;ve defined our structs we need to create an new instance of our structs where we specify concrete values for each of the fields. We create instances of our struct by stating the name of the struct we can see that in our example we have this so far.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;   fn classic_c_structs() {
+            &amp;#x2F;&amp;#x2F; TODO: Instantiate a classic c struct!
+            &amp;#x2F;&amp;#x2F; let green =
+
+            assert_eq!(green.red, 0);
+            assert_eq!(green.green, 255);
+            assert_eq!(green.blue, 0);
+        }
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;So we&#x27;ll start by removing the comment slashes on &lt;code&gt;let green = &lt;&#x2F;code&gt; and fill out the rest with our values, again taking hints from the &lt;code&gt;assert_eq!&lt;&#x2F;code&gt; lines we see that we should have values of &lt;code&gt;0, 255, 0&lt;&#x2F;code&gt; so let&#x27;s add that information into our &lt;code&gt;classic_c_structs()&lt;&#x2F;code&gt; function. It should like the code below:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;    fn classic_c_structs() {
+        &amp;#x2F;&amp;#x2F; TODO: Instantiate a classic c struct!
+        let green = ColorClassicStruct {
+            red: 0,
+            green: 255,
+            blue: 0,
+        };
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h2 id=&quot;instantiating-our-tuple-struct&quot;&gt;Instantiating our Tuple Struct&lt;&#x2F;h2&gt;
+&lt;p&gt;We see a similar set up for our Tuple struct with the code below. We have our &lt;code&gt;let gree =&lt;&#x2F;code&gt; commented out with a hint as to what the values should be by looking at our &lt;code&gt;assert_eq!&lt;&#x2F;code&gt; macros&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;        fn tuple_structs() {
+            &amp;#x2F;&amp;#x2F; TODO: Instantiate a tuple struct!
+            &amp;#x2F;&amp;#x2F; let green =
+
+            assert_eq!(green.0, 0);
+            assert_eq!(green.1, 255);
+            assert_eq!(green.2, 0);
+        }
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Remembering that Tuple structs have a different type of structure as we created &lt;code&gt;struct ColorTupleStruct(i32, i32, i32)&lt;&#x2F;code&gt;, we can instantiate our tuple struct in the following way:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;fn tuple_structs() {
+        &amp;#x2F;&amp;#x2F; TODO: Instantiate a tuple struct!
+        let green = ColorTupleStruct(0, 255, 0);
+
+        assert_eq!(green.0, 0);
+        assert_eq!(green.1, 255);
+        assert_eq!(green.2, 0);
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Again taking hints from the values that we see in the &lt;code&gt;assert_eq!&lt;&#x2F;code&gt; macro&#x27;s&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;instantiating-our-unit-like-structs&quot;&gt;Instantiating our Unit-Like Structs&lt;&#x2F;h2&gt;
+&lt;p&gt;We have our final struct left to instantiate which if we recall from reading the The Rust Programming Language book, they are structs that have any fields. So looking at our unfinished code we see this:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;        fn unit_structs() {
+            &amp;#x2F;&amp;#x2F; TODO: Instantiate a unit-like struct!
+            &amp;#x2F;&amp;#x2F; let unit_like_struct =
+            let message = format!(&amp;quot;{:?}s are fun!&amp;quot;, unit_like_struct);
+
+            assert_eq!(message, &amp;quot;UnitLikeStructs are fun!&amp;quot;);
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;So, as we don&#x27;t have any fields and hence no data stored in them we can simply finish our code like so:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;fn unit_structs() {
+        &amp;#x2F;&amp;#x2F; TODO: Instantiate a unit-like struct!
+        let unit_like_struct = UnitLikeStruct;
+        let message = format!(&amp;quot;{:?}s are fun!&amp;quot;, unit_like_struct);
+
+        assert_eq!(message, &amp;quot;UnitLikeStructs are fun!&amp;quot;);
+    }
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;That should do the trick, let&#x27;s see if our code complies. It does!&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;structs1-rs-solution&quot;&gt;&lt;code&gt;Structs1.rs&lt;&#x2F;code&gt;  Solution&lt;&#x2F;h2&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;
+struct ColorClassicStruct {
+    red: i32,
+    green: i32,
+    blue: i32,
+}
+
+struct ColorTupleStruct(i32, i32, i32);
+
+#[derive(Debug)]
+struct UnitLikeStruct;
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn classic_c_structs() {
+        &amp;#x2F;&amp;#x2F; TODO: Instantiate a classic c struct!
+        let green = ColorClassicStruct {
+            red: 0,
+            green: 255,
+            blue: 0,
+        };
+
+        assert_eq!(green.red, 0);
+        assert_eq!(green.green, 255);
+        assert_eq!(green.blue, 0);
+    }
+
+    #[test]
+    fn tuple_structs() {
+        &amp;#x2F;&amp;#x2F; TODO: Instantiate a tuple struct!
+        let green = ColorTupleStruct(0, 255, 0);
+
+        assert_eq!(green.0, 0);
+        assert_eq!(green.1, 255);
+        assert_eq!(green.2, 0);
+    }
+
+    #[test]
+    fn unit_structs() {
+        &amp;#x2F;&amp;#x2F; TODO: Instantiate a unit-like struct!
+        let unit_like_struct = UnitLikeStruct;
+        let message = format!(&amp;quot;{:?}s are fun!&amp;quot;, unit_like_struct);
+
+        assert_eq!(message, &amp;quot;UnitLikeStructs are fun!&amp;quot;);
+    }
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Our code compiles and we&#x27;ve finished and instantiated 3 different types of structs, our printout confirms this:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;zsh&quot; class=&quot;language-zsh &quot;&gt;&lt;code class=&quot;language-zsh&quot; data-lang=&quot;zsh&quot;&gt;✅ Successfully tested exercises&amp;#x2F;structs&amp;#x2F;structs1.rs!
+
+🎉 🎉  The code is compiling, and the tests pass! 🎉 🎉
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;On to the next one!&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;structs2-rs&quot;&gt;&lt;code&gt;structs2.rs&lt;&#x2F;code&gt;&lt;&#x2F;h2&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;&amp;#x2F;&amp;#x2F; structs2.rs
+&amp;#x2F;&amp;#x2F; Address all the TODOs to make the tests pass!
+&amp;#x2F;&amp;#x2F; Execute `rustlings hint structs2` or use the `hint` watch subcommand for a hint.
+
+&amp;#x2F;&amp;#x2F; I AM NOT DONE
+
+#[derive(Debug)]
+struct Order {
+    name: String,
+    year: u32,
+    made_by_phone: bool,
+    made_by_mobile: bool,
+    made_by_email: bool,
+    item_number: u32,
+    count: u32,
+}
+
+fn create_order_template() -&amp;gt; Order {
+    Order {
+        name: String::from(&amp;quot;Bob&amp;quot;),
+        year: 2019,
+        made_by_phone: false,
+        made_by_mobile: false,
+        made_by_email: true,
+        item_number: 123,
+        count: 0,
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn your_order() {
+        let order_template = create_order_template();
+        &amp;#x2F;&amp;#x2F; TODO: Create your own order using the update syntax and template above!
+        &amp;#x2F;&amp;#x2F; let your_order =
+        assert_eq!(your_order.name, &amp;quot;Hacker in Rust&amp;quot;);
+        assert_eq!(your_order.year, order_template.year);
+        assert_eq!(your_order.made_by_phone, order_template.made_by_phone);
+        assert_eq!(your_order.made_by_mobile, order_template.made_by_mobile);
+        assert_eq!(your_order.made_by_email, order_template.made_by_email);
+        assert_eq!(your_order.item_number, order_template.item_number);
+        assert_eq!(your_order.count, 1);
+    }
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;In this code example we have instructions to address all the &lt;code&gt;&#x2F;&#x2F;TODO&#x27;s&lt;&#x2F;code&gt; which we can see that we only have one at the bottom of our code in our &lt;code&gt;tests&lt;&#x2F;code&gt;.
+As always let&#x27;s look at our errors.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;structs2-rs-errors&quot;&gt;&lt;code&gt;structs2.rs&lt;&#x2F;code&gt; errors&lt;&#x2F;h2&gt;
+&lt;pre data-lang=&quot;zsh&quot; class=&quot;language-zsh &quot;&gt;&lt;code class=&quot;language-zsh&quot; data-lang=&quot;zsh&quot;&gt;⚠️  Compiling of exercises&amp;#x2F;structs&amp;#x2F;structs2.rs failed! Please try again. Here is the output:
+error[E0609]: no field `name` on type `fn() {tests::your_order}`
+  --&amp;gt; exercises&amp;#x2F;structs&amp;#x2F;structs2.rs:39:31
+   |
+39 |         assert_eq!(your_order.name, &amp;quot;Hacker in Rust&amp;quot;);
+   |                               ^^^^
+
+error[E0609]: no field `year` on type `fn() {tests::your_order}`
+  --&amp;gt; exercises&amp;#x2F;structs&amp;#x2F;structs2.rs:40:31
+   |
+40 |         assert_eq!(your_order.year, order_template.year);
+   |                               ^^^^
+
+error[E0609]: no field `made_by_phone` on type `fn() {tests::your_order}`
+  --&amp;gt; exercises&amp;#x2F;structs&amp;#x2F;structs2.rs:41:31
+   |
+41 |         assert_eq!(your_order.made_by_phone, order_template.made_by_phone);
+   |                               ^^^^^^^^^^^^^
+
+error[E0609]: no field `made_by_mobile` on type `fn() {tests::your_order}`
+  --&amp;gt; exercises&amp;#x2F;structs&amp;#x2F;structs2.rs:42:31
+   |
+42 |         assert_eq!(your_order.made_by_mobile, order_template.made_by_mobile);
+   |                               ^^^^^^^^^^^^^^
+
+error[E0609]: no field `made_by_email` on type `fn() {tests::your_order}`
+  --&amp;gt; exercises&amp;#x2F;structs&amp;#x2F;structs2.rs:43:31
+   |
+43 |         assert_eq!(your_order.made_by_email, order_template.made_by_email);
+   |                               ^^^^^^^^^^^^^
+
+error[E0609]: no field `item_number` on type `fn() {tests::your_order}`
+  --&amp;gt; exercises&amp;#x2F;structs&amp;#x2F;structs2.rs:44:31
+   |
+44 |         assert_eq!(your_order.item_number, order_template.item_number);
+   |                               ^^^^^^^^^^^
+
+error[E0609]: no field `count` on type `fn() {tests::your_order}`
+  --&amp;gt; exercises&amp;#x2F;structs&amp;#x2F;structs2.rs:45:31
+   |
+45 |         assert_eq!(your_order.count, 1);
+   |                               ^^^^^
+
+error: aborting due to 7 previous errors
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;We have a total of 7 errors all created by our missing struct instantiation. So, let&#x27;s get it to it, we&#x27;ll start from the top.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;instantiating-your-order&quot;&gt;Instantiating &lt;code&gt;your_order&lt;&#x2F;code&gt;&lt;&#x2F;h2&gt;
+&lt;p&gt;If we look  at our first error we get a major hint as to what the compiler expects to see: &lt;code&gt; assert_eq!(your_order.name, &amp;quot;Hacker in Rust&amp;quot;)&lt;&#x2F;code&gt; so if we take a look at our sample code and build our &lt;code&gt;Order&lt;&#x2F;code&gt; in the same way as in the &lt;code&gt;create_order_template&lt;&#x2F;code&gt; function we should have a great start for what we need to do.&lt;&#x2F;p&gt;
+&lt;p&gt;If we use our &lt;code&gt;Order&lt;&#x2F;code&gt; struct as a guide we can start entering the values for each field.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;struct Order {
+    name: String,
+    year: u32,
+    made_by_phone: bool,
+    made_by_mobile: bool,
+    made_by_email: bool,
+    item_number: u32,
+    count: u32,
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;for example:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;fn your_order() {
+        let order_template = create_order_template();
+        &amp;#x2F;&amp;#x2F; TODO: Create your own order using the update syntax and template above!
+        let your_order = Order {
+            name: String::from(&amp;quot;Hacker in Rust&amp;quot;),
+            year: u32,
+            made_by_phone: bool,
+            made_by_mobile: bool,
+            made_by_email: bool,
+            item_number: u32,
+            count: u32,
+        };
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Again we see what is expected by looking at our &lt;code&gt;assert_eq!&lt;&#x2F;code&gt; macro, so following this format it should be pretty easy to understand what each field should be.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;        assert_eq!(your_order.name, &amp;quot;Hacker in Rust&amp;quot;); &amp;#x2F;&amp;#x2F; String
+        assert_eq!(your_order.year, order_template.year); &amp;#x2F;&amp;#x2F; u32 from the `oder_template.year`
+        assert_eq!(your_order.made_by_phone, order_template.made_by_phone); &amp;#x2F;&amp;#x2F; bool
+        assert_eq!(your_order.made_by_mobile, order_template.made_by_mobile); &amp;#x2F;&amp;#x2F; bool
+        assert_eq!(your_order.made_by_email, order_template.made_by_email); &amp;#x2F;&amp;#x2F; bool
+        assert_eq!(your_order.item_number, order_template.item_number); &amp;#x2F;&amp;#x2F; u32 from `item_number`
+        assert_eq!(your_order.count, 1); &amp;#x2F;&amp;#x2F; u32 defined here as `1`
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;So there we go now all we need to is fill out the rest of the values and it should look like this:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;let your_order = Order {
+            name: String::from(&amp;quot;Hacker in Rust&amp;quot;),
+            year: 2019,
+            made_by_phone: false,
+            made_by_mobile: false,
+            made_by_email: true,
+            item_number: 123,
+            count: 1,
+        };
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h2 id=&quot;structs2-rs-solution&quot;&gt;&lt;code&gt;structs2.rs&lt;&#x2F;code&gt; Solution&lt;&#x2F;h2&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;#[derive(Debug)]
+struct Order {
+    name: String,
+    year: u32,
+    made_by_phone: bool,
+    made_by_mobile: bool,
+    made_by_email: bool,
+    item_number: u32,
+    count: u32,
+}
+
+fn create_order_template() -&amp;gt; Order {
+    Order {
+        name: String::from(&amp;quot;Bob&amp;quot;),
+        year: 2019,
+        made_by_phone: false,
+        made_by_mobile: false,
+        made_by_email: true,
+        item_number: 123,
+        count: 0,
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn your_order() {
+        let order_template = create_order_template();
+        &amp;#x2F;&amp;#x2F; TODO: Create your own order using the update syntax and template above!
+        let your_order = Order {
+            name: String::from(&amp;quot;Hacker in Rust&amp;quot;),
+            year: 2019,
+            made_by_phone: false,
+            made_by_mobile: false,
+            made_by_email: true,
+            item_number: 123,
+            count: 1,
+        };
+        assert_eq!(your_order.name, &amp;quot;Hacker in Rust&amp;quot;);
+        assert_eq!(your_order.year, order_template.year);
+        assert_eq!(your_order.made_by_phone, order_template.made_by_phone);
+        assert_eq!(your_order.made_by_mobile, order_template.made_by_mobile);
+        assert_eq!(your_order.made_by_email, order_template.made_by_email);
+        assert_eq!(your_order.item_number, order_template.item_number);
+        assert_eq!(your_order.count, 1);
+    }
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;pre data-lang=&quot;zsh&quot; class=&quot;language-zsh &quot;&gt;&lt;code class=&quot;language-zsh&quot; data-lang=&quot;zsh&quot;&gt;✅ Successfully tested exercises&amp;#x2F;structs&amp;#x2F;structs2.rs!
+
+🎉 🎉  The code is compiling, and the tests pass! 🎉 🎉
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h2 id=&quot;understanding-rust-struct-update-syntax&quot;&gt;Understanding Rust Struct Update Syntax&lt;&#x2F;h2&gt;
+&lt;p&gt;Before we move on to the next exercise, it&#x27;s worth mentioning a Rust feature that could be beneficial here - the struct update syntax. It allows you to create a new instance of a struct, and selectively update some or all fields. This is especially useful when you have a template or default struct that you want to use as a base for your new struct.&lt;&#x2F;p&gt;
+&lt;p&gt;To do so, you use &lt;code&gt;..&lt;&#x2F;code&gt; followed by the instance name. It should look like this:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;let your_order = Order {
+    name: String::from(&amp;quot;Hacker in Rust&amp;quot;),
+    count: 1,
+    ..order_template
+};
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;This code creates a new &lt;code&gt;Order&lt;&#x2F;code&gt; that is the same as &lt;code&gt;order_template&lt;&#x2F;code&gt;, except &lt;code&gt;name&lt;&#x2F;code&gt; is &amp;quot;Hacker in Rust&amp;quot; and &lt;code&gt;count&lt;&#x2F;code&gt; is 1.&lt;&#x2F;p&gt;
+&lt;p&gt;We can use this syntax to make our code more efficient and maintain the logic of using a template.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;structs2-rs-solution-with-update-syntax&quot;&gt;&lt;code&gt;structs2.rs&lt;&#x2F;code&gt; Solution with Update Syntax&lt;&#x2F;h2&gt;
+&lt;p&gt;So, with struct update syntax, the solution becomes:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn your_order() {
+        let order_template = create_order_template();
+        let your_order = Order {
+            name: String::from(&amp;quot;Hacker in Rust&amp;quot;),
+            count: 1,
+            ..order_template
+        };
+        assert_eq!(your_order.name, &amp;quot;Hacker in Rust&amp;quot;);
+        assert_eq!(your_order.year, order_template.year);
+        assert_eq!(your_order.made_by_phone, order_template.made_by_phone);
+        assert_eq!(your_order.made_by_mobile, order_template.made_by_mobile);
+        assert_eq!(your_order.made_by_email, order_template.made_by_email);
+        assert_eq!(your_order.item_number, order_template.item_number);
+        assert_eq!(your_order.count, 1);
+    }
+}
+
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;The test function &lt;code&gt;your_order()&lt;&#x2F;code&gt; now uses the update syntax to create &lt;code&gt;your_order&lt;&#x2F;code&gt; from &lt;code&gt;order_template&lt;&#x2F;code&gt;, changing only the &lt;code&gt;name&lt;&#x2F;code&gt; and &lt;code&gt;count&lt;&#x2F;code&gt; fields, and leaving the rest as in &lt;code&gt;order_template&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;This is just an alternate way of solving the problem and could be particularly useful if &lt;code&gt;Order&lt;&#x2F;code&gt; had many more fields that remained the same between &lt;code&gt;order_template&lt;&#x2F;code&gt; and &lt;code&gt;your_order&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;On to &lt;code&gt;structs3.rs&lt;&#x2F;code&gt;!&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;structs3-rs&quot;&gt;&lt;code&gt;structs3.rs&lt;&#x2F;code&gt;&lt;&#x2F;h2&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;&amp;#x2F;&amp;#x2F; structs3.rs
+&amp;#x2F;&amp;#x2F; Structs contain data, but can also have logic. In this exercise we have
+&amp;#x2F;&amp;#x2F; defined the Package struct and we want to test some logic attached to it.
+&amp;#x2F;&amp;#x2F; Make the code compile and the tests pass!
+&amp;#x2F;&amp;#x2F; Execute `rustlings hint structs3` or use the `hint` watch subcommand for a hint.
+
+&amp;#x2F;&amp;#x2F; I AM NOT DONE
+
+#[derive(Debug)]
+struct Package {
+    sender_country: String,
+    recipient_country: String,
+    weight_in_grams: i32,
+}
+
+impl Package {
+    fn new(sender_country: String, recipient_country: String, weight_in_grams: i32) -&amp;gt; Package {
+        if weight_in_grams &amp;lt;= 0 {
+            panic!(&amp;quot;Can not ship a weightless package.&amp;quot;)
+        } else {
+            Package {
+                sender_country,
+                recipient_country,
+                weight_in_grams,
+            }
+        }
+    }
+
+    fn is_international(&amp;amp;self) -&amp;gt; ??? {
+        &amp;#x2F;&amp;#x2F; Something goes here...
+    }
+
+    fn get_fees(&amp;amp;self, cents_per_gram: i32) -&amp;gt; ??? {
+        &amp;#x2F;&amp;#x2F; Something goes here...
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    #[should_panic]
+    fn fail_creating_weightless_package() {
+        let sender_country = String::from(&amp;quot;Spain&amp;quot;);
+        let recipient_country = String::from(&amp;quot;Austria&amp;quot;);
+
+        Package::new(sender_country, recipient_country, -2210);
+    }
+
+    #[test]
+    fn create_international_package() {
+        let sender_country = String::from(&amp;quot;Spain&amp;quot;);
+        let recipient_country = String::from(&amp;quot;Russia&amp;quot;);
+
+        let package = Package::new(sender_country, recipient_country, 1200);
+
+        assert!(package.is_international());
+    }
+
+    #[test]
+    fn create_local_package() {
+        let sender_country = String::from(&amp;quot;Canada&amp;quot;);
+        let recipient_country = sender_country.clone();
+
+        let package = Package::new(sender_country, recipient_country, 1200);
+
+        assert!(!package.is_international());
+    }
+
+    #[test]
+    fn calculate_transport_fees() {
+        let sender_country = String::from(&amp;quot;Spain&amp;quot;);
+        let recipient_country = String::from(&amp;quot;Spain&amp;quot;);
+
+        let cents_per_gram = 3;
+
+        let package = Package::new(sender_country, recipient_country, 1500);
+
+        assert_eq!(package.get_fees(cents_per_gram), 4500);
+        assert_eq!(package.get_fees(cents_per_gram * 2), 9000);
+    }
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Alright this is a longer piece of code to go through but we see that there is essentially 2 areas that we need to fill out, before we look at that let&#x27;s look at the errors.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;zsh&quot; class=&quot;language-zsh &quot;&gt;&lt;code class=&quot;language-zsh&quot; data-lang=&quot;zsh&quot;&gt;⚠️  Compiling of exercises&amp;#x2F;structs&amp;#x2F;structs3.rs failed! Please try again. Here is the output:
+error: expected identifier, found `{`
+  --&amp;gt; exercises&amp;#x2F;structs&amp;#x2F;structs3.rs:29:39
+   |
+16 | impl Package {
+   |              - while parsing this item list starting here
+...
+29 |     fn is_international(&amp;amp;self) -&amp;gt; ??? {
+   |                                       ^ expected identifier
+...
+36 | }
+   | - the item list ends here
+
+error[E0599]: no method named `is_international` found for struct `Package` in the current scope
+  --&amp;gt; exercises&amp;#x2F;structs&amp;#x2F;structs3.rs:58:25
+   |
+10 | struct Package {
+   | -------------- method `is_international` not found for this struct
+...
+58 |         assert!(package.is_international());
+   |                         ^^^^^^^^^^^^^^^^ method not found in `Package`
+
+error[E0599]: no method named `is_international` found for struct `Package` in the current scope
+  --&amp;gt; exercises&amp;#x2F;structs&amp;#x2F;structs3.rs:68:26
+   |
+10 | struct Package {
+   | -------------- method `is_international` not found for this struct
+...
+68 |         assert!(!package.is_international());
+   |                          ^^^^^^^^^^^^^^^^ method not found in `Package`
+
+error[E0599]: no method named `get_fees` found for struct `Package` in the current scope
+  --&amp;gt; exercises&amp;#x2F;structs&amp;#x2F;structs3.rs:80:28
+   |
+10 | struct Package {
+   | -------------- method `get_fees` not found for this struct
+...
+80 |         assert_eq!(package.get_fees(cents_per_gram), 4500);
+   |                            ^^^^^^^^ method not found in `Package`
+
+error[E0599]: no method named `get_fees` found for struct `Package` in the current scope
+  --&amp;gt; exercises&amp;#x2F;structs&amp;#x2F;structs3.rs:81:28
+   |
+10 | struct Package {
+   | -------------- method `get_fees` not found for this struct
+...
+81 |         assert_eq!(package.get_fees(cents_per_gram * 2), 9000);
+   |                            ^^^^^^^^ method not found in `Package`
+
+error: aborting due to 5 previous errors
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Alright we&#x27;re seeing errors due to the missing code blocks and also the usual &lt;code&gt;assert_eq!&lt;&#x2F;code&gt; macros that are expecting something that is not there. So let&#x27;s get to work!&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;defining-return-values&quot;&gt;Defining Return Values&lt;&#x2F;h2&gt;
+&lt;p&gt;First we define the return values &lt;code&gt;String&lt;&#x2F;code&gt; and an &lt;code&gt;i32&lt;&#x2F;code&gt;, instead of the &lt;code&gt;???&lt;&#x2F;code&gt; we previously had.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;    fn is_international(&amp;amp;self) -&amp;gt; String {
+        &amp;#x2F;&amp;#x2F; Something goes here...
+    }
+
+    fn get_fees(&amp;amp;self, cents_per_gram: i32) -&amp;gt; i32 {
+        &amp;#x2F;&amp;#x2F; Something goes here...
+    }
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;We still get error&#x27;s here when we save but they&#x27;re different essentially telling us that this function &lt;code&gt;has no tail&lt;&#x2F;code&gt; or essentially isn&#x27;t returning anything as we have defined it in the signature so of course we have to fix that. Here are the new errors:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;zsh&quot; class=&quot;language-zsh &quot;&gt;&lt;code class=&quot;language-zsh&quot; data-lang=&quot;zsh&quot;&gt;⚠️  Compiling of exercises&amp;#x2F;structs&amp;#x2F;structs3.rs failed! Please try again. Here is the output:
+error[E0308]: mismatched types
+  --&amp;gt; exercises&amp;#x2F;structs&amp;#x2F;structs3.rs:29:35
+   |
+29 |     fn is_international(&amp;amp;self) -&amp;gt; String {
+   |        ----------------           ^^^^^^ expected struct `String`, found `()`
+   |        |
+   |        implicitly returns `()` as its body has no tail or `return` expression
+
+error[E0308]: mismatched types
+  --&amp;gt; exercises&amp;#x2F;structs&amp;#x2F;structs3.rs:33:48
+   |
+33 |     fn get_fees(&amp;amp;self, cents_per_gram: i32) -&amp;gt; i32 {
+   |        --------                                ^^^ expected `i32`, found `()`
+   |        |
+   |        implicitly returns `()` as its body has no tail or `return` expression
+   |
+help: consider returning the local binding `cents_per_gram`
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h2 id=&quot;is-international-function&quot;&gt;&lt;code&gt;is_international&lt;&#x2F;code&gt; function&lt;&#x2F;h2&gt;
+&lt;p&gt;So let&#x27;s take breakdown the &lt;code&gt;is_interational&lt;&#x2F;code&gt; function and see what it is that we need to do inside of here.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;function-declaration&quot;&gt;Function declaration:&lt;&#x2F;h3&gt;
+&lt;p&gt;The line &lt;code&gt;fn is_international(&amp;amp;self) -&amp;gt; bool&lt;&#x2F;code&gt; declares a function named &lt;code&gt;is_international&lt;&#x2F;code&gt;. The &lt;code&gt;&amp;amp;self&lt;&#x2F;code&gt; argument means that this function is a method, which operates on an instance of the &lt;code&gt;Package&lt;&#x2F;code&gt; struct.&lt;&#x2F;p&gt;
+&lt;p&gt;This function will return a &lt;code&gt;bool&lt;&#x2F;code&gt; type, which is a boolean that can be either &lt;code&gt;true&lt;&#x2F;code&gt; or &lt;code&gt;false&lt;&#x2F;code&gt; as we have already defined earlier.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;function-body&quot;&gt;Function body:&lt;&#x2F;h3&gt;
+&lt;p&gt;Inside the function, we add &lt;code&gt;self.sender_country != self.recipient_country&lt;&#x2F;code&gt; which is the basic logic that determines whether a package is international.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;code&gt;self.sender_country&lt;&#x2F;code&gt; accesses the &lt;code&gt;sender_country&lt;&#x2F;code&gt; field  of the current &lt;code&gt;Package&lt;&#x2F;code&gt; instance, and &lt;code&gt;self.recipient_country&lt;&#x2F;code&gt; accesses the &lt;code&gt;recipient_country&lt;&#x2F;code&gt; field.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;code&gt;!=&lt;&#x2F;code&gt; is the inequality operator in Rust, which checks if the two values on its left and right are not equal. In this case, it&#x27;s comparing the &lt;code&gt;sender_country&lt;&#x2F;code&gt; and &lt;code&gt;recipient_country&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;return-value&quot;&gt;Return value:&lt;&#x2F;h3&gt;
+&lt;p&gt;If &lt;code&gt;sender_country&lt;&#x2F;code&gt; and &lt;code&gt;recipient_country&lt;&#x2F;code&gt; are not equal, the expression evaluates to &lt;code&gt;true&lt;&#x2F;code&gt;, meaning that the package is international. If they are equal, the expression evaluates to &lt;code&gt;false&lt;&#x2F;code&gt;, meaning that the package is not international.&lt;&#x2F;p&gt;
+&lt;p&gt;This boolean value is what the function returns, because it&#x27;s the last (and in this case, the only) expression in the function. In Rust, the last expression in a function is implicitly returned.&lt;&#x2F;p&gt;
+&lt;p&gt;In sum, &lt;code&gt;is_international&lt;&#x2F;code&gt; is a method that checks if the sender and recipient countries of a package are different. If they are, the package is international, and the method returns &lt;code&gt;true&lt;&#x2F;code&gt;. If they&#x27;re the same, the package is not international, and the method returns &lt;code&gt;false&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;get-fees-function&quot;&gt;&lt;code&gt;get_fees&lt;&#x2F;code&gt; function&lt;&#x2F;h3&gt;
+&lt;p&gt;Now let&#x27;s break down the &lt;code&gt;get_fees&lt;&#x2F;code&gt; function.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;function-declaration-1&quot;&gt;Function declaration&lt;&#x2F;h3&gt;
+&lt;p&gt;The line &lt;code&gt;fn get_fees(&amp;amp;self, cents_per_gram: i32) -&amp;gt; i32&lt;&#x2F;code&gt; declares a function named &lt;code&gt;get_fees&lt;&#x2F;code&gt;. The &lt;code&gt;&amp;amp;self&lt;&#x2F;code&gt; argument means that this function is a method, which operates on an instance of the &lt;code&gt;Package&lt;&#x2F;code&gt; struct.&lt;&#x2F;p&gt;
+&lt;p&gt;In addition to &lt;code&gt;&amp;amp;self&lt;&#x2F;code&gt;, the function takes another argument, &lt;code&gt;cents_per_gram&lt;&#x2F;code&gt;, which represents the cost per gram to ship a package.
+The &lt;code&gt;-&amp;gt; i32&lt;&#x2F;code&gt; means this function will return an integer (&lt;code&gt;i32&lt;&#x2F;code&gt;).&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;function-body-1&quot;&gt;Function body:&lt;&#x2F;h3&gt;
+&lt;p&gt;Inside the function, &lt;code&gt;cents_per_gram * self.weight_in_grams&lt;&#x2F;code&gt; is the logic used to calculate the shipping fee for a package.
+&lt;code&gt;self.weight_in_grams&lt;&#x2F;code&gt; accesses the &lt;code&gt;weight_in_grams&lt;&#x2F;code&gt; field of the current &lt;code&gt;Package&lt;&#x2F;code&gt; instance.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;code&gt;*&lt;&#x2F;code&gt; is the multiplication operator in Rust, which multiplies &lt;code&gt;cents_per_gram&lt;&#x2F;code&gt; (the cost per gram to ship a package) with &lt;code&gt;self.weight_in_grams&lt;&#x2F;code&gt; (the weight of the package).&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;return-value-1&quot;&gt;Return Value&lt;&#x2F;h3&gt;
+&lt;p&gt;The multiplication gives the total cost to ship the package. Since &lt;code&gt;cents_per_gram&lt;&#x2F;code&gt; is in cents, and &lt;code&gt;weight_in_grams&lt;&#x2F;code&gt; is in grams, the result is in cents too.
+This integer value is what the function returns. As in the &lt;code&gt;is_international&lt;&#x2F;code&gt; function, the last expression in the function is implicitly returned in Rust.&lt;&#x2F;p&gt;
+&lt;p&gt;In summary, &lt;code&gt;get_fees&lt;&#x2F;code&gt; is a method that calculates and returns the shipping fee for a package based on the cost per gram and the weight of the package.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;summary-of-methods&quot;&gt;Summary of methods&lt;&#x2F;h2&gt;
+&lt;p&gt;Rust is a language that uses something called &amp;quot;methods&amp;quot; to perform actions on data. In our example, &lt;code&gt;Package&lt;&#x2F;code&gt; is a collection of data (the sender and recipient countries, and the weight), and the functions &lt;code&gt;is_international&lt;&#x2F;code&gt; and &lt;code&gt;get_fees&lt;&#x2F;code&gt; are methods that do something with this data.&lt;&#x2F;p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;&amp;amp;self&lt;&#x2F;code&gt; is a reference to the current object - the &amp;quot;package&amp;quot; we&#x27;re working with at the moment. It&#x27;s like saying &amp;quot;this package&amp;quot; or &amp;quot;the package I&#x27;m currently handling&amp;quot;. It&#x27;s used because the method is working on the data inside the current &lt;code&gt;Package&lt;&#x2F;code&gt; object.&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;is_international(&amp;amp;self) -&amp;gt; bool&lt;&#x2F;code&gt; is a method that checks if the package is international. It does this by comparing the sender and recipient countries: if they&#x27;re different, it means the package is international, and the method returns &lt;code&gt;true&lt;&#x2F;code&gt;. If they&#x27;re the same, the package is not international, and the method returns &lt;code&gt;false&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;get_fees(&amp;amp;self, cents_per_gram: i32) -&amp;gt; i32&lt;&#x2F;code&gt; is a method that calculates the fees to ship the package. It does this by multiplying the weight of the package (&lt;code&gt;self.weight_in_grams&lt;&#x2F;code&gt;) by the cost per gram (&lt;code&gt;cents_per_gram&lt;&#x2F;code&gt;). The result is the total fee, which is returned by the method.&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;p&gt;So, in short: &lt;code&gt;&amp;amp;self&lt;&#x2F;code&gt; means &amp;quot;this package&amp;quot;, &lt;code&gt;is_international&lt;&#x2F;code&gt; checks if the sender and recipient countries are different, and &lt;code&gt;get_fees&lt;&#x2F;code&gt; calculates the shipping fees based on the weight of the package and the cost per gram.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;conclusion&quot;&gt;Conclusion&lt;&#x2F;h2&gt;
+&lt;p&gt;Okay, this was a long one, we dove into the basics of Structs in Rust and how they can carry both data and logic.
+Through this exploration, we gained a better understanding of Rust&#x27;s data structures, method definitions and syntax. Moreover, we tackled a practical example with tests, giving us a real world scenario to apply our knowledge.&lt;&#x2F;p&gt;
+&lt;p&gt;Remember, Rust&#x27;s system of Structs and methods allows you to write code that is not only efficient but also safe and readable. This is particularly important in systems programming and other contexts where performance is crucial. With this knowledge, you&#x27;ll be able to tackle more complex Rust projects and continue to build on your programming skills.&lt;&#x2F;p&gt;
+</description>
+      </item>
       <item>
           <title>07 Rustlings Move Semantics Part 2</title>
           <pubDate>Wed, 24 May 2023 00:00:00 +0000</pubDate>
@@ -2365,6 +3107,7 @@ fn main() {
 &lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;desmodrone.github.io&#x2F;posts&#x2F;06-rustlings-vecs&#x2F;&quot;&gt;06_rustlings_vecs&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
 &lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;desmodrone.github.io&#x2F;posts&#x2F;07-rustlings-move-semantics1&#x2F;&quot;&gt;07_rustlings_move_semantics_part_1&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
 &lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;desmodrone.github.io&#x2F;posts&#x2F;07-rustlings-move-semantics2&#x2F;&quot;&gt;07_rustlings_move_semantics_part_2&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;desmodrone.github.io&#x2F;posts&#x2F;08-rustlings-structs&#x2F;&quot;&gt;08_rustlings_structs&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
 &lt;&#x2F;ul&gt;
 &lt;p&gt;Inspired by Tris Oaten&#x27;s recent video &lt;a href=&quot;https:&#x2F;&#x2F;youtu.be&#x2F;2hXNd6x9sZs&quot;&gt;How to Learn Rust&lt;&#x2F;a&gt; on his excellent YouTube channel &lt;a href=&quot;https:&#x2F;&#x2F;www.youtube.com&#x2F;@NoBoilerplate&quot;&gt;No Boilerplate&lt;&#x2F;a&gt;, I&#x27;ve decided to refocus my journey with the Rust programming language. In hopes of effectively learning Rust, I&#x27;ll be following the holy trinity of Rust learning resources as recommended by Tris:&lt;&#x2F;p&gt;
 &lt;ul&gt;

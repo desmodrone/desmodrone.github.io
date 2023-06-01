@@ -1,0 +1,980 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <meta itemprop="name" content="desmo" />
+  <meta itemprop="description" content="Random Ideas" />
+
+  <link rel="apple-touch-icon" sizes="180x180" href="https://desmodrone.github.io/apple-touch-icon.png"/>
+  <link rel="icon" type="image/png" sizes="32x32" href="https://desmodrone.github.io/favicon-32x32.png" />
+  <link
+    rel="icon"
+    type="image/png"
+    sizes="16x16"
+    href="https://desmodrone.github.io/favicon-16x16.png"
+  />
+  <link
+    rel="shortcut icon"
+    href="https://desmodrone.github.io/favicon.ico"
+  />
+  <link rel="stylesheet" href="https://desmodrone.github.io/style.css"/>
+  
+  <title>08 Rustlings Structs</title>
+  
+
+  
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="https://desmodrone.github.io/rss.xml">
+  
+
+  <body id="page">
+
+	
+<header id="site-header" class="animated slideInUp faster">
+  <div class="hdr-wrapper section-inner">
+    <div class="hdr-left">
+      <div class="site-branding">
+        <a href="https:&#x2F;&#x2F;desmodrone.github.io">desmo</a>
+      </div>
+      <nav class="site-nav hide-in-mobile">
+            
+        
+        <a href="https://desmodrone.github.io/posts">posts</a>
+        
+        <a href="https://desmodrone.github.io/about">about</a>
+        
+        <a href="https://desmodrone.github.io/work">work</a>
+        
+      </nav>
+    </div>
+    <div class="hdr-right hdr-icons">
+      <span class="hdr-social hide-in-mobile">
+        
+
+<a href="https:&#x2F;&#x2F;twitter.com&#x2F;desmodrone_" target="_blank" rel="noopener me"
+   title="twitter">
+  
+  <svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg>
+  
+</a>
+
+<a href="https:&#x2F;&#x2F;github.com&#x2F;desmodrone" target="_blank" rel="noopener me"
+   title="github">
+  
+  <svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+  
+</a>
+
+<a href="mailto:erick@apexwins.com" target="_blank" rel="noopener me"
+   title="email">
+  
+  <svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+  
+</a>
+
+
+      </span>
+      <button id="menu-btn" class="hdr-btn" title="Menu">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="feather feather-menu"
+        >
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+  </div>
+</header>
+<div id="mobile-menu" class="animated fast">
+  <ul>
+    
+    <li><a href="https://desmodrone.github.io/posts">posts</a></li>
+    
+    <li><a href="https://desmodrone.github.io/about">about</a></li>
+    
+    <li><a href="https://desmodrone.github.io/work">work</a></li>
+    
+  </ul>
+</div>
+
+	
+	
+
+		
+<main class="site-main section-inner animated fadeIn faster">
+  <article class="thin">
+	<header class="post-header">
+	  <div class="post-meta">
+		
+		<span>Jun 01, 2023</span>
+		<small> - 
+<span class="reading-time" title="Estimated read time">
+  
+  15 min read
+  
+</span>
+</small>
+		
+            
+	  </div>
+	  <h1>08 Rustlings Structs</h1>
+	</header>
+
+	<div class="content">
+        
+	  <p>From the ReadMe:
+Rust has three struct types: a classic C struct, a tuple struct, and a unit struct.</p>
+<h2 id="further-information">Further information</h2>
+<ul>
+<li><a href="https://doc.rust-lang.org/book/ch05-01-defining-structs.html">Structures</a></li>
+<li><a href="https://doc.rust-lang.org/book/ch05-03-method-syntax.html">Method Syntax</a></li>
+</ul>
+<h2 id="structs-in-rust">Structs in Rust</h2>
+<p>In Rust, structs are versatile containers that bring together multiple values into a cohesive unit. They offer three types: classic C structs, tuple structs, and unit structs.</p>
+<p>Classic C structs allow you to define named fields, providing an intuitive way to organize and access related data. Tuple structs, on the other hand, resemble tuples, with fields accessed through indexing rather than names. Lastly, unit structs serve as simple markers or placeholders without any fields.</p>
+<p>Let's take a quick dive into the types of structs:</p>
+<ul>
+<li>
+<p><strong>Classic C Structs:</strong> These are essentially collections with named fields. They are ideal for larger and more complex data structures where each piece of data has a meaningful label.</p>
+</li>
+<li>
+<p><strong>Tuple Structs:</strong> These are a kind of middle ground between tuples and classic structs. They are useful when you want to give a tuple a name for type checking or to better signify its purpose, but you don't necessarily need to name each field.</p>
+</li>
+<li>
+<p><strong>Unit Structs:</strong> These are used in cases where a struct doesn't need to have any data associated with it. For example, they can be used to implement traits on some type, or as markers or flags.</p>
+</li>
+</ul>
+<p>With structs, you have the power to create custom data structures that suit your needs, enhancing code organization and efficiency. Explore the provided links to delve deeper into the world of structs in Rust and unlock their potential for your projects.</p>
+<p>Let's look at our first exercise.</p>
+<h2 id="structs1-rs"><code>Structs1.rs</code></h2>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">&#x2F;&#x2F; structs1.rs
+    &#x2F;&#x2F; Address all the TODOs to make the tests pass!
+    &#x2F;&#x2F; Execute `rustlings hint structs1` or use the `hint` watch subcommand for a hint.
+
+    &#x2F;&#x2F; I AM NOT DONE
+
+    struct ColorClassicStruct {
+        &#x2F;&#x2F; TODO: Something goes here
+    }
+
+    struct ColorTupleStruct(&#x2F;* TODO: Something goes here *&#x2F;);
+
+    #[derive(Debug)]
+    struct UnitLikeStruct;
+
+    #[cfg(test)]
+    mod tests {
+        use super::*;
+
+        #[test]
+        fn classic_c_structs() {
+            &#x2F;&#x2F; TODO: Instantiate a classic c struct!
+            &#x2F;&#x2F; let green =
+
+            assert_eq!(green.red, 0);
+            assert_eq!(green.green, 255);
+            assert_eq!(green.blue, 0);
+        }
+
+        #[test]
+        fn tuple_structs() {
+            &#x2F;&#x2F; TODO: Instantiate a tuple struct!
+            &#x2F;&#x2F; let green =
+
+            assert_eq!(green.0, 0);
+            assert_eq!(green.1, 255);
+            assert_eq!(green.2, 0);
+        }
+
+        #[test]
+        fn unit_structs() {
+            &#x2F;&#x2F; TODO: Instantiate a unit-like struct!
+            &#x2F;&#x2F; let unit_like_struct =
+            let message = format!(&quot;{:?}s are fun!&quot;, unit_like_struct);
+
+            assert_eq!(message, &quot;UnitLikeStructs are fun!&quot;);
+        }
+    }
+
+</code></pre>
+<p>So here we're getting clear instructions on what to do. We need to implement different types of structs in each <code>//TODO</code> section. For completeness here are our errors.</p>
+<h2 id="structs1-rs-errors"><code>Structs1.rs</code>  errors</h2>
+<pre data-lang="zsh" class="language-zsh "><code class="language-zsh" data-lang="zsh">⚠️  Compiling of exercises&#x2F;structs&#x2F;structs1.rs failed! Please try again. Here is the output:
+error[E0425]: cannot find value `green` in this scope
+  --&gt; exercises&#x2F;structs&#x2F;structs1.rs:25:20
+   |
+25 |         assert_eq!(green.red, 0);
+   |                    ^^^^^ not found in this scope
+
+error[E0425]: cannot find value `green` in this scope
+  --&gt; exercises&#x2F;structs&#x2F;structs1.rs:26:20
+   |
+26 |         assert_eq!(green.green, 255);
+   |                    ^^^^^ not found in this scope
+
+error[E0425]: cannot find value `green` in this scope
+  --&gt; exercises&#x2F;structs&#x2F;structs1.rs:27:20
+   |
+27 |         assert_eq!(green.blue, 0);
+   |                    ^^^^^ not found in this scope
+
+error[E0425]: cannot find value `green` in this scope
+  --&gt; exercises&#x2F;structs&#x2F;structs1.rs:35:20
+   |
+35 |         assert_eq!(green.0, 0);
+   |                    ^^^^^ not found in this scope
+
+error[E0425]: cannot find value `green` in this scope
+  --&gt; exercises&#x2F;structs&#x2F;structs1.rs:36:20
+   |
+36 |         assert_eq!(green.1, 255);
+   |                    ^^^^^ not found in this scope
+
+error[E0425]: cannot find value `green` in this scope
+  --&gt; exercises&#x2F;structs&#x2F;structs1.rs:37:20
+   |
+37 |         assert_eq!(green.2, 0);
+   |                    ^^^^^ not found in this scope
+
+error[E0425]: cannot find value `unit_like_struct` in this scope
+  --&gt; exercises&#x2F;structs&#x2F;structs1.rs:44:49
+   |
+14 | struct UnitLikeStruct;
+   | ---------------------- similarly named unit struct `UnitLikeStruct` defined here
+...
+44 |         let message = format!(&quot;{:?}s are fun!&quot;, unit_like_struct);
+   |                                                 ^^^^^^^^^^^^^^^^ help: a unit struct with a similar name exists: `UnitLikeStruct`
+
+warning: unused import: `super::*`
+  --&gt; exercises&#x2F;structs&#x2F;structs1.rs:18:9
+   |
+18 |     use super::*;
+   |         ^^^^^^^^
+   |
+   = note: `#[warn(unused_imports)]` on by default
+
+error: aborting due to 7 previous errors; 1 warning emitted
+</code></pre>
+<p>We're getting 7 different errors and it looks like most of them are related to the fact that we are missing our structs so they <code>assert_eq!</code> calls are failing. So let's try and solve this.</p>
+<p>Notice that the errors reported here are not solely due to missing structs but also due to missing variable declarations. For example, the variables <code>green</code> and <code>unit_like_struct</code> are used in the test assertions but haven't been defined yet in the tests. This will be addressed in the following sections as we instantiate these variables along with defining and instantiating the corresponding structs.</p>
+<h2 id="defining-our-structs">Defining our Structs</h2>
+<p>Starting from the top of our code we see our first <code>TODO's</code> in comments.</p>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">   struct ColorClassicStruct {
+        &#x2F;&#x2F; TODO: Something goes here
+    }
+
+    struct ColorTupleStruct(&#x2F;* TODO: Something goes here *&#x2F;);
+</code></pre>
+<p>We have 2 different styles of structs that we need to create a &quot;classic&quot; and &quot;tuple&quot; types struct.  We fill out the structs using their usual structure and we get an indication of what is needed by looking at the <code>assert_eq!</code> listed in each section. We can see that in the <code>assert_eq!</code> we have values that could fit and <code>i32</code>'s since we see the max value is <code>255</code> we'll use <code>i32</code>s as it's the default value in Rust.</p>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">struct ColorClassicStruct {
+    red: i32,
+    green: i32,
+    blue: i32,
+}
+&#x2F;&#x2F; from the `assert_eq!` in `classic_c_structs` function
+    &#x2F;&#x2F; assert_eq!(green.red, 0);
+    &#x2F;&#x2F; assert_eq!(green.green, 255);
+    &#x2F;&#x2F; assert_eq!(green.blue, 0);
+
+
+struct ColorTupleStruct(i32, i32, i32);
+
+&#x2F;&#x2F; from the `assert_eq!` in the `tuple_structs` function
+    &#x2F;&#x2F; assert_eq!(green.0, 0);
+    &#x2F;&#x2F; assert_eq!(green.1, 255);
+    &#x2F;&#x2F; assert_eq!(green.2, 0);
+
+</code></pre>
+<p>We'll do the same for the <code>ColorTupleStruct</code> getting hints as to how we need to define the Tuple struct with <code>(i32, i32, i32)</code>.</p>
+<h2 id="instantiating-our-classic-struct">Instantiating our Classic Struct</h2>
+<p>Now that we've defined our structs we need to create an new instance of our structs where we specify concrete values for each of the fields. We create instances of our struct by stating the name of the struct we can see that in our example we have this so far.</p>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">   fn classic_c_structs() {
+            &#x2F;&#x2F; TODO: Instantiate a classic c struct!
+            &#x2F;&#x2F; let green =
+
+            assert_eq!(green.red, 0);
+            assert_eq!(green.green, 255);
+            assert_eq!(green.blue, 0);
+        }
+</code></pre>
+<p>So we'll start by removing the comment slashes on <code>let green = </code> and fill out the rest with our values, again taking hints from the <code>assert_eq!</code> lines we see that we should have values of <code>0, 255, 0</code> so let's add that information into our <code>classic_c_structs()</code> function. It should like the code below:</p>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">    fn classic_c_structs() {
+        &#x2F;&#x2F; TODO: Instantiate a classic c struct!
+        let green = ColorClassicStruct {
+            red: 0,
+            green: 255,
+            blue: 0,
+        };
+</code></pre>
+<h2 id="instantiating-our-tuple-struct">Instantiating our Tuple Struct</h2>
+<p>We see a similar set up for our Tuple struct with the code below. We have our <code>let gree =</code> commented out with a hint as to what the values should be by looking at our <code>assert_eq!</code> macros</p>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">        fn tuple_structs() {
+            &#x2F;&#x2F; TODO: Instantiate a tuple struct!
+            &#x2F;&#x2F; let green =
+
+            assert_eq!(green.0, 0);
+            assert_eq!(green.1, 255);
+            assert_eq!(green.2, 0);
+        }
+</code></pre>
+<p>Remembering that Tuple structs have a different type of structure as we created <code>struct ColorTupleStruct(i32, i32, i32)</code>, we can instantiate our tuple struct in the following way:</p>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">fn tuple_structs() {
+        &#x2F;&#x2F; TODO: Instantiate a tuple struct!
+        let green = ColorTupleStruct(0, 255, 0);
+
+        assert_eq!(green.0, 0);
+        assert_eq!(green.1, 255);
+        assert_eq!(green.2, 0);
+</code></pre>
+<p>Again taking hints from the values that we see in the <code>assert_eq!</code> macro's</p>
+<h2 id="instantiating-our-unit-like-structs">Instantiating our Unit-Like Structs</h2>
+<p>We have our final struct left to instantiate which if we recall from reading the The Rust Programming Language book, they are structs that have any fields. So looking at our unfinished code we see this:</p>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">        fn unit_structs() {
+            &#x2F;&#x2F; TODO: Instantiate a unit-like struct!
+            &#x2F;&#x2F; let unit_like_struct =
+            let message = format!(&quot;{:?}s are fun!&quot;, unit_like_struct);
+
+            assert_eq!(message, &quot;UnitLikeStructs are fun!&quot;);
+</code></pre>
+<p>So, as we don't have any fields and hence no data stored in them we can simply finish our code like so:</p>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">fn unit_structs() {
+        &#x2F;&#x2F; TODO: Instantiate a unit-like struct!
+        let unit_like_struct = UnitLikeStruct;
+        let message = format!(&quot;{:?}s are fun!&quot;, unit_like_struct);
+
+        assert_eq!(message, &quot;UnitLikeStructs are fun!&quot;);
+    }
+</code></pre>
+<p>That should do the trick, let's see if our code complies. It does!</p>
+<h2 id="structs1-rs-solution"><code>Structs1.rs</code>  Solution</h2>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">
+struct ColorClassicStruct {
+    red: i32,
+    green: i32,
+    blue: i32,
+}
+
+struct ColorTupleStruct(i32, i32, i32);
+
+#[derive(Debug)]
+struct UnitLikeStruct;
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn classic_c_structs() {
+        &#x2F;&#x2F; TODO: Instantiate a classic c struct!
+        let green = ColorClassicStruct {
+            red: 0,
+            green: 255,
+            blue: 0,
+        };
+
+        assert_eq!(green.red, 0);
+        assert_eq!(green.green, 255);
+        assert_eq!(green.blue, 0);
+    }
+
+    #[test]
+    fn tuple_structs() {
+        &#x2F;&#x2F; TODO: Instantiate a tuple struct!
+        let green = ColorTupleStruct(0, 255, 0);
+
+        assert_eq!(green.0, 0);
+        assert_eq!(green.1, 255);
+        assert_eq!(green.2, 0);
+    }
+
+    #[test]
+    fn unit_structs() {
+        &#x2F;&#x2F; TODO: Instantiate a unit-like struct!
+        let unit_like_struct = UnitLikeStruct;
+        let message = format!(&quot;{:?}s are fun!&quot;, unit_like_struct);
+
+        assert_eq!(message, &quot;UnitLikeStructs are fun!&quot;);
+    }
+}
+</code></pre>
+<p>Our code compiles and we've finished and instantiated 3 different types of structs, our printout confirms this:</p>
+<pre data-lang="zsh" class="language-zsh "><code class="language-zsh" data-lang="zsh">✅ Successfully tested exercises&#x2F;structs&#x2F;structs1.rs!
+
+🎉 🎉  The code is compiling, and the tests pass! 🎉 🎉
+</code></pre>
+<p>On to the next one!</p>
+<h2 id="structs2-rs"><code>structs2.rs</code></h2>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">&#x2F;&#x2F; structs2.rs
+&#x2F;&#x2F; Address all the TODOs to make the tests pass!
+&#x2F;&#x2F; Execute `rustlings hint structs2` or use the `hint` watch subcommand for a hint.
+
+&#x2F;&#x2F; I AM NOT DONE
+
+#[derive(Debug)]
+struct Order {
+    name: String,
+    year: u32,
+    made_by_phone: bool,
+    made_by_mobile: bool,
+    made_by_email: bool,
+    item_number: u32,
+    count: u32,
+}
+
+fn create_order_template() -&gt; Order {
+    Order {
+        name: String::from(&quot;Bob&quot;),
+        year: 2019,
+        made_by_phone: false,
+        made_by_mobile: false,
+        made_by_email: true,
+        item_number: 123,
+        count: 0,
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn your_order() {
+        let order_template = create_order_template();
+        &#x2F;&#x2F; TODO: Create your own order using the update syntax and template above!
+        &#x2F;&#x2F; let your_order =
+        assert_eq!(your_order.name, &quot;Hacker in Rust&quot;);
+        assert_eq!(your_order.year, order_template.year);
+        assert_eq!(your_order.made_by_phone, order_template.made_by_phone);
+        assert_eq!(your_order.made_by_mobile, order_template.made_by_mobile);
+        assert_eq!(your_order.made_by_email, order_template.made_by_email);
+        assert_eq!(your_order.item_number, order_template.item_number);
+        assert_eq!(your_order.count, 1);
+    }
+}
+</code></pre>
+<p>In this code example we have instructions to address all the <code>//TODO's</code> which we can see that we only have one at the bottom of our code in our <code>tests</code>.
+As always let's look at our errors.</p>
+<h2 id="structs2-rs-errors"><code>structs2.rs</code> errors</h2>
+<pre data-lang="zsh" class="language-zsh "><code class="language-zsh" data-lang="zsh">⚠️  Compiling of exercises&#x2F;structs&#x2F;structs2.rs failed! Please try again. Here is the output:
+error[E0609]: no field `name` on type `fn() {tests::your_order}`
+  --&gt; exercises&#x2F;structs&#x2F;structs2.rs:39:31
+   |
+39 |         assert_eq!(your_order.name, &quot;Hacker in Rust&quot;);
+   |                               ^^^^
+
+error[E0609]: no field `year` on type `fn() {tests::your_order}`
+  --&gt; exercises&#x2F;structs&#x2F;structs2.rs:40:31
+   |
+40 |         assert_eq!(your_order.year, order_template.year);
+   |                               ^^^^
+
+error[E0609]: no field `made_by_phone` on type `fn() {tests::your_order}`
+  --&gt; exercises&#x2F;structs&#x2F;structs2.rs:41:31
+   |
+41 |         assert_eq!(your_order.made_by_phone, order_template.made_by_phone);
+   |                               ^^^^^^^^^^^^^
+
+error[E0609]: no field `made_by_mobile` on type `fn() {tests::your_order}`
+  --&gt; exercises&#x2F;structs&#x2F;structs2.rs:42:31
+   |
+42 |         assert_eq!(your_order.made_by_mobile, order_template.made_by_mobile);
+   |                               ^^^^^^^^^^^^^^
+
+error[E0609]: no field `made_by_email` on type `fn() {tests::your_order}`
+  --&gt; exercises&#x2F;structs&#x2F;structs2.rs:43:31
+   |
+43 |         assert_eq!(your_order.made_by_email, order_template.made_by_email);
+   |                               ^^^^^^^^^^^^^
+
+error[E0609]: no field `item_number` on type `fn() {tests::your_order}`
+  --&gt; exercises&#x2F;structs&#x2F;structs2.rs:44:31
+   |
+44 |         assert_eq!(your_order.item_number, order_template.item_number);
+   |                               ^^^^^^^^^^^
+
+error[E0609]: no field `count` on type `fn() {tests::your_order}`
+  --&gt; exercises&#x2F;structs&#x2F;structs2.rs:45:31
+   |
+45 |         assert_eq!(your_order.count, 1);
+   |                               ^^^^^
+
+error: aborting due to 7 previous errors
+</code></pre>
+<p>We have a total of 7 errors all created by our missing struct instantiation. So, let's get it to it, we'll start from the top.</p>
+<h2 id="instantiating-your-order">Instantiating <code>your_order</code></h2>
+<p>If we look  at our first error we get a major hint as to what the compiler expects to see: <code> assert_eq!(your_order.name, &quot;Hacker in Rust&quot;)</code> so if we take a look at our sample code and build our <code>Order</code> in the same way as in the <code>create_order_template</code> function we should have a great start for what we need to do.</p>
+<p>If we use our <code>Order</code> struct as a guide we can start entering the values for each field.</p>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">struct Order {
+    name: String,
+    year: u32,
+    made_by_phone: bool,
+    made_by_mobile: bool,
+    made_by_email: bool,
+    item_number: u32,
+    count: u32,
+}
+</code></pre>
+<p>for example:</p>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">fn your_order() {
+        let order_template = create_order_template();
+        &#x2F;&#x2F; TODO: Create your own order using the update syntax and template above!
+        let your_order = Order {
+            name: String::from(&quot;Hacker in Rust&quot;),
+            year: u32,
+            made_by_phone: bool,
+            made_by_mobile: bool,
+            made_by_email: bool,
+            item_number: u32,
+            count: u32,
+        };
+</code></pre>
+<p>Again we see what is expected by looking at our <code>assert_eq!</code> macro, so following this format it should be pretty easy to understand what each field should be.</p>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">        assert_eq!(your_order.name, &quot;Hacker in Rust&quot;); &#x2F;&#x2F; String
+        assert_eq!(your_order.year, order_template.year); &#x2F;&#x2F; u32 from the `oder_template.year`
+        assert_eq!(your_order.made_by_phone, order_template.made_by_phone); &#x2F;&#x2F; bool
+        assert_eq!(your_order.made_by_mobile, order_template.made_by_mobile); &#x2F;&#x2F; bool
+        assert_eq!(your_order.made_by_email, order_template.made_by_email); &#x2F;&#x2F; bool
+        assert_eq!(your_order.item_number, order_template.item_number); &#x2F;&#x2F; u32 from `item_number`
+        assert_eq!(your_order.count, 1); &#x2F;&#x2F; u32 defined here as `1`
+</code></pre>
+<p>So there we go now all we need to is fill out the rest of the values and it should look like this:</p>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">let your_order = Order {
+            name: String::from(&quot;Hacker in Rust&quot;),
+            year: 2019,
+            made_by_phone: false,
+            made_by_mobile: false,
+            made_by_email: true,
+            item_number: 123,
+            count: 1,
+        };
+</code></pre>
+<h2 id="structs2-rs-solution"><code>structs2.rs</code> Solution</h2>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">#[derive(Debug)]
+struct Order {
+    name: String,
+    year: u32,
+    made_by_phone: bool,
+    made_by_mobile: bool,
+    made_by_email: bool,
+    item_number: u32,
+    count: u32,
+}
+
+fn create_order_template() -&gt; Order {
+    Order {
+        name: String::from(&quot;Bob&quot;),
+        year: 2019,
+        made_by_phone: false,
+        made_by_mobile: false,
+        made_by_email: true,
+        item_number: 123,
+        count: 0,
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn your_order() {
+        let order_template = create_order_template();
+        &#x2F;&#x2F; TODO: Create your own order using the update syntax and template above!
+        let your_order = Order {
+            name: String::from(&quot;Hacker in Rust&quot;),
+            year: 2019,
+            made_by_phone: false,
+            made_by_mobile: false,
+            made_by_email: true,
+            item_number: 123,
+            count: 1,
+        };
+        assert_eq!(your_order.name, &quot;Hacker in Rust&quot;);
+        assert_eq!(your_order.year, order_template.year);
+        assert_eq!(your_order.made_by_phone, order_template.made_by_phone);
+        assert_eq!(your_order.made_by_mobile, order_template.made_by_mobile);
+        assert_eq!(your_order.made_by_email, order_template.made_by_email);
+        assert_eq!(your_order.item_number, order_template.item_number);
+        assert_eq!(your_order.count, 1);
+    }
+}
+</code></pre>
+<pre data-lang="zsh" class="language-zsh "><code class="language-zsh" data-lang="zsh">✅ Successfully tested exercises&#x2F;structs&#x2F;structs2.rs!
+
+🎉 🎉  The code is compiling, and the tests pass! 🎉 🎉
+</code></pre>
+<h2 id="understanding-rust-struct-update-syntax">Understanding Rust Struct Update Syntax</h2>
+<p>Before we move on to the next exercise, it's worth mentioning a Rust feature that could be beneficial here - the struct update syntax. It allows you to create a new instance of a struct, and selectively update some or all fields. This is especially useful when you have a template or default struct that you want to use as a base for your new struct.</p>
+<p>To do so, you use <code>..</code> followed by the instance name. It should look like this:</p>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">let your_order = Order {
+    name: String::from(&quot;Hacker in Rust&quot;),
+    count: 1,
+    ..order_template
+};
+</code></pre>
+<p>This code creates a new <code>Order</code> that is the same as <code>order_template</code>, except <code>name</code> is &quot;Hacker in Rust&quot; and <code>count</code> is 1.</p>
+<p>We can use this syntax to make our code more efficient and maintain the logic of using a template.</p>
+<h2 id="structs2-rs-solution-with-update-syntax"><code>structs2.rs</code> Solution with Update Syntax</h2>
+<p>So, with struct update syntax, the solution becomes:</p>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn your_order() {
+        let order_template = create_order_template();
+        let your_order = Order {
+            name: String::from(&quot;Hacker in Rust&quot;),
+            count: 1,
+            ..order_template
+        };
+        assert_eq!(your_order.name, &quot;Hacker in Rust&quot;);
+        assert_eq!(your_order.year, order_template.year);
+        assert_eq!(your_order.made_by_phone, order_template.made_by_phone);
+        assert_eq!(your_order.made_by_mobile, order_template.made_by_mobile);
+        assert_eq!(your_order.made_by_email, order_template.made_by_email);
+        assert_eq!(your_order.item_number, order_template.item_number);
+        assert_eq!(your_order.count, 1);
+    }
+}
+
+</code></pre>
+<p>The test function <code>your_order()</code> now uses the update syntax to create <code>your_order</code> from <code>order_template</code>, changing only the <code>name</code> and <code>count</code> fields, and leaving the rest as in <code>order_template</code>.</p>
+<p>This is just an alternate way of solving the problem and could be particularly useful if <code>Order</code> had many more fields that remained the same between <code>order_template</code> and <code>your_order</code>.</p>
+<p>On to <code>structs3.rs</code>!</p>
+<h2 id="structs3-rs"><code>structs3.rs</code></h2>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">&#x2F;&#x2F; structs3.rs
+&#x2F;&#x2F; Structs contain data, but can also have logic. In this exercise we have
+&#x2F;&#x2F; defined the Package struct and we want to test some logic attached to it.
+&#x2F;&#x2F; Make the code compile and the tests pass!
+&#x2F;&#x2F; Execute `rustlings hint structs3` or use the `hint` watch subcommand for a hint.
+
+&#x2F;&#x2F; I AM NOT DONE
+
+#[derive(Debug)]
+struct Package {
+    sender_country: String,
+    recipient_country: String,
+    weight_in_grams: i32,
+}
+
+impl Package {
+    fn new(sender_country: String, recipient_country: String, weight_in_grams: i32) -&gt; Package {
+        if weight_in_grams &lt;= 0 {
+            panic!(&quot;Can not ship a weightless package.&quot;)
+        } else {
+            Package {
+                sender_country,
+                recipient_country,
+                weight_in_grams,
+            }
+        }
+    }
+
+    fn is_international(&amp;self) -&gt; ??? {
+        &#x2F;&#x2F; Something goes here...
+    }
+
+    fn get_fees(&amp;self, cents_per_gram: i32) -&gt; ??? {
+        &#x2F;&#x2F; Something goes here...
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    #[should_panic]
+    fn fail_creating_weightless_package() {
+        let sender_country = String::from(&quot;Spain&quot;);
+        let recipient_country = String::from(&quot;Austria&quot;);
+
+        Package::new(sender_country, recipient_country, -2210);
+    }
+
+    #[test]
+    fn create_international_package() {
+        let sender_country = String::from(&quot;Spain&quot;);
+        let recipient_country = String::from(&quot;Russia&quot;);
+
+        let package = Package::new(sender_country, recipient_country, 1200);
+
+        assert!(package.is_international());
+    }
+
+    #[test]
+    fn create_local_package() {
+        let sender_country = String::from(&quot;Canada&quot;);
+        let recipient_country = sender_country.clone();
+
+        let package = Package::new(sender_country, recipient_country, 1200);
+
+        assert!(!package.is_international());
+    }
+
+    #[test]
+    fn calculate_transport_fees() {
+        let sender_country = String::from(&quot;Spain&quot;);
+        let recipient_country = String::from(&quot;Spain&quot;);
+
+        let cents_per_gram = 3;
+
+        let package = Package::new(sender_country, recipient_country, 1500);
+
+        assert_eq!(package.get_fees(cents_per_gram), 4500);
+        assert_eq!(package.get_fees(cents_per_gram * 2), 9000);
+    }
+}
+</code></pre>
+<p>Alright this is a longer piece of code to go through but we see that there is essentially 2 areas that we need to fill out, before we look at that let's look at the errors.</p>
+<pre data-lang="zsh" class="language-zsh "><code class="language-zsh" data-lang="zsh">⚠️  Compiling of exercises&#x2F;structs&#x2F;structs3.rs failed! Please try again. Here is the output:
+error: expected identifier, found `{`
+  --&gt; exercises&#x2F;structs&#x2F;structs3.rs:29:39
+   |
+16 | impl Package {
+   |              - while parsing this item list starting here
+...
+29 |     fn is_international(&amp;self) -&gt; ??? {
+   |                                       ^ expected identifier
+...
+36 | }
+   | - the item list ends here
+
+error[E0599]: no method named `is_international` found for struct `Package` in the current scope
+  --&gt; exercises&#x2F;structs&#x2F;structs3.rs:58:25
+   |
+10 | struct Package {
+   | -------------- method `is_international` not found for this struct
+...
+58 |         assert!(package.is_international());
+   |                         ^^^^^^^^^^^^^^^^ method not found in `Package`
+
+error[E0599]: no method named `is_international` found for struct `Package` in the current scope
+  --&gt; exercises&#x2F;structs&#x2F;structs3.rs:68:26
+   |
+10 | struct Package {
+   | -------------- method `is_international` not found for this struct
+...
+68 |         assert!(!package.is_international());
+   |                          ^^^^^^^^^^^^^^^^ method not found in `Package`
+
+error[E0599]: no method named `get_fees` found for struct `Package` in the current scope
+  --&gt; exercises&#x2F;structs&#x2F;structs3.rs:80:28
+   |
+10 | struct Package {
+   | -------------- method `get_fees` not found for this struct
+...
+80 |         assert_eq!(package.get_fees(cents_per_gram), 4500);
+   |                            ^^^^^^^^ method not found in `Package`
+
+error[E0599]: no method named `get_fees` found for struct `Package` in the current scope
+  --&gt; exercises&#x2F;structs&#x2F;structs3.rs:81:28
+   |
+10 | struct Package {
+   | -------------- method `get_fees` not found for this struct
+...
+81 |         assert_eq!(package.get_fees(cents_per_gram * 2), 9000);
+   |                            ^^^^^^^^ method not found in `Package`
+
+error: aborting due to 5 previous errors
+</code></pre>
+<p>Alright we're seeing errors due to the missing code blocks and also the usual <code>assert_eq!</code> macros that are expecting something that is not there. So let's get to work!</p>
+<h2 id="defining-return-values">Defining Return Values</h2>
+<p>First we define the return values <code>String</code> and an <code>i32</code>, instead of the <code>???</code> we previously had.</p>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">    fn is_international(&amp;self) -&gt; String {
+        &#x2F;&#x2F; Something goes here...
+    }
+
+    fn get_fees(&amp;self, cents_per_gram: i32) -&gt; i32 {
+        &#x2F;&#x2F; Something goes here...
+    }
+}
+</code></pre>
+<p>We still get error's here when we save but they're different essentially telling us that this function <code>has no tail</code> or essentially isn't returning anything as we have defined it in the signature so of course we have to fix that. Here are the new errors:</p>
+<pre data-lang="zsh" class="language-zsh "><code class="language-zsh" data-lang="zsh">⚠️  Compiling of exercises&#x2F;structs&#x2F;structs3.rs failed! Please try again. Here is the output:
+error[E0308]: mismatched types
+  --&gt; exercises&#x2F;structs&#x2F;structs3.rs:29:35
+   |
+29 |     fn is_international(&amp;self) -&gt; String {
+   |        ----------------           ^^^^^^ expected struct `String`, found `()`
+   |        |
+   |        implicitly returns `()` as its body has no tail or `return` expression
+
+error[E0308]: mismatched types
+  --&gt; exercises&#x2F;structs&#x2F;structs3.rs:33:48
+   |
+33 |     fn get_fees(&amp;self, cents_per_gram: i32) -&gt; i32 {
+   |        --------                                ^^^ expected `i32`, found `()`
+   |        |
+   |        implicitly returns `()` as its body has no tail or `return` expression
+   |
+help: consider returning the local binding `cents_per_gram`
+</code></pre>
+<h2 id="is-international-function"><code>is_international</code> function</h2>
+<p>So let's take breakdown the <code>is_interational</code> function and see what it is that we need to do inside of here.</p>
+<h3 id="function-declaration">Function declaration:</h3>
+<p>The line <code>fn is_international(&amp;self) -&gt; bool</code> declares a function named <code>is_international</code>. The <code>&amp;self</code> argument means that this function is a method, which operates on an instance of the <code>Package</code> struct.</p>
+<p>This function will return a <code>bool</code> type, which is a boolean that can be either <code>true</code> or <code>false</code> as we have already defined earlier.</p>
+<h3 id="function-body">Function body:</h3>
+<p>Inside the function, we add <code>self.sender_country != self.recipient_country</code> which is the basic logic that determines whether a package is international.</p>
+<p><code>self.sender_country</code> accesses the <code>sender_country</code> field  of the current <code>Package</code> instance, and <code>self.recipient_country</code> accesses the <code>recipient_country</code> field.</p>
+<p><code>!=</code> is the inequality operator in Rust, which checks if the two values on its left and right are not equal. In this case, it's comparing the <code>sender_country</code> and <code>recipient_country</code>.</p>
+<h3 id="return-value">Return value:</h3>
+<p>If <code>sender_country</code> and <code>recipient_country</code> are not equal, the expression evaluates to <code>true</code>, meaning that the package is international. If they are equal, the expression evaluates to <code>false</code>, meaning that the package is not international.</p>
+<p>This boolean value is what the function returns, because it's the last (and in this case, the only) expression in the function. In Rust, the last expression in a function is implicitly returned.</p>
+<p>In sum, <code>is_international</code> is a method that checks if the sender and recipient countries of a package are different. If they are, the package is international, and the method returns <code>true</code>. If they're the same, the package is not international, and the method returns <code>false</code>.</p>
+<h3 id="get-fees-function"><code>get_fees</code> function</h3>
+<p>Now let's break down the <code>get_fees</code> function.</p>
+<h3 id="function-declaration-1">Function declaration</h3>
+<p>The line <code>fn get_fees(&amp;self, cents_per_gram: i32) -&gt; i32</code> declares a function named <code>get_fees</code>. The <code>&amp;self</code> argument means that this function is a method, which operates on an instance of the <code>Package</code> struct.</p>
+<p>In addition to <code>&amp;self</code>, the function takes another argument, <code>cents_per_gram</code>, which represents the cost per gram to ship a package.
+The <code>-&gt; i32</code> means this function will return an integer (<code>i32</code>).</p>
+<h3 id="function-body-1">Function body:</h3>
+<p>Inside the function, <code>cents_per_gram * self.weight_in_grams</code> is the logic used to calculate the shipping fee for a package.
+<code>self.weight_in_grams</code> accesses the <code>weight_in_grams</code> field of the current <code>Package</code> instance.</p>
+<p><code>*</code> is the multiplication operator in Rust, which multiplies <code>cents_per_gram</code> (the cost per gram to ship a package) with <code>self.weight_in_grams</code> (the weight of the package).</p>
+<h3 id="return-value-1">Return Value</h3>
+<p>The multiplication gives the total cost to ship the package. Since <code>cents_per_gram</code> is in cents, and <code>weight_in_grams</code> is in grams, the result is in cents too.
+This integer value is what the function returns. As in the <code>is_international</code> function, the last expression in the function is implicitly returned in Rust.</p>
+<p>In summary, <code>get_fees</code> is a method that calculates and returns the shipping fee for a package based on the cost per gram and the weight of the package.</p>
+<h2 id="summary-of-methods">Summary of methods</h2>
+<p>Rust is a language that uses something called &quot;methods&quot; to perform actions on data. In our example, <code>Package</code> is a collection of data (the sender and recipient countries, and the weight), and the functions <code>is_international</code> and <code>get_fees</code> are methods that do something with this data.</p>
+<ol>
+<li>
+<p><code>&amp;self</code> is a reference to the current object - the &quot;package&quot; we're working with at the moment. It's like saying &quot;this package&quot; or &quot;the package I'm currently handling&quot;. It's used because the method is working on the data inside the current <code>Package</code> object.</p>
+</li>
+<li>
+<p><code>is_international(&amp;self) -&gt; bool</code> is a method that checks if the package is international. It does this by comparing the sender and recipient countries: if they're different, it means the package is international, and the method returns <code>true</code>. If they're the same, the package is not international, and the method returns <code>false</code>.</p>
+</li>
+<li>
+<p><code>get_fees(&amp;self, cents_per_gram: i32) -&gt; i32</code> is a method that calculates the fees to ship the package. It does this by multiplying the weight of the package (<code>self.weight_in_grams</code>) by the cost per gram (<code>cents_per_gram</code>). The result is the total fee, which is returned by the method.</p>
+</li>
+</ol>
+<p>So, in short: <code>&amp;self</code> means &quot;this package&quot;, <code>is_international</code> checks if the sender and recipient countries are different, and <code>get_fees</code> calculates the shipping fees based on the weight of the package and the cost per gram.</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>Okay, this was a long one, we dove into the basics of Structs in Rust and how they can carry both data and logic.
+Through this exploration, we gained a better understanding of Rust's data structures, method definitions and syntax. Moreover, we tackled a practical example with tests, giving us a real world scenario to apply our knowledge.</p>
+<p>Remember, Rust's system of Structs and methods allows you to write code that is not only efficient but also safe and readable. This is particularly important in systems programming and other contexts where performance is crucial. With this knowledge, you'll be able to tackle more complex Rust projects and continue to build on your programming skills.</p>
+
+	</div>
+	<hr class="post-end">
+	<footer class="post-info">
+    
+	  <p>
+		<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg>
+		
+		
+		<span class="tag"><a href="https://desmodrone.github.io/tags/rust/">rust</a></span>
+		
+		<span class="tag"><a href="https://desmodrone.github.io/tags/rustlings/">rustlings</a></span>
+		
+		<span class="tag"><a href="https://desmodrone.github.io/tags/structs/">structs</a></span>
+		
+		<span class="tag"><a href="https://desmodrone.github.io/tags/methods/">methods</a></span>
+		
+		<span class="tag"><a href="https://desmodrone.github.io/tags/tuples/">tuples</a></span>
+		
+		<span class="tag"><a href="https://desmodrone.github.io/tags/unit/">unit</a></span>
+		
+		<span class="tag"><a href="https://desmodrone.github.io/tags/classic/">classic</a></span>
+		
+		
+    </p>
+    
+    <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>3918 Words</p>
+    
+    <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2023-06-01</p>
+    
+	</footer>
+  </article>
+    
+  
+  <div class="post-nav thin">
+	
+	
+  </div>
+
+  
+</main>
+
+	  </div>
+	  
+	  
+
+
+
+<footer id="site-footer" class="section-inner thin animated fadeIn faster">
+  <p>&copy; 2023 <a href="https:&#x2F;&#x2F;desmodrone.github.io">erick</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
+  <p>Made with <a href="https://www.getzola.org" target="_blank" rel="noopener">Zola</a> &#183; Theme <a href="https://github.com/VersBinarii/hermit_zola" target="_blank" rel="noopener">Hermit_Zola</a>
+	
+	&#183; <a href="https://desmodrone.github.io/rss.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
+	
+  </p>
+</footer>
+
+
+
+
+	</div>
+	
+	<script src="https://desmodrone.github.io/js/main.js"></script>
+
+	<!-- Math rendering -->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css" integrity="sha384-zB1R0rpPzHqg7Kpt0Aljp8JPLqbXI3bhnPWROx27a9N0Ll6ZP/+DiW/UqRcLbRjq" crossorigin="anonymous">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js" integrity="sha384-y23I5Q6l+B6vatafAwxRu/0oK/79VlbSz7Q9aiSZUvyWYIYsd+qj+o24G5ZU2zJz" crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous"
+        onload="renderMathInElement(document.body, { delimiters: [ {left: '$$', right: '$$', display: true}, {left: '$', right: '$', display: false}, {left: '\\[', right: '\\]', display: true}, {left: '\\(', right: '\\)', display: false}]});"></script>
+
+    
+		<link href="https://unpkg.com/highlightjs-badge/highlightjs/styles/railscasts.css" rel="stylesheet">
+		<!-- https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.1/build/styles/  for min version -->
+		<script src="https://unpkg.com/highlightjs-badge/highlightjs/highlight.pack.js"></script>
+		<script src="https://unpkg.com/highlightjs-badge/highlightjs-badge.min.js"></script>
+		<script>
+			var pres = document.querySelectorAll("pre>code");
+			for (var i = 0; i < pres.length; i++) {
+				hljs.highlightBlock(pres[i]);
+			}
+		</script>
+		
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js"></script>
+			<script>
+				var options = {
+					copyIconClass: "gg-clipboard",
+					checkIconClass: "gg-check"
+				};
+				window.highlightJsBadge(options);
+			</script>
+		
+
+	
+
+	
+	<script src="https://desmodrone.github.io/js/main.js"></script>
+
+    
+    
+
+	
+    <!-- Global Site Tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-9MNTYXYNHK"></script>
+    <script>
+     window.dataLayer = window.dataLayer || [];
+     function gtag(){dataLayer.push(arguments);}
+     gtag('js', new Date());
+     gtag('config', 'G-9MNTYXYNHK');
+    </script>
+    
+  </body>
+</html>

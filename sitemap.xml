@@ -42,6 +42,10 @@
         <lastmod>2023-05-24</lastmod>
     </url>
     <url>
+        <loc>https://desmodrone.github.io/posts/08-rustlings-structs/</loc>
+        <lastmod>2023-06-01</lastmod>
+    </url>
+    <url>
         <loc>https://desmodrone.github.io/posts/hello-rustlings/</loc>
         <lastmod>2023-04-11</lastmod>
     </url>
@@ -75,6 +79,9 @@
         <loc>https://desmodrone.github.io/tags/borrowing/</loc>
     </url>
     <url>
+        <loc>https://desmodrone.github.io/tags/classic/</loc>
+    </url>
+    <url>
         <loc>https://desmodrone.github.io/tags/closures/</loc>
     </url>
     <url>
@@ -88,6 +95,9 @@
     </url>
     <url>
         <loc>https://desmodrone.github.io/tags/if/</loc>
+    </url>
+    <url>
+        <loc>https://desmodrone.github.io/tags/methods/</loc>
     </url>
     <url>
         <loc>https://desmodrone.github.io/tags/ownership/</loc>
@@ -108,10 +118,19 @@
         <loc>https://desmodrone.github.io/tags/rustlings/</loc>
     </url>
     <url>
+        <loc>https://desmodrone.github.io/tags/structs/</loc>
+    </url>
+    <url>
         <loc>https://desmodrone.github.io/tags/traits/</loc>
     </url>
     <url>
+        <loc>https://desmodrone.github.io/tags/tuples/</loc>
+    </url>
+    <url>
         <loc>https://desmodrone.github.io/tags/types/</loc>
+    </url>
+    <url>
+        <loc>https://desmodrone.github.io/tags/unit/</loc>
     </url>
     <url>
         <loc>https://desmodrone.github.io/tags/variables/</loc>
