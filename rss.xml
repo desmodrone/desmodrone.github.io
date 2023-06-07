@@ -7,7 +7,475 @@
       <generator>Zola</generator>
       <language>en</language>
       <atom:link href="https://desmodrone.github.io/rss.xml" rel="self" type="application/rss+xml"/>
-      <lastBuildDate>Thu, 01 Jun 2023 00:00:00 +0000</lastBuildDate>
+      <lastBuildDate>Wed, 07 Jun 2023 00:00:00 +0000</lastBuildDate>
+      <item>
+          <title>08 Rustlings Enums</title>
+          <pubDate>Wed, 07 Jun 2023 00:00:00 +0000</pubDate>
+          <author>Unknown</author>
+          <link>https://desmodrone.github.io/posts/09-rustlings-enums/</link>
+          <guid>https://desmodrone.github.io/posts/09-rustlings-enums/</guid>
+          <description>&lt;p&gt;Rust allows you to define types called &amp;quot;enums&amp;quot; which enumerate possible values.
+Enums are a feature in many languages, but their capabilities differ in each language. Rust’s enums are most similar to algebraic data types in functional languages, such as F#, OCaml, and Haskell.
+Useful in combination with enums is Rust&#x27;s &amp;quot;pattern matching&amp;quot; facility, which makes it easy to run different code for different values of an enumeration.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;further-information&quot;&gt;Further information&lt;&#x2F;h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;doc.rust-lang.org&#x2F;book&#x2F;ch06-00-enums.html&quot;&gt;Enums&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;doc.rust-lang.org&#x2F;book&#x2F;ch18-03-pattern-syntax.html&quot;&gt;Pattern syntax&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h2 id=&quot;enums1-rs&quot;&gt;&lt;code&gt;enums1.rs&lt;&#x2F;code&gt;&lt;&#x2F;h2&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;&amp;#x2F;&amp;#x2F; enums1.rs
+&amp;#x2F;&amp;#x2F; No hints this time! ;)
+
+&amp;#x2F;&amp;#x2F; I AM NOT DONE
+
+#[derive(Debug)]
+enum Message {
+    &amp;#x2F;&amp;#x2F; TODO: define a few types of messages as used below
+}
+
+fn main() {
+    println!(&amp;quot;{:?}&amp;quot;, Message::Quit);
+    println!(&amp;quot;{:?}&amp;quot;, Message::Echo);
+    println!(&amp;quot;{:?}&amp;quot;, Message::Move);
+    println!(&amp;quot;{:?}&amp;quot;, Message::ChangeColor);
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Here we have our code, with not much instruction and no hint this time! But we do have a message in the comments: &lt;code&gt;TODO: define a few types of messages as used below&lt;&#x2F;code&gt;.  Let&#x27;s take a look at the errors as well.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;enums1-rs-errors&quot;&gt;&lt;code&gt;enums1.rs&lt;&#x2F;code&gt; errors&lt;&#x2F;h2&gt;
+&lt;pre data-lang=&quot;zsh&quot; class=&quot;language-zsh &quot;&gt;&lt;code class=&quot;language-zsh&quot; data-lang=&quot;zsh&quot;&gt;⚠️  Compiling of exercises&amp;#x2F;enums&amp;#x2F;enums1.rs failed! Please try again. Here is the output:
+
+error[E0599]: no variant or associated item named `Quit` found for enum `Message` in the current scope
+  --&amp;gt; exercises&amp;#x2F;enums&amp;#x2F;enums1.rs:12:31
+   |
+7  | enum Message {
+   | ------------ variant or associated item `Quit` not found for this enum
+...
+12 |     println!(&amp;quot;{:?}&amp;quot;, Message::Quit);
+   |                               ^^^^ variant or associated item not found in `Message`
+
+error[E0599]: no variant or associated item named `Echo` found for enum `Message` in the current scope
+  --&amp;gt; exercises&amp;#x2F;enums&amp;#x2F;enums1.rs:13:31
+   |
+7  | enum Message {
+   | ------------ variant or associated item `Echo` not found for this enum
+...
+13 |     println!(&amp;quot;{:?}&amp;quot;, Message::Echo);
+   |                               ^^^^ variant or associated item not found in `Message`
+
+error[E0599]: no variant or associated item named `Move` found for enum `Message` in the current scope
+  --&amp;gt; exercises&amp;#x2F;enums&amp;#x2F;enums1.rs:14:31
+   |
+7  | enum Message {
+   | ------------ variant or associated item `Move` not found for this enum
+...
+14 |     println!(&amp;quot;{:?}&amp;quot;, Message::Move);
+   |                               ^^^^ variant or associated item not found in `Message`
+
+error[E0599]: no variant or associated item named `ChangeColor` found for enum `Message` in the current scope
+  --&amp;gt; exercises&amp;#x2F;enums&amp;#x2F;enums1.rs:15:31
+   |
+7  | enum Message {
+   | ------------ variant or associated item `ChangeColor` not found for this enum
+...
+15 |     println!(&amp;quot;{:?}&amp;quot;, Message::ChangeColor);
+   |                               ^^^^^^^^^^^ variant or associated item not found in `Message`
+
+error: aborting due to 4 previous errors
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Our errors are pretty straight forward here, we essentially have a repeating messages for each of these errors&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;zsh&quot; class=&quot;language-zsh &quot;&gt;&lt;code class=&quot;language-zsh&quot; data-lang=&quot;zsh&quot;&gt;no variant or associated item named `Quit` found for enum `Message` in the current scope
+  --&amp;gt; exercises&amp;#x2F;enums&amp;#x2F;enums1.rs:12:31
+   |
+7  | enum Message {
+   | ------------ variant or associated item `Quit` not found for this enum
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Which is telling us that we&#x27;re missing items in the &lt;code&gt;enum&lt;&#x2F;code&gt; which of course makes sense since we know that we have to fill out the rest of the &lt;code&gt;enum&lt;&#x2F;code&gt;. What&#x27;s nice is that the message is very clear and show&#x27;s us where our item are missing which is clearly the &lt;code&gt;enum Message&lt;&#x2F;code&gt;. So let&#x27;s get to it and fill out that &lt;code&gt;enum&lt;&#x2F;code&gt; and see what happens.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;enums1-rs-solution&quot;&gt;&lt;code&gt;enums1.rs&lt;&#x2F;code&gt;  solution&lt;&#x2F;h2&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;#[derive(Debug)]
+enum Message {
+    Quit,
+    Echo,
+    Move,
+    ChangeColor,
+}
+
+fn main() {
+    println!(&amp;quot;{:?}&amp;quot;, Message::Quit);
+    println!(&amp;quot;{:?}&amp;quot;, Message::Echo);
+    println!(&amp;quot;{:?}&amp;quot;, Message::Move);
+    println!(&amp;quot;{:?}&amp;quot;, Message::ChangeColor);
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;...and this compiles, this is relatively simple as all we had to do is look at the &lt;code&gt;main()&lt;&#x2F;code&gt; confirmed with the &lt;code&gt;errors&lt;&#x2F;code&gt; and we&#x27;ve got our complete &lt;code&gt;enum Message&lt;&#x2F;code&gt;, we didn&#x27;t need any hints now did we? Here&#x27;s our output:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;zsh&quot; class=&quot;language-zsh &quot;&gt;&lt;code class=&quot;language-zsh&quot; data-lang=&quot;zsh&quot;&gt;Output:
+====================
+Quit
+Echo
+Move
+ChangeColor
+
+====================
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h2 id=&quot;enums2-rs&quot;&gt;&lt;code&gt;enums2.rs&lt;&#x2F;code&gt;&lt;&#x2F;h2&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;&amp;#x2F;&amp;#x2F; enums2.rs
+&amp;#x2F;&amp;#x2F; Execute `rustlings hint enums2` or use the `hint` watch subcommand for a hint.
+
+&amp;#x2F;&amp;#x2F; I AM NOT DONE
+
+#[derive(Debug)]
+enum Message {
+    &amp;#x2F;&amp;#x2F; TODO: define the different variants used below
+}
+
+impl Message {
+    fn call(&amp;amp;self) {
+        println!(&amp;quot;{:?}&amp;quot;, self);
+    }
+}
+
+fn main() {
+    let messages = [
+        Message::Move { x: 10, y: 30 },
+        Message::Echo(String::from(&amp;quot;hello world&amp;quot;)),
+        Message::ChangeColor(200, 255, 255),
+        Message::Quit,
+    ];
+
+    for message in &amp;amp;messages {
+        message.call();
+    }
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;We have a similar set-up here with what we saw in the previous exercise in which we have to define the different variants that are used in the rest of the code, in this case in our &lt;code&gt;main()&lt;&#x2F;code&gt; function. Let&#x27;s take a look at the errors like we always do.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;enums2-rs-errors&quot;&gt;&lt;code&gt;enums2.rs&lt;&#x2F;code&gt; errors&lt;&#x2F;h2&gt;
+&lt;pre data-lang=&quot;zsh&quot; class=&quot;language-zsh &quot;&gt;&lt;code class=&quot;language-zsh&quot; data-lang=&quot;zsh&quot;&gt;⚠️  Compiling of exercises&amp;#x2F;enums&amp;#x2F;enums2.rs failed! Please try again. Here is the output:
+error[E0599]: no variant named `Move` found for enum `Message`
+  --&amp;gt; exercises&amp;#x2F;enums&amp;#x2F;enums2.rs:19:18
+   |
+7  | enum Message {
+   | ------------ variant `Move` not found here
+...
+19 |         Message::Move { x: 10, y: 30 },
+   |                  ^^^^ variant not found in `Message`
+
+error[E0599]: no variant or associated item named `Echo` found for enum `Message` in the current scope
+  --&amp;gt; exercises&amp;#x2F;enums&amp;#x2F;enums2.rs:20:18
+   |
+7  | enum Message {
+   | ------------ variant or associated item `Echo` not found for this enum
+...
+20 |         Message::Echo(String::from(&amp;quot;hello world&amp;quot;)),
+   |                  ^^^^ variant or associated item not found in `Message`
+
+error[E0599]: no variant or associated item named `ChangeColor` found for enum `Message` in the current scope
+  --&amp;gt; exercises&amp;#x2F;enums&amp;#x2F;enums2.rs:21:18
+   |
+7  | enum Message {
+   | ------------ variant or associated item `ChangeColor` not found for this enum
+...
+21 |         Message::ChangeColor(200, 255, 255),
+   |                  ^^^^^^^^^^^ variant or associated item not found in `Message`
+
+error[E0599]: no variant or associated item named `Quit` found for enum `Message` in the current scope
+  --&amp;gt; exercises&amp;#x2F;enums&amp;#x2F;enums2.rs:22:18
+   |
+7  | enum Message {
+   | ------------ variant or associated item `Quit` not found for this enum
+...
+22 |         Message::Quit,
+   |                  ^^^^ variant or associated item not found in `Message`
+
+error: aborting due to 4 previous errors
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Errors are similar to last time as well, but we can see that there&#x27;s something different so let&#x27;s take a look at how to solve this problem.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;enums2-rs-solution&quot;&gt;&lt;code&gt;enums2.rs&lt;&#x2F;code&gt; Solution&lt;&#x2F;h2&gt;
+&lt;p&gt;We can see that in the &lt;code&gt;main()&lt;&#x2F;code&gt; there isn&#x27;t simply a name of a enum variant like &lt;code&gt;Move&lt;&#x2F;code&gt; or &lt;code&gt;Echo&lt;&#x2F;code&gt; but there&#x27;s data attached to it. This is because unlike in other languages, &lt;code&gt;enums&lt;&#x2F;code&gt; in Rust can have data like structs, strings, integers, in fact you can even include another &lt;code&gt;enum&lt;&#x2F;code&gt;. So in this case we solve this problem by adding the variant with the data that is expected. If we look at  &lt;code&gt;Move&lt;&#x2F;code&gt;  we add the &lt;code&gt;{ x: i32, y: i32}&lt;&#x2F;code&gt; struct information. Let&#x27;s do the same for the rest of the variants.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;#[derive(Debug)]
+enum Message {
+    Move { x: i32, y: i32 },
+    Echo(String),
+    ChangeColor(i32, i32, i32),
+    Quit,
+}
+impl Message {
+    fn call(&amp;amp;self) {
+        println!(&amp;quot;{:?}&amp;quot;, self);
+    }
+}
+
+fn main() {
+    let messages = [
+        Message::Move { x: 10, y: 30 },
+        Message::Echo(String::from(&amp;quot;hello world&amp;quot;)),
+        Message::ChangeColor(200, 255, 255),
+        Message::Quit,
+    ];
+
+    for message in &amp;amp;messages {
+        message.call();
+    }
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;With that our code compiles, we get our expected output with the different types of data attached. On to our final &lt;code&gt;enum&lt;&#x2F;code&gt; exercise.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;zsh&quot; class=&quot;language-zsh &quot;&gt;&lt;code class=&quot;language-zsh&quot; data-lang=&quot;zsh&quot;&gt;Output:
+====================
+Move { x: 10, y: 30 }
+Echo(&amp;quot;hello world&amp;quot;)
+ChangeColor(200, 255, 255)
+Quit
+
+====================
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h2 id=&quot;enums3-rs&quot;&gt;&lt;code&gt;enums3.rs&lt;&#x2F;code&gt;&lt;&#x2F;h2&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;&amp;#x2F;&amp;#x2F; enums3.rs
+&amp;#x2F;&amp;#x2F; Address all the TODOs to make the tests pass!
+&amp;#x2F;&amp;#x2F; Execute `rustlings hint enums3` or use the `hint` watch subcommand for a hint.
+
+&amp;#x2F;&amp;#x2F; I AM NOT DONE
+
+enum Message {
+    &amp;#x2F;&amp;#x2F; TODO: implement the message variant types based on their usage below
+}
+
+struct Point {
+    x: u8,
+    y: u8,
+}
+
+struct State {
+    color: (u8, u8, u8),
+    position: Point,
+    quit: bool,
+}
+
+impl State {
+    fn change_color(&amp;amp;mut self, color: (u8, u8, u8)) {
+        self.color = color;
+    }
+
+    fn quit(&amp;amp;mut self) {
+        self.quit = true;
+    }
+
+    fn echo(&amp;amp;self, s: String) {
+        println!(&amp;quot;{}&amp;quot;, s);
+    }
+
+    fn move_position(&amp;amp;mut self, p: Point) {
+        self.position = p;
+    }
+
+    fn process(&amp;amp;mut self, message: Message) {
+        &amp;#x2F;&amp;#x2F; TODO: create a match expression to process the different message variants
+        &amp;#x2F;&amp;#x2F; Remember: When passing a tuple as a function argument, you&amp;#x27;ll need extra parentheses: fn function((t, u, p, l, e))
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_match_message_call() {
+        let mut state = State {
+            quit: false,
+            position: Point { x: 0, y: 0 },
+            color: (0, 0, 0),
+        };
+        state.process(Message::ChangeColor(255, 0, 255));
+        state.process(Message::Echo(String::from(&amp;quot;hello world&amp;quot;)));
+        state.process(Message::Move(Point { x: 10, y: 15 }));
+        state.process(Message::Quit);
+
+        assert_eq!(state.color, (255, 0, 255));
+        assert_eq!(state.position.x, 10);
+        assert_eq!(state.position.y, 15);
+        assert_eq!(state.quit, true);
+    }
+}
+
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;In this exercise we see 2 different locations in which we have to complete the code.&lt;&#x2F;p&gt;
+&lt;ol&gt;
+&lt;li&gt;Is the &lt;code&gt;enum Message&lt;&#x2F;code&gt; which is completely empty, we&#x27;ve done this a few times so it shouldn&#x27;t be too difficult.&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;enum Message {
+    &amp;#x2F;&amp;#x2F; TODO: implement the message variant types based on their usage below
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;ol start=&quot;2&quot;&gt;
+&lt;li&gt;The next area is the &lt;code&gt;process()&lt;&#x2F;code&gt; function, inside of our &lt;code&gt;impl State&lt;&#x2F;code&gt; in which we get instructions on how to complete by using a &lt;code&gt;match&lt;&#x2F;code&gt; expression.&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;    fn process(&amp;amp;mut self, message: Message) {
+        &amp;#x2F;&amp;#x2F; TODO: create a match expression to process the different message variants
+        &amp;#x2F;&amp;#x2F; Remember: When passing a tuple as a function argument, you&amp;#x27;ll need extra parentheses: fn function((t, u, p, l, e))
+    }
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Now, we take a look at the errors to see if there are any additional hints for completing our task&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;enums3-rs-errors&quot;&gt;&lt;code&gt;enums3.rs&lt;&#x2F;code&gt; errors&lt;&#x2F;h2&gt;
+&lt;pre data-lang=&quot;zsh&quot; class=&quot;language-zsh &quot;&gt;&lt;code class=&quot;language-zsh&quot; data-lang=&quot;zsh&quot;&gt;⚠️  Compiling of exercises&amp;#x2F;enums&amp;#x2F;enums3.rs failed! Please try again. Here is the output:
+error[E0599]: no variant or associated item named `ChangeColor` found for enum `Message` in the current scope
+  --&amp;gt; exercises&amp;#x2F;enums&amp;#x2F;enums3.rs:56:32
+   |
+7  | enum Message {
+   | ------------ variant or associated item `ChangeColor` not found for this enum
+...
+56 |         state.process(Message::ChangeColor(255, 0, 255));
+   |                                ^^^^^^^^^^^ variant or associated item not found in `Message`
+
+error[E0599]: no variant or associated item named `Echo` found for enum `Message` in the current scope
+  --&amp;gt; exercises&amp;#x2F;enums&amp;#x2F;enums3.rs:57:32
+   |
+7  | enum Message {
+   | ------------ variant or associated item `Echo` not found for this enum
+...
+57 |         state.process(Message::Echo(String::from(&amp;quot;hello world&amp;quot;)));
+   |                                ^^^^ variant or associated item not found in `Message`
+
+error[E0599]: no variant or associated item named `Move` found for enum `Message` in the current scope
+  --&amp;gt; exercises&amp;#x2F;enums&amp;#x2F;enums3.rs:58:32
+   |
+7  | enum Message {
+   | ------------ variant or associated item `Move` not found for this enum
+...
+58 |         state.process(Message::Move(Point { x: 10, y: 15 }));
+   |                                ^^^^ variant or associated item not found in `Message`
+
+error[E0599]: no variant or associated item named `Quit` found for enum `Message` in the current scope
+  --&amp;gt; exercises&amp;#x2F;enums&amp;#x2F;enums3.rs:59:32
+   |
+7  | enum Message {
+   | ------------ variant or associated item `Quit` not found for this enum
+...
+59 |         state.process(Message::Quit);
+   |                                ^^^^ variant or associated item not found in `Message`
+
+error: aborting due to 4 previous errors
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;So far, it looks pretty straight forward once again, the compiler is just telling us about the missing variants, so let&#x27;s start filling out some code.&lt;&#x2F;p&gt;
+&lt;p&gt;If we fill out our &lt;code&gt;Message enum&lt;&#x2F;code&gt; in a similar way we have been in the previous exercises, but instead of passing in the coordinates directly to &lt;code&gt;Move&lt;&#x2F;code&gt; we pass in &lt;code&gt;Point&lt;&#x2F;code&gt; because we see that&#x27;s what we need to match in tests below.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;enum Message {
+    Move (Point),
+    Echo(String),
+    ChangeColor(u8, u8, u8),
+    Quit,
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Let&#x27;s take a look at our next code block that we need to fill in and the instructions.
+We&#x27;re told to use a match expression and to remember that when passing a tuple as a function argument we need to add extra parentheses. Alright, noted.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;    fn process(&amp;amp;mut self, message: Message) {
+        &amp;#x2F;&amp;#x2F; TODO: create a match expression to process the different message variants
+        &amp;#x2F;&amp;#x2F; Remember: When passing a tuple as a function argument, you&amp;#x27;ll need extra parentheses: fn function((t, u, p, l, e))
+    }
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;So here we&#x27;re going to go through the solution step-by-step since it&#x27;s something that&#x27;s a little more than we&#x27;ve had with any of the previous &lt;code&gt;enum&lt;&#x2F;code&gt; exercises.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;process-function&quot;&gt;&lt;code&gt;process ()&lt;&#x2F;code&gt; function&lt;&#x2F;h2&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;fn process(&amp;amp;mut self, message: Message) {
+        match message {
+            Message::ChangeColor(r, g, b) =&amp;gt; self.change_color((r, g, b)),
+            Message::Echo(s) =&amp;gt; self.echo(s),
+            Message::Move(p) =&amp;gt; self.move_position(p),
+            Message::Quit =&amp;gt; self.quit(),
+        }
+    }
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;ol&gt;
+&lt;li&gt;We see that the &lt;code&gt;process&lt;&#x2F;code&gt; function that takes a mutable reference to &lt;code&gt;self&lt;&#x2F;code&gt; (an instance of the &lt;code&gt;State&lt;&#x2F;code&gt; struct) and a &lt;code&gt;message&lt;&#x2F;code&gt; of type &lt;code&gt;Message&lt;&#x2F;code&gt;.&lt;&#x2F;li&gt;
+&lt;li&gt;We use the &lt;code&gt;match&lt;&#x2F;code&gt; keyword to pattern match the &lt;code&gt;message&lt;&#x2F;code&gt; against different variants of the &lt;code&gt;Message&lt;&#x2F;code&gt; enum.&lt;&#x2F;li&gt;
+&lt;li&gt;The first match arm &lt;code&gt;Message::ChangeColor(r, g, b) =&amp;gt; self.change_color((r, g, b))&lt;&#x2F;code&gt; matches the &lt;code&gt;Message::ChangeColor&lt;&#x2F;code&gt; variant. It deconstructs the tuple &lt;code&gt;(r, g, b)&lt;&#x2F;code&gt; by providing individual variables &lt;code&gt;r&lt;&#x2F;code&gt;, &lt;code&gt;g&lt;&#x2F;code&gt;, and &lt;code&gt;b&lt;&#x2F;code&gt; in the pattern. This allows us to directly access the values of &lt;code&gt;r&lt;&#x2F;code&gt;, &lt;code&gt;g&lt;&#x2F;code&gt;, and &lt;code&gt;b&lt;&#x2F;code&gt; in the &lt;code&gt;Message::ChangeColor&lt;&#x2F;code&gt; variant. Then, it calls the &lt;code&gt;change_color&lt;&#x2F;code&gt; method of &lt;code&gt;self&lt;&#x2F;code&gt; (an instance of &lt;code&gt;State&lt;&#x2F;code&gt;) passing the values &lt;code&gt;(r, g, b)&lt;&#x2F;code&gt; as arguments.&lt;&#x2F;li&gt;
+&lt;li&gt;The second match arm &lt;code&gt;Message::Echo(s) =&amp;gt; self.echo(s)&lt;&#x2F;code&gt; matches the &lt;code&gt;Message::Echo&lt;&#x2F;code&gt; variant. It deconstructs the &lt;code&gt;String&lt;&#x2F;code&gt; value &lt;code&gt;s&lt;&#x2F;code&gt; from the &lt;code&gt;Message&lt;&#x2F;code&gt; enum variant and calls the &lt;code&gt;echo&lt;&#x2F;code&gt; method of &lt;code&gt;self&lt;&#x2F;code&gt; (an instance of &lt;code&gt;State&lt;&#x2F;code&gt;) passing &lt;code&gt;s&lt;&#x2F;code&gt; as an argument.&lt;&#x2F;li&gt;
+&lt;li&gt;The third match arm &lt;code&gt;Message::Move(p) =&amp;gt; self.move_position(p)&lt;&#x2F;code&gt; matches the &lt;code&gt;Message::Move&lt;&#x2F;code&gt; variant. It deconstructs the &lt;code&gt;Point&lt;&#x2F;code&gt; value &lt;code&gt;p&lt;&#x2F;code&gt; from the &lt;code&gt;Message&lt;&#x2F;code&gt; enum variant and calls the &lt;code&gt;move_position&lt;&#x2F;code&gt; method of &lt;code&gt;self&lt;&#x2F;code&gt; (an instance of &lt;code&gt;State&lt;&#x2F;code&gt;) passing &lt;code&gt;p&lt;&#x2F;code&gt; as an argument.&lt;&#x2F;li&gt;
+&lt;li&gt;The fourth match arm &lt;code&gt;Message::Quit =&amp;gt; self.quit()&lt;&#x2F;code&gt; matches the &lt;code&gt;Message::Quit&lt;&#x2F;code&gt; variant. It doesn&#x27;t need to deconstruct any values, so we simply call the &lt;code&gt;quit&lt;&#x2F;code&gt; method of &lt;code&gt;self&lt;&#x2F;code&gt; (an instance of &lt;code&gt;State&lt;&#x2F;code&gt;).&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;p&gt;By using the &lt;code&gt;match&lt;&#x2F;code&gt; expression, we are able to handle different variants of the &lt;code&gt;Message&lt;&#x2F;code&gt; enum and perform the appropriate actions based on each variant.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;enums3-rs-solution&quot;&gt;&lt;code&gt;enums3.rs&lt;&#x2F;code&gt; solution&lt;&#x2F;h2&gt;
+&lt;p&gt;Here&#x27;s the full block of code for reference&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;&amp;#x2F;&amp;#x2F; enums3.rs
+&amp;#x2F;&amp;#x2F; Address all the TODOs to make the tests pass!
+&amp;#x2F;&amp;#x2F; Execute `rustlings hint enums3` or use the `hint` watch subcommand for a hint.
+
+&amp;#x2F;&amp;#x2F; I AM NOT DONE
+
+enum Message {
+    Move(Point),
+    Echo(String),
+    ChangeColor(u8, u8, u8),
+    Quit,
+}
+
+struct Point {
+    x: u8,
+    y: u8,
+}
+
+struct State {
+    color: (u8, u8, u8),
+    position: Point,
+    quit: bool,
+}
+
+impl State {
+    fn change_color(&amp;amp;mut self, color: (u8, u8, u8)) {
+        self.color = color;
+    }
+
+    fn quit(&amp;amp;mut self) {
+        self.quit = true;
+    }
+
+    fn echo(&amp;amp;self, s: String) {
+        println!(&amp;quot;{}&amp;quot;, s);
+    }
+
+    fn move_position(&amp;amp;mut self, p: Point) {
+        self.position = p;
+    }
+
+    fn process(&amp;amp;mut self, message: Message) {
+        match message {
+            Message::ChangeColor(r, g, b) =&amp;gt; self.change_color((r, g, b)),
+            Message::Echo(s) =&amp;gt; self.echo(s),
+            Message::Move(p) =&amp;gt; self.move_position(p),
+            Message::Quit =&amp;gt; self.quit(),
+        }
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_match_message_call() {
+        let mut state = State {
+            quit: false,
+            position: Point { x: 0, y: 0 },
+            color: (0, 0, 0),
+        };
+        state.process(Message::ChangeColor(255, 0, 255));
+        state.process(Message::Echo(String::from(&amp;quot;hello world&amp;quot;)));
+        state.process(Message::Move(Point { x: 10, y: 15 }));
+        state.process(Message::Quit);
+
+        assert_eq!(state.color, (255, 0, 255));
+        assert_eq!(state.position.x, 10);
+        assert_eq!(state.position.y, 15);
+        assert_eq!(state.quit, true);
+    }
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h2 id=&quot;conclusion&quot;&gt;Conclusion&lt;&#x2F;h2&gt;
+&lt;p&gt;In this post, we gained insights into the usage of enums. We discovered how enums can be used to define different types of messages and handle them effectively. By exploring code examples, we learned how to:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;Define enum variants and handle missing variants to ensure successful compilation.&lt;&#x2F;li&gt;
+&lt;li&gt;Introduce enum variants with associated data for more complex scenarios.&lt;&#x2F;li&gt;
+&lt;li&gt;Extend the concept by implementing methods and matching different message variants.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;Overall, we discovered the flexibility and power of enums in Rust, enabling us to handle diverse message types and execute appropriate actions based on the variants.&lt;&#x2F;p&gt;
+</description>
+      </item>
       <item>
           <title>08 Rustlings Structs</title>
           <pubDate>Thu, 01 Jun 2023 00:00:00 +0000</pubDate>

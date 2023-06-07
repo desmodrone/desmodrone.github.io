@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <meta itemprop="name" content="desmo" />
+  <meta itemprop="description" content="Random Ideas" />
+
+  <link rel="apple-touch-icon" sizes="180x180" href="https://desmodrone.github.io/apple-touch-icon.png"/>
+  <link rel="icon" type="image/png" sizes="32x32" href="https://desmodrone.github.io/favicon-32x32.png" />
+  <link
+    rel="icon"
+    type="image/png"
+    sizes="16x16"
+    href="https://desmodrone.github.io/favicon-16x16.png"
+  />
+  <link
+    rel="shortcut icon"
+    href="https://desmodrone.github.io/favicon.ico"
+  />
+  <link rel="stylesheet" href="https://desmodrone.github.io/style.css"/>
+  
+  <title>08 Rustlings Enums</title>
+  
+
+  
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="https://desmodrone.github.io/rss.xml">
+  
+
+  <body id="page">
+
+	
+<header id="site-header" class="animated slideInUp faster">
+  <div class="hdr-wrapper section-inner">
+    <div class="hdr-left">
+      <div class="site-branding">
+        <a href="https:&#x2F;&#x2F;desmodrone.github.io">desmo</a>
+      </div>
+      <nav class="site-nav hide-in-mobile">
+            
+        
+        <a href="https://desmodrone.github.io/posts">posts</a>
+        
+        <a href="https://desmodrone.github.io/about">about</a>
+        
+        <a href="https://desmodrone.github.io/work">work</a>
+        
+      </nav>
+    </div>
+    <div class="hdr-right hdr-icons">
+      <span class="hdr-social hide-in-mobile">
+        
+
+<a href="https:&#x2F;&#x2F;twitter.com&#x2F;desmodrone_" target="_blank" rel="noopener me"
+   title="twitter">
+  
+  <svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg>
+  
+</a>
+
+<a href="https:&#x2F;&#x2F;github.com&#x2F;desmodrone" target="_blank" rel="noopener me"
+   title="github">
+  
+  <svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+  
+</a>
+
+<a href="mailto:erick@apexwins.com" target="_blank" rel="noopener me"
+   title="email">
+  
+  <svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+  
+</a>
+
+
+      </span>
+      <button id="menu-btn" class="hdr-btn" title="Menu">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="feather feather-menu"
+        >
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+  </div>
+</header>
+<div id="mobile-menu" class="animated fast">
+  <ul>
+    
+    <li><a href="https://desmodrone.github.io/posts">posts</a></li>
+    
+    <li><a href="https://desmodrone.github.io/about">about</a></li>
+    
+    <li><a href="https://desmodrone.github.io/work">work</a></li>
+    
+  </ul>
+</div>
+
+	
+	
+
+		
+<main class="site-main section-inner animated fadeIn faster">
+  <article class="thin">
+	<header class="post-header">
+	  <div class="post-meta">
+		
+		<span>Jun 07, 2023</span>
+		<small> - 
+<span class="reading-time" title="Estimated read time">
+  
+  9 min read
+  
+</span>
+</small>
+		
+            
+	  </div>
+	  <h1>08 Rustlings Enums</h1>
+	</header>
+
+	<div class="content">
+        
+	  <p>Rust allows you to define types called &quot;enums&quot; which enumerate possible values.
+Enums are a feature in many languages, but their capabilities differ in each language. Rust’s enums are most similar to algebraic data types in functional languages, such as F#, OCaml, and Haskell.
+Useful in combination with enums is Rust's &quot;pattern matching&quot; facility, which makes it easy to run different code for different values of an enumeration.</p>
+<h2 id="further-information">Further information</h2>
+<ul>
+<li><a href="https://doc.rust-lang.org/book/ch06-00-enums.html">Enums</a></li>
+<li><a href="https://doc.rust-lang.org/book/ch18-03-pattern-syntax.html">Pattern syntax</a></li>
+</ul>
+<h2 id="enums1-rs"><code>enums1.rs</code></h2>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">&#x2F;&#x2F; enums1.rs
+&#x2F;&#x2F; No hints this time! ;)
+
+&#x2F;&#x2F; I AM NOT DONE
+
+#[derive(Debug)]
+enum Message {
+    &#x2F;&#x2F; TODO: define a few types of messages as used below
+}
+
+fn main() {
+    println!(&quot;{:?}&quot;, Message::Quit);
+    println!(&quot;{:?}&quot;, Message::Echo);
+    println!(&quot;{:?}&quot;, Message::Move);
+    println!(&quot;{:?}&quot;, Message::ChangeColor);
+}
+</code></pre>
+<p>Here we have our code, with not much instruction and no hint this time! But we do have a message in the comments: <code>TODO: define a few types of messages as used below</code>.  Let's take a look at the errors as well.</p>
+<h2 id="enums1-rs-errors"><code>enums1.rs</code> errors</h2>
+<pre data-lang="zsh" class="language-zsh "><code class="language-zsh" data-lang="zsh">⚠️  Compiling of exercises&#x2F;enums&#x2F;enums1.rs failed! Please try again. Here is the output:
+
+error[E0599]: no variant or associated item named `Quit` found for enum `Message` in the current scope
+  --&gt; exercises&#x2F;enums&#x2F;enums1.rs:12:31
+   |
+7  | enum Message {
+   | ------------ variant or associated item `Quit` not found for this enum
+...
+12 |     println!(&quot;{:?}&quot;, Message::Quit);
+   |                               ^^^^ variant or associated item not found in `Message`
+
+error[E0599]: no variant or associated item named `Echo` found for enum `Message` in the current scope
+  --&gt; exercises&#x2F;enums&#x2F;enums1.rs:13:31
+   |
+7  | enum Message {
+   | ------------ variant or associated item `Echo` not found for this enum
+...
+13 |     println!(&quot;{:?}&quot;, Message::Echo);
+   |                               ^^^^ variant or associated item not found in `Message`
+
+error[E0599]: no variant or associated item named `Move` found for enum `Message` in the current scope
+  --&gt; exercises&#x2F;enums&#x2F;enums1.rs:14:31
+   |
+7  | enum Message {
+   | ------------ variant or associated item `Move` not found for this enum
+...
+14 |     println!(&quot;{:?}&quot;, Message::Move);
+   |                               ^^^^ variant or associated item not found in `Message`
+
+error[E0599]: no variant or associated item named `ChangeColor` found for enum `Message` in the current scope
+  --&gt; exercises&#x2F;enums&#x2F;enums1.rs:15:31
+   |
+7  | enum Message {
+   | ------------ variant or associated item `ChangeColor` not found for this enum
+...
+15 |     println!(&quot;{:?}&quot;, Message::ChangeColor);
+   |                               ^^^^^^^^^^^ variant or associated item not found in `Message`
+
+error: aborting due to 4 previous errors
+</code></pre>
+<p>Our errors are pretty straight forward here, we essentially have a repeating messages for each of these errors</p>
+<pre data-lang="zsh" class="language-zsh "><code class="language-zsh" data-lang="zsh">no variant or associated item named `Quit` found for enum `Message` in the current scope
+  --&gt; exercises&#x2F;enums&#x2F;enums1.rs:12:31
+   |
+7  | enum Message {
+   | ------------ variant or associated item `Quit` not found for this enum
+</code></pre>
+<p>Which is telling us that we're missing items in the <code>enum</code> which of course makes sense since we know that we have to fill out the rest of the <code>enum</code>. What's nice is that the message is very clear and show's us where our item are missing which is clearly the <code>enum Message</code>. So let's get to it and fill out that <code>enum</code> and see what happens.</p>
+<h2 id="enums1-rs-solution"><code>enums1.rs</code>  solution</h2>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">#[derive(Debug)]
+enum Message {
+    Quit,
+    Echo,
+    Move,
+    ChangeColor,
+}
+
+fn main() {
+    println!(&quot;{:?}&quot;, Message::Quit);
+    println!(&quot;{:?}&quot;, Message::Echo);
+    println!(&quot;{:?}&quot;, Message::Move);
+    println!(&quot;{:?}&quot;, Message::ChangeColor);
+}
+</code></pre>
+<p>...and this compiles, this is relatively simple as all we had to do is look at the <code>main()</code> confirmed with the <code>errors</code> and we've got our complete <code>enum Message</code>, we didn't need any hints now did we? Here's our output:</p>
+<pre data-lang="zsh" class="language-zsh "><code class="language-zsh" data-lang="zsh">Output:
+====================
+Quit
+Echo
+Move
+ChangeColor
+
+====================
+</code></pre>
+<h2 id="enums2-rs"><code>enums2.rs</code></h2>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">&#x2F;&#x2F; enums2.rs
+&#x2F;&#x2F; Execute `rustlings hint enums2` or use the `hint` watch subcommand for a hint.
+
+&#x2F;&#x2F; I AM NOT DONE
+
+#[derive(Debug)]
+enum Message {
+    &#x2F;&#x2F; TODO: define the different variants used below
+}
+
+impl Message {
+    fn call(&amp;self) {
+        println!(&quot;{:?}&quot;, self);
+    }
+}
+
+fn main() {
+    let messages = [
+        Message::Move { x: 10, y: 30 },
+        Message::Echo(String::from(&quot;hello world&quot;)),
+        Message::ChangeColor(200, 255, 255),
+        Message::Quit,
+    ];
+
+    for message in &amp;messages {
+        message.call();
+    }
+}
+</code></pre>
+<p>We have a similar set-up here with what we saw in the previous exercise in which we have to define the different variants that are used in the rest of the code, in this case in our <code>main()</code> function. Let's take a look at the errors like we always do.</p>
+<h2 id="enums2-rs-errors"><code>enums2.rs</code> errors</h2>
+<pre data-lang="zsh" class="language-zsh "><code class="language-zsh" data-lang="zsh">⚠️  Compiling of exercises&#x2F;enums&#x2F;enums2.rs failed! Please try again. Here is the output:
+error[E0599]: no variant named `Move` found for enum `Message`
+  --&gt; exercises&#x2F;enums&#x2F;enums2.rs:19:18
+   |
+7  | enum Message {
+   | ------------ variant `Move` not found here
+...
+19 |         Message::Move { x: 10, y: 30 },
+   |                  ^^^^ variant not found in `Message`
+
+error[E0599]: no variant or associated item named `Echo` found for enum `Message` in the current scope
+  --&gt; exercises&#x2F;enums&#x2F;enums2.rs:20:18
+   |
+7  | enum Message {
+   | ------------ variant or associated item `Echo` not found for this enum
+...
+20 |         Message::Echo(String::from(&quot;hello world&quot;)),
+   |                  ^^^^ variant or associated item not found in `Message`
+
+error[E0599]: no variant or associated item named `ChangeColor` found for enum `Message` in the current scope
+  --&gt; exercises&#x2F;enums&#x2F;enums2.rs:21:18
+   |
+7  | enum Message {
+   | ------------ variant or associated item `ChangeColor` not found for this enum
+...
+21 |         Message::ChangeColor(200, 255, 255),
+   |                  ^^^^^^^^^^^ variant or associated item not found in `Message`
+
+error[E0599]: no variant or associated item named `Quit` found for enum `Message` in the current scope
+  --&gt; exercises&#x2F;enums&#x2F;enums2.rs:22:18
+   |
+7  | enum Message {
+   | ------------ variant or associated item `Quit` not found for this enum
+...
+22 |         Message::Quit,
+   |                  ^^^^ variant or associated item not found in `Message`
+
+error: aborting due to 4 previous errors
+</code></pre>
+<p>Errors are similar to last time as well, but we can see that there's something different so let's take a look at how to solve this problem.</p>
+<h2 id="enums2-rs-solution"><code>enums2.rs</code> Solution</h2>
+<p>We can see that in the <code>main()</code> there isn't simply a name of a enum variant like <code>Move</code> or <code>Echo</code> but there's data attached to it. This is because unlike in other languages, <code>enums</code> in Rust can have data like structs, strings, integers, in fact you can even include another <code>enum</code>. So in this case we solve this problem by adding the variant with the data that is expected. If we look at  <code>Move</code>  we add the <code>{ x: i32, y: i32}</code> struct information. Let's do the same for the rest of the variants.</p>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">#[derive(Debug)]
+enum Message {
+    Move { x: i32, y: i32 },
+    Echo(String),
+    ChangeColor(i32, i32, i32),
+    Quit,
+}
+impl Message {
+    fn call(&amp;self) {
+        println!(&quot;{:?}&quot;, self);
+    }
+}
+
+fn main() {
+    let messages = [
+        Message::Move { x: 10, y: 30 },
+        Message::Echo(String::from(&quot;hello world&quot;)),
+        Message::ChangeColor(200, 255, 255),
+        Message::Quit,
+    ];
+
+    for message in &amp;messages {
+        message.call();
+    }
+}
+</code></pre>
+<p>With that our code compiles, we get our expected output with the different types of data attached. On to our final <code>enum</code> exercise.</p>
+<pre data-lang="zsh" class="language-zsh "><code class="language-zsh" data-lang="zsh">Output:
+====================
+Move { x: 10, y: 30 }
+Echo(&quot;hello world&quot;)
+ChangeColor(200, 255, 255)
+Quit
+
+====================
+</code></pre>
+<h2 id="enums3-rs"><code>enums3.rs</code></h2>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">&#x2F;&#x2F; enums3.rs
+&#x2F;&#x2F; Address all the TODOs to make the tests pass!
+&#x2F;&#x2F; Execute `rustlings hint enums3` or use the `hint` watch subcommand for a hint.
+
+&#x2F;&#x2F; I AM NOT DONE
+
+enum Message {
+    &#x2F;&#x2F; TODO: implement the message variant types based on their usage below
+}
+
+struct Point {
+    x: u8,
+    y: u8,
+}
+
+struct State {
+    color: (u8, u8, u8),
+    position: Point,
+    quit: bool,
+}
+
+impl State {
+    fn change_color(&amp;mut self, color: (u8, u8, u8)) {
+        self.color = color;
+    }
+
+    fn quit(&amp;mut self) {
+        self.quit = true;
+    }
+
+    fn echo(&amp;self, s: String) {
+        println!(&quot;{}&quot;, s);
+    }
+
+    fn move_position(&amp;mut self, p: Point) {
+        self.position = p;
+    }
+
+    fn process(&amp;mut self, message: Message) {
+        &#x2F;&#x2F; TODO: create a match expression to process the different message variants
+        &#x2F;&#x2F; Remember: When passing a tuple as a function argument, you&#x27;ll need extra parentheses: fn function((t, u, p, l, e))
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_match_message_call() {
+        let mut state = State {
+            quit: false,
+            position: Point { x: 0, y: 0 },
+            color: (0, 0, 0),
+        };
+        state.process(Message::ChangeColor(255, 0, 255));
+        state.process(Message::Echo(String::from(&quot;hello world&quot;)));
+        state.process(Message::Move(Point { x: 10, y: 15 }));
+        state.process(Message::Quit);
+
+        assert_eq!(state.color, (255, 0, 255));
+        assert_eq!(state.position.x, 10);
+        assert_eq!(state.position.y, 15);
+        assert_eq!(state.quit, true);
+    }
+}
+
+</code></pre>
+<p>In this exercise we see 2 different locations in which we have to complete the code.</p>
+<ol>
+<li>Is the <code>enum Message</code> which is completely empty, we've done this a few times so it shouldn't be too difficult.</li>
+</ol>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">enum Message {
+    &#x2F;&#x2F; TODO: implement the message variant types based on their usage below
+}
+</code></pre>
+<ol start="2">
+<li>The next area is the <code>process()</code> function, inside of our <code>impl State</code> in which we get instructions on how to complete by using a <code>match</code> expression.</li>
+</ol>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">    fn process(&amp;mut self, message: Message) {
+        &#x2F;&#x2F; TODO: create a match expression to process the different message variants
+        &#x2F;&#x2F; Remember: When passing a tuple as a function argument, you&#x27;ll need extra parentheses: fn function((t, u, p, l, e))
+    }
+}
+</code></pre>
+<p>Now, we take a look at the errors to see if there are any additional hints for completing our task</p>
+<h2 id="enums3-rs-errors"><code>enums3.rs</code> errors</h2>
+<pre data-lang="zsh" class="language-zsh "><code class="language-zsh" data-lang="zsh">⚠️  Compiling of exercises&#x2F;enums&#x2F;enums3.rs failed! Please try again. Here is the output:
+error[E0599]: no variant or associated item named `ChangeColor` found for enum `Message` in the current scope
+  --&gt; exercises&#x2F;enums&#x2F;enums3.rs:56:32
+   |
+7  | enum Message {
+   | ------------ variant or associated item `ChangeColor` not found for this enum
+...
+56 |         state.process(Message::ChangeColor(255, 0, 255));
+   |                                ^^^^^^^^^^^ variant or associated item not found in `Message`
+
+error[E0599]: no variant or associated item named `Echo` found for enum `Message` in the current scope
+  --&gt; exercises&#x2F;enums&#x2F;enums3.rs:57:32
+   |
+7  | enum Message {
+   | ------------ variant or associated item `Echo` not found for this enum
+...
+57 |         state.process(Message::Echo(String::from(&quot;hello world&quot;)));
+   |                                ^^^^ variant or associated item not found in `Message`
+
+error[E0599]: no variant or associated item named `Move` found for enum `Message` in the current scope
+  --&gt; exercises&#x2F;enums&#x2F;enums3.rs:58:32
+   |
+7  | enum Message {
+   | ------------ variant or associated item `Move` not found for this enum
+...
+58 |         state.process(Message::Move(Point { x: 10, y: 15 }));
+   |                                ^^^^ variant or associated item not found in `Message`
+
+error[E0599]: no variant or associated item named `Quit` found for enum `Message` in the current scope
+  --&gt; exercises&#x2F;enums&#x2F;enums3.rs:59:32
+   |
+7  | enum Message {
+   | ------------ variant or associated item `Quit` not found for this enum
+...
+59 |         state.process(Message::Quit);
+   |                                ^^^^ variant or associated item not found in `Message`
+
+error: aborting due to 4 previous errors
+</code></pre>
+<p>So far, it looks pretty straight forward once again, the compiler is just telling us about the missing variants, so let's start filling out some code.</p>
+<p>If we fill out our <code>Message enum</code> in a similar way we have been in the previous exercises, but instead of passing in the coordinates directly to <code>Move</code> we pass in <code>Point</code> because we see that's what we need to match in tests below.</p>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">enum Message {
+    Move (Point),
+    Echo(String),
+    ChangeColor(u8, u8, u8),
+    Quit,
+}
+</code></pre>
+<p>Let's take a look at our next code block that we need to fill in and the instructions.
+We're told to use a match expression and to remember that when passing a tuple as a function argument we need to add extra parentheses. Alright, noted.</p>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">    fn process(&amp;mut self, message: Message) {
+        &#x2F;&#x2F; TODO: create a match expression to process the different message variants
+        &#x2F;&#x2F; Remember: When passing a tuple as a function argument, you&#x27;ll need extra parentheses: fn function((t, u, p, l, e))
+    }
+}
+</code></pre>
+<p>So here we're going to go through the solution step-by-step since it's something that's a little more than we've had with any of the previous <code>enum</code> exercises.</p>
+<h2 id="process-function"><code>process ()</code> function</h2>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">fn process(&amp;mut self, message: Message) {
+        match message {
+            Message::ChangeColor(r, g, b) =&gt; self.change_color((r, g, b)),
+            Message::Echo(s) =&gt; self.echo(s),
+            Message::Move(p) =&gt; self.move_position(p),
+            Message::Quit =&gt; self.quit(),
+        }
+    }
+</code></pre>
+<ol>
+<li>We see that the <code>process</code> function that takes a mutable reference to <code>self</code> (an instance of the <code>State</code> struct) and a <code>message</code> of type <code>Message</code>.</li>
+<li>We use the <code>match</code> keyword to pattern match the <code>message</code> against different variants of the <code>Message</code> enum.</li>
+<li>The first match arm <code>Message::ChangeColor(r, g, b) =&gt; self.change_color((r, g, b))</code> matches the <code>Message::ChangeColor</code> variant. It deconstructs the tuple <code>(r, g, b)</code> by providing individual variables <code>r</code>, <code>g</code>, and <code>b</code> in the pattern. This allows us to directly access the values of <code>r</code>, <code>g</code>, and <code>b</code> in the <code>Message::ChangeColor</code> variant. Then, it calls the <code>change_color</code> method of <code>self</code> (an instance of <code>State</code>) passing the values <code>(r, g, b)</code> as arguments.</li>
+<li>The second match arm <code>Message::Echo(s) =&gt; self.echo(s)</code> matches the <code>Message::Echo</code> variant. It deconstructs the <code>String</code> value <code>s</code> from the <code>Message</code> enum variant and calls the <code>echo</code> method of <code>self</code> (an instance of <code>State</code>) passing <code>s</code> as an argument.</li>
+<li>The third match arm <code>Message::Move(p) =&gt; self.move_position(p)</code> matches the <code>Message::Move</code> variant. It deconstructs the <code>Point</code> value <code>p</code> from the <code>Message</code> enum variant and calls the <code>move_position</code> method of <code>self</code> (an instance of <code>State</code>) passing <code>p</code> as an argument.</li>
+<li>The fourth match arm <code>Message::Quit =&gt; self.quit()</code> matches the <code>Message::Quit</code> variant. It doesn't need to deconstruct any values, so we simply call the <code>quit</code> method of <code>self</code> (an instance of <code>State</code>).</li>
+</ol>
+<p>By using the <code>match</code> expression, we are able to handle different variants of the <code>Message</code> enum and perform the appropriate actions based on each variant.</p>
+<h2 id="enums3-rs-solution"><code>enums3.rs</code> solution</h2>
+<p>Here's the full block of code for reference</p>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">&#x2F;&#x2F; enums3.rs
+&#x2F;&#x2F; Address all the TODOs to make the tests pass!
+&#x2F;&#x2F; Execute `rustlings hint enums3` or use the `hint` watch subcommand for a hint.
+
+&#x2F;&#x2F; I AM NOT DONE
+
+enum Message {
+    Move(Point),
+    Echo(String),
+    ChangeColor(u8, u8, u8),
+    Quit,
+}
+
+struct Point {
+    x: u8,
+    y: u8,
+}
+
+struct State {
+    color: (u8, u8, u8),
+    position: Point,
+    quit: bool,
+}
+
+impl State {
+    fn change_color(&amp;mut self, color: (u8, u8, u8)) {
+        self.color = color;
+    }
+
+    fn quit(&amp;mut self) {
+        self.quit = true;
+    }
+
+    fn echo(&amp;self, s: String) {
+        println!(&quot;{}&quot;, s);
+    }
+
+    fn move_position(&amp;mut self, p: Point) {
+        self.position = p;
+    }
+
+    fn process(&amp;mut self, message: Message) {
+        match message {
+            Message::ChangeColor(r, g, b) =&gt; self.change_color((r, g, b)),
+            Message::Echo(s) =&gt; self.echo(s),
+            Message::Move(p) =&gt; self.move_position(p),
+            Message::Quit =&gt; self.quit(),
+        }
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_match_message_call() {
+        let mut state = State {
+            quit: false,
+            position: Point { x: 0, y: 0 },
+            color: (0, 0, 0),
+        };
+        state.process(Message::ChangeColor(255, 0, 255));
+        state.process(Message::Echo(String::from(&quot;hello world&quot;)));
+        state.process(Message::Move(Point { x: 10, y: 15 }));
+        state.process(Message::Quit);
+
+        assert_eq!(state.color, (255, 0, 255));
+        assert_eq!(state.position.x, 10);
+        assert_eq!(state.position.y, 15);
+        assert_eq!(state.quit, true);
+    }
+}
+</code></pre>
+<h2 id="conclusion">Conclusion</h2>
+<p>In this post, we gained insights into the usage of enums. We discovered how enums can be used to define different types of messages and handle them effectively. By exploring code examples, we learned how to:</p>
+<ul>
+<li>Define enum variants and handle missing variants to ensure successful compilation.</li>
+<li>Introduce enum variants with associated data for more complex scenarios.</li>
+<li>Extend the concept by implementing methods and matching different message variants.</li>
+</ul>
+<p>Overall, we discovered the flexibility and power of enums in Rust, enabling us to handle diverse message types and execute appropriate actions based on the variants.</p>
+
+	</div>
+	<hr class="post-end">
+	<footer class="post-info">
+    
+	  <p>
+		<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg>
+		
+		
+		<span class="tag"><a href="https://desmodrone.github.io/tags/rust/">rust</a></span>
+		
+		<span class="tag"><a href="https://desmodrone.github.io/tags/rustlings/">rustlings</a></span>
+		
+		<span class="tag"><a href="https://desmodrone.github.io/tags/structs/">structs</a></span>
+		
+		<span class="tag"><a href="https://desmodrone.github.io/tags/methods/">methods</a></span>
+		
+		<span class="tag"><a href="https://desmodrone.github.io/tags/tuples/">tuples</a></span>
+		
+		<span class="tag"><a href="https://desmodrone.github.io/tags/matching/">matching</a></span>
+		
+		<span class="tag"><a href="https://desmodrone.github.io/tags/enums/">enums</a></span>
+		
+		
+    </p>
+    
+    <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>2455 Words</p>
+    
+    <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2023-06-07</p>
+    
+	</footer>
+  </article>
+    
+  
+  <div class="post-nav thin">
+	
+	
+  </div>
+
+  
+</main>
+
+	  </div>
+	  
+	  
+
+
+
+<footer id="site-footer" class="section-inner thin animated fadeIn faster">
+  <p>&copy; 2023 <a href="https:&#x2F;&#x2F;desmodrone.github.io">erick</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
+  <p>Made with <a href="https://www.getzola.org" target="_blank" rel="noopener">Zola</a> &#183; Theme <a href="https://github.com/VersBinarii/hermit_zola" target="_blank" rel="noopener">Hermit_Zola</a>
+	
+	&#183; <a href="https://desmodrone.github.io/rss.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
+	
+  </p>
+</footer>
+
+
+
+
+	</div>
+	
+	<script src="https://desmodrone.github.io/js/main.js"></script>
+
+	<!-- Math rendering -->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css" integrity="sha384-zB1R0rpPzHqg7Kpt0Aljp8JPLqbXI3bhnPWROx27a9N0Ll6ZP/+DiW/UqRcLbRjq" crossorigin="anonymous">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js" integrity="sha384-y23I5Q6l+B6vatafAwxRu/0oK/79VlbSz7Q9aiSZUvyWYIYsd+qj+o24G5ZU2zJz" crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous"
+        onload="renderMathInElement(document.body, { delimiters: [ {left: '$$', right: '$$', display: true}, {left: '$', right: '$', display: false}, {left: '\\[', right: '\\]', display: true}, {left: '\\(', right: '\\)', display: false}]});"></script>
+
+    
+		<link href="https://unpkg.com/highlightjs-badge/highlightjs/styles/railscasts.css" rel="stylesheet">
+		<!-- https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.1/build/styles/  for min version -->
+		<script src="https://unpkg.com/highlightjs-badge/highlightjs/highlight.pack.js"></script>
+		<script src="https://unpkg.com/highlightjs-badge/highlightjs-badge.min.js"></script>
+		<script>
+			var pres = document.querySelectorAll("pre>code");
+			for (var i = 0; i < pres.length; i++) {
+				hljs.highlightBlock(pres[i]);
+			}
+		</script>
+		
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js"></script>
+			<script>
+				var options = {
+					copyIconClass: "gg-clipboard",
+					checkIconClass: "gg-check"
+				};
+				window.highlightJsBadge(options);
+			</script>
+		
+
+	
+
+	
+	<script src="https://desmodrone.github.io/js/main.js"></script>
+
+    
+    
+
+	
+    <!-- Global Site Tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-9MNTYXYNHK"></script>
+    <script>
+     window.dataLayer = window.dataLayer || [];
+     function gtag(){dataLayer.push(arguments);}
+     gtag('js', new Date());
+     gtag('config', 'G-9MNTYXYNHK');
+    </script>
+    
+  </body>
+</html>

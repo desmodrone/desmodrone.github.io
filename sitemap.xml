@@ -46,6 +46,10 @@
         <lastmod>2023-06-01</lastmod>
     </url>
     <url>
+        <loc>https://desmodrone.github.io/posts/09-rustlings-enums/</loc>
+        <lastmod>2023-06-07</lastmod>
+    </url>
+    <url>
         <loc>https://desmodrone.github.io/posts/hello-rustlings/</loc>
         <lastmod>2023-04-11</lastmod>
     </url>
@@ -85,6 +89,9 @@
         <loc>https://desmodrone.github.io/tags/closures/</loc>
     </url>
     <url>
+        <loc>https://desmodrone.github.io/tags/enums/</loc>
+    </url>
+    <url>
         <loc>https://desmodrone.github.io/tags/first/</loc>
     </url>
     <url>
@@ -95,6 +102,9 @@
     </url>
     <url>
         <loc>https://desmodrone.github.io/tags/if/</loc>
+    </url>
+    <url>
+        <loc>https://desmodrone.github.io/tags/matching/</loc>
     </url>
     <url>
         <loc>https://desmodrone.github.io/tags/methods/</loc>
