@@ -50,6 +50,10 @@
         <lastmod>2023-06-07</lastmod>
     </url>
     <url>
+        <loc>https://desmodrone.github.io/posts/10-rustlings-strings/</loc>
+        <lastmod>2023-06-28</lastmod>
+    </url>
+    <url>
         <loc>https://desmodrone.github.io/posts/hello-rustlings/</loc>
         <lastmod>2023-04-11</lastmod>
     </url>
@@ -126,6 +130,15 @@
     </url>
     <url>
         <loc>https://desmodrone.github.io/tags/rustlings/</loc>
+    </url>
+    <url>
+        <loc>https://desmodrone.github.io/tags/slice/</loc>
+    </url>
+    <url>
+        <loc>https://desmodrone.github.io/tags/str/</loc>
+    </url>
+    <url>
+        <loc>https://desmodrone.github.io/tags/strings/</loc>
     </url>
     <url>
         <loc>https://desmodrone.github.io/tags/structs/</loc>

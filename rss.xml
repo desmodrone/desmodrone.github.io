@@ -7,9 +7,322 @@
       <generator>Zola</generator>
       <language>en</language>
       <atom:link href="https://desmodrone.github.io/rss.xml" rel="self" type="application/rss+xml"/>
-      <lastBuildDate>Wed, 07 Jun 2023 00:00:00 +0000</lastBuildDate>
+      <lastBuildDate>Wed, 28 Jun 2023 00:00:00 +0000</lastBuildDate>
       <item>
-          <title>08 Rustlings Enums</title>
+          <title>10 Rustlings Strings</title>
+          <pubDate>Wed, 28 Jun 2023 00:00:00 +0000</pubDate>
+          <author>Unknown</author>
+          <link>https://desmodrone.github.io/posts/10-rustlings-strings/</link>
+          <guid>https://desmodrone.github.io/posts/10-rustlings-strings/</guid>
+          <description>&lt;h3 id=&quot;from-the-readme&quot;&gt;From the ReadMe:&lt;&#x2F;h3&gt;
+&lt;p&gt;Rust has two string types, a string slice (&lt;code&gt;&amp;amp;str&lt;&#x2F;code&gt;) and an owned string (&lt;code&gt;String&lt;&#x2F;code&gt;).
+We&#x27;re not going to dictate when you should use which one, but we&#x27;ll show you how
+to identify and create them, as well as use them.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;further-information&quot;&gt;Further information&lt;&#x2F;h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;doc.rust-lang.org&#x2F;book&#x2F;ch08-02-strings.html&quot;&gt;Strings&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h2 id=&quot;strings1-rs&quot;&gt;strings1.rs&lt;&#x2F;h2&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;&amp;#x2F;&amp;#x2F; strings1.rs
+&amp;#x2F;&amp;#x2F; Make me compile without changing the function signature!
+&amp;#x2F;&amp;#x2F; Execute `rustlings hint strings1` or use the `hint` watch subcommand for a hint.
+
+&amp;#x2F;&amp;#x2F; I AM NOT DONE
+
+fn main() {
+    let answer = current_favorite_color();
+    println!(&amp;quot;My current favorite color is {}&amp;quot;, answer);
+}
+
+fn current_favorite_color() -&amp;gt; String {
+    &amp;quot;blue&amp;quot;
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Our instructions are pretty straight forward we must make this code compile without changing the function signature.
+As always we&#x27;ll take a look at the errors to and see if we get any hints.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;strings1-rs-errors&quot;&gt;strings1.rs errors&lt;&#x2F;h2&gt;
+&lt;pre data-lang=&quot;zsh&quot; class=&quot;language-zsh &quot;&gt;&lt;code class=&quot;language-zsh&quot; data-lang=&quot;zsh&quot;&gt;⚠️  Compiling of exercises&amp;#x2F;strings&amp;#x2F;strings1.rs failed! Please try again. Here is the output:
+error[E0308]: mismatched types
+  --&amp;gt; exercises&amp;#x2F;strings&amp;#x2F;strings1.rs:13:5
+   |
+12 | fn current_favorite_color() -&amp;gt; String {
+   |                                ------ expected `String` because of return type
+13 |     &amp;quot;blue&amp;quot;
+   |     ^^^^^^- help: try using a conversion method: `.to_string()`
+   |     |
+   |     expected struct `String`, found `&amp;amp;str`
+
+error: aborting due to previous error
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;We do get a hint, it tells us to try using a conversion method: &lt;code&gt;.to_string()&lt;&#x2F;code&gt;, so why not let&#x27;s try that.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;strings1-rs-solution&quot;&gt;strings1.rs solution&lt;&#x2F;h2&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;fn main() {
+    let answer = current_favorite_color();
+    println!(&amp;quot;My current favorite color is {}&amp;quot;, answer);
+}
+
+fn current_favorite_color() -&amp;gt; String {
+    &amp;quot;blue&amp;quot;.to_string()
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Just like this, it works appending our &lt;code&gt;&amp;quot;blue&amp;quot;&lt;&#x2F;code&gt; string with &lt;code&gt;.to_string&lt;&#x2F;code&gt; converts our &lt;code&gt;&amp;amp;str&lt;&#x2F;code&gt; to a &lt;code&gt;String&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;strong&gt;Converting &lt;code&gt;&amp;amp;str&lt;&#x2F;code&gt; to &lt;code&gt;String&lt;&#x2F;code&gt; with &lt;code&gt;.to_string()&lt;&#x2F;code&gt;:&lt;&#x2F;strong&gt; The method &lt;code&gt;.to_string()&lt;&#x2F;code&gt; is used to convert a &lt;code&gt;&amp;amp;str&lt;&#x2F;code&gt; (string slice) to an owned &lt;code&gt;String&lt;&#x2F;code&gt;. In Rust, &lt;code&gt;&amp;amp;str&lt;&#x2F;code&gt; represents a string slice, which is an immutable reference to a string. A &lt;code&gt;&amp;amp;str&lt;&#x2F;code&gt; is a view into a string, and is usually used in program arguments and for reading strings from files or other I&#x2F;O operations. On the other hand, &lt;code&gt;String&lt;&#x2F;code&gt; is a growable, mutable, owned, heap allocated data structure. When you call &lt;code&gt;.to_string()&lt;&#x2F;code&gt; on a &lt;code&gt;&amp;amp;str&lt;&#x2F;code&gt;, you essentially allocate a chunk of heap memory, copy the contents of the &lt;code&gt;&amp;amp;str&lt;&#x2F;code&gt; to that newly allocated memory, and return a &lt;code&gt;String&lt;&#x2F;code&gt; that owns that heap memory. This is why &lt;code&gt;&amp;quot;blue&amp;quot;.to_string()&lt;&#x2F;code&gt; gives you an owned &lt;code&gt;String&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;This is the output:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;zsh&quot; class=&quot;language-zsh &quot;&gt;&lt;code class=&quot;language-zsh&quot; data-lang=&quot;zsh&quot;&gt;Output:
+====================
+My current favorite color is blue
+
+====================
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h2 id=&quot;strings2-rs&quot;&gt;strings2.rs&lt;&#x2F;h2&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;&amp;#x2F;&amp;#x2F; strings2.rs
+&amp;#x2F;&amp;#x2F; Make me compile without changing the function signature!
+&amp;#x2F;&amp;#x2F; Execute `rustlings hint strings2` or use the `hint` watch subcommand for a hint.
+
+&amp;#x2F;&amp;#x2F; I AM NOT DONE
+
+fn main() {
+    let word = String::from(&amp;quot;green&amp;quot;); &amp;#x2F;&amp;#x2F; Try not changing this line :)
+    if is_a_color_word(word) {
+        println!(&amp;quot;That is a color word I know!&amp;quot;);
+    } else {
+        println!(&amp;quot;That is not a color word I know.&amp;quot;);
+    }
+}
+
+fn is_a_color_word(attempt: &amp;amp;str) -&amp;gt; bool {
+    attempt == &amp;quot;green&amp;quot; || attempt == &amp;quot;blue&amp;quot; || attempt == &amp;quot;red&amp;quot;
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;We have another exercise that asks for a similar request: &lt;code&gt;compile without changing the function signature!&lt;&#x2F;code&gt;&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;strings2-rs-errors&quot;&gt;strings2.rs errors&lt;&#x2F;h2&gt;
+&lt;pre data-lang=&quot;zsh&quot; class=&quot;language-zsh &quot;&gt;&lt;code class=&quot;language-zsh&quot; data-lang=&quot;zsh&quot;&gt;⚠️  Compiling of exercises&amp;#x2F;strings&amp;#x2F;strings2.rs failed! Please try again. Here is the output:
+error[E0308]: mismatched types
+  --&amp;gt; exercises&amp;#x2F;strings&amp;#x2F;strings2.rs:9:24
+   |
+9  |     if is_a_color_word(word) {
+   |        --------------- ^^^^
+   |        |               |
+   |        |               expected `&amp;amp;str`, found struct `String`
+   |        |               help: consider borrowing here: `&amp;amp;word`
+   |        arguments to this function are incorrect
+   |
+note: function defined here
+  --&amp;gt; exercises&amp;#x2F;strings&amp;#x2F;strings2.rs:16:4
+   |
+16 | fn is_a_color_word(attempt: &amp;amp;str) -&amp;gt; bool {
+   |    ^^^^^^^^^^^^^^^ -------------
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;So, we&#x27;re being told a couple of things, that the arguments in our function are incorrect and that the the compiler is expecting a &lt;code&gt;&amp;amp;str&lt;&#x2F;code&gt; but it&#x27;s finding a &lt;code&gt;String&lt;&#x2F;code&gt; instead. So let&#x27;s try making it an &lt;code&gt;&amp;amp;str&lt;&#x2F;code&gt; by adding a reference to &lt;code&gt;word&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;strings2-rs-solution&quot;&gt;strings2.rs solution&lt;&#x2F;h2&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;fn main() {
+    let word = String::from(&amp;quot;green&amp;quot;); &amp;#x2F;&amp;#x2F; Try not changing this line :)
+    if is_a_color_word(&amp;amp;word) { &amp;#x2F;&amp;#x2F; added `&amp;amp;` to `word`
+        println!(&amp;quot;That is a color word I know!&amp;quot;);
+    } else {
+        println!(&amp;quot;That is not a color word I know.&amp;quot;);
+    }
+}
+
+fn is_a_color_word(attempt: &amp;amp;str) -&amp;gt; bool {
+    attempt == &amp;quot;green&amp;quot; || attempt == &amp;quot;blue&amp;quot; || attempt == &amp;quot;red&amp;quot;
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;&lt;strong&gt;The &lt;code&gt;&amp;amp;&lt;&#x2F;code&gt; operator to create a reference:&lt;&#x2F;strong&gt; The &lt;code&gt;&amp;amp;&lt;&#x2F;code&gt; operator in Rust is used to create a reference to a value. When you write &lt;code&gt;&amp;amp;word&lt;&#x2F;code&gt; in the call to &lt;code&gt;is_a_color_word(&amp;amp;word)&lt;&#x2F;code&gt;, you are passing a reference to &lt;code&gt;word&lt;&#x2F;code&gt; rather than &lt;code&gt;word&lt;&#x2F;code&gt; itself. This is important because the function &lt;code&gt;is_a_color_word&lt;&#x2F;code&gt; is expecting a &lt;code&gt;&amp;amp;str&lt;&#x2F;code&gt; (a string slice), not a &lt;code&gt;String&lt;&#x2F;code&gt;. If you tried to pass &lt;code&gt;word&lt;&#x2F;code&gt; directly, Rust would raise a type mismatch error because &lt;code&gt;word&lt;&#x2F;code&gt; is a &lt;code&gt;String&lt;&#x2F;code&gt; and not a &lt;code&gt;&amp;amp;str&lt;&#x2F;code&gt;. By using &lt;code&gt;&amp;amp;&lt;&#x2F;code&gt;, you&#x27;re allowing &lt;code&gt;is_a_color_word&lt;&#x2F;code&gt; to borrow &lt;code&gt;word&lt;&#x2F;code&gt; as a &lt;code&gt;&amp;amp;str&lt;&#x2F;code&gt; for the duration of the function call.&lt;&#x2F;p&gt;
+&lt;p&gt;With that we&#x27;re compiling here too, simple enough, we get the following print out:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;zsh&quot; class=&quot;language-zsh &quot;&gt;&lt;code class=&quot;language-zsh&quot; data-lang=&quot;zsh&quot;&gt;Output:
+====================
+That is a color word I know!
+
+====================
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;If we change the line &lt;code&gt;let word = String::from(&amp;quot;red&amp;quot;)&lt;&#x2F;code&gt; or &lt;code&gt;&amp;quot;blue&amp;quot;&lt;&#x2F;code&gt; we&#x27;d continue to get the same printout but, if we change it say to &lt;code&gt;purple&lt;&#x2F;code&gt; we get this:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;zsh&quot; class=&quot;language-zsh &quot;&gt;&lt;code class=&quot;language-zsh&quot; data-lang=&quot;zsh&quot;&gt;Output:
+====================
+That is not a color word I know.
+
+====================
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h2 id=&quot;strings3-rs&quot;&gt;strings3.rs&lt;&#x2F;h2&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;&amp;#x2F;&amp;#x2F; strings3.rs
+&amp;#x2F;&amp;#x2F; Execute `rustlings hint strings3` or use the `hint` watch subcommand for a hint.
+
+&amp;#x2F;&amp;#x2F; I AM NOT DONE
+
+fn trim_me(input: &amp;amp;str) -&amp;gt; String {
+    &amp;#x2F;&amp;#x2F; TODO: Remove whitespace from both ends of a string!
+    input.().to_string()
+}
+
+fn compose_me(input: &amp;amp;str) -&amp;gt; String {
+    &amp;#x2F;&amp;#x2F; TODO: Add &amp;quot; world!&amp;quot; to the string! There&amp;#x27;s multiple ways to do this!
+    let mut result = input.to_owned();
+    result.push_str(&amp;quot; world!&amp;quot;);
+    result
+}
+
+fn replace_me(input: &amp;amp;str) -&amp;gt; String {
+    &amp;#x2F;&amp;#x2F; TODO: Replace &amp;quot;cars&amp;quot; in the string with &amp;quot;balloons&amp;quot;!
+    input.replace(&amp;quot;cars&amp;quot;, &amp;quot;balloons&amp;quot;)
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn trim_a_string() {
+        assert_eq!(trim_me(&amp;quot;Hello!     &amp;quot;), &amp;quot;Hello!&amp;quot;);
+        assert_eq!(trim_me(&amp;quot;  What&amp;#x27;s up!&amp;quot;), &amp;quot;What&amp;#x27;s up!&amp;quot;);
+        assert_eq!(trim_me(&amp;quot;   Hola!  &amp;quot;), &amp;quot;Hola!&amp;quot;);
+    }
+
+    #[test]
+    fn compose_a_string() {
+        assert_eq!(compose_me(&amp;quot;Hello&amp;quot;), &amp;quot;Hello world!&amp;quot;);
+        assert_eq!(compose_me(&amp;quot;Goodbye&amp;quot;), &amp;quot;Goodbye world!&amp;quot;);
+    }
+
+    #[test]
+    fn replace_a_string() {
+        assert_eq!(replace_me(&amp;quot;I think cars are cool&amp;quot;), &amp;quot;I think balloons are cool&amp;quot;);
+        assert_eq!(replace_me(&amp;quot;I love to look at cars&amp;quot;), &amp;quot;I love to look at balloons&amp;quot;);
+    }
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;So here we have to make our code compile and pass the tests, we get a list of &lt;code&gt;TODO&lt;&#x2F;code&gt; items on how to finish our functions.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;strings3-rs-errors&quot;&gt;strings3.rs errors&lt;&#x2F;h2&gt;
+&lt;pre data-lang=&quot;zsh&quot; class=&quot;language-zsh &quot;&gt;&lt;code class=&quot;language-zsh&quot; data-lang=&quot;zsh&quot;&gt;⚠️  Compiling of exercises&amp;#x2F;strings&amp;#x2F;strings3.rs failed! Please try again. Here is the output:
+error: expected expression, found `?`
+ --&amp;gt; exercises&amp;#x2F;strings&amp;#x2F;strings3.rs:8:5
+  |
+8 |     ???
+  |     ^ expected expression
+
+error: expected expression, found `?`
+  --&amp;gt; exercises&amp;#x2F;strings&amp;#x2F;strings3.rs:13:5
+   |
+13 |     ???
+   |     ^ expected expression
+
+error: expected expression, found `?`
+  --&amp;gt; exercises&amp;#x2F;strings&amp;#x2F;strings3.rs:18:5
+   |
+18 |     ???
+   |     ^ expected expression
+
+error: aborting due to 3 previous errors
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Our errors are clearly due to the missing function bodies.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;strings3-rs-solution&quot;&gt;strings3.rs solution&lt;&#x2F;h2&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;fn trim_me(input: &amp;amp;str) -&amp;gt; String {
+    &amp;#x2F;&amp;#x2F; TODO: Remove whitespace from both ends of a string!
+    input.trim().to_string()
+}
+
+fn compose_me(input: &amp;amp;str) -&amp;gt; String {
+    &amp;#x2F;&amp;#x2F; TODO: Add &amp;quot; world!&amp;quot; to the string! There&amp;#x27;s multiple ways to do this!
+    let mut result = input.to_string();
+    result.push_str(&amp;quot; world!&amp;quot;);
+    result
+}
+
+fn replace_me(input: &amp;amp;str) -&amp;gt; String {
+    &amp;#x2F;&amp;#x2F; TODO: Replace &amp;quot;cars&amp;quot; in the string with &amp;quot;balloons&amp;quot;!
+    input.replace(&amp;quot;cars&amp;quot;, &amp;quot;ballons&amp;quot;)
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;To pass the test and finalize the functions we have to use &lt;code&gt;methods&lt;&#x2F;code&gt; on each of the &lt;code&gt;input&lt;&#x2F;code&gt; parameters that are being passed through.&lt;&#x2F;p&gt;
+&lt;p&gt;In our first function &lt;code&gt;trim_me&lt;&#x2F;code&gt; as the comment states we have to remove whitespace from the string. The &lt;code&gt;trim()&lt;&#x2F;code&gt; method does just that and we can use &lt;code&gt;.to_string&lt;&#x2F;code&gt; to convert our parameter &lt;code&gt;input&lt;&#x2F;code&gt; from a &lt;code&gt;&amp;amp;str&lt;&#x2F;code&gt; to a &lt;code&gt;String&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;In the &lt;code&gt;compose_me&lt;&#x2F;code&gt; there are a few different ways to solve this, I chose to create a new variable &lt;code&gt;result&lt;&#x2F;code&gt; that contains the &lt;code&gt;input.to_string()&lt;&#x2F;code&gt; and then we use the &lt;code&gt;push_str&lt;&#x2F;code&gt; method on &lt;code&gt;result&lt;&#x2F;code&gt; to add the &amp;quot;&lt;code&gt;world!&lt;&#x2F;code&gt;&amp;quot; to our newly created &lt;code&gt;String&lt;&#x2F;code&gt;. Then finally return the &lt;code&gt;result&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;Finally in our &lt;code&gt;replace_me&lt;&#x2F;code&gt; function we use the &lt;code&gt;replace()&lt;&#x2F;code&gt; method to simply replace &lt;code&gt;&amp;quot;cars&amp;quot;&lt;&#x2F;code&gt; to: &lt;code&gt;&amp;quot;balloons&amp;quot;&lt;&#x2F;code&gt; and that should do it.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;strings4-rs&quot;&gt;strings4.rs&lt;&#x2F;h2&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;&amp;#x2F;&amp;#x2F; strings4.rs
+
+&amp;#x2F;&amp;#x2F; Ok, here are a bunch of values-- some are `String`s, some are `&amp;amp;str`s. Your
+&amp;#x2F;&amp;#x2F; task is to call one of these two functions on each value depending on what
+&amp;#x2F;&amp;#x2F; you think each value is. That is, add either `string_slice` or `string`
+&amp;#x2F;&amp;#x2F; before the parentheses on each line. If you&amp;#x27;re right, it will compile!
+&amp;#x2F;&amp;#x2F; No hints this time!
+
+&amp;#x2F;&amp;#x2F; I AM NOT DONE
+
+fn string_slice(arg: &amp;amp;str) {
+    println!(&amp;quot;{}&amp;quot;, arg);
+}
+fn string(arg: String) {
+    println!(&amp;quot;{}&amp;quot;, arg);
+}
+
+fn main() {
+    &amp;amp;str(&amp;quot;blue&amp;quot;);
+    ???(&amp;quot;red&amp;quot;.to_string());
+    ???(String::from(&amp;quot;hi&amp;quot;));
+    ???(&amp;quot;rust is fun!&amp;quot;.to_owned());
+    ???(&amp;quot;nice weather&amp;quot;.into());
+    ???(format!(&amp;quot;Interpolation {}&amp;quot;, &amp;quot;Station&amp;quot;));
+    ???(&amp;amp;String::from(&amp;quot;abc&amp;quot;)[0..1]);
+    ???(&amp;quot;  hello there &amp;quot;.trim());
+    ???(&amp;quot;Happy Monday!&amp;quot;.to_string().replace(&amp;quot;Mon&amp;quot;, &amp;quot;Tues&amp;quot;));
+    ???(&amp;quot;mY sHiFt KeY iS sTiCkY&amp;quot;.to_lowercase());
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Alright this seems easy enough we have to understand if the value is a &lt;code&gt;&amp;amp;str&lt;&#x2F;code&gt; or a &lt;code&gt;String&lt;&#x2F;code&gt;&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;strings4-rs-errors&quot;&gt;strings4.rs errors&lt;&#x2F;h2&gt;
+&lt;pre data-lang=&quot;zsh&quot; class=&quot;language-zsh &quot;&gt;&lt;code class=&quot;language-zsh&quot; data-lang=&quot;zsh&quot;&gt;⚠️  Compiling of exercises&amp;#x2F;strings&amp;#x2F;strings4.rs failed! Please try again. Here is the output:
+error: expected expression, found `?`
+  --&amp;gt; exercises&amp;#x2F;strings&amp;#x2F;strings4.rs:19:5
+   |
+19 |     ???(&amp;quot;blue&amp;quot;);
+   |     ^ expected expression
+
+error: aborting due to previous error
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;We have one error, but it is obvious that we&#x27;ll have a few more after where we have the question marks.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;strings4-rs-solution&quot;&gt;strings4.rs solution&lt;&#x2F;h2&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;fn string_slice(arg: &amp;amp;str) {
+    println!(&amp;quot;{}&amp;quot;, arg);
+}
+fn string(arg: String) {
+    println!(&amp;quot;{}&amp;quot;, arg);
+}
+
+fn main() {
+    string_slice(&amp;quot;blue&amp;quot;);
+    string(&amp;quot;red&amp;quot;.to_string());
+    string(String::from(&amp;quot;hi&amp;quot;));
+    string(&amp;quot;rust is fun!&amp;quot;.to_owned());
+    string_slice(&amp;quot;nice weather&amp;quot;.into());
+    string(format!(&amp;quot;Interpolation {}&amp;quot;, &amp;quot;Station&amp;quot;));
+    string_slice(&amp;amp;String::from(&amp;quot;abc&amp;quot;)[0..1]);
+    string_slice(&amp;quot;  hello there &amp;quot;.trim());
+    string(&amp;quot;Happy Monday!&amp;quot;.to_string().replace(&amp;quot;Mon&amp;quot;, &amp;quot;Tues&amp;quot;));
+    string(&amp;quot;mY sHiFt KeY iS sTiCkY&amp;quot;.to_lowercase());
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;&lt;strong&gt;Choosing between &lt;code&gt;string_slice&lt;&#x2F;code&gt; and &lt;code&gt;string&lt;&#x2F;code&gt; in &lt;code&gt;strings4.rs&lt;&#x2F;code&gt;:&lt;&#x2F;strong&gt; The &lt;code&gt;string_slice&lt;&#x2F;code&gt; function takes a &lt;code&gt;&amp;amp;str&lt;&#x2F;code&gt; (string slice) argument, while &lt;code&gt;string&lt;&#x2F;code&gt; function takes a &lt;code&gt;String&lt;&#x2F;code&gt; argument. When you&#x27;re calling these functions in &lt;code&gt;main()&lt;&#x2F;code&gt;, you need to determine whether each argument is a &lt;code&gt;&amp;amp;str&lt;&#x2F;code&gt; or a &lt;code&gt;String&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;For instance, &lt;code&gt;&amp;quot;blue&amp;quot;&lt;&#x2F;code&gt; is a &lt;code&gt;&amp;amp;str&lt;&#x2F;code&gt;, because it&#x27;s a string literal. In Rust, string literals are string slices.&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;&amp;quot;red&amp;quot;.to_string()&lt;&#x2F;code&gt;, on the other hand, is a &lt;code&gt;String&lt;&#x2F;code&gt;. As explained earlier, &lt;code&gt;.to_string()&lt;&#x2F;code&gt; is a method that converts a &lt;code&gt;&amp;amp;str&lt;&#x2F;code&gt; to a &lt;code&gt;String&lt;&#x2F;code&gt; by allocating heap memory and copying the string there.&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;String::from(&amp;quot;hi&amp;quot;)&lt;&#x2F;code&gt; is also a &lt;code&gt;String&lt;&#x2F;code&gt;. &lt;code&gt;String::from&lt;&#x2F;code&gt; is a function that performs the same task as &lt;code&gt;.to_string()&lt;&#x2F;code&gt;, creating an owned string from a string literal or a string slice.&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;&amp;quot;nice weather&amp;quot;.into()&lt;&#x2F;code&gt; is an interesting case. The &lt;code&gt;.into()&lt;&#x2F;code&gt; method is a very generic conversion method that converts between various types. In this context, it will automatically be resolved to &lt;code&gt;String&lt;&#x2F;code&gt;, so it should be passed to &lt;code&gt;string&lt;&#x2F;code&gt; function. However, it&#x27;s worth noting that this automatic resolution is based on the current context and it can lead to potential confusion if the type resolution is ambiguous.&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h2 id=&quot;conclusion&quot;&gt;Conclusion&lt;&#x2F;h2&gt;
+&lt;p&gt;Understanding how to work with strings is essential in Rust, as it&#x27;s a common part of most programming tasks. We&#x27;ve learned that Rust has two main string types: &lt;code&gt;&amp;amp;str&lt;&#x2F;code&gt; and &lt;code&gt;String&lt;&#x2F;code&gt;. The &lt;code&gt;&amp;amp;str&lt;&#x2F;code&gt; type is a string slice, which is an immutable reference to a string, whereas &lt;code&gt;String&lt;&#x2F;code&gt; is an owned string that can be modified.&lt;&#x2F;p&gt;
+&lt;p&gt;We&#x27;ve also practiced converting between these two types using the &lt;code&gt;to_string()&lt;&#x2F;code&gt; method, and we&#x27;ve learned how to create references to strings using the &lt;code&gt;&amp;amp;&lt;&#x2F;code&gt; operator. Additionally, we&#x27;ve used various methods to manipulate strings, such as &lt;code&gt;trim()&lt;&#x2F;code&gt;, &lt;code&gt;push_str()&lt;&#x2F;code&gt;, and &lt;code&gt;replace()&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;The exercises and solutions provided in this post are a good starting point for understanding and mastering strings in Rust. Continue experimenting and practicing with these concepts to gain a solid understanding of how strings work in Rust.&lt;&#x2F;p&gt;
+</description>
+      </item>
+      <item>
+          <title>09 Rustlings Enums</title>
           <pubDate>Wed, 07 Jun 2023 00:00:00 +0000</pubDate>
           <author>Unknown</author>
           <link>https://desmodrone.github.io/posts/09-rustlings-enums/</link>
@@ -3578,7 +3891,7 @@ fn main() {
 &lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;desmodrone.github.io&#x2F;posts&#x2F;08-rustlings-structs&#x2F;&quot;&gt;08_rustlings_structs&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
 &lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;desmodrone.github.io&#x2F;posts&#x2F;09-rustlings-enums&#x2F;&quot;&gt;09_rustlings_enums&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
 &lt;&#x2F;ul&gt;
-&lt;p&gt;Inspired by Tris Oaten&#x27;s recent video &lt;a href=&quot;https:&#x2F;&#x2F;youtu.be&#x2F;2hXNd6x9sZs&quot;&gt;How to Learn Rust&lt;&#x2F;a&gt; on his excellent YouTube channel &lt;a href=&quot;https:&#x2F;&#x2F;www.youtube.com&#x2F;@NoBoilerplate&quot;&gt;No Boilerplate&lt;&#x2F;a&gt;, I&#x27;ve decided to refocus my journey with the Rust programming language. In hopes of effectively learning Rust, I&#x27;ll be following the holy trinity of Rust learning resources as recommended by Tris:&lt;&#x2F;p&gt;
+&lt;p&gt;Inspired by Tris Oaten&#x27;s recent video &lt;a href=&quot;https:&#x2F;&#x2F;youtu.be&#x2F;2hXNd6x9sZs&quot;&gt;How to Learn Rust&lt;&#x2F;a&gt; on his excellent YouTube channel &lt;a href=&quot;https:&#x2F;&#x2F;www.youtube.com&#x2F;@NoBoilerplate&quot;&gt;No Boilerplate&lt;&#x2F;a&gt;, I&#x27;ve decided to refocusa my journey with the Rust programming language. In hopes of effectively learning Rust, I&#x27;ll be following the holy trinity of Rust learning resources as recommended by Tris:&lt;&#x2F;p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;doc.rust-lang.org&#x2F;stable&#x2F;book&#x2F;&quot;&gt;The Rust Programming Language&lt;&#x2F;a&gt; aka &amp;quot;The Book&amp;quot; (read it twice, first quickly)&lt;&#x2F;li&gt;
 &lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;rust-lang&#x2F;rustlings&quot;&gt;Rustlings&lt;&#x2F;a&gt; (do it and then continue to practice your favorites)&lt;&#x2F;li&gt;
