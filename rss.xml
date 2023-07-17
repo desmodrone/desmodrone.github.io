@@ -9,7 +9,7 @@
       <atom:link href="https://desmodrone.github.io/rss.xml" rel="self" type="application/rss+xml"/>
       <lastBuildDate>Mon, 17 Jul 2023 00:00:00 +0000</lastBuildDate>
       <item>
-          <title>10 Rustlings Modules</title>
+          <title>11 Rustlings Modules</title>
           <pubDate>Mon, 17 Jul 2023 00:00:00 +0000</pubDate>
           <author>Unknown</author>
           <link>https://desmodrone.github.io/posts/11-rustlings-modules/</link>
@@ -230,7 +230,7 @@ fn main() {
 </description>
       </item>
       <item>
-          <title>11 Rustlings Strings</title>
+          <title>10 Rustlings Strings</title>
           <pubDate>Wed, 28 Jun 2023 00:00:00 +0000</pubDate>
           <author>Unknown</author>
           <link>https://desmodrone.github.io/posts/10-rustlings-strings/</link>
