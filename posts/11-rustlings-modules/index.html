@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <meta itemprop="name" content="desmo" />
+  <meta itemprop="description" content="Random Ideas" />
+
+  <link rel="apple-touch-icon" sizes="180x180" href="https://desmodrone.github.io/apple-touch-icon.png"/>
+  <link rel="icon" type="image/png" sizes="32x32" href="https://desmodrone.github.io/favicon-32x32.png" />
+  <link
+    rel="icon"
+    type="image/png"
+    sizes="16x16"
+    href="https://desmodrone.github.io/favicon-16x16.png"
+  />
+  <link
+    rel="shortcut icon"
+    href="https://desmodrone.github.io/favicon.ico"
+  />
+  <link rel="stylesheet" href="https://desmodrone.github.io/style.css"/>
+  
+  <title>10 Rustlings Modules</title>
+  
+
+  
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="https://desmodrone.github.io/rss.xml">
+  
+
+  <body id="page">
+
+	
+<header id="site-header" class="animated slideInUp faster">
+  <div class="hdr-wrapper section-inner">
+    <div class="hdr-left">
+      <div class="site-branding">
+        <a href="https:&#x2F;&#x2F;desmodrone.github.io">desmo</a>
+      </div>
+      <nav class="site-nav hide-in-mobile">
+            
+        
+        <a href="https://desmodrone.github.io/posts">posts</a>
+        
+        <a href="https://desmodrone.github.io/about">about</a>
+        
+        <a href="https://desmodrone.github.io/work">work</a>
+        
+      </nav>
+    </div>
+    <div class="hdr-right hdr-icons">
+      <span class="hdr-social hide-in-mobile">
+        
+
+<a href="https:&#x2F;&#x2F;twitter.com&#x2F;desmodrone_" target="_blank" rel="noopener me"
+   title="twitter">
+  
+  <svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg>
+  
+</a>
+
+<a href="https:&#x2F;&#x2F;github.com&#x2F;desmodrone" target="_blank" rel="noopener me"
+   title="github">
+  
+  <svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+  
+</a>
+
+<a href="mailto:erick@apexwins.com" target="_blank" rel="noopener me"
+   title="email">
+  
+  <svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+  
+</a>
+
+
+      </span>
+      <button id="menu-btn" class="hdr-btn" title="Menu">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="feather feather-menu"
+        >
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+  </div>
+</header>
+<div id="mobile-menu" class="animated fast">
+  <ul>
+    
+    <li><a href="https://desmodrone.github.io/posts">posts</a></li>
+    
+    <li><a href="https://desmodrone.github.io/about">about</a></li>
+    
+    <li><a href="https://desmodrone.github.io/work">work</a></li>
+    
+  </ul>
+</div>
+
+	
+	
+
+		
+<main class="site-main section-inner animated fadeIn faster">
+  <article class="thin">
+	<header class="post-header">
+	  <div class="post-meta">
+		
+		<span>Jul 17, 2023</span>
+		<small> - 
+<span class="reading-time" title="Estimated read time">
+  
+  5 min read
+  
+</span>
+</small>
+		
+            
+	  </div>
+	  <h1>10 Rustlings Modules</h1>
+	</header>
+
+	<div class="content">
+        
+	  <h1 id="modules">Modules</h1>
+<p>In this section we'll give you an introduction to Rust's module system.</p>
+<h2 id="further-information">Further information</h2>
+<ul>
+<li><a href="https://doc.rust-lang.org/book/ch07-00-managing-growing-projects-with-packages-crates-and-modules.html">The Module System</a></li>
+</ul>
+<h2 id="modules1-rs">modules1.rs</h2>
+<p>The first exercise focuses on controlling the visibility of functions within a module. The goal is to restrict access to the <code>get_secret_recipe</code> function outside the <code>sausage_factory</code> module. Let's take a look at the initial code:</p>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">&#x2F;&#x2F; modules1.rs
+&#x2F;&#x2F; Execute `rustlings hint modules1` or use the `hint` watch subcommand for a hint.
+
+&#x2F;&#x2F; I AM NOT DONE
+
+mod sausage_factory {
+    &#x2F;&#x2F; Don&#x27;t let anybody outside of this module see this!
+    fn get_secret_recipe() -&gt; String {
+        String::from(&quot;Ginger&quot;)
+    }
+
+    fn make_sausage() {
+        get_secret_recipe();
+        println!(&quot;sausage!&quot;);
+    }
+}
+
+fn main() {
+    sausage_factory::make_sausage();
+}
+</code></pre>
+<p>Our instructions in this first exercise are to not let anyone outside of the <code>sausage_factory</code> module see the <code>get_secret_recipe</code> function.</p>
+<h2 id="modules1-rs-errors">modules1.rs errors</h2>
+<pre data-lang="zsh" class="language-zsh "><code class="language-zsh" data-lang="zsh">⚠️  Compiling of exercises&#x2F;modules&#x2F;modules1.rs failed! Please try again. Here is the output:
+error[E0603]: function `make_sausage` is private
+  --&gt; exercises&#x2F;modules&#x2F;modules1.rs:19:22
+   |
+19 |     sausage_factory::make_sausage();
+   |                      ^^^^^^^^^^^^ private function
+   |
+note: the function `make_sausage` is defined here
+  --&gt; exercises&#x2F;modules&#x2F;modules1.rs:12:5
+   |
+12 |     fn make_sausage() {
+   |     ^^^^^^^^^^^^^^^^^
+
+error: aborting due to previous error
+</code></pre>
+<p>We see that our errors tell us that our <code>make_sausage()</code> function is private and we can see that we are trying to access it in our <code>fn main()</code> so, our fix is simple, make the function that we need to see outside of the <code>sausage_factory</code> module accessible by adding a <code>pub</code> keyword. Let's try this.</p>
+<h2 id="modules1-rs-solution">modules1.rs solution</h2>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">mod sausage_factory {
+    &#x2F;&#x2F; Don&#x27;t let anybody outside of this module see this!
+    fn get_secret_recipe() -&gt; String {
+        String::from(&quot;Ginger&quot;)
+    }
+
+    pub fn make_sausage() { &#x2F;&#x2F; adding `pub` here fixes our issue
+        get_secret_recipe();
+        println!(&quot;sausage!&quot;);
+    }
+}
+
+fn main() {
+    sausage_factory::make_sausage();
+}
+</code></pre>
+<p>Simple solution by adding the <code>pub</code> keyword to our <code>make_sausage()</code> function we get access to it from our <code>main()</code> function and our code compiles and prints:</p>
+<pre><code>sausage!
+</code></pre>
+<h2 id="modules2-rs">modules2.rs</h2>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">&#x2F;&#x2F; modules2.rs
+&#x2F;&#x2F; You can bring module paths into scopes and provide new names for them with the
+&#x2F;&#x2F; &#x27;use&#x27; and &#x27;as&#x27; keywords. Fix these &#x27;use&#x27; statements to make the code compile.
+&#x2F;&#x2F; Execute `rustlings hint modules2` or use the `hint` watch subcommand for a hint.
+
+&#x2F;&#x2F; I AM NOT DONE
+
+mod delicious_snacks {
+    &#x2F;&#x2F; TODO: Fix these use statements
+	use self::fruits::{PEAR as fruit};
+    use self::veggies::CUCUMBER as ???
+
+    mod fruits {
+        pub const PEAR: &amp;&#x27;static str = &quot;Pear&quot;;
+        pub const APPLE: &amp;&#x27;static str = &quot;Apple&quot;;
+    }
+
+    mod veggies {
+        pub const CUCUMBER: &amp;&#x27;static str = &quot;Cucumber&quot;;
+        pub const CARROT: &amp;&#x27;static str = &quot;Carrot&quot;;
+    }
+}
+
+fn main() {
+    println!(
+        &quot;favorite snacks: {} and {}&quot;,
+        delicious_snacks::fruit,
+        delicious_snacks::veggie
+    );
+}
+</code></pre>
+<p>Our instructions here are to bring our module into scope by using <code>use</code> and <code>as</code> keywords. We can see and incomplete <code>use</code> statement on line 11. Let's take a quick look at the errors.</p>
+<h2 id="modules2-rs-errors">modules2.rs errors</h2>
+<pre data-lang="zsh" class="language-zsh "><code class="language-zsh" data-lang="zsh">⚠️  Compiling of exercises&#x2F;modules&#x2F;modules2.rs failed! Please try again. Here is the output:
+error: expected identifier, found `?`
+  --&gt; exercises&#x2F;modules&#x2F;modules2.rs:10:31
+   |
+10 |     use self::fruits::PEAR as ???
+   |                               ^ expected identifier
+
+error: aborting due to previous error
+</code></pre>
+<p>The compiler confirms what we already know, but it actually gives us a big hint in telling us that it expects an identifier. So, let's add the identifier.</p>
+<h2 id="modules2-rs-solution">modules2.rs solution</h2>
+<p>By looking at our code we can understand what the code is expecting as an identifier. It specifically shows in our <code>main()</code> function that we need to print the <code>delicious_snacks::fruit,</code> and the <code>delicious_snacks::veggie,</code> so this is a clear indication that we must identify our cucumber &quot;as&quot; a <code>veggie</code> let's do that and see what happens.</p>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">mod delicious_snacks {
+    &#x2F;&#x2F; TODO: Fix these use statements
+    pub use self::fruits::PEAR as fruit;
+    pub use self::veggies::CUCUMBER as veggie; &#x2F;&#x2F; adding veggie identifier here
+
+    mod fruits {
+        pub const PEAR: &amp;&#x27;static str = &quot;Pear&quot;;
+        pub const APPLE: &amp;&#x27;static str = &quot;Apple&quot;;
+    }
+
+    mod veggies {
+        pub const CUCUMBER: &amp;&#x27;static str = &quot;Cucumber&quot;;
+        pub const CARROT: &amp;&#x27;static str = &quot;Carrot&quot;;
+    }
+}
+
+fn main() {
+    println!(
+        &quot;favorite snacks: {} and {}&quot;,
+        delicious_snacks::fruit,
+        delicious_snacks::veggie
+    );
+}
+</code></pre>
+<p>And it works, we're printing out of favorite snacks a pear and  cucumber using the <code>as</code> keyword.</p>
+<pre data-lang="zsh" class="language-zsh "><code class="language-zsh" data-lang="zsh">Output:
+====================
+favorite snacks: Pear and Cucumber
+
+====================
+</code></pre>
+<h2 id="modules3-rs">modules3.rs</h2>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">&#x2F;&#x2F; modules3.rs
+&#x2F;&#x2F; You can use the &#x27;use&#x27; keyword to bring module paths from modules from anywhere
+&#x2F;&#x2F; and especially from the Rust standard library into your scope.
+&#x2F;&#x2F; Bring SystemTime and UNIX_EPOCH
+&#x2F;&#x2F; from the std::time module. Bonus style points if you can do it with one line!
+&#x2F;&#x2F; Execute `rustlings hint modules3` or use the `hint` watch subcommand for a hint.
+
+&#x2F;&#x2F; I AM NOT DONE
+
+&#x2F;&#x2F; TODO: Complete this use statement
+use ???
+
+fn main() {
+    match SystemTime::now().duration_since(UNIX_EPOCH) {
+        Ok(n) =&gt; println!(&quot;1970-01-01 00:00:00 UTC was {} seconds ago!&quot;, n.as_secs()),
+        Err(_) =&gt; panic!(&quot;SystemTime before UNIX EPOCH!&quot;),
+    }
+}
+
+</code></pre>
+<p>In this third exercise, we encounter code that involves the use of <code>UNIX_EPOCH</code> and <code>SystemTime</code>. Let's take a closer look at what these terms mean and how they relate to each other.</p>
+<p><code>UNIX_EPOCH</code> represents a specific point in time: the start of the Unix time system. In Unix-based operating systems, time is often measured as the number of seconds that have elapsed since January 1, 1970, at 00:00:00 UTC (Coordinated Universal Time). This point in time is commonly referred to as the Unix epoch.</p>
+<p>On the other hand, <code>SystemTime</code> is a type provided by the Rust standard library that represents the system's current time or a specific point in time. It is a flexible type that can handle different platforms and allows us to perform various operations on time values.</p>
+<p>In the code snippet provided, the <code>match</code> statement is used to handle the result of calculating the duration between the current time (<code>SystemTime::now()</code>) and the Unix epoch (<code>UNIX_EPOCH</code>). By subtracting the Unix epoch from the current time, we can determine the duration that has passed since the Unix epoch.</p>
+<p>If the calculation is successful (<code>Ok(n)</code>), we print the number of seconds that have elapsed since the Unix epoch. If an error occurs (<code>Err(_)</code>), indicating that the system time is before the Unix epoch, we panic with an appropriate error message.</p>
+<p>By utilizing <code>UNIX_EPOCH</code> and <code>SystemTime</code>, we can work with time-related operations in Rust and perform calculations based on the Unix time system. Understanding these concepts enhances our ability to handle and manipulate time data effectively.</p>
+<p>Now that we have a better understanding of <code>UNIX_EPOCH</code> and <code>SystemTime</code>, let's proceed with the code solution to complete the exercise.</p>
+<h2 id="modules3-rs-errors">modules3.rs errors</h2>
+<p>When analyzing the error messages in the <code>modules3.rs</code> exercise, we can see that they don't provide any additional insights beyond the fact that an import statement is expected after the <code>use</code> keyword. The error message explicitly states that an identifier is anticipated after the <code>use</code> keyword. Therefore, to resolve this issue, we need to provide a valid identifier in our import statement.</p>
+<pre data-lang="zsh" class="language-zsh "><code class="language-zsh" data-lang="zsh">⚠️  Compiling of exercises&#x2F;modules&#x2F;modules3.rs failed! Please try again. Here is the output:
+error: expected identifier, found `?`
+  --&gt; exercises&#x2F;modules&#x2F;modules3.rs:11:5
+   |
+11 | use ???
+   |     ^ expected identifier
+
+error: aborting due to previous error
+</code></pre>
+<h2 id="modules3-rs-solution">modules3.rs solution</h2>
+<p>Our hints are pretty direct we need to import from the <code>std::time</code> module both <code>UNIX_EPOCH</code> and <code>SystemTime</code> into our code, and in order to save space and time we should it in one line. The way we do this is by including adding curly braces<code>{}</code> into our import statement and separating each item with a comma, easy enough.</p>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">use std::time::{SystemTime, UNIX_EPOCH};
+
+fn main() {
+    match SystemTime::now().duration_since(UNIX_EPOCH) {
+        Ok(n) =&gt; println!(&quot;19-01-01 00:00:00 UTC was {} seconds ago!&quot;, n.as_secs()),
+        Err(_) =&gt; panic!(&quot;SystemTime before UNIX EPOCH!&quot;),
+    }
+}
+
+</code></pre>
+<p>This is the output we get</p>
+<pre data-lang="zsh" class="language-zsh "><code class="language-zsh" data-lang="zsh">Output:
+====================
+1970-01-01 00:00:00 UTC was 1687044064 seconds ago!
+
+====================
+</code></pre>
+<h2 id="conclusion">Conclusion</h2>
+<p>In this blog post, we explored three exercises related to Rust's module system. Here are the key takeaways:</p>
+<ul>
+<li>Modules allow us to organize code by grouping related functionality together.</li>
+<li>The <code>pub</code> keyword is used to make items (functions, types, etc.) accessible outside their module.</li>
+<li>The <code>use</code> keyword can be used to bring module paths into scope, allowing us to use items from other modules with ease.</li>
+<li>The <code>as</code> keyword in the <code>use</code> statement allows us to provide new names for imported items.</li>
+<li>The Rust standard library provides various modules that can be imported using the <code>use</code> keyword to leverage pre-existing functionality.</li>
+</ul>
+<p>By understanding and utilizing Rust's module system effectively, we can write well-structured and maintainable code. Keep practicing and exploring different aspects of Rust to deepen your understanding of the language.</p>
+<p>For further information on Rust's module system, refer to the <a href="https://doc.rust-lang.org/book/ch07-00-managing-growing-projects-with-packages-crates-and-modules.html">official documentation</a>.</p>
+
+	</div>
+	<hr class="post-end">
+	<footer class="post-info">
+    
+	  <p>
+		<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg>
+		
+		
+		<span class="tag"><a href="https://desmodrone.github.io/tags/rust/">rust</a></span>
+		
+		<span class="tag"><a href="https://desmodrone.github.io/tags/rustlings/">rustlings</a></span>
+		
+		<span class="tag"><a href="https://desmodrone.github.io/tags/modules/">modules</a></span>
+		
+		<span class="tag"><a href="https://desmodrone.github.io/tags/pub/">pub</a></span>
+		
+		<span class="tag"><a href="https://desmodrone.github.io/tags/mod/">mod</a></span>
+		
+		
+    </p>
+    
+    <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>1425 Words</p>
+    
+    <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2023-07-17</p>
+    
+	</footer>
+  </article>
+    
+  
+  <div class="post-nav thin">
+	
+	
+  </div>
+
+  
+</main>
+
+	  </div>
+	  
+	  
+
+
+
+<footer id="site-footer" class="section-inner thin animated fadeIn faster">
+  <p>&copy; 2023 <a href="https:&#x2F;&#x2F;desmodrone.github.io">erick</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
+  <p>Made with <a href="https://www.getzola.org" target="_blank" rel="noopener">Zola</a> &#183; Theme <a href="https://github.com/VersBinarii/hermit_zola" target="_blank" rel="noopener">Hermit_Zola</a>
+	
+	&#183; <a href="https://desmodrone.github.io/rss.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
+	
+  </p>
+</footer>
+
+
+
+
+	</div>
+	
+	<script src="https://desmodrone.github.io/js/main.js"></script>
+
+	<!-- Math rendering -->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css" integrity="sha384-zB1R0rpPzHqg7Kpt0Aljp8JPLqbXI3bhnPWROx27a9N0Ll6ZP/+DiW/UqRcLbRjq" crossorigin="anonymous">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js" integrity="sha384-y23I5Q6l+B6vatafAwxRu/0oK/79VlbSz7Q9aiSZUvyWYIYsd+qj+o24G5ZU2zJz" crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous"
+        onload="renderMathInElement(document.body, { delimiters: [ {left: '$$', right: '$$', display: true}, {left: '$', right: '$', display: false}, {left: '\\[', right: '\\]', display: true}, {left: '\\(', right: '\\)', display: false}]});"></script>
+
+    
+		<link href="https://unpkg.com/highlightjs-badge/highlightjs/styles/railscasts.css" rel="stylesheet">
+		<!-- https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.1/build/styles/  for min version -->
+		<script src="https://unpkg.com/highlightjs-badge/highlightjs/highlight.pack.js"></script>
+		<script src="https://unpkg.com/highlightjs-badge/highlightjs-badge.min.js"></script>
+		<script>
+			var pres = document.querySelectorAll("pre>code");
+			for (var i = 0; i < pres.length; i++) {
+				hljs.highlightBlock(pres[i]);
+			}
+		</script>
+		
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js"></script>
+			<script>
+				var options = {
+					copyIconClass: "gg-clipboard",
+					checkIconClass: "gg-check"
+				};
+				window.highlightJsBadge(options);
+			</script>
+		
+
+	
+
+	
+	<script src="https://desmodrone.github.io/js/main.js"></script>
+
+    
+    
+
+	
+    <!-- Global Site Tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-9MNTYXYNHK"></script>
+    <script>
+     window.dataLayer = window.dataLayer || [];
+     function gtag(){dataLayer.push(arguments);}
+     gtag('js', new Date());
+     gtag('config', 'G-9MNTYXYNHK');
+    </script>
+    
+  </body>
+</html>

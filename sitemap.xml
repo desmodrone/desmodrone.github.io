@@ -54,6 +54,10 @@
         <lastmod>2023-06-28</lastmod>
     </url>
     <url>
+        <loc>https://desmodrone.github.io/posts/11-rustlings-modules/</loc>
+        <lastmod>2023-07-17</lastmod>
+    </url>
+    <url>
         <loc>https://desmodrone.github.io/posts/hello-rustlings/</loc>
         <lastmod>2023-04-11</lastmod>
     </url>
@@ -114,10 +118,19 @@
         <loc>https://desmodrone.github.io/tags/methods/</loc>
     </url>
     <url>
+        <loc>https://desmodrone.github.io/tags/mod/</loc>
+    </url>
+    <url>
+        <loc>https://desmodrone.github.io/tags/modules/</loc>
+    </url>
+    <url>
         <loc>https://desmodrone.github.io/tags/ownership/</loc>
     </url>
     <url>
         <loc>https://desmodrone.github.io/tags/primitive/</loc>
+    </url>
+    <url>
+        <loc>https://desmodrone.github.io/tags/pub/</loc>
     </url>
     <url>
         <loc>https://desmodrone.github.io/tags/quiz/</loc>
