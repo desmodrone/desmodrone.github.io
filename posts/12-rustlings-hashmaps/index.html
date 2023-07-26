@@ -1,0 +1,795 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <meta itemprop="name" content="desmo" />
+  <meta itemprop="description" content="Random Ideas" />
+
+  <link rel="apple-touch-icon" sizes="180x180" href="https://desmodrone.github.io/apple-touch-icon.png"/>
+  <link rel="icon" type="image/png" sizes="32x32" href="https://desmodrone.github.io/favicon-32x32.png" />
+  <link
+    rel="icon"
+    type="image/png"
+    sizes="16x16"
+    href="https://desmodrone.github.io/favicon-16x16.png"
+  />
+  <link
+    rel="shortcut icon"
+    href="https://desmodrone.github.io/favicon.ico"
+  />
+  <link rel="stylesheet" href="https://desmodrone.github.io/style.css"/>
+  
+  <title>12 Rustlings HashMaps</title>
+  
+
+  
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="https://desmodrone.github.io/rss.xml">
+  
+
+  <body id="page">
+
+	
+<header id="site-header" class="animated slideInUp faster">
+  <div class="hdr-wrapper section-inner">
+    <div class="hdr-left">
+      <div class="site-branding">
+        <a href="https:&#x2F;&#x2F;desmodrone.github.io">desmo</a>
+      </div>
+      <nav class="site-nav hide-in-mobile">
+            
+        
+        <a href="https://desmodrone.github.io/posts">posts</a>
+        
+        <a href="https://desmodrone.github.io/about">about</a>
+        
+        <a href="https://desmodrone.github.io/work">work</a>
+        
+      </nav>
+    </div>
+    <div class="hdr-right hdr-icons">
+      <span class="hdr-social hide-in-mobile">
+        
+
+<a href="https:&#x2F;&#x2F;twitter.com&#x2F;desmodrone_" target="_blank" rel="noopener me"
+   title="twitter">
+  
+  <svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg>
+  
+</a>
+
+<a href="https:&#x2F;&#x2F;github.com&#x2F;desmodrone" target="_blank" rel="noopener me"
+   title="github">
+  
+  <svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+  
+</a>
+
+<a href="mailto:erick@apexwins.com" target="_blank" rel="noopener me"
+   title="email">
+  
+  <svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+  
+</a>
+
+
+      </span>
+      <button id="menu-btn" class="hdr-btn" title="Menu">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="feather feather-menu"
+        >
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+  </div>
+</header>
+<div id="mobile-menu" class="animated fast">
+  <ul>
+    
+    <li><a href="https://desmodrone.github.io/posts">posts</a></li>
+    
+    <li><a href="https://desmodrone.github.io/about">about</a></li>
+    
+    <li><a href="https://desmodrone.github.io/work">work</a></li>
+    
+  </ul>
+</div>
+
+	
+	
+
+		
+<main class="site-main section-inner animated fadeIn faster">
+  <article class="thin">
+	<header class="post-header">
+	  <div class="post-meta">
+		
+		<span>Jul 26, 2023</span>
+		<small> - 
+<span class="reading-time" title="Estimated read time">
+  
+  12 min read
+  
+</span>
+</small>
+		
+            
+	  </div>
+	  <h1>12 Rustlings HashMaps</h1>
+	</header>
+
+	<div class="content">
+        
+	  <h1 id="hashmaps">Hashmaps</h1>
+<h5 id="from-the-rustlings-readme">From the Rustlings README</h5>
+<p>A <em>hash map</em> allows you to associate a value with a particular key.
+You may also know this by the names <a href="https://en.cppreference.com/w/cpp/container/unordered_map"><em>unordered map</em> in C++</a>,
+<a href="https://docs.python.org/3/tutorial/datastructures.html#dictionaries"><em>dictionary</em> in Python</a> or an <em>associative array</em> in other languages.</p>
+<p>This is the other data structure that we've been talking about before, when
+talking about Vecs.</p>
+<h2 id="further-information">Further information</h2>
+<ul>
+<li><a href="https://doc.rust-lang.org/book/ch08-03-hash-maps.html">Storing Keys with Associated Values in Hash Maps</a></li>
+</ul>
+<h2 id="hashmaps1-rs">hashmaps1.rs</h2>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">&#x2F;&#x2F; hashmaps1.rs
+&#x2F;&#x2F; A basket of fruits in the form of a hash map needs to be defined.
+&#x2F;&#x2F; The key represents the name of the fruit and the value represents
+&#x2F;&#x2F; how many of that particular fruit is in the basket. You have to put
+&#x2F;&#x2F; at least three different types of fruits (e.g apple, banana, mango)
+&#x2F;&#x2F; in the basket and the total count of all the fruits should be at
+&#x2F;&#x2F; least five.
+&#x2F;&#x2F;
+&#x2F;&#x2F; Make me compile and pass the tests!
+&#x2F;&#x2F;
+&#x2F;&#x2F; Execute `rustlings hint hashmaps1` or use the `hint` watch subcommand for a hint.
+
+&#x2F;&#x2F; I AM NOT DONE
+
+use std::collections::HashMap;
+
+fn fruit_basket() -&gt; HashMap&lt;String, u32&gt; {
+    let mut basket = &#x2F;&#x2F; TODO: declare your hash map here.
+
+    &#x2F;&#x2F; Two bananas are already given for you :)
+    basket.insert(String::from(&quot;banana&quot;), 2);
+
+    &#x2F;&#x2F; TODO: Put more fruits in your basket here.
+
+    basket
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn at_least_three_types_of_fruits() {
+        let basket = fruit_basket();
+        assert!(basket.len() &gt;= 3);
+    }
+
+    #[test]
+    fn at_least_five_fruits() {
+        let basket = fruit_basket();
+        assert!(basket.values().sum::&lt;u32&gt;() &gt;= 5);
+    }
+}
+
+</code></pre>
+<p>Our instructions are to put more fruit into our <code>HashMap</code> basket, we need at least 3 different kinds of fruits and the total count of all fruits should be at least five. In the comments we see more instructions via <code>TODO's</code> which are:</p>
+<ul>
+<li>to declare a hash map</li>
+<li>put more fruits in our basket.</li>
+</ul>
+<h2 id="hashmaps1-rs-errors">hashmaps1.rs errors</h2>
+<p>A quick glance of our errors shows nothing unexpected:</p>
+<pre><code>⚠️  Compiling of exercises&#x2F;hashmaps&#x2F;hashmaps1.rs failed! Please try again. Here&#x27;s the output:
+error[E0425]: cannot find value `basket` in this scope
+  --&gt; exercises&#x2F;hashmaps&#x2F;hashmaps1.rs:21:5
+   |
+21 |     basket.insert(String::from(&quot;banana&quot;), 2);
+   |     ^^^^^^ not found in this scope
+
+error: aborting due to previous error
+
+For more information about this error, try `rustc --explain E0425`.
+</code></pre>
+<h2 id="hashmaps1-solution">hashmaps1 solution</h2>
+<p>So now let's move on to the solution. We first declare our <code>HashMap</code> by completing line 5 with <code>let mut basket = HashMap::new();</code>
+That let's us create our hashmap so it's usable  in the next lines, meaning we can add some more fruit to it.
+We already have our first line defined as <code>basket.insert(String::from(&quot;banana&quot;), 2);</code> so if we use this same pattern but add different fruits, keeping in mind our quantity requirements, we should be good.</p>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">use std::collections::HashMap;
+
+fn fruit_basket() -&gt; HashMap&lt;String, u32&gt; {
+    &#x2F;&#x2F; TODO: declare your hash map here.
+    let mut basket = HashMap::new();
+
+    &#x2F;&#x2F; Two bananas are already given for you :)
+    basket.insert(String::from(&quot;banana&quot;), 2);
+    basket.insert(String::from(&quot;apple&quot;), 2);
+    basket.insert(String::from(&quot;mango&quot;), 1);
+    &#x2F;&#x2F; TODO: Put more fruits in your basket here.
+
+    basket
+}
+</code></pre>
+<p>Easy enough, we declare a new HashMap and add some fruit.
+Let's move on to the next one!</p>
+<h2 id="hashmap2-rs">hashmap2.rs</h2>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">&#x2F;&#x2F; hashmaps2.rs
+
+&#x2F;&#x2F; A basket of fruits in the form of a hash map is given. The key
+&#x2F;&#x2F; represents the name of the fruit and the value represents how many
+&#x2F;&#x2F; of that particular fruit is in the basket. You have to put *MORE
+&#x2F;&#x2F; THAN 11* fruits in the basket. Three types of fruits - Apple (4),
+&#x2F;&#x2F; Mango (2) and Lychee (5) are already given in the basket. You are
+&#x2F;&#x2F; not allowed to insert any more of these fruits!
+&#x2F;&#x2F;
+&#x2F;&#x2F; Make me pass the tests!
+&#x2F;&#x2F;
+&#x2F;&#x2F; Execute `rustlings hint hashmaps2` or use the `hint` watch subcommand for a hint.
+
+&#x2F;&#x2F; I AM NOT DONE
+
+use std::collections::HashMap;
+
+#[derive(Hash, PartialEq, Eq)]
+enum Fruit {
+    Apple,
+    Banana,
+    Mango,
+    Lychee,
+    Pineapple,
+}
+
+fn fruit_basket(basket: &amp;mut HashMap&lt;Fruit, u32&gt;) {
+    let fruit_kinds = vec![
+        Fruit::Apple,
+        Fruit::Banana,
+        Fruit::Mango,
+        Fruit::Lychee,
+        Fruit::Pineapple,
+    ];
+
+    for fruit in fruit_kinds {
+        &#x2F;&#x2F; TODO: Put new fruits if not already present. Note that you
+        &#x2F;&#x2F; are not allowed to put any type of fruit that&#x27;s already
+        &#x2F;&#x2F; present!
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    fn get_fruit_basket() -&gt; HashMap&lt;Fruit, u32&gt; {
+        let mut basket = HashMap::&lt;Fruit, u32&gt;::new();
+        basket.insert(Fruit::Apple, 4);
+        basket.insert(Fruit::Mango, 2);
+        basket.insert(Fruit::Lychee, 5);
+
+        basket
+    }
+
+    #[test]
+    fn test_given_fruits_are_not_modified() {
+        let mut basket = get_fruit_basket();
+        fruit_basket(&amp;mut basket);
+        assert_eq!(*basket.get(&amp;Fruit::Apple).unwrap(), 4);
+        assert_eq!(*basket.get(&amp;Fruit::Mango).unwrap(), 2);
+        assert_eq!(*basket.get(&amp;Fruit::Lychee).unwrap(), 5);
+    }
+
+    #[test]
+    fn at_least_five_types_of_fruits() {
+        let mut basket = get_fruit_basket();
+        fruit_basket(&amp;mut basket);
+        let count_fruit_kinds = basket.len();
+        assert!(count_fruit_kinds &gt;= 5);
+    }
+
+    #[test]
+    fn greater_than_eleven_fruits() {
+        let mut basket = get_fruit_basket();
+        fruit_basket(&amp;mut basket);
+        let count = basket.values().sum::&lt;u32&gt;();
+        assert!(count &gt; 11);
+    }
+}
+</code></pre>
+<p>In the given code, the goal is to modify the <code>fruit_basket</code> function to add more than 11 fruits of various kinds to a hash map (<code>HashMap</code>) called <code>basket</code>. The hash map represents a basket of fruits, where the keys are different types of fruits (represented by the <code>Fruit</code> enum) and the values are the number of each fruit in the basket (<code>u32</code>).</p>
+<p>The <code>fruit_basket</code> function should insert additional fruit types into the <code>basket</code> hash map without modifying the quantities of the fruits that are already present (Apple, Mango, and Lychee) since they are already given in the initial basket.</p>
+<p>The provided test cases ensure that the given fruits are not modified, that there are at least five types of fruits in the basket after the function execution, and that there are more than eleven fruits in total in the basket.</p>
+<h2 id="hashmap2-rs-solution">hashmap2.rs solution</h2>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">use std::collections::HashMap;
+
+#[derive(Hash, PartialEq, Eq)]
+enum Fruit {
+    Apple,
+    Banana,
+    Mango,
+    Lychee,
+    Pineapple,
+    Pear,
+    Kiwi,
+    Strawberries,
+    Blueberries,
+    Cherries,
+    Lemons,
+    Grapefruit,
+}
+
+fn fruit_basket(basket: &amp;mut HashMap&lt;Fruit, u32&gt;) {
+    let fruit_kinds = vec![
+        Fruit::Apple,
+        Fruit::Banana,
+        Fruit::Mango,
+        Fruit::Lychee,
+        Fruit::Pineapple,
+        Fruit::Pear,
+        Fruit::Kiwi,
+        Fruit::Strawberries,
+        Fruit::Blueberries,
+        Fruit::Cherries,
+        Fruit::Lemons,
+        Fruit::Grapefruit,
+    ];
+
+    for fruit in fruit_kinds {
+        basket.insert(Fruit::Pear, 2);
+        basket.insert(Fruit::Kiwi, 10);
+        basket.insert(Fruit::Strawberries, 5);
+        basket.insert(Fruit::Lemons, 6);
+        basket.insert(Fruit::Strawberries, 6);
+        basket.insert(Fruit::Blueberries, 6);
+        basket.insert(Fruit::Grapefruit, 6);
+        basket.insert(Fruit::Cherries, 6);
+    }
+}
+</code></pre>
+<p>The solution involves adding more fruit types to the <code>fruit_kinds</code> vector, and then iterating through this vector to insert the new fruits into the <code>basket</code> hash map using the <code>insert</code> method. The solution includes adding multiple instances of new fruit types to meet the requirement of having more than eleven fruits in the basket.</p>
+<p>In the solution code, several new fruit types (e.g., Pear, Kiwi, Strawberries, Blueberries, Cherries, Lemons, and Grapefruit) are added, and multiple instances of each fruit are inserted into the <code>basket</code> hash map.</p>
+<p>This solution satisfies the requirements, passing all the given test cases, and ensuring that the function can add additional fruit types to the basket while preserving the initial quantities of the given fruits.</p>
+<h2 id="hashmaps3-rs">hashmaps3.rs</h2>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">&#x2F;&#x2F; hashmaps3.rs
+
+&#x2F;&#x2F; A list of scores (one per line) of a soccer match is given. Each line
+&#x2F;&#x2F; is of the form :
+&#x2F;&#x2F; &lt;team_1_name&gt;,&lt;team_2_name&gt;,&lt;team_1_goals&gt;,&lt;team_2_goals&gt;
+&#x2F;&#x2F; Example: England,France,4,2 (England scored 4 goals, France 2).
+
+&#x2F;&#x2F; You have to build a scores table containing the name of the team, goals
+&#x2F;&#x2F; the team scored, and goals the team conceded. One approach to build
+&#x2F;&#x2F; the scores table is to use a Hashmap. The solution is partially
+&#x2F;&#x2F; written to use a Hashmap, complete it to pass the test.
+
+&#x2F;&#x2F; Make me pass the tests!
+
+&#x2F;&#x2F; Execute `rustlings hint hashmaps3` or use the `hint` watch subcommand for a hint.
+
+&#x2F;&#x2F; I AM NOT DONE
+
+use std::collections::HashMap;
+
+&#x2F;&#x2F; A structure to store team name and its goal details.
+struct Team {
+    name: String,
+    goals_scored: u8,
+    goals_conceded: u8,
+}
+
+fn build_scores_table(results: String) -&gt; HashMap&lt;String, Team&gt; {
+    &#x2F;&#x2F; The name of the team is the key and its associated struct is the value.
+    let mut scores: HashMap&lt;String, Team&gt; = HashMap::new();
+
+    for r in results.lines() {
+        let v: Vec&lt;&amp;str&gt; = r.split(&#x27;,&#x27;).collect();
+        let team_1_name = v[0].to_string();
+        let team_1_score: u8 = v[2].parse().unwrap();
+        let team_2_name = v[1].to_string();
+        let team_2_score: u8 = v[3].parse().unwrap();
+        &#x2F;&#x2F; TODO: Populate the scores table with details extracted from the
+        &#x2F;&#x2F; current line. Keep in mind that goals scored by team_1
+        &#x2F;&#x2F; will be the number of goals conceded from team_2, and similarly
+        &#x2F;&#x2F; goals scored by team_2 will be the number of goals conceded by
+        &#x2F;&#x2F; team_1.
+    }
+    scores
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    fn get_results() -&gt; String {
+        let results = &quot;&quot;.to_string()
+            + &quot;England,France,4,2\n&quot;
+            + &quot;France,Italy,3,1\n&quot;
+            + &quot;Poland,Spain,2,0\n&quot;
+            + &quot;Germany,England,2,1\n&quot;;
+        results
+    }
+
+    #[test]
+    fn build_scores() {
+        let scores = build_scores_table(get_results());
+
+        let mut keys: Vec&lt;&amp;String&gt; = scores.keys().collect();
+        keys.sort();
+        assert_eq!(
+            keys,
+            vec![&quot;England&quot;, &quot;France&quot;, &quot;Germany&quot;, &quot;Italy&quot;, &quot;Poland&quot;, &quot;Spain&quot;]
+        );
+    }
+
+    #[test]
+    fn validate_team_score_1() {
+        let scores = build_scores_table(get_results());
+        let team = scores.get(&quot;England&quot;).unwrap();
+        assert_eq!(team.goals_scored, 5);
+        assert_eq!(team.goals_conceded, 4);
+    }
+
+    #[test]
+    fn validate_team_score_2() {
+        let scores = build_scores_table(get_results());
+        let team = scores.get(&quot;Spain&quot;).unwrap();
+        assert_eq!(team.goals_scored, 0);
+        assert_eq!(team.goals_conceded, 2);
+    }
+}
+
+</code></pre>
+<p>Our task in this exercise is to build a scores table for soccer matches using a HashMap. We are given a list of match scores in the form of <code>&lt;team_1_name&gt;,&lt;team_2_name&gt;,&lt;team_1_goals&gt;,&lt;team_2_goals&gt;</code>. For example, &quot;England,France,4,2&quot; means England scored 4 goals, and France scored 2 goals in a match.</p>
+<p>To build the scores table, we need to use a HashMap to store each team's name, the goals they scored, and the goals they conceded in the matches.</p>
+<h2 id="hashmaps3-rs-errors">hashmaps3.rs errors</h2>
+<pre><code>⚠️  Testing of exercises&#x2F;hashmaps&#x2F;hashmaps3.rs failed! Please try again. Here&#x27;s the output:
+
+running 3 tests
+test tests::build_scores ... FAILED
+test tests::validate_team_score_1 ... FAILED
+test tests::validate_team_score_2 ... FAILED
+
+successes:
+
+successes:
+
+failures:
+
+---- tests::build_scores stdout ----
+thread &#x27;tests::build_scores&#x27; panicked at &#x27;assertion failed: `(left == right)`
+  left: `[]`,
+ right: `[&quot;England&quot;, &quot;France&quot;, &quot;Germany&quot;, &quot;Italy&quot;, &quot;Poland&quot;, &quot;Spain&quot;]`&#x27;, exercises&#x2F;hashmaps&#x2F;hashmaps3.rs:66:9
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+---- tests::validate_team_score_1 stdout ----
+thread &#x27;tests::validate_team_score_1&#x27; panicked at &#x27;called `Option::unwrap()` on a `None` value&#x27;, exercises&#x2F;hashmaps&#x2F;hashmaps3.rs:75:42
+
+---- tests::validate_team_score_2 stdout ----
+thread &#x27;tests::validate_team_score_2&#x27; panicked at &#x27;called `Option::unwrap()` on a `None` value&#x27;, exercises&#x2F;hashmaps&#x2F;hashmaps3.rs:83:40
+
+
+failures:
+    tests::build_scores
+    tests::validate_team_score_1
+    tests::validate_team_score_2
+
+test result: FAILED. 0 passed; 3 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+</code></pre>
+<h2 id="hasmap3-rs-solution">hasmap3.rs solution</h2>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">
+use std::collections::HashMap;
+
+&#x2F;&#x2F; A structure to store team name and its goal details.
+struct Team {
+    name: String,
+    goals_scored: u8,
+    goals_conceded: u8,
+}
+
+fn build_scores_table(results: String) -&gt; HashMap&lt;String, Team&gt; {
+    &#x2F;&#x2F; The name of the team is the key and its associated struct is the value.
+    let mut scores: HashMap&lt;String, Team&gt; = HashMap::new();
+
+    for r in results.lines() {
+        let v: Vec&lt;&amp;str&gt; = r.split(&#x27;,&#x27;).collect();
+        let team_1_name = v[0].to_string();
+        let team_1_score: u8 = v[2].parse().unwrap();
+        let team_2_name = v[1].to_string();
+        let team_2_score: u8 = v[3].parse().unwrap();
+
+        &#x2F;&#x2F; Try to get a mutable reference to the first team&#x27;s Team struct in the scores HashMap
+        scores
+            .entry(team_1_name.clone())
+            &#x2F;&#x2F; If the Team struct exists, modify it by incrementing the goals_scored and goals_conceded fields
+            .and_modify(|team| {
+                team.goals_scored += team_1_score;
+                team.goals_conceded += team_2_score;
+            })
+            &#x2F;&#x2F; If the Team struct does not exist, insert a new one with the initial scores
+            .or_insert(Team {
+                name: team_1_name,
+                goals_scored: team_1_score,
+                goals_conceded: team_2_score,
+            });
+
+        &#x2F;&#x2F; Repeat the same process for the second team
+        scores
+            .entry(team_2_name.clone())
+            .and_modify(|team| {
+                team.goals_scored += team_2_score;
+                team.goals_conceded += team_1_score;
+            })
+            .or_insert(Team {
+                name: team_2_name,
+                goals_scored: team_2_score,
+                goals_conceded: team_1_score,
+            });
+    }
+    scores
+}
+
+</code></pre>
+<p>The code already provides a <code>Team</code> struct with fields for the team's name, goals scored, and goals conceded. Our task is to complete the <code>build_scores_table</code> function to create and populate the HashMap with the match results.</p>
+<p>Here's our plan to complete the function:</p>
+<ol>
+<li>
+<p>We'll start by creating an empty HashMap called <code>scores</code> to store the team details.</p>
+</li>
+<li>
+<p>Next, we'll iterate through each line of the <code>results</code> string using <code>results.lines()</code>.</p>
+</li>
+<li>
+<p>For each line, we'll split it into components using <code>.split(',')</code> to extract the team names and goals.</p>
+</li>
+<li>
+<p>We'll convert the necessary fields to their correct types (e.g., team names as strings, goals as u8).</p>
+</li>
+<li>
+<p>Then, we'll populate the <code>scores</code> HashMap with the team details. We need to be careful because goals scored by one team are the goals conceded by the other team.</p>
+</li>
+<li>
+<p>Finally, we'll return the <code>scores</code> HashMap from the function.</p>
+</li>
+</ol>
+<p>Once we complete the function, the provided test cases will validate that the scores table is correctly built, and each team's goals scored and conceded are accurate.</p>
+<p>This would print <code>&quot;England,France,4,2\nFrance,Italy,3,1\n&quot;</code></p>
+<p>Each line of the results string represents one match, with the teams and their respective scores separated by commas. This loop goes through each line one at a time, parsing the teams and scores and updating the <code>scores</code> HashMap accordingly.</p>
+<p>The <code>entry()</code> method tries to get a mutable reference to the <code>Team</code> struct associated with a team's name. If the <code>Team</code> struct exists, the <code>and_modify()</code> method modifies it by adding the new scores to the <code>goals_scored</code> and <code>goals_conceded</code> fields. If the <code>Team</code> struct doesn't exist, the <code>or_insert()</code> method inserts a new <code>Team</code> struct with the initial scores.
+This is done for both teams in each match. After all the matches have been processed, the <code>scores</code> HashMap is returned, with each team's total goals scored and conceded updated to reflect all the matches.</p>
+<h2 id="alternate-solution-using-if-let">Alternate Solution using If / Let</h2>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">fn build_scores_table(results: String) -&gt; HashMap&lt;String, Team&gt; {
+    &#x2F;&#x2F; The name of the team is the key and its associated struct is the value.
+    let mut scores: HashMap&lt;String, Team&gt; = HashMap::new();
+
+    for r in results.lines() {
+        let v: Vec&lt;&amp;str&gt; = r.split(&#x27;,&#x27;).collect();
+        let team_1_name = v[0].to_string();
+        let team_1_score: u8 = v[2].parse().unwrap();
+        let team_2_name = v[1].to_string();
+        let team_2_score: u8 = v[3].parse().unwrap();
+
+        &#x2F;&#x2F; Check if the first team exists in the scores HashMap
+        if let Some(team) = scores.get_mut(&amp;team_1_name) {
+            &#x2F;&#x2F; If the team exists, increment the goals_scored and goals_conceded fields
+            team.goals_scored += team_1_score;
+            team.goals_conceded += team_2_score;
+        } else {
+            &#x2F;&#x2F; If the team does not exist, insert a new one with the initial scores
+            scores.insert(
+                team_1_name.clone(),
+                Team {
+                    name: team_1_name.clone(),
+                    goals_scored: team_1_score,
+                    goals_conceded: team_2_score,
+                },
+            );
+        }
+
+        &#x2F;&#x2F; Repeat the same process for the second team
+        if let Some(team) = scores.get_mut(&amp;team_2_name) {
+            team.goals_scored += team_2_score;
+            team.goals_conceded += team_1_score;
+        } else {
+            scores.insert(
+                team_2_name.clone(),
+                Team {
+                    name: team_2_name.clone(),
+                    goals_scored: team_2_score,
+                    goals_conceded: team_1_score,
+                },
+            );
+        }
+    }
+    scores
+}
+</code></pre>
+<p>In this version, <code>if let Some(team) = scores.get_mut(&amp;team_1_name)</code> tries to get a mutable reference to the team in the <code>scores</code> HashMap. If the team exists, <code>Some(team)</code> is returned and the team's scores are updated. If the team does not exist, <code>None</code> is returned and a new <code>Team</code> struct is inserted into the <code>scores</code> HashMap with the <code>scores.insert()</code> method. This is repeated for both teams.</p>
+<p>The logic is the same as in the previous version that uses closures, but the control flow is more explicit here. However, this version is slightly more verbose and arguably less idiomatic in Rust. Closures and method chaining using <code>and_modify</code> and <code>or_insert</code> on <code>HashMap::entry</code> are common patterns in Rust code.</p>
+<h2 id="3rd-possible-solution">3rd Possible Solution</h2>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">fn build_scores_table(results: String) -&gt; HashMap&lt;String, Team&gt; {
+    let mut scores: HashMap&lt;String, Team&gt; = HashMap::new();
+
+    for r in results.lines() {
+        let v: Vec&lt;&amp;str&gt; = r.split(&#x27;,&#x27;).collect();
+        let team_1_name = v[0].to_string();
+        let team_1_score: u8 = v[2].parse().unwrap();
+        let team_2_name = v[1].to_string();
+        let team_2_score: u8 = v[3].parse().unwrap();
+
+        &#x2F;&#x2F; Handle team 1
+        let team_1 = scores.remove(&amp;team_1_name);
+        if let Some(mut t) = team_1 {
+            t.goals_scored += team_1_score;
+            t.goals_conceded += team_2_score;
+            scores.insert(team_1_name, t);
+        } else {
+            scores.insert(team_1_name, Team { name: team_1_name.clone(), goals_scored: team_1_score, goals_conceded: team_2_score });
+        }
+
+        &#x2F;&#x2F; Handle team 2
+        let team_2 = scores.remove(&amp;team_2_name);
+        if let Some(mut t) = team_2 {
+            t.goals_scored += team_2_score;
+            t.goals_conceded += team_1_score;
+            scores.insert(team_2_name, t);
+        } else {
+            scores.insert(team_2_name, Team { name: team_2_name.clone(), goals_scored: team_2_score, goals_conceded: team_1_score });
+        }
+    }
+    scores
+}
+</code></pre>
+<p>In this version, <code>scores.remove(&amp;team_1_name)</code> attempts to remove the <code>Team</code> struct associated with <code>team_1_name</code> from the HashMap. If the team exists, the <code>Team</code> struct is returned and removed from the HashMap, the team's scores are updated, and the updated <code>Team</code> struct is re-inserted into the HashMap. If the team does not exist, a new <code>Team</code> struct is inserted into the HashMap. This process is repeated for both teams.</p>
+<p>Although this version is simpler and doesn't use closures, it's also less efficient because it requires additional lookups and insertions into the HashMap. The previous two versions that use <code>HashMap::entry</code> are generally more efficient and idiomatic in Rust.</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>In this post, we explored the concept of hash maps in Rust and how they allow us to associate values with specific keys. Hash maps are similar to unordered maps in C++, dictionaries in Python, or associative arrays in other languages. We learned how to use the HashMap data structure to build collections with key-value pairs.</p>
+<p>We worked through three exercises that involved using hash maps to store and manipulate data:</p>
+<ol>
+<li>
+<p>In <code>hashmaps1.rs</code>, we had to create a basket of fruits using a HashMap. We needed to ensure that the basket contained at least three different types of fruits and a total of at least five fruits. By declaring a new HashMap and adding the required fruits with their quantities, we successfully completed this task.</p>
+</li>
+<li>
+<p>In <code>hashmaps2.rs</code>, we were given a pre-defined basket of fruits and had to add more than eleven fruits of various kinds to it. However, we were not allowed to modify the quantities of the given fruits (Apple, Mango, and Lychee). By iterating through a list of new fruit types and inserting them into the HashMap, we successfully met the requirements of this exercise.</p>
+</li>
+<li>
+<p>In the exercise <code>hashmaps3.rs</code>, we were tasked with building a scores table for soccer matches using a <code>HashMap</code>. Three possible solutions were provided to achieve this goal:</p>
+</li>
+</ol>
+<p><strong>Solution 1:</strong> <em>Using Closures and <code>entry()</code> Method Chaining</em>
+This solution utilized closures and method chaining with <code>entry()</code> to efficiently handle the teams' scores and update the <code>HashMap</code> accordingly.</p>
+<p><strong>Solution 2:</strong> <em>Using <code>if let</code> Statements for Handling Entries</em>
+In this solution, <code>if let</code> statements were used to handle entries in the <code>HashMap</code>, removing and updating teams' scores as needed.</p>
+<p><strong>Solution 3:</strong> <em>Using <code>if let</code> and <code>match</code> for Handling Entries</em>
+This solution combined <code>if let</code> with <code>match</code> to handle the entries in the <code>HashMap</code>, similar to Solution 2, but with a slight variation in the syntax.</p>
+<p>All three solutions achieved the goal of building the scores table and were valid approaches to solving the problem. The choice between these solutions may depend on personal coding style and preferences.</p>
+<p>Key Takeaways:</p>
+<ul>
+<li>Hash maps in Rust provide fast lookup and insertion times.</li>
+<li>They enable efficient data retrieval and manipulation based on unique keys.</li>
+<li>Hash maps are valuable tools for various scenarios, such as building scores tables or maintaining associations between data elements.</li>
+</ul>
+<p>By mastering the usage of hash maps, we expand our ability to manage and organize data efficiently in Rust. These skills are valuable for building robust and performant applications in a wide range of domains.</p>
+
+	</div>
+	<hr class="post-end">
+	<footer class="post-info">
+    
+	  <p>
+		<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg>
+		
+		
+		<span class="tag"><a href="https://desmodrone.github.io/tags/rust/">rust</a></span>
+		
+		<span class="tag"><a href="https://desmodrone.github.io/tags/rustlings/">rustlings</a></span>
+		
+		<span class="tag"><a href="https://desmodrone.github.io/tags/hashmaps/">hashmaps</a></span>
+		
+		<span class="tag"><a href="https://desmodrone.github.io/tags/vecs/">vecs</a></span>
+		
+		<span class="tag"><a href="https://desmodrone.github.io/tags/key/">key</a></span>
+		
+		<span class="tag"><a href="https://desmodrone.github.io/tags/value/">value</a></span>
+		
+		
+    </p>
+    
+    <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>3089 Words</p>
+    
+    <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2023-07-26</p>
+    
+	</footer>
+  </article>
+    
+  
+  <div class="post-nav thin">
+	
+	
+  </div>
+
+  
+</main>
+
+	  </div>
+	  
+	  
+
+
+
+<footer id="site-footer" class="section-inner thin animated fadeIn faster">
+  <p>&copy; 2023 <a href="https:&#x2F;&#x2F;desmodrone.github.io">erick</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
+  <p>Made with <a href="https://www.getzola.org" target="_blank" rel="noopener">Zola</a> &#183; Theme <a href="https://github.com/VersBinarii/hermit_zola" target="_blank" rel="noopener">Hermit_Zola</a>
+	
+	&#183; <a href="https://desmodrone.github.io/rss.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
+	
+  </p>
+</footer>
+
+
+
+
+	</div>
+	
+	<script src="https://desmodrone.github.io/js/main.js"></script>
+
+	<!-- Math rendering -->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css" integrity="sha384-zB1R0rpPzHqg7Kpt0Aljp8JPLqbXI3bhnPWROx27a9N0Ll6ZP/+DiW/UqRcLbRjq" crossorigin="anonymous">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js" integrity="sha384-y23I5Q6l+B6vatafAwxRu/0oK/79VlbSz7Q9aiSZUvyWYIYsd+qj+o24G5ZU2zJz" crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous"
+        onload="renderMathInElement(document.body, { delimiters: [ {left: '$$', right: '$$', display: true}, {left: '$', right: '$', display: false}, {left: '\\[', right: '\\]', display: true}, {left: '\\(', right: '\\)', display: false}]});"></script>
+
+    
+		<link href="https://unpkg.com/highlightjs-badge/highlightjs/styles/railscasts.css" rel="stylesheet">
+		<!-- https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.1/build/styles/  for min version -->
+		<script src="https://unpkg.com/highlightjs-badge/highlightjs/highlight.pack.js"></script>
+		<script src="https://unpkg.com/highlightjs-badge/highlightjs-badge.min.js"></script>
+		<script>
+			var pres = document.querySelectorAll("pre>code");
+			for (var i = 0; i < pres.length; i++) {
+				hljs.highlightBlock(pres[i]);
+			}
+		</script>
+		
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js"></script>
+			<script>
+				var options = {
+					copyIconClass: "gg-clipboard",
+					checkIconClass: "gg-check"
+				};
+				window.highlightJsBadge(options);
+			</script>
+		
+
+	
+
+	
+	<script src="https://desmodrone.github.io/js/main.js"></script>
+
+    
+    
+
+	
+    <!-- Global Site Tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-9MNTYXYNHK"></script>
+    <script>
+     window.dataLayer = window.dataLayer || [];
+     function gtag(){dataLayer.push(arguments);}
+     gtag('js', new Date());
+     gtag('config', 'G-9MNTYXYNHK');
+    </script>
+    
+  </body>
+</html>

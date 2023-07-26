@@ -7,7 +7,566 @@
       <generator>Zola</generator>
       <language>en</language>
       <atom:link href="https://desmodrone.github.io/rss.xml" rel="self" type="application/rss+xml"/>
-      <lastBuildDate>Mon, 17 Jul 2023 00:00:00 +0000</lastBuildDate>
+      <lastBuildDate>Wed, 26 Jul 2023 00:00:00 +0000</lastBuildDate>
+      <item>
+          <title>12 Rustlings HashMaps</title>
+          <pubDate>Wed, 26 Jul 2023 00:00:00 +0000</pubDate>
+          <author>Unknown</author>
+          <link>https://desmodrone.github.io/posts/12-rustlings-hashmaps/</link>
+          <guid>https://desmodrone.github.io/posts/12-rustlings-hashmaps/</guid>
+          <description>&lt;h1 id=&quot;hashmaps&quot;&gt;Hashmaps&lt;&#x2F;h1&gt;
+&lt;h5 id=&quot;from-the-rustlings-readme&quot;&gt;From the Rustlings README&lt;&#x2F;h5&gt;
+&lt;p&gt;A &lt;em&gt;hash map&lt;&#x2F;em&gt; allows you to associate a value with a particular key.
+You may also know this by the names &lt;a href=&quot;https:&#x2F;&#x2F;en.cppreference.com&#x2F;w&#x2F;cpp&#x2F;container&#x2F;unordered_map&quot;&gt;&lt;em&gt;unordered map&lt;&#x2F;em&gt; in C++&lt;&#x2F;a&gt;,
+&lt;a href=&quot;https:&#x2F;&#x2F;docs.python.org&#x2F;3&#x2F;tutorial&#x2F;datastructures.html#dictionaries&quot;&gt;&lt;em&gt;dictionary&lt;&#x2F;em&gt; in Python&lt;&#x2F;a&gt; or an &lt;em&gt;associative array&lt;&#x2F;em&gt; in other languages.&lt;&#x2F;p&gt;
+&lt;p&gt;This is the other data structure that we&#x27;ve been talking about before, when
+talking about Vecs.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;further-information&quot;&gt;Further information&lt;&#x2F;h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;doc.rust-lang.org&#x2F;book&#x2F;ch08-03-hash-maps.html&quot;&gt;Storing Keys with Associated Values in Hash Maps&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h2 id=&quot;hashmaps1-rs&quot;&gt;hashmaps1.rs&lt;&#x2F;h2&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;&amp;#x2F;&amp;#x2F; hashmaps1.rs
+&amp;#x2F;&amp;#x2F; A basket of fruits in the form of a hash map needs to be defined.
+&amp;#x2F;&amp;#x2F; The key represents the name of the fruit and the value represents
+&amp;#x2F;&amp;#x2F; how many of that particular fruit is in the basket. You have to put
+&amp;#x2F;&amp;#x2F; at least three different types of fruits (e.g apple, banana, mango)
+&amp;#x2F;&amp;#x2F; in the basket and the total count of all the fruits should be at
+&amp;#x2F;&amp;#x2F; least five.
+&amp;#x2F;&amp;#x2F;
+&amp;#x2F;&amp;#x2F; Make me compile and pass the tests!
+&amp;#x2F;&amp;#x2F;
+&amp;#x2F;&amp;#x2F; Execute `rustlings hint hashmaps1` or use the `hint` watch subcommand for a hint.
+
+&amp;#x2F;&amp;#x2F; I AM NOT DONE
+
+use std::collections::HashMap;
+
+fn fruit_basket() -&amp;gt; HashMap&amp;lt;String, u32&amp;gt; {
+    let mut basket = &amp;#x2F;&amp;#x2F; TODO: declare your hash map here.
+
+    &amp;#x2F;&amp;#x2F; Two bananas are already given for you :)
+    basket.insert(String::from(&amp;quot;banana&amp;quot;), 2);
+
+    &amp;#x2F;&amp;#x2F; TODO: Put more fruits in your basket here.
+
+    basket
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn at_least_three_types_of_fruits() {
+        let basket = fruit_basket();
+        assert!(basket.len() &amp;gt;= 3);
+    }
+
+    #[test]
+    fn at_least_five_fruits() {
+        let basket = fruit_basket();
+        assert!(basket.values().sum::&amp;lt;u32&amp;gt;() &amp;gt;= 5);
+    }
+}
+
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Our instructions are to put more fruit into our &lt;code&gt;HashMap&lt;&#x2F;code&gt; basket, we need at least 3 different kinds of fruits and the total count of all fruits should be at least five. In the comments we see more instructions via &lt;code&gt;TODO&#x27;s&lt;&#x2F;code&gt; which are:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;to declare a hash map&lt;&#x2F;li&gt;
+&lt;li&gt;put more fruits in our basket.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h2 id=&quot;hashmaps1-rs-errors&quot;&gt;hashmaps1.rs errors&lt;&#x2F;h2&gt;
+&lt;p&gt;A quick glance of our errors shows nothing unexpected:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;⚠️  Compiling of exercises&amp;#x2F;hashmaps&amp;#x2F;hashmaps1.rs failed! Please try again. Here&amp;#x27;s the output:
+error[E0425]: cannot find value `basket` in this scope
+  --&amp;gt; exercises&amp;#x2F;hashmaps&amp;#x2F;hashmaps1.rs:21:5
+   |
+21 |     basket.insert(String::from(&amp;quot;banana&amp;quot;), 2);
+   |     ^^^^^^ not found in this scope
+
+error: aborting due to previous error
+
+For more information about this error, try `rustc --explain E0425`.
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h2 id=&quot;hashmaps1-solution&quot;&gt;hashmaps1 solution&lt;&#x2F;h2&gt;
+&lt;p&gt;So now let&#x27;s move on to the solution. We first declare our &lt;code&gt;HashMap&lt;&#x2F;code&gt; by completing line 5 with &lt;code&gt;let mut basket = HashMap::new();&lt;&#x2F;code&gt;
+That let&#x27;s us create our hashmap so it&#x27;s usable  in the next lines, meaning we can add some more fruit to it.
+We already have our first line defined as &lt;code&gt;basket.insert(String::from(&amp;quot;banana&amp;quot;), 2);&lt;&#x2F;code&gt; so if we use this same pattern but add different fruits, keeping in mind our quantity requirements, we should be good.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;use std::collections::HashMap;
+
+fn fruit_basket() -&amp;gt; HashMap&amp;lt;String, u32&amp;gt; {
+    &amp;#x2F;&amp;#x2F; TODO: declare your hash map here.
+    let mut basket = HashMap::new();
+
+    &amp;#x2F;&amp;#x2F; Two bananas are already given for you :)
+    basket.insert(String::from(&amp;quot;banana&amp;quot;), 2);
+    basket.insert(String::from(&amp;quot;apple&amp;quot;), 2);
+    basket.insert(String::from(&amp;quot;mango&amp;quot;), 1);
+    &amp;#x2F;&amp;#x2F; TODO: Put more fruits in your basket here.
+
+    basket
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Easy enough, we declare a new HashMap and add some fruit.
+Let&#x27;s move on to the next one!&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;hashmap2-rs&quot;&gt;hashmap2.rs&lt;&#x2F;h2&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;&amp;#x2F;&amp;#x2F; hashmaps2.rs
+
+&amp;#x2F;&amp;#x2F; A basket of fruits in the form of a hash map is given. The key
+&amp;#x2F;&amp;#x2F; represents the name of the fruit and the value represents how many
+&amp;#x2F;&amp;#x2F; of that particular fruit is in the basket. You have to put *MORE
+&amp;#x2F;&amp;#x2F; THAN 11* fruits in the basket. Three types of fruits - Apple (4),
+&amp;#x2F;&amp;#x2F; Mango (2) and Lychee (5) are already given in the basket. You are
+&amp;#x2F;&amp;#x2F; not allowed to insert any more of these fruits!
+&amp;#x2F;&amp;#x2F;
+&amp;#x2F;&amp;#x2F; Make me pass the tests!
+&amp;#x2F;&amp;#x2F;
+&amp;#x2F;&amp;#x2F; Execute `rustlings hint hashmaps2` or use the `hint` watch subcommand for a hint.
+
+&amp;#x2F;&amp;#x2F; I AM NOT DONE
+
+use std::collections::HashMap;
+
+#[derive(Hash, PartialEq, Eq)]
+enum Fruit {
+    Apple,
+    Banana,
+    Mango,
+    Lychee,
+    Pineapple,
+}
+
+fn fruit_basket(basket: &amp;amp;mut HashMap&amp;lt;Fruit, u32&amp;gt;) {
+    let fruit_kinds = vec![
+        Fruit::Apple,
+        Fruit::Banana,
+        Fruit::Mango,
+        Fruit::Lychee,
+        Fruit::Pineapple,
+    ];
+
+    for fruit in fruit_kinds {
+        &amp;#x2F;&amp;#x2F; TODO: Put new fruits if not already present. Note that you
+        &amp;#x2F;&amp;#x2F; are not allowed to put any type of fruit that&amp;#x27;s already
+        &amp;#x2F;&amp;#x2F; present!
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    fn get_fruit_basket() -&amp;gt; HashMap&amp;lt;Fruit, u32&amp;gt; {
+        let mut basket = HashMap::&amp;lt;Fruit, u32&amp;gt;::new();
+        basket.insert(Fruit::Apple, 4);
+        basket.insert(Fruit::Mango, 2);
+        basket.insert(Fruit::Lychee, 5);
+
+        basket
+    }
+
+    #[test]
+    fn test_given_fruits_are_not_modified() {
+        let mut basket = get_fruit_basket();
+        fruit_basket(&amp;amp;mut basket);
+        assert_eq!(*basket.get(&amp;amp;Fruit::Apple).unwrap(), 4);
+        assert_eq!(*basket.get(&amp;amp;Fruit::Mango).unwrap(), 2);
+        assert_eq!(*basket.get(&amp;amp;Fruit::Lychee).unwrap(), 5);
+    }
+
+    #[test]
+    fn at_least_five_types_of_fruits() {
+        let mut basket = get_fruit_basket();
+        fruit_basket(&amp;amp;mut basket);
+        let count_fruit_kinds = basket.len();
+        assert!(count_fruit_kinds &amp;gt;= 5);
+    }
+
+    #[test]
+    fn greater_than_eleven_fruits() {
+        let mut basket = get_fruit_basket();
+        fruit_basket(&amp;amp;mut basket);
+        let count = basket.values().sum::&amp;lt;u32&amp;gt;();
+        assert!(count &amp;gt; 11);
+    }
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;In the given code, the goal is to modify the &lt;code&gt;fruit_basket&lt;&#x2F;code&gt; function to add more than 11 fruits of various kinds to a hash map (&lt;code&gt;HashMap&lt;&#x2F;code&gt;) called &lt;code&gt;basket&lt;&#x2F;code&gt;. The hash map represents a basket of fruits, where the keys are different types of fruits (represented by the &lt;code&gt;Fruit&lt;&#x2F;code&gt; enum) and the values are the number of each fruit in the basket (&lt;code&gt;u32&lt;&#x2F;code&gt;).&lt;&#x2F;p&gt;
+&lt;p&gt;The &lt;code&gt;fruit_basket&lt;&#x2F;code&gt; function should insert additional fruit types into the &lt;code&gt;basket&lt;&#x2F;code&gt; hash map without modifying the quantities of the fruits that are already present (Apple, Mango, and Lychee) since they are already given in the initial basket.&lt;&#x2F;p&gt;
+&lt;p&gt;The provided test cases ensure that the given fruits are not modified, that there are at least five types of fruits in the basket after the function execution, and that there are more than eleven fruits in total in the basket.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;hashmap2-rs-solution&quot;&gt;hashmap2.rs solution&lt;&#x2F;h2&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;use std::collections::HashMap;
+
+#[derive(Hash, PartialEq, Eq)]
+enum Fruit {
+    Apple,
+    Banana,
+    Mango,
+    Lychee,
+    Pineapple,
+    Pear,
+    Kiwi,
+    Strawberries,
+    Blueberries,
+    Cherries,
+    Lemons,
+    Grapefruit,
+}
+
+fn fruit_basket(basket: &amp;amp;mut HashMap&amp;lt;Fruit, u32&amp;gt;) {
+    let fruit_kinds = vec![
+        Fruit::Apple,
+        Fruit::Banana,
+        Fruit::Mango,
+        Fruit::Lychee,
+        Fruit::Pineapple,
+        Fruit::Pear,
+        Fruit::Kiwi,
+        Fruit::Strawberries,
+        Fruit::Blueberries,
+        Fruit::Cherries,
+        Fruit::Lemons,
+        Fruit::Grapefruit,
+    ];
+
+    for fruit in fruit_kinds {
+        basket.insert(Fruit::Pear, 2);
+        basket.insert(Fruit::Kiwi, 10);
+        basket.insert(Fruit::Strawberries, 5);
+        basket.insert(Fruit::Lemons, 6);
+        basket.insert(Fruit::Strawberries, 6);
+        basket.insert(Fruit::Blueberries, 6);
+        basket.insert(Fruit::Grapefruit, 6);
+        basket.insert(Fruit::Cherries, 6);
+    }
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;The solution involves adding more fruit types to the &lt;code&gt;fruit_kinds&lt;&#x2F;code&gt; vector, and then iterating through this vector to insert the new fruits into the &lt;code&gt;basket&lt;&#x2F;code&gt; hash map using the &lt;code&gt;insert&lt;&#x2F;code&gt; method. The solution includes adding multiple instances of new fruit types to meet the requirement of having more than eleven fruits in the basket.&lt;&#x2F;p&gt;
+&lt;p&gt;In the solution code, several new fruit types (e.g., Pear, Kiwi, Strawberries, Blueberries, Cherries, Lemons, and Grapefruit) are added, and multiple instances of each fruit are inserted into the &lt;code&gt;basket&lt;&#x2F;code&gt; hash map.&lt;&#x2F;p&gt;
+&lt;p&gt;This solution satisfies the requirements, passing all the given test cases, and ensuring that the function can add additional fruit types to the basket while preserving the initial quantities of the given fruits.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;hashmaps3-rs&quot;&gt;hashmaps3.rs&lt;&#x2F;h2&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;&amp;#x2F;&amp;#x2F; hashmaps3.rs
+
+&amp;#x2F;&amp;#x2F; A list of scores (one per line) of a soccer match is given. Each line
+&amp;#x2F;&amp;#x2F; is of the form :
+&amp;#x2F;&amp;#x2F; &amp;lt;team_1_name&amp;gt;,&amp;lt;team_2_name&amp;gt;,&amp;lt;team_1_goals&amp;gt;,&amp;lt;team_2_goals&amp;gt;
+&amp;#x2F;&amp;#x2F; Example: England,France,4,2 (England scored 4 goals, France 2).
+
+&amp;#x2F;&amp;#x2F; You have to build a scores table containing the name of the team, goals
+&amp;#x2F;&amp;#x2F; the team scored, and goals the team conceded. One approach to build
+&amp;#x2F;&amp;#x2F; the scores table is to use a Hashmap. The solution is partially
+&amp;#x2F;&amp;#x2F; written to use a Hashmap, complete it to pass the test.
+
+&amp;#x2F;&amp;#x2F; Make me pass the tests!
+
+&amp;#x2F;&amp;#x2F; Execute `rustlings hint hashmaps3` or use the `hint` watch subcommand for a hint.
+
+&amp;#x2F;&amp;#x2F; I AM NOT DONE
+
+use std::collections::HashMap;
+
+&amp;#x2F;&amp;#x2F; A structure to store team name and its goal details.
+struct Team {
+    name: String,
+    goals_scored: u8,
+    goals_conceded: u8,
+}
+
+fn build_scores_table(results: String) -&amp;gt; HashMap&amp;lt;String, Team&amp;gt; {
+    &amp;#x2F;&amp;#x2F; The name of the team is the key and its associated struct is the value.
+    let mut scores: HashMap&amp;lt;String, Team&amp;gt; = HashMap::new();
+
+    for r in results.lines() {
+        let v: Vec&amp;lt;&amp;amp;str&amp;gt; = r.split(&amp;#x27;,&amp;#x27;).collect();
+        let team_1_name = v[0].to_string();
+        let team_1_score: u8 = v[2].parse().unwrap();
+        let team_2_name = v[1].to_string();
+        let team_2_score: u8 = v[3].parse().unwrap();
+        &amp;#x2F;&amp;#x2F; TODO: Populate the scores table with details extracted from the
+        &amp;#x2F;&amp;#x2F; current line. Keep in mind that goals scored by team_1
+        &amp;#x2F;&amp;#x2F; will be the number of goals conceded from team_2, and similarly
+        &amp;#x2F;&amp;#x2F; goals scored by team_2 will be the number of goals conceded by
+        &amp;#x2F;&amp;#x2F; team_1.
+    }
+    scores
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    fn get_results() -&amp;gt; String {
+        let results = &amp;quot;&amp;quot;.to_string()
+            + &amp;quot;England,France,4,2\n&amp;quot;
+            + &amp;quot;France,Italy,3,1\n&amp;quot;
+            + &amp;quot;Poland,Spain,2,0\n&amp;quot;
+            + &amp;quot;Germany,England,2,1\n&amp;quot;;
+        results
+    }
+
+    #[test]
+    fn build_scores() {
+        let scores = build_scores_table(get_results());
+
+        let mut keys: Vec&amp;lt;&amp;amp;String&amp;gt; = scores.keys().collect();
+        keys.sort();
+        assert_eq!(
+            keys,
+            vec![&amp;quot;England&amp;quot;, &amp;quot;France&amp;quot;, &amp;quot;Germany&amp;quot;, &amp;quot;Italy&amp;quot;, &amp;quot;Poland&amp;quot;, &amp;quot;Spain&amp;quot;]
+        );
+    }
+
+    #[test]
+    fn validate_team_score_1() {
+        let scores = build_scores_table(get_results());
+        let team = scores.get(&amp;quot;England&amp;quot;).unwrap();
+        assert_eq!(team.goals_scored, 5);
+        assert_eq!(team.goals_conceded, 4);
+    }
+
+    #[test]
+    fn validate_team_score_2() {
+        let scores = build_scores_table(get_results());
+        let team = scores.get(&amp;quot;Spain&amp;quot;).unwrap();
+        assert_eq!(team.goals_scored, 0);
+        assert_eq!(team.goals_conceded, 2);
+    }
+}
+
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Our task in this exercise is to build a scores table for soccer matches using a HashMap. We are given a list of match scores in the form of &lt;code&gt;&amp;lt;team_1_name&amp;gt;,&amp;lt;team_2_name&amp;gt;,&amp;lt;team_1_goals&amp;gt;,&amp;lt;team_2_goals&amp;gt;&lt;&#x2F;code&gt;. For example, &amp;quot;England,France,4,2&amp;quot; means England scored 4 goals, and France scored 2 goals in a match.&lt;&#x2F;p&gt;
+&lt;p&gt;To build the scores table, we need to use a HashMap to store each team&#x27;s name, the goals they scored, and the goals they conceded in the matches.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;hashmaps3-rs-errors&quot;&gt;hashmaps3.rs errors&lt;&#x2F;h2&gt;
+&lt;pre&gt;&lt;code&gt;⚠️  Testing of exercises&amp;#x2F;hashmaps&amp;#x2F;hashmaps3.rs failed! Please try again. Here&amp;#x27;s the output:
+
+running 3 tests
+test tests::build_scores ... FAILED
+test tests::validate_team_score_1 ... FAILED
+test tests::validate_team_score_2 ... FAILED
+
+successes:
+
+successes:
+
+failures:
+
+---- tests::build_scores stdout ----
+thread &amp;#x27;tests::build_scores&amp;#x27; panicked at &amp;#x27;assertion failed: `(left == right)`
+  left: `[]`,
+ right: `[&amp;quot;England&amp;quot;, &amp;quot;France&amp;quot;, &amp;quot;Germany&amp;quot;, &amp;quot;Italy&amp;quot;, &amp;quot;Poland&amp;quot;, &amp;quot;Spain&amp;quot;]`&amp;#x27;, exercises&amp;#x2F;hashmaps&amp;#x2F;hashmaps3.rs:66:9
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+---- tests::validate_team_score_1 stdout ----
+thread &amp;#x27;tests::validate_team_score_1&amp;#x27; panicked at &amp;#x27;called `Option::unwrap()` on a `None` value&amp;#x27;, exercises&amp;#x2F;hashmaps&amp;#x2F;hashmaps3.rs:75:42
+
+---- tests::validate_team_score_2 stdout ----
+thread &amp;#x27;tests::validate_team_score_2&amp;#x27; panicked at &amp;#x27;called `Option::unwrap()` on a `None` value&amp;#x27;, exercises&amp;#x2F;hashmaps&amp;#x2F;hashmaps3.rs:83:40
+
+
+failures:
+    tests::build_scores
+    tests::validate_team_score_1
+    tests::validate_team_score_2
+
+test result: FAILED. 0 passed; 3 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h2 id=&quot;hasmap3-rs-solution&quot;&gt;hasmap3.rs solution&lt;&#x2F;h2&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;
+use std::collections::HashMap;
+
+&amp;#x2F;&amp;#x2F; A structure to store team name and its goal details.
+struct Team {
+    name: String,
+    goals_scored: u8,
+    goals_conceded: u8,
+}
+
+fn build_scores_table(results: String) -&amp;gt; HashMap&amp;lt;String, Team&amp;gt; {
+    &amp;#x2F;&amp;#x2F; The name of the team is the key and its associated struct is the value.
+    let mut scores: HashMap&amp;lt;String, Team&amp;gt; = HashMap::new();
+
+    for r in results.lines() {
+        let v: Vec&amp;lt;&amp;amp;str&amp;gt; = r.split(&amp;#x27;,&amp;#x27;).collect();
+        let team_1_name = v[0].to_string();
+        let team_1_score: u8 = v[2].parse().unwrap();
+        let team_2_name = v[1].to_string();
+        let team_2_score: u8 = v[3].parse().unwrap();
+
+        &amp;#x2F;&amp;#x2F; Try to get a mutable reference to the first team&amp;#x27;s Team struct in the scores HashMap
+        scores
+            .entry(team_1_name.clone())
+            &amp;#x2F;&amp;#x2F; If the Team struct exists, modify it by incrementing the goals_scored and goals_conceded fields
+            .and_modify(|team| {
+                team.goals_scored += team_1_score;
+                team.goals_conceded += team_2_score;
+            })
+            &amp;#x2F;&amp;#x2F; If the Team struct does not exist, insert a new one with the initial scores
+            .or_insert(Team {
+                name: team_1_name,
+                goals_scored: team_1_score,
+                goals_conceded: team_2_score,
+            });
+
+        &amp;#x2F;&amp;#x2F; Repeat the same process for the second team
+        scores
+            .entry(team_2_name.clone())
+            .and_modify(|team| {
+                team.goals_scored += team_2_score;
+                team.goals_conceded += team_1_score;
+            })
+            .or_insert(Team {
+                name: team_2_name,
+                goals_scored: team_2_score,
+                goals_conceded: team_1_score,
+            });
+    }
+    scores
+}
+
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;The code already provides a &lt;code&gt;Team&lt;&#x2F;code&gt; struct with fields for the team&#x27;s name, goals scored, and goals conceded. Our task is to complete the &lt;code&gt;build_scores_table&lt;&#x2F;code&gt; function to create and populate the HashMap with the match results.&lt;&#x2F;p&gt;
+&lt;p&gt;Here&#x27;s our plan to complete the function:&lt;&#x2F;p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;We&#x27;ll start by creating an empty HashMap called &lt;code&gt;scores&lt;&#x2F;code&gt; to store the team details.&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;
+&lt;p&gt;Next, we&#x27;ll iterate through each line of the &lt;code&gt;results&lt;&#x2F;code&gt; string using &lt;code&gt;results.lines()&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;
+&lt;p&gt;For each line, we&#x27;ll split it into components using &lt;code&gt;.split(&#x27;,&#x27;)&lt;&#x2F;code&gt; to extract the team names and goals.&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;
+&lt;p&gt;We&#x27;ll convert the necessary fields to their correct types (e.g., team names as strings, goals as u8).&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;
+&lt;p&gt;Then, we&#x27;ll populate the &lt;code&gt;scores&lt;&#x2F;code&gt; HashMap with the team details. We need to be careful because goals scored by one team are the goals conceded by the other team.&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;
+&lt;p&gt;Finally, we&#x27;ll return the &lt;code&gt;scores&lt;&#x2F;code&gt; HashMap from the function.&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;p&gt;Once we complete the function, the provided test cases will validate that the scores table is correctly built, and each team&#x27;s goals scored and conceded are accurate.&lt;&#x2F;p&gt;
+&lt;p&gt;This would print &lt;code&gt;&amp;quot;England,France,4,2\nFrance,Italy,3,1\n&amp;quot;&lt;&#x2F;code&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;Each line of the results string represents one match, with the teams and their respective scores separated by commas. This loop goes through each line one at a time, parsing the teams and scores and updating the &lt;code&gt;scores&lt;&#x2F;code&gt; HashMap accordingly.&lt;&#x2F;p&gt;
+&lt;p&gt;The &lt;code&gt;entry()&lt;&#x2F;code&gt; method tries to get a mutable reference to the &lt;code&gt;Team&lt;&#x2F;code&gt; struct associated with a team&#x27;s name. If the &lt;code&gt;Team&lt;&#x2F;code&gt; struct exists, the &lt;code&gt;and_modify()&lt;&#x2F;code&gt; method modifies it by adding the new scores to the &lt;code&gt;goals_scored&lt;&#x2F;code&gt; and &lt;code&gt;goals_conceded&lt;&#x2F;code&gt; fields. If the &lt;code&gt;Team&lt;&#x2F;code&gt; struct doesn&#x27;t exist, the &lt;code&gt;or_insert()&lt;&#x2F;code&gt; method inserts a new &lt;code&gt;Team&lt;&#x2F;code&gt; struct with the initial scores.
+This is done for both teams in each match. After all the matches have been processed, the &lt;code&gt;scores&lt;&#x2F;code&gt; HashMap is returned, with each team&#x27;s total goals scored and conceded updated to reflect all the matches.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;alternate-solution-using-if-let&quot;&gt;Alternate Solution using If &#x2F; Let&lt;&#x2F;h2&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;fn build_scores_table(results: String) -&amp;gt; HashMap&amp;lt;String, Team&amp;gt; {
+    &amp;#x2F;&amp;#x2F; The name of the team is the key and its associated struct is the value.
+    let mut scores: HashMap&amp;lt;String, Team&amp;gt; = HashMap::new();
+
+    for r in results.lines() {
+        let v: Vec&amp;lt;&amp;amp;str&amp;gt; = r.split(&amp;#x27;,&amp;#x27;).collect();
+        let team_1_name = v[0].to_string();
+        let team_1_score: u8 = v[2].parse().unwrap();
+        let team_2_name = v[1].to_string();
+        let team_2_score: u8 = v[3].parse().unwrap();
+
+        &amp;#x2F;&amp;#x2F; Check if the first team exists in the scores HashMap
+        if let Some(team) = scores.get_mut(&amp;amp;team_1_name) {
+            &amp;#x2F;&amp;#x2F; If the team exists, increment the goals_scored and goals_conceded fields
+            team.goals_scored += team_1_score;
+            team.goals_conceded += team_2_score;
+        } else {
+            &amp;#x2F;&amp;#x2F; If the team does not exist, insert a new one with the initial scores
+            scores.insert(
+                team_1_name.clone(),
+                Team {
+                    name: team_1_name.clone(),
+                    goals_scored: team_1_score,
+                    goals_conceded: team_2_score,
+                },
+            );
+        }
+
+        &amp;#x2F;&amp;#x2F; Repeat the same process for the second team
+        if let Some(team) = scores.get_mut(&amp;amp;team_2_name) {
+            team.goals_scored += team_2_score;
+            team.goals_conceded += team_1_score;
+        } else {
+            scores.insert(
+                team_2_name.clone(),
+                Team {
+                    name: team_2_name.clone(),
+                    goals_scored: team_2_score,
+                    goals_conceded: team_1_score,
+                },
+            );
+        }
+    }
+    scores
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;In this version, &lt;code&gt;if let Some(team) = scores.get_mut(&amp;amp;team_1_name)&lt;&#x2F;code&gt; tries to get a mutable reference to the team in the &lt;code&gt;scores&lt;&#x2F;code&gt; HashMap. If the team exists, &lt;code&gt;Some(team)&lt;&#x2F;code&gt; is returned and the team&#x27;s scores are updated. If the team does not exist, &lt;code&gt;None&lt;&#x2F;code&gt; is returned and a new &lt;code&gt;Team&lt;&#x2F;code&gt; struct is inserted into the &lt;code&gt;scores&lt;&#x2F;code&gt; HashMap with the &lt;code&gt;scores.insert()&lt;&#x2F;code&gt; method. This is repeated for both teams.&lt;&#x2F;p&gt;
+&lt;p&gt;The logic is the same as in the previous version that uses closures, but the control flow is more explicit here. However, this version is slightly more verbose and arguably less idiomatic in Rust. Closures and method chaining using &lt;code&gt;and_modify&lt;&#x2F;code&gt; and &lt;code&gt;or_insert&lt;&#x2F;code&gt; on &lt;code&gt;HashMap::entry&lt;&#x2F;code&gt; are common patterns in Rust code.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;3rd-possible-solution&quot;&gt;3rd Possible Solution&lt;&#x2F;h2&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;fn build_scores_table(results: String) -&amp;gt; HashMap&amp;lt;String, Team&amp;gt; {
+    let mut scores: HashMap&amp;lt;String, Team&amp;gt; = HashMap::new();
+
+    for r in results.lines() {
+        let v: Vec&amp;lt;&amp;amp;str&amp;gt; = r.split(&amp;#x27;,&amp;#x27;).collect();
+        let team_1_name = v[0].to_string();
+        let team_1_score: u8 = v[2].parse().unwrap();
+        let team_2_name = v[1].to_string();
+        let team_2_score: u8 = v[3].parse().unwrap();
+
+        &amp;#x2F;&amp;#x2F; Handle team 1
+        let team_1 = scores.remove(&amp;amp;team_1_name);
+        if let Some(mut t) = team_1 {
+            t.goals_scored += team_1_score;
+            t.goals_conceded += team_2_score;
+            scores.insert(team_1_name, t);
+        } else {
+            scores.insert(team_1_name, Team { name: team_1_name.clone(), goals_scored: team_1_score, goals_conceded: team_2_score });
+        }
+
+        &amp;#x2F;&amp;#x2F; Handle team 2
+        let team_2 = scores.remove(&amp;amp;team_2_name);
+        if let Some(mut t) = team_2 {
+            t.goals_scored += team_2_score;
+            t.goals_conceded += team_1_score;
+            scores.insert(team_2_name, t);
+        } else {
+            scores.insert(team_2_name, Team { name: team_2_name.clone(), goals_scored: team_2_score, goals_conceded: team_1_score });
+        }
+    }
+    scores
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;In this version, &lt;code&gt;scores.remove(&amp;amp;team_1_name)&lt;&#x2F;code&gt; attempts to remove the &lt;code&gt;Team&lt;&#x2F;code&gt; struct associated with &lt;code&gt;team_1_name&lt;&#x2F;code&gt; from the HashMap. If the team exists, the &lt;code&gt;Team&lt;&#x2F;code&gt; struct is returned and removed from the HashMap, the team&#x27;s scores are updated, and the updated &lt;code&gt;Team&lt;&#x2F;code&gt; struct is re-inserted into the HashMap. If the team does not exist, a new &lt;code&gt;Team&lt;&#x2F;code&gt; struct is inserted into the HashMap. This process is repeated for both teams.&lt;&#x2F;p&gt;
+&lt;p&gt;Although this version is simpler and doesn&#x27;t use closures, it&#x27;s also less efficient because it requires additional lookups and insertions into the HashMap. The previous two versions that use &lt;code&gt;HashMap::entry&lt;&#x2F;code&gt; are generally more efficient and idiomatic in Rust.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;conclusion&quot;&gt;Conclusion&lt;&#x2F;h2&gt;
+&lt;p&gt;In this post, we explored the concept of hash maps in Rust and how they allow us to associate values with specific keys. Hash maps are similar to unordered maps in C++, dictionaries in Python, or associative arrays in other languages. We learned how to use the HashMap data structure to build collections with key-value pairs.&lt;&#x2F;p&gt;
+&lt;p&gt;We worked through three exercises that involved using hash maps to store and manipulate data:&lt;&#x2F;p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;In &lt;code&gt;hashmaps1.rs&lt;&#x2F;code&gt;, we had to create a basket of fruits using a HashMap. We needed to ensure that the basket contained at least three different types of fruits and a total of at least five fruits. By declaring a new HashMap and adding the required fruits with their quantities, we successfully completed this task.&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;
+&lt;p&gt;In &lt;code&gt;hashmaps2.rs&lt;&#x2F;code&gt;, we were given a pre-defined basket of fruits and had to add more than eleven fruits of various kinds to it. However, we were not allowed to modify the quantities of the given fruits (Apple, Mango, and Lychee). By iterating through a list of new fruit types and inserting them into the HashMap, we successfully met the requirements of this exercise.&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;
+&lt;p&gt;In the exercise &lt;code&gt;hashmaps3.rs&lt;&#x2F;code&gt;, we were tasked with building a scores table for soccer matches using a &lt;code&gt;HashMap&lt;&#x2F;code&gt;. Three possible solutions were provided to achieve this goal:&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;p&gt;&lt;strong&gt;Solution 1:&lt;&#x2F;strong&gt; &lt;em&gt;Using Closures and &lt;code&gt;entry()&lt;&#x2F;code&gt; Method Chaining&lt;&#x2F;em&gt;
+This solution utilized closures and method chaining with &lt;code&gt;entry()&lt;&#x2F;code&gt; to efficiently handle the teams&#x27; scores and update the &lt;code&gt;HashMap&lt;&#x2F;code&gt; accordingly.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;strong&gt;Solution 2:&lt;&#x2F;strong&gt; &lt;em&gt;Using &lt;code&gt;if let&lt;&#x2F;code&gt; Statements for Handling Entries&lt;&#x2F;em&gt;
+In this solution, &lt;code&gt;if let&lt;&#x2F;code&gt; statements were used to handle entries in the &lt;code&gt;HashMap&lt;&#x2F;code&gt;, removing and updating teams&#x27; scores as needed.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;strong&gt;Solution 3:&lt;&#x2F;strong&gt; &lt;em&gt;Using &lt;code&gt;if let&lt;&#x2F;code&gt; and &lt;code&gt;match&lt;&#x2F;code&gt; for Handling Entries&lt;&#x2F;em&gt;
+This solution combined &lt;code&gt;if let&lt;&#x2F;code&gt; with &lt;code&gt;match&lt;&#x2F;code&gt; to handle the entries in the &lt;code&gt;HashMap&lt;&#x2F;code&gt;, similar to Solution 2, but with a slight variation in the syntax.&lt;&#x2F;p&gt;
+&lt;p&gt;All three solutions achieved the goal of building the scores table and were valid approaches to solving the problem. The choice between these solutions may depend on personal coding style and preferences.&lt;&#x2F;p&gt;
+&lt;p&gt;Key Takeaways:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;Hash maps in Rust provide fast lookup and insertion times.&lt;&#x2F;li&gt;
+&lt;li&gt;They enable efficient data retrieval and manipulation based on unique keys.&lt;&#x2F;li&gt;
+&lt;li&gt;Hash maps are valuable tools for various scenarios, such as building scores tables or maintaining associations between data elements.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;By mastering the usage of hash maps, we expand our ability to manage and organize data efficiently in Rust. These skills are valuable for building robust and performant applications in a wide range of domains.&lt;&#x2F;p&gt;
+</description>
+      </item>
       <item>
           <title>11 Rustlings Modules</title>
           <pubDate>Mon, 17 Jul 2023 00:00:00 +0000</pubDate>

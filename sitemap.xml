@@ -58,6 +58,10 @@
         <lastmod>2023-07-17</lastmod>
     </url>
     <url>
+        <loc>https://desmodrone.github.io/posts/12-rustlings-hashmaps/</loc>
+        <lastmod>2023-07-26</lastmod>
+    </url>
+    <url>
         <loc>https://desmodrone.github.io/posts/hello-rustlings/</loc>
         <lastmod>2023-04-11</lastmod>
     </url>
@@ -106,10 +110,16 @@
         <loc>https://desmodrone.github.io/tags/functions/</loc>
     </url>
     <url>
+        <loc>https://desmodrone.github.io/tags/hashmaps/</loc>
+    </url>
+    <url>
         <loc>https://desmodrone.github.io/tags/hello/</loc>
     </url>
     <url>
         <loc>https://desmodrone.github.io/tags/if/</loc>
+    </url>
+    <url>
+        <loc>https://desmodrone.github.io/tags/key/</loc>
     </url>
     <url>
         <loc>https://desmodrone.github.io/tags/matching/</loc>
@@ -167,6 +177,9 @@
     </url>
     <url>
         <loc>https://desmodrone.github.io/tags/unit/</loc>
+    </url>
+    <url>
+        <loc>https://desmodrone.github.io/tags/value/</loc>
     </url>
     <url>
         <loc>https://desmodrone.github.io/tags/variables/</loc>
