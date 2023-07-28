@@ -7,7 +7,254 @@
       <generator>Zola</generator>
       <language>en</language>
       <atom:link href="https://desmodrone.github.io/rss.xml" rel="self" type="application/rss+xml"/>
-      <lastBuildDate>Wed, 26 Jul 2023 00:00:00 +0000</lastBuildDate>
+      <lastBuildDate>Fri, 28 Jul 2023 00:00:00 +0000</lastBuildDate>
+      <item>
+          <title>13 Rustlings quiz2</title>
+          <pubDate>Fri, 28 Jul 2023 00:00:00 +0000</pubDate>
+          <author>Unknown</author>
+          <link>https://desmodrone.github.io/posts/13-rustlings-quiz2/</link>
+          <guid>https://desmodrone.github.io/posts/13-rustlings-quiz2/</guid>
+          <description>&lt;h2 id=&quot;quiz-2&quot;&gt;Quiz 2&lt;&#x2F;h2&gt;
+&lt;p&gt;It&#x27;s quiz time again! We&#x27;ve been through a bunch of different exercises and now we&#x27;ll be putting in action what we&#x27;ve learned.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;quiz2-rs&quot;&gt;quiz2.rs&lt;&#x2F;h2&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;&amp;#x2F;&amp;#x2F; quiz2.rs
+&amp;#x2F;&amp;#x2F; This is a quiz for the following sections:
+&amp;#x2F;&amp;#x2F; - Strings
+&amp;#x2F;&amp;#x2F; - Vecs
+&amp;#x2F;&amp;#x2F; - Move semantics
+&amp;#x2F;&amp;#x2F; - Modules
+&amp;#x2F;&amp;#x2F; - Enums
+
+&amp;#x2F;&amp;#x2F; Let&amp;#x27;s build a little machine in the form of a function.
+&amp;#x2F;&amp;#x2F; As input, we&amp;#x27;re going to give a list of strings and commands. These commands
+&amp;#x2F;&amp;#x2F; determine what action is going to be applied to the string. It can either be:
+&amp;#x2F;&amp;#x2F; - Uppercase the string
+&amp;#x2F;&amp;#x2F; - Trim the string
+&amp;#x2F;&amp;#x2F; - Append &amp;quot;bar&amp;quot; to the string a specified amount of times
+&amp;#x2F;&amp;#x2F; The exact form of this will be:
+&amp;#x2F;&amp;#x2F; - The input is going to be a Vector of a 2-length tuple,
+&amp;#x2F;&amp;#x2F;   the first element is the string, the second one is the command.
+&amp;#x2F;&amp;#x2F; - The output element is going to be a Vector of strings.
+&amp;#x2F;&amp;#x2F; No hints this time!
+
+&amp;#x2F;&amp;#x2F; I AM NOT DONE
+
+pub enum Command {
+    Uppercase,
+    Trim,
+    Append(usize),
+}
+
+mod my_module {
+    use super::Command;
+
+    &amp;#x2F;&amp;#x2F; TODO: Complete the function signature!
+    pub fn transformer(input: ???) -&amp;gt; ??? {
+        &amp;#x2F;&amp;#x2F; TODO: Complete the output declaration!
+        let mut output: ??? = vec![];
+        for (string, command) in input.iter() {
+            &amp;#x2F;&amp;#x2F; TODO: Complete the function body. You can do it!
+        }
+        output
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    &amp;#x2F;&amp;#x2F; TODO: What do we need to import to have `transformer` in scope?
+    use ???;
+    use super::Command;
+
+    #[test]
+    fn it_works() {
+        let output = transformer(vec![
+            (&amp;quot;hello&amp;quot;.into(), Command::Uppercase),
+            (&amp;quot; all roads lead to rome! &amp;quot;.into(), Command::Trim),
+            (&amp;quot;foo&amp;quot;.into(), Command::Append(1)),
+            (&amp;quot;bar&amp;quot;.into(), Command::Append(5)),
+        ]);
+        assert_eq!(output[0], &amp;quot;HELLO&amp;quot;);
+        assert_eq!(output[1], &amp;quot;all roads lead to rome!&amp;quot;);
+        assert_eq!(output[2], &amp;quot;foobar&amp;quot;);
+        assert_eq!(output[3], &amp;quot;barbarbarbarbarbar&amp;quot;);
+    }
+}
+
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;We have instructions in the comments and four &lt;code&gt;TODOs&lt;&#x2F;code&gt; annotated in the code. Let&#x27;s first take a look at the instructions and make sure we understand what is being asked of us.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;general-instructions&quot;&gt;General Instructions&lt;&#x2F;h3&gt;
+&lt;ol&gt;
+&lt;li&gt;We&#x27;re building a function&lt;&#x2F;li&gt;
+&lt;li&gt;We&#x27;re inputing a list of strings and commands into our function&lt;&#x2F;li&gt;
+&lt;li&gt;The commands can be
+&lt;ol&gt;
+&lt;li&gt;Uppercase the string&lt;&#x2F;li&gt;
+&lt;li&gt;Trim the string&lt;&#x2F;li&gt;
+&lt;li&gt;Append &amp;quot;bar&amp;quot; to the string a specified amount of times&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;h3 id=&quot;details&quot;&gt;Details&lt;&#x2F;h3&gt;
+&lt;ol&gt;
+&lt;li&gt;Input will be a Vector of a 2-length tuple&lt;&#x2F;li&gt;
+&lt;li&gt;First element is a string, second one is a command&lt;&#x2F;li&gt;
+&lt;li&gt;Output is going to be a Vector of strings.&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;h2 id=&quot;quiz2-rs-errors&quot;&gt;quiz2.rs errors&lt;&#x2F;h2&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;⚠️  Compiling of exercises&amp;#x2F;quiz2.rs failed! Please try again. Here&amp;#x27;s the output:
+error: expected identifier, found `)`
+  --&amp;gt; exercises&amp;#x2F;quiz2.rs:33:34
+   |
+33 |     pub fn transformer(input: ???) -&amp;gt; ??? {
+   |                                  ^ expected identifier
+
+error: expected identifier, found `{`
+  --&amp;gt; exercises&amp;#x2F;quiz2.rs:33:43
+   |
+33 |     pub fn transformer(input: ???) -&amp;gt; ??? {
+   |                                           ^ expected identifier
+
+error: aborting due to 2 previous errors
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Our errors are pretty self explanatory we&#x27;re missing code, so no surprises there.&lt;&#x2F;p&gt;
+&lt;p&gt;Let&#x27;s take a look at the specific areas that need to be completed.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;todo-in-transformer-function&quot;&gt;Todo in &lt;code&gt;transformer&lt;&#x2F;code&gt; function&lt;&#x2F;h3&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;mod my_module {
+    use super::Command;
+
+    &amp;#x2F;&amp;#x2F; TODO: Complete the function signature!
+    pub fn transformer(input: ???) -&amp;gt; ??? {
+        &amp;#x2F;&amp;#x2F; TODO: Complete the output declaration!
+        let mut output: ??? = vec![];
+        for (string, command) in input.iter() {
+            &amp;#x2F;&amp;#x2F; TODO: Complete the function body. You can do it!
+        }
+        output
+    }
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;A quick look at our todo&#x27;s here show us that we have to:&lt;&#x2F;p&gt;
+&lt;ol&gt;
+&lt;li&gt;Complete the signature&lt;&#x2F;li&gt;
+&lt;li&gt;Complete the &lt;code&gt;output&lt;&#x2F;code&gt; variable declaration&lt;&#x2F;li&gt;
+&lt;li&gt;Complete the function body.&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;h3 id=&quot;test-todo&quot;&gt;Test Todo&lt;&#x2F;h3&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;#[cfg(test)]
+mod tests {
+    &amp;#x2F;&amp;#x2F; TODO: What do we need to import to have `transformer` in scope?
+    use ???;
+    use super::Command;
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;ol start=&quot;4&quot;&gt;
+&lt;li&gt;Our fourth todo is to make sure we have &lt;code&gt;transformer&lt;&#x2F;code&gt; in scope.&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;h2 id=&quot;quiz2-rs-solution&quot;&gt;quiz2.rs solution&lt;&#x2F;h2&gt;
+&lt;h3 id=&quot;completing-the-function-signature&quot;&gt;Completing the Function Signature&lt;&#x2F;h3&gt;
+&lt;p&gt;Let&#x27;s go through these in order, let&#x27;s look at the function signature, and our instructions which tell us that:  &lt;em&gt;input will be a Vector of a 2-length tuple&lt;&#x2F;em&gt;&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;    pub fn transformer(input: ???) -&amp;gt; ??? {
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;So a vector is declared as &lt;code&gt;Vec&amp;lt;&amp;gt;&lt;&#x2F;code&gt; but in this particular case we need a tuple stored inside of the vector which would make it look something like this &lt;code&gt;Vec&amp;lt;(,)&amp;gt;&lt;&#x2F;code&gt; when empty, but we know that we need to pass in 2 items as we&#x27;re told in our instructions: &lt;em&gt;first element is a string, second one is a command&lt;&#x2F;em&gt;
+so to complete it, it should look something like this: &lt;code&gt;Vec&amp;lt;(String, command)&amp;gt;&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;Now, let&#x27;s look at the return value which we were told is: &lt;em&gt;output is going to be a Vector of strings&lt;&#x2F;em&gt;  with that we can complete our function signature to look like this:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;    pub fn transformer(input: Vec&amp;lt;(String, Command)&amp;gt;) -&amp;gt; Vec&amp;lt;String&amp;gt; {
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;This should complete our function signature for &lt;code&gt;transformer&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;completing-the-output-declaration&quot;&gt;Completing the &lt;code&gt;output&lt;&#x2F;code&gt; declaration&lt;&#x2F;h3&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;        let mut output: ??? = vec![]
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Here we have an incomplete variable declaration, we need to provide the type to complete it. If we reference our notes, we&#x27;ve been told that we should be expecting a &lt;em&gt;Vector of strings&lt;&#x2F;em&gt;, so we should be able to add that to our declaration to complete the line.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;        let mut output: Vec&amp;lt;String&amp;gt; = vec![]
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h3 id=&quot;completing-the-function-body&quot;&gt;Completing the Function Body&lt;&#x2F;h3&gt;
+&lt;p&gt;Now, let&#x27;s consider what needs to be completed in the function body and the actions that need to be performed on the strings based on the commands. Remember, the available commands are &lt;code&gt;Uppercase&lt;&#x2F;code&gt;, &lt;code&gt;Trim&lt;&#x2F;code&gt;, and &lt;code&gt;Append&lt;&#x2F;code&gt;, that are defined in our &lt;code&gt;Command&lt;&#x2F;code&gt; enum.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;pub fn transformer(input: Vec&amp;lt;(String, Command)&amp;gt;) -&amp;gt; Vec&amp;lt;String&amp;gt; {
+    let mut output: Vec&amp;lt;String&amp;gt; = vec![];
+    for (string, command) in input.iter() {
+    &amp;#x2F;&amp;#x2F; we use a match statement to match to the correct command
+        let modified_string = match command {
+        &amp;#x2F;&amp;#x2F; taking each case and using the appropriate method
+            Command::Uppercase =&amp;gt; string.to_uppercase(), &amp;#x2F;&amp;#x2F; uppercase the string
+            Command::Trim =&amp;gt; string.trim().to_string(), &amp;#x2F;&amp;#x2F; trim the string
+            Command::Append(count) =&amp;gt; { &amp;#x2F;&amp;#x2F; appending
+                let appended_string = format!(&amp;quot;{}{}&amp;quot;, string, &amp;quot;bar&amp;quot;.repeat(*count));
+                appended_string
+            }
+        };
+        output.push(modified_string); &amp;#x2F;&amp;#x2F; Add the modified string to the output vector
+    }
+    output &amp;#x2F;&amp;#x2F; Return the output vector
+}
+
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;So one of the ways that we know we can use enums is with match statements, we know that if something matches a certain criteria we can perform certain actions and return a value. So matching each &lt;code&gt;Command&lt;&#x2F;code&gt; in the &lt;code&gt;enum&lt;&#x2F;code&gt; using the &lt;code&gt;Command::Uppercase =&amp;gt;&lt;&#x2F;code&gt; style  matching we can perform an action for each match.
+In the first two cases, it&#x27;s pretty simple all we have to do is call the appropriate method like &lt;code&gt;.to_upercase()&lt;&#x2F;code&gt; in the first match and &lt;code&gt;.trim()&lt;&#x2F;code&gt; (along with the &lt;code&gt;.to_string()&lt;&#x2F;code&gt; method on in &lt;code&gt;Trim&lt;&#x2F;code&gt;) but when we get to &lt;code&gt;Append&lt;&#x2F;code&gt; we have to perform an additional manipulation.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;appending&quot;&gt;Appending&lt;&#x2F;h3&gt;
+&lt;p&gt;If we look back to our instructions we have to &lt;em&gt;Append &amp;quot;bar&amp;quot; to a string a specified amount of times&lt;&#x2F;em&gt;. So we can simply call a method or two and be done with our string. We have to add the logic to be able to do this. First let&#x27;s create a new variable called &lt;code&gt;appended_string&lt;&#x2F;code&gt; and let&#x27;s use the &lt;code&gt;format!&lt;&#x2F;code&gt; macro to put it into the format we want to use. In this case we use:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;format!(&amp;quot;{}{}&amp;quot;, string, &amp;quot;bar&amp;quot;.repeat(*count));
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;This takes the original string, and concatenates &amp;quot;bar&amp;quot; to it by using &lt;code&gt;.repeat&lt;&#x2F;code&gt; we repeat it by the &lt;code&gt;count&lt;&#x2F;code&gt; we define in the &lt;code&gt;Command::Append(count)&lt;&#x2F;code&gt; branch. Finally, we return the  &lt;code&gt;appended_string&lt;&#x2F;code&gt;, reminder this only happens if the &lt;code&gt;Append&lt;&#x2F;code&gt; arm matches.&lt;&#x2F;p&gt;
+&lt;p&gt;So at this point we have one of the three arms of the match inside of &lt;code&gt;modified_string&lt;&#x2F;code&gt; at this point we need to push this modified string to our &lt;code&gt;mut output&lt;&#x2F;code&gt;
+Vec. Once that is completed we can then return our &lt;code&gt;output&lt;&#x2F;code&gt; variable with the correctly modified string.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;importing-transformer&quot;&gt;Importing &lt;code&gt;transformer&lt;&#x2F;code&gt;&lt;&#x2F;h3&gt;
+&lt;p&gt;Our last &lt;code&gt;TODO&lt;&#x2F;code&gt; is in our tests and it should be fairly simple to fix. We just have to use the full path of our function and remember to use the &lt;code&gt;crate&lt;&#x2F;code&gt; keyword that looks at the crate root, which is where our file is. After crate we must use the &lt;code&gt;::&lt;&#x2F;code&gt; double colon symbols which are equivalent to using &lt;code&gt;&#x2F;&lt;&#x2F;code&gt; in traditional file path systems. So for our purposes we need: &lt;code&gt;use crate::my_module::transformer;&lt;&#x2F;code&gt; to be able to use the function in our tests.&lt;&#x2F;p&gt;
+&lt;p&gt;Here&#x27;s the full updated code:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;pub enum Command {
+    Uppercase,
+    Trim,
+    Append(usize),
+}
+
+mod my_module {
+    use super::Command;
+
+    pub fn transformer(input: Vec&amp;lt;(String, Command)&amp;gt;) -&amp;gt; Vec&amp;lt;String&amp;gt; {
+        let mut output: Vec&amp;lt;String&amp;gt; = vec![];
+        for (string, command) in input.iter() {
+            let modified_string = match command {
+                Command::Uppercase =&amp;gt; string.to_uppercase(),
+                Command::Trim =&amp;gt; string.trim().to_string(),
+                Command::Append(count) =&amp;gt; {
+                    let appended_string = format!(&amp;quot;{}{}&amp;quot;, string, &amp;quot;bar&amp;quot;.repeat(*count));
+                    appended_string
+                }
+            };
+            output.push(modified_string);
+        }
+        output
+    }
+}
+#[cfg(test)]
+mod tests {
+    use super::Command;
+    use crate::my_module::transformer;
+
+    #[test]
+    fn it_works() {
+        let output = transformer(vec![
+            (&amp;quot;hello&amp;quot;.into(), Command::Uppercase),
+            (&amp;quot; all roads lead to rome! &amp;quot;.into(), Command::Trim),
+            (&amp;quot;foo&amp;quot;.into(), Command::Append(1)),
+            (&amp;quot;bar&amp;quot;.into(), Command::Append(5)),
+        ]);
+        assert_eq!(output[0], &amp;quot;HELLO&amp;quot;);
+        assert_eq!(output[1], &amp;quot;all roads lead to rome!&amp;quot;);
+        assert_eq!(output[2], &amp;quot;foobar&amp;quot;);
+        assert_eq!(output[3], &amp;quot;barbarbarbarbarbar&amp;quot;);
+    }
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h2 id=&quot;conclusion&quot;&gt;Conclusion&lt;&#x2F;h2&gt;
+&lt;p&gt;In this post, we tackled Quiz 2, which required us to build a function that performs different actions on a list of strings based on given commands. We were instructed to uppercase a string, trim it, or append &amp;quot;bar&amp;quot; to it a specified number of times.&lt;&#x2F;p&gt;
+&lt;p&gt;We began by analyzing the provided instructions and understanding the requirements. The input was expected to be a vector of tuples, where each tuple consisted of a string and a command. The output was to be a vector of strings.&lt;&#x2F;p&gt;
+&lt;p&gt;Next, we addressed the incomplete parts of the code. We completed the function signature by specifying the input and output types as &lt;code&gt;Vec&amp;lt;(String, Command)&amp;gt;&lt;&#x2F;code&gt; and &lt;code&gt;Vec&amp;lt;String&amp;gt;&lt;&#x2F;code&gt; respectively.&lt;&#x2F;p&gt;
+&lt;p&gt;In the function body, we utilized a &lt;code&gt;match&lt;&#x2F;code&gt; statement to match the command type and performed the corresponding action on the string. For the &lt;code&gt;Append&lt;&#x2F;code&gt; command, we used the &lt;code&gt;format!&lt;&#x2F;code&gt; macro to concatenate &amp;quot;bar&amp;quot; to the string a specified number of times.&lt;&#x2F;p&gt;
+&lt;p&gt;We then added the modified strings to the &lt;code&gt;output&lt;&#x2F;code&gt; vector and returned it at the end of the function.&lt;&#x2F;p&gt;
+&lt;p&gt;Lastly, we resolved the test-related task by importing the &lt;code&gt;transformer&lt;&#x2F;code&gt; function into the test module using the full path: &lt;code&gt;use crate::my_module::transformer;&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;With these modifications, the code was successfully compiled and passed the provided tests.&lt;&#x2F;p&gt;
+&lt;p&gt;Overall, this quiz allowed us to apply our knowledge of strings, vectors, move semantics, modules, and enums in Rust to build a functional machine. It reinforced our understanding of Rust concepts and helped us gain more confidence in utilizing them.&lt;&#x2F;p&gt;
+</description>
+      </item>
       <item>
           <title>12 Rustlings HashMaps</title>
           <pubDate>Wed, 26 Jul 2023 00:00:00 +0000</pubDate>

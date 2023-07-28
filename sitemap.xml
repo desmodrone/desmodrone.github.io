@@ -62,6 +62,10 @@
         <lastmod>2023-07-26</lastmod>
     </url>
     <url>
+        <loc>https://desmodrone.github.io/posts/13-rustlings-quiz2/</loc>
+        <lastmod>2023-07-28</lastmod>
+    </url>
+    <url>
         <loc>https://desmodrone.github.io/posts/hello-rustlings/</loc>
         <lastmod>2023-04-11</lastmod>
     </url>
@@ -132,6 +136,9 @@
     </url>
     <url>
         <loc>https://desmodrone.github.io/tags/modules/</loc>
+    </url>
+    <url>
+        <loc>https://desmodrone.github.io/tags/move-semantics/</loc>
     </url>
     <url>
         <loc>https://desmodrone.github.io/tags/ownership/</loc>
