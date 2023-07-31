@@ -7,7 +7,415 @@
       <generator>Zola</generator>
       <language>en</language>
       <atom:link href="https://desmodrone.github.io/rss.xml" rel="self" type="application/rss+xml"/>
-      <lastBuildDate>Fri, 28 Jul 2023 00:00:00 +0000</lastBuildDate>
+      <lastBuildDate>Mon, 31 Jul 2023 00:00:00 +0000</lastBuildDate>
+      <item>
+          <title>14 Rustlings Options</title>
+          <pubDate>Mon, 31 Jul 2023 00:00:00 +0000</pubDate>
+          <author>Unknown</author>
+          <link>https://desmodrone.github.io/posts/14-rustlings-options/</link>
+          <guid>https://desmodrone.github.io/posts/14-rustlings-options/</guid>
+          <description>&lt;h1 id=&quot;options&quot;&gt;Options&lt;&#x2F;h1&gt;
+&lt;h5 id=&quot;from-the-rustlings-readme&quot;&gt;From the Rustlings README&lt;&#x2F;h5&gt;
+&lt;p&gt;Type Option represents an optional value: every Option is either Some and contains a value, or None, and does not.
+Option types are very common in Rust code, as they have a number of uses:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;Initial values&lt;&#x2F;li&gt;
+&lt;li&gt;Return values for functions that are not defined over their entire input range (partial functions)&lt;&#x2F;li&gt;
+&lt;li&gt;Return value for otherwise reporting simple errors, where None is returned on error&lt;&#x2F;li&gt;
+&lt;li&gt;Optional struct fields&lt;&#x2F;li&gt;
+&lt;li&gt;Struct fields that can be loaned or &amp;quot;taken&amp;quot;&lt;&#x2F;li&gt;
+&lt;li&gt;Optional function arguments&lt;&#x2F;li&gt;
+&lt;li&gt;Nullable pointers&lt;&#x2F;li&gt;
+&lt;li&gt;Swapping things out of difficult situations&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h2 id=&quot;further-information&quot;&gt;Further Information&lt;&#x2F;h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;doc.rust-lang.org&#x2F;stable&#x2F;book&#x2F;ch10-01-syntax.html#in-enum-definitions&quot;&gt;Option Enum Format&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;doc.rust-lang.org&#x2F;std&#x2F;option&#x2F;&quot;&gt;Option Module Documentation&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;doc.rust-lang.org&#x2F;std&#x2F;option&#x2F;enum.Option.html&quot;&gt;Option Enum Documentation&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;doc.rust-lang.org&#x2F;rust-by-example&#x2F;flow_control&#x2F;if_let.html&quot;&gt;if let&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;doc.rust-lang.org&#x2F;rust-by-example&#x2F;flow_control&#x2F;while_let.html&quot;&gt;while let&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h2 id=&quot;options1-rs&quot;&gt;Options1.rs&lt;&#x2F;h2&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;&amp;#x2F;&amp;#x2F; options1.rs
+&amp;#x2F;&amp;#x2F; Execute `rustlings hint options1` or use the `hint` watch subcommand for a hint.
+
+&amp;#x2F;&amp;#x2F; I AM NOT DONE
+
+&amp;#x2F;&amp;#x2F; This function returns how much icecream there is left in the fridge.
+&amp;#x2F;&amp;#x2F; If it&amp;#x27;s before 10PM, there&amp;#x27;s 5 pieces left. At 10PM, someone eats them
+&amp;#x2F;&amp;#x2F; all, so there&amp;#x27;ll be no more left :(
+fn maybe_icecream(time_of_day: u16) -&amp;gt; Option&amp;lt;u16&amp;gt; {
+    &amp;#x2F;&amp;#x2F; We use the 24-hour system here, so 10PM is a value of 22 and 12AM is a value of 0
+    &amp;#x2F;&amp;#x2F; The Option output should gracefully handle cases where time_of_day &amp;gt; 23.
+    &amp;#x2F;&amp;#x2F; TODO: Complete the function body - remember to return an Option!
+    ???
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn check_icecream() {
+        assert_eq!(maybe_icecream(9), Some(5));
+        assert_eq!(maybe_icecream(10), Some(5));
+        assert_eq!(maybe_icecream(23), Some(0));
+        assert_eq!(maybe_icecream(22), Some(0));
+        assert_eq!(maybe_icecream(25), None);
+    }
+
+    #[test]
+    fn raw_value() {
+        &amp;#x2F;&amp;#x2F; TODO: Fix this test. How do you get at the value contained in the Option?
+        let icecreams = maybe_icecream(12);
+        assert_eq!(icecreams, 5);
+    }
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Our instructions in this exercise are to create the logic in the &lt;code&gt;maybe_icecream&lt;&#x2F;code&gt; body which should tell us how much ice cream is left depending on the time of day -- for example if it&#x27;s 9pm there should be some ice cream but if it&#x27;s 11pm there should be no ice-cream. Next, we have to fix the text so we get the value that is contained inside of the Option.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;options1-rs-errors&quot;&gt;Options1.rs Errors&lt;&#x2F;h2&gt;
+&lt;pre&gt;&lt;code&gt;⚠️  Compiling of exercises&amp;#x2F;options&amp;#x2F;options1.rs failed! Please try again. Here&amp;#x27;s the output:
+error: expected expression, found `?`
+  --&amp;gt; exercises&amp;#x2F;options&amp;#x2F;options1.rs:13:5
+   |
+13 |     ???
+   |     ^ expected expression
+
+error[E0308]: mismatched types
+  --&amp;gt; exercises&amp;#x2F;options&amp;#x2F;options1.rs:33:9
+   |
+33 |         assert_eq!(icecreams, 5);
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^
+   |         |
+   |         expected enum `Option`, found integer
+   |         expected because this is `Option&amp;lt;u16&amp;gt;`
+   |
+   = note: expected enum `Option&amp;lt;u16&amp;gt;`
+              found type `{integer}`
+   = note: this error originates in the macro `assert_eq` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: try wrapping the expression in `Some`
+  --&amp;gt; &amp;#x2F;Users&amp;#x2F;desmo&amp;#x2F;.rustup&amp;#x2F;toolchains&amp;#x2F;stable-aarch64-apple-darwin&amp;#x2F;lib&amp;#x2F;rustlib&amp;#x2F;src&amp;#x2F;rust&amp;#x2F;library&amp;#x2F;core&amp;#x2F;src&amp;#x2F;macros&amp;#x2F;mod.rs:40:35
+   |
+40 |                 if !(*left_val == Some(*right_val)) {
+   |                                   +++++          +
+
+error: aborting due to 2 previous errors
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;There are some clear hints on how to fix this issues in the errors&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;options1-rs-solution&quot;&gt;Options1.rs solution&lt;&#x2F;h2&gt;
+&lt;p&gt;Looking at the errors the Rust compiler offers a direct hint for how to solve the test. Let&#x27;s tackle that one first since it looks super easy the compiler we fix it by wrapping our value in &lt;code&gt;Some()&lt;&#x2F;code&gt; as suggested like this:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;  #[test]
+    fn raw_value() {
+        &amp;#x2F;&amp;#x2F; TODO: Fix this test. How do you get at the value contained in the Option?
+        let icecreams = maybe_icecream(12);
+        assert_eq!(icecreams, Some(5));
+    }
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;This fixes the issue in our test, now on to the &lt;code&gt;maybe_icecream&lt;&#x2F;code&gt; function.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;maybe-ice-cream&quot;&gt;Maybe Ice Cream&lt;&#x2F;h3&gt;
+&lt;p&gt;So our instructions are to return the amount of ice cream left in the fridge. So from this we understand that we have to return a value as an &lt;code&gt;Option&amp;lt;u16&amp;gt;&lt;&#x2F;code&gt; by looking at the function signature. So, in the next sentence we get a big hint as to the type of function body we have to write because the instructions start with an &amp;quot;If&amp;quot; meaning we should be able to use a &lt;code&gt;If&lt;&#x2F;code&gt; statement in our function body. Let&#x27;s see what that could look like. In pseudo code:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;if time of day is &amp;lt; 10pm
+	then 5
+if time of day &amp;gt; 10pm
+	then 0
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Now, I started implementing this pseudo code but then realized that we actually have to pass 3 different test cases. Let&#x27;s write this in the 24 hour clock system because it&#x27;s easier.&lt;&#x2F;p&gt;
+&lt;ol&gt;
+&lt;li&gt;Before 22&lt;&#x2F;li&gt;
+&lt;li&gt;After 22 or 23&lt;&#x2F;li&gt;
+&lt;li&gt;Something else: 25&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;p&gt;For item 3, we can see it explicitly stated in our test code:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;    fn check_icecream() {
+        assert_eq!(maybe_icecream(9), Some(5));
+        assert_eq!(maybe_icecream(10), Some(5));
+        assert_eq!(maybe_icecream(23), Some(0));
+        assert_eq!(maybe_icecream(22), Some(0));
+        assert_eq!(maybe_icecream(25), None);
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;So now, we know that we have to cover three different test cases &lt;code&gt;Some(5)&lt;&#x2F;code&gt;, &lt;code&gt;Some(0)&lt;&#x2F;code&gt; and &lt;code&gt;None&lt;&#x2F;code&gt;.  Let&#x27;s implement this in Rust, keeping in mind the  instructions to use a 24 clock system.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;fn maybe_icecream(time_of_day: u16) -&amp;gt; Option&amp;lt;u16&amp;gt; {
+    if time_of_day &amp;lt; 22 {
+        Some(5)
+    } else if time_of_day == 22 || time_of_day == 23 {
+        Some(0)
+    } else {
+        None
+    }
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h3 id=&quot;using-match&quot;&gt;Using &lt;code&gt;match&lt;&#x2F;code&gt;&lt;&#x2F;h3&gt;
+&lt;p&gt;Another way to solve this problem in a more concise way would be to use a match statement and that could look something like this:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;fn maybe_icecream(time_of_day: u16) -&amp;gt; Option&amp;lt;u16&amp;gt; {
+    match time_of_day {
+        0..=21 =&amp;gt; Some(5),
+        22..=23 =&amp;gt; Some(0),
+        _ =&amp;gt; None,
+    }
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;as you can see this is cleaner way of implementing a solution that handles all of our cases. Remember when using ranges you can use the &lt;code&gt;..=&lt;&#x2F;code&gt; to include the element in the range so in our case &lt;code&gt;0...=21&lt;&#x2F;code&gt; means from midnight to 9pm, and &lt;code&gt;22..=23&lt;&#x2F;code&gt; means from 10pm to 11pm.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;options2-rs&quot;&gt;Options2.rs&lt;&#x2F;h2&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;&amp;#x2F;&amp;#x2F; options2.rs
+&amp;#x2F;&amp;#x2F; Execute `rustlings hint options2` or use the `hint` watch subcommand for a hint.
+
+&amp;#x2F;&amp;#x2F; I AM NOT DONE
+
+#[cfg(test)]
+mod tests {
+    #[test]
+    fn simple_option() {
+        let target = &amp;quot;rustlings&amp;quot;;
+        let optional_target = Some(target);
+
+        &amp;#x2F;&amp;#x2F; TODO: Make this an if let statement whose value is &amp;quot;Some&amp;quot; type
+        if let Some(word) = optional_target {
+            assert_eq!(word, target);
+        }
+    }
+
+    #[test]
+    fn layered_option() {
+        let mut range = 10;
+        let mut optional_integers: Vec&amp;lt;Option&amp;lt;i8&amp;gt;&amp;gt; = Vec::new();
+        for i in 0..(range + 1) {
+            optional_integers.push(Some(i));
+        }
+
+        &amp;#x2F;&amp;#x2F; TODO: make this a while let statement - remember that vector.pop also adds another layer of Option&amp;lt;T&amp;gt;
+        &amp;#x2F;&amp;#x2F; You can stack `Option&amp;lt;T&amp;gt;`&amp;#x27;s into while let and if let
+        integer = optional_integers.pop() {
+            assert_eq!(integer, range);
+            range -= 1;
+        }
+    }
+}
+
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;We have a couple of TODO&#x27;s here one in the &lt;code&gt;simple_option&lt;&#x2F;code&gt; function that asks us to use a &lt;code&gt;if let&lt;&#x2F;code&gt; statement and then the next on the list asks for a &lt;code&gt;while let&lt;&#x2F;code&gt; statement with a reminder that using &lt;code&gt;vector.pop&lt;&#x2F;code&gt; also adds another layer of &lt;code&gt;Option&amp;lt;T&amp;gt;&lt;&#x2F;code&gt;, noting that we can &#x27;stack&#x27; &lt;code&gt;Option&amp;lt;T&amp;gt;&lt;&#x2F;code&gt;&#x27;s when using &lt;code&gt;while let&lt;&#x2F;code&gt; and &lt;code&gt;if let&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;options2-rs-errors&quot;&gt;Options2.rs errors&lt;&#x2F;h2&gt;
+&lt;pre&gt;&lt;code&gt;⚠️  Compiling of exercises&amp;#x2F;options&amp;#x2F;options2.rs failed! Please try again. Here&amp;#x27;s the output:
+error: expected one of `,`, `:`, or `}`, found `!`
+  --&amp;gt; exercises&amp;#x2F;options&amp;#x2F;options2.rs:15:22
+   |
+14 |         word = optional_target {
+   |                --------------- while parsing this struct
+15 |             assert_eq!(word, target);
+   |                      ^ expected one of `,`, `:`, or `}`
+
+error: expected one of `,`, `:`, or `}`, found `)`
+  --&amp;gt; exercises&amp;#x2F;options&amp;#x2F;options2.rs:15:36
+   |
+14 |         word = optional_target {
+   |                --------------- while parsing this struct
+15 |             assert_eq!(word, target);
+   |                                    ^ expected one of `,`, `:`, or `}`
+
+error: expected one of `.`, `;`, `?`, `}`, or an operator, found `{`
+  --&amp;gt; exercises&amp;#x2F;options&amp;#x2F;options2.rs:29:43
+   |
+29 |         integer = optional_integers.pop() {
+   |                                           ^ expected one of `.`, `;`, `?`, `}`, or an operator
+
+error[E0425]: cannot find value `word` in this scope
+  --&amp;gt; exercises&amp;#x2F;options&amp;#x2F;options2.rs:14:9
+   |
+14 |         word = optional_target {
+   |         ^^^^
+   |
+help: you might have meant to introduce a new binding
+   |
+14 |         let word = optional_target {
+   |         +++
+
+error[E0574]: expected struct, variant or union type, found local variable `optional_target`
+  --&amp;gt; exercises&amp;#x2F;options&amp;#x2F;options2.rs:14:16
+   |
+14 |         word = optional_target {
+   |                ^^^^^^^^^^^^^^^ not a struct, variant or union type
+
+error: aborting due to 5 previous errors
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;The error&#x27;s don&#x27;t give us a lot of a lot of hints in this case other letting us know that we probably want to introduce a new binding at line 14. So let&#x27;s start there.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;options2-rs-solution&quot;&gt;Options2.rs solution&lt;&#x2F;h2&gt;
+&lt;p&gt;Using &lt;code&gt;if let&lt;&#x2F;code&gt; bindings allow us to sort of use a match statement, that is less awkward in cases where there is only one correct outcome and we&#x27;d have to use &lt;code&gt;_&lt;&#x2F;code&gt; to be exhaustive. which would lead to some cluncky code like in this example from &lt;a href=&quot;https:&#x2F;&#x2F;doc.rust-lang.org&#x2F;rust-by-example&#x2F;flow_control&#x2F;if_let.html&quot;&gt;Rust by Example&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;&amp;#x2F;&amp;#x2F; Make `optional` of type `Option&amp;lt;i32&amp;gt;`
+let optional = Some(7);
+
+match optional {
+    Some(i) =&amp;gt; {
+        println!(&amp;quot;This is a really long string and `{:?}`&amp;quot;, i);
+        &amp;#x2F;&amp;#x2F; ^ Needed 2 indentations just so we could destructure
+        &amp;#x2F;&amp;#x2F; `i` from the option.
+    },
+    _ =&amp;gt; {},
+    &amp;#x2F;&amp;#x2F; ^ Required because `match` is exhaustive. Doesn&amp;#x27;t it seem
+    &amp;#x2F;&amp;#x2F; like wasted space?
+};
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;So let&#x27;s try using &lt;code&gt;if let&lt;&#x2F;code&gt; on our first TODO.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;if let Some(word) = optional_target { &amp;#x2F;&amp;#x2F; binding with `if let` wrapping `word` with Some
+	assert_eq!(word, target);
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;With this we can save and see how our error&#x27;s look.&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;⚠️  Compiling of exercises&amp;#x2F;options&amp;#x2F;options2.rs failed! Please try again. Here&amp;#x27;s the output:
+error: expected one of `.`, `;`, `?`, `}`, or an operator, found `{`
+  --&amp;gt; exercises&amp;#x2F;options&amp;#x2F;options2.rs:29:43
+   |
+29 |         integer = optional_integers.pop() {
+   |                                           ^ expected one of `.`, `;`, `?`, `}`, or an operator
+
+error: aborting due to previous error
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Okay we went from 5 error&#x27;s to 1, great let&#x27;s work on that next part of the code with &lt;code&gt;while let&lt;&#x2F;code&gt;. Similar to &lt;code&gt;if let&lt;&#x2F;code&gt; using &lt;code&gt;while let&lt;&#x2F;code&gt; can make matching sequences easier to use in this case in a loop type setting. So let&#x27;s try and implement the solution in the same way we did with the &lt;code&gt;if let&lt;&#x2F;code&gt; binding.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;        &amp;#x2F;&amp;#x2F; TODO: make this a while let statement - remember that vector.pop also adds another layer of Option&amp;lt;T&amp;gt;
+        &amp;#x2F;&amp;#x2F; You can stack `Option&amp;lt;T&amp;gt;`&amp;#x27;s into while let and if let
+        while let Some(integer) = optional_integers.pop() {
+            assert_eq!(integer, range);
+            range -= 1;
+        }
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Let&#x27;s see what happens...wait there&#x27;s an error&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;⚠️  Compiling of exercises&amp;#x2F;options&amp;#x2F;options2.rs failed! Please try again. Here&amp;#x27;s the output:
+error[E0308]: mismatched types
+  --&amp;gt; exercises&amp;#x2F;options&amp;#x2F;options2.rs:30:13
+   |
+30 |             assert_eq!(integer, range);
+   |             ^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |             |
+   |             expected `Option&amp;lt;i8&amp;gt;`, found `i8`
+   |             expected because this is `Option&amp;lt;i8&amp;gt;`
+   |
+   = note: expected enum `Option&amp;lt;i8&amp;gt;`
+              found type `i8`
+   = note: this error originates in the macro `assert_eq` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: try wrapping the expression in `Some`
+  --&amp;gt; &amp;#x2F;Users&amp;#x2F;desmo&amp;#x2F;.rustup&amp;#x2F;toolchains&amp;#x2F;stable-aarch64-apple-darwin&amp;#x2F;lib&amp;#x2F;rustlib&amp;#x2F;src&amp;#x2F;rust&amp;#x2F;library&amp;#x2F;core&amp;#x2F;src&amp;#x2F;macros&amp;#x2F;mod.rs:40:35
+   |
+40 |                 if !(*left_val == Some(*right_val)) {
+   |                                   +++++          +
+
+error: aborting due to previous error
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;The compiler is telling us that it expects an &lt;code&gt;Option&amp;lt;i8&amp;gt;&lt;&#x2F;code&gt; but it&#x27;s finding an &lt;code&gt;i8&lt;&#x2F;code&gt;...interesting. But wait let&#x27;s look at that TODO comment: &lt;code&gt;remember that vector.pop also adds another layer of Option&amp;lt;T&amp;gt;&lt;&#x2F;code&gt; there it is. There&#x27;s another layer of &lt;code&gt;Option&amp;lt;T&amp;gt;&lt;&#x2F;code&gt; that&#x27;s created with &lt;code&gt;vector.pop&lt;&#x2F;code&gt; so does that mean that we have to wrap our &lt;code&gt;Some()&lt;&#x2F;code&gt; with &lt;code&gt;Some()&lt;&#x2F;code&gt;? Let&#x27;s try.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;while let Some(Some(integer)) = optional_integers.pop() {
+            assert_eq!(integer, range);
+            range -= 1;
+        }
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Success! This is our output&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;✅ Successfully tested exercises&amp;#x2F;options&amp;#x2F;options2.rs!
+
+🎉 🎉  The code is compiling, and the tests pass! 🎉 🎉
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Let&#x27;s move on to our final Option exercise.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;options3-rs&quot;&gt;Options3.rs&lt;&#x2F;h2&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;&amp;#x2F;&amp;#x2F; options3.rs
+&amp;#x2F;&amp;#x2F; Execute `rustlings hint options3` or use the `hint` watch subcommand for a hint.
+
+&amp;#x2F;&amp;#x2F; I AM NOT DONE
+
+struct Point {
+    x: i32,
+    y: i32,
+}
+
+fn main() {
+    let y: Option&amp;lt;Point&amp;gt; = Some(Point { x: 100, y: 200 });
+
+    match y {
+        Some(p) =&amp;gt; println!(&amp;quot;Co-ordinates are {},{} &amp;quot;, p.x, p.y),
+        _ =&amp;gt; println!(&amp;quot;no match&amp;quot;),
+    }
+    y; &amp;#x2F;&amp;#x2F; Fix without deleting this line.
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;We&#x27;re not getting a lot of instruction here but we&#x27;re being told to fix this code without removing the &lt;code&gt;y;&lt;&#x2F;code&gt; on line 18. Let&#x27;s take a look at the errors.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;options3-rs-errors&quot;&gt;Options3.rs errors&lt;&#x2F;h2&gt;
+&lt;pre&gt;&lt;code&gt;⚠️  Compiling of exercises&amp;#x2F;options&amp;#x2F;options3.rs failed! Please try again. Here&amp;#x27;s the output:
+error[E0382]: use of partially moved value: `y`
+  --&amp;gt; exercises&amp;#x2F;options&amp;#x2F;options3.rs:18:5
+   |
+15 |         Some(p) =&amp;gt; println!(&amp;quot;Co-ordinates are {},{} &amp;quot;, p.x, p.y),
+   |              - value partially moved here
+...
+18 |     y; &amp;#x2F;&amp;#x2F; Fix without deleting this line.
+   |     ^ value used here after partial move
+   |
+   = note: partial move occurs because value has type `Point`, which does not implement the `Copy` trait
+help: borrow this binding in the pattern to avoid moving the value
+   |
+15 |         Some(ref p) =&amp;gt; println!(&amp;quot;Co-ordinates are {},{} &amp;quot;, p.x, p.y),
+   |              +++
+
+error: aborting due to previous error
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;In this case we get a big hint as to what is going on with the code and a very direct suggestion as to how to fix it it, let&#x27;s see what happens if we implement the compiler suggestion.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;fn main() {
+    let y: Option&amp;lt;Point&amp;gt; = Some(Point { x: 100, y: 200 });
+
+    match y {
+        Some(ref p) =&amp;gt; println!(&amp;quot;Co-ordinates are {},{} &amp;quot;, p.x, p.y), &amp;#x2F;&amp;#x2F; adding `ref`
+        _ =&amp;gt; println!(&amp;quot;no match&amp;quot;),
+    }
+    y; &amp;#x2F;&amp;#x2F; Fix without deleting this line.
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;...and it compiles! Easy enough but let&#x27;s take a deeper look at this, what is this &lt;code&gt;ref&lt;&#x2F;code&gt; and is it the same as &lt;code&gt;&amp;amp;&lt;&#x2F;code&gt;?&lt;&#x2F;p&gt;
+&lt;p&gt;So first let&#x27;s understand a little bit more about what is happening in this code and when we should use &lt;code&gt;ref&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;In Rust, the &lt;code&gt;ref&lt;&#x2F;code&gt; keyword is used in patterns to create a reference to a value instead of moving it. This is particularly useful when dealing with non-&lt;code&gt;Copy&lt;&#x2F;code&gt; types (types that don&#x27;t implement the &lt;code&gt;Copy&lt;&#x2F;code&gt; trait) to avoid moving the value out of its original location, which would leave the original variable uninitialized or unusable.&lt;&#x2F;p&gt;
+&lt;p&gt;When pattern matching on a non-&lt;code&gt;Copy&lt;&#x2F;code&gt; value, Rust requires us to either move the value or borrow it explicitly. The &lt;code&gt;ref&lt;&#x2F;code&gt; keyword helps us create a reference to the value instead of moving it.&lt;&#x2F;p&gt;
+&lt;p&gt;In our error message, the compiler is complaining about a partially moved value, specifically the variable &lt;code&gt;y&lt;&#x2F;code&gt;, which is of type &lt;code&gt;Point&lt;&#x2F;code&gt;. Since &lt;code&gt;Point&lt;&#x2F;code&gt; does not implement the &lt;code&gt;Copy&lt;&#x2F;code&gt; trait, the pattern matching on &lt;code&gt;Some(p)&lt;&#x2F;code&gt; is attempting to move the value of &lt;code&gt;p&lt;&#x2F;code&gt;, causing a partial move of the variable &lt;code&gt;y&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;With &lt;code&gt;ref p&lt;&#x2F;code&gt;, we are now creating a reference to the &lt;code&gt;Point&lt;&#x2F;code&gt; value inside the &lt;code&gt;Some&lt;&#x2F;code&gt; variant, which avoids the move and allows you to access the &lt;code&gt;x&lt;&#x2F;code&gt; and &lt;code&gt;y&lt;&#x2F;code&gt; fields without any issues.&lt;&#x2F;p&gt;
+&lt;p&gt;Remember that we need to use &lt;code&gt;ref&lt;&#x2F;code&gt; in the pattern for non-&lt;code&gt;Copy&lt;&#x2F;code&gt; types when matching on references. When using &lt;code&gt;ref&lt;&#x2F;code&gt;, you are borrowing the value, and if we don&#x27;t use &lt;code&gt;ref&lt;&#x2F;code&gt;, you are moving the value out of the original variable. This is crucial to understand when dealing with non-&lt;code&gt;Copy&lt;&#x2F;code&gt; types in pattern matching.&lt;&#x2F;p&gt;
+&lt;p&gt;Alright, but what was the difference between &lt;code&gt;ref&lt;&#x2F;code&gt; and &lt;code&gt;&amp;amp;&lt;&#x2F;code&gt; again?&lt;&#x2F;p&gt;
+&lt;p&gt;Using &lt;code&gt;ref&lt;&#x2F;code&gt; in a pattern and using &lt;code&gt;&amp;amp;&lt;&#x2F;code&gt; in a pattern are related concepts but serve slightly different purposes in Rust.&lt;&#x2F;p&gt;
+&lt;p&gt;Using &lt;code&gt;ref&lt;&#x2F;code&gt; in a pattern:
+- The &lt;code&gt;ref&lt;&#x2F;code&gt; keyword is used in pattern matching to create a reference to a value inside a pattern. It allows you to match on the reference to the value rather than moving the value out of the original variable.
+- It is particularly useful when dealing with non-&lt;code&gt;Copy&lt;&#x2F;code&gt; types, as it allows you to borrow the value instead of moving it, preserving the original variable&#x27;s ownership.
+- &lt;code&gt;ref&lt;&#x2F;code&gt; can only be used in patterns, specifically in match arms or when destructuring tuples or structs.&lt;&#x2F;p&gt;
+&lt;p&gt;Our example code using &lt;code&gt;ref&lt;&#x2F;code&gt;:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;struct Point {
+    x: i32,
+    y: i32,
+}
+
+fn print_coordinates(point: Option&amp;lt;Point&amp;gt;) {
+    match point {
+        Some(ref p) =&amp;gt; println!(&amp;quot;Co-ordinates are {},{} &amp;quot;, p.x, p.y),
+        None =&amp;gt; println!(&amp;quot;No point found!&amp;quot;),
+    }
+}
+
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Using &lt;code&gt;&amp;amp;&lt;&#x2F;code&gt; in a pattern:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;The &lt;code&gt;&amp;amp;&lt;&#x2F;code&gt; symbol in a pattern is used to destructure a reference. It allows you to match on the value being referenced instead of matching on the reference itself.&lt;&#x2F;li&gt;
+&lt;li&gt;It is commonly used when working with references to allow pattern matching without consuming the reference.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;code&gt;&amp;amp;&lt;&#x2F;code&gt; can also be used in match arms and when destructuring tuples or structs, just like &lt;code&gt;ref&lt;&#x2F;code&gt;.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;Example using &lt;code&gt;&amp;amp;&lt;&#x2F;code&gt;:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;fn print_coordinates_ref(point: Option&amp;lt;&amp;amp;Point&amp;gt;) {
+    match point {
+        Some(p) =&amp;gt; println!(&amp;quot;Co-ordinates are {},{} &amp;quot;, p.x, p.y),
+        None =&amp;gt; println!(&amp;quot;No point found!&amp;quot;),
+    }
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;In the first example, we use &lt;code&gt;ref&lt;&#x2F;code&gt; to match on the &lt;code&gt;Point&lt;&#x2F;code&gt; value by creating a reference &lt;code&gt;&amp;amp;Point&lt;&#x2F;code&gt; and avoid moving the original value out of the &lt;code&gt;Option&lt;&#x2F;code&gt;. In the second example, we take a reference as an argument to the function and use &lt;code&gt;&amp;amp;&lt;&#x2F;code&gt; to destructure the reference and match on the underlying &lt;code&gt;Point&lt;&#x2F;code&gt; value.&lt;&#x2F;p&gt;
+&lt;p&gt;Both &lt;code&gt;ref&lt;&#x2F;code&gt; and &lt;code&gt;&amp;amp;&lt;&#x2F;code&gt; in patterns are essential tools when working with pattern matching and references in Rust. They allow you to control ownership and borrowing behavior while pattern matching on non-&lt;code&gt;Copy&lt;&#x2F;code&gt; types.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;conclusion&quot;&gt;Conclusion&lt;&#x2F;h2&gt;
+&lt;p&gt;In conclusion, the Rust &lt;code&gt;Option&lt;&#x2F;code&gt; type is a fundamental concept that plays a crucial role in handling optional values in Rust code. It provides a safe and elegant way to deal with scenarios where a value may or may not be present. With &lt;code&gt;Option&lt;&#x2F;code&gt;, Rust encourages developers to handle potential absence of values explicitly, reducing the risk of null-related errors that are prevalent in other programming languages.&lt;&#x2F;p&gt;
+&lt;p&gt;Throughout this blog post, we explored the versatility of &lt;code&gt;Option&lt;&#x2F;code&gt; and its various applications in Rust code. We learned that &lt;code&gt;Option&lt;&#x2F;code&gt; is commonly used for representing initial values, handling partial functions, reporting errors, working with optional struct fields, and more.&lt;&#x2F;p&gt;
+&lt;p&gt;In addition to understanding the basics of &lt;code&gt;Option&lt;&#x2F;code&gt;, we also explored important Rust concepts like pattern matching, &lt;code&gt;if let&lt;&#x2F;code&gt;, and &lt;code&gt;while let&lt;&#x2F;code&gt;. These powerful language features allow us to handle &lt;code&gt;Option&lt;&#x2F;code&gt; values efficiently, making our code concise and expressive.&lt;&#x2F;p&gt;
+&lt;p&gt;When working with non-&lt;code&gt;Copy&lt;&#x2F;code&gt; types, we encountered the use of &lt;code&gt;ref&lt;&#x2F;code&gt; in patterns, which creates a reference to the value, preventing it from being moved. This is particularly useful when matching on references to avoid unnecessary ownership transfers.&lt;&#x2F;p&gt;
+&lt;p&gt;Furthermore, we compared &lt;code&gt;ref&lt;&#x2F;code&gt; with using &lt;code&gt;&amp;amp;&lt;&#x2F;code&gt; in patterns, noting that both have distinct purposes. While &lt;code&gt;ref&lt;&#x2F;code&gt; is primarily used for pattern matching, &lt;code&gt;&amp;amp;&lt;&#x2F;code&gt; is used for destructuring references.&lt;&#x2F;p&gt;
+&lt;p&gt;In summary, mastering the Rust &lt;code&gt;Option&lt;&#x2F;code&gt; type and related language features empowers developers to write robust, safe, and efficient code. Embracing the principles of handling optional values in Rust not only improves code quality but also fosters better programming practices. By avoiding null-related issues, Rust&#x27;s &lt;code&gt;Option&lt;&#x2F;code&gt; encourages developers to write more reliable software, making Rust a language of choice for projects requiring high-level safety and correctness guarantees.&lt;&#x2F;p&gt;
+</description>
+      </item>
       <item>
           <title>13 Rustlings Quiz2</title>
           <pubDate>Fri, 28 Jul 2023 00:00:00 +0000</pubDate>

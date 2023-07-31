@@ -66,6 +66,10 @@
         <lastmod>2023-07-28</lastmod>
     </url>
     <url>
+        <loc>https://desmodrone.github.io/posts/14-rustlings-options/</loc>
+        <lastmod>2023-07-31</lastmod>
+    </url>
+    <url>
         <loc>https://desmodrone.github.io/posts/hello-rustlings/</loc>
         <lastmod>2023-04-11</lastmod>
     </url>
@@ -120,10 +124,16 @@
         <loc>https://desmodrone.github.io/tags/hello/</loc>
     </url>
     <url>
+        <loc>https://desmodrone.github.io/tags/if-let/</loc>
+    </url>
+    <url>
         <loc>https://desmodrone.github.io/tags/if/</loc>
     </url>
     <url>
         <loc>https://desmodrone.github.io/tags/key/</loc>
+    </url>
+    <url>
+        <loc>https://desmodrone.github.io/tags/match/</loc>
     </url>
     <url>
         <loc>https://desmodrone.github.io/tags/matching/</loc>
@@ -141,6 +151,9 @@
         <loc>https://desmodrone.github.io/tags/move-semantics/</loc>
     </url>
     <url>
+        <loc>https://desmodrone.github.io/tags/options/</loc>
+    </url>
+    <url>
         <loc>https://desmodrone.github.io/tags/ownership/</loc>
     </url>
     <url>
@@ -151,6 +164,9 @@
     </url>
     <url>
         <loc>https://desmodrone.github.io/tags/quiz/</loc>
+    </url>
+    <url>
+        <loc>https://desmodrone.github.io/tags/ref/</loc>
     </url>
     <url>
         <loc>https://desmodrone.github.io/tags/references/</loc>
@@ -196,6 +212,9 @@
     </url>
     <url>
         <loc>https://desmodrone.github.io/tags/vectors/</loc>
+    </url>
+    <url>
+        <loc>https://desmodrone.github.io/tags/while-let/</loc>
     </url>
     <url>
         <loc>https://desmodrone.github.io/work/</loc>
