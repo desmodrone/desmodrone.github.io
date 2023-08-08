@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <meta itemprop="name" content="desmo" />
+  <meta itemprop="description" content="Random Ideas" />
+
+  <link rel="apple-touch-icon" sizes="180x180" href="https://desmodrone.github.io/apple-touch-icon.png"/>
+  <link rel="icon" type="image/png" sizes="32x32" href="https://desmodrone.github.io/favicon-32x32.png" />
+  <link
+    rel="icon"
+    type="image/png"
+    sizes="16x16"
+    href="https://desmodrone.github.io/favicon-16x16.png"
+  />
+  <link
+    rel="shortcut icon"
+    href="https://desmodrone.github.io/favicon.ico"
+  />
+  <link rel="stylesheet" href="https://desmodrone.github.io/style.css"/>
+  
+  <title>14 Rustlings Errors Part 1</title>
+  
+
+  
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="https://desmodrone.github.io/rss.xml">
+  
+
+  <body id="page">
+
+	
+<header id="site-header" class="animated slideInUp faster">
+  <div class="hdr-wrapper section-inner">
+    <div class="hdr-left">
+      <div class="site-branding">
+        <a href="https:&#x2F;&#x2F;desmodrone.github.io">desmo</a>
+      </div>
+      <nav class="site-nav hide-in-mobile">
+            
+        
+        <a href="https://desmodrone.github.io/posts">posts</a>
+        
+        <a href="https://desmodrone.github.io/about">about</a>
+        
+        <a href="https://desmodrone.github.io/work">work</a>
+        
+      </nav>
+    </div>
+    <div class="hdr-right hdr-icons">
+      <span class="hdr-social hide-in-mobile">
+        
+
+<a href="https:&#x2F;&#x2F;twitter.com&#x2F;desmodrone_" target="_blank" rel="noopener me"
+   title="twitter">
+  
+  <svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg>
+  
+</a>
+
+<a href="https:&#x2F;&#x2F;github.com&#x2F;desmodrone" target="_blank" rel="noopener me"
+   title="github">
+  
+  <svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+  
+</a>
+
+<a href="mailto:erick@apexwins.com" target="_blank" rel="noopener me"
+   title="email">
+  
+  <svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+  
+</a>
+
+
+      </span>
+      <button id="menu-btn" class="hdr-btn" title="Menu">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="feather feather-menu"
+        >
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+  </div>
+</header>
+<div id="mobile-menu" class="animated fast">
+  <ul>
+    
+    <li><a href="https://desmodrone.github.io/posts">posts</a></li>
+    
+    <li><a href="https://desmodrone.github.io/about">about</a></li>
+    
+    <li><a href="https://desmodrone.github.io/work">work</a></li>
+    
+  </ul>
+</div>
+
+	
+	
+
+		
+<main class="site-main section-inner animated fadeIn faster">
+  <article class="thin">
+	<header class="post-header">
+	  <div class="post-meta">
+		
+		<span>Aug 08, 2023</span>
+		<small> - 
+<span class="reading-time" title="Estimated read time">
+  
+  10 min read
+  
+</span>
+</small>
+		
+            
+	  </div>
+	  <h1>14 Rustlings Errors Part 1</h1>
+	</header>
+
+	<div class="content">
+        
+	  <h1 id="error-handling-part-1">Error Handling Part 1</h1>
+<p>There's 6 exercises so I'm breaking them up into batches of 3.</p>
+<p>Most errors aren’t serious enough to require the program to stop entirely.
+Sometimes, when a function fails, it’s for a reason that you can easily interpret and respond to.
+For example, if you try to open a file and that operation fails because the file doesn’t exist, you might want to create the file instead of terminating the process.</p>
+<h2 id="further-information">Further information</h2>
+<ul>
+<li><a href="https://doc.rust-lang.org/book/ch09-02-recoverable-errors-with-result.html">Error Handling</a></li>
+<li><a href="https://doc.rust-lang.org/book/ch10-01-syntax.html">Generics</a></li>
+<li><a href="https://doc.rust-lang.org/rust-by-example/error/result.html">Result</a></li>
+<li><a href="https://doc.rust-lang.org/rust-by-example/error/multiple_error_types/boxing_errors.html">Boxing errors</a></li>
+</ul>
+<h2 id="errors1-rs">errors1.rs</h2>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">&#x2F;&#x2F; errors1.rs
+&#x2F;&#x2F; This function refuses to generate text to be printed on a nametag if
+&#x2F;&#x2F; you pass it an empty string. It&#x27;d be nicer if it explained what the problem
+&#x2F;&#x2F; was, instead of just sometimes returning `None`. Thankfully, Rust has a similar
+&#x2F;&#x2F; construct to `Option` that can be used to express error conditions. Let&#x27;s use it!
+&#x2F;&#x2F; Execute `rustlings hint errors1` or use the `hint` watch subcommand for a hint.
+
+&#x2F;&#x2F; I AM NOT DONE
+
+pub fn generate_nametag_text(name: String) -&gt; Option&lt;String&gt; {
+    if name.is_empty() {
+        &#x2F;&#x2F; Empty names aren&#x27;t allowed.
+        None
+    } else {
+        Some(format!(&quot;Hi! My name is {}&quot;, name))
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn generates_nametag_text_for_a_nonempty_name() {
+        assert_eq!(
+            generate_nametag_text(&quot;Beyoncé&quot;.into()),
+            Ok(&quot;Hi! My name is Beyoncé&quot;.into())
+        );
+    }
+
+    #[test]
+    fn explains_why_generating_nametag_text_fails() {
+        assert_eq!(
+            generate_nametag_text(&quot;&quot;.into()),
+            &#x2F;&#x2F; Don&#x27;t change this line
+            Err(&quot;`name` was empty; it must be nonempty.&quot;.into())
+        );
+    }
+}
+
+</code></pre>
+<p>Our instructions are to convert our <code>Option</code> to a <code>Result</code>, where we can change the the outcome, or rather specify an error as we like vs just returning <code>None</code> with an <code>Option</code>.</p>
+<h2 id="errors1-rs-errors">errors1.rs errors</h2>
+<pre><code>⚠️  Compiling of exercises&#x2F;error_handling&#x2F;errors1.rs failed! Please try again. Here&#x27;s the output:
+error[E0308]: mismatched types
+  --&gt; exercises&#x2F;error_handling&#x2F;errors1.rs:25:9
+   |
+25 | &#x2F;         assert_eq!(
+26 | |             generate_nametag_text(&quot;Beyoncé&quot;.into()),
+27 | |             Ok(&quot;Hi! My name is Beyoncé&quot;.into())
+28 | |         );
+   | |         ^
+   | |         |
+   | |_________expected `Option&lt;String&gt;`, found `Result&lt;_, _&gt;`
+   |           expected because this is `Option&lt;String&gt;`
+   |
+   = note: expected enum `Option&lt;String&gt;`
+              found enum `Result&lt;_, _&gt;`
+   = note: this error originates in the macro `assert_eq` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0308]: mismatched types
+  --&gt; exercises&#x2F;error_handling&#x2F;errors1.rs:33:9
+   |
+33 | &#x2F;         assert_eq!(
+34 | |             generate_nametag_text(&quot;&quot;.into()),
+35 | |             &#x2F;&#x2F; Don&#x27;t change this line
+36 | |             Err(&quot;`name` was empty; it must be nonempty.&quot;.into())
+37 | |         );
+   | |         ^
+   | |         |
+   | |_________expected `Option&lt;String&gt;`, found `Result&lt;_, _&gt;`
+   |           expected because this is `Option&lt;String&gt;`
+   |
+   = note: expected enum `Option&lt;String&gt;`
+              found enum `Result&lt;_, _&gt;`
+   = note: this error originates in the macro `assert_eq` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error: aborting due to 2 previous errors
+</code></pre>
+<p>Our errors here are showing us that we have a mismatch with our types, since the tests are already expecting a <code>Result</code> but not the <code>Option</code> that is currently being used. So, let's try and fix that, it doesn't seem too difficult.</p>
+<h2 id="errors1-rs-solution">errors1.rs solution</h2>
+<p>Let's start by changing the return type, we know that it has to be a result, so let's do that in the <code>generate_nametag_text</code> signature.</p>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">pub fn generate_nametag_text(name: String) -&gt; Result&lt;String&gt; {
+</code></pre>
+<p>The next thing we have to do is update the return value, because it's going from returning one string to two, so instead of having one String in our <code>Result</code> we need two <code>Result&lt;String, String&gt;</code>, and because we've changed the type of from <code>Option</code> to <code>Result</code> we also have to update our <code>Some</code>
+and <code>None</code> to what a <code>Result</code> should have which is <code>Ok</code> and <code>Err</code></p>
+<p>Our code now looks like this. Let's save our file and see what our compiler says.</p>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">
+
+pub fn generate_nametag_text(name: String) -&gt; Result&lt;String, String&gt; {
+    if name.is_empty() {
+        &#x2F;&#x2F; Empty names aren&#x27;t allowed.
+        Err
+    } else {
+        Ok(format!(&quot;Hi! My name is {}&quot;, name))
+    }
+}
+</code></pre>
+<p>Close but not quite, we see that we still have an error and it's telling us that after our <code>Err</code> it's expecting a value.</p>
+<pre><code>⚠️  Compiling of exercises&#x2F;error_handling&#x2F;errors1.rs failed! Please try again. Here&#x27;s the output:
+error[E0308]: mismatched types
+  --&gt; exercises&#x2F;error_handling&#x2F;errors1.rs:13:9
+   |
+10 | pub fn generate_nametag_text(name: String) -&gt; Result&lt;String, String&gt; {
+   |                                               ---------------------- expected `Result&lt;String, String&gt;` because of return type
+...
+13 |         Err
+   |         ^^^ expected `Result&lt;String, String&gt;`, found enum constructor
+   |
+   = note:          expected enum `Result&lt;String, String&gt;`
+           found enum constructor `fn(_) -&gt; Result&lt;_, _&gt; {Result::&lt;_, _&gt;::Err}`
+help: use parentheses to construct this tuple variant
+   |
+13 |         Err(&#x2F;* value *&#x2F;)
+   |            +++++++++++++
+
+error: aborting due to previous error
+</code></pre>
+<p>The compiler even shows us where to put the value:</p>
+<pre><code>13 |         Err(&#x2F;* value *&#x2F;)
+   |            +++++++++++++
+</code></pre>
+<p>But what value should it be? 🤔 Well in our case we can look at the test value and see what we are expected to write in there.</p>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust"> #[test]
+    fn explains_why_generating_nametag_text_fails() {
+        assert_eq!(
+            generate_nametag_text(&quot;&quot;.into()),
+            &#x2F;&#x2F; Don&#x27;t change this line
+            Err(&quot;`name` was empty; it must be nonempty.&quot;.into())
+        );
+    }
+</code></pre>
+<p>Here we can clearly see what the text should be that's associated with the <code>Err</code>, so let's add that to our code.</p>
+<p>We use the same <code>format!</code> macro and it should look like this now:</p>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">pub fn generate_nametag_text(name: String) -&gt; Result&lt;String, String&gt; {
+    if name.is_empty() {
+        &#x2F;&#x2F; Empty names aren&#x27;t allowed.
+        Err(format!(&quot;`name` was empty; it must be nonempty.&quot;))
+    } else {
+        Ok(format!(&quot;Hi! My name is {}&quot;, name))
+    }
+}
+</code></pre>
+<p>and with that our code is compiling and our tests are passing:</p>
+<pre><code>🎉 🎉  The code is compiling, and the tests pass! 🎉 🎉
+</code></pre>
+<p>yay us.</p>
+<h2 id="errors2-rs">Errors2.rs</h2>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">&#x2F;&#x2F; errors2.rs
+&#x2F;&#x2F; Say we&#x27;re writing a game where you can buy items with tokens. All items cost
+&#x2F;&#x2F; 5 tokens, and whenever you purchase items there is a processing fee of 1
+&#x2F;&#x2F; token. A player of the game will type in how many items they want to buy,
+&#x2F;&#x2F; and the `total_cost` function will calculate the total number of tokens.
+&#x2F;&#x2F; Since the player typed in the quantity, though, we get it as a string-- and
+&#x2F;&#x2F; they might have typed anything, not just numbers!
+
+&#x2F;&#x2F; Right now, this function isn&#x27;t handling the error case at all (and isn&#x27;t
+&#x2F;&#x2F; handling the success case properly either). What we want to do is:
+&#x2F;&#x2F; if we call the `parse` function on a string that is not a number, that
+&#x2F;&#x2F; function will return a `ParseIntError`, and in that case, we want to
+&#x2F;&#x2F; immediately return that error from our function and not try to multiply
+&#x2F;&#x2F; and add.
+
+&#x2F;&#x2F; There are at least two ways to implement this that are both correct-- but
+&#x2F;&#x2F; one is a lot shorter!
+&#x2F;&#x2F; Execute `rustlings hint errors2` or use the `hint` watch subcommand for a hint.
+
+&#x2F;&#x2F; I AM NOT DONE
+
+use std::num::ParseIntError;
+
+pub fn total_cost(item_quantity: &amp;str) -&gt; Result&lt;i32, ParseIntError&gt; {
+    let processing_fee = 1;
+    let cost_per_item = 5;
+    let qty = item_quantity.parse::&lt;i32&gt;();
+
+    Ok(qty * cost_per_item + processing_fee)
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn item_quantity_is_a_valid_number() {
+        assert_eq!(total_cost(&quot;34&quot;), Ok(171));
+    }
+
+    #[test]
+    fn item_quantity_is_an_invalid_number() {
+        assert_eq!(
+            total_cost(&quot;beep boop&quot;).unwrap_err().to_string(),
+            &quot;invalid digit found in string&quot;
+        );
+    }
+}
+
+</code></pre>
+<p>Our instructions tell us that the <code>total_cost</code> function is not handling the error case but also not handling the success case properly either. So what we want to is:</p>
+<ul>
+<li>if we call the <code>parse</code> function on a string that is not a number it will return an error and that case we want to immediately return that error from our function and not attempt to multiply and add.</li>
+</ul>
+<p>We get the hint that we can do this correctly in a couple of ways and one of them is much shorter.</p>
+<h2 id="errors2-rs-errors">Errors2.rs errors</h2>
+<pre><code>⚠️  Compiling of exercises&#x2F;error_handling&#x2F;errors2.rs failed! Please try again. Here&#x27;s the output:
+error[E0369]: cannot multiply `Result&lt;i32, ParseIntError&gt;` by `{integer}`
+  --&gt; exercises&#x2F;error_handling&#x2F;errors2.rs:29:12
+   |
+29 |     Ok(qty * cost_per_item + processing_fee)
+   |        --- ^ ------------- {integer}
+   |        |
+   |        Result&lt;i32, ParseIntError&gt;
+
+error: aborting due to previous error
+
+For more information about this error, try `rustc --explain E0369`.
+</code></pre>
+<p>Errors tell us that we cannot multiply <code>Results&lt;i32, ParseIntError&gt;</code> by <code>{integer}</code>. Alright let's try to work on our solution.</p>
+<h2 id="erros2-rs-solution">Erros2.rs solution</h2>
+<p>My gut tells me to use matching to set up the <code>Ok</code> and <code>Err</code>, let's try:</p>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">pub fn total_cost(item_quantity: &amp;str) -&gt; Result&lt;i32, ParseIntError&gt; {
+    let processing_fee = 1;
+    let cost_per_item = 5;
+    &#x2F;&#x2F; adding `match` statement
+    let qty = match item_quantity.parse::&lt;i32&gt;() {
+	    Ok(qty) =&gt; qty, &#x2F;&#x2F; matching `Ok`
+	    Err(e) =&gt; return Err(e), &#x2F;&#x2F; matching `Err`
+    };
+
+    Ok(qty * cost_per_item + processing_fee)
+}
+</code></pre>
+<p>So,  we added <code>match</code> right before <code>item_quanity.parse::&lt;i32&gt;()</code> and then filled out the two match arms with <code>Ok</code> returning <code>qty</code> as an <code>int</code> and if it's not an <code>int</code> then we match the <code>Err</code> arm and quit out of the process all together by using <code>return Err(e)</code>.</p>
+<p>But if we remember we also were given the idea that we could do this in two ways and although this wasn't particularly long, is there a shorter way?</p>
+<h2 id="errors2-rs-solution-2">Errors2.rs solution 2</h2>
+<p>Yes, there is! If we place a <code>?</code> operator after a <code>Result</code> value it functions in a similar way as a <code>match</code> statement, there is a difference but for the purposes it does the job just fine, so yea it's a much much shorter way to handle this type of where a couple of lines of code are reduced to one character <code>?</code> .</p>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">use std::num::ParseIntError;
+
+pub fn total_cost(item_quantity: &amp;str) -&gt; Result&lt;i32, ParseIntError&gt; {
+    let processing_fee = 1;
+    let cost_per_item = 5;
+    let qty = item_quantity.parse::&lt;i32&gt;()?;
+
+    Ok(qty * cost_per_item + processing_fee)
+}
+</code></pre>
+<h2 id="errors3-rs">Errors3.rs</h2>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">&#x2F;&#x2F; errors3.rs
+&#x2F;&#x2F; This is a program that is trying to use a completed version of the
+&#x2F;&#x2F; `total_cost` function from the previous exercise. It&#x27;s not working though!
+&#x2F;&#x2F; Why not? What should we do to fix it?
+&#x2F;&#x2F; Execute `rustlings hint errors3` or use the `hint` watch subcommand for a hint.
+
+&#x2F;&#x2F; I AM NOT DONE
+
+use std::num::ParseIntError;
+
+fn main() {
+    let mut tokens = 100;
+    let pretend_user_input = &quot;8&quot;;
+
+    let cost = total_cost(pretend_user_input)?;
+
+    if cost &gt; tokens {
+        println!(&quot;You can&#x27;t afford that many!&quot;);
+    } else {
+        tokens -= cost;
+        println!(&quot;You now have {} tokens.&quot;, tokens);
+    }
+}
+
+pub fn total_cost(item_quantity: &amp;str) -&gt; Result&lt;i32, ParseIntError&gt; {
+    let processing_fee = 1;
+    let cost_per_item = 5;
+    let qty = item_quantity.parse::&lt;i32&gt;()?;
+
+    Ok(qty * cost_per_item + processing_fee)
+}
+</code></pre>
+<p>In this exercise we are presented with <code>fn main()</code> which is trying to us our <code>fn total_cost</code> that we worked on in the previous exercise but there's a problem and we have to figure out. So as always let's look at our errors and see what we can learn there.</p>
+<h2 id="errors3-rs-errors">Errors3.rs errors</h2>
+<pre><code>⚠️  Compiling of exercises&#x2F;error_handling&#x2F;errors3.rs failed! Please try again. Here&#x27;s the output:
+error[E0277]: the `?` operator can only be used in a function that returns `Result` or `Option` (or another type that implements `FromResidual`)
+  --&gt; exercises&#x2F;error_handling&#x2F;errors3.rs:15:46
+   |
+11 | fn main() {
+   | --------- this function should return `Result` or `Option` to accept `?`
+...
+15 |     let cost = total_cost(pretend_user_input)?;
+   |                                              ^ cannot use the `?` operator in a function that returns `()`
+   |
+   = help: the trait `FromResidual&lt;Result&lt;Infallible, ParseIntError&gt;&gt;` is not implemented for `()`
+
+error: aborting due to previous error
+</code></pre>
+<p>Our error seems quite obvious and the compiler does a great job of pointing it out. We're trying to us the <code>?</code> operator, but we have no <code>Rusult</code> or <code>Option</code> to use it on since our <code>fn main()</code> does not define one in it's signature, so let's do that.</p>
+<h2 id="errors3-rs-solution">Errors3.rs solution</h2>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">&#x2F;&#x2F; updating `main` signature to return a result
+fn main() -&gt; Result&lt;(), ParseIntError&gt; {
+    let mut tokens = 100;
+    let pretend_user_input = &quot;8&quot;;
+
+    let cost = total_cost(pretend_user_input)?;
+
+    if cost &gt; tokens {
+        println!(&quot;You can&#x27;t afford that many!&quot;);
+    } else {
+        tokens -= cost;
+        println!(&quot;You now have {} tokens.&quot;, tokens);
+    }
+}
+</code></pre>
+<p>So if you've read through the <a href="https://doc.rust-lang.org/rust-by-example/error/result.html">Rust by Example</a> provided in the Rustlings README (and above) you would see that we can return the <code>Result</code> type in <code>main</code> but it must be the <code>unit</code> <code>()</code> type.</p>
+<p>Using <code>Result&lt;(), ErrorType&gt;</code> as the return type for the <code>main</code> function is a common pattern in Rust for error handling. It allows you to handle errors explicitly and propagate them up the call stack if necessary.</p>
+<p>If the <code>main</code> function returns an <code>Err</code> value, it will be treated as an error by the Rust runtime, and the program will exit with a non-zero exit code.</p>
+<p>Alright our code has a proper function signature let's try and run this...Uh oh. Still not compiling we know get these erros.</p>
+<pre><code>⚠️  Compiling of exercises&#x2F;error_handling&#x2F;errors3.rs failed! Please try again. Here&#x27;s the output:
+error[E0308]: mismatched types
+  --&gt; exercises&#x2F;error_handling&#x2F;errors3.rs:17:22
+   |
+17 |       if cost &gt; tokens {
+   |  ______________________^
+18 | |         println!(&quot;You can&#x27;t afford that many!&quot;);
+19 | |     } else {
+   | |_____^ expected `Result&lt;(), ParseIntError&gt;`, found `()`
+   |
+   = note:   expected enum `Result&lt;(), ParseIntError&gt;`
+           found unit type `()`
+
+error[E0308]: mismatched types
+  --&gt; exercises&#x2F;error_handling&#x2F;errors3.rs:19:12
+   |
+19 |       } else {
+   |  ____________^
+20 | |         tokens -= cost;
+21 | |         println!(&quot;You now have {} tokens.&quot;, tokens);
+22 | |     }
+   | |_____^ expected `Result&lt;(), ParseIntError&gt;`, found `()`
+   |
+   = note:   expected enum `Result&lt;(), ParseIntError&gt;`
+           found unit type `()`
+
+error: aborting due to 2 previous errors
+</code></pre>
+<p>This error is telling us that there are type mismatches in the <code>main</code> function of the <code>errors3.rs</code> file. Specifically, the <code>if</code> and <code>else</code> blocks have different return types: the <code>if</code> block should return <code>Result&lt;(), ParseIntError&gt;</code>, but it's returning <code>()</code>, which is a unit type. The compiler is expecting both branches to return a <code>Result</code> with the same error type, but it found a unit type instead.</p>
+<p>So how do we fix this? To follow the rules of the <code>Result</code> type in the <code>main</code> function, we use <code>return Ok(())</code> in both the <code>if</code> and <code>else</code> blocks to indicate success, even though the <code>if</code> block deals with a case where the user can't afford the items. This way, the compiler knows that we are handling the error properly and can ensure the code is correct.</p>
+<p>Our <code>main()</code> should now look like this:</p>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">fn main() -&gt; Result&lt;(), ParseIntError&gt; {
+    let mut tokens = 100;
+    let pretend_user_input = &quot;8&quot;;
+
+    let cost = total_cost(pretend_user_input)?;
+
+    if cost &gt; tokens {
+        println!(&quot;You can&#x27;t afford that many!&quot;);
+        return Ok(()); &#x2F;&#x2F; adding the Ok(()) return value
+    } else {
+        tokens -= cost;
+        println!(&quot;You now have {} tokens.&quot;, tokens);
+        return Ok(()); &#x2F;&#x2F; adding the Ok(()) return value
+    }
+}
+</code></pre>
+<p>In the given block of code, there is no need to contain an <code>Err</code> section because the <code>total_cost</code> function is already responsible for handling errors related to parsing the input string into an integer. The <code>total_cost</code> function has the return type <code>Result&lt;i32, ParseIntError&gt;</code>, and it uses the <code>?</code> operator to propagate the error when parsing fails.</p>
+<p>The <code>?</code> operator in the <code>total_cost</code> function allows the error to be returned immediately from the function if there is a parsing error. The calling code in the <code>main</code> function does not need to handle the <code>Err</code> case again because it is already being handled in the <code>total_cost</code> function.</p>
+<p>To put it in simpler terms, the <code>total_cost</code> function is like a &quot;guard&quot; that ensures that the parsing is successful. If there is an error, it will return the error to the calling code (the <code>main</code> function in this case). Since the <code>total_cost</code> function already handles the error, the <code>main</code> function doesn't need to worry about it. Instead, it only needs to deal with the case where parsing is successful (<code>Ok</code>).</p>
+<p>So, in this particular case, we don't need an <code>Err</code> section in the <code>main</code> function because the error handling is taken care of by the <code>total_cost</code> function. The <code>main</code> function only needs to handle the successful case (<code>Ok</code>), and if the parsing is successful, it will proceed with the code inside the <code>else</code> block. If parsing fails, the error will be propagated and handled by Rust automatically.</p>
+<p>When we save we get this output:</p>
+<pre><code>Output:
+====================
+You now have 59 tokens.
+
+====================
+</code></pre>
+<h2 id="conclusion-of-part-1">Conclusion of Part 1</h2>
+<p>In this first part of the Rustlings error handling exercises, we learned about using <code>Result</code> and <code>Option</code> types to handle errors and cases where there might not be a valid value. We encountered different scenarios and learned how to convert functions returning <code>Option</code> into ones returning <code>Result</code> to provide more specific error messages. Additionally, we saw how to use the <code>?</code> operator to propagate errors up the call stack automatically, simplifying the error handling process.</p>
+<p>It's essential to handle errors properly in Rust, as it ensures that your program remains robust and can gracefully recover from unexpected situations. Using <code>Result</code> and <code>Option</code> types, along with pattern matching and the <code>?</code> operator, we can create code that is not only correct but also more readable and maintainable. Rust's strong type system helps catch errors at compile time and guides us in writing safer and more reliable software.</p>
+<p>In the next part of the error handling exercises, we will delve deeper into handling different types of errors, exploring how to use <code>Result</code> with custom error types and how to combine and chain errors effectively. Keep learning and practicing, and happy coding!</p>
+
+	</div>
+	<hr class="post-end">
+	<footer class="post-info">
+    
+	  <p>
+		<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg>
+		
+		
+		<span class="tag"><a href="https://desmodrone.github.io/tags/rust/">rust</a></span>
+		
+		<span class="tag"><a href="https://desmodrone.github.io/tags/options/">options</a></span>
+		
+		<span class="tag"><a href="https://desmodrone.github.io/tags/match/">match</a></span>
+		
+		<span class="tag"><a href="https://desmodrone.github.io/tags/while-let/">while let</a></span>
+		
+		<span class="tag"><a href="https://desmodrone.github.io/tags/rustlings/">rustlings</a></span>
+		
+		<span class="tag"><a href="https://desmodrone.github.io/tags/errors/">errors</a></span>
+		
+		<span class="tag"><a href="https://desmodrone.github.io/tags/result/">result</a></span>
+		
+		
+    </p>
+    
+    <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>2707 Words</p>
+    
+    <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2023-08-08</p>
+    
+	</footer>
+  </article>
+    
+  
+  <div class="post-nav thin">
+	
+	
+  </div>
+
+  
+</main>
+
+	  </div>
+	  
+	  
+
+
+
+<footer id="site-footer" class="section-inner thin animated fadeIn faster">
+  <p>&copy; 2023 <a href="https:&#x2F;&#x2F;desmodrone.github.io">erick</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
+  <p>Made with <a href="https://www.getzola.org" target="_blank" rel="noopener">Zola</a> &#183; Theme <a href="https://github.com/VersBinarii/hermit_zola" target="_blank" rel="noopener">Hermit_Zola</a>
+	
+	&#183; <a href="https://desmodrone.github.io/rss.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
+	
+  </p>
+</footer>
+
+
+
+
+	</div>
+	
+	<script src="https://desmodrone.github.io/js/main.js"></script>
+
+	<!-- Math rendering -->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css" integrity="sha384-zB1R0rpPzHqg7Kpt0Aljp8JPLqbXI3bhnPWROx27a9N0Ll6ZP/+DiW/UqRcLbRjq" crossorigin="anonymous">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js" integrity="sha384-y23I5Q6l+B6vatafAwxRu/0oK/79VlbSz7Q9aiSZUvyWYIYsd+qj+o24G5ZU2zJz" crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous"
+        onload="renderMathInElement(document.body, { delimiters: [ {left: '$$', right: '$$', display: true}, {left: '$', right: '$', display: false}, {left: '\\[', right: '\\]', display: true}, {left: '\\(', right: '\\)', display: false}]});"></script>
+
+    
+		<link href="https://unpkg.com/highlightjs-badge/highlightjs/styles/railscasts.css" rel="stylesheet">
+		<!-- https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.1/build/styles/  for min version -->
+		<script src="https://unpkg.com/highlightjs-badge/highlightjs/highlight.pack.js"></script>
+		<script src="https://unpkg.com/highlightjs-badge/highlightjs-badge.min.js"></script>
+		<script>
+			var pres = document.querySelectorAll("pre>code");
+			for (var i = 0; i < pres.length; i++) {
+				hljs.highlightBlock(pres[i]);
+			}
+		</script>
+		
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js"></script>
+			<script>
+				var options = {
+					copyIconClass: "gg-clipboard",
+					checkIconClass: "gg-check"
+				};
+				window.highlightJsBadge(options);
+			</script>
+		
+
+	
+
+	
+	<script src="https://desmodrone.github.io/js/main.js"></script>
+
+    
+    
+
+	
+    <!-- Global Site Tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-9MNTYXYNHK"></script>
+    <script>
+     window.dataLayer = window.dataLayer || [];
+     function gtag(){dataLayer.push(arguments);}
+     gtag('js', new Date());
+     gtag('config', 'G-9MNTYXYNHK');
+    </script>
+    
+  </body>
+</html>

@@ -7,7 +7,406 @@
       <generator>Zola</generator>
       <language>en</language>
       <atom:link href="https://desmodrone.github.io/rss.xml" rel="self" type="application/rss+xml"/>
-      <lastBuildDate>Mon, 31 Jul 2023 00:00:00 +0000</lastBuildDate>
+      <lastBuildDate>Tue, 08 Aug 2023 00:00:00 +0000</lastBuildDate>
+      <item>
+          <title>14 Rustlings Errors Part 1</title>
+          <pubDate>Tue, 08 Aug 2023 00:00:00 +0000</pubDate>
+          <author>Unknown</author>
+          <link>https://desmodrone.github.io/posts/15-rustlings-errors1/</link>
+          <guid>https://desmodrone.github.io/posts/15-rustlings-errors1/</guid>
+          <description>&lt;h1 id=&quot;error-handling-part-1&quot;&gt;Error Handling Part 1&lt;&#x2F;h1&gt;
+&lt;p&gt;There&#x27;s 6 exercises so I&#x27;m breaking them up into batches of 3.&lt;&#x2F;p&gt;
+&lt;p&gt;Most errors aren’t serious enough to require the program to stop entirely.
+Sometimes, when a function fails, it’s for a reason that you can easily interpret and respond to.
+For example, if you try to open a file and that operation fails because the file doesn’t exist, you might want to create the file instead of terminating the process.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;further-information&quot;&gt;Further information&lt;&#x2F;h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;doc.rust-lang.org&#x2F;book&#x2F;ch09-02-recoverable-errors-with-result.html&quot;&gt;Error Handling&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;doc.rust-lang.org&#x2F;book&#x2F;ch10-01-syntax.html&quot;&gt;Generics&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;doc.rust-lang.org&#x2F;rust-by-example&#x2F;error&#x2F;result.html&quot;&gt;Result&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;doc.rust-lang.org&#x2F;rust-by-example&#x2F;error&#x2F;multiple_error_types&#x2F;boxing_errors.html&quot;&gt;Boxing errors&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h2 id=&quot;errors1-rs&quot;&gt;errors1.rs&lt;&#x2F;h2&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;&amp;#x2F;&amp;#x2F; errors1.rs
+&amp;#x2F;&amp;#x2F; This function refuses to generate text to be printed on a nametag if
+&amp;#x2F;&amp;#x2F; you pass it an empty string. It&amp;#x27;d be nicer if it explained what the problem
+&amp;#x2F;&amp;#x2F; was, instead of just sometimes returning `None`. Thankfully, Rust has a similar
+&amp;#x2F;&amp;#x2F; construct to `Option` that can be used to express error conditions. Let&amp;#x27;s use it!
+&amp;#x2F;&amp;#x2F; Execute `rustlings hint errors1` or use the `hint` watch subcommand for a hint.
+
+&amp;#x2F;&amp;#x2F; I AM NOT DONE
+
+pub fn generate_nametag_text(name: String) -&amp;gt; Option&amp;lt;String&amp;gt; {
+    if name.is_empty() {
+        &amp;#x2F;&amp;#x2F; Empty names aren&amp;#x27;t allowed.
+        None
+    } else {
+        Some(format!(&amp;quot;Hi! My name is {}&amp;quot;, name))
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn generates_nametag_text_for_a_nonempty_name() {
+        assert_eq!(
+            generate_nametag_text(&amp;quot;Beyoncé&amp;quot;.into()),
+            Ok(&amp;quot;Hi! My name is Beyoncé&amp;quot;.into())
+        );
+    }
+
+    #[test]
+    fn explains_why_generating_nametag_text_fails() {
+        assert_eq!(
+            generate_nametag_text(&amp;quot;&amp;quot;.into()),
+            &amp;#x2F;&amp;#x2F; Don&amp;#x27;t change this line
+            Err(&amp;quot;`name` was empty; it must be nonempty.&amp;quot;.into())
+        );
+    }
+}
+
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Our instructions are to convert our &lt;code&gt;Option&lt;&#x2F;code&gt; to a &lt;code&gt;Result&lt;&#x2F;code&gt;, where we can change the the outcome, or rather specify an error as we like vs just returning &lt;code&gt;None&lt;&#x2F;code&gt; with an &lt;code&gt;Option&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;errors1-rs-errors&quot;&gt;errors1.rs errors&lt;&#x2F;h2&gt;
+&lt;pre&gt;&lt;code&gt;⚠️  Compiling of exercises&amp;#x2F;error_handling&amp;#x2F;errors1.rs failed! Please try again. Here&amp;#x27;s the output:
+error[E0308]: mismatched types
+  --&amp;gt; exercises&amp;#x2F;error_handling&amp;#x2F;errors1.rs:25:9
+   |
+25 | &amp;#x2F;         assert_eq!(
+26 | |             generate_nametag_text(&amp;quot;Beyoncé&amp;quot;.into()),
+27 | |             Ok(&amp;quot;Hi! My name is Beyoncé&amp;quot;.into())
+28 | |         );
+   | |         ^
+   | |         |
+   | |_________expected `Option&amp;lt;String&amp;gt;`, found `Result&amp;lt;_, _&amp;gt;`
+   |           expected because this is `Option&amp;lt;String&amp;gt;`
+   |
+   = note: expected enum `Option&amp;lt;String&amp;gt;`
+              found enum `Result&amp;lt;_, _&amp;gt;`
+   = note: this error originates in the macro `assert_eq` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0308]: mismatched types
+  --&amp;gt; exercises&amp;#x2F;error_handling&amp;#x2F;errors1.rs:33:9
+   |
+33 | &amp;#x2F;         assert_eq!(
+34 | |             generate_nametag_text(&amp;quot;&amp;quot;.into()),
+35 | |             &amp;#x2F;&amp;#x2F; Don&amp;#x27;t change this line
+36 | |             Err(&amp;quot;`name` was empty; it must be nonempty.&amp;quot;.into())
+37 | |         );
+   | |         ^
+   | |         |
+   | |_________expected `Option&amp;lt;String&amp;gt;`, found `Result&amp;lt;_, _&amp;gt;`
+   |           expected because this is `Option&amp;lt;String&amp;gt;`
+   |
+   = note: expected enum `Option&amp;lt;String&amp;gt;`
+              found enum `Result&amp;lt;_, _&amp;gt;`
+   = note: this error originates in the macro `assert_eq` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error: aborting due to 2 previous errors
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Our errors here are showing us that we have a mismatch with our types, since the tests are already expecting a &lt;code&gt;Result&lt;&#x2F;code&gt; but not the &lt;code&gt;Option&lt;&#x2F;code&gt; that is currently being used. So, let&#x27;s try and fix that, it doesn&#x27;t seem too difficult.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;errors1-rs-solution&quot;&gt;errors1.rs solution&lt;&#x2F;h2&gt;
+&lt;p&gt;Let&#x27;s start by changing the return type, we know that it has to be a result, so let&#x27;s do that in the &lt;code&gt;generate_nametag_text&lt;&#x2F;code&gt; signature.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;pub fn generate_nametag_text(name: String) -&amp;gt; Result&amp;lt;String&amp;gt; {
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;The next thing we have to do is update the return value, because it&#x27;s going from returning one string to two, so instead of having one String in our &lt;code&gt;Result&lt;&#x2F;code&gt; we need two &lt;code&gt;Result&amp;lt;String, String&amp;gt;&lt;&#x2F;code&gt;, and because we&#x27;ve changed the type of from &lt;code&gt;Option&lt;&#x2F;code&gt; to &lt;code&gt;Result&lt;&#x2F;code&gt; we also have to update our &lt;code&gt;Some&lt;&#x2F;code&gt;
+and &lt;code&gt;None&lt;&#x2F;code&gt; to what a &lt;code&gt;Result&lt;&#x2F;code&gt; should have which is &lt;code&gt;Ok&lt;&#x2F;code&gt; and &lt;code&gt;Err&lt;&#x2F;code&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;Our code now looks like this. Let&#x27;s save our file and see what our compiler says.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;
+
+pub fn generate_nametag_text(name: String) -&amp;gt; Result&amp;lt;String, String&amp;gt; {
+    if name.is_empty() {
+        &amp;#x2F;&amp;#x2F; Empty names aren&amp;#x27;t allowed.
+        Err
+    } else {
+        Ok(format!(&amp;quot;Hi! My name is {}&amp;quot;, name))
+    }
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Close but not quite, we see that we still have an error and it&#x27;s telling us that after our &lt;code&gt;Err&lt;&#x2F;code&gt; it&#x27;s expecting a value.&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;⚠️  Compiling of exercises&amp;#x2F;error_handling&amp;#x2F;errors1.rs failed! Please try again. Here&amp;#x27;s the output:
+error[E0308]: mismatched types
+  --&amp;gt; exercises&amp;#x2F;error_handling&amp;#x2F;errors1.rs:13:9
+   |
+10 | pub fn generate_nametag_text(name: String) -&amp;gt; Result&amp;lt;String, String&amp;gt; {
+   |                                               ---------------------- expected `Result&amp;lt;String, String&amp;gt;` because of return type
+...
+13 |         Err
+   |         ^^^ expected `Result&amp;lt;String, String&amp;gt;`, found enum constructor
+   |
+   = note:          expected enum `Result&amp;lt;String, String&amp;gt;`
+           found enum constructor `fn(_) -&amp;gt; Result&amp;lt;_, _&amp;gt; {Result::&amp;lt;_, _&amp;gt;::Err}`
+help: use parentheses to construct this tuple variant
+   |
+13 |         Err(&amp;#x2F;* value *&amp;#x2F;)
+   |            +++++++++++++
+
+error: aborting due to previous error
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;The compiler even shows us where to put the value:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;13 |         Err(&amp;#x2F;* value *&amp;#x2F;)
+   |            +++++++++++++
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;But what value should it be? 🤔 Well in our case we can look at the test value and see what we are expected to write in there.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt; #[test]
+    fn explains_why_generating_nametag_text_fails() {
+        assert_eq!(
+            generate_nametag_text(&amp;quot;&amp;quot;.into()),
+            &amp;#x2F;&amp;#x2F; Don&amp;#x27;t change this line
+            Err(&amp;quot;`name` was empty; it must be nonempty.&amp;quot;.into())
+        );
+    }
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Here we can clearly see what the text should be that&#x27;s associated with the &lt;code&gt;Err&lt;&#x2F;code&gt;, so let&#x27;s add that to our code.&lt;&#x2F;p&gt;
+&lt;p&gt;We use the same &lt;code&gt;format!&lt;&#x2F;code&gt; macro and it should look like this now:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;pub fn generate_nametag_text(name: String) -&amp;gt; Result&amp;lt;String, String&amp;gt; {
+    if name.is_empty() {
+        &amp;#x2F;&amp;#x2F; Empty names aren&amp;#x27;t allowed.
+        Err(format!(&amp;quot;`name` was empty; it must be nonempty.&amp;quot;))
+    } else {
+        Ok(format!(&amp;quot;Hi! My name is {}&amp;quot;, name))
+    }
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;and with that our code is compiling and our tests are passing:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;🎉 🎉  The code is compiling, and the tests pass! 🎉 🎉
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;yay us.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;errors2-rs&quot;&gt;Errors2.rs&lt;&#x2F;h2&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;&amp;#x2F;&amp;#x2F; errors2.rs
+&amp;#x2F;&amp;#x2F; Say we&amp;#x27;re writing a game where you can buy items with tokens. All items cost
+&amp;#x2F;&amp;#x2F; 5 tokens, and whenever you purchase items there is a processing fee of 1
+&amp;#x2F;&amp;#x2F; token. A player of the game will type in how many items they want to buy,
+&amp;#x2F;&amp;#x2F; and the `total_cost` function will calculate the total number of tokens.
+&amp;#x2F;&amp;#x2F; Since the player typed in the quantity, though, we get it as a string-- and
+&amp;#x2F;&amp;#x2F; they might have typed anything, not just numbers!
+
+&amp;#x2F;&amp;#x2F; Right now, this function isn&amp;#x27;t handling the error case at all (and isn&amp;#x27;t
+&amp;#x2F;&amp;#x2F; handling the success case properly either). What we want to do is:
+&amp;#x2F;&amp;#x2F; if we call the `parse` function on a string that is not a number, that
+&amp;#x2F;&amp;#x2F; function will return a `ParseIntError`, and in that case, we want to
+&amp;#x2F;&amp;#x2F; immediately return that error from our function and not try to multiply
+&amp;#x2F;&amp;#x2F; and add.
+
+&amp;#x2F;&amp;#x2F; There are at least two ways to implement this that are both correct-- but
+&amp;#x2F;&amp;#x2F; one is a lot shorter!
+&amp;#x2F;&amp;#x2F; Execute `rustlings hint errors2` or use the `hint` watch subcommand for a hint.
+
+&amp;#x2F;&amp;#x2F; I AM NOT DONE
+
+use std::num::ParseIntError;
+
+pub fn total_cost(item_quantity: &amp;amp;str) -&amp;gt; Result&amp;lt;i32, ParseIntError&amp;gt; {
+    let processing_fee = 1;
+    let cost_per_item = 5;
+    let qty = item_quantity.parse::&amp;lt;i32&amp;gt;();
+
+    Ok(qty * cost_per_item + processing_fee)
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn item_quantity_is_a_valid_number() {
+        assert_eq!(total_cost(&amp;quot;34&amp;quot;), Ok(171));
+    }
+
+    #[test]
+    fn item_quantity_is_an_invalid_number() {
+        assert_eq!(
+            total_cost(&amp;quot;beep boop&amp;quot;).unwrap_err().to_string(),
+            &amp;quot;invalid digit found in string&amp;quot;
+        );
+    }
+}
+
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Our instructions tell us that the &lt;code&gt;total_cost&lt;&#x2F;code&gt; function is not handling the error case but also not handling the success case properly either. So what we want to is:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;if we call the &lt;code&gt;parse&lt;&#x2F;code&gt; function on a string that is not a number it will return an error and that case we want to immediately return that error from our function and not attempt to multiply and add.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;We get the hint that we can do this correctly in a couple of ways and one of them is much shorter.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;errors2-rs-errors&quot;&gt;Errors2.rs errors&lt;&#x2F;h2&gt;
+&lt;pre&gt;&lt;code&gt;⚠️  Compiling of exercises&amp;#x2F;error_handling&amp;#x2F;errors2.rs failed! Please try again. Here&amp;#x27;s the output:
+error[E0369]: cannot multiply `Result&amp;lt;i32, ParseIntError&amp;gt;` by `{integer}`
+  --&amp;gt; exercises&amp;#x2F;error_handling&amp;#x2F;errors2.rs:29:12
+   |
+29 |     Ok(qty * cost_per_item + processing_fee)
+   |        --- ^ ------------- {integer}
+   |        |
+   |        Result&amp;lt;i32, ParseIntError&amp;gt;
+
+error: aborting due to previous error
+
+For more information about this error, try `rustc --explain E0369`.
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Errors tell us that we cannot multiply &lt;code&gt;Results&amp;lt;i32, ParseIntError&amp;gt;&lt;&#x2F;code&gt; by &lt;code&gt;{integer}&lt;&#x2F;code&gt;. Alright let&#x27;s try to work on our solution.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;erros2-rs-solution&quot;&gt;Erros2.rs solution&lt;&#x2F;h2&gt;
+&lt;p&gt;My gut tells me to use matching to set up the &lt;code&gt;Ok&lt;&#x2F;code&gt; and &lt;code&gt;Err&lt;&#x2F;code&gt;, let&#x27;s try:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;pub fn total_cost(item_quantity: &amp;amp;str) -&amp;gt; Result&amp;lt;i32, ParseIntError&amp;gt; {
+    let processing_fee = 1;
+    let cost_per_item = 5;
+    &amp;#x2F;&amp;#x2F; adding `match` statement
+    let qty = match item_quantity.parse::&amp;lt;i32&amp;gt;() {
+	    Ok(qty) =&amp;gt; qty, &amp;#x2F;&amp;#x2F; matching `Ok`
+	    Err(e) =&amp;gt; return Err(e), &amp;#x2F;&amp;#x2F; matching `Err`
+    };
+
+    Ok(qty * cost_per_item + processing_fee)
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;So,  we added &lt;code&gt;match&lt;&#x2F;code&gt; right before &lt;code&gt;item_quanity.parse::&amp;lt;i32&amp;gt;()&lt;&#x2F;code&gt; and then filled out the two match arms with &lt;code&gt;Ok&lt;&#x2F;code&gt; returning &lt;code&gt;qty&lt;&#x2F;code&gt; as an &lt;code&gt;int&lt;&#x2F;code&gt; and if it&#x27;s not an &lt;code&gt;int&lt;&#x2F;code&gt; then we match the &lt;code&gt;Err&lt;&#x2F;code&gt; arm and quit out of the process all together by using &lt;code&gt;return Err(e)&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;But if we remember we also were given the idea that we could do this in two ways and although this wasn&#x27;t particularly long, is there a shorter way?&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;errors2-rs-solution-2&quot;&gt;Errors2.rs solution 2&lt;&#x2F;h2&gt;
+&lt;p&gt;Yes, there is! If we place a &lt;code&gt;?&lt;&#x2F;code&gt; operator after a &lt;code&gt;Result&lt;&#x2F;code&gt; value it functions in a similar way as a &lt;code&gt;match&lt;&#x2F;code&gt; statement, there is a difference but for the purposes it does the job just fine, so yea it&#x27;s a much much shorter way to handle this type of where a couple of lines of code are reduced to one character &lt;code&gt;?&lt;&#x2F;code&gt; .&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;use std::num::ParseIntError;
+
+pub fn total_cost(item_quantity: &amp;amp;str) -&amp;gt; Result&amp;lt;i32, ParseIntError&amp;gt; {
+    let processing_fee = 1;
+    let cost_per_item = 5;
+    let qty = item_quantity.parse::&amp;lt;i32&amp;gt;()?;
+
+    Ok(qty * cost_per_item + processing_fee)
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h2 id=&quot;errors3-rs&quot;&gt;Errors3.rs&lt;&#x2F;h2&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;&amp;#x2F;&amp;#x2F; errors3.rs
+&amp;#x2F;&amp;#x2F; This is a program that is trying to use a completed version of the
+&amp;#x2F;&amp;#x2F; `total_cost` function from the previous exercise. It&amp;#x27;s not working though!
+&amp;#x2F;&amp;#x2F; Why not? What should we do to fix it?
+&amp;#x2F;&amp;#x2F; Execute `rustlings hint errors3` or use the `hint` watch subcommand for a hint.
+
+&amp;#x2F;&amp;#x2F; I AM NOT DONE
+
+use std::num::ParseIntError;
+
+fn main() {
+    let mut tokens = 100;
+    let pretend_user_input = &amp;quot;8&amp;quot;;
+
+    let cost = total_cost(pretend_user_input)?;
+
+    if cost &amp;gt; tokens {
+        println!(&amp;quot;You can&amp;#x27;t afford that many!&amp;quot;);
+    } else {
+        tokens -= cost;
+        println!(&amp;quot;You now have {} tokens.&amp;quot;, tokens);
+    }
+}
+
+pub fn total_cost(item_quantity: &amp;amp;str) -&amp;gt; Result&amp;lt;i32, ParseIntError&amp;gt; {
+    let processing_fee = 1;
+    let cost_per_item = 5;
+    let qty = item_quantity.parse::&amp;lt;i32&amp;gt;()?;
+
+    Ok(qty * cost_per_item + processing_fee)
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;In this exercise we are presented with &lt;code&gt;fn main()&lt;&#x2F;code&gt; which is trying to us our &lt;code&gt;fn total_cost&lt;&#x2F;code&gt; that we worked on in the previous exercise but there&#x27;s a problem and we have to figure out. So as always let&#x27;s look at our errors and see what we can learn there.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;errors3-rs-errors&quot;&gt;Errors3.rs errors&lt;&#x2F;h2&gt;
+&lt;pre&gt;&lt;code&gt;⚠️  Compiling of exercises&amp;#x2F;error_handling&amp;#x2F;errors3.rs failed! Please try again. Here&amp;#x27;s the output:
+error[E0277]: the `?` operator can only be used in a function that returns `Result` or `Option` (or another type that implements `FromResidual`)
+  --&amp;gt; exercises&amp;#x2F;error_handling&amp;#x2F;errors3.rs:15:46
+   |
+11 | fn main() {
+   | --------- this function should return `Result` or `Option` to accept `?`
+...
+15 |     let cost = total_cost(pretend_user_input)?;
+   |                                              ^ cannot use the `?` operator in a function that returns `()`
+   |
+   = help: the trait `FromResidual&amp;lt;Result&amp;lt;Infallible, ParseIntError&amp;gt;&amp;gt;` is not implemented for `()`
+
+error: aborting due to previous error
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Our error seems quite obvious and the compiler does a great job of pointing it out. We&#x27;re trying to us the &lt;code&gt;?&lt;&#x2F;code&gt; operator, but we have no &lt;code&gt;Rusult&lt;&#x2F;code&gt; or &lt;code&gt;Option&lt;&#x2F;code&gt; to use it on since our &lt;code&gt;fn main()&lt;&#x2F;code&gt; does not define one in it&#x27;s signature, so let&#x27;s do that.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;errors3-rs-solution&quot;&gt;Errors3.rs solution&lt;&#x2F;h2&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;&amp;#x2F;&amp;#x2F; updating `main` signature to return a result
+fn main() -&amp;gt; Result&amp;lt;(), ParseIntError&amp;gt; {
+    let mut tokens = 100;
+    let pretend_user_input = &amp;quot;8&amp;quot;;
+
+    let cost = total_cost(pretend_user_input)?;
+
+    if cost &amp;gt; tokens {
+        println!(&amp;quot;You can&amp;#x27;t afford that many!&amp;quot;);
+    } else {
+        tokens -= cost;
+        println!(&amp;quot;You now have {} tokens.&amp;quot;, tokens);
+    }
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;So if you&#x27;ve read through the &lt;a href=&quot;https:&#x2F;&#x2F;doc.rust-lang.org&#x2F;rust-by-example&#x2F;error&#x2F;result.html&quot;&gt;Rust by Example&lt;&#x2F;a&gt; provided in the Rustlings README (and above) you would see that we can return the &lt;code&gt;Result&lt;&#x2F;code&gt; type in &lt;code&gt;main&lt;&#x2F;code&gt; but it must be the &lt;code&gt;unit&lt;&#x2F;code&gt; &lt;code&gt;()&lt;&#x2F;code&gt; type.&lt;&#x2F;p&gt;
+&lt;p&gt;Using &lt;code&gt;Result&amp;lt;(), ErrorType&amp;gt;&lt;&#x2F;code&gt; as the return type for the &lt;code&gt;main&lt;&#x2F;code&gt; function is a common pattern in Rust for error handling. It allows you to handle errors explicitly and propagate them up the call stack if necessary.&lt;&#x2F;p&gt;
+&lt;p&gt;If the &lt;code&gt;main&lt;&#x2F;code&gt; function returns an &lt;code&gt;Err&lt;&#x2F;code&gt; value, it will be treated as an error by the Rust runtime, and the program will exit with a non-zero exit code.&lt;&#x2F;p&gt;
+&lt;p&gt;Alright our code has a proper function signature let&#x27;s try and run this...Uh oh. Still not compiling we know get these erros.&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;⚠️  Compiling of exercises&amp;#x2F;error_handling&amp;#x2F;errors3.rs failed! Please try again. Here&amp;#x27;s the output:
+error[E0308]: mismatched types
+  --&amp;gt; exercises&amp;#x2F;error_handling&amp;#x2F;errors3.rs:17:22
+   |
+17 |       if cost &amp;gt; tokens {
+   |  ______________________^
+18 | |         println!(&amp;quot;You can&amp;#x27;t afford that many!&amp;quot;);
+19 | |     } else {
+   | |_____^ expected `Result&amp;lt;(), ParseIntError&amp;gt;`, found `()`
+   |
+   = note:   expected enum `Result&amp;lt;(), ParseIntError&amp;gt;`
+           found unit type `()`
+
+error[E0308]: mismatched types
+  --&amp;gt; exercises&amp;#x2F;error_handling&amp;#x2F;errors3.rs:19:12
+   |
+19 |       } else {
+   |  ____________^
+20 | |         tokens -= cost;
+21 | |         println!(&amp;quot;You now have {} tokens.&amp;quot;, tokens);
+22 | |     }
+   | |_____^ expected `Result&amp;lt;(), ParseIntError&amp;gt;`, found `()`
+   |
+   = note:   expected enum `Result&amp;lt;(), ParseIntError&amp;gt;`
+           found unit type `()`
+
+error: aborting due to 2 previous errors
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;This error is telling us that there are type mismatches in the &lt;code&gt;main&lt;&#x2F;code&gt; function of the &lt;code&gt;errors3.rs&lt;&#x2F;code&gt; file. Specifically, the &lt;code&gt;if&lt;&#x2F;code&gt; and &lt;code&gt;else&lt;&#x2F;code&gt; blocks have different return types: the &lt;code&gt;if&lt;&#x2F;code&gt; block should return &lt;code&gt;Result&amp;lt;(), ParseIntError&amp;gt;&lt;&#x2F;code&gt;, but it&#x27;s returning &lt;code&gt;()&lt;&#x2F;code&gt;, which is a unit type. The compiler is expecting both branches to return a &lt;code&gt;Result&lt;&#x2F;code&gt; with the same error type, but it found a unit type instead.&lt;&#x2F;p&gt;
+&lt;p&gt;So how do we fix this? To follow the rules of the &lt;code&gt;Result&lt;&#x2F;code&gt; type in the &lt;code&gt;main&lt;&#x2F;code&gt; function, we use &lt;code&gt;return Ok(())&lt;&#x2F;code&gt; in both the &lt;code&gt;if&lt;&#x2F;code&gt; and &lt;code&gt;else&lt;&#x2F;code&gt; blocks to indicate success, even though the &lt;code&gt;if&lt;&#x2F;code&gt; block deals with a case where the user can&#x27;t afford the items. This way, the compiler knows that we are handling the error properly and can ensure the code is correct.&lt;&#x2F;p&gt;
+&lt;p&gt;Our &lt;code&gt;main()&lt;&#x2F;code&gt; should now look like this:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;fn main() -&amp;gt; Result&amp;lt;(), ParseIntError&amp;gt; {
+    let mut tokens = 100;
+    let pretend_user_input = &amp;quot;8&amp;quot;;
+
+    let cost = total_cost(pretend_user_input)?;
+
+    if cost &amp;gt; tokens {
+        println!(&amp;quot;You can&amp;#x27;t afford that many!&amp;quot;);
+        return Ok(()); &amp;#x2F;&amp;#x2F; adding the Ok(()) return value
+    } else {
+        tokens -= cost;
+        println!(&amp;quot;You now have {} tokens.&amp;quot;, tokens);
+        return Ok(()); &amp;#x2F;&amp;#x2F; adding the Ok(()) return value
+    }
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;In the given block of code, there is no need to contain an &lt;code&gt;Err&lt;&#x2F;code&gt; section because the &lt;code&gt;total_cost&lt;&#x2F;code&gt; function is already responsible for handling errors related to parsing the input string into an integer. The &lt;code&gt;total_cost&lt;&#x2F;code&gt; function has the return type &lt;code&gt;Result&amp;lt;i32, ParseIntError&amp;gt;&lt;&#x2F;code&gt;, and it uses the &lt;code&gt;?&lt;&#x2F;code&gt; operator to propagate the error when parsing fails.&lt;&#x2F;p&gt;
+&lt;p&gt;The &lt;code&gt;?&lt;&#x2F;code&gt; operator in the &lt;code&gt;total_cost&lt;&#x2F;code&gt; function allows the error to be returned immediately from the function if there is a parsing error. The calling code in the &lt;code&gt;main&lt;&#x2F;code&gt; function does not need to handle the &lt;code&gt;Err&lt;&#x2F;code&gt; case again because it is already being handled in the &lt;code&gt;total_cost&lt;&#x2F;code&gt; function.&lt;&#x2F;p&gt;
+&lt;p&gt;To put it in simpler terms, the &lt;code&gt;total_cost&lt;&#x2F;code&gt; function is like a &amp;quot;guard&amp;quot; that ensures that the parsing is successful. If there is an error, it will return the error to the calling code (the &lt;code&gt;main&lt;&#x2F;code&gt; function in this case). Since the &lt;code&gt;total_cost&lt;&#x2F;code&gt; function already handles the error, the &lt;code&gt;main&lt;&#x2F;code&gt; function doesn&#x27;t need to worry about it. Instead, it only needs to deal with the case where parsing is successful (&lt;code&gt;Ok&lt;&#x2F;code&gt;).&lt;&#x2F;p&gt;
+&lt;p&gt;So, in this particular case, we don&#x27;t need an &lt;code&gt;Err&lt;&#x2F;code&gt; section in the &lt;code&gt;main&lt;&#x2F;code&gt; function because the error handling is taken care of by the &lt;code&gt;total_cost&lt;&#x2F;code&gt; function. The &lt;code&gt;main&lt;&#x2F;code&gt; function only needs to handle the successful case (&lt;code&gt;Ok&lt;&#x2F;code&gt;), and if the parsing is successful, it will proceed with the code inside the &lt;code&gt;else&lt;&#x2F;code&gt; block. If parsing fails, the error will be propagated and handled by Rust automatically.&lt;&#x2F;p&gt;
+&lt;p&gt;When we save we get this output:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;Output:
+====================
+You now have 59 tokens.
+
+====================
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h2 id=&quot;conclusion-of-part-1&quot;&gt;Conclusion of Part 1&lt;&#x2F;h2&gt;
+&lt;p&gt;In this first part of the Rustlings error handling exercises, we learned about using &lt;code&gt;Result&lt;&#x2F;code&gt; and &lt;code&gt;Option&lt;&#x2F;code&gt; types to handle errors and cases where there might not be a valid value. We encountered different scenarios and learned how to convert functions returning &lt;code&gt;Option&lt;&#x2F;code&gt; into ones returning &lt;code&gt;Result&lt;&#x2F;code&gt; to provide more specific error messages. Additionally, we saw how to use the &lt;code&gt;?&lt;&#x2F;code&gt; operator to propagate errors up the call stack automatically, simplifying the error handling process.&lt;&#x2F;p&gt;
+&lt;p&gt;It&#x27;s essential to handle errors properly in Rust, as it ensures that your program remains robust and can gracefully recover from unexpected situations. Using &lt;code&gt;Result&lt;&#x2F;code&gt; and &lt;code&gt;Option&lt;&#x2F;code&gt; types, along with pattern matching and the &lt;code&gt;?&lt;&#x2F;code&gt; operator, we can create code that is not only correct but also more readable and maintainable. Rust&#x27;s strong type system helps catch errors at compile time and guides us in writing safer and more reliable software.&lt;&#x2F;p&gt;
+&lt;p&gt;In the next part of the error handling exercises, we will delve deeper into handling different types of errors, exploring how to use &lt;code&gt;Result&lt;&#x2F;code&gt; with custom error types and how to combine and chain errors effectively. Keep learning and practicing, and happy coding!&lt;&#x2F;p&gt;
+</description>
+      </item>
       <item>
           <title>14 Rustlings Options</title>
           <pubDate>Mon, 31 Jul 2023 00:00:00 +0000</pubDate>
@@ -5330,6 +5729,7 @@ fn main() {
 &lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;desmodrone.github.io&#x2F;posts&#x2F;12-rustlings-hashmaps&quot;&gt;12_rustlings_hashmaps&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
 &lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;desmodrone.github.io&#x2F;posts&#x2F;13-rustlings-quiz2&quot;&gt;13_rustlings_quiz2&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
 &lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;desmodrone.github.io&#x2F;posts&#x2F;14-rustlings-options&quot;&gt;14_rustlings_options&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;desmodrone.github.io&#x2F;posts&#x2F;14-rustlings-errors1&quot;&gt;14_rustlings_errors_part_1&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
 &lt;&#x2F;ul&gt;
 &lt;p&gt;Inspired by Tris Oaten&#x27;s recent video &lt;a href=&quot;https:&#x2F;&#x2F;youtu.be&#x2F;2hXNd6x9sZs&quot;&gt;How to Learn Rust&lt;&#x2F;a&gt; on his excellent YouTube channel &lt;a href=&quot;https:&#x2F;&#x2F;www.youtube.com&#x2F;@NoBoilerplate&quot;&gt;No Boilerplate&lt;&#x2F;a&gt;, I&#x27;ve decided to refocusa my journey with the Rust programming language. In hopes of effectively learning Rust, I&#x27;ll be following the holy trinity of Rust learning resources as recommended by Tris:&lt;&#x2F;p&gt;
 &lt;ul&gt;
