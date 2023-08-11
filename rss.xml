@@ -7,7 +7,523 @@
       <generator>Zola</generator>
       <language>en</language>
       <atom:link href="https://desmodrone.github.io/rss.xml" rel="self" type="application/rss+xml"/>
-      <lastBuildDate>Tue, 08 Aug 2023 00:00:00 +0000</lastBuildDate>
+      <lastBuildDate>Fri, 11 Aug 2023 00:00:00 +0000</lastBuildDate>
+      <item>
+          <title>15 Rustlings Errors Part 2</title>
+          <pubDate>Fri, 11 Aug 2023 00:00:00 +0000</pubDate>
+          <author>Unknown</author>
+          <link>https://desmodrone.github.io/posts/15-rustlings-errors2/</link>
+          <guid>https://desmodrone.github.io/posts/15-rustlings-errors2/</guid>
+          <description>&lt;h1 id=&quot;error-handling-part-2&quot;&gt;Error Handling Part 2&lt;&#x2F;h1&gt;
+&lt;p&gt;We&#x27;re back with the 2nd part of our Error handling post we&#x27;ll cover exercises 3-6. If you haven&#x27;t read &lt;a href=&quot;https:&#x2F;&#x2F;desmodrone.github.io&#x2F;posts&#x2F;15-rustlings-errors1&#x2F;&quot;&gt;Error Handling Part 1&lt;&#x2F;a&gt; it&#x27;s a good idea to go through that first before moving on to these.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;this-is-from-the-rustlings-readme&quot;&gt;This is from the Rustlings README:&lt;&#x2F;h3&gt;
+&lt;p&gt;Most errors aren’t serious enough to require the program to stop entirely.
+Sometimes, when a function fails, it’s for a reason that you can easily interpret and respond to.
+For example, if you try to open a file and that operation fails because the file doesn’t exist, you might want to create the file instead of terminating the process.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;further-information&quot;&gt;Further information&lt;&#x2F;h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;doc.rust-lang.org&#x2F;book&#x2F;ch09-02-recoverable-errors-with-result.html&quot;&gt;Error Handling&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;doc.rust-lang.org&#x2F;book&#x2F;ch10-01-syntax.html&quot;&gt;Generics&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;doc.rust-lang.org&#x2F;rust-by-example&#x2F;error&#x2F;result.html&quot;&gt;Result&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;doc.rust-lang.org&#x2F;rust-by-example&#x2F;error&#x2F;multiple_error_types&#x2F;boxing_errors.html&quot;&gt;Boxing errors&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h2 id=&quot;errors4-rs&quot;&gt;Errors4.rs&lt;&#x2F;h2&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;&amp;#x2F;&amp;#x2F; errors4.rs
+&amp;#x2F;&amp;#x2F; Execute `rustlings hint errors4` or use the `hint` watch subcommand for a hint.
+
+&amp;#x2F;&amp;#x2F; I AM NOT DONE
+
+#[derive(PartialEq, Debug)]
+struct PositiveNonzeroInteger(u64);
+
+#[derive(PartialEq, Debug)]
+enum CreationError {
+    Negative,
+    Zero,
+}
+
+impl PositiveNonzeroInteger {
+    fn new(value: i64) -&amp;gt; Result&amp;lt;PositiveNonzeroInteger, CreationError&amp;gt; {
+        &amp;#x2F;&amp;#x2F; Hmm...? Why is this only returning an Ok value?
+        Ok(PositiveNonzeroInteger(value as u64))
+    }
+}
+
+#[test]
+fn test_creation() {
+    assert!(PositiveNonzeroInteger::new(10).is_ok());
+    assert_eq!(
+        Err(CreationError::Negative),
+        PositiveNonzeroInteger::new(-10)
+    );
+    assert_eq!(Err(CreationError::Zero), PositiveNonzeroInteger::new(0));
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;We don&#x27;t get much for hints and description, other than a comment that asks &lt;code&gt;Hmm...? Why is this only reguring an Ok value?&lt;&#x2F;code&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;Let&#x27;s look at our Rust compiler errors and see if we get any additional hints on how to fix this.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;errors4-rs-errors&quot;&gt;Errors4.rs errors&lt;&#x2F;h2&gt;
+&lt;pre&gt;&lt;code&gt;⚠️  Testing of exercises&amp;#x2F;error_handling&amp;#x2F;errors4.rs failed! Please try again. Here&amp;#x27;s the output:
+
+running 1 test
+test test_creation ... FAILED
+
+successes:
+
+successes:
+
+failures:
+
+---- test_creation stdout ----
+thread &amp;#x27;test_creation&amp;#x27; panicked at &amp;#x27;assertion failed: `(left == right)`
+  left: `Err(Negative)`,
+ right: `Ok(PositiveNonzeroInteger(18446744073709551606))`&amp;#x27;, exercises&amp;#x2F;error_handling&amp;#x2F;errors4.rs:25:5
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    test_creation
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;It looks like our code is compiling but panicking and we see that our test is failing. If we look at the actual test we see that &lt;code&gt;(left == right)&lt;&#x2F;code&gt; failed we&#x27;re getting different values. The test is expecting &lt;code&gt;Err(Negative)&lt;&#x2F;code&gt; but instead it&#x27;s seeing &lt;code&gt;Ok(PositiveNonzero...))&lt;&#x2F;code&gt;&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;errors4-rs-solution&quot;&gt;Errors4.rs solution&lt;&#x2F;h2&gt;
+&lt;p&gt;It looks like we have to handle our error&#x27;s, as nothing is being done to take care of them in our code right now. Maybe an &lt;code&gt;if&lt;&#x2F;code&gt; or maybe a &lt;code&gt;match&lt;&#x2F;code&gt; statement will do the trick. Let&#x27;s try.
+Let&#x27;s use a match statement first. If we look at the code and tests, we know that there is 3 different scenarios we have to account for:&lt;&#x2F;p&gt;
+&lt;ol&gt;
+&lt;li&gt;Negative &lt;code&gt;Err&lt;&#x2F;code&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;Zero &lt;code&gt;Err&lt;&#x2F;code&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;Positive &lt;code&gt;Ok&lt;&#x2F;code&gt;&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;p&gt;so let&#x27;s us &lt;code&gt;match&lt;&#x2F;code&gt; to handle each one of these cases.&lt;&#x2F;p&gt;
+&lt;ol&gt;
+&lt;li&gt;For &lt;code&gt;Negative&lt;&#x2F;code&gt; we create a simple &lt;code&gt;if&lt;&#x2F;code&gt; statement, saying that if our &lt;code&gt;v(alue)&lt;&#x2F;code&gt; is less than &lt;code&gt;0&lt;&#x2F;code&gt; we return an error&lt;&#x2F;li&gt;
+&lt;li&gt;For &lt;code&gt;Zero&lt;&#x2F;code&gt; we simply have to match an actual &lt;code&gt;0&lt;&#x2F;code&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;For positive, it can be anything positive meaning we can use the &lt;code&gt;_&lt;&#x2F;code&gt; wildcard underscore character&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;match value {
+	v if v &amp;lt; 0 =&amp;gt; Err(CreationError::Negative), &amp;#x2F;&amp;#x2F; v represents `value` here
+	0 =&amp;gt; Err(CreationError::Zero),
+	_ =&amp;gt; Ok(PositiveNonzeroInteger(value as u64)),
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;It would look like this in the context of our code.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;#[derive(PartialEq, Debug)]
+struct PositiveNonzeroInteger(u64);
+
+#[derive(PartialEq, Debug)]
+enum CreationError {
+    Negative,
+    Zero,
+}
+
+impl PositiveNonzeroInteger {
+    fn new(value: i64) -&amp;gt; Result&amp;lt;PositiveNonzeroInteger, CreationError&amp;gt; {
+        match value {
+            v if v &amp;lt; 0 =&amp;gt; Err(CreationError::Negative),
+            0 =&amp;gt; Err(CreationError::Zero),
+            _ =&amp;gt; Ok(PositiveNonzeroInteger(value as u64)),
+        }
+    }
+}
+
+#[test]
+fn test_creation() {
+    assert!(PositiveNonzeroInteger::new(10).is_ok());
+    assert_eq!(
+        Err(CreationError::Negative),
+        PositiveNonzeroInteger::new(-10)
+    );
+    assert_eq!(Err(CreationError::Zero), PositiveNonzeroInteger::new(0));
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;And this compiles 🎉 but can we use &lt;code&gt;if&lt;&#x2F;code&gt; in this as well?&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;what-about-if&quot;&gt;What about &lt;code&gt;if&lt;&#x2F;code&gt;&lt;&#x2F;h3&gt;
+&lt;p&gt;Let&#x27;s take a stab at it.
+So, again we have to deal with the 3 different scenarios here&lt;&#x2F;p&gt;
+&lt;ol&gt;
+&lt;li&gt;if our value is less than zero&lt;&#x2F;li&gt;
+&lt;li&gt;if our value is equal to zero&lt;&#x2F;li&gt;
+&lt;li&gt;if it&#x27;s positive&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;p&gt;So writing that looks  like this:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt; if value &amp;lt; 0 {
+            Err(CreationError::Negative)
+        } else if value == 0 {
+            Err(CreationError::Zero)
+        } else {
+            Ok(PositiveNonzeroInteger(value as u64))
+        }
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Here&#x27;s what it looks like in context of the full problem:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;#[derive(PartialEq, Debug)]
+struct PositiveNonzeroInteger(u64);
+
+#[derive(PartialEq, Debug)]
+enum CreationError {
+    Negative,
+    Zero,
+}
+
+impl PositiveNonzeroInteger {
+    fn new(value: i64) -&amp;gt; Result&amp;lt;PositiveNonzeroInteger, CreationError&amp;gt; {
+        if value &amp;lt; 0 {
+            Err(CreationError::Negative)
+        } else if value == 0 {
+            Err(CreationError::Zero)
+        } else {
+            Ok(PositiveNonzeroInteger(value as u64))
+        }
+    }
+}
+
+#[test]
+fn test_creation() {
+    assert!(PositiveNonzeroInteger::new(10).is_ok());
+    assert_eq!(
+        Err(CreationError::Negative),
+        PositiveNonzeroInteger::new(-10)
+    );
+    assert_eq!(Err(CreationError::Zero), PositiveNonzeroInteger::new(0));
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;and with that we have solved &lt;code&gt;errors4.rs&lt;&#x2F;code&gt; we have our code compiling:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;✅ Successfully tested exercises&amp;#x2F;error_handling&amp;#x2F;errors4.rs!
+
+🎉 🎉  The code is compiling, and the tests pass! 🎉 🎉
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Alright. On to &lt;code&gt;Errors5.rs&lt;&#x2F;code&gt;&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;errors5-rs&quot;&gt;Errors5.rs&lt;&#x2F;h2&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;&amp;#x2F;&amp;#x2F; errors5.rs
+
+&amp;#x2F;&amp;#x2F; This program uses an altered version of the code from errors4.
+
+&amp;#x2F;&amp;#x2F; This exercise uses some concepts that we won&amp;#x27;t get to until later in the course, like `Box` and the
+&amp;#x2F;&amp;#x2F; `From` trait. It&amp;#x27;s not important to understand them in detail right now, but you can read ahead if you like.
+&amp;#x2F;&amp;#x2F; For now, think of the `Box&amp;lt;dyn ???&amp;gt;` type as an &amp;quot;I want anything that does ???&amp;quot; type, which, given
+&amp;#x2F;&amp;#x2F; Rust&amp;#x27;s usual standards for runtime safety, should strike you as somewhat lenient!
+
+&amp;#x2F;&amp;#x2F; In short, this particular use case for boxes is for when you want to own a value and you care only that it is a
+&amp;#x2F;&amp;#x2F; type which implements a particular trait. To do so, The Box is declared as of type Box&amp;lt;dyn Trait&amp;gt; where Trait is the trait
+&amp;#x2F;&amp;#x2F; the compiler looks for on any value used in that context. For this exercise, that context is the potential errors
+&amp;#x2F;&amp;#x2F; which can be returned in a Result.
+
+&amp;#x2F;&amp;#x2F; What can we use to describe both errors? In other words, is there a trait which both errors implement?
+
+&amp;#x2F;&amp;#x2F; Execute `rustlings hint errors5` or use the `hint` watch subcommand for a hint.
+
+&amp;#x2F;&amp;#x2F; I AM NOT DONE
+
+use std::error;
+use std::fmt;
+use std::num::ParseIntError;
+
+&amp;#x2F;&amp;#x2F; TODO: update the return type of `main()` to make this compile.
+fn main() -&amp;gt; Result&amp;lt;(), Box&amp;lt;dyn ???&amp;gt;&amp;gt; {
+    let pretend_user_input = &amp;quot;42&amp;quot;;
+    let x: i64 = pretend_user_input.parse()?;
+    println!(&amp;quot;output={:?}&amp;quot;, PositiveNonzeroInteger::new(x)?);
+    Ok(())
+}
+
+&amp;#x2F;&amp;#x2F; Don&amp;#x27;t change anything below this line.
+
+#[derive(PartialEq, Debug)]
+struct PositiveNonzeroInteger(u64);
+
+#[derive(PartialEq, Debug)]
+enum CreationError {
+    Negative,
+    Zero,
+}
+
+impl PositiveNonzeroInteger {
+    fn new(value: i64) -&amp;gt; Result&amp;lt;PositiveNonzeroInteger, CreationError&amp;gt; {
+        match value {
+            x if x &amp;lt; 0 =&amp;gt; Err(CreationError::Negative),
+            x if x == 0 =&amp;gt; Err(CreationError::Zero),
+            x =&amp;gt; Ok(PositiveNonzeroInteger(x as u64)),
+        }
+    }
+}
+
+&amp;#x2F;&amp;#x2F; This is required so that `CreationError` can implement `error::Error`.
+impl fmt::Display for CreationError {
+    fn fmt(&amp;amp;self, f: &amp;amp;mut fmt::Formatter) -&amp;gt; fmt::Result {
+        let description = match *self {
+            CreationError::Negative =&amp;gt; &amp;quot;number is negative&amp;quot;,
+            CreationError::Zero =&amp;gt; &amp;quot;number is zero&amp;quot;,
+        };
+        f.write_str(description)
+    }
+}
+
+impl error::Error for CreationError {}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;This is an interesting one as it has a lot of comments above the code but it mainly provides hints about what &lt;code&gt;Box&lt;&#x2F;code&gt; can do. Our task is to determine the correct return type in the &lt;code&gt;Rusult&amp;lt;(), Box&amp;lt;dyn ???&amp;gt;&amp;gt;&lt;&#x2F;code&gt; part of the code. The easy thought is that it has to return an &lt;code&gt;Error&lt;&#x2F;code&gt; but is it that simple? Let&#x27;s try, but first let&#x27;s take a look at the errors.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;errors5-rs-errors&quot;&gt;Errors5.rs errors&lt;&#x2F;h2&gt;
+&lt;pre&gt;&lt;code&gt;⚠️  Compiling of exercises&amp;#x2F;error_handling&amp;#x2F;errors5.rs failed! Please try again. Here&amp;#x27;s the output:
+error: expected identifier, found `&amp;gt;&amp;gt;`
+  --&amp;gt; exercises&amp;#x2F;error_handling&amp;#x2F;errors5.rs:26:36
+   |
+26 | fn main() -&amp;gt; Result&amp;lt;(), Box&amp;lt;dyn ???&amp;gt;&amp;gt; {
+   |                                    ^^ expected identifier
+
+error: aborting due to previous error
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Nothing to specific here but we see where we are missing our code and it&#x27;s expecting an identifier.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;errors5-rs-solution&quot;&gt;Errors5.rs solution&lt;&#x2F;h2&gt;
+&lt;p&gt;So let&#x27;s try simply entering &lt;code&gt;Error&lt;&#x2F;code&gt; because that&#x27;s what we should be expecting to see correct?&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;&amp;#x2F;&amp;#x2F; TODO: update the return type of `main()` to make this compile.
+fn main() -&amp;gt; Result&amp;lt;(), Box&amp;lt;dyn ???&amp;gt;&amp;gt; {
+    let pretend_user_input = &amp;quot;42&amp;quot;;
+    let x: i64 = pretend_user_input.parse()?;
+    println!(&amp;quot;output={:?}&amp;quot;, PositiveNonzeroInteger::new(x)?);
+    Ok(())
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Well, we still get some errors but we have some help.&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;⚠️  Compiling of exercises&amp;#x2F;error_handling&amp;#x2F;errors5.rs failed! Please try again. Here&amp;#x27;s the output:
+error[E0405]: cannot find trait `Error` in this scope
+  --&amp;gt; exercises&amp;#x2F;error_handling&amp;#x2F;errors5.rs:26:33
+   |
+26 | fn main() -&amp;gt; Result&amp;lt;(), Box&amp;lt;dyn Error&amp;gt;&amp;gt; {
+   |                                 ^^^^^ not found in this scope
+   |
+help: consider importing one of these items
+   |
+21 + use core::error::Error;
+   |
+21 + use crate::error::Error;
+   |
+21 + use std::error::Error;
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;So the compiler is telling us that that &lt;code&gt;Error&lt;&#x2F;code&gt; is not found in scope and gives us a bunch of different options to use in our &lt;code&gt;Box&amp;lt;dyn &amp;gt;&lt;&#x2F;code&gt;. But before we implement one of these let&#x27;s continue looking at our code. I had missed this comment earlier:&lt;code&gt;&#x2F;&#x2F; This is required so that `CreationError` can implement `error::Error`&lt;&#x2F;code&gt;. It looks like we might have a hint here too. This comment is telling us that this function is being created to allow us to use &lt;code&gt;error::Error&lt;&#x2F;code&gt; for &lt;code&gt;CreationError&lt;&#x2F;code&gt; which means that we could use &lt;code&gt;error::Error&lt;&#x2F;code&gt; as our error handler in the return type right? Let&#x27;s try.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;&amp;#x2F;&amp;#x2F; TODO: update the return type of `main()` to make this compile.
+fn main() -&amp;gt; Result&amp;lt;(), Box&amp;lt;dyn error::Error&amp;gt;&amp;gt; {
+    let pretend_user_input = &amp;quot;42&amp;quot;;
+    let x: i64 = pretend_user_input.parse()?;
+    println!(&amp;quot;output={:?}&amp;quot;, PositiveNonzeroInteger::new(x)?);
+    Ok(())
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;It compiles! This is our output:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;✅ Successfully ran exercises&amp;#x2F;error_handling&amp;#x2F;errors5.rs!
+
+🎉 🎉  The code is compiling! 🎉 🎉
+
+Output:
+====================
+output=PositiveNonzeroInteger(42)
+
+====================
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h2 id=&quot;errors6-rs&quot;&gt;Errors6.rs&lt;&#x2F;h2&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;&amp;#x2F;&amp;#x2F; errors6.rs
+
+&amp;#x2F;&amp;#x2F; Using catch-all error types like `Box&amp;lt;dyn error::Error&amp;gt;` isn&amp;#x27;t recommended
+&amp;#x2F;&amp;#x2F; for library code, where callers might want to make decisions based on the
+&amp;#x2F;&amp;#x2F; error content, instead of printing it out or propagating it further. Here,
+&amp;#x2F;&amp;#x2F; we define a custom error type to make it possible for callers to decide
+&amp;#x2F;&amp;#x2F; what to do next when our function returns an error.
+
+&amp;#x2F;&amp;#x2F; Execute `rustlings hint errors6` or use the `hint` watch subcommand for a hint.
+
+&amp;#x2F;&amp;#x2F; I AM NOT DONE
+
+use std::num::ParseIntError;
+
+&amp;#x2F;&amp;#x2F; This is a custom error type that we will be using in `parse_pos_nonzero()`.
+#[derive(PartialEq, Debug)]
+enum ParsePosNonzeroError {
+    Creation(CreationError),
+    ParseInt(ParseIntError),
+}
+
+impl ParsePosNonzeroError {
+    fn from_creation(err: CreationError) -&amp;gt; ParsePosNonzeroError {
+        ParsePosNonzeroError::Creation(err)
+    }
+    &amp;#x2F;&amp;#x2F; TODO: add another error conversion function here.
+    &amp;#x2F;&amp;#x2F; fn from_parseint...
+
+}
+
+fn parse_pos_nonzero(s: &amp;amp;str) -&amp;gt; Result&amp;lt;PositiveNonzeroInteger, ParsePosNonzeroError&amp;gt; {
+    &amp;#x2F;&amp;#x2F; TODO: change this to return an appropriate error instead of panicking
+    &amp;#x2F;&amp;#x2F; when `parse()` returns an error.
+    let x: i64 = s.parse().unwrap();
+    PositiveNonzeroInteger::new(x).map_err(ParsePosNonzeroError::from_creation)
+}
+
+&amp;#x2F;&amp;#x2F; Don&amp;#x27;t change anything below this line.
+
+#[derive(PartialEq, Debug)]
+struct PositiveNonzeroInteger(u64);
+
+#[derive(PartialEq, Debug)]
+enum CreationError {
+    Negative,
+    Zero,
+}
+
+impl PositiveNonzeroInteger {
+    fn new(value: i64) -&amp;gt; Result&amp;lt;PositiveNonzeroInteger, CreationError&amp;gt; {
+        match value {
+            x if x &amp;lt; 0 =&amp;gt; Err(CreationError::Negative),
+            x if x == 0 =&amp;gt; Err(CreationError::Zero),
+            x =&amp;gt; Ok(PositiveNonzeroInteger(x as u64)),
+        }
+    }
+}
+
+#[cfg(test)]
+mod test {
+    use super::*;
+
+    #[test]
+    fn test_parse_error() {
+        &amp;#x2F;&amp;#x2F; We can&amp;#x27;t construct a ParseIntError, so we have to pattern match.
+        assert!(matches!(
+            parse_pos_nonzero(&amp;quot;not a number&amp;quot;),
+            Err(ParsePosNonzeroError::ParseInt(_))
+        ));
+    }
+
+    #[test]
+    fn test_negative() {
+        assert_eq!(
+            parse_pos_nonzero(&amp;quot;-555&amp;quot;),
+            Err(ParsePosNonzeroError::Creation(CreationError::Negative))
+        );
+    }
+
+    #[test]
+    fn test_zero() {
+        assert_eq!(
+            parse_pos_nonzero(&amp;quot;0&amp;quot;),
+            Err(ParsePosNonzeroError::Creation(CreationError::Zero))
+        );
+    }
+
+    #[test]
+    fn test_positive() {
+        let x = PositiveNonzeroInteger::new(42);
+        assert!(x.is_ok());
+        assert_eq!(parse_pos_nonzero(&amp;quot;42&amp;quot;), Ok(x.unwrap()));
+    }
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;In this exercise we are defining a custom error type and we have 3 clear instructions.&lt;&#x2F;p&gt;
+&lt;ol&gt;
+&lt;li&gt;We have to add an error conversion function&lt;&#x2F;li&gt;
+&lt;li&gt;Change the &lt;code&gt;parse_pos_nonzero&lt;&#x2F;code&gt; function to allow proper error handling&lt;&#x2F;li&gt;
+&lt;li&gt;Don&#x27;t change anything below code line 38 or after the &lt;code&gt;parse_pos_nonzero&lt;&#x2F;code&gt; function ends.&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;h2 id=&quot;errors6-rs-errors&quot;&gt;Errors6.rs errors&lt;&#x2F;h2&gt;
+&lt;pre&gt;&lt;code&gt;⚠️  Testing of exercises&amp;#x2F;error_handling&amp;#x2F;errors6.rs failed! Please try again. Here&amp;#x27;s the output:
+
+running 4 tests
+test test::test_negative ... ok
+test test::test_positive ... ok
+test test::test_zero ... ok
+test test::test_parse_error ... FAILED
+
+successes:
+
+successes:
+    test::test_negative
+    test::test_positive
+    test::test_zero
+
+failures:
+
+---- test::test_parse_error stdout ----
+thread &amp;#x27;test::test_parse_error&amp;#x27; panicked at &amp;#x27;called `Result::unwrap()` on an `Err` value: ParseIntError { kind: InvalidDigit }&amp;#x27;, exercises&amp;#x2F;error_handling&amp;#x2F;errors6.rs:33:28
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    test::test_parse_error
+
+test result: FAILED. 3 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Our errors show us we have 3 passing test but the &lt;code&gt;test_parse_error&lt;&#x2F;code&gt; test is failing.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;errors6-rs-solution&quot;&gt;Errors6.rs solution&lt;&#x2F;h2&gt;
+&lt;p&gt;Let&#x27;s first start by creating that 2nd function.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;
+use std::num::ParseIntError;
+
+&amp;#x2F;&amp;#x2F; This is a custom error type that we will be using in `parse_pos_nonzero()`.
+#[derive(PartialEq, Debug)]
+enum ParsePosNonzeroError {
+    Creation(CreationError),
+    ParseInt(ParseIntError),
+}
+
+impl ParsePosNonzeroError {
+    fn from_creation(err: CreationError) -&amp;gt; ParsePosNonzeroError {
+        ParsePosNonzeroError::Creation(err)
+    }
+    fn from_parseint(err: ParseIntError) -&amp;gt; ParsePosNonzeroError {
+        ParsePosNonzeroError::ParseInt(err)
+    }
+
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Here i&#x27;m creating a new function using the same structure as the &lt;code&gt;from_creation&lt;&#x2F;code&gt; and this should help us finish our custom error types. When we save though, nothing changes, we still get 3 passing tests, and one fail.&lt;&#x2F;p&gt;
+&lt;p&gt;So let&#x27;s move on to the next &lt;code&gt;todo&lt;&#x2F;code&gt; on our list.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;fn parse_pos_nonzero(s: &amp;amp;str) -&amp;gt; Result&amp;lt;PositiveNonzeroInteger, ParsePosNonzeroError&amp;gt; {
+    &amp;#x2F;&amp;#x2F; TODO: change this to return an appropriate error instead of panicking
+    &amp;#x2F;&amp;#x2F; when `parse()` returns an error.
+    let x: i64 = s.parse().unwrap();
+    PositiveNonzeroInteger::new(x).map_err(ParsePosNonzeroError::from_creation)
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h3 id=&quot;parse-error-approach&quot;&gt;Parse Error Approach&lt;&#x2F;h3&gt;
+&lt;p&gt;So we know that we have to remove the &lt;code&gt;.unwrap()&lt;&#x2F;code&gt; method because this is what makes the code panic, and if we look at the hints we get this:&lt;&#x2F;p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Below the line that TODO asks you to change, there is an example of using the &lt;code&gt;map_err()&lt;&#x2F;code&gt; method on a &lt;code&gt;Result&lt;&#x2F;code&gt; to transform one type of error into another. Try using something similar on the &lt;code&gt;Result&lt;&#x2F;code&gt; from &lt;code&gt;parse()&lt;&#x2F;code&gt;. You might use the &lt;code&gt;?&lt;&#x2F;code&gt; operator to return early from the function, or you might use a &lt;code&gt;match&lt;&#x2F;code&gt; expression, or maybe there&#x27;s another way! You can create another function inside &lt;code&gt;impl ParsePosNonzeroError&lt;&#x2F;code&gt; to use with &lt;code&gt;map_err()&lt;&#x2F;code&gt;. Read more about &lt;code&gt;map_err()&lt;&#x2F;code&gt; in the &lt;code&gt;std::result&lt;&#x2F;code&gt; documentation: https:&#x2F;&#x2F;doc.rust-lang.org&#x2F;std&#x2F;result&#x2F;enum.Result.html#method.map_err&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;p&gt;So let&#x27;s try this approach.&lt;&#x2F;p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;We attempt to parse &lt;code&gt;s&lt;&#x2F;code&gt; into an &lt;code&gt;i64&lt;&#x2F;code&gt;. If this fails, we convert the error and return early because of the &lt;code&gt;?&lt;&#x2F;code&gt; operator.&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;
+&lt;p&gt;If parsing succeeds, we then attempt to create a &lt;code&gt;PositiveNonzeroInteger&lt;&#x2F;code&gt;. If this fails, we convert the error using &lt;code&gt;map_err()&lt;&#x2F;code&gt;, but since there&#x27;s no &lt;code&gt;?&lt;&#x2F;code&gt; operator here, we don&#x27;t return early (because this is the last line of the function and the resulting &lt;code&gt;Result&lt;&#x2F;code&gt; is directly returned).&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;fn parse_pos_nonzero(s: &amp;amp;str) -&amp;gt; Result&amp;lt;PositiveNonzeroInteger, ParsePosNonzeroError&amp;gt; {
+    &amp;#x2F;&amp;#x2F; Try parsing the string into an i64.
+    let x = s.parse::&amp;lt;i64&amp;gt;().map_err(ParsePosNonzeroError::from_parseint)?;
+
+    &amp;#x2F;&amp;#x2F; Create a PositiveNonzeroInteger, and if this fails, transform the error.
+    PositiveNonzeroInteger::new(x).map_err(ParsePosNonzeroError::from_creation)
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h3 id=&quot;using-match&quot;&gt;Using Match&lt;&#x2F;h3&gt;
+&lt;p&gt;We can also use matching to get our result, using something called a &lt;code&gt;turbofish&lt;&#x2F;code&gt; (unofficially) the full scoop on this this should be later, but for now let&#x27;s say this &lt;code&gt;::&amp;lt;&amp;gt;&lt;&#x2F;code&gt; or &lt;code&gt;turbofish&lt;&#x2F;code&gt; (see it kinda looks like a fish) is used to help the compiler understand the exact type you intend when type inference might be insufficient or ambiguous.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;fn parse_pos_nonzero(s: &amp;amp;str) -&amp;gt; Result&amp;lt;PositiveNonzeroInteger, ParsePosNonzeroError&amp;gt; {
+    &amp;#x2F;&amp;#x2F; TODO: change this to return an appropriate error instead of panicking
+    &amp;#x2F;&amp;#x2F; when `parse()` returns an error.
+    let x = s.parse::&amp;lt;i64&amp;gt;();
+
+    match x {
+        Ok(val) =&amp;gt; PositiveNonzeroInteger::new(val).map_err(ParsePosNonzeroError::from_creation),
+        Err(e) =&amp;gt; Err(ParsePosNonzeroError::from_parseint(e)),
+    }
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h2 id=&quot;conclusion&quot;&gt;Conclusion&lt;&#x2F;h2&gt;
+&lt;p&gt;In this second part of our exploration into Rust error handling, we delved into exercises 3 to 6 to understand and tackle various aspects of working with errors in Rust programming. We built upon the concepts introduced in the first part and extended our knowledge to handle more intricate scenarios.&lt;&#x2F;p&gt;
+&lt;p&gt;We began with &lt;strong&gt;Errors4.rs&lt;&#x2F;strong&gt;, where we encountered a situation involving custom error types. By using the &lt;code&gt;match&lt;&#x2F;code&gt; expression, we effectively handled different error cases and returned appropriate results based on the input. This exercise illuminated the power of pattern matching in Rust&#x27;s error handling mechanism.&lt;&#x2F;p&gt;
+&lt;p&gt;Moving on to &lt;strong&gt;Errors5.rs&lt;&#x2F;strong&gt;, we tackled a case involving the &lt;code&gt;Box&amp;lt;dyn Error&amp;gt;&lt;&#x2F;code&gt; type. By correctly choosing the appropriate return type for the &lt;code&gt;main()&lt;&#x2F;code&gt; function, we demonstrated how Rust&#x27;s error system allows for flexibility in dealing with various error types in a generic manner. This exercise reinforced the importance of choosing the right error type depending on the context of your program.&lt;&#x2F;p&gt;
+&lt;p&gt;Finally, in &lt;strong&gt;Errors6.rs&lt;&#x2F;strong&gt;, we showcased our ability to create custom error types and handle complex error propagation scenarios. We introduced a custom error type &lt;code&gt;ParsePosNonzeroError&lt;&#x2F;code&gt; and skillfully converted different error types into this unified form using methods like &lt;code&gt;map_err()&lt;&#x2F;code&gt;. This exercise highlighted Rust&#x27;s expressive error handling capabilities and provided insight into creating ergonomic APIs that clearly communicate errors to the caller.&lt;&#x2F;p&gt;
+&lt;p&gt;Throughout this journey, we harnessed Rust&#x27;s powerful error handling constructs, including &lt;code&gt;Result&lt;&#x2F;code&gt;, &lt;code&gt;match&lt;&#x2F;code&gt; expressions, &lt;code&gt;?&lt;&#x2F;code&gt; operator, &lt;code&gt;map_err()&lt;&#x2F;code&gt;, and custom error types. These exercises reinforced the idea that errors in Rust are not just exceptions but a fundamental part of the language that guides developers in creating robust and reliable software.&lt;&#x2F;p&gt;
+&lt;p&gt;By mastering error handling in Rust, we equip ourselves with the tools to write code that elegantly handles failures and provides meaningful feedback to users. As we continue our Rust learning journey, these skills will prove invaluable in building resilient and dependable applications.&lt;&#x2F;p&gt;
+&lt;p&gt;Continue to explore the rich Rust ecosystem, experiment with error handling in different scenarios, and always remember that Rust&#x27;s error handling philosophy encourages us to embrace errors, not fear them.&lt;&#x2F;p&gt;
+</description>
+      </item>
       <item>
           <title>14 Rustlings Errors Part 1</title>
           <pubDate>Tue, 08 Aug 2023 00:00:00 +0000</pubDate>
