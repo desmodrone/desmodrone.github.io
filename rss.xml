@@ -7,7 +7,153 @@
       <generator>Zola</generator>
       <language>en</language>
       <atom:link href="https://desmodrone.github.io/rss.xml" rel="self" type="application/rss+xml"/>
-      <lastBuildDate>Fri, 11 Aug 2023 00:00:00 +0000</lastBuildDate>
+      <lastBuildDate>Wed, 16 Aug 2023 00:00:00 +0000</lastBuildDate>
+      <item>
+          <title>16 Rustlings Generics</title>
+          <pubDate>Wed, 16 Aug 2023 00:00:00 +0000</pubDate>
+          <author>Unknown</author>
+          <link>https://desmodrone.github.io/posts/16-rustlings-generics/</link>
+          <guid>https://desmodrone.github.io/posts/16-rustlings-generics/</guid>
+          <description>&lt;h1 id=&quot;generics&quot;&gt;Generics&lt;&#x2F;h1&gt;
+&lt;h3 id=&quot;from-the-readme&quot;&gt;From the README&lt;&#x2F;h3&gt;
+&lt;p&gt;Generics is the topic of generalizing types and functionalities to broader cases.
+This is extremely useful for reducing code duplication in many ways, but can call for rather involving syntax.
+Namely, being generic requires taking great care to specify over which types a generic type is actually considered valid.
+The simplest and most common use of generics is for type parameters.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;further-information&quot;&gt;Further information&lt;&#x2F;h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;doc.rust-lang.org&#x2F;stable&#x2F;book&#x2F;ch10-01-syntax.html&quot;&gt;Generic Data Types&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;doc.rust-lang.org&#x2F;rust-by-example&#x2F;generics&#x2F;bounds.html&quot;&gt;Bounds&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h2 id=&quot;generics1-rs&quot;&gt;Generics1.rs&lt;&#x2F;h2&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;&amp;#x2F;&amp;#x2F; This shopping list program isn&amp;#x27;t compiling!
+&amp;#x2F;&amp;#x2F; Use your knowledge of generics to fix it.
+
+&amp;#x2F;&amp;#x2F; Execute `rustlings hint generics1` or use the `hint` watch subcommand for a hint.
+
+&amp;#x2F;&amp;#x2F; I AM NOT DONE
+
+fn main() {
+    let mut shopping_list: Vec&amp;lt;?&amp;gt; = Vec::new();
+    shopping_list.push(&amp;quot;milk&amp;quot;);
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Our instructions tells to make this code compile using generics. We clearly have a question mark out of place, so what do we put there? Let&#x27;s first look at our errors to see if we get any additional information.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;generics1-rs-errors&quot;&gt;Generics1.rs errors&lt;&#x2F;h2&gt;
+&lt;pre&gt;&lt;code&gt;⚠️  Compiling of exercises&amp;#x2F;generics&amp;#x2F;generics1.rs failed! Please try again. Here&amp;#x27;s the output:
+error: expected identifier, found `&amp;gt;`
+ --&amp;gt; exercises&amp;#x2F;generics&amp;#x2F;generics1.rs:9:33
+  |
+9 |     let mut shopping_list: Vec&amp;lt;?&amp;gt; = Vec::new();
+  |         -----------------       ^ expected identifier
+  |         |
+  |         while parsing the type for `mut shopping_list`
+
+error: aborting due to previous error
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Not much to see here. We see what we already knew. Alright so how do we solve this issue?&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;generics1-rs-solution&quot;&gt;Generics1.rs Solution&lt;&#x2F;h2&gt;
+&lt;p&gt;It seems like the easiest way to solve this exercise is to give the compiler what it&#x27;s asking for, the &lt;code&gt;identifier&lt;&#x2F;code&gt; which in this case should be a &lt;code&gt;&amp;amp;str&lt;&#x2F;code&gt; like this:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;fn main() {
+    let mut shopping_list: Vec&amp;lt;&amp;amp;str&amp;gt; = Vec::new();
+    shopping_list.push(&amp;quot;milk&amp;quot;);
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;By specifying &lt;code&gt;&amp;amp;str&lt;&#x2F;code&gt; as the type parameter for the &lt;code&gt;Vec&amp;lt;T&amp;gt;&lt;&#x2F;code&gt;, we are utilizing Rust&#x27;s generics mechanism. In Rust, &lt;code&gt;Vec&amp;lt;T&amp;gt;&lt;&#x2F;code&gt; is a generic type where &lt;code&gt;T&lt;&#x2F;code&gt; can be any type. In our solution, &lt;code&gt;T&lt;&#x2F;code&gt; is explicitly set to &lt;code&gt;&amp;amp;str&lt;&#x2F;code&gt;, making the type of the vector &lt;code&gt;Vec&amp;lt;&amp;amp;str&amp;gt;&lt;&#x2F;code&gt;. This demonstrates the power and flexibility of generics, allowing us to define a collection that can hold specific types of data, in this case, string slices.&lt;&#x2F;p&gt;
+&lt;p&gt;and with that we are compiling!&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;generics2-rs&quot;&gt;Generics2.rs&lt;&#x2F;h2&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;&amp;#x2F;&amp;#x2F; This powerful wrapper provides the ability to store a positive integer value.
+&amp;#x2F;&amp;#x2F; Rewrite it using generics so that it supports wrapping ANY type.
+
+&amp;#x2F;&amp;#x2F; Execute `rustlings hint generics2` or use the `hint` watch subcommand for a hint.
+
+&amp;#x2F;&amp;#x2F; I AM NOT DONE
+
+struct Wrapper {
+    value: u32,
+}
+
+impl Wrapper {
+    pub fn new(value: u32) -&amp;gt; Self {
+        Wrapper { value }
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn store_u32_in_wrapper() {
+        assert_eq!(Wrapper::new(42).value, 42);
+    }
+
+    #[test]
+    fn store_str_in_wrapper() {
+        assert_eq!(Wrapper::new(&amp;quot;Foo&amp;quot;).value, &amp;quot;Foo&amp;quot;);
+    }
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;In this exercise we are being asked to refactor this code to be able to handle any type instead of just positive integers.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;generics2-rs-errors&quot;&gt;Generics2.rs Errors&lt;&#x2F;h2&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;⚠️  Compiling of exercises&amp;#x2F;generics&amp;#x2F;generics2.rs failed! Please try again. Here&amp;#x27;s the output:
+error[E0308]: mismatched types
+  --&amp;gt; exercises&amp;#x2F;generics&amp;#x2F;generics2.rs:27:33
+   |
+27 |         assert_eq!(Wrapper::new(&amp;quot;Foo&amp;quot;).value, &amp;quot;Foo&amp;quot;);
+   |                    ------------ ^^^^^ expected `u32`, found `&amp;amp;str`
+   |                    |
+   |                    arguments to this function are incorrect
+   |
+note: associated function defined here
+  --&amp;gt; exercises&amp;#x2F;generics&amp;#x2F;generics2.rs:11:12
+   |
+11 |     pub fn new(value: u32) -&amp;gt; Self {
+   |            ^^^ ----------
+
+error[E0308]: mismatched types
+  --&amp;gt; exercises&amp;#x2F;generics&amp;#x2F;generics2.rs:27:9
+   |
+27 |         assert_eq!(Wrapper::new(&amp;quot;Foo&amp;quot;).value, &amp;quot;Foo&amp;quot;);
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |         |
+   |         expected `u32`, found `&amp;amp;str`
+   |         expected because this is `u32`
+   |
+   = note: this error originates in the macro `assert_eq` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error: aborting due to 2 previous errors
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;In the errors we see problems with our tests, because they are not handling generics so let&#x27;s fix that&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;generic2-rs-solution&quot;&gt;Generic2.rs Solution&lt;&#x2F;h2&gt;
+&lt;p&gt;Let&#x27;s start by updating our struct to handle any kind of value, not just a specific type.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;
+struct Wrapper&amp;lt;T&amp;gt; {
+    value: T,
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Here, instead of saying our &lt;code&gt;value&lt;&#x2F;code&gt; is a specific type (like &lt;code&gt;u32&lt;&#x2F;code&gt; or &lt;code&gt;String&lt;&#x2F;code&gt;), we&#x27;re using &lt;code&gt;T&lt;&#x2F;code&gt;. Think of &lt;code&gt;T&lt;&#x2F;code&gt; as a placeholder that says, &amp;quot;Hey, I can be any type you want!&amp;quot; It&#x27;s like when you have a toy where you can swap out the pieces; &lt;code&gt;T&lt;&#x2F;code&gt; is our swappable piece.&lt;&#x2F;p&gt;
+&lt;p&gt;By writing &lt;code&gt;&amp;lt;T&amp;gt;&lt;&#x2F;code&gt; next to &lt;code&gt;Wrapper&lt;&#x2F;code&gt;, we&#x27;re telling Rust, &amp;quot;This &lt;code&gt;Wrapper&lt;&#x2F;code&gt; can work with many types, and we&#x27;re going to call the type we&#x27;re working with &lt;code&gt;T&lt;&#x2F;code&gt;.&amp;quot; It&#x27;s a common thing you&#x27;ll see in Rust, and while &lt;code&gt;T&lt;&#x2F;code&gt; is just a convention (we could use other letters or names), it&#x27;s widely used to mean &amp;quot;some type.&amp;quot;&lt;&#x2F;p&gt;
+&lt;p&gt;With this change, our &lt;code&gt;Wrapper&lt;&#x2F;code&gt; is now flexible and can wrap around any type of value.&lt;&#x2F;p&gt;
+&lt;p&gt;Now let&#x27;s work on the &lt;code&gt;impl&lt;&#x2F;code&gt; block or the method which we have to also change to be able to handle generic values.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;impl&amp;lt;T&amp;gt; Wrapper&amp;lt;T&amp;gt; {
+    pub fn new(value: u32) -&amp;gt; Self {
+        Wrapper { value }
+    }
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Let&#x27;s start with the signature where we have to add the &lt;code&gt;&amp;lt;T&amp;gt;&lt;&#x2F;code&gt; to the &lt;code&gt;impl&amp;lt;T&amp;gt;&lt;&#x2F;code&gt; so we can use the generic value in &lt;code&gt;Wrapper&lt;&#x2F;code&gt;. Next we also have to add the &lt;code&gt;T&lt;&#x2F;code&gt; to &lt;code&gt;Wrapper&amp;lt;T&amp;gt;&lt;&#x2F;code&gt;  to make it match our struct.&lt;&#x2F;p&gt;
+&lt;p&gt;Finally we have to fix our &lt;code&gt;new()&lt;&#x2F;code&gt; function to pass in a generic type and not a &lt;code&gt;u32&lt;&#x2F;code&gt; as a &lt;code&gt;value:&lt;&#x2F;code&gt;&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;    pub fn new(value: T) -&amp;gt; Self {
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;This should be it, let&#x27;s save and see what happens.&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;🎉 🎉  The code is compiling! 🎉 🎉
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Yes, we&#x27;re compiling, we&#x27;ve successfully refactored from only accepting &lt;code&gt;u32&lt;&#x2F;code&gt;&#x27;s  to accepting any type.&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;conclusion&quot;&gt;Conclusion&lt;&#x2F;h1&gt;
+&lt;p&gt;The exercises on generics provide a hands-on introduction to one of Rust&#x27;s powerful features: the ability to write code that operates on a variety of types. Generics enable us to write flexible and reusable code without sacrificing performance. Through the exercises, we&#x27;ve seen how to refactor specific types into generic ones, allowing our code to handle a broader range of use cases.&lt;&#x2F;p&gt;
+</description>
+      </item>
       <item>
           <title>15 Rustlings Errors Part 2</title>
           <pubDate>Fri, 11 Aug 2023 00:00:00 +0000</pubDate>

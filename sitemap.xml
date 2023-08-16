@@ -78,6 +78,10 @@
         <lastmod>2023-08-11</lastmod>
     </url>
     <url>
+        <loc>https://desmodrone.github.io/posts/16-rustlings-generics/</loc>
+        <lastmod>2023-08-16</lastmod>
+    </url>
+    <url>
         <loc>https://desmodrone.github.io/posts/hello-rustlings/</loc>
         <lastmod>2023-04-11</lastmod>
     </url>
@@ -129,6 +133,9 @@
         <loc>https://desmodrone.github.io/tags/functions/</loc>
     </url>
     <url>
+        <loc>https://desmodrone.github.io/tags/generics/</loc>
+    </url>
+    <url>
         <loc>https://desmodrone.github.io/tags/hashmaps/</loc>
     </url>
     <url>
@@ -139,6 +146,9 @@
     </url>
     <url>
         <loc>https://desmodrone.github.io/tags/if/</loc>
+    </url>
+    <url>
+        <loc>https://desmodrone.github.io/tags/impl/</loc>
     </url>
     <url>
         <loc>https://desmodrone.github.io/tags/key/</loc>
