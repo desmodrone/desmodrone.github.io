@@ -7,7 +7,15 @@
       <generator>Zola</generator>
       <language>en</language>
       <atom:link href="https://desmodrone.github.io/rss.xml" rel="self" type="application/rss+xml"/>
-      <lastBuildDate>Wed, 16 Aug 2023 00:00:00 +0000</lastBuildDate>
+      <lastBuildDate>Fri, 25 Aug 2023 00:00:00 +0000</lastBuildDate>
+      <item>
+          <title>17 Rustlings Traits</title>
+          <pubDate>Fri, 25 Aug 2023 00:00:00 +0000</pubDate>
+          <author>Unknown</author>
+          <link>https://desmodrone.github.io/posts/17-rustlings-traits/</link>
+          <guid>https://desmodrone.github.io/posts/17-rustlings-traits/</guid>
+          <description></description>
+      </item>
       <item>
           <title>16 Rustlings Generics</title>
           <pubDate>Wed, 16 Aug 2023 00:00:00 +0000</pubDate>
