@@ -120,7 +120,7 @@
 		<small> - 
 <span class="reading-time" title="Estimated read time">
   
-  1 min read
+  11 min read
   
 </span>
 </small>
@@ -132,7 +132,592 @@
 
 	<div class="content">
         
-	  
+	  <h1 id="traits">Traits</h1>
+<h3 id="from-the-readme">From the README</h3>
+<p>A trait is a collection of methods.</p>
+<p>Data types can implement traits. To do so, the methods making up the trait are defined for the data type. For example, the <code>String</code> data type implements the <code>From&lt;&amp;str&gt;</code> trait. Will allow a user to write the following:</p>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">String::from(&quot;hello&quot;)
+</code></pre>
+<p>In this way, traits are somewhat similar to Java interfaces and C++ abstract classes.</p>
+<p>Some additional common Rust traits include:</p>
+<ul>
+<li><code>Clone</code> (the <code>clone</code> method)</li>
+<li><code>Display</code> (which allows formatted display via <code>{}</code>)</li>
+<li><code>Debug</code> (which allows formatted display via <code>{:?}</code>)</li>
+</ul>
+<p>Because traits indicate shared behavior between data types, they are useful when writing generics.</p>
+<h2 id="further-information">Further information</h2>
+<ul>
+<li><a href="https://doc.rust-lang.org/book/ch10-02-traits.html">Traits</a></li>
+</ul>
+<h2 id="traits1-rs">Traits1.rs</h2>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">&#x2F;&#x2F; traits1.rs
+&#x2F;&#x2F; Time to implement some traits!
+&#x2F;&#x2F;
+&#x2F;&#x2F; Your task is to implement the trait
+&#x2F;&#x2F; `AppendBar` for the type `String`.
+&#x2F;&#x2F;
+&#x2F;&#x2F; The trait AppendBar has only one function,
+&#x2F;&#x2F; which appends &quot;Bar&quot; to any object
+&#x2F;&#x2F; implementing this trait.
+&#x2F;&#x2F; Execute `rustlings hint traits1` or use the `hint` watch subcommand for a hint.
+
+&#x2F;&#x2F; I AM NOT DONE
+
+trait AppendBar {
+    fn append_bar(self) -&gt; Self;
+}
+
+impl AppendBar for String {
+    &#x2F;&#x2F; TODO: Implement `AppendBar` for type `String`.
+}
+
+fn main() {
+    let s = String::from(&quot;Foo&quot;);
+    let s = s.append_bar();
+    println!(&quot;s: {}&quot;, s);
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn is_foo_bar() {
+        assert_eq!(String::from(&quot;Foo&quot;).append_bar(), String::from(&quot;FooBar&quot;));
+    }
+
+    #[test]
+    fn is_bar_bar() {
+        assert_eq!(
+            String::from(&quot;&quot;).append_bar().append_bar(),
+            String::from(&quot;BarBar&quot;)
+        );
+    }
+}
+
+</code></pre>
+<p>In this first Trait exercise we are tasked with implementing the trait <code>AppendBar</code> for the type <code>String</code>. We get the additional details that the <code>AppendBar</code> has only one function and it appends &quot;Bar&quot; to any object that is implementing this trait. Now, let's look at the errors.</p>
+<h2 id="traits1-rs-errors">Traits1.rs errors</h2>
+<pre><code>⚠️  Compiling of exercises&#x2F;traits&#x2F;traits1.rs failed! Please try again. Here&#x27;s the output:
+error[E0046]: not all trait items implemented, missing: `append_bar`
+  --&gt; exercises&#x2F;traits&#x2F;traits1.rs:18:1
+   |
+15 |     fn append_bar(self) -&gt; Self;
+   |     ---------------------------- `append_bar` from trait
+...
+18 | impl AppendBar for String {
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^ missing `append_bar` in implementation
+
+error: aborting due to previous error
+</code></pre>
+<p>Nothing special here, so let's move on to solving our problem.</p>
+<h2 id="traits1-rs-solution">Traits1.rs solution</h2>
+<p>Alright so again, our job is to finish implementing the <code>AppendBar</code> trait and I can think of a couple of different ways of doing this so let's try the easiest. First we start by creating the function inside of our <code>impl</code> block.
+We know we have to define a function called <code>append_bar</code> and we also know that it should return a <code>String</code>, and the other thing we know is that we need to pass in <code>self</code> as a parameter.</p>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">impl AppendBar for String {
+    fn append_bar(self) -&gt; String{
+
+    }
+}
+</code></pre>
+<p>This is our basic structure but now we have to make it do something inside of the body...however, if we save the code at this point, we get a big hint from the compiler.</p>
+<pre><code>⚠️  Compiling of exercises&#x2F;traits&#x2F;traits1.rs failed! Please try again. Here&#x27;s the output:
+error[E0308]: mismatched types
+  --&gt; exercises&#x2F;traits&#x2F;traits1.rs:20:28
+   |
+20 |     fn append_bar(self) -&gt; String {}
+   |        ----------          ^^^^^^ expected `String`, found `()`
+   |        |
+   |        implicitly returns `()` as its body has no tail or `return` expression
+   |
+help: consider returning the local binding `self`
+   |
+20 |     fn append_bar(self) -&gt; String { self }
+   |                                     ++++
+
+error: aborting due to previous error
+</code></pre>
+<p>This error shows us that we are not returning anything, which is clear to us because we are not doing anything inside of our function body, however it does give us the a big hint <code>help: consider returning the local binding</code> <code>self</code>, so let's try that!</p>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">impl AppendBar for String {
+    &#x2F;&#x2F; TODO: Implement `AppendBar` for type `String`.
+    fn append_bar(self) -&gt; String {
+        self &#x2F;&#x2F; returning `self` here note no `;`
+    }
+}
+</code></pre>
+<p>By returning <code>self</code> we are now compiling, but we still have a problem, we are not passing our tests:</p>
+<pre><code>⚠️  Testing of exercises&#x2F;traits&#x2F;traits1.rs failed! Please try again. Here&#x27;s the output:
+
+running 2 tests
+test tests::is_foo_bar ... FAILED
+test tests::is_bar_bar ... FAILED
+
+successes:
+
+successes:
+
+failures:
+
+---- tests::is_foo_bar stdout ----
+thread &#x27;tests::is_foo_bar&#x27; panicked at &#x27;assertion failed: `(left == right)`
+  left: `&quot;Foo&quot;`,
+ right: `&quot;FooBar&quot;`&#x27;, exercises&#x2F;traits&#x2F;traits1.rs:39:9
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+---- tests::is_bar_bar stdout ----
+thread &#x27;tests::is_bar_bar&#x27; panicked at &#x27;assertion failed: `(left == right)`
+  left: `&quot;&quot;`,
+ right: `&quot;BarBar&quot;`&#x27;, exercises&#x2F;traits&#x2F;traits1.rs:44:9
+
+
+failures:
+    tests::is_bar_bar
+    tests::is_foo_bar
+
+test result: FAILED. 0 passed; 2 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+</code></pre>
+<p>We can clearly see the issue is that our code is not adding or appending <code>Bar</code> to our String</p>
+<pre><code>thread &#x27;tests::is_foo_bar&#x27; panicked at &#x27;assertion failed: `(left == right)`
+  left: `&quot;Foo&quot;`,
+ right: `&quot;FooBar&quot;`&#x27;
+</code></pre>
+<p>We see that <code>left !== right</code> so what's the easiest way to fix that?</p>
+<p>Can we just add <code>Bar</code>? Let's try...</p>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">impl AppendBar for String {
+    &#x2F;&#x2F; TODO: Implement `AppendBar` for type `String`.
+    fn append_bar(self) -&gt; String {
+        self + &quot;Bar&quot;
+    }
+}
+</code></pre>
+<p>Yep and with that we are compiling and passing our tests.</p>
+<pre><code>✅ Successfully tested exercises&#x2F;traits&#x2F;traits1.rs!
+
+🎉 🎉  The code is compiling, and the tests pass! 🎉 🎉
+</code></pre>
+<p>I did mentioned that there might be 2 different ways to do this, I was thinking about using the <code>format!</code> macro, let's see if that works. So instead of simply returning <code>self + &quot;Bar&quot;</code> , we can use <code>format!</code> to layout the contents of the <code>String</code>.</p>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">impl AppendBar for String {
+    &#x2F;&#x2F; TODO: Implement `AppendBar` for type `String`.
+    fn append_bar(self) -&gt; String {
+        format!(&quot;{}{}&quot;, self, &quot;Bar&quot;)
+    }
+}
+</code></pre>
+<p>This also works! So there you have it, two different ways to solve this problem. It's really a matter of preference and although they're both valid they have different pro's and con's:</p>
+<h3 id="using-format">Using <code>format!</code></h3>
+<ol>
+<li><strong>Flexibility</strong>: The <code>format!</code> macro is more flexible and can handle complex string manipulations, including variable interpolation and formatting options.</li>
+<li><strong>Readability</strong>: For more complex operations, <code>format!</code> can be easier to read and understand.</li>
+</ol>
+<h3 id="using">Using <code>+</code></h3>
+<ol>
+<li><strong>Simplicity</strong>: The <code>+</code> operator is simpler and more straightforward for basic string concatenation tasks.</li>
+<li><strong>Performance</strong>: For very simple concatenations, using <code>+</code> can be slightly more efficient because it doesn't involve parsing a format string.</li>
+</ol>
+<h3 id="final-code">Final Code</h3>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">trait AppendBar {
+    fn append_bar(self) -&gt; Self;
+}
+
+impl AppendBar for String {
+    &#x2F;&#x2F; TODO: Implement `AppendBar` for type `String`.
+    fn append_bar(self) -&gt; String {
+        format!(&quot;{}{}&quot;, self, &quot;Bar&quot;)
+    }
+}
+
+fn main() {
+    let s = String::from(&quot;Foo&quot;);
+    let s = s.append_bar();
+    println!(&quot;s: {}&quot;, s);
+}
+</code></pre>
+<h2 id="traits2-rs">Traits2.rs</h2>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">&#x2F;&#x2F; traits2.rs
+&#x2F;&#x2F;
+&#x2F;&#x2F; Your task is to implement the trait
+&#x2F;&#x2F; `AppendBar` for a vector of strings.
+&#x2F;&#x2F;
+&#x2F;&#x2F; To implement this trait, consider for
+&#x2F;&#x2F; a moment what it means to &#x27;append &quot;Bar&quot;&#x27;
+&#x2F;&#x2F; to a vector of strings.
+&#x2F;&#x2F;
+&#x2F;&#x2F; No boiler plate code this time,
+&#x2F;&#x2F; you can do this!
+&#x2F;&#x2F; Execute `rustlings hint traits2` or use the `hint` watch subcommand for a hint.
+
+&#x2F;&#x2F; I AM NOT DONE
+
+trait AppendBar {
+    fn append_bar(self) -&gt; Self;
+}
+
+&#x2F;&#x2F; TODO: Implement trait `AppendBar` for a vector of strings.
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn is_vec_pop_eq_bar() {
+        let mut foo = vec![String::from(&quot;Foo&quot;)].append_bar();
+        assert_eq!(foo.pop().unwrap(), String::from(&quot;Bar&quot;));
+        assert_eq!(foo.pop().unwrap(), String::from(&quot;Foo&quot;));
+    }
+}
+
+</code></pre>
+<p>Our instructions are to create our <code>impl</code> block for the <code>AppendBar</code> function. We get zero boilerplate code and we have to consider what it means to append <code>&quot;Bar&quot;</code>. By looking at code we see that the trait has a method <code>append_bar</code> that should modify the vector by appending the string &quot;Bar&quot; to it.</p>
+<h2 id="traits2-rs-errors">Traits2.rs errors</h2>
+<pre><code>⚠️  Compiling of exercises&#x2F;traits&#x2F;traits2.rs failed! Please try again. Here&#x27;s the output:
+error[E0599]: no method named `append_bar` found for struct `Vec&lt;String&gt;` in the current scope
+  --&gt; exercises&#x2F;traits&#x2F;traits2.rs:28:49
+   |
+28 |         let mut foo = vec![String::from(&quot;Foo&quot;)].append_bar();
+   |                                                 ^^^^^^^^^^ help: there is a method with a similar name: `append`
+   |
+   = help: items from traits can only be used if the trait is implemented and in scope
+note: `AppendBar` defines an item `append_bar`, perhaps you need to implement it
+  --&gt; exercises&#x2F;traits&#x2F;traits2.rs:16:1
+   |
+16 | trait AppendBar {
+   | ^^^^^^^^^^^^^^^
+
+warning: unused import: `super`
+  --&gt; exercises&#x2F;traits&#x2F;traits2.rs:24:9
+   |
+24 |     use super::*;
+   |         ^^^^^
+   |
+   = note: `#[warn(unused_imports)]` on by default
+
+error: aborting due to previous error; 1 warning emitted
+</code></pre>
+<p>Our errors show what we should expect and tell us that items from traits can only be used if the trait is implemented in scope. Alright although it's nothing specifically new, it's nice how the compiler also gives you the hint that <code>perhaps you need to implement it</code>. Alright moving on.</p>
+<h2 id="traits2-rs-solution">Traits2.rs solution</h2>
+<p>So let's start implementing, we had something similar in the previous exercise, right? So it shouldn't be too difficult.
+What we need to do is tell Rust how a <code>Vec&lt;String&gt;</code> should behave when the <code>append_bar</code> method is called. We do this by implementing the <code>AppendBar</code> trait.
+If we remember our instructions we are reminded to think of what it means to append <code>&quot;Bar&quot;</code> to a vector of <code>String</code> we doesn't that mean that we need to <code>.push()</code> on to the Vector? Let's try</p>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">trait AppendBar {
+    fn append_bar(self) -&gt; Self;
+}
+
+&#x2F;&#x2F; TODO: Implement trait `AppendBar` for a vector of strings.
+
+impl AppendBar for Vec&lt;String&gt; {
+	fn append_bar(mut self) -&gt; Vec&lt;Strings&gt; {
+		self.push(String::from(&quot;Bar&quot;));
+		self
+	}
+}
+</code></pre>
+<p>Here's what's happening in this block:</p>
+<ul>
+<li><code>impl AppendBar for Vec&lt;String&gt;</code>: This line says we're implementing the <code>AppendBar</code> trait specifically for <code>Vec&lt;String&gt;</code>.</li>
+<li><code>fn append_bar(mut self) -&gt; Vec&lt;String&gt;</code>: This is the method we're implementing. It takes a mutable version of <code>self</code> (the <code>Vec&lt;String&gt;</code> you're calling the method on) and returns a new <code>Vec&lt;String&gt;</code>.</li>
+<li><code>self.push(String::from(&quot;Bar&quot;))</code>: This line appends the string &quot;Bar&quot; to the vector.</li>
+<li><code>self</code>: Finally, you return the modified vector.</li>
+</ul>
+<p>Let's save and see if that does the trick.</p>
+<p>Yes, we've done it!</p>
+<pre><code>✅ Successfully tested exercises&#x2F;traits&#x2F;traits2.rs!
+
+🎉 🎉  The code is compiling, and the tests pass! 🎉 🎉
+</code></pre>
+<h2 id="traits3-rs">Traits3.rs</h2>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">&#x2F;&#x2F; traits3.rs
+&#x2F;&#x2F;
+&#x2F;&#x2F; Your task is to implement the Licensed trait for
+&#x2F;&#x2F; both structures and have them return the same
+&#x2F;&#x2F; information without writing the same function twice.
+&#x2F;&#x2F;
+&#x2F;&#x2F; Consider what you can add to the Licensed trait.
+&#x2F;&#x2F; Execute `rustlings hint traits3` or use the `hint` watch subcommand for a hint.
+
+&#x2F;&#x2F; I AM NOT DONE
+
+pub trait Licensed {
+    fn licensing_info(&amp;self) -&gt; String;
+}
+
+struct SomeSoftware {
+    version_number: i32,
+}
+
+struct OtherSoftware {
+    version_number: String,
+}
+
+impl Licensed for SomeSoftware {} &#x2F;&#x2F; Don&#x27;t edit this line
+impl Licensed for OtherSoftware {} &#x2F;&#x2F; Don&#x27;t edit this line
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn is_licensing_info_the_same() {
+        let licensing_info = String::from(&quot;Some information&quot;);
+        let some_software = SomeSoftware { version_number: 1 };
+        let other_software = OtherSoftware {
+            version_number: &quot;v2.0.0&quot;.to_string(),
+        };
+        assert_eq!(some_software.licensing_info(), licensing_info);
+        assert_eq!(other_software.licensing_info(), licensing_info);
+    }
+}
+
+</code></pre>
+<p>We have two structs, <code>SomeSoftware</code> and <code>OtherSoftware</code>, and a trait <code>Licensed</code> with a method <code>licensing_info</code>. The task is to implement the <code>Licensed</code> trait for both structs so that they return the same licensing information. The challenge is to do this without writing the same function twice.</p>
+<h2 id="traits3-rs-errors">Traits3.rs errors</h2>
+<pre><code>⚠️  Compiling of exercises&#x2F;traits&#x2F;traits3.rs failed! Please try again. Here&#x27;s the output:
+error[E0046]: not all trait items implemented, missing: `licensing_info`
+  --&gt; exercises&#x2F;traits&#x2F;traits3.rs:24:1
+   |
+13 |     fn licensing_info(&amp;self) -&gt; String;
+   |     ----------------------------------- `licensing_info` from trait
+...
+24 | impl Licensed for SomeSoftware {} &#x2F;&#x2F; Don&#x27;t edit this line
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ missing `licensing_info` in implementation
+
+error[E0046]: not all trait items implemented, missing: `licensing_info`
+  --&gt; exercises&#x2F;traits&#x2F;traits3.rs:25:1
+   |
+13 |     fn licensing_info(&amp;self) -&gt; String;
+   |     ----------------------------------- `licensing_info` from trait
+...
+25 | impl Licensed for OtherSoftware {} &#x2F;&#x2F; Don&#x27;t edit this line
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ missing `licensing_info` in implementation
+
+error: aborting due to 2 previous errors
+</code></pre>
+<p>Errors tell us we have to implement our traits, let's see how we can do this.</p>
+<h2 id="traits3-rs-solution">Traits3.rs solution</h2>
+<p>One way to achieve this is to provide a default implementation for the <code>licensing_info</code> method within the <code>Licensed</code> trait itself. This way, both structs will inherit this default behavior, and we won't have to implement the method twice.</p>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">pub trait Licensed {
+	&#x2F;&#x2F; Provide a default implementation for the licensing_info method
+	fn licensing_info(&amp;self) -&gt; String {
+		String::from(&quot;Some information&quot;)
+	}
+}
+</code></pre>
+<ol>
+<li>
+<p><strong>Default Implementation in Trait</strong>: In the <code>Licensed</code> trait, we provide a default implementation for the <code>licensing_info</code> method. This default implementation returns a string &quot;Some information&quot;.</p>
+</li>
+<li>
+<p><strong>Implementing the Trait for Structs</strong>: We keep the lines <code>impl Licensed for SomeSoftware {}</code> and <code>impl Licensed for OtherSoftware {}</code> as they are. Since we've provided a default implementation in the trait, these structs will inherit that behavior.</p>
+</li>
+<li>
+<p><strong>Tests</strong>: The test function <code>is_licensing_info_the_same</code> should now pass, as both <code>SomeSoftware</code> and <code>OtherSoftware</code> will return &quot;Some information&quot; when their <code>licensing_info</code> methods are called.</p>
+</li>
+</ol>
+<p>Great! It works our code is compiling and our tests are passing</p>
+<pre><code>✅ Successfully tested exercises&#x2F;traits&#x2F;traits3.rs!
+
+🎉 🎉  The code is compiling, and the tests pass! 🎉 🎉
+</code></pre>
+<h2 id="traits4-rs">Traits4.rs</h2>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">&#x2F;&#x2F; traits4.rs
+&#x2F;&#x2F;
+&#x2F;&#x2F; Your task is to replace the &#x27;??&#x27; sections so the code compiles.
+&#x2F;&#x2F; Don&#x27;t change any line other than the marked one.
+&#x2F;&#x2F; Execute `rustlings hint traits4` or use the `hint` watch subcommand for a hint.
+
+&#x2F;&#x2F; I AM NOT DONE
+
+pub trait Licensed {
+    fn licensing_info(&amp;self) -&gt; String {
+        &quot;some information&quot;.to_string()
+    }
+}
+
+struct SomeSoftware {}
+
+struct OtherSoftware {}
+
+impl Licensed for SomeSoftware {}
+impl Licensed for OtherSoftware {}
+
+&#x2F;&#x2F; YOU MAY ONLY CHANGE THE NEXT LINE
+fn compare_license_types(software: ??, software_two: ??) -&gt; bool {
+    software.licensing_info() == software_two.licensing_info()
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn compare_license_information() {
+        let some_software = SomeSoftware {};
+        let other_software = OtherSoftware {};
+
+        assert!(compare_license_types(some_software, other_software));
+    }
+
+    #[test]
+    fn compare_license_information_backwards() {
+        let some_software = SomeSoftware {};
+        let other_software = OtherSoftware {};
+
+        assert!(compare_license_types(other_software, some_software));
+    }
+}
+
+</code></pre>
+<p>This problem tells us that we can only change the code where we see the <code>??</code> question marks. So let's take a look at the errors as we always do but I'm guessing there will be no surprises there.</p>
+<h2 id="traits4-rs-errors">Traits4.rs errors</h2>
+<pre><code>⚠️  Compiling of exercises&#x2F;traits&#x2F;traits4.rs failed! Please try again. Here&#x27;s the output:
+error: expected identifier, found `,`
+  --&gt; exercises&#x2F;traits&#x2F;traits4.rs:23:38
+   |
+23 | fn compare_license_types(software: ??, software_two: ??) -&gt; bool {
+   |                                      ^
+   |                                      |
+   |                                      expected identifier
+   |                                      help: remove this comma
+
+error: expected a trait, found type
+  --&gt; exercises&#x2F;traits&#x2F;traits4.rs:23:37
+</code></pre>
+<p>As expected, it points out where the missing code is and offers a suggestion although it's wrong, it's trying to figure out what is happening, so we can't get to upset the compiler.</p>
+<h2 id="traits4-rs-solution">Traits4.rs solution</h2>
+<p>So what does the compiler need to see inside of the parenthesis? Let's break it down by first looking at what we already have.</p>
+<h3 id="the-trait-and-structs">The Trait and Structs</h3>
+<p>First, we have a trait <code>Licensed</code> with a default implementation for a method called <code>licensing_info</code>. This method returns a string &quot;some information&quot;.</p>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">pub trait Licensed {
+    fn licensing_info(&amp;self) -&gt; String {
+        &quot;some information&quot;.to_string()
+    }
+}
+</code></pre>
+<p>Then, we have two structs, <code>SomeSoftware</code> and <code>OtherSoftware</code>, that implement this trait.</p>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">struct SomeSoftware {}
+struct OtherSoftware {}
+
+impl Licensed for SomeSoftware {}
+impl Licensed for OtherSoftware {}
+</code></pre>
+<p>By doing this, both structs inherit the default behavior of the <code>licensing_info</code> method from the <code>Licensed</code> trait.</p>
+<h3 id="the-function-to-compare-licenses">The Function to Compare Licenses</h3>
+<p>Now we get to the problem. We have the function <code>compare_license_types</code> takes two parameters, <code>software</code> and <code>software_two</code>. Both of which need to implement the <code>Licensed</code> trait. We do this by adding the by the syntax <code>impl Licensed</code> where the <code>??</code> were, and this should solve our problem.</p>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">fn compare_license_types(software: impl Licensed, software_two: impl Licensed) -&gt; bool {
+    software.licensing_info() == software_two.licensing_info()
+}
+</code></pre>
+<p>Here's what's happening:</p>
+<ul>
+<li><code>software: impl Licensed</code>: This means that the function expects a parameter <code>software</code> that implements the <code>Licensed</code> trait.</li>
+<li><code>software_two: impl Licensed</code>: Similarly, this function expects another parameter <code>software_two</code> that also implements the <code>Licensed</code> trait.</li>
+<li><code>software.licensing_info() == software_two.licensing_info()</code>: This line compares the licensing information of both software. Since both <code>SomeSoftware</code> and <code>OtherSoftware</code> implement the <code>Licensed</code> trait, they both have a <code>licensing_info</code> method that returns &quot;some information&quot;.</li>
+</ul>
+<p>with the added <code>impl Licensed</code> parameters our code compiles and passes it's test. Now let's move on to our final exercise on Traits.</p>
+<h2 id="traits5-rs">Traits5.rs</h2>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">&#x2F;&#x2F; traits5.rs
+&#x2F;&#x2F;
+&#x2F;&#x2F; Your task is to replace the &#x27;??&#x27; sections so the code compiles.
+&#x2F;&#x2F; Don&#x27;t change any line other than the marked one.
+&#x2F;&#x2F; Execute `rustlings hint traits5` or use the `hint` watch subcommand for a hint.
+
+&#x2F;&#x2F; I AM NOT DONE
+
+pub trait SomeTrait {
+    fn some_function(&amp;self) -&gt; bool {
+        true
+    }
+}
+
+pub trait OtherTrait {
+    fn other_function(&amp;self) -&gt; bool {
+        true
+    }
+}
+
+struct SomeStruct {}
+struct OtherStruct {}
+
+impl SomeTrait for SomeStruct {}
+impl OtherTrait for SomeStruct {}
+impl SomeTrait for OtherStruct {}
+impl OtherTrait for OtherStruct {}
+
+&#x2F;&#x2F; YOU MAY ONLY CHANGE THE NEXT LINE
+fn some_func(item: ??) -&gt; bool {
+    item.some_function() &amp;&amp; item.other_function()
+}
+
+fn main() {
+    some_func(SomeStruct {});
+    some_func(OtherStruct {});
+}
+</code></pre>
+<p>We get a similar type of problem where we have to replace the <code>??</code> question marks, and it's only in one spot. Let's look at the errors for any hints.</p>
+<h2 id="traits5-rs-errors">Traits5.rs errors</h2>
+<pre><code>⚠️  Compiling of exercises&#x2F;traits&#x2F;traits5.rs failed! Please try again. Here&#x27;s the output:
+error: expected identifier, found `)`
+  --&gt; exercises&#x2F;traits&#x2F;traits5.rs:30:22
+   |
+30 | fn some_func(item: ??) -&gt; bool {
+   |                      ^ expected identifier
+
+error[E0425]: cannot find value `item` in this scope
+  --&gt; exercises&#x2F;traits&#x2F;traits5.rs:31:5
+   |
+31 |     item.some_function() &amp;&amp; item.other_function()
+   |     ^^^^ not found in this scope
+
+error[E0425]: cannot find value `item` in this scope
+  --&gt; exercises&#x2F;traits&#x2F;traits5.rs:31:29
+   |
+31 |     item.some_function() &amp;&amp; item.other_function()
+   |                             ^^^^ not found in this scope
+
+error: aborting due to 3 previous errors
+</code></pre>
+<p>We have 3 errors all together, one pointing at the <code>expected identifier</code> where the questions marks are and the next  2 pointing at the <code>item</code> not found in scope.</p>
+<h2 id="traits5-rs-solution">Traits5.rs solution</h2>
+<p>If we look at our code we have a similar set-up to the previous exercise but we have two different traits <code>SomeTrait</code> and <code>OtherTrait</code> since we have been instructed to change only the parameter in <code>some_func</code> we can deduce that it will be a similar situation as the the previous exercise with using the <code>impl</code> and the <code>Trait</code> however in this case we have two different traits so how do we handle that? Easily enough we can use the <code>+</code> syntax to use allow our function to take both of these traits. This would look something like this: <code>impl &lt;&gt; + &lt;&gt;</code> so let's try this.</p>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">fn some_func(item: impl SomeTrait + OtherTrait) -&gt; bool {
+    item.some_function() &amp;&amp; item.other_function()
+}
+</code></pre>
+<p>And with this it compiles!</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>In this post, we explored various exercises related to traits in Rust. Here's a quick summary of what we learned:</p>
+<h2 id="traits-in-rust">Traits in Rust</h2>
+<ul>
+<li>Traits are similar to interfaces in other languages.</li>
+<li>They define shared behavior across data types.</li>
+<li>Traits can have default implementations.</li>
+</ul>
+<h2 id="exercises">Exercises</h2>
+<h3 id="traits1-rs-1">Traits1.rs</h3>
+<ul>
+<li>Implemented the <code>AppendBar</code> trait for <code>String</code>.</li>
+<li>Explored two ways to append &quot;Bar&quot; to a string: using <code>+</code> and <code>format!</code>.</li>
+</ul>
+<h3 id="traits2-rs-1">Traits2.rs</h3>
+<ul>
+<li>Implemented the <code>AppendBar</code> trait for <code>Vec&lt;String&gt;</code>.</li>
+<li>Used the <code>push</code> method to append &quot;Bar&quot; to the vector.</li>
+</ul>
+<h3 id="traits3-rs-1">Traits3.rs</h3>
+<ul>
+<li>Provided a default implementation for the <code>licensing_info</code> method in the <code>Licensed</code> trait.</li>
+<li>Both <code>SomeSoftware</code> and <code>OtherSoftware</code> structs inherited this default behavior.</li>
+</ul>
+<h3 id="traits4-rs-1">Traits4.rs</h3>
+<ul>
+<li>Used <code>impl Licensed</code> to specify that the function <code>compare_license_types</code> expects parameters that implement the <code>Licensed</code> trait.</li>
+</ul>
+<h3 id="traits5-rs-1">Traits5.rs</h3>
+<ul>
+<li>Used <code>impl SomeTrait + OtherTrait</code> to specify that the function <code>some_func</code> expects a parameter that implements both <code>SomeTrait</code> and <code>OtherTrait</code>.</li>
+</ul>
+<p>By working through these exercises, we gained a deeper understanding of how traits work in Rust and how they can be used to write more flexible and reusable code.</p>
+
 	</div>
 	<hr class="post-end">
 	<footer class="post-info">
@@ -158,7 +743,7 @@
 		
     </p>
     
-    <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>0 Words</p>
+    <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>3042 Words</p>
     
     <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2023-08-25</p>
     
