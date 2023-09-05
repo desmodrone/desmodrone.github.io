@@ -7,7 +7,286 @@
       <generator>Zola</generator>
       <language>en</language>
       <atom:link href="https://desmodrone.github.io/rss.xml" rel="self" type="application/rss+xml"/>
-      <lastBuildDate>Fri, 25 Aug 2023 00:00:00 +0000</lastBuildDate>
+      <lastBuildDate>Tue, 05 Sep 2023 00:00:00 +0000</lastBuildDate>
+      <item>
+          <title>18 Rustlings Quiz 3</title>
+          <pubDate>Tue, 05 Sep 2023 00:00:00 +0000</pubDate>
+          <author>Unknown</author>
+          <link>https://desmodrone.github.io/posts/18-rustlings-quiz3/</link>
+          <guid>https://desmodrone.github.io/posts/18-rustlings-quiz3/</guid>
+          <description>&lt;h2 id=&quot;quiz3-rs&quot;&gt;Quiz3.rs&lt;&#x2F;h2&gt;
+&lt;p&gt;It&#x27;s time to revisit what we&#x27;ve learned so far. In this case, we&#x27;re focusing on generics and traits in Rust. Let&#x27;s dive into the exercise.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;&amp;#x2F;&amp;#x2F; quiz3.rs
+&amp;#x2F;&amp;#x2F; This quiz tests:
+&amp;#x2F;&amp;#x2F; - Generics
+&amp;#x2F;&amp;#x2F; - Traits
+&amp;#x2F;&amp;#x2F; An imaginary magical school has a new report card generation system written in Rust!
+&amp;#x2F;&amp;#x2F; Currently the system only supports creating report cards where the student&amp;#x27;s grade
+&amp;#x2F;&amp;#x2F; is represented numerically (e.g. 1.0 -&amp;gt; 5.5).
+&amp;#x2F;&amp;#x2F; However, the school also issues alphabetical grades (A+ -&amp;gt; F-) and needs
+&amp;#x2F;&amp;#x2F; to be able to print both types of report card!
+
+&amp;#x2F;&amp;#x2F; Make the necessary code changes in the struct ReportCard and the impl block
+&amp;#x2F;&amp;#x2F; to support alphabetical report cards. Change the Grade in the second test to &amp;quot;A+&amp;quot;
+&amp;#x2F;&amp;#x2F; to show that your changes allow alphabetical grades.
+
+&amp;#x2F;&amp;#x2F; Execute `rustlings hint quiz3` or use the `hint` watch subcommand for a hint.
+
+&amp;#x2F;&amp;#x2F; I AM NOT DONE
+
+pub struct ReportCard {
+    pub grade: f32,
+    pub student_name: String,
+    pub student_age: u8,
+}
+
+impl ReportCard {
+    pub fn print(&amp;amp;self) -&amp;gt; String {
+        format!(&amp;quot;{} ({}) - achieved a grade of {}&amp;quot;,
+            &amp;amp;self.student_name, &amp;amp;self.student_age, &amp;amp;self.grade)
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn generate_numeric_report_card() {
+        let report_card = ReportCard {
+            grade: 2.1,
+            student_name: &amp;quot;Tom Wriggle&amp;quot;.to_string(),
+            student_age: 12,
+        };
+        assert_eq!(
+            report_card.print(),
+            &amp;quot;Tom Wriggle (12) - achieved a grade of 2.1&amp;quot;
+        );
+    }
+
+    #[test]
+    fn generate_alphabetic_report_card() {
+        &amp;#x2F;&amp;#x2F; TODO: Make sure to change the grade here after you finish the exercise.
+        let report_card = ReportCard {
+            grade: 2.1,
+            student_name: &amp;quot;Gary Plotter&amp;quot;.to_string(),
+            student_age: 11,
+        };
+        assert_eq!(
+            report_card.print(),
+            &amp;quot;Gary Plotter (11) - achieved a grade of A+&amp;quot;
+        );
+    }
+}
+
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Our task here is to allow both numeric and alphabetical grades, currently we can only print numeric grades correctly. So we how can we fix this. Generics of course!&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;quiz3-rs-errors&quot;&gt;Quiz3.rs errors&lt;&#x2F;h2&gt;
+&lt;p&gt;When we run the tests, we find that one test passes while the other fails. Here&#x27;s the output:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;⚠️  Testing of exercises&amp;#x2F;quiz3.rs failed! Please try again. Here&amp;#x27;s the output:
+
+running 2 tests
+test tests::generate_numeric_report_card ... ok
+test tests::generate_alphabetic_report_card ... FAILED
+
+successes:
+
+successes:
+    tests::generate_numeric_report_card
+
+failures:
+
+---- tests::generate_alphabetic_report_card stdout ----
+thread &amp;#x27;tests::generate_alphabetic_report_card&amp;#x27; panicked at &amp;#x27;assertion failed: `(left == right)`
+  left: `&amp;quot;Gary Plotter (11) - achieved a grade of 2.1&amp;quot;`,
+ right: `&amp;quot;Gary Plotter (11) - achieved a grade of A+&amp;quot;`&amp;#x27;, exercises&amp;#x2F;quiz3.rs:57:9
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    tests::generate_alphabetic_report_card
+
+test result: FAILED. 1 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h2 id=&quot;quiz3-rs-solution&quot;&gt;Quiz3.rs solution&lt;&#x2F;h2&gt;
+&lt;p&gt;The issue here is that our &lt;code&gt;ReportCard&lt;&#x2F;code&gt; struct is not designed to handle both numerical and alphabetical grades. So let&#x27;s solve this problem by implementing generics.&lt;&#x2F;p&gt;
+&lt;p&gt;Our original &lt;code&gt;ReportCard&lt;&#x2F;code&gt; struct looks like this:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;pub struct ReportCard {
+    pub grade: f32,
+    pub student_name: String,
+    pub student_age: u8,
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h3 id=&quot;updating-the-struct-to-use-generics&quot;&gt;Updating the Struct to use Generics&lt;&#x2F;h3&gt;
+&lt;p&gt;Since the &lt;code&gt;student_name&lt;&#x2F;code&gt; will always be a &lt;code&gt;String&lt;&#x2F;code&gt; and the &lt;code&gt;student_age&lt;&#x2F;code&gt; will always be a &lt;code&gt;u8&lt;&#x2F;code&gt;, we only need to make the &lt;code&gt;grade&lt;&#x2F;code&gt; field generic:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;pub struct ReportCard&amp;lt;T&amp;gt; {
+	pub grade: T,
+	pub student_name: String,
+	pub student_age: u8,
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;This should do the trick for the struct but now we have to take a look at our &lt;code&gt;impl&lt;&#x2F;code&gt; block&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;impl ReportCard {
+    pub fn print(&amp;amp;self) -&amp;gt; String {
+        format!(&amp;quot;{} ({}) - achieved a grade of {}&amp;quot;,
+            &amp;amp;self.student_name, &amp;amp;self.student_age, &amp;amp;self.grade)
+    }
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h3 id=&quot;updating-the-implementation-block&quot;&gt;Updating the Implementation Block&lt;&#x2F;h3&gt;
+&lt;p&gt;Next, we update the &lt;code&gt;impl&lt;&#x2F;code&gt; block to accommodate the generic type &lt;code&gt;T&lt;&#x2F;code&gt;:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;impl&amp;lt;T&amp;gt; ReportCard&amp;lt;T&amp;gt; {
+ &amp;#x2F;&amp;#x2F; rest of code
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;This let&#x27;s the compiler know that we are using generics in this block of code. Alright let&#x27;s save the changes and see what happens!&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;uh-oh-problems&quot;&gt;Uh oh. Problems&lt;&#x2F;h2&gt;
+&lt;p&gt;So it seems like we are not quite done yet. Since we are now using generics in our &lt;code&gt;impl&lt;&#x2F;code&gt; block the compiler is telling us that we cannot format the &lt;code&gt;grade&lt;&#x2F;code&gt; portion of this code on line 29 at : &lt;code&gt;&amp;amp;self.grade&lt;&#x2F;code&gt;, but luckily it has a suggestion. The compiler suggests restricting &lt;code&gt;T&lt;&#x2F;code&gt; to types that implement &lt;code&gt;Display&lt;&#x2F;code&gt;:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;⚠️  Compiling of exercises&amp;#x2F;quiz3.rs failed! Please try again. Here&amp;#x27;s the output:
+error[E0277]: `T` doesn&amp;#x27;t implement `std::fmt::Display`
+  --&amp;gt; exercises&amp;#x2F;quiz3.rs:29:52
+   |
+29 |             &amp;amp;self.student_name, &amp;amp;self.student_age, &amp;amp;self.grade
+   |                                                    ^^^^^^^^^^^ `T` cannot be formatted with the default formatter
+   |
+   = note: in format strings you may be able to use `{:?}` (or {:#?} for pretty-print) instead
+   = note: this error originates in the macro `$crate::__export::format_args` which comes from the expansion of the macro `format` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: consider restricting type parameter `T`
+   |
+25 | impl&amp;lt;T: std::fmt::Display&amp;gt; ReportCard&amp;lt;T&amp;gt; {
+   |       +++++++++++++++++++
+
+error: aborting due to previous error
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Okay so let&#x27;s fix that our &lt;code&gt;impl&lt;&#x2F;code&gt; block now looks like this:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;impl&amp;lt;T&amp;gt; ReportCard&amp;lt;T&amp;gt; {
+    pub fn print(&amp;amp;self) -&amp;gt; String {
+        format!(
+            &amp;quot;{} ({}) - achieved a grade of {}&amp;quot;,
+            &amp;amp;self.student_name, &amp;amp;self.student_age, &amp;amp;self.grade
+        )
+    }
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;If we save now we should be..doh. Our test fails.&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;running 2 tests
+test tests::generate_numeric_report_card ... ok
+test tests::generate_alphabetic_report_card ... FAILED
+
+successes:
+
+successes:
+    tests::generate_numeric_report_card
+
+failures:
+
+---- tests::generate_alphabetic_report_card stdout ----
+thread &amp;#x27;tests::generate_alphabetic_report_card&amp;#x27; panicked at &amp;#x27;assertion failed: `(left == right)`
+  left: `&amp;quot;Gary Plotter (11) - achieved a grade of 2.1&amp;quot;`,
+ right: `&amp;quot;Gary Plotter (11) - achieved a grade of A+&amp;quot;`&amp;#x27;, exercises&amp;#x2F;quiz3.rs:59:9
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    tests::generate_alphabetic_report_card
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h3 id=&quot;resolving-test-failures&quot;&gt;Resolving Test Failures&lt;&#x2F;h3&gt;
+&lt;p&gt;After making these changes, the test for alphabetical grades still fails. The issue is that we forgot to update the grade in the &lt;code&gt;generate_alphabetic_report_card()&lt;&#x2F;code&gt; test function from &lt;code&gt;2.1&lt;&#x2F;code&gt; to &lt;code&gt;A+&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;final-working-code&quot;&gt;Final Working Code&lt;&#x2F;h2&gt;
+&lt;p&gt;Here&#x27;s the complete, working code for reference:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;pub struct ReportCard&amp;lt;T&amp;gt; {
+    pub grade: T,
+    pub student_name: String,
+    pub student_age: u8,
+}
+
+impl&amp;lt;T: std::fmt::Display&amp;gt; ReportCard&amp;lt;T&amp;gt; {
+    pub fn print(&amp;amp;self) -&amp;gt; String {
+        format!(
+            &amp;quot;{} ({}) - achieved a grade of {}&amp;quot;,
+            &amp;amp;self.student_name, &amp;amp;self.student_age, &amp;amp;self.grade
+        )
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn generate_numeric_report_card() {
+        let report_card = ReportCard {
+            grade: 2.1,
+            student_name: &amp;quot;Tom Wriggle&amp;quot;.to_string(),
+            student_age: 12,
+        };
+        assert_eq!(
+            report_card.print(),
+            &amp;quot;Tom Wriggle (12) - achieved a grade of 2.1&amp;quot;
+        );
+    }
+
+    #[test]
+    fn generate_alphabetic_report_card() {
+
+        let report_card = ReportCard {
+            grade: &amp;quot;A+&amp;quot;,
+            student_name: &amp;quot;Gary Plotter&amp;quot;.to_string(),
+            student_age: 11,
+        };
+        assert_eq!(
+            report_card.print(),
+            &amp;quot;Gary Plotter (11) - achieved a grade of A+&amp;quot;
+        );
+    }
+}
+
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h2 id=&quot;notes&quot;&gt;Notes&lt;&#x2F;h2&gt;
+&lt;p&gt;I used the code below, in Rust playgrounds essentially letting me print the report card which then allowed me to have errors when trying to compile and better figure out what I needed to be doing by seeing the printout instead of just having the tests as the compiler gave me the error that &lt;code&gt;T&amp;lt;: std::fmt::Debug&amp;gt;&lt;&#x2F;code&gt; was missing from the &lt;code&gt;impl&lt;&#x2F;code&gt; signature.&lt;&#x2F;p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Note this is different that the &lt;code&gt;T&amp;lt;: std::fmt::Display&amp;gt;&lt;&#x2F;code&gt; used in solving the exercise.&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;#[derive(Debug)]
+pub struct ReportCard&amp;lt;T&amp;gt; {
+    pub grade: T,
+    pub student_name: String,
+    pub student_age: u8,
+}
+
+impl&amp;lt;T: std::fmt::Display&amp;gt; ReportCard&amp;lt;T&amp;gt; {
+    pub fn print(&amp;amp;self) -&amp;gt; String {
+        format!(&amp;quot;{} ({}) - achieved a grade of {:?}&amp;quot;,
+            &amp;amp;self.student_name, &amp;amp;self.student_age, &amp;amp;self.grade)
+    }
+}
+
+fn main() {
+    fn generate_numeric_report_card() {
+        let report_card = ReportCard {
+            grade: 2.1,
+            student_name: &amp;quot;Tom Wriggle&amp;quot;.to_string(),
+            student_age: 12,
+        };
+        println!(&amp;quot;{:?}&amp;quot;, report_card);
+    }
+    generate_numeric_report_card();
+
+    fn generate_alphabetic_report_card() {
+        let report_card = ReportCard {
+            grade: &amp;quot;A+&amp;quot;,
+            student_name: &amp;quot;Gary Plotter&amp;quot;.to_string(),
+            student_age: 12,
+        };
+        println!(&amp;quot;{:?}&amp;quot;, report_card);
+    }
+    generate_alphabetic_report_card();
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h2 id=&quot;conclusion&quot;&gt;Conclusion&lt;&#x2F;h2&gt;
+&lt;p&gt;In this exercise, we learned how to use generics to make our &lt;code&gt;ReportCard&lt;&#x2F;code&gt; struct more flexible, allowing it to handle both numerical and alphabetical grades. We also saw how to constrain our generic types to those that implement specific traits, in this case, the &lt;code&gt;Display&lt;&#x2F;code&gt; trait. This ensures that we can format the grade regardless of its type.&lt;&#x2F;p&gt;
+</description>
+      </item>
       <item>
           <title>17 Rustlings Traits</title>
           <pubDate>Fri, 25 Aug 2023 00:00:00 +0000</pubDate>
