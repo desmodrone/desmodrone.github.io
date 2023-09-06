@@ -4039,7 +4039,7 @@ error: aborting due to 4 previous errors
 &lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;enum Message {
     Move (Point),
     Echo(String),
-    ChangeColor(u8, u8, u8),
+    ChangeColor((u8, u8, u8)),
     Quit,
 }
 &lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
@@ -4055,7 +4055,7 @@ We&#x27;re told to use a match expression and to remember that when passing a tu
 &lt;h2 id=&quot;process-function&quot;&gt;&lt;code&gt;process ()&lt;&#x2F;code&gt; function&lt;&#x2F;h2&gt;
 &lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;fn process(&amp;amp;mut self, message: Message) {
         match message {
-            Message::ChangeColor(r, g, b) =&amp;gt; self.change_color((r, g, b)),
+            Message::ChangeColor((r, g, b)) =&amp;gt; self.change_color((r, g, b)),
             Message::Echo(s) =&amp;gt; self.echo(s),
             Message::Move(p) =&amp;gt; self.move_position(p),
             Message::Quit =&amp;gt; self.quit(),
@@ -4082,7 +4082,7 @@ We&#x27;re told to use a match expression and to remember that when passing a tu
 enum Message {
     Move(Point),
     Echo(String),
-    ChangeColor(u8, u8, u8),
+    ChangeColor((u8, u8, u8)), &amp;#x2F;&amp;#x2F; remeber the double parentheses
     Quit,
 }
 
@@ -4115,8 +4115,8 @@ impl State {
     }
 
     fn process(&amp;amp;mut self, message: Message) {
-        match message {
-            Message::ChangeColor(r, g, b) =&amp;gt; self.change_color((r, g, b)),
+        match message {&amp;#x2F;&amp;#x2F; remeber the double parentheses in ((r, g, b))
+            Message::ChangeColor((r, g, b)) =&amp;gt; self.change_color((r, g, b)),
             Message::Echo(s) =&amp;gt; self.echo(s),
             Message::Move(p) =&amp;gt; self.move_position(p),
             Message::Quit =&amp;gt; self.quit(),
@@ -7237,7 +7237,7 @@ fn main() {
 &lt;h2 id=&quot;conclusion&quot;&gt;Conclusion&lt;&#x2F;h2&gt;
 &lt;p&gt;Understanding variables and their mutability is an essential aspect of learning Rust. This blog post covered the Rustlings exercises that demonstrated the usage of variables in different scenarios, including how to declare and shadow variables, work with constants, and use the &lt;code&gt;mut&lt;&#x2F;code&gt; keyword to make variables mutable. These fundamental concepts lay the groundwork for grasping more advanced topics in Rust programming.&lt;&#x2F;p&gt;
 &lt;p&gt;As you continue your Rust journey, always remember that variables in Rust are immutable by default, providing safety and predictability in your code. When needed, you can use the &lt;code&gt;mut&lt;&#x2F;code&gt; keyword to allow a variable to be mutable. Constants are also available, providing values that cannot be changed and must have their types annotated.&lt;&#x2F;p&gt;
-&lt;p&gt;We encourage you to explore the Rust documentation and practice further exercises to strengthen your understanding of these concepts. Happy coding!&lt;&#x2F;p&gt;
+&lt;p&gt;I encourage you to explore the Rust documentation and practice further exercises to strengthen your understanding of these concepts. Happy coding!&lt;&#x2F;p&gt;
 </description>
       </item>
       <item>
