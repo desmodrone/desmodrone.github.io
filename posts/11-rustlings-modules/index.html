@@ -244,7 +244,7 @@ error: aborting due to previous error
 </code></pre>
 <p>The compiler confirms what we already know, but it actually gives us a big hint in telling us that it expects an identifier. So, let's add the identifier.</p>
 <h2 id="modules2-rs-solution">modules2.rs solution</h2>
-<p>By looking at our code we can understand what the code is expecting as an identifier. It specifically shows in our <code>main()</code> function that we need to print the <code>delicious_snacks::fruit,</code> and the <code>delicious_snacks::veggie,</code> so this is a clear indication that we must identify our cucumber &quot;as&quot; a <code>veggie</code> let's do that and see what happens.</p>
+<p>By looking at our code we can understand what the code is expecting as an identifier. It specifically shows in our <code>main()</code> function that we need to print the <code>delicious_snacks::fruit,</code> and the <code>delicious_snacks::veggie,</code> so this is a clear indication that we must identify our cucumber &quot;as&quot; a <code>veggie</code>. We also need to add the <code>pub</code> keyword to make sure that they can be accessed outside of <code>delicious_snacks</code>.</p>
 <pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">mod delicious_snacks {
     &#x2F;&#x2F; TODO: Fix these use statements
     pub use self::fruits::PEAR as fruit;
@@ -367,7 +367,7 @@ fn main() {
 		
     </p>
     
-    <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>1425 Words</p>
+    <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>1437 Words</p>
     
     <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2023-07-17</p>
     

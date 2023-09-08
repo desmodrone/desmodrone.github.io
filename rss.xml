@@ -3273,7 +3273,7 @@ error: aborting due to previous error
 &lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
 &lt;p&gt;The compiler confirms what we already know, but it actually gives us a big hint in telling us that it expects an identifier. So, let&#x27;s add the identifier.&lt;&#x2F;p&gt;
 &lt;h2 id=&quot;modules2-rs-solution&quot;&gt;modules2.rs solution&lt;&#x2F;h2&gt;
-&lt;p&gt;By looking at our code we can understand what the code is expecting as an identifier. It specifically shows in our &lt;code&gt;main()&lt;&#x2F;code&gt; function that we need to print the &lt;code&gt;delicious_snacks::fruit,&lt;&#x2F;code&gt; and the &lt;code&gt;delicious_snacks::veggie,&lt;&#x2F;code&gt; so this is a clear indication that we must identify our cucumber &amp;quot;as&amp;quot; a &lt;code&gt;veggie&lt;&#x2F;code&gt; let&#x27;s do that and see what happens.&lt;&#x2F;p&gt;
+&lt;p&gt;By looking at our code we can understand what the code is expecting as an identifier. It specifically shows in our &lt;code&gt;main()&lt;&#x2F;code&gt; function that we need to print the &lt;code&gt;delicious_snacks::fruit,&lt;&#x2F;code&gt; and the &lt;code&gt;delicious_snacks::veggie,&lt;&#x2F;code&gt; so this is a clear indication that we must identify our cucumber &amp;quot;as&amp;quot; a &lt;code&gt;veggie&lt;&#x2F;code&gt;. We also need to add the &lt;code&gt;pub&lt;&#x2F;code&gt; keyword to make sure that they can be accessed outside of &lt;code&gt;delicious_snacks&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
 &lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;mod delicious_snacks {
     &amp;#x2F;&amp;#x2F; TODO: Fix these use statements
     pub use self::fruits::PEAR as fruit;
