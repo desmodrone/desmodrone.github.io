@@ -90,6 +90,10 @@
         <lastmod>2023-09-05</lastmod>
     </url>
     <url>
+        <loc>https://desmodrone.github.io/posts/19-rustlings-tests/</loc>
+        <lastmod>2023-09-15</lastmod>
+    </url>
+    <url>
         <loc>https://desmodrone.github.io/posts/hello-rustlings/</loc>
         <lastmod>2023-04-11</lastmod>
     </url>
@@ -115,6 +119,12 @@
     </url>
     <url>
         <loc>https://desmodrone.github.io/tags/</loc>
+    </url>
+    <url>
+        <loc>https://desmodrone.github.io/tags/assert-eq/</loc>
+    </url>
+    <url>
+        <loc>https://desmodrone.github.io/tags/assert/</loc>
     </url>
     <url>
         <loc>https://desmodrone.github.io/tags/blog/</loc>
@@ -223,6 +233,9 @@
     </url>
     <url>
         <loc>https://desmodrone.github.io/tags/structs/</loc>
+    </url>
+    <url>
+        <loc>https://desmodrone.github.io/tags/tests/</loc>
     </url>
     <url>
         <loc>https://desmodrone.github.io/tags/traits/</loc>

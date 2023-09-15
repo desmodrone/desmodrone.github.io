@@ -7,7 +7,255 @@
       <generator>Zola</generator>
       <language>en</language>
       <atom:link href="https://desmodrone.github.io/rss.xml" rel="self" type="application/rss+xml"/>
-      <lastBuildDate>Tue, 05 Sep 2023 00:00:00 +0000</lastBuildDate>
+      <lastBuildDate>Fri, 15 Sep 2023 00:00:00 +0000</lastBuildDate>
+      <item>
+          <title>19 Rustlings Tests</title>
+          <pubDate>Fri, 15 Sep 2023 00:00:00 +0000</pubDate>
+          <author>Unknown</author>
+          <link>https://desmodrone.github.io/posts/19-rustlings-tests/</link>
+          <guid>https://desmodrone.github.io/posts/19-rustlings-tests/</guid>
+          <description>&lt;p&gt;We&#x27;re going out of order from the book to cover tests -- many of the following exercises will ask you to make tests pass!&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;further-information&quot;&gt;Further information&lt;&#x2F;h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;doc.rust-lang.org&#x2F;book&#x2F;ch11-01-writing-tests.html&quot;&gt;Writing Tests&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h2 id=&quot;tests1-rs&quot;&gt;Tests1.rs&lt;&#x2F;h2&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;&amp;#x2F;&amp;#x2F; tests1.rs  
+&amp;#x2F;&amp;#x2F; Tests are important to ensure that your code does what you think it should do.  
+&amp;#x2F;&amp;#x2F; Tests can be run on this file with the following command:  
+&amp;#x2F;&amp;#x2F; rustlings run tests1  
+  
+&amp;#x2F;&amp;#x2F; This test has a problem with it -- make the test compile! Make the test  
+&amp;#x2F;&amp;#x2F; pass! Make the test fail!  
+&amp;#x2F;&amp;#x2F; Execute `rustlings hint tests1` or use the `hint` watch subcommand for a hint.  
+  
+&amp;#x2F;&amp;#x2F; I AM NOT DONE  
+  
+#[cfg(test)]  
+mod tests {  
+    #[test]  
+    fn you_can_assert() {  
+        assert!();  
+    }  
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;So now we&#x27;re looking at tests, an important part of the development process in any language is being able to test your code. In our first exercise we see instructions that tells us to make the test compile, make the test fail, essentially to play around with the code.
+Let&#x27;s look at our errors.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;test1-rs-errors&quot;&gt;Test1.rs errors&lt;&#x2F;h2&gt;
+&lt;pre&gt;&lt;code&gt;⚠️  Compiling of exercises&amp;#x2F;tests&amp;#x2F;tests1.rs failed! Please try again. Here&amp;#x27;s the output:
+error: macro requires a boolean expression as an argument
+  --&amp;gt; exercises&amp;#x2F;tests&amp;#x2F;tests1.rs:16:9
+   |
+16 |         assert!();
+   |         ^^^^^^^^^ boolean expression required
+
+error: aborting due to previous error
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;The compiler gives us a big hint, we need to add a boolean expression. So let&#x27;s try that.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;test1-rs-solution&quot;&gt;Test1.rs Solution&lt;&#x2F;h2&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;  
+#[cfg(test)]  
+mod tests {  
+    #[test]  
+    fn you_can_assert() {  
+        assert!(false == false); &amp;#x2F;&amp;#x2F; let&amp;#x27;s add false == false
+    }  
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;if we add this we actually compile and pass the tests:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;✅ Successfully tested exercises&amp;#x2F;tests&amp;#x2F;tests1.rs
+
+🎉 🎉  The code is compiling, and the tests pass! 🎉 🎉
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;But let&#x27;s see what happens when we change what&#x27;s inside of the &lt;code&gt;assert!&lt;&#x2F;code&gt; as we are told to do in our exercises.
+if we change our &lt;code&gt;assert!&lt;&#x2F;code&gt; to this:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;assert!(false == true);
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;we fail and panic!&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;running 1 test
+test tests::you_can_assert ... FAILED
+
+successes:
+
+successes:
+
+failures:
+
+---- tests::you_can_assert stdout ----
+thread &amp;#x27;tests::you_can_assert&amp;#x27; panicked at &amp;#x27;assertion failed: false == true&amp;#x27;, exercises&amp;#x2F;tests&amp;#x2F;tests1.rs:16:9
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;What about trying out different types&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;assert!(1 == 1); &amp;#x2F;&amp;#x2F; this passes ✅
+
+assert!(1); &amp;#x2F;&amp;#x2F; this fails ❌
+
+assert!(&amp;quot;hi&amp;quot; == &amp;quot;hi&amp;quot;); &amp;#x2F;&amp;#x2F; this passes ✅
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Alright, we get the idea we need to have something to compare it, and have it be equal for it to pass, alright got it! Let&#x27;s move on.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;test2-rs&quot;&gt;Test2.rs&lt;&#x2F;h2&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;&amp;#x2F;&amp;#x2F; tests2.rs  
+&amp;#x2F;&amp;#x2F; This test has a problem with it -- make the test compile! Make the test  
+&amp;#x2F;&amp;#x2F; pass! Make the test fail!  
+&amp;#x2F;&amp;#x2F; Execute `rustlings hint tests2` or use the `hint` watch subcommand for a hint.  
+  
+&amp;#x2F;&amp;#x2F; I AM NOT DONE  
+  
+#[cfg(test)]  
+mod tests {  
+    #[test]  
+    fn you_can_assert_eq() {  
+        assert_eq!();  
+    }  
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Our instructions are again similar, we need to make the code compile and pass tests.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;test2-rs-errors&quot;&gt;Test2.rs Errors&lt;&#x2F;h2&gt;
+&lt;p&gt;Looking at the errors we can see&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;⚠️  Compiling of exercises&amp;#x2F;tests&amp;#x2F;tests2.rs failed! Please try again. Here&amp;#x27;s the output:
+error: unexpected end of macro invocation
+  --&amp;gt; exercises&amp;#x2F;tests&amp;#x2F;tests2.rs:12:9
+   |
+12 |         assert_eq!();
+   |         ^^^^^^^^^^^^ missing tokens in macro arguments
+   |
+note: while trying to match meta-variable `$left:expr`
+  --&amp;gt; &amp;#x2F;Users&amp;#x2F;desmo&amp;#x2F;.rustup&amp;#x2F;toolchains&amp;#x2F;stable-aarch64-apple-darwin&amp;#x2F;lib&amp;#x2F;rustlib&amp;#x2F;src&amp;#x2F;rust&amp;#x2F;library&amp;#x2F;core&amp;#x2F;src&amp;#x2F;macros&amp;#x2F;mod.rs:37:6
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Again we get a clear statement saying we have missing tokens in the macro arguments. So let&#x27;s play around and see what we get.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;test2-rs-solution&quot;&gt;Test2.rs Solution&lt;&#x2F;h2&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;#[cfg(test)]  
+mod tests {  
+    #[test]  
+    fn you_can_assert_eq() {  
+        assert_eq!(0, true);  
+    }  
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;This fails!  Let&#x27;s see what the compiler says&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;⚠️  Compiling of exercises&amp;#x2F;tests&amp;#x2F;tests2.rs failed! Please try again. Here&amp;#x27;s the output:
+error[E0308]: mismatched types
+  --&amp;gt; exercises&amp;#x2F;tests&amp;#x2F;tests2.rs:12:9
+   |
+12 |         assert_eq!(0, true);
+   |         ^^^^^^^^^^^^^^^^^^^ expected integer, found `bool`
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Okay, so now let&#x27;s try&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;assert_eq!(0, 0);
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;This compiles&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;✅ Successfully tested exercises&amp;#x2F;tests&amp;#x2F;tests2.rs
+
+🎉 🎉  The code is compiling, and the tests pass! 🎉 🎉
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Let&#x27;s try different values&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;assert_eq!(&amp;quot;hi&amp;quot;, &amp;quot;hi&amp;quot;);  ✅
+
+assert_eq!(&amp;quot;0&amp;quot;, 0);  ❌
+
+assert_eq!(true, true); ✅
+
+assert_eq!(true, false); ❌
+
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Similar to our last exercise, we can enter comma separated values and see what happens. We clearly. have to enter matching values or the tests fail. Great, moving on!&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;test3-rs&quot;&gt;Test3.rs&lt;&#x2F;h2&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;&amp;#x2F;&amp;#x2F; tests3.rs  
+&amp;#x2F;&amp;#x2F; This test isn&amp;#x27;t testing our function -- make it do that in such a way that  
+&amp;#x2F;&amp;#x2F; the test passes. Then write a second test that tests whether we get the result  
+&amp;#x2F;&amp;#x2F; we expect to get when we call `is_even(5)`.  
+&amp;#x2F;&amp;#x2F; Execute `rustlings hint tests3` or use the `hint` watch subcommand for a hint.  
+  
+&amp;#x2F;&amp;#x2F; I AM NOT DONE  
+  
+pub fn is_even(num: i32) -&amp;gt; bool {  
+    num % 2 == 0  
+}  
+  
+#[cfg(test)]  
+mod tests {  
+    use super::*;  
+  
+    #[test]  
+    fn is_true_when_even() {  
+        assert!();  
+    }  
+  
+    #[test]  
+    fn is_false_when_odd() {  
+        assert!();  
+    }  
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Now, we finally get a function to test, it looks like we have to make the code compile and pass tests. If we look at the function we can see that it takes in an &lt;code&gt;i32&lt;&#x2F;code&gt; and returns a &lt;code&gt;bool&lt;&#x2F;code&gt; meaning, either &lt;code&gt;true&lt;&#x2F;code&gt; or &lt;code&gt;false&lt;&#x2F;code&gt; so does that give us a hint as to what to do?&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;test3-rs-errors&quot;&gt;Test3.rs Errors&lt;&#x2F;h2&gt;
+&lt;p&gt;Let&#x27;s take a look at the errors, again we see that we have an expression missing in our &lt;code&gt;assert!&lt;&#x2F;code&gt; macro, so let&#x27;s fix that.&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;⚠️  Compiling of exercises&amp;#x2F;tests&amp;#x2F;tests3.rs failed! Please try again. Here&amp;#x27;s the output:
+error: macro requires a boolean expression as an argument
+  --&amp;gt; exercises&amp;#x2F;tests&amp;#x2F;tests3.rs:19:9
+   |
+19 |         assert!();
+   |         ^^^^^^^^^ boolean expression required
+
+error: macro requires a boolean expression as an argument
+  --&amp;gt; exercises&amp;#x2F;tests&amp;#x2F;tests3.rs:24:9
+   |
+24 |         assert!();
+   |         ^^^^^^^^^ boolean expression required
+
+warning: unused import: `super::*`
+  --&amp;gt; exercises&amp;#x2F;tests&amp;#x2F;tests3.rs:15:9
+   |
+15 |     use super::*;
+   |         ^^^^^^^^
+   |
+   = note: `#[warn(unused_imports)]` on by default
+
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h2 id=&quot;test3-rs-solution&quot;&gt;Test3.rs Solution&lt;&#x2F;h2&gt;
+&lt;p&gt;We&#x27;ve been playing with these tests for a couple of exercises and we can say that we&#x27;ve seen that we need to have matching values. So we know that we need to match a &lt;code&gt;bool&lt;&#x2F;code&gt; so let&#x27;s try that..&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;  
+pub fn is_even(num: i32) -&amp;gt; bool {  
+    num % 2 == 0  
+}  
+  
+#[cfg(test)]  
+mod tests {  
+    use super::*;  
+  
+    #[test]  
+    fn is_true_when_even() {  
+        assert!(true == true);  
+    }  
+  
+    #[test]  
+    fn is_false_when_odd() {  
+        assert!(false == false);  
+    }  
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;And there we have it! Our tests are passing and our code is compiling.&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;running 2 tests
+test tests::is_true_when_even ... ok
+
+✅ Successfully tested exercises&amp;#x2F;tests&amp;#x2F;tests3.rs
+
+🎉 🎉  The code is compiling, and the tests pass! 🎉 🎉
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h2 id=&quot;conclusion&quot;&gt;Conclusion&lt;&#x2F;h2&gt;
+&lt;p&gt;Congratulations, you&#x27;ve just taken a quick look into the world of testing in Rust! From understanding how to make a test compile to making it pass or fail intentionally. You&#x27;ve also explored how to handle different types and expressions within the &lt;code&gt;assert!&lt;&#x2F;code&gt; and &lt;code&gt;assert_eq!&lt;&#x2F;code&gt; macros.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;key-takeaways&quot;&gt;Key Takeaways:&lt;&#x2F;h3&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Boolean Expressions&lt;&#x2F;strong&gt;: The &lt;code&gt;assert!&lt;&#x2F;code&gt; macro requires a boolean expression. If the expression evaluates to &lt;code&gt;true&lt;&#x2F;code&gt;, the test passes; otherwise, it fails and panics.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Matching Types&lt;&#x2F;strong&gt;: The &lt;code&gt;assert_eq!&lt;&#x2F;code&gt; macro expects two values of the same type. If they are equal, the test passes; otherwise, it fails.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Function Testing&lt;&#x2F;strong&gt;: We also looked at how to test a custom function (&lt;code&gt;is_even&lt;&#x2F;code&gt;) using the &lt;code&gt;assert!&lt;&#x2F;code&gt; macro. This gave us a practical example of how testing integrates into real-world code.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Error Messages&lt;&#x2F;strong&gt;: Paying attention to compiler error messages can provide valuable hints for resolving issues in your tests.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Exploration&lt;&#x2F;strong&gt;: Don&#x27;t be afraid to experiment. Changing the values and types in your tests can offer additional insights into how Rust&#x27;s testing framework operates.&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;p&gt;Testing is a critical part of software development that ensures your code behaves as expected. It&#x27;s a safety net that allows you to make changes to your code with confidence. As you continue your journey with Rust, you&#x27;ll find that the language&#x27;s robust testing framework is a powerful ally in writing reliable, robust software.&lt;&#x2F;p&gt;
+&lt;p&gt;So, the next time you&#x27;re writing code in Rust, remember: a test today can prevent a bug tomorrow. Happy coding!&lt;&#x2F;p&gt;
+</description>
+      </item>
       <item>
           <title>18 Rustlings Quiz 3</title>
           <pubDate>Tue, 05 Sep 2023 00:00:00 +0000</pubDate>
