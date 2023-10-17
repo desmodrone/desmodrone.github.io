@@ -7,7 +7,286 @@
       <generator>Zola</generator>
       <language>en</language>
       <atom:link href="https://desmodrone.github.io/rss.xml" rel="self" type="application/rss+xml"/>
-      <lastBuildDate>Fri, 15 Sep 2023 00:00:00 +0000</lastBuildDate>
+      <lastBuildDate>Tue, 17 Oct 2023 00:00:00 +0000</lastBuildDate>
+      <item>
+          <title>20 Rustlings Lifetimes</title>
+          <pubDate>Tue, 17 Oct 2023 00:00:00 +0000</pubDate>
+          <author>Unknown</author>
+          <link>https://desmodrone.github.io/posts/20-rustlings-lifetimes/</link>
+          <guid>https://desmodrone.github.io/posts/20-rustlings-lifetimes/</guid>
+          <description>&lt;h1 id=&quot;lifetimes&quot;&gt;Lifetimes&lt;&#x2F;h1&gt;
+&lt;h4 id=&quot;readme&quot;&gt;ReadMe&lt;&#x2F;h4&gt;
+&lt;p&gt;Lifetimes tell the compiler how to check whether references live long
+enough to be valid in any given situation. For example lifetimes say
+&amp;quot;make sure parameter &#x27;a&#x27; lives as long as parameter &#x27;b&#x27; so that the return
+value is valid&amp;quot;.&lt;&#x2F;p&gt;
+&lt;p&gt;They are only necessary on borrows, i.e. references,
+since copied parameters or moves are owned in their scope and cannot
+be referenced outside. Lifetimes mean that calling code of e.g. functions
+can be checked to make sure their arguments are valid. Lifetimes are
+restrictive of their callers.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;further-information&quot;&gt;Further information&lt;&#x2F;h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;doc.rust-lang.org&#x2F;book&#x2F;ch10-03-lifetime-syntax.html&quot;&gt;Validating References with Lifetimes&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;doc.rust-lang.org&#x2F;stable&#x2F;rust-by-example&#x2F;scope&#x2F;lifetime.html&quot;&gt;Lifetimes (in Rust By Example)&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h2 id=&quot;lifetimes1-rs&quot;&gt;Lifetimes1.rs&lt;&#x2F;h2&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;&amp;#x2F;&amp;#x2F; lifetimes1.rs
+&amp;#x2F;&amp;#x2F;
+&amp;#x2F;&amp;#x2F; The Rust compiler needs to know how to check whether supplied references are
+&amp;#x2F;&amp;#x2F; valid, so that it can let the programmer know if a reference is at risk
+&amp;#x2F;&amp;#x2F; of going out of scope before it is used. Remember, references are borrows
+&amp;#x2F;&amp;#x2F; and do not own their own data. What if their owner goes out of scope?
+&amp;#x2F;&amp;#x2F;
+&amp;#x2F;&amp;#x2F; Execute `rustlings hint lifetimes1` or use the `hint` watch subcommand for a hint.
+
+&amp;#x2F;&amp;#x2F; I AM NOT DONE
+
+fn longest(x: &amp;amp;str, y: &amp;amp;str) -&amp;gt; &amp;amp;str {
+    if x.len() &amp;gt; y.len() {
+        x
+    } else {
+        y
+    }
+}
+
+fn main() {
+    let string1 = String::from(&amp;quot;abcd&amp;quot;);
+    let string2 = &amp;quot;xyz&amp;quot;;
+
+    let result = longest(string1.as_str(), string2);
+    println!(&amp;quot;The longest string is &amp;#x27;{}&amp;#x27;&amp;quot;, result);
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Our instructions are to help the Rust compiler with the supplied references by using lifetime annotation I presume. As always let&#x27;s look at the compiler errors to see if there&#x27;s any additional details.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;lifetimes1-rs-errors&quot;&gt;Lifetimes1.rs Errors&lt;&#x2F;h2&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;⚠️  Compiling of exercises&amp;#x2F;lifetimes&amp;#x2F;lifetimes1.rs failed! Please try again. Here is the output:
+error[E0106]: missing lifetime specifier
+  --&amp;gt; exercises&amp;#x2F;lifetimes&amp;#x2F;lifetimes1.rs:12:33
+   |
+12 | fn longest(x: &amp;amp;str, y: &amp;amp;str) -&amp;gt; &amp;amp;str {
+   |               ----     ----     ^ expected named lifetime parameter
+   |
+   = help: this function&amp;#x27;s return type contains a borrowed value, but the signature does not say whether it is borrowed from `x` or `y`
+help: consider introducing a named lifetime parameter
+   |
+12 | fn longest&amp;lt;&amp;#x27;a&amp;gt;(x: &amp;amp;&amp;#x27;a str, y: &amp;amp;&amp;#x27;a str) -&amp;gt; &amp;amp;&amp;#x27;a str {
+   |           ++++     ++          ++          ++
+
+error: aborting due to previous error
+
+For more information about this error, try `rustc --explain E0106`.
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;We get a solid hint for how to help the compiler understand the lifetime of the variables, let&#x27;s try to do what it suggest to do on line 12&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;liftemes1-rs-solution&quot;&gt;Liftemes1.rs Solution&lt;&#x2F;h2&gt;
+&lt;p&gt;So as the compiler error&#x27;s suggested we add a lifetime of &lt;code&gt;&#x27;a&lt;&#x2F;code&gt; to our function signature. First right after the function name and then we assign it to the variables as seen below.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;fn longest&amp;lt;&amp;#x27;a&amp;gt;(x: &amp;amp;&amp;#x27;a str, y: &amp;amp;&amp;#x27;a str) -&amp;gt; &amp;amp;&amp;#x27;a str {
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;our full code block looks like this:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;fn longest&amp;lt;&amp;#x27;a&amp;gt;(x: &amp;amp;&amp;#x27;a str, y: &amp;amp;&amp;#x27;a str) -&amp;gt; &amp;amp;&amp;#x27;a str {
+    if x.len() &amp;gt; y.len() {
+        x
+    } else {
+        y
+    }
+}
+
+fn main() {
+    let string1 = String::from(&amp;quot;abcd&amp;quot;);
+    let string2 = &amp;quot;xyz&amp;quot;;
+
+    let result = longest(string1.as_str(), string2);
+    println!(&amp;quot;The longest string is &amp;#x27;{}&amp;#x27;&amp;quot;, result);
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h3 id=&quot;so-what-is-actually-happening-here&quot;&gt;So what is Actually Happening Here?&lt;&#x2F;h3&gt;
+&lt;p&gt;To use lifetime annotations in function signatures, we declare generic lifetime parameters inside angle brackets, just like we do with generic type parameters. The key concept is that the reference returned must stay valid as long as both parameters are valid.&lt;&#x2F;p&gt;
+&lt;p&gt;In our example, we define a lifetime &lt;code&gt;&#x27;a&lt;&#x2F;code&gt;, and the function signature states that it takes two string slices (&lt;code&gt;&amp;amp;&#x27;a str&lt;&#x2F;code&gt;) as parameters, both of which should live at least as long as &lt;code&gt;&#x27;a&lt;&#x2F;code&gt;. Additionally, the function signature ensures that the returned string slice also lives at least as long as &lt;code&gt;&#x27;a&lt;&#x2F;code&gt;. This means the reference&#x27;s lifetime returned by the &lt;code&gt;longest&lt;&#x2F;code&gt; function is constrained by the shorter of the lifetimes of the values referred to by the function arguments.&lt;&#x2F;p&gt;
+&lt;p&gt;Importantly, specifying these lifetime parameters doesn&#x27;t change the lifetimes of the values being passed or returned. Instead, it instructs the Rust borrow checker to reject any values that don&#x27;t adhere to these constraints.&lt;&#x2F;p&gt;
+&lt;p&gt;and like that...we&#x27;re compiling&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;🎉 🎉  The code is compiling! 🎉 🎉
+
+Output:
+====================
+The longest string is &amp;#x27;abcd&amp;#x27;
+
+====================
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h2 id=&quot;lifetimes2-rs&quot;&gt;Lifetimes2.rs&lt;&#x2F;h2&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;&amp;#x2F;&amp;#x2F; lifetimes2.rs
+&amp;#x2F;&amp;#x2F;
+&amp;#x2F;&amp;#x2F; So if the compiler is just validating the references passed
+&amp;#x2F;&amp;#x2F; to the annotated parameters and the return type, what do
+&amp;#x2F;&amp;#x2F; we need to change?
+&amp;#x2F;&amp;#x2F;
+&amp;#x2F;&amp;#x2F; Execute `rustlings hint lifetimes2` or use the `hint` watch subcommand for a hint.
+
+&amp;#x2F;&amp;#x2F; I AM NOT DONE
+
+fn longest&amp;lt;&amp;#x27;a&amp;gt;(x: &amp;amp;&amp;#x27;a str, y: &amp;amp;&amp;#x27;a str) -&amp;gt; &amp;amp;&amp;#x27;a str {
+    if x.len() &amp;gt; y.len() {
+        x
+    } else {
+        y
+    }
+}
+
+fn main() {
+    let string1 = String::from(&amp;quot;long string is long&amp;quot;);
+    let result;
+    {
+        let string2 = String::from(&amp;quot;xyz&amp;quot;);
+        result = longest(string1.as_str(), string2.as_str());
+    }
+    println!(&amp;quot;The longest string is &amp;#x27;{}&amp;#x27;&amp;quot;, result);
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;We have a similar exercise as before in terms of using the &lt;code&gt;longest&lt;&#x2F;code&gt; function but in this case we have an inner code block that declares &lt;code&gt;string2&lt;&#x2F;code&gt; and also &lt;code&gt;result&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;lifetimes2-rs-errors&quot;&gt;Lifetimes2.rs Errors&lt;&#x2F;h2&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;⚠️  Compiling of exercises&amp;#x2F;lifetimes&amp;#x2F;lifetimes2.rs failed! Please try again. Here is the output:
+error[E0597]: `string2` does not live long enough
+  --&amp;gt; exercises&amp;#x2F;lifetimes&amp;#x2F;lifetimes2.rs:24:44
+   |
+23 |         let string2 = String::from(&amp;quot;xyz&amp;quot;);
+   |             ------- binding `string2` declared here
+24 |         result = longest(string1.as_str(), string2.as_str());
+   |                                            ^^^^^^^ borrowed value does not live long enough
+25 |     }
+   |     - `string2` dropped here while still borrowed
+26 |     println!(&amp;quot;The longest string is &amp;#x27;{}&amp;#x27;&amp;quot;, result);
+   |                                            ------ borrow later used here
+
+error: aborting due to previous error
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;In this example, we encounter an issue where the &lt;code&gt;result&lt;&#x2F;code&gt; variable can&#x27;t be used outside the inner scope because it borrows a value (&lt;code&gt;string2&lt;&#x2F;code&gt;) that gets dropped as soon as the scope ends. To fix this, we either move the print statement inside the scope or remove the inner scope braces, ensuring that &lt;code&gt;result&lt;&#x2F;code&gt; remains valid.&lt;&#x2F;p&gt;
+&lt;p&gt;So how do we fix it?&lt;&#x2F;p&gt;
+&lt;p&gt;There&#x27;s a couple of ways we could fix this but let&#x27;s try the easiest (at least for me 😉).&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;lifetimes2-rs-solution&quot;&gt;Lifetimes2.rs Solution&lt;&#x2F;h2&gt;
+&lt;p&gt;So...is there any reason that we need to use the print statement outside of inner bracket? I don&#x27;t think so, there&#x27;s nothing preventing us from moving the last line and making this code compile, it gives us the same result and we have no issues with our variables being dropped after the scope.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;fn longest&amp;lt;&amp;#x27;a&amp;gt;(x: &amp;amp;&amp;#x27;a str, y: &amp;amp;&amp;#x27;a str) -&amp;gt; &amp;amp;&amp;#x27;a str {
+    if x.len() &amp;gt; y.len() {
+        x
+    } else {
+        y
+    }
+}
+
+fn main() {
+    let string1 = String::from(&amp;quot;long string is long&amp;quot;);
+    let result;
+    {
+        let string2 = String::from(&amp;quot;xyz&amp;quot;);
+        result = longest(string1.as_str(), string2.as_str());
+        println!(&amp;quot;The longest string is &amp;#x27;{}&amp;#x27;&amp;quot;, result);  &amp;#x2F;&amp;#x2F; add the print statment here
+    }
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;another easy solution is to just remove the inner scope braces and in this case we can also perform a little bit of clean-up so we don&#x27;t have &lt;code&gt;result&lt;&#x2F;code&gt; declared twice for no reason&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;fn longest&amp;lt;&amp;#x27;a&amp;gt;(x: &amp;amp;&amp;#x27;a str, y: &amp;amp;&amp;#x27;a str) -&amp;gt; &amp;amp;&amp;#x27;a str {
+    if x.len() &amp;gt; y.len() {
+        x
+    } else {
+        y
+    }
+}
+
+fn main() {
+    let string1 = String::from(&amp;quot;hi&amp;quot;);
+    let string2 = String::from(&amp;quot;xyz&amp;quot;);
+    let result = longest(string1.as_str(), string2.as_str());
+    println!(&amp;quot;The longest string is &amp;#x27;{}&amp;#x27;&amp;quot;, result);
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;I&#x27;m sure there&#x27;s more ways we could solve this but you get the idea right?  Let&#x27;s move on to the next exercise.&lt;&#x2F;p&gt;
+&lt;p&gt;Here&#x27;s the printout of our modified code:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;🎉 🎉  The code is compiling! 🎉 🎉
+
+Output:
+====================
+The longest string is &amp;#x27;xyz&amp;#x27;
+
+====================
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h2 id=&quot;lifetimes3-rs&quot;&gt;Lifetimes3.rs&lt;&#x2F;h2&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;&amp;#x2F;&amp;#x2F; lifetimes3.rs
+&amp;#x2F;&amp;#x2F;
+&amp;#x2F;&amp;#x2F; Lifetimes are also needed when structs hold references.
+&amp;#x2F;&amp;#x2F;
+&amp;#x2F;&amp;#x2F; Execute `rustlings hint lifetimes3` or use the `hint` watch subcommand for a hint.
+
+&amp;#x2F;&amp;#x2F; I AM NOT DONE
+
+struct Book {
+    author: &amp;amp;str,
+    title: &amp;amp;str,
+}
+
+fn main() {
+    let name = String::from(&amp;quot;Jill Smith&amp;quot;);
+    let title = String::from(&amp;quot;Fish Flying&amp;quot;);
+    let book = Book { author: &amp;amp;name, title: &amp;amp;title };
+
+    println!(&amp;quot;{} by {}&amp;quot;, book.title, book.author);
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;So we are being told that structs can also references in the instructions and we see in our errors that is telling us how to fix them.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;lifetimes3-rs-errors&quot;&gt;Lifetimes3.rs Errors&lt;&#x2F;h2&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;⚠️  Compiling of exercises&amp;#x2F;lifetimes&amp;#x2F;lifetimes3.rs failed! Please try again. Here is the output:
+error[E0106]: missing lifetime specifier
+  --&amp;gt; exercises&amp;#x2F;lifetimes&amp;#x2F;lifetimes3.rs:10:13
+   |
+10 |     author: &amp;amp;str,
+   |             ^ expected named lifetime parameter
+   |
+help: consider introducing a named lifetime parameter
+   |
+9  ~ struct Book&amp;lt;&amp;#x27;a&amp;gt; {
+10 ~     author: &amp;amp;&amp;#x27;a str,
+   |
+
+error[E0106]: missing lifetime specifier
+  --&amp;gt; exercises&amp;#x2F;lifetimes&amp;#x2F;lifetimes3.rs:11:12
+   |
+11 |     title: &amp;amp;str,
+   |            ^ expected named lifetime parameter
+   |
+help: consider introducing a named lifetime parameter
+   |
+9  ~ struct Book&amp;lt;&amp;#x27;a&amp;gt; {
+10 |     author: &amp;amp;str,
+11 ~     title: &amp;amp;&amp;#x27;a str,
+   |
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Looks easy enough let&#x27;s try and implement it...&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;lifetimes3-rs-solution&quot;&gt;Lifetimes3.rs Solution&lt;&#x2F;h2&gt;
+&lt;p&gt;Lifetimes are also essential when structs hold references. In this example, we define a &lt;code&gt;Book&lt;&#x2F;code&gt; struct with lifetime annotations for the &lt;code&gt;author&lt;&#x2F;code&gt; and &lt;code&gt;title&lt;&#x2F;code&gt; fields to ensure that they reference valid data. By introducing the lifetime parameter &lt;code&gt;&#x27;a&lt;&#x2F;code&gt;, we make sure that the references inside the struct remain valid for as long as the struct itself.&lt;&#x2F;p&gt;
+&lt;p&gt;So, let&#x27;s implement the lifetime notation just as the compiler suggests and let&#x27;s see what happens....&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;struct Book&amp;lt;&amp;#x27;a&amp;gt; {
+    author: &amp;amp;&amp;#x27;a str,
+    title: &amp;amp;&amp;#x27;a str,
+}
+
+fn main() {
+    let name = String::from(&amp;quot;Jill Smith&amp;quot;);
+    let title = String::from(&amp;quot;Fish Flying&amp;quot;);
+    let book = Book { author: &amp;amp;name, title: &amp;amp;title };
+
+    println!(&amp;quot;{} by {}&amp;quot;, book.title, book.author);
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Easy enough we are compiling!&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;🎉 🎉  The code is compiling! 🎉 🎉
+
+Output:
+====================
+Fish Flying by Jill Smith
+
+====================
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h2 id=&quot;conclusion&quot;&gt;Conclusion&lt;&#x2F;h2&gt;
+&lt;p&gt;In conclusion, lifetimes are a critical part of Rust&#x27;s ownership system that helps ensure the safety and validity of references. By understanding how to use lifetime annotations in function signatures and structs, you can write code that is both safe and efficient. Remember that lifetimes don&#x27;t change the actual lifetimes of values but serve as constraints for the borrow checker to enforce.&lt;&#x2F;p&gt;
+</description>
+      </item>
       <item>
           <title>19 Rustlings Tests</title>
           <pubDate>Fri, 15 Sep 2023 00:00:00 +0000</pubDate>
