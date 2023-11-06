@@ -7,7 +7,477 @@
       <generator>Zola</generator>
       <language>en</language>
       <atom:link href="https://desmodrone.github.io/rss.xml" rel="self" type="application/rss+xml"/>
-      <lastBuildDate>Fri, 27 Oct 2023 00:00:00 +0000</lastBuildDate>
+      <lastBuildDate>Mon, 06 Nov 2023 00:00:00 +0000</lastBuildDate>
+      <item>
+          <title>22 Rustlings Threads</title>
+          <pubDate>Mon, 06 Nov 2023 00:00:00 +0000</pubDate>
+          <author>Unknown</author>
+          <link>https://desmodrone.github.io/posts/22-rustlings-threads/</link>
+          <guid>https://desmodrone.github.io/posts/22-rustlings-threads/</guid>
+          <description>&lt;p&gt;In most current operating systems, an executed program’s code is run in a process, and the operating system manages multiple processes at once.
+Within your program, you can also have independent parts that run simultaneously. The features that run these independent parts are called threads.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;further-information&quot;&gt;Further information&lt;&#x2F;h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;doc.rust-lang.org&#x2F;1.4.0&#x2F;book&#x2F;dining-philosophers.html&quot;&gt;Dining Philosophers example&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;doc.rust-lang.org&#x2F;book&#x2F;ch16-01-threads.html&quot;&gt;Using Threads to Run Code Simultaneously&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h2 id=&quot;threads1-rs&quot;&gt;Threads1.rs&lt;&#x2F;h2&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;&amp;#x2F;&amp;#x2F; threads1.rs
+&amp;#x2F;&amp;#x2F; Execute `rustlings hint threads1` or use the `hint` watch subcommand for a hint.
+
+&amp;#x2F;&amp;#x2F; This program spawns multiple threads that each run for at least 250ms,
+&amp;#x2F;&amp;#x2F; and each thread returns how much time they took to complete.
+&amp;#x2F;&amp;#x2F; The program should wait until all the spawned threads have finished and
+&amp;#x2F;&amp;#x2F; should collect their return values into a vector.
+
+&amp;#x2F;&amp;#x2F; I AM NOT DONE
+
+use std::thread;
+use std::time::{Duration, Instant};
+
+fn main() {
+    let mut handles = vec![];
+    for i in 0..10 {
+        handles.push(thread::spawn(move || {
+            let start = Instant::now();
+            thread::sleep(Duration::from_millis(250));
+            println!(&amp;quot;thread {} is complete&amp;quot;, i);
+            start.elapsed().as_millis()
+        }));
+    }
+
+    let mut results: Vec&amp;lt;u128&amp;gt; = vec![];
+
+    for handle in handles {
+        &amp;#x2F;&amp;#x2F; TODO: a struct is returned from thread::spawn, can you use it?
+
+    }
+
+    if results.len() != 10 {
+        panic!(&amp;quot;Oh no! All the spawned threads did not finish!&amp;quot;);
+    }
+
+    println!();
+    for (i, result) in results.into_iter().enumerate() {
+        println!(&amp;quot;thread {} took {}ms&amp;quot;, i, result);
+    }
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;We have one TODO on this exercise and we have a question about &lt;code&gt;thread::spawn&lt;&#x2F;code&gt;&#x27; s returned struct.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;threads1-rs-errors&quot;&gt;Threads1.rs Errors&lt;&#x2F;h2&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;⚠️  Ran exercises&amp;#x2F;threads&amp;#x2F;threads1.rs with errors
+
+thread &amp;#x27;main&amp;#x27; panicked at exercises&amp;#x2F;threads&amp;#x2F;threads1.rs:31:9:
+Oh no! All the spawned threads did not finish!
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Looking at the errors we see that the &lt;code&gt;if&lt;&#x2F;code&gt; result is triggering a panic with the &lt;code&gt;Oh no! All the spawned threads did not finish!&lt;&#x2F;code&gt; message.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;threads1-rs-solution&quot;&gt;Threads1.rs Solution&lt;&#x2F;h2&gt;
+&lt;p&gt;If you look at the Rust documentation you will see that you can use the &lt;a href=&quot;https:&#x2F;&#x2F;doc.rust-lang.org&#x2F;std&#x2F;thread&#x2F;fn.spawn.html&quot;&gt;JoinHandle&lt;&#x2F;a&gt; when using the &lt;code&gt;std::thread::spawn&lt;&#x2F;code&gt; which provides a &lt;code&gt;join&lt;&#x2F;code&gt; method that can be used to &amp;quot;join&amp;quot; the spawned thread, this is because the &lt;code&gt;join&lt;&#x2F;code&gt; method waits for the thread to finish and returns the result of the thread&#x27;s operation, which is why it&#x27;s necessary to call &lt;code&gt;join&lt;&#x2F;code&gt; on each handle. So let&#x27;s try that in our &lt;code&gt;for handle&lt;&#x2F;code&gt; loop. It would look something like this:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;for handle in handles {
+	handle.join().unwrap();
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Let&#x27;s run this is and see what happens&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;⚠️  Ran exercises&amp;#x2F;threads&amp;#x2F;threads1.rs with errors
+thread 2 is complete
+thread 0 is complete
+thread 3 is complete
+thread 9 is complete
+thread 1 is complete
+thread 8 is complete
+thread 6 is complete
+thread 7 is complete
+thread 4 is complete
+thread 5 is complete
+
+thread &amp;#x27;main&amp;#x27; panicked at exercises&amp;#x2F;threads&amp;#x2F;threads1.rs:32:9:
+Oh no! All the spawned threads did not finish!
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Looks like we&#x27;re getting closer but we are still panicking with the same message, notice how the threads are all out of order, this will vary every time we run the program and this is part the challenge with multi-threaded applications that the main thread can finish before the spawned threads are complete.  So going back to our &lt;code&gt;for&lt;&#x2F;code&gt; loop, if we look back at the code we see that we are using the &lt;code&gt;results&lt;&#x2F;code&gt; variable in the &lt;code&gt;if&lt;&#x2F;code&gt; portion of the code but we never actually pushed the threads into the &lt;code&gt;results&lt;&#x2F;code&gt; variable so the code is panicking regardless of the fact that we&#x27;re printing out the threads, so let&#x27;s fix that.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;for handle in handles {
+	&amp;#x2F;&amp;#x2F; creating a new variable `result` with the joined threads
+	let result = handle.join().unwrap();
+	&amp;#x2F;&amp;#x2F; pushing these results to the `results` Vec&amp;lt;u128&amp;gt; defined before the for loop.
+	results.push(result);
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;This will properly populate the &lt;code&gt;results&lt;&#x2F;code&gt; vector and allow the &lt;code&gt;if&lt;&#x2F;code&gt; part of the code not panic because &lt;code&gt;results&lt;&#x2F;code&gt; will indeed be equal to &lt;code&gt;10&lt;&#x2F;code&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;with this we are complete, here&#x27;s our output:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;✅ Successfully ran exercises&amp;#x2F;threads&amp;#x2F;threads1.rs!
+
+🎉 🎉  The code is compiling! 🎉 🎉
+
+Output:
+====================
+thread 1 is complete
+thread 4 is complete
+thread 9 is complete
+thread 0 is complete
+thread 2 is complete
+thread 3 is complete
+thread 5 is complete
+thread 7 is complete
+thread 8 is complete
+thread 6 is complete
+
+thread 0 took 255ms
+thread 1 took 255ms
+thread 2 took 255ms
+thread 3 took 255ms
+thread 4 took 254ms
+thread 5 took 255ms
+thread 6 took 255ms
+thread 7 took 255ms
+thread 8 took 255ms
+thread 9 took 255ms
+
+====================
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h2 id=&quot;threads2-rs&quot;&gt;Threads2.rs&lt;&#x2F;h2&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;&amp;#x2F;&amp;#x2F; threads2.rs
+&amp;#x2F;&amp;#x2F; Execute `rustlings hint threads2` or use the `hint` watch subcommand for a hint.
+&amp;#x2F;&amp;#x2F; Building on the last exercise, we want all of the threads to complete their work but this time
+&amp;#x2F;&amp;#x2F; the spawned threads need to be in charge of updating a shared value: JobStatus.jobs_completed
+
+&amp;#x2F;&amp;#x2F; I AM NOT DONE
+
+use std::sync::Arc;
+use std::thread;
+use std::time::Duration;
+
+struct JobStatus {
+    jobs_completed: u32,
+}
+
+fn main() {
+    let status = Arc::new(JobStatus { jobs_completed: 0 });
+    let mut handles = vec![];
+    for _ in 0..10 {
+        let status_shared = Arc::clone(&amp;amp;status);
+        let handle = thread::spawn(move || {
+            thread::sleep(Duration::from_millis(250));
+            &amp;#x2F;&amp;#x2F; TODO: You must take an action before you update a shared value
+            status_shared.jobs_completed += 1;
+        });
+        handles.push(handle);
+    }
+    for handle in handles {
+        handle.join().unwrap();
+        &amp;#x2F;&amp;#x2F; TODO: Print the value of the JobStatus.jobs_completed. Did you notice anything
+        &amp;#x2F;&amp;#x2F; interesting in the output? Do you have to &amp;#x27;join&amp;#x27; on all the handles?
+        println!(&amp;quot;jobs completed {}&amp;quot;, ???);
+    }
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;We have a couple of &lt;code&gt;TODO&lt;&#x2F;code&gt;&#x27;s on  this exercise that is building on the previous&lt;&#x2F;p&gt;
+&lt;ol&gt;
+&lt;li&gt;In our first &lt;code&gt;for&lt;&#x2F;code&gt; loop we must take an action before we can update a shared value&lt;&#x2F;li&gt;
+&lt;li&gt;In our &lt;code&gt;handle&lt;&#x2F;code&gt; for loop we must print out the value of the &lt;code&gt;JobStatus.jobs_completed&lt;&#x2F;code&gt;&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;h2 id=&quot;threads2-rs-errors&quot;&gt;Threads2.rs Errors&lt;&#x2F;h2&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;⚠️  Compiling of exercises&amp;#x2F;threads&amp;#x2F;threads2.rs failed! Please try again. Here&amp;#x27;s the output:
+error: expected expression, found `?`
+  --&amp;gt; exercises&amp;#x2F;threads&amp;#x2F;threads2.rs:32:39
+   |
+32 |         println!(&amp;quot;jobs completed {}&amp;quot;, ???);
+   |                                       ^ expected expression
+
+error: aborting due to previous error
+
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;The errors show that we&#x27;re missing the last part of our print statement so that&#x27;s not much help, but let&#x27;s proceed. We actually get more of a hint in the comments of the &lt;code&gt;TODO&lt;&#x2F;code&gt; with :  &lt;code&gt;Did you notice anything interesting in the output? Do you have to &#x27;join&#x27; on all the handles?&lt;&#x2F;code&gt; So let&#x27;s keep that in mind.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;threads2-rs-solution&quot;&gt;Threads2.rs Solution&lt;&#x2F;h2&gt;
+&lt;p&gt;let&#x27;s first take a look at our &lt;code&gt;fn main&lt;&#x2F;code&gt; where we have the &lt;code&gt;TODO&lt;&#x2F;code&gt; right before our incrementation.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;fn main() {
+    let status = Arc::new(JobStatus { jobs_completed: 0 });
+    let mut handles = vec![];
+    for _ in 0..10 {
+        let status_shared = Arc::clone(&amp;amp;status);
+        let handle = thread::spawn(move || {
+            thread::sleep(Duration::from_millis(250));
+            &amp;#x2F;&amp;#x2F; TODO: You must take an action before you update a shared value
+            status_shared.jobs_completed += 1;
+        });
+        handles.push(handle);
+    }
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h3 id=&quot;implementing-mutex&quot;&gt;Implementing Mutex&lt;&#x2F;h3&gt;
+&lt;p&gt;So, what is the action that we must do before we updated a shared value? This hint must be referring to the use of a &lt;em&gt;Mutex&lt;&#x2F;em&gt; which if you&#x27;re not familiar with them, is to short for &lt;em&gt;mutual exclusion&lt;&#x2F;em&gt; -- meaning a mutex allows only one thread to access on piece of data at any given time. To use the data with a &lt;em&gt;mutex&lt;&#x2F;em&gt; a thread must request access by asking to acquire a mutex &lt;em&gt;lock&lt;&#x2F;em&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;So let&#x27;s first implement the &lt;code&gt;Mutex&lt;&#x2F;code&gt; syntax into our code starting at the very top with:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;let status = Arc::new(Mutex::new(JobStatus { jobs_completed }));
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Also since we&#x27;re using a new type, &lt;code&gt;Mutex&lt;&#x2F;code&gt; we must import it with &lt;code&gt;use std::sync::Mutex;&lt;&#x2F;code&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;Alright now we have to work on the locking portion of the code our &lt;em&gt;TODO:&lt;&#x2F;em&gt;&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;    &amp;#x2F;&amp;#x2F; TODO: You must take an action before you update a shared value
+    status_shared.jobs_completed += 1;
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;So, let&#x27;s create update the &lt;code&gt;status_shared&lt;&#x2F;code&gt; variable so we can store the &lt;code&gt;status_shared.lock().unwrap()&lt;&#x2F;code&gt;, let&#x27;s make it &lt;code&gt;mut&lt;&#x2F;code&gt; as well as we have to update the value. The lines would look like this:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;let mut status_shared = status_shared.lock().unwrap();
+status_shared.jobs_completed += 1;
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h3 id=&quot;fixing-printing&quot;&gt;Fixing Printing&lt;&#x2F;h3&gt;
+&lt;p&gt;Now, let&#x27;s look at our 2nd &lt;em&gt;TODO&lt;&#x2F;em&gt;:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;&amp;#x2F;&amp;#x2F; TODO: Print the value of the JobStatus.jobs_completed. Did you notice anything
+&amp;#x2F;&amp;#x2F; interesting in the output? Do you have to &amp;#x27;join&amp;#x27; on all the handles?
+println!(&amp;quot;jobs completed {}&amp;quot;, ???);
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;First let&#x27;s figure out what we should be printing here, clearly it&#x27;s the &lt;code&gt;jobs_completed&lt;&#x2F;code&gt; and this is being stored inside of our &lt;code&gt;status&lt;&#x2F;code&gt; variable, so how do we get to this data? By dereferencing with &lt;code&gt;*&lt;&#x2F;code&gt; and because it&#x27;s a &lt;code&gt;Mutex&lt;&#x2F;code&gt; we should also use the &lt;code&gt;lock&lt;&#x2F;code&gt; syntax. Let&#x27;s try:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;println!(&amp;quot;jobs completed {:?}&amp;quot;, *status.lock().unwrap());
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Note that we also have to add the &lt;code&gt;:?&lt;&#x2F;code&gt; syntax inside of the curly braces as well as add &lt;code&gt;#[derive(Debug)]&lt;&#x2F;code&gt; to our &lt;code&gt;JobStatus&lt;&#x2F;code&gt; struct to be able to print to our terminal. Here&#x27;s our updated full code block&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;use std::sync::Arc;
+use std::thread;
+use std::time::Duration;
+use std::sync::Mutex;
+
+#[derive(Debug)]
+struct JobStatus {
+    jobs_completed: u32,
+}
+
+fn main() {
+    let status = Arc::new(Mutex::new(JobStatus { jobs_completed: 0 }));
+    let mut handles = vec![];
+    for _ in 0..10 {
+        let status_shared = Arc::clone(&amp;amp;status);
+        let handle = thread::spawn(move || {
+            thread::sleep(Duration::from_millis(250));
+            let mut status_shared = status_shared.lock().unwrap();
+            status_shared.jobs_completed += 1;
+        });
+        handles.push(handle);
+    }
+    for handle in handles {
+        handle.join().unwrap();
+        println!(&amp;quot;jobs completed {:?}&amp;quot;, *status.lock().unwrap());
+    }
+
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;And with this we are compiling, BUT maybe we&#x27;re not getting the expected output:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;🎉 🎉  The code is compiling! 🎉 🎉
+
+Output:
+====================
+jobs completed JobStatus { jobs_completed: 10 }
+jobs completed JobStatus { jobs_completed: 10 }
+jobs completed JobStatus { jobs_completed: 10 }
+jobs completed JobStatus { jobs_completed: 10 }
+jobs completed JobStatus { jobs_completed: 10 }
+====================
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;This is strange so how do we fix it? I propose we add 2 different print statements to get a better understanding of what is happening with our threads.&lt;&#x2F;p&gt;
+&lt;p&gt;The first one inside of our &lt;code&gt;for&lt;&#x2F;code&gt; loop&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;for _ in 0..10 {
+    let status_shared = Arc::clone(&amp;amp;status);
+    let handle = thread::spawn(move || {
+        thread::sleep(Duration::from_millis(250));
+        let mut status_shared = status_shared.lock().unwrap();
+        status_shared.jobs_completed += 1;
+        &amp;#x2F;&amp;#x2F; Print inside the thread to observe the incrementation
+        println!(&amp;quot;Thread incremented jobs_completed to {}&amp;quot;, status_shared.jobs_completed);
+    });
+    handles.push(handle);
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;and final printout that is not inside of the second &lt;code&gt;for&lt;&#x2F;code&gt; loop but outside to confirm our total jobs completed:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;for handle in handles {
+    handle.join().unwrap();
+}
+
+&amp;#x2F;&amp;#x2F; Print the final value of the JobStatus.jobs_completed after all threads have been joined
+println!(&amp;quot;Final jobs completed {}&amp;quot;, status.lock().unwrap().jobs_completed);
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;With these tweaks we have our code compiling and behaving in a more predictable or rather informative manner:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;Output:
+====================
+Thread incremented jobs_completed to 1
+Thread incremented jobs_completed to 2
+Thread incremented jobs_completed to 3
+Thread incremented jobs_completed to 4
+Thread incremented jobs_completed to 5
+Thread incremented jobs_completed to 6
+Thread incremented jobs_completed to 7
+Thread incremented jobs_completed to 8
+Thread incremented jobs_completed to 9
+Thread incremented jobs_completed to 10
+jobs completed JobStatus { jobs_completed: 10 }
+
+====================
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h2 id=&quot;threads3-rs&quot;&gt;Threads3.rs&lt;&#x2F;h2&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;&amp;#x2F;&amp;#x2F; threads3.rs
+&amp;#x2F;&amp;#x2F; Execute `rustlings hint threads3` or use the `hint` watch subcommand for a hint.
+
+&amp;#x2F;&amp;#x2F; I AM NOT DONE
+
+use std::sync::mpsc;
+use std::sync::Arc;
+use std::thread;
+use std::time::Duration;
+
+struct Queue {
+    length: u32,
+    first_half: Vec&amp;lt;u32&amp;gt;,
+    second_half: Vec&amp;lt;u32&amp;gt;,
+}
+
+impl Queue {
+    fn new() -&amp;gt; Self {
+        Queue {
+            length: 10,
+            first_half: vec![1, 2, 3, 4, 5],
+            second_half: vec![6, 7, 8, 9, 10],
+        }
+    }
+}
+
+fn send_tx(q: Queue, tx: mpsc::Sender&amp;lt;u32&amp;gt;) -&amp;gt; () {
+    let qc = Arc::new(q);
+    let qc1 = Arc::clone(&amp;amp;qc);
+    let qc2 = Arc::clone(&amp;amp;qc);
+
+    thread::spawn(move || {
+        for val in &amp;amp;qc1.first_half {
+            println!(&amp;quot;sending {:?}&amp;quot;, val);
+            tx.send(*val).unwrap();
+            thread::sleep(Duration::from_secs(1));
+        }
+    });
+
+    thread::spawn(move || {
+        for val in &amp;amp;qc2.second_half {
+            println!(&amp;quot;sending {:?}&amp;quot;, val);
+            tx.send(*val).unwrap();
+            thread::sleep(Duration::from_secs(1));
+        }
+    });
+}
+
+fn main() {
+    let (tx, rx) = mpsc::channel();
+    let queue = Queue::new();
+    let queue_length = queue.length;
+
+    send_tx(queue, tx);
+
+    let mut total_received: u32 = 0;
+    for received in rx {
+        println!(&amp;quot;Got: {}&amp;quot;, received);
+        total_received += 1;
+    }
+
+    println!(&amp;quot;total numbers received: {}&amp;quot;, total_received);
+    assert_eq!(total_received, queue_length)
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;On this final threads exercise we don&#x27;t get any information other than what the Rust errors tell us.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;threads3-rs-errors&quot;&gt;Threads3.rs Errors&lt;&#x2F;h2&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;error[E0382]: use of moved value: `tx`
+  --&amp;gt; exercises&amp;#x2F;threads&amp;#x2F;threads3.rs:40:19
+   |
+27 | fn send_tx(q: Queue, tx: mpsc::Sender&amp;lt;u32&amp;gt;) -&amp;gt; () {
+   |                      -- move occurs because `tx` has type `Sender&amp;lt;u32&amp;gt;`, which does not implement the `Copy` trait
+...
+32 |     thread::spawn(move || {
+   |                   ------- value moved into closure here
+...
+35 |             tx.send(*val).unwrap();
+   |             -- variable moved due to use in closure
+...
+40 |     thread::spawn(move || {
+   |                   ^^^^^^^ value used here after move
+...
+43 |             tx.send(*val).unwrap();
+   |             -- use occurs due to use in closure
+
+error: aborting due to previous error
+
+For more information about this error, try `rustc --explain E0382`.
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Alright we have some hints from the error&#x27;s -- let&#x27;s implement a solution that fixes this &lt;code&gt;Copy&lt;&#x2F;code&gt; trait issue.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;threads3-rs-solution&quot;&gt;Threads3.rs Solution&lt;&#x2F;h2&gt;
+&lt;p&gt;Let&#x27;s recap, the error we&#x27;re encountering is because the &lt;code&gt;tx&lt;&#x2F;code&gt; (transmitter) is moved into the first thread we spawn. Once a value has been moved into a closure, it cannot be used again because the ownership has been transferred to the closure. In Rust, most values have &#x27;move semantics&#x27;, which means that when you pass a value to a function or a thread, the ownership is transferred, and the original variable can no longer be used.&lt;&#x2F;p&gt;
+&lt;p&gt;To fix this, you need to create a transmitter for each thread because the &lt;code&gt;mpsc::Sender&lt;&#x2F;code&gt; type does not implement the &lt;code&gt;Copy&lt;&#x2F;code&gt; trait, (as the error tells us) which means it cannot be copied, only moved. However, &lt;code&gt;mpsc::Sender&lt;&#x2F;code&gt; does implement the &lt;code&gt;Clone&lt;&#x2F;code&gt; trait, so you can clone it before moving it into the thread.&lt;&#x2F;p&gt;
+&lt;p&gt;Here&#x27;s how we can modify the &lt;code&gt;send_tx&lt;&#x2F;code&gt; function:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;fn send_tx(q: Queue, tx: mpsc::Sender&amp;lt;u32&amp;gt;) -&amp;gt; () {
+    let qc = Arc::new(q);
+    let qc1 = Arc::clone(&amp;amp;qc);
+    let qc2 = Arc::clone(&amp;amp;qc);
+
+    let tx1 = tx.clone(); &amp;#x2F;&amp;#x2F; Clone the transmitter for the first thread
+    thread::spawn(move || {
+        for val in &amp;amp;qc1.first_half {
+            println!(&amp;quot;sending {:?}&amp;quot;, val);
+            tx1.send(*val).unwrap(); &amp;#x2F;&amp;#x2F; Use the cloned transmitter
+            thread::sleep(Duration::from_secs(1));
+        }
+    });
+
+    &amp;#x2F;&amp;#x2F; No need to clone here, as we can use the original transmitter
+    thread::spawn(move || {
+        for val in &amp;amp;qc2.second_half {
+            println!(&amp;quot;sending {:?}&amp;quot;, val);
+            tx.send(*val).unwrap(); &amp;#x2F;&amp;#x2F; Use the original transmitter
+            thread::sleep(Duration::from_secs(1));
+        }
+    });
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;In this modified function, &lt;code&gt;tx1&lt;&#x2F;code&gt; is a clone of the original transmitter &lt;code&gt;tx&lt;&#x2F;code&gt; and is moved into the first thread. The second thread can use the original &lt;code&gt;tx&lt;&#x2F;code&gt; because it&#x27;s no longer needed in the main thread after &lt;code&gt;send_tx&lt;&#x2F;code&gt; is called.&lt;&#x2F;p&gt;
+&lt;p&gt;And with that we&#x27;re compiling!&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;✅ Successfully ran exercises&amp;#x2F;threads&amp;#x2F;threads3.rs!
+
+🎉 🎉  The code is compiling! 🎉 🎉
+
+Output:
+====================
+sending 1
+sending 6
+Got: 1
+Got: 6
+sending 2
+sending 7
+Got: 2
+Got: 7
+sending 3
+sending 8
+Got: 3
+Got: 8
+sending 9
+Got: 9
+sending 4
+Got: 4
+sending 10
+Got: 10
+sending 5
+Got: 5
+total numbers received: 10
+
+====================
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;By cloning the &lt;code&gt;tx&lt;&#x2F;code&gt; before moving it into the threads, we&#x27;ve ensured that each thread has its own &lt;code&gt;Sender&lt;&#x2F;code&gt; to communicate with the &lt;code&gt;Receiver&lt;&#x2F;code&gt;. This allows both threads to send messages concurrently without taking ownership of the original &lt;code&gt;Sender&lt;&#x2F;code&gt;, which is why we&#x27;re seeing the interleaved &amp;quot;sending&amp;quot; and &amp;quot;Got:&amp;quot; outputs.&lt;&#x2F;p&gt;
+&lt;p&gt;The reason the &lt;code&gt;Receiver&lt;&#x2F;code&gt; stops blocking and allows the program to finish, even without explicitly joining the threads, is because the &lt;code&gt;Sender&lt;&#x2F;code&gt; endpoints are dropped when each thread finishes execution. When all &lt;code&gt;Sender&lt;&#x2F;code&gt; instances are dropped, the &lt;code&gt;Receiver&lt;&#x2F;code&gt; knows no more messages will come through, and it stops blocking, allowing the &lt;code&gt;for received in rx&lt;&#x2F;code&gt; loop to complete.&lt;&#x2F;p&gt;
+&lt;p&gt;This is a key aspect of Rust&#x27;s channel implementation: the &lt;code&gt;Receiver&lt;&#x2F;code&gt; will only return &lt;code&gt;None&lt;&#x2F;code&gt; (and thus stop iterating in a &lt;code&gt;for&lt;&#x2F;code&gt; loop) when all &lt;code&gt;Sender&lt;&#x2F;code&gt; instances have been dropped, signaling that no more messages will be sent on the channel.&lt;&#x2F;p&gt;
+&lt;p&gt;Here&#x27;s a summary of how it happens:&lt;&#x2F;p&gt;
+&lt;ol&gt;
+&lt;li&gt;Each thread sends its messages, sleeping for a second between each one.&lt;&#x2F;li&gt;
+&lt;li&gt;The main thread concurrently receives messages. As soon as a message is sent, it&#x27;s printed out by the main thread.&lt;&#x2F;li&gt;
+&lt;li&gt;When the threads finish their execution, the &lt;code&gt;Sender&lt;&#x2F;code&gt; objects they own are dropped.&lt;&#x2F;li&gt;
+&lt;li&gt;Once all &lt;code&gt;Sender&lt;&#x2F;code&gt; objects are dropped, the &lt;code&gt;Receiver&lt;&#x2F;code&gt; stops blocking and the &lt;code&gt;for&lt;&#x2F;code&gt; loop in the main thread exits.&lt;&#x2F;li&gt;
+&lt;li&gt;The program prints the total number of messages received and exits.&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;p&gt;The interleaved output of &amp;quot;sending&amp;quot; and &amp;quot;Got:&amp;quot; lines is due to the threads and the main thread running concurrently, with the threads sleeping for a second between sends, giving the main thread time to print out the received messages.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;conclusion&quot;&gt;Conclusion&lt;&#x2F;h2&gt;
+&lt;p&gt;Throughout this exploration of Rust&#x27;s threading model, we&#x27;ve seen how the language&#x27;s design choices around ownership and concurrency enable us to write safe and efficient multithreaded code. From the basics of spawning threads and joining them, to sharing state via &lt;code&gt;Arc&lt;&#x2F;code&gt; and &lt;code&gt;Mutex&lt;&#x2F;code&gt;, and coordinating between threads with message passing, Rust provides a rich set of tools for concurrent programming.&lt;&#x2F;p&gt;
+&lt;p&gt;The exercises we&#x27;ve worked through demonstrate the importance of understanding ownership and the type system when working with threads in Rust. By leveraging these concepts, Rust ensures that our concurrent programs are free from data races and other common concurrency pitfalls.&lt;&#x2F;p&gt;
+&lt;p&gt;As we&#x27;ve seen, Rust&#x27;s channels and synchronization primitives are powerful, but they also require us to think carefully about how we structure our code and manage shared state. The compiler&#x27;s strict checks might seem restrictive at first, but they guide us towards writing code that is not only correct but also clear in its intent.&lt;&#x2F;p&gt;
+&lt;p&gt;In conclusion, Rust&#x27;s approach to concurrency is not about taking away the power from the programmer but about providing the tools to harness that power responsibly. It encourages us to think in terms of safe abstractions, clear ownership, and explicit synchronization. As you continue to explore Rust&#x27;s concurrency features, keep in mind the patterns and principles we&#x27;ve discussed here. They will serve as a solid foundation for building reliable, high-performance concurrent applications.&lt;&#x2F;p&gt;
+&lt;p&gt;Happy coding, and may your Rustacean journey be concurrency-error-free!&lt;&#x2F;p&gt;
+</description>
+      </item>
       <item>
           <title>21 Rustlings Iterators</title>
           <pubDate>Fri, 27 Oct 2023 00:00:00 +0000</pubDate>

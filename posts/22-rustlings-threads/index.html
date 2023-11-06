@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <meta itemprop="name" content="desmo" />
+  <meta itemprop="description" content="Random Ideas" />
+
+  <link rel="apple-touch-icon" sizes="180x180" href="https://desmodrone.github.io/apple-touch-icon.png"/>
+  <link rel="icon" type="image/png" sizes="32x32" href="https://desmodrone.github.io/favicon-32x32.png" />
+  <link
+    rel="icon"
+    type="image/png"
+    sizes="16x16"
+    href="https://desmodrone.github.io/favicon-16x16.png"
+  />
+  <link
+    rel="shortcut icon"
+    href="https://desmodrone.github.io/favicon.ico"
+  />
+  <link rel="stylesheet" href="https://desmodrone.github.io/style.css"/>
+  
+  <title>22 Rustlings Threads</title>
+  
+
+  
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="https://desmodrone.github.io/rss.xml">
+  
+
+  <body id="page">
+
+	
+<header id="site-header" class="animated slideInUp faster">
+  <div class="hdr-wrapper section-inner">
+    <div class="hdr-left">
+      <div class="site-branding">
+        <a href="https:&#x2F;&#x2F;desmodrone.github.io">desmo</a>
+      </div>
+      <nav class="site-nav hide-in-mobile">
+            
+        
+        <a href="https://desmodrone.github.io/posts">posts</a>
+        
+        <a href="https://desmodrone.github.io/about">about</a>
+        
+        <a href="https://desmodrone.github.io/work">work</a>
+        
+      </nav>
+    </div>
+    <div class="hdr-right hdr-icons">
+      <span class="hdr-social hide-in-mobile">
+        
+
+<a href="https:&#x2F;&#x2F;twitter.com&#x2F;desmo_io" target="_blank" rel="noopener me"
+   title="twitter">
+  
+  <svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg>
+  
+</a>
+
+<a href="https:&#x2F;&#x2F;github.com&#x2F;desmodrone" target="_blank" rel="noopener me"
+   title="github">
+  
+  <svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+  
+</a>
+
+<a href="mailto:erick@apexwins.com" target="_blank" rel="noopener me"
+   title="email">
+  
+  <svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+  
+</a>
+
+
+      </span>
+      <button id="menu-btn" class="hdr-btn" title="Menu">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="feather feather-menu"
+        >
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+  </div>
+</header>
+<div id="mobile-menu" class="animated fast">
+  <ul>
+    
+    <li><a href="https://desmodrone.github.io/posts">posts</a></li>
+    
+    <li><a href="https://desmodrone.github.io/about">about</a></li>
+    
+    <li><a href="https://desmodrone.github.io/work">work</a></li>
+    
+  </ul>
+</div>
+
+	
+	
+
+		
+<main class="site-main section-inner animated fadeIn faster">
+  <article class="thin">
+	<header class="post-header">
+	  <div class="post-meta">
+		
+		<span>Nov 06, 2023</span>
+		<small> - 
+<span class="reading-time" title="Estimated read time">
+  
+  11 min read
+  
+</span>
+</small>
+		
+            
+	  </div>
+	  <h1>22 Rustlings Threads</h1>
+	</header>
+
+	<div class="content">
+        
+	  <p>In most current operating systems, an executed program’s code is run in a process, and the operating system manages multiple processes at once.
+Within your program, you can also have independent parts that run simultaneously. The features that run these independent parts are called threads.</p>
+<h2 id="further-information">Further information</h2>
+<ul>
+<li><a href="https://doc.rust-lang.org/1.4.0/book/dining-philosophers.html">Dining Philosophers example</a></li>
+<li><a href="https://doc.rust-lang.org/book/ch16-01-threads.html">Using Threads to Run Code Simultaneously</a></li>
+</ul>
+<h2 id="threads1-rs">Threads1.rs</h2>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">&#x2F;&#x2F; threads1.rs
+&#x2F;&#x2F; Execute `rustlings hint threads1` or use the `hint` watch subcommand for a hint.
+
+&#x2F;&#x2F; This program spawns multiple threads that each run for at least 250ms,
+&#x2F;&#x2F; and each thread returns how much time they took to complete.
+&#x2F;&#x2F; The program should wait until all the spawned threads have finished and
+&#x2F;&#x2F; should collect their return values into a vector.
+
+&#x2F;&#x2F; I AM NOT DONE
+
+use std::thread;
+use std::time::{Duration, Instant};
+
+fn main() {
+    let mut handles = vec![];
+    for i in 0..10 {
+        handles.push(thread::spawn(move || {
+            let start = Instant::now();
+            thread::sleep(Duration::from_millis(250));
+            println!(&quot;thread {} is complete&quot;, i);
+            start.elapsed().as_millis()
+        }));
+    }
+
+    let mut results: Vec&lt;u128&gt; = vec![];
+
+    for handle in handles {
+        &#x2F;&#x2F; TODO: a struct is returned from thread::spawn, can you use it?
+
+    }
+
+    if results.len() != 10 {
+        panic!(&quot;Oh no! All the spawned threads did not finish!&quot;);
+    }
+
+    println!();
+    for (i, result) in results.into_iter().enumerate() {
+        println!(&quot;thread {} took {}ms&quot;, i, result);
+    }
+}
+</code></pre>
+<p>We have one TODO on this exercise and we have a question about <code>thread::spawn</code>' s returned struct.</p>
+<h2 id="threads1-rs-errors">Threads1.rs Errors</h2>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">⚠️  Ran exercises&#x2F;threads&#x2F;threads1.rs with errors
+
+thread &#x27;main&#x27; panicked at exercises&#x2F;threads&#x2F;threads1.rs:31:9:
+Oh no! All the spawned threads did not finish!
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+</code></pre>
+<p>Looking at the errors we see that the <code>if</code> result is triggering a panic with the <code>Oh no! All the spawned threads did not finish!</code> message.</p>
+<h2 id="threads1-rs-solution">Threads1.rs Solution</h2>
+<p>If you look at the Rust documentation you will see that you can use the <a href="https://doc.rust-lang.org/std/thread/fn.spawn.html">JoinHandle</a> when using the <code>std::thread::spawn</code> which provides a <code>join</code> method that can be used to &quot;join&quot; the spawned thread, this is because the <code>join</code> method waits for the thread to finish and returns the result of the thread's operation, which is why it's necessary to call <code>join</code> on each handle. So let's try that in our <code>for handle</code> loop. It would look something like this:</p>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">for handle in handles {
+	handle.join().unwrap();
+}
+</code></pre>
+<p>Let's run this is and see what happens</p>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">⚠️  Ran exercises&#x2F;threads&#x2F;threads1.rs with errors
+thread 2 is complete
+thread 0 is complete
+thread 3 is complete
+thread 9 is complete
+thread 1 is complete
+thread 8 is complete
+thread 6 is complete
+thread 7 is complete
+thread 4 is complete
+thread 5 is complete
+
+thread &#x27;main&#x27; panicked at exercises&#x2F;threads&#x2F;threads1.rs:32:9:
+Oh no! All the spawned threads did not finish!
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+</code></pre>
+<p>Looks like we're getting closer but we are still panicking with the same message, notice how the threads are all out of order, this will vary every time we run the program and this is part the challenge with multi-threaded applications that the main thread can finish before the spawned threads are complete.  So going back to our <code>for</code> loop, if we look back at the code we see that we are using the <code>results</code> variable in the <code>if</code> portion of the code but we never actually pushed the threads into the <code>results</code> variable so the code is panicking regardless of the fact that we're printing out the threads, so let's fix that.</p>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">for handle in handles {
+	&#x2F;&#x2F; creating a new variable `result` with the joined threads
+	let result = handle.join().unwrap();
+	&#x2F;&#x2F; pushing these results to the `results` Vec&lt;u128&gt; defined before the for loop.
+	results.push(result);
+}
+</code></pre>
+<p>This will properly populate the <code>results</code> vector and allow the <code>if</code> part of the code not panic because <code>results</code> will indeed be equal to <code>10</code></p>
+<p>with this we are complete, here's our output:</p>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">✅ Successfully ran exercises&#x2F;threads&#x2F;threads1.rs!
+
+🎉 🎉  The code is compiling! 🎉 🎉
+
+Output:
+====================
+thread 1 is complete
+thread 4 is complete
+thread 9 is complete
+thread 0 is complete
+thread 2 is complete
+thread 3 is complete
+thread 5 is complete
+thread 7 is complete
+thread 8 is complete
+thread 6 is complete
+
+thread 0 took 255ms
+thread 1 took 255ms
+thread 2 took 255ms
+thread 3 took 255ms
+thread 4 took 254ms
+thread 5 took 255ms
+thread 6 took 255ms
+thread 7 took 255ms
+thread 8 took 255ms
+thread 9 took 255ms
+
+====================
+</code></pre>
+<h2 id="threads2-rs">Threads2.rs</h2>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">&#x2F;&#x2F; threads2.rs
+&#x2F;&#x2F; Execute `rustlings hint threads2` or use the `hint` watch subcommand for a hint.
+&#x2F;&#x2F; Building on the last exercise, we want all of the threads to complete their work but this time
+&#x2F;&#x2F; the spawned threads need to be in charge of updating a shared value: JobStatus.jobs_completed
+
+&#x2F;&#x2F; I AM NOT DONE
+
+use std::sync::Arc;
+use std::thread;
+use std::time::Duration;
+
+struct JobStatus {
+    jobs_completed: u32,
+}
+
+fn main() {
+    let status = Arc::new(JobStatus { jobs_completed: 0 });
+    let mut handles = vec![];
+    for _ in 0..10 {
+        let status_shared = Arc::clone(&amp;status);
+        let handle = thread::spawn(move || {
+            thread::sleep(Duration::from_millis(250));
+            &#x2F;&#x2F; TODO: You must take an action before you update a shared value
+            status_shared.jobs_completed += 1;
+        });
+        handles.push(handle);
+    }
+    for handle in handles {
+        handle.join().unwrap();
+        &#x2F;&#x2F; TODO: Print the value of the JobStatus.jobs_completed. Did you notice anything
+        &#x2F;&#x2F; interesting in the output? Do you have to &#x27;join&#x27; on all the handles?
+        println!(&quot;jobs completed {}&quot;, ???);
+    }
+}
+</code></pre>
+<p>We have a couple of <code>TODO</code>'s on  this exercise that is building on the previous</p>
+<ol>
+<li>In our first <code>for</code> loop we must take an action before we can update a shared value</li>
+<li>In our <code>handle</code> for loop we must print out the value of the <code>JobStatus.jobs_completed</code></li>
+</ol>
+<h2 id="threads2-rs-errors">Threads2.rs Errors</h2>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">⚠️  Compiling of exercises&#x2F;threads&#x2F;threads2.rs failed! Please try again. Here&#x27;s the output:
+error: expected expression, found `?`
+  --&gt; exercises&#x2F;threads&#x2F;threads2.rs:32:39
+   |
+32 |         println!(&quot;jobs completed {}&quot;, ???);
+   |                                       ^ expected expression
+
+error: aborting due to previous error
+
+</code></pre>
+<p>The errors show that we're missing the last part of our print statement so that's not much help, but let's proceed. We actually get more of a hint in the comments of the <code>TODO</code> with :  <code>Did you notice anything interesting in the output? Do you have to 'join' on all the handles?</code> So let's keep that in mind.</p>
+<h2 id="threads2-rs-solution">Threads2.rs Solution</h2>
+<p>let's first take a look at our <code>fn main</code> where we have the <code>TODO</code> right before our incrementation.</p>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">fn main() {
+    let status = Arc::new(JobStatus { jobs_completed: 0 });
+    let mut handles = vec![];
+    for _ in 0..10 {
+        let status_shared = Arc::clone(&amp;status);
+        let handle = thread::spawn(move || {
+            thread::sleep(Duration::from_millis(250));
+            &#x2F;&#x2F; TODO: You must take an action before you update a shared value
+            status_shared.jobs_completed += 1;
+        });
+        handles.push(handle);
+    }
+</code></pre>
+<h3 id="implementing-mutex">Implementing Mutex</h3>
+<p>So, what is the action that we must do before we updated a shared value? This hint must be referring to the use of a <em>Mutex</em> which if you're not familiar with them, is to short for <em>mutual exclusion</em> -- meaning a mutex allows only one thread to access on piece of data at any given time. To use the data with a <em>mutex</em> a thread must request access by asking to acquire a mutex <em>lock</em>.</p>
+<p>So let's first implement the <code>Mutex</code> syntax into our code starting at the very top with:</p>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">let status = Arc::new(Mutex::new(JobStatus { jobs_completed }));
+</code></pre>
+<p>Also since we're using a new type, <code>Mutex</code> we must import it with <code>use std::sync::Mutex;</code></p>
+<p>Alright now we have to work on the locking portion of the code our <em>TODO:</em></p>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">    &#x2F;&#x2F; TODO: You must take an action before you update a shared value
+    status_shared.jobs_completed += 1;
+</code></pre>
+<p>So, let's create update the <code>status_shared</code> variable so we can store the <code>status_shared.lock().unwrap()</code>, let's make it <code>mut</code> as well as we have to update the value. The lines would look like this:</p>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">let mut status_shared = status_shared.lock().unwrap();
+status_shared.jobs_completed += 1;
+</code></pre>
+<h3 id="fixing-printing">Fixing Printing</h3>
+<p>Now, let's look at our 2nd <em>TODO</em>:</p>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">&#x2F;&#x2F; TODO: Print the value of the JobStatus.jobs_completed. Did you notice anything
+&#x2F;&#x2F; interesting in the output? Do you have to &#x27;join&#x27; on all the handles?
+println!(&quot;jobs completed {}&quot;, ???);
+</code></pre>
+<p>First let's figure out what we should be printing here, clearly it's the <code>jobs_completed</code> and this is being stored inside of our <code>status</code> variable, so how do we get to this data? By dereferencing with <code>*</code> and because it's a <code>Mutex</code> we should also use the <code>lock</code> syntax. Let's try:</p>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">println!(&quot;jobs completed {:?}&quot;, *status.lock().unwrap());
+</code></pre>
+<p>Note that we also have to add the <code>:?</code> syntax inside of the curly braces as well as add <code>#[derive(Debug)]</code> to our <code>JobStatus</code> struct to be able to print to our terminal. Here's our updated full code block</p>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">use std::sync::Arc;
+use std::thread;
+use std::time::Duration;
+use std::sync::Mutex;
+
+#[derive(Debug)]
+struct JobStatus {
+    jobs_completed: u32,
+}
+
+fn main() {
+    let status = Arc::new(Mutex::new(JobStatus { jobs_completed: 0 }));
+    let mut handles = vec![];
+    for _ in 0..10 {
+        let status_shared = Arc::clone(&amp;status);
+        let handle = thread::spawn(move || {
+            thread::sleep(Duration::from_millis(250));
+            let mut status_shared = status_shared.lock().unwrap();
+            status_shared.jobs_completed += 1;
+        });
+        handles.push(handle);
+    }
+    for handle in handles {
+        handle.join().unwrap();
+        println!(&quot;jobs completed {:?}&quot;, *status.lock().unwrap());
+    }
+
+}
+</code></pre>
+<p>And with this we are compiling, BUT maybe we're not getting the expected output:</p>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">🎉 🎉  The code is compiling! 🎉 🎉
+
+Output:
+====================
+jobs completed JobStatus { jobs_completed: 10 }
+jobs completed JobStatus { jobs_completed: 10 }
+jobs completed JobStatus { jobs_completed: 10 }
+jobs completed JobStatus { jobs_completed: 10 }
+jobs completed JobStatus { jobs_completed: 10 }
+====================
+</code></pre>
+<p>This is strange so how do we fix it? I propose we add 2 different print statements to get a better understanding of what is happening with our threads.</p>
+<p>The first one inside of our <code>for</code> loop</p>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">for _ in 0..10 {
+    let status_shared = Arc::clone(&amp;status);
+    let handle = thread::spawn(move || {
+        thread::sleep(Duration::from_millis(250));
+        let mut status_shared = status_shared.lock().unwrap();
+        status_shared.jobs_completed += 1;
+        &#x2F;&#x2F; Print inside the thread to observe the incrementation
+        println!(&quot;Thread incremented jobs_completed to {}&quot;, status_shared.jobs_completed);
+    });
+    handles.push(handle);
+}
+</code></pre>
+<p>and final printout that is not inside of the second <code>for</code> loop but outside to confirm our total jobs completed:</p>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">for handle in handles {
+    handle.join().unwrap();
+}
+
+&#x2F;&#x2F; Print the final value of the JobStatus.jobs_completed after all threads have been joined
+println!(&quot;Final jobs completed {}&quot;, status.lock().unwrap().jobs_completed);
+</code></pre>
+<p>With these tweaks we have our code compiling and behaving in a more predictable or rather informative manner:</p>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">Output:
+====================
+Thread incremented jobs_completed to 1
+Thread incremented jobs_completed to 2
+Thread incremented jobs_completed to 3
+Thread incremented jobs_completed to 4
+Thread incremented jobs_completed to 5
+Thread incremented jobs_completed to 6
+Thread incremented jobs_completed to 7
+Thread incremented jobs_completed to 8
+Thread incremented jobs_completed to 9
+Thread incremented jobs_completed to 10
+jobs completed JobStatus { jobs_completed: 10 }
+
+====================
+</code></pre>
+<h2 id="threads3-rs">Threads3.rs</h2>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">&#x2F;&#x2F; threads3.rs
+&#x2F;&#x2F; Execute `rustlings hint threads3` or use the `hint` watch subcommand for a hint.
+
+&#x2F;&#x2F; I AM NOT DONE
+
+use std::sync::mpsc;
+use std::sync::Arc;
+use std::thread;
+use std::time::Duration;
+
+struct Queue {
+    length: u32,
+    first_half: Vec&lt;u32&gt;,
+    second_half: Vec&lt;u32&gt;,
+}
+
+impl Queue {
+    fn new() -&gt; Self {
+        Queue {
+            length: 10,
+            first_half: vec![1, 2, 3, 4, 5],
+            second_half: vec![6, 7, 8, 9, 10],
+        }
+    }
+}
+
+fn send_tx(q: Queue, tx: mpsc::Sender&lt;u32&gt;) -&gt; () {
+    let qc = Arc::new(q);
+    let qc1 = Arc::clone(&amp;qc);
+    let qc2 = Arc::clone(&amp;qc);
+
+    thread::spawn(move || {
+        for val in &amp;qc1.first_half {
+            println!(&quot;sending {:?}&quot;, val);
+            tx.send(*val).unwrap();
+            thread::sleep(Duration::from_secs(1));
+        }
+    });
+
+    thread::spawn(move || {
+        for val in &amp;qc2.second_half {
+            println!(&quot;sending {:?}&quot;, val);
+            tx.send(*val).unwrap();
+            thread::sleep(Duration::from_secs(1));
+        }
+    });
+}
+
+fn main() {
+    let (tx, rx) = mpsc::channel();
+    let queue = Queue::new();
+    let queue_length = queue.length;
+
+    send_tx(queue, tx);
+
+    let mut total_received: u32 = 0;
+    for received in rx {
+        println!(&quot;Got: {}&quot;, received);
+        total_received += 1;
+    }
+
+    println!(&quot;total numbers received: {}&quot;, total_received);
+    assert_eq!(total_received, queue_length)
+}
+</code></pre>
+<p>On this final threads exercise we don't get any information other than what the Rust errors tell us.</p>
+<h2 id="threads3-rs-errors">Threads3.rs Errors</h2>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">error[E0382]: use of moved value: `tx`
+  --&gt; exercises&#x2F;threads&#x2F;threads3.rs:40:19
+   |
+27 | fn send_tx(q: Queue, tx: mpsc::Sender&lt;u32&gt;) -&gt; () {
+   |                      -- move occurs because `tx` has type `Sender&lt;u32&gt;`, which does not implement the `Copy` trait
+...
+32 |     thread::spawn(move || {
+   |                   ------- value moved into closure here
+...
+35 |             tx.send(*val).unwrap();
+   |             -- variable moved due to use in closure
+...
+40 |     thread::spawn(move || {
+   |                   ^^^^^^^ value used here after move
+...
+43 |             tx.send(*val).unwrap();
+   |             -- use occurs due to use in closure
+
+error: aborting due to previous error
+
+For more information about this error, try `rustc --explain E0382`.
+</code></pre>
+<p>Alright we have some hints from the error's -- let's implement a solution that fixes this <code>Copy</code> trait issue.</p>
+<h2 id="threads3-rs-solution">Threads3.rs Solution</h2>
+<p>Let's recap, the error we're encountering is because the <code>tx</code> (transmitter) is moved into the first thread we spawn. Once a value has been moved into a closure, it cannot be used again because the ownership has been transferred to the closure. In Rust, most values have 'move semantics', which means that when you pass a value to a function or a thread, the ownership is transferred, and the original variable can no longer be used.</p>
+<p>To fix this, you need to create a transmitter for each thread because the <code>mpsc::Sender</code> type does not implement the <code>Copy</code> trait, (as the error tells us) which means it cannot be copied, only moved. However, <code>mpsc::Sender</code> does implement the <code>Clone</code> trait, so you can clone it before moving it into the thread.</p>
+<p>Here's how we can modify the <code>send_tx</code> function:</p>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">fn send_tx(q: Queue, tx: mpsc::Sender&lt;u32&gt;) -&gt; () {
+    let qc = Arc::new(q);
+    let qc1 = Arc::clone(&amp;qc);
+    let qc2 = Arc::clone(&amp;qc);
+
+    let tx1 = tx.clone(); &#x2F;&#x2F; Clone the transmitter for the first thread
+    thread::spawn(move || {
+        for val in &amp;qc1.first_half {
+            println!(&quot;sending {:?}&quot;, val);
+            tx1.send(*val).unwrap(); &#x2F;&#x2F; Use the cloned transmitter
+            thread::sleep(Duration::from_secs(1));
+        }
+    });
+
+    &#x2F;&#x2F; No need to clone here, as we can use the original transmitter
+    thread::spawn(move || {
+        for val in &amp;qc2.second_half {
+            println!(&quot;sending {:?}&quot;, val);
+            tx.send(*val).unwrap(); &#x2F;&#x2F; Use the original transmitter
+            thread::sleep(Duration::from_secs(1));
+        }
+    });
+}
+</code></pre>
+<p>In this modified function, <code>tx1</code> is a clone of the original transmitter <code>tx</code> and is moved into the first thread. The second thread can use the original <code>tx</code> because it's no longer needed in the main thread after <code>send_tx</code> is called.</p>
+<p>And with that we're compiling!</p>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">✅ Successfully ran exercises&#x2F;threads&#x2F;threads3.rs!
+
+🎉 🎉  The code is compiling! 🎉 🎉
+
+Output:
+====================
+sending 1
+sending 6
+Got: 1
+Got: 6
+sending 2
+sending 7
+Got: 2
+Got: 7
+sending 3
+sending 8
+Got: 3
+Got: 8
+sending 9
+Got: 9
+sending 4
+Got: 4
+sending 10
+Got: 10
+sending 5
+Got: 5
+total numbers received: 10
+
+====================
+</code></pre>
+<p>By cloning the <code>tx</code> before moving it into the threads, we've ensured that each thread has its own <code>Sender</code> to communicate with the <code>Receiver</code>. This allows both threads to send messages concurrently without taking ownership of the original <code>Sender</code>, which is why we're seeing the interleaved &quot;sending&quot; and &quot;Got:&quot; outputs.</p>
+<p>The reason the <code>Receiver</code> stops blocking and allows the program to finish, even without explicitly joining the threads, is because the <code>Sender</code> endpoints are dropped when each thread finishes execution. When all <code>Sender</code> instances are dropped, the <code>Receiver</code> knows no more messages will come through, and it stops blocking, allowing the <code>for received in rx</code> loop to complete.</p>
+<p>This is a key aspect of Rust's channel implementation: the <code>Receiver</code> will only return <code>None</code> (and thus stop iterating in a <code>for</code> loop) when all <code>Sender</code> instances have been dropped, signaling that no more messages will be sent on the channel.</p>
+<p>Here's a summary of how it happens:</p>
+<ol>
+<li>Each thread sends its messages, sleeping for a second between each one.</li>
+<li>The main thread concurrently receives messages. As soon as a message is sent, it's printed out by the main thread.</li>
+<li>When the threads finish their execution, the <code>Sender</code> objects they own are dropped.</li>
+<li>Once all <code>Sender</code> objects are dropped, the <code>Receiver</code> stops blocking and the <code>for</code> loop in the main thread exits.</li>
+<li>The program prints the total number of messages received and exits.</li>
+</ol>
+<p>The interleaved output of &quot;sending&quot; and &quot;Got:&quot; lines is due to the threads and the main thread running concurrently, with the threads sleeping for a second between sends, giving the main thread time to print out the received messages.</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>Throughout this exploration of Rust's threading model, we've seen how the language's design choices around ownership and concurrency enable us to write safe and efficient multithreaded code. From the basics of spawning threads and joining them, to sharing state via <code>Arc</code> and <code>Mutex</code>, and coordinating between threads with message passing, Rust provides a rich set of tools for concurrent programming.</p>
+<p>The exercises we've worked through demonstrate the importance of understanding ownership and the type system when working with threads in Rust. By leveraging these concepts, Rust ensures that our concurrent programs are free from data races and other common concurrency pitfalls.</p>
+<p>As we've seen, Rust's channels and synchronization primitives are powerful, but they also require us to think carefully about how we structure our code and manage shared state. The compiler's strict checks might seem restrictive at first, but they guide us towards writing code that is not only correct but also clear in its intent.</p>
+<p>In conclusion, Rust's approach to concurrency is not about taking away the power from the programmer but about providing the tools to harness that power responsibly. It encourages us to think in terms of safe abstractions, clear ownership, and explicit synchronization. As you continue to explore Rust's concurrency features, keep in mind the patterns and principles we've discussed here. They will serve as a solid foundation for building reliable, high-performance concurrent applications.</p>
+<p>Happy coding, and may your Rustacean journey be concurrency-error-free!</p>
+
+	</div>
+	<hr class="post-end">
+	<footer class="post-info">
+    
+	  <p>
+		<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg>
+		
+		
+		<span class="tag"><a href="https://desmodrone.github.io/tags/rust/">rust</a></span>
+		
+		<span class="tag"><a href="https://desmodrone.github.io/tags/result/">result</a></span>
+		
+		<span class="tag"><a href="https://desmodrone.github.io/tags/threads/">threads</a></span>
+		
+		<span class="tag"><a href="https://desmodrone.github.io/tags/mpsc/">mpsc</a></span>
+		
+		<span class="tag"><a href="https://desmodrone.github.io/tags/arc/">arc</a></span>
+		
+		<span class="tag"><a href="https://desmodrone.github.io/tags/mutex/">mutex</a></span>
+		
+		<span class="tag"><a href="https://desmodrone.github.io/tags/join/">join</a></span>
+		
+		<span class="tag"><a href="https://desmodrone.github.io/tags/lock/">lock</a></span>
+		
+		<span class="tag"><a href="https://desmodrone.github.io/tags/rustlings/">rustlings</a></span>
+		
+		
+    </p>
+    
+    <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>2927 Words</p>
+    
+    <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2023-11-06</p>
+    
+	</footer>
+  </article>
+    
+  
+  <div class="post-nav thin">
+	
+	
+  </div>
+
+  
+</main>
+
+	  </div>
+	  
+	  
+
+
+
+<footer id="site-footer" class="section-inner thin animated fadeIn faster">
+  <p>&copy; 2023 <a href="https:&#x2F;&#x2F;desmodrone.github.io">erick</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
+  <p>Made with <a href="https://www.getzola.org" target="_blank" rel="noopener">Zola</a> &#183; Theme <a href="https://github.com/VersBinarii/hermit_zola" target="_blank" rel="noopener">Hermit_Zola</a>
+	
+	&#183; <a href="https://desmodrone.github.io/rss.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
+	
+  </p>
+</footer>
+
+
+
+
+	</div>
+	
+	<script src="https://desmodrone.github.io/js/main.js"></script>
+
+	<!-- Math rendering -->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css" integrity="sha384-zB1R0rpPzHqg7Kpt0Aljp8JPLqbXI3bhnPWROx27a9N0Ll6ZP/+DiW/UqRcLbRjq" crossorigin="anonymous">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js" integrity="sha384-y23I5Q6l+B6vatafAwxRu/0oK/79VlbSz7Q9aiSZUvyWYIYsd+qj+o24G5ZU2zJz" crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous"
+        onload="renderMathInElement(document.body, { delimiters: [ {left: '$$', right: '$$', display: true}, {left: '$', right: '$', display: false}, {left: '\\[', right: '\\]', display: true}, {left: '\\(', right: '\\)', display: false}]});"></script>
+
+    
+		<link href="https://unpkg.com/highlightjs-badge/highlightjs/styles/monokai.css" rel="stylesheet">
+		<!-- https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.1/build/styles/  for min version -->
+		<script src="https://unpkg.com/highlightjs-badge/highlightjs/highlight.pack.js"></script>
+		<script src="https://unpkg.com/highlightjs-badge/highlightjs-badge.min.js"></script>
+		<script>
+			var pres = document.querySelectorAll("pre>code");
+			for (var i = 0; i < pres.length; i++) {
+				hljs.highlightBlock(pres[i]);
+			}
+		</script>
+		
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js"></script>
+			<script>
+				var options = {
+					copyIconClass: "gg-clipboard",
+					checkIconClass: "gg-check"
+				};
+				window.highlightJsBadge(options);
+			</script>
+		
+
+	
+
+	
+	<script src="https://desmodrone.github.io/js/main.js"></script>
+
+    
+    
+
+	
+    <!-- Global Site Tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-9MNTYXYNHK"></script>
+    <script>
+     window.dataLayer = window.dataLayer || [];
+     function gtag(){dataLayer.push(arguments);}
+     gtag('js', new Date());
+     gtag('config', 'G-9MNTYXYNHK');
+    </script>
+    
+  </body>
+</html>
