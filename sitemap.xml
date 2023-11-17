@@ -106,6 +106,10 @@
         <lastmod>2023-11-06</lastmod>
     </url>
     <url>
+        <loc>https://desmodrone.github.io/posts/23-rustlings-smart-pointers/</loc>
+        <lastmod>2023-11-17</lastmod>
+    </url>
+    <url>
         <loc>https://desmodrone.github.io/posts/hello-rustlings/</loc>
         <lastmod>2023-04-11</lastmod>
     </url>
@@ -148,10 +152,16 @@
         <loc>https://desmodrone.github.io/tags/borrowing/</loc>
     </url>
     <url>
+        <loc>https://desmodrone.github.io/tags/box/</loc>
+    </url>
+    <url>
         <loc>https://desmodrone.github.io/tags/classic/</loc>
     </url>
     <url>
         <loc>https://desmodrone.github.io/tags/closures/</loc>
+    </url>
+    <url>
+        <loc>https://desmodrone.github.io/tags/cow/</loc>
     </url>
     <url>
         <loc>https://desmodrone.github.io/tags/enums/</loc>
@@ -242,6 +252,9 @@
     </url>
     <url>
         <loc>https://desmodrone.github.io/tags/quiz/</loc>
+    </url>
+    <url>
+        <loc>https://desmodrone.github.io/tags/rc/</loc>
     </url>
     <url>
         <loc>https://desmodrone.github.io/tags/ref/</loc>

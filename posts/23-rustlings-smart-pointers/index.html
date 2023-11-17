@@ -1,0 +1,984 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <meta itemprop="name" content="desmo" />
+  <meta itemprop="description" content="Random Ideas" />
+
+  <link rel="apple-touch-icon" sizes="180x180" href="https://desmodrone.github.io/apple-touch-icon.png"/>
+  <link rel="icon" type="image/png" sizes="32x32" href="https://desmodrone.github.io/favicon-32x32.png" />
+  <link
+    rel="icon"
+    type="image/png"
+    sizes="16x16"
+    href="https://desmodrone.github.io/favicon-16x16.png"
+  />
+  <link
+    rel="shortcut icon"
+    href="https://desmodrone.github.io/favicon.ico"
+  />
+  <link rel="stylesheet" href="https://desmodrone.github.io/style.css"/>
+  
+  <title>23 Rustlings Smart Pointers</title>
+  
+
+  
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="https://desmodrone.github.io/rss.xml">
+  
+
+  <body id="page">
+
+	
+<header id="site-header" class="animated slideInUp faster">
+  <div class="hdr-wrapper section-inner">
+    <div class="hdr-left">
+      <div class="site-branding">
+        <a href="https:&#x2F;&#x2F;desmodrone.github.io">desmo</a>
+      </div>
+      <nav class="site-nav hide-in-mobile">
+            
+        
+        <a href="https://desmodrone.github.io/posts">posts</a>
+        
+        <a href="https://desmodrone.github.io/about">about</a>
+        
+        <a href="https://desmodrone.github.io/work">work</a>
+        
+      </nav>
+    </div>
+    <div class="hdr-right hdr-icons">
+      <span class="hdr-social hide-in-mobile">
+        
+
+<a href="https:&#x2F;&#x2F;twitter.com&#x2F;desmo_io" target="_blank" rel="noopener me"
+   title="twitter">
+  
+  <svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg>
+  
+</a>
+
+<a href="https:&#x2F;&#x2F;github.com&#x2F;desmodrone" target="_blank" rel="noopener me"
+   title="github">
+  
+  <svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+  
+</a>
+
+<a href="mailto:erick@apexwins.com" target="_blank" rel="noopener me"
+   title="email">
+  
+  <svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+  
+</a>
+
+
+      </span>
+      <button id="menu-btn" class="hdr-btn" title="Menu">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="feather feather-menu"
+        >
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+  </div>
+</header>
+<div id="mobile-menu" class="animated fast">
+  <ul>
+    
+    <li><a href="https://desmodrone.github.io/posts">posts</a></li>
+    
+    <li><a href="https://desmodrone.github.io/about">about</a></li>
+    
+    <li><a href="https://desmodrone.github.io/work">work</a></li>
+    
+  </ul>
+</div>
+
+	
+	
+
+		
+<main class="site-main section-inner animated fadeIn faster">
+  <article class="thin">
+	<header class="post-header">
+	  <div class="post-meta">
+		
+		<span>Nov 17, 2023</span>
+		<small> - 
+<span class="reading-time" title="Estimated read time">
+  
+  15 min read
+  
+</span>
+</small>
+		
+            
+	  </div>
+	  <h1>23 Rustlings Smart Pointers</h1>
+	</header>
+
+	<div class="content">
+        
+	  <p>In Rust, smart pointers are variables that contain an address in memory and reference some other data, but they also have additional metadata and capabilities.
+Smart pointers in Rust often own the data they point to, while references only borrow data.</p>
+<h2 id="further-information">Further Information</h2>
+<ul>
+<li><a href="https://doc.rust-lang.org/book/ch15-00-smart-pointers.html">Smart Pointers</a></li>
+<li><a href="https://doc.rust-lang.org/book/ch15-01-box.html">Using Box to Point to Data on the Heap</a></li>
+<li><a href="https://doc.rust-lang.org/book/ch15-04-rc.html">Rc&lt;T&gt;, the Reference Counted Smart Pointer</a></li>
+<li><a href="https://doc.rust-lang.org/book/ch16-03-shared-state.html">Shared-State Concurrency</a></li>
+<li><a href="https://doc.rust-lang.org/std/borrow/enum.Cow.html">Cow Documentation</a></li>
+</ul>
+<h2 id="box1-rs">Box1.rs</h2>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">&#x2F;&#x2F; box1.rs
+&#x2F;&#x2F;
+&#x2F;&#x2F; At compile time, Rust needs to know how much space a type takes up. This becomes problematic
+&#x2F;&#x2F; for recursive types, where a value can have as part of itself another value of the same type.
+&#x2F;&#x2F; To get around the issue, we can use a `Box` - a smart pointer used to store data on the heap,
+&#x2F;&#x2F; which also allows us to wrap a recursive type.
+&#x2F;&#x2F;
+&#x2F;&#x2F; The recursive type we&#x27;re implementing in this exercise is the `cons list` - a data structure
+&#x2F;&#x2F; frequently found in functional programming languages. Each item in a cons list contains two
+&#x2F;&#x2F; elements: the value of the current item and the next item. The last item is a value called `Nil`.
+&#x2F;&#x2F;
+&#x2F;&#x2F; Step 1: use a `Box` in the enum definition to make the code compile
+&#x2F;&#x2F; Step 2: create both empty and non-empty cons lists by replacing `todo!()`
+&#x2F;&#x2F;
+&#x2F;&#x2F; Note: the tests should not be changed
+&#x2F;&#x2F;
+&#x2F;&#x2F; Execute `rustlings hint box1` or use the `hint` watch subcommand for a hint.
+
+&#x2F;&#x2F; I AM NOT DONE
+
+#[derive(PartialEq, Debug)]
+pub enum List {
+    Cons(i32, List),
+    Nil,
+}
+
+fn main() {
+    println!(&quot;This is an empty cons list: {:?}&quot;, create_empty_list());
+    println!(
+        &quot;This is a non-empty cons list: {:?}&quot;,
+        create_non_empty_list()
+    );
+}
+
+pub fn create_empty_list() -&gt; List {
+    todo!()
+}
+
+pub fn create_non_empty_list() -&gt; List {
+    todo!()
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_create_empty_list() {
+        assert_eq!(List::Nil, create_empty_list())
+    }
+
+    #[test]
+    fn test_create_non_empty_list() {
+        assert_ne!(create_empty_list(), create_non_empty_list())
+    }
+}
+</code></pre>
+<p>Our instructions are pretty clear, we have to first, make our code compile and then complete a couple of functions and make the program pass the tests.</p>
+<ul>
+<li>Step 1: use a <code>Box</code> in the enum definition to make the code compile</li>
+<li>Step 2: create both empty and non-empty cons lists by replacing <code>todo!()</code></li>
+</ul>
+<h2 id="box1-rs-errors">Box1.rs Errors</h2>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">⚠️  Compiling of exercises&#x2F;smart_pointers&#x2F;box1.rs failed! Please try again. Here&#x27;s the output:
+error[E0072]: recursive type `List` has infinite size
+  --&gt; exercises&#x2F;smart_pointers&#x2F;box1.rs:22:1
+   |
+22 | pub enum List {
+   | ^^^^^^^^^^^^^
+23 |     Cons(i32, List),
+   |               ---- recursive without indirection
+   |
+help: insert some indirection (e.g., a `Box`, `Rc`, or `&amp;`) to break the cycle
+   |
+23 |     Cons(i32, Box&lt;List&gt;),
+   |               ++++    +
+
+error: aborting due to previous error
+
+</code></pre>
+<p>Here we see the Rust compiler is suggesting to use a <code>Box&lt;&gt;</code> in our <code>enum</code> this seems like a reasonable suggestion and we should use that and see</p>
+<h2 id="box1-rs-solution">Box1.rs Solution</h2>
+<p>Let's take what the Rust compiler suggests and see what happens.</p>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">
+  #[derive(PartialEq, Debug)]
+pub enum List {
+    Cons(i32, Box&lt;List&gt;),  &#x2F;&#x2F; Adding `Box&lt;&gt;` here
+    Nil,
+}
+</code></pre>
+<p>By adding the <code>Box&lt;List&gt;</code> to our <code>Cons</code> variant, our code now compiles but our tests are not passing, but that should be expected as we know we have <code>todo!</code> macros that we need to complete.</p>
+<h3 id="empty-list-todo">Empty List <code>todo!</code></h3>
+<p>Let's take a look at our first <code>todo!</code></p>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">pub fn create_empty_list() -&gt; List {
+    todo!()
+}
+</code></pre>
+<p>by also looking at the test we see that we should trying to get to pass</p>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">#[test]
+fn test_create_empty_list() {
+    assert_eq!(List::Nil, create_empty_list())
+}
+</code></pre>
+<p>Simply put, we need our function to return <code>List::Nil</code> so let's update our function to match:</p>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">pub fn create_empty_list() -&gt; List {
+    List::Nil
+}
+</code></pre>
+<p>Now we are passing our first test:</p>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">running 2 tests
+test tests::test_create_empty_list ... ok
+test tests::test_create_non_empty_list ... FAILED
+</code></pre>
+<h3 id="non-empty-listtodo">Non-Empty List<code>todo!</code></h3>
+<p>Our instructions for our second <code>todo!</code> are <em>Step 2: create both empty and non-empty cons lists by replacing <code>todo!()</code></em></p>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">pub fn create_non_empty_list() -&gt; List {
+    todo!()
+}
+</code></pre>
+<p>So let's see how we can do that.</p>
+<p>If we look at our <code>List</code> enum we see that <code>Cons</code> variant has both an <code>i32</code> and the <code>Box&lt;List&gt;</code> that we just added to get the code to compile. So to make our function <code>create_non_empty_list()</code> compile we have to pass in both and <code>i32</code> and create a new <code>List</code> right? let's try.</p>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">pub fn create_non_empty_list() -&gt; List {
+    List::Cons(3, Box::new(List::Nil))
+}
+</code></pre>
+<p>And with this our code compiles, let's have a look at the full block for reference</p>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">
+  #[derive(PartialEq, Debug)]
+pub enum List {
+    Cons(i32, Box&lt;List&gt;),
+    Nil,
+}
+
+fn main() {
+    println!(&quot;This is an empty cons list: {:?}&quot;, create_empty_list());
+    println!(
+        &quot;This is a non-empty cons list: {:?}&quot;,
+        create_non_empty_list()
+    );
+}
+
+pub fn create_empty_list() -&gt; List {
+    List::Nil
+}
+
+pub fn create_non_empty_list() -&gt; List {
+
+    List::Cons(3,Box::new(List::Nil))
+}
+</code></pre>
+<p>Let's move on to the next exercise.</p>
+<h2 id="rc1-rs">Rc1.rs</h2>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">&#x2F;&#x2F; rc1.rs
+&#x2F;&#x2F; In this exercise, we want to express the concept of multiple owners via the Rc&lt;T&gt; type.
+&#x2F;&#x2F; This is a model of our solar system - there is a Sun type and multiple Planets.
+&#x2F;&#x2F; The Planets take ownership of the sun, indicating that they revolve around the sun.
+
+&#x2F;&#x2F; Make this code compile by using the proper Rc primitives to express that the sun has multiple owners.
+
+&#x2F;&#x2F; I AM NOT DONE
+
+use std::rc::Rc;
+
+#[derive(Debug)]
+struct Sun {}
+
+#[derive(Debug)]
+enum Planet {
+    Mercury(Rc&lt;Sun&gt;),
+    Venus(Rc&lt;Sun&gt;),
+    Earth(Rc&lt;Sun&gt;),
+    Mars(Rc&lt;Sun&gt;),
+    Jupiter(Rc&lt;Sun&gt;),
+    Saturn(Rc&lt;Sun&gt;),
+    Uranus(Rc&lt;Sun&gt;),
+    Neptune(Rc&lt;Sun&gt;),
+}
+
+impl Planet {
+    fn details(&amp;self) {
+        println!(&quot;Hi from {:?}!&quot;, self)
+    }
+}
+
+fn main() {
+    let sun = Rc::new(Sun {});
+    println!(&quot;reference count = {}&quot;, Rc::strong_count(&amp;sun)); &#x2F;&#x2F; 1 reference
+
+    let mercury = Planet::Mercury(Rc::clone(&amp;sun));
+    println!(&quot;reference count = {}&quot;, Rc::strong_count(&amp;sun)); &#x2F;&#x2F; 2 references
+    mercury.details();
+
+    let venus = Planet::Venus(Rc::clone(&amp;sun));
+    println!(&quot;reference count = {}&quot;, Rc::strong_count(&amp;sun)); &#x2F;&#x2F; 3 references
+    venus.details();
+
+    let earth = Planet::Earth(Rc::clone(&amp;sun));
+    println!(&quot;reference count = {}&quot;, Rc::strong_count(&amp;sun)); &#x2F;&#x2F; 4 references
+    earth.details();
+
+    let mars = Planet::Mars(Rc::clone(&amp;sun));
+    println!(&quot;reference count = {}&quot;, Rc::strong_count(&amp;sun)); &#x2F;&#x2F; 5 references
+    mars.details();
+
+    let jupiter = Planet::Jupiter(Rc::clone(&amp;sun));
+    println!(&quot;reference count = {}&quot;, Rc::strong_count(&amp;sun)); &#x2F;&#x2F; 6 references
+    jupiter.details();
+
+    &#x2F;&#x2F; TODO
+    let saturn = Planet::Saturn(Rc::new(Sun {}));
+    println!(&quot;reference count = {}&quot;, Rc::strong_count(&amp;sun)); &#x2F;&#x2F; 7 references
+    saturn.details();
+
+    &#x2F;&#x2F; TODO
+    let uranus = Planet::Uranus(Rc::new(Sun {}));
+    println!(&quot;reference count = {}&quot;, Rc::strong_count(&amp;sun)); &#x2F;&#x2F; 8 references
+    uranus.details();
+
+    &#x2F;&#x2F; TODO
+    let neptune = Planet::Neptune(Rc::new(Sun {}));
+    println!(&quot;reference count = {}&quot;, Rc::strong_count(&amp;sun)); &#x2F;&#x2F; 9 references
+    neptune.details();
+
+    assert_eq!(Rc::strong_count(&amp;sun), 9);
+
+    drop(neptune);
+    println!(&quot;reference count = {}&quot;, Rc::strong_count(&amp;sun)); &#x2F;&#x2F; 8 references
+
+    drop(uranus);
+    println!(&quot;reference count = {}&quot;, Rc::strong_count(&amp;sun)); &#x2F;&#x2F; 7 references
+
+    drop(saturn);
+    println!(&quot;reference count = {}&quot;, Rc::strong_count(&amp;sun)); &#x2F;&#x2F; 6 references
+
+    drop(jupiter);
+    println!(&quot;reference count = {}&quot;, Rc::strong_count(&amp;sun)); &#x2F;&#x2F; 5 references
+
+    drop(mars);
+    println!(&quot;reference count = {}&quot;, Rc::strong_count(&amp;sun)); &#x2F;&#x2F; 4 references
+
+    &#x2F;&#x2F; TODO
+    println!(&quot;reference count = {}&quot;, Rc::strong_count(&amp;sun)); &#x2F;&#x2F; 3 references
+
+    &#x2F;&#x2F; TODO
+    println!(&quot;reference count = {}&quot;, Rc::strong_count(&amp;sun)); &#x2F;&#x2F; 2 references
+
+    &#x2F;&#x2F; TODO
+    println!(&quot;reference count = {}&quot;, Rc::strong_count(&amp;sun)); &#x2F;&#x2F; 1 reference
+
+    assert_eq!(Rc::strong_count(&amp;sun), 1);
+}
+</code></pre>
+<p>okay, we have a lot of <code>TODO</code>'s here, with the instructions of making the code compile by using the proper <code>Rc</code> primitives. Let's take a look at what the Rust compiler says.</p>
+<h2 id="rc1-rs-errors">Rc1.rs Errors</h2>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">⚠️  Ran exercises&#x2F;smart_pointers&#x2F;rc1.rs with errors
+reference count = 1
+reference count = 2
+Hi from Mercury(Sun)!
+reference count = 3
+Hi from Venus(Sun)!
+reference count = 4
+Hi from Earth(Sun)!
+reference count = 5
+Hi from Mars(Sun)!
+reference count = 6
+Hi from Jupiter(Sun)!
+reference count = 6
+Hi from Saturn(Sun)!
+reference count = 6
+Hi from Uranus(Sun)!
+reference count = 6
+Hi from Neptune(Sun)!
+
+thread &#x27;main&#x27; panicked at exercises&#x2F;smart_pointers&#x2F;rc1.rs:72:5:
+assertion `left == right` failed
+  left: 6
+ right: 9
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+Welcome to watch mode! You can type &#x27;help&#x27; to get an overview of the commands you can use here.
+</code></pre>
+<p>We see that our code is panicking and that our asserting at line <code>72</code>:  <code>assert_eq!(Rc::strong_count(&amp;sun), 9);</code> because we're &quot;stuck&quot; on reference count 6. So let's go ahead and try and fix that</p>
+<h2 id="rc1-rs-solution">Rc1.rs Solution</h2>
+<p>Let's break this down into two different parts as there seems to be a thread (no pun intended 😄) between the different <code>TODOs</code></p>
+<h3 id="fixing-saturn-uranus-and-neptune">Fixing Saturn, Uranus and Neptune</h3>
+<p>First 3 <code>TODO</code>'s  are these:</p>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">    &#x2F;&#x2F; TODO
+    let saturn = Planet::Saturn(Rc::new(Sun {}));
+    println!(&quot;reference count = {}&quot;, Rc::strong_count(&amp;sun)); &#x2F;&#x2F; 7 references
+    saturn.details();
+
+    &#x2F;&#x2F; TODO
+    let uranus = Planet::Uranus(Rc::new(Sun {}));
+    println!(&quot;reference count = {}&quot;, Rc::strong_count(&amp;sun)); &#x2F;&#x2F; 8 references
+    uranus.details();
+
+    &#x2F;&#x2F; TODO
+    let neptune = Planet::Neptune(Rc::new(Sun {}));
+    println!(&quot;reference count = {}&quot;, Rc::strong_count(&amp;sun)); &#x2F;&#x2F; 9 references
+    neptune.details();
+</code></pre>
+<p>and if you look at the variable assignment of each it differs from the first 3, instead of cloning our planet we use the <code>Rc::new()</code> syntax, here's what the <code>jupiter</code> variable looks like:</p>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">let jupiter = Planet::Jupiter(Rc::clone(&amp;sun));
+</code></pre>
+<p>Here we are taking our <code>Jupiter</code> planet and cloning it using <code>Rc::clone</code> which creates a new reference to <code>sun</code>. This working for our first 3 planets,   So let's fix <code>saturn</code>, <code>uranus</code> and <code>neptune</code> to match and see what happens.</p>
+<h3 id="reference-count-output">Reference Count Output</h3>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">⚠️  Ran exercises&#x2F;smart_pointers&#x2F;rc1.rs with errors
+reference count = 1
+reference count = 2
+Hi from Mercury(Sun)!
+reference count = 3
+Hi from Venus(Sun)!
+reference count = 4
+Hi from Earth(Sun)!
+reference count = 5
+Hi from Mars(Sun)!
+reference count = 6
+Hi from Jupiter(Sun)!
+reference count = 7
+Hi from Saturn(Sun)!
+reference count = 8
+Hi from Uranus(Sun)!
+reference count = 9
+Hi from Neptune(Sun)!
+reference count = 8
+reference count = 7
+reference count = 6
+reference count = 5
+reference count = 4
+reference count = 4
+reference count = 4
+reference count = 4
+
+thread &#x27;main&#x27; panicked at exercises&#x2F;smart_pointers&#x2F;rc1.rs:101:5:
+assertion `left == right` failed
+  left: 4
+ right: 1
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+</code></pre>
+<p>Okay, we are counting all the way to 9 now, BUT, we're still not fully working because as you can see, the second set of <code>TODO</code>'s are  still not updated, let's take a closer look:</p>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">    &#x2F;&#x2F; TODO
+    println!(&quot;reference count = {}&quot;, Rc::strong_count(&amp;sun)); &#x2F;&#x2F; 3 references
+
+    &#x2F;&#x2F; TODO
+    println!(&quot;reference count = {}&quot;, Rc::strong_count(&amp;sun)); &#x2F;&#x2F; 2 references
+
+    &#x2F;&#x2F; TODO
+    println!(&quot;reference count = {}&quot;, Rc::strong_count(&amp;sun)); &#x2F;&#x2F; 1 reference
+</code></pre>
+<p>Again, we seem to have a natural grouping of these three, and we see that we should be going down to <code>3</code>, <code>2</code>, and finally <code>1</code> reference. If we look at the previous reference output. We'll notice that there's a <code>drop(mars)</code> before the <code>println!</code> statement:</p>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">drop(mars);
+println!(&quot;reference count = {}&quot;, Rc::strong_count(&amp;sun)); &#x2F;&#x2F; 4 references
+</code></pre>
+<p>Seems simple enough let's add a drop for each of the corresponding planets which would be <code>earth</code>, <code>venus</code>, and <code>mercury</code>.</p>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">&#x2F;&#x2F; TODO
+drop(earth);
+println!(&quot;reference count = {}&quot;, Rc::strong_count(&amp;sun)); &#x2F;&#x2F; 3 references
+
+&#x2F;&#x2F; TODO
+drop(venus);
+println!(&quot;reference count = {}&quot;, Rc::strong_count(&amp;sun)); &#x2F;&#x2F; 2 references
+
+&#x2F;&#x2F; TODO
+drop(mercury);
+println!(&quot;reference count = {}&quot;, Rc::strong_count(&amp;sun)); &#x2F;&#x2F; 1 reference
+</code></pre>
+<h3 id="final-output">Final Output</h3>
+<p>With those updates we are now compiling!</p>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">🎉 🎉  The code is compiling! 🎉 🎉
+
+Output:
+====================
+reference count = 1
+reference count = 2
+Hi from Mercury(Sun)!
+reference count = 3
+Hi from Venus(Sun)!
+reference count = 4
+Hi from Earth(Sun)!
+reference count = 5
+Hi from Mars(Sun)!
+reference count = 6
+Hi from Jupiter(Sun)!
+reference count = 7
+Hi from Saturn(Sun)!
+reference count = 8
+Hi from Uranus(Sun)!
+reference count = 9
+Hi from Neptune(Sun)!
+reference count = 8
+reference count = 7
+reference count = 6
+reference count = 5
+reference count = 4
+reference count = 3
+reference count = 2
+reference count = 1
+
+====================
+</code></pre>
+<h2 id="arc1-rs">Arc1.rs</h2>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">&#x2F;&#x2F; arc1.rs
+&#x2F;&#x2F; In this exercise, we are given a Vec of u32 called &quot;numbers&quot; with values ranging
+&#x2F;&#x2F; from 0 to 99 -- [ 0, 1, 2, ..., 98, 99 ]
+&#x2F;&#x2F; We would like to use this set of numbers within 8 different threads simultaneously.
+&#x2F;&#x2F; Each thread is going to get the sum of every eighth value, with an offset.
+&#x2F;&#x2F; The first thread (offset 0), will sum 0, 8, 16, ...
+&#x2F;&#x2F; The second thread (offset 1), will sum 1, 9, 17, ...
+&#x2F;&#x2F; The third thread (offset 2), will sum 2, 10, 18, ...
+&#x2F;&#x2F; ...
+&#x2F;&#x2F; The eighth thread (offset 7), will sum 7, 15, 23, ...
+
+&#x2F;&#x2F; Because we are using threads, our values need to be thread-safe.  Therefore,
+&#x2F;&#x2F; we are using Arc.  We need to make a change in each of the two TODOs.
+
+
+&#x2F;&#x2F; Make this code compile by filling in a value for `shared_numbers` where the
+&#x2F;&#x2F; first TODO comment is, and create an initial binding for `child_numbers`
+&#x2F;&#x2F; where the second TODO comment is. Try not to create any copies of the `numbers` Vec!
+&#x2F;&#x2F; Execute `rustlings hint arc1` or use the `hint` watch subcommand for a hint.
+
+&#x2F;&#x2F; I AM NOT DONE
+
+#![forbid(unused_imports)] &#x2F;&#x2F; Do not change this, (or the next) line.
+use std::sync::Arc;
+use std::thread;
+
+fn main() {
+    let numbers: Vec&lt;_&gt; = (0..100u32).collect();
+    let shared_numbers = &#x2F;&#x2F; TODO
+    let mut joinhandles = Vec::new();
+
+    for offset in 0..8 {
+        let child_numbers = &#x2F;&#x2F; TODO
+        joinhandles.push(thread::spawn(move || {
+            let sum: u32 = child_numbers.iter().filter(|&amp;&amp;n| n % 8 == offset).sum();
+            println!(&quot;Sum of offset {} is {}&quot;, offset, sum);
+        }));
+    }
+    for handle in joinhandles.into_iter() {
+        handle.join().unwrap();
+    }
+}
+</code></pre>
+<p>We continue our exercises with threads this time our exercise focuses on the use of <code>Arc</code> we have 2 <code>TODO</code>'s to complete</p>
+<ul>
+<li><code>let shared_numbers = // TODO  </code></li>
+<li><code>let child_numbers = // TODO  </code></li>
+</ul>
+<p>Let's take a look at the Rust compiler errors and see if we can get some hints from there.</p>
+<h2 id="arc1-rs-errors">Arc1.rs Errors</h2>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">⚠️  Compiling of exercises&#x2F;smart_pointers&#x2F;arc1.rs failed! Please try again. Here&#x27;s the output:
+error: expected expression, found `let` statement
+  --&gt; exercises&#x2F;smart_pointers&#x2F;arc1.rs:30:5
+   |
+30 |     let mut joinhandles = Vec::new();
+   |     ^^^
+
+error: expected expression, found statement (`let`)
+  --&gt; exercises&#x2F;smart_pointers&#x2F;arc1.rs:30:5
+   |
+30 |     let mut joinhandles = Vec::new();
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: variable declaration using `let` is a statement
+
+error[E0425]: cannot find value `child_numbers` in this scope
+  --&gt; exercises&#x2F;smart_pointers&#x2F;arc1.rs:35:28
+   |
+35 |             let sum: u32 = child_numbers.iter().filter(|&amp;&amp;n| n % 8 == offset).sum();
+   |                            ^^^^^^^^^^^^^ help: a local variable with a similar name exists: `shared_numbers`
+
+</code></pre>
+<p>Unfortunately it does't say much, just let's us know that we have missing information where our <code>TODO</code>'s are located so that's not a surprise.</p>
+<h2 id="arc1-rs-solution">Arc1.rs Solution</h2>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">
+  #![forbid(unused_imports)] &#x2F;&#x2F; Do not change this, (or the next) line.
+use std::sync::Arc;
+use std::thread;
+
+fn main() {
+    let numbers: Vec&lt;_&gt; = (0..100u32).collect();
+    let shared_numbers = &#x2F;&#x2F; TODO
+    let mut joinhandles = Vec::new();
+
+    for offset in 0..8 {
+        let child_numbers = &#x2F;&#x2F; TODO
+        joinhandles.push(thread::spawn(move || {
+            let sum: u32 = child_numbers.iter().filter(|&amp;&amp;n| n % 8 == offset).sum();
+            println!(&quot;Sum of offset {} is {}&quot;, offset, sum);
+        }));
+    }
+    for handle in joinhandles.into_iter() {
+        handle.join().unwrap();
+    }
+}
+</code></pre>
+<p>So we know that we need to use <code>Arc</code> in this exercise, so let's create a new <code>Arc</code> for shared number by completing the first <code>TODO</code> with:</p>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">let shared_numbers = Arc::new(numbers); &#x2F;&#x2F; TODO
+</code></pre>
+<p>This allows us to wrap the <code>numbers</code> vector in an <code>Arc</code> to share it safely among threads without making any copies.</p>
+<p>Our second <code>TODO</code> needs a reference to the shared numbers so we need to create a reference to the shared <code>Arc</code> data for each thread. Let's use <code>clone</code> as we have done before in previous exercises</p>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">let child_numbers = Arc::clone(&amp;shared_numbers); &#x2F;&#x2F; TODO
+</code></pre>
+<p>and with this our Rust code is compiling!</p>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">🎉 🎉  The code is compiling! 🎉 🎉
+
+Output:
+====================
+Sum of offset 0 is 624
+Sum of offset 1 is 637
+Sum of offset 2 is 650
+Sum of offset 5 is 588
+Sum of offset 3 is 663
+Sum of offset 4 is 576
+Sum of offset 6 is 600
+Sum of offset 7 is 612
+
+====================
+</code></pre>
+<p>Let's move on to our final exercise for this category.</p>
+<h2 id="cow1-rs">Cow1.rs</h2>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">&#x2F;&#x2F; cow1.rs
+
+&#x2F;&#x2F; This exercise explores the Cow, or Clone-On-Write type.
+&#x2F;&#x2F; Cow is a clone-on-write smart pointer.
+&#x2F;&#x2F; It can enclose and provide immutable access to borrowed data, and clone the data lazily when mutation or ownership is required.
+&#x2F;&#x2F; The type is designed to work with general borrowed data via the Borrow trait.
+&#x2F;&#x2F;
+&#x2F;&#x2F; This exercise is meant to show you what to expect when passing data to Cow.
+&#x2F;&#x2F; Fix the unit tests by checking for Cow::Owned(_) and Cow::Borrowed(_) at the TODO markers.
+
+&#x2F;&#x2F; I AM NOT DONE
+
+use std::borrow::Cow;
+
+fn abs_all&lt;&#x27;a, &#x27;b&gt;(input: &amp;&#x27;a mut Cow&lt;&#x27;b, [i32]&gt;) -&gt; &amp;&#x27;a mut Cow&lt;&#x27;b, [i32]&gt; {
+    for i in 0..input.len() {
+        let v = input[i];
+        if v &lt; 0 {
+            &#x2F;&#x2F; Clones into a vector if not already owned.
+            input.to_mut()[i] = -v;
+        }
+    }
+    input
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn reference_mutation() -&gt; Result&lt;(), &amp;&#x27;static str&gt; {
+        &#x2F;&#x2F; Clone occurs because `input` needs to be mutated.
+        let slice = [-1, 0, 1];
+        let mut input = Cow::from(&amp;slice[..]);
+        match abs_all(&amp;mut input) {
+            Cow::Owned(_) =&gt; Ok(()),
+            _ =&gt; Err(&quot;Expected owned value&quot;),
+        }
+    }
+
+    #[test]
+    fn reference_no_mutation() -&gt; Result&lt;(), &amp;&#x27;static str&gt; {
+        &#x2F;&#x2F; No clone occurs because `input` doesn&#x27;t need to be mutated.
+        let slice = [0, 1, 2];
+        let mut input = Cow::from(&amp;slice[..]);
+        match abs_all(&amp;mut input) {
+            &#x2F;&#x2F; TODO
+        }
+    }
+
+    #[test]
+    fn owned_no_mutation() -&gt; Result&lt;(), &amp;&#x27;static str&gt; {
+        &#x2F;&#x2F; We can also pass `slice` without `&amp;` so Cow owns it directly.
+        &#x2F;&#x2F; In this case no mutation occurs and thus also no clone,
+        &#x2F;&#x2F; but the result is still owned because it always was.
+        let slice = vec![0, 1, 2];
+        let mut input = Cow::from(slice);
+        match abs_all(&amp;mut input) {
+            &#x2F;&#x2F; TODO
+        }
+    }
+
+    #[test]
+    fn owned_mutation() -&gt; Result&lt;(), &amp;&#x27;static str&gt; {
+        &#x2F;&#x2F; Of course this is also the case if a mutation does occur.
+        &#x2F;&#x2F; In this case the call to `to_mut()` returns a reference to
+        &#x2F;&#x2F; the same data as before.
+        let slice = vec![-1, 0, 1];
+        let mut input = Cow::from(slice);
+        match abs_all(&amp;mut input) {
+            &#x2F;&#x2F; TODO
+        }
+    }
+}
+</code></pre>
+<p>Our instructions are to fix the unit tests to get them to pass by using <code>Cow::Owned(_) </code>and <code>Cow::Borrowed(_)</code>, let's take a look at what the compiler is saying.</p>
+<h2 id="cow1-rs-errors">Cow1.rs Errors</h2>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">⚠️  Compiling of exercises&#x2F;smart_pointers&#x2F;cow1.rs failed! Please try again. Here&#x27;s the output:
+error[E0004]: non-exhaustive patterns: type `&amp;mut std::borrow::Cow&lt;&#x27;_, [i32]&gt;` is non-empty
+   --&gt; exercises&#x2F;smart_pointers&#x2F;cow1.rs:46:15
+    |
+46  |         match abs_all(&amp;mut input) {
+    |               ^^^^^^^^^^^^^^^^^^^
+    |
+note: `std::borrow::Cow&lt;&#x27;_, [i32]&gt;` defined here
+   --&gt; &#x2F;Users&#x2F;desmo&#x2F;.rustup&#x2F;toolchains&#x2F;stable-aarch64-apple-darwin&#x2F;lib&#x2F;rustlib&#x2F;src&#x2F;rust&#x2F;library&#x2F;alloc&#x2F;src&#x2F;borrow.rs:179:1
+    |
+179 | pub enum Cow&lt;&#x27;a, B: ?Sized + &#x27;a&gt;
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    = note: the matched value is of type `&amp;mut std::borrow::Cow&lt;&#x27;_, [i32]&gt;`
+help: ensure that all possible cases are being handled by adding a match arm with a wildcard pattern as shown
+    |
+46  ~         match abs_all(&amp;mut input) {
+47  +             _ =&gt; todo!(),
+48  +         }
+    |
+
+error[E0004]: non-exhaustive patterns: type `&amp;mut std::borrow::Cow&lt;&#x27;_, [i32]&gt;` is non-empty
+   --&gt; exercises&#x2F;smart_pointers&#x2F;cow1.rs:58:15
+    |
+58  |         match abs_all(&amp;mut input) {
+    |               ^^^^^^^^^^^^^^^^^^^
+    |
+note: `std::borrow::Cow&lt;&#x27;_, [i32]&gt;` defined here
+   --&gt; &#x2F;Users&#x2F;desmo&#x2F;.rustup&#x2F;toolchains&#x2F;stable-aarch64-apple-darwin&#x2F;lib&#x2F;rustlib&#x2F;src&#x2F;rust&#x2F;library&#x2F;alloc&#x2F;src&#x2F;borrow.rs:179:1
+    |
+179 | pub enum Cow&lt;&#x27;a, B: ?Sized + &#x27;a&gt;
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    = note: the matched value is of type `&amp;mut std::borrow::Cow&lt;&#x27;_, [i32]&gt;`
+help: ensure that all possible cases are being handled by adding a match arm with a wildcard pattern as shown
+    |
+58  ~         match abs_all(&amp;mut input) {
+59  +             _ =&gt; todo!(),
+60  +         }
+    |
+
+error[E0004]: non-exhaustive patterns: type `&amp;mut std::borrow::Cow&lt;&#x27;_, [i32]&gt;` is non-empty
+   --&gt; exercises&#x2F;smart_pointers&#x2F;cow1.rs:70:15
+    |
+70  |         match abs_all(&amp;mut input) {
+    |               ^^^^^^^^^^^^^^^^^^^
+    |
+note: `std::borrow::Cow&lt;&#x27;_, [i32]&gt;` defined here
+   --&gt; &#x2F;Users&#x2F;desmo&#x2F;.rustup&#x2F;toolchains&#x2F;stable-aarch64-apple-darwin&#x2F;lib&#x2F;rustlib&#x2F;src&#x2F;rust&#x2F;library&#x2F;alloc&#x2F;src&#x2F;borrow.rs:179:1
+    |
+179 | pub enum Cow&lt;&#x27;a, B: ?Sized + &#x27;a&gt;
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    = note: the matched value is of type `&amp;mut std::borrow::Cow&lt;&#x27;_, [i32]&gt;`
+help: ensure that all possible cases are being handled by adding a match arm with a wildcard pattern as shown
+    |
+70  ~         match abs_all(&amp;mut input) {
+71  +             _ =&gt; todo!(),
+72  +         }
+    |
+
+error: aborting due to 3 previous errors
+
+</code></pre>
+<p>Okay, our messages are essentially telling us we have some code missing in our <code>TODO</code>'s fair enough. Let's try and work on a solution.</p>
+<h2 id="cow1-rs-solution">Cow1.rs Solution</h2>
+<p>If we look at the first test <code>reference_mutation</code> we can get and idea of what is missing in our other tests:</p>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">    fn reference_mutation() -&gt; Result&lt;(), &amp;&#x27;static str&gt; {
+        &#x2F;&#x2F; Clone occurs because `input` needs to be mutated.
+        let slice = [-1, 0, 1];
+        let mut input = Cow::from(&amp;slice[..]);
+        match abs_all(&amp;mut input) {
+            Cow::Owned(_) =&gt; Ok(()),
+            _ =&gt; Err(&quot;Expected owned value&quot;),
+        }
+    }
+</code></pre>
+<p>In the other tests, we are missing the <code>match abs_all</code> match arms. So I would expect to fill those match arms with either <code>Cow::Owned(_) </code> or <code>Cow::Borrowed(_)</code> we get additional comment notes at each function. Looking at the comment in <code>reference_mutation</code>, it tells us that a clone occurs because <code>input</code> needs to be mutated, so it makes sense that they use the <code>Cow::Owned()</code> smart pointer.</p>
+<p>In our next function <code>reference_no_mutation</code> we see the comment: <em>No clone occurs because <code>input</code> doesn't need to be mutated</em>. So naturally, since it doesn't need to be owned we should use the <code>Cow::Borrowed</code> smart pointer, right?</p>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">#[test]
+fn reference_no_mutation() -&gt; Result&lt;(), &amp;&#x27;static str&gt; {
+    &#x2F;&#x2F; No clone occurs because `input` doesn&#x27;t need to be mutated.
+    let slice = [0, 1, 2];
+    let mut input = Cow::from(&amp;slice[..]);
+    match abs_all(&amp;mut input) {
+        Cow::Borrowed(_) =&gt; Ok(()),
+        _ =&gt; Err(&quot;Expected owned value&quot;),
+    }
+}
+</code></pre>
+<p>Our third function tells us we don't need to mutate and no clone is created but the result is still <em>owned</em> so that makes it clear to use <code>Cow::Owned</code></p>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">    #[test]
+    fn owned_no_mutation() -&gt; Result&lt;(), &amp;&#x27;static str&gt; {
+        &#x2F;&#x2F; We can also pass `slice` without `&amp;` so Cow owns it directly.
+        &#x2F;&#x2F; In this case no mutation occurs and thus also no clone,
+        &#x2F;&#x2F; but the result is still owned because it always was.
+        let slice = vec![0, 1, 2];
+        let mut input = Cow::from(slice);
+        match abs_all(&amp;mut input) {
+            Cow::Owned(_) =&gt; Ok(()),
+            _ =&gt; Err(&quot;Expected owned value&quot;),
+        }
+    }
+</code></pre>
+<p>Our final test tells us that that calling <code>input.to_mut()</code> in our <code>abs_all</code> function, in case we need to mutate the data we need to make sure it's owned.</p>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">    fn owned_mutation() -&gt; Result&lt;(), &amp;&#x27;static str&gt; {
+        &#x2F;&#x2F; Of course this is also the case if a mutation does occur.
+        &#x2F;&#x2F; In this case the call to `to_mut()` returns a reference to
+        &#x2F;&#x2F; the same data as before.
+        let slice = vec![-1, 0, 1];
+        let mut input = Cow::from(slice);
+        match abs_all(&amp;mut input) {
+            Cow::Owned(_) =&gt; Ok(()),
+            _ =&gt; Err(&quot;Expected owned value&quot;),
+        }
+    }
+</code></pre>
+<p>and with that we are compiling and our tests have all passed!</p>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">✅ Successfully tested exercises&#x2F;smart_pointers&#x2F;cow1.rs!
+
+🎉 🎉  The code is compiling, and the tests pass! 🎉 🎉
+</code></pre>
+<h2 id="conclusion">Conclusion</h2>
+<p>Exploring Rust's smart pointers - <code>Box</code>, <code>Rc</code>, <code>Arc</code>, and <code>Cow</code> - has taken us through a variety of scenarios, each illustrating the unique strengths and use cases of these powerful tools in the Rust ecosystem. From handling recursive data structures with <code>Box</code> to managing shared ownership with <code>Rc</code> and <code>Arc</code>, and leveraging the efficiency of <code>Cow</code> for clone-on-write scenarios, we've seen how Rust smart pointers enable more complex data management while maintaining the language's strict guarantees on safety and concurrency.</p>
+<p>What stands out is how Rust's design encourages developers to think critically about ownership, lifetime, and memory usage. These smart pointers are not just tools but also guidelines that shape the way we structure our programs for optimal performance and safety. They embody Rust's philosophy of making systems programming both accessible and reliable, preventing common pitfalls such as data races and memory leaks.</p>
+<p>As you continue your journey with Rust, remember that mastering these concepts opens doors to advanced patterns and techniques in Rust programming. The versatility of smart pointers in Rust makes them indispensable for a wide range of applications, from web servers and operating systems to game development and embedded systems.</p>
+<p>Keep experimenting, keep building, and most importantly, keep enjoying the process of learning and growing with Rust. The Rust community is an invaluable resource, always ready to help and inspire. With these tools in your arsenal, you're well-equipped to tackle the challenges of systems programming with confidence and creativity.</p>
+
+	</div>
+	<hr class="post-end">
+	<footer class="post-info">
+    
+	  <p>
+		<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg>
+		
+		
+		<span class="tag"><a href="https://desmodrone.github.io/tags/rust/">rust</a></span>
+		
+		<span class="tag"><a href="https://desmodrone.github.io/tags/box/">box</a></span>
+		
+		<span class="tag"><a href="https://desmodrone.github.io/tags/threads/">threads</a></span>
+		
+		<span class="tag"><a href="https://desmodrone.github.io/tags/rc/">rc</a></span>
+		
+		<span class="tag"><a href="https://desmodrone.github.io/tags/arc/">arc</a></span>
+		
+		<span class="tag"><a href="https://desmodrone.github.io/tags/cow/">cow</a></span>
+		
+		<span class="tag"><a href="https://desmodrone.github.io/tags/join/">join</a></span>
+		
+		<span class="tag"><a href="https://desmodrone.github.io/tags/lock/">lock</a></span>
+		
+		<span class="tag"><a href="https://desmodrone.github.io/tags/rustlings/">rustlings</a></span>
+		
+		
+    </p>
+    
+    <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>3907 Words</p>
+    
+    <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2023-11-17</p>
+    
+	</footer>
+  </article>
+    
+  
+  <div class="post-nav thin">
+	
+	
+  </div>
+
+  
+</main>
+
+	  </div>
+	  
+	  
+
+
+
+<footer id="site-footer" class="section-inner thin animated fadeIn faster">
+  <p>&copy; 2023 <a href="https:&#x2F;&#x2F;desmodrone.github.io">erick</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
+  <p>Made with <a href="https://www.getzola.org" target="_blank" rel="noopener">Zola</a> &#183; Theme <a href="https://github.com/VersBinarii/hermit_zola" target="_blank" rel="noopener">Hermit_Zola</a>
+	
+	&#183; <a href="https://desmodrone.github.io/rss.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
+	
+  </p>
+</footer>
+
+
+
+
+	</div>
+	
+	<script src="https://desmodrone.github.io/js/main.js"></script>
+
+	<!-- Math rendering -->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css" integrity="sha384-zB1R0rpPzHqg7Kpt0Aljp8JPLqbXI3bhnPWROx27a9N0Ll6ZP/+DiW/UqRcLbRjq" crossorigin="anonymous">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js" integrity="sha384-y23I5Q6l+B6vatafAwxRu/0oK/79VlbSz7Q9aiSZUvyWYIYsd+qj+o24G5ZU2zJz" crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous"
+        onload="renderMathInElement(document.body, { delimiters: [ {left: '$$', right: '$$', display: true}, {left: '$', right: '$', display: false}, {left: '\\[', right: '\\]', display: true}, {left: '\\(', right: '\\)', display: false}]});"></script>
+
+    
+		<link href="https://unpkg.com/highlightjs-badge/highlightjs/styles/monokai.css" rel="stylesheet">
+		<!-- https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.1/build/styles/  for min version -->
+		<script src="https://unpkg.com/highlightjs-badge/highlightjs/highlight.pack.js"></script>
+		<script src="https://unpkg.com/highlightjs-badge/highlightjs-badge.min.js"></script>
+		<script>
+			var pres = document.querySelectorAll("pre>code");
+			for (var i = 0; i < pres.length; i++) {
+				hljs.highlightBlock(pres[i]);
+			}
+		</script>
+		
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js"></script>
+			<script>
+				var options = {
+					copyIconClass: "gg-clipboard",
+					checkIconClass: "gg-check"
+				};
+				window.highlightJsBadge(options);
+			</script>
+		
+
+	
+
+	
+	<script src="https://desmodrone.github.io/js/main.js"></script>
+
+    
+    
+
+	
+    <!-- Global Site Tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-9MNTYXYNHK"></script>
+    <script>
+     window.dataLayer = window.dataLayer || [];
+     function gtag(){dataLayer.push(arguments);}
+     gtag('js', new Date());
+     gtag('config', 'G-9MNTYXYNHK');
+    </script>
+    
+  </body>
+</html>
