@@ -10038,6 +10038,9 @@ fn main() {
 &lt;li&gt;
 &lt;p&gt;&lt;a href=&quot;https:&#x2F;&#x2F;desmodrone.github.io&#x2F;posts&#x2F;23-rustlings-smart-pointers&quot;&gt;23_rustlings_smart_pointers&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
 &lt;&#x2F;li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https:&#x2F;&#x2F;desmodrone.github.io&#x2F;posts&#x2F;24-rustlings-macros&quot;&gt;24_rustlings_macros&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
 &lt;&#x2F;ul&gt;
 &lt;p&gt;Inspired by Tris Oaten&#x27;s recent video &lt;a href=&quot;https:&#x2F;&#x2F;youtu.be&#x2F;2hXNd6x9sZs&quot;&gt;How to Learn Rust&lt;&#x2F;a&gt; on his excellent YouTube channel &lt;a href=&quot;https:&#x2F;&#x2F;www.youtube.com&#x2F;@NoBoilerplate&quot;&gt;No Boilerplate&lt;&#x2F;a&gt;, I&#x27;ve decided to refocus my journey with the Rust programming language. In hopes of effectively learning Rust, I&#x27;ll be following the holy trinity of Rust learning resources as recommended by Tris:&lt;&#x2F;p&gt;
 &lt;ul&gt;
