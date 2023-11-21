@@ -360,9 +360,9 @@ fn fruit_basket(basket: &amp;mut HashMap&lt;Fruit, u32&gt;) {
     }
 }
 </code></pre>
-<p>The solution involves adding more fruit types to the <code>fruit_kinds</code> vector, and then iterating through this vector to insert the new fruits into the <code>basket</code> hash map using the <code>insert</code> method. The solution includes adding multiple instances of new fruit types to meet the requirement of having more than eleven fruits in the basket.</p>
-<p>In the solution code, several new fruit types (e.g., Pear, Kiwi, Strawberries, Blueberries, Cherries, Lemons, and Grapefruit) are added, and multiple instances of each fruit are inserted into the <code>basket</code> hash map.</p>
-<p>This solution satisfies the requirements, passing all the given test cases, and ensuring that the function can add additional fruit types to the basket while preserving the initial quantities of the given fruits.</p>
+<p>This solution involves adding more fruit types to the <code>fruit_kinds</code> vector, and then iterating through this vector to insert the new fruits into the <code>basket</code> hash map using the <code>insert</code> method. This includes adding multiple instances of new fruit types to meet the requirement of having more than eleven fruits in the basket.</p>
+<p>In our code, we add several new fruit types (e.g., Pear, Kiwi, Strawberries, Blueberries, Cherries, Lemons, and Grapefruit), and multiple instances of each fruit are inserted into the <code>basket</code> hash map.</p>
+<p>This satisfies the requirements, passing all the given test cases, and ensuring that the function can add additional fruit types to the basket while preserving the initial quantities of the given fruits.</p>
 <h2 id="hashmaps3-rs">hashmaps3.rs</h2>
 <pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">&#x2F;&#x2F; hashmaps3.rs
 
@@ -656,8 +656,8 @@ This is done for both teams in each match. After all the matches have been proce
 <p>In this version, <code>scores.remove(&amp;team_1_name)</code> attempts to remove the <code>Team</code> struct associated with <code>team_1_name</code> from the HashMap. If the team exists, the <code>Team</code> struct is returned and removed from the HashMap, the team's scores are updated, and the updated <code>Team</code> struct is re-inserted into the HashMap. If the team does not exist, a new <code>Team</code> struct is inserted into the HashMap. This process is repeated for both teams.</p>
 <p>Although this version is simpler and doesn't use closures, it's also less efficient because it requires additional lookups and insertions into the HashMap. The previous two versions that use <code>HashMap::entry</code> are generally more efficient and idiomatic in Rust.</p>
 <h2 id="conclusion">Conclusion</h2>
-<p>In this post, we explored the concept of hash maps in Rust and how they allow us to associate values with specific keys. Hash maps are similar to unordered maps in C++, dictionaries in Python, or associative arrays in other languages. We learned how to use the HashMap data structure to build collections with key-value pairs.</p>
-<p>We worked through three exercises that involved using hash maps to store and manipulate data:</p>
+<p>In this post, we explored the concept of HashMaps in Rust and how they allow us to associate values with specific keys. HashMaps are similar to unordered maps in C++, dictionaries in Python, or associative arrays in other languages. We learned how to use the HashMap data structure to build collections with key-value pairs.</p>
+<p>We worked through three exercises that involved using HashMaps to store and manipulate data:</p>
 <ol>
 <li>
 <p>In <code>hashmaps1.rs</code>, we had to create a basket of fruits using a HashMap. We needed to ensure that the basket contained at least three different types of fruits and a total of at least five fruits. By declaring a new HashMap and adding the required fruits with their quantities, we successfully completed this task.</p>
@@ -678,11 +678,11 @@ This solution combined <code>if let</code> with <code>match</code> to handle the
 <p>All three solutions achieved the goal of building the scores table and were valid approaches to solving the problem. The choice between these solutions may depend on personal coding style and preferences.</p>
 <p>Key Takeaways:</p>
 <ul>
-<li>Hash maps in Rust provide fast lookup and insertion times.</li>
+<li>HashMaps in Rust provide fast lookup and insertion times.</li>
 <li>They enable efficient data retrieval and manipulation based on unique keys.</li>
-<li>Hash maps are valuable tools for various scenarios, such as building scores tables or maintaining associations between data elements.</li>
+<li>HashMaps are valuable tools for various scenarios, such as building scores tables or maintaining associations between data elements.</li>
 </ul>
-<p>By mastering the usage of hash maps, we expand our ability to manage and organize data efficiently in Rust. These skills are valuable for building robust and performant applications in a wide range of domains.</p>
+<p>By mastering the usage of HashMaps, we expand our ability to manage and organize data efficiently in Rust. These skills are valuable for building robust and performant applications in a wide range of domains.</p>
 
 	</div>
 	<hr class="post-end">
@@ -707,7 +707,7 @@ This solution combined <code>if let</code> with <code>match</code> to handle the
 		
     </p>
     
-    <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>3089 Words</p>
+    <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>3080 Words</p>
     
     <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2023-07-26</p>
     

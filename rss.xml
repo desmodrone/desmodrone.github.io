@@ -5545,9 +5545,9 @@ fn fruit_basket(basket: &amp;amp;mut HashMap&amp;lt;Fruit, u32&amp;gt;) {
     }
 }
 &lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
-&lt;p&gt;The solution involves adding more fruit types to the &lt;code&gt;fruit_kinds&lt;&#x2F;code&gt; vector, and then iterating through this vector to insert the new fruits into the &lt;code&gt;basket&lt;&#x2F;code&gt; hash map using the &lt;code&gt;insert&lt;&#x2F;code&gt; method. The solution includes adding multiple instances of new fruit types to meet the requirement of having more than eleven fruits in the basket.&lt;&#x2F;p&gt;
-&lt;p&gt;In the solution code, several new fruit types (e.g., Pear, Kiwi, Strawberries, Blueberries, Cherries, Lemons, and Grapefruit) are added, and multiple instances of each fruit are inserted into the &lt;code&gt;basket&lt;&#x2F;code&gt; hash map.&lt;&#x2F;p&gt;
-&lt;p&gt;This solution satisfies the requirements, passing all the given test cases, and ensuring that the function can add additional fruit types to the basket while preserving the initial quantities of the given fruits.&lt;&#x2F;p&gt;
+&lt;p&gt;This solution involves adding more fruit types to the &lt;code&gt;fruit_kinds&lt;&#x2F;code&gt; vector, and then iterating through this vector to insert the new fruits into the &lt;code&gt;basket&lt;&#x2F;code&gt; hash map using the &lt;code&gt;insert&lt;&#x2F;code&gt; method. This includes adding multiple instances of new fruit types to meet the requirement of having more than eleven fruits in the basket.&lt;&#x2F;p&gt;
+&lt;p&gt;In our code, we add several new fruit types (e.g., Pear, Kiwi, Strawberries, Blueberries, Cherries, Lemons, and Grapefruit), and multiple instances of each fruit are inserted into the &lt;code&gt;basket&lt;&#x2F;code&gt; hash map.&lt;&#x2F;p&gt;
+&lt;p&gt;This satisfies the requirements, passing all the given test cases, and ensuring that the function can add additional fruit types to the basket while preserving the initial quantities of the given fruits.&lt;&#x2F;p&gt;
 &lt;h2 id=&quot;hashmaps3-rs&quot;&gt;hashmaps3.rs&lt;&#x2F;h2&gt;
 &lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;&amp;#x2F;&amp;#x2F; hashmaps3.rs
 
@@ -5841,8 +5841,8 @@ This is done for both teams in each match. After all the matches have been proce
 &lt;p&gt;In this version, &lt;code&gt;scores.remove(&amp;amp;team_1_name)&lt;&#x2F;code&gt; attempts to remove the &lt;code&gt;Team&lt;&#x2F;code&gt; struct associated with &lt;code&gt;team_1_name&lt;&#x2F;code&gt; from the HashMap. If the team exists, the &lt;code&gt;Team&lt;&#x2F;code&gt; struct is returned and removed from the HashMap, the team&#x27;s scores are updated, and the updated &lt;code&gt;Team&lt;&#x2F;code&gt; struct is re-inserted into the HashMap. If the team does not exist, a new &lt;code&gt;Team&lt;&#x2F;code&gt; struct is inserted into the HashMap. This process is repeated for both teams.&lt;&#x2F;p&gt;
 &lt;p&gt;Although this version is simpler and doesn&#x27;t use closures, it&#x27;s also less efficient because it requires additional lookups and insertions into the HashMap. The previous two versions that use &lt;code&gt;HashMap::entry&lt;&#x2F;code&gt; are generally more efficient and idiomatic in Rust.&lt;&#x2F;p&gt;
 &lt;h2 id=&quot;conclusion&quot;&gt;Conclusion&lt;&#x2F;h2&gt;
-&lt;p&gt;In this post, we explored the concept of hash maps in Rust and how they allow us to associate values with specific keys. Hash maps are similar to unordered maps in C++, dictionaries in Python, or associative arrays in other languages. We learned how to use the HashMap data structure to build collections with key-value pairs.&lt;&#x2F;p&gt;
-&lt;p&gt;We worked through three exercises that involved using hash maps to store and manipulate data:&lt;&#x2F;p&gt;
+&lt;p&gt;In this post, we explored the concept of HashMaps in Rust and how they allow us to associate values with specific keys. HashMaps are similar to unordered maps in C++, dictionaries in Python, or associative arrays in other languages. We learned how to use the HashMap data structure to build collections with key-value pairs.&lt;&#x2F;p&gt;
+&lt;p&gt;We worked through three exercises that involved using HashMaps to store and manipulate data:&lt;&#x2F;p&gt;
 &lt;ol&gt;
 &lt;li&gt;
 &lt;p&gt;In &lt;code&gt;hashmaps1.rs&lt;&#x2F;code&gt;, we had to create a basket of fruits using a HashMap. We needed to ensure that the basket contained at least three different types of fruits and a total of at least five fruits. By declaring a new HashMap and adding the required fruits with their quantities, we successfully completed this task.&lt;&#x2F;p&gt;
@@ -5863,11 +5863,11 @@ This solution combined &lt;code&gt;if let&lt;&#x2F;code&gt; with &lt;code&gt;mat
 &lt;p&gt;All three solutions achieved the goal of building the scores table and were valid approaches to solving the problem. The choice between these solutions may depend on personal coding style and preferences.&lt;&#x2F;p&gt;
 &lt;p&gt;Key Takeaways:&lt;&#x2F;p&gt;
 &lt;ul&gt;
-&lt;li&gt;Hash maps in Rust provide fast lookup and insertion times.&lt;&#x2F;li&gt;
+&lt;li&gt;HashMaps in Rust provide fast lookup and insertion times.&lt;&#x2F;li&gt;
 &lt;li&gt;They enable efficient data retrieval and manipulation based on unique keys.&lt;&#x2F;li&gt;
-&lt;li&gt;Hash maps are valuable tools for various scenarios, such as building scores tables or maintaining associations between data elements.&lt;&#x2F;li&gt;
+&lt;li&gt;HashMaps are valuable tools for various scenarios, such as building scores tables or maintaining associations between data elements.&lt;&#x2F;li&gt;
 &lt;&#x2F;ul&gt;
-&lt;p&gt;By mastering the usage of hash maps, we expand our ability to manage and organize data efficiently in Rust. These skills are valuable for building robust and performant applications in a wide range of domains.&lt;&#x2F;p&gt;
+&lt;p&gt;By mastering the usage of HashMaps, we expand our ability to manage and organize data efficiently in Rust. These skills are valuable for building robust and performant applications in a wide range of domains.&lt;&#x2F;p&gt;
 </description>
       </item>
       <item>
