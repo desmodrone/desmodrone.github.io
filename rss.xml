@@ -7,7 +7,250 @@
       <generator>Zola</generator>
       <language>en</language>
       <atom:link href="https://desmodrone.github.io/rss.xml" rel="self" type="application/rss+xml"/>
-      <lastBuildDate>Fri, 17 Nov 2023 00:00:00 +0000</lastBuildDate>
+      <lastBuildDate>Tue, 21 Nov 2023 00:00:00 +0000</lastBuildDate>
+      <item>
+          <title>24 Rustlings Macros</title>
+          <pubDate>Tue, 21 Nov 2023 00:00:00 +0000</pubDate>
+          <author>Unknown</author>
+          <link>https://desmodrone.github.io/posts/24-rustlings-macros/</link>
+          <guid>https://desmodrone.github.io/posts/24-rustlings-macros/</guid>
+          <description>&lt;p&gt;Rust&#x27;s macro system is very powerful, but also kind of difficult to wrap your
+head around. We&#x27;re not going to teach you how to write your own fully-featured
+macros. Instead, we&#x27;ll show you how to use and create them.&lt;&#x2F;p&gt;
+&lt;p&gt;If you&#x27;d like to learn more about writing your own macros, the
+&lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;tfpk&#x2F;macrokata&quot;&gt;macrokata&lt;&#x2F;a&gt; project has a similar style
+of exercises to Rustlings, but is all about learning to write Macros.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;further-information&quot;&gt;Further information&lt;&#x2F;h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;doc.rust-lang.org&#x2F;book&#x2F;ch19-06-macros.html&quot;&gt;Macros&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;veykril.github.io&#x2F;tlborm&#x2F;&quot;&gt;The Little Book of Rust Macros&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h2 id=&quot;macros1-rs&quot;&gt;Macros1.rs&lt;&#x2F;h2&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;&amp;#x2F;&amp;#x2F; macros1.rs
+&amp;#x2F;&amp;#x2F; Execute `rustlings hint macros1` or use the `hint` watch subcommand for a hint.
+
+&amp;#x2F;&amp;#x2F; I AM NOT DONE
+
+macro_rules! my_macro {
+    () =&amp;gt; {
+        println!(&amp;quot;Check out my macro!&amp;quot;);
+    };
+}
+
+fn main() {
+    my_macro();
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;This looks like a fairly simple exercise using Macros, let&#x27;s take a look at the errors.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;macros1-rs-errors&quot;&gt;Macros1.rs Errors&lt;&#x2F;h2&gt;
+&lt;p&gt;The Rust compiler tells us directly what the problem is, we&#x27;re missing the &lt;code&gt;!&lt;&#x2F;code&gt; symbol to call our macro, just like we do for &lt;code&gt;println!&lt;&#x2F;code&gt;&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;error[E0423]: expected function, found macro `my_macro`
+  --&amp;gt; exercises&amp;#x2F;macros&amp;#x2F;macros1.rs:13:5
+   |
+13 |     my_macro();
+   |     ^^^^^^^^ not a function
+   |
+help: use `!` to invoke the macro
+   |
+13 |     my_macro!();
+   |             +
+
+error: aborting due to previous error; 1 warning emitted
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h2 id=&quot;macros1-rs-solution&quot;&gt;Macros1.rs Solution&lt;&#x2F;h2&gt;
+&lt;p&gt;Following the instructions from the compiler message and simply adding the &lt;code&gt;!&lt;&#x2F;code&gt; to our calling of &lt;code&gt;my_macro&lt;&#x2F;code&gt;&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;macro_rules! my_macro {
+    () =&amp;gt; {
+        println!(&amp;quot;Check out my macro!&amp;quot;);
+    };
+}
+
+fn main() {
+    my_macro!();  &amp;#x2F;&amp;#x2F; adding `!` here
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;With that we have our code compiling and first macro exercise done.
+Output:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;✅ Successfully ran exercises&amp;#x2F;macros&amp;#x2F;macros1.rs!
+
+🎉 🎉  The code is compiling! 🎉 🎉
+
+Output:
+====================
+Check out my macro!
+
+====================
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h2 id=&quot;macros2-rs&quot;&gt;Macros2.rs&lt;&#x2F;h2&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;&amp;#x2F;&amp;#x2F; macros2.rs
+&amp;#x2F;&amp;#x2F; Execute `rustlings hint macros2` or use the `hint` watch subcommand for a hint.
+
+&amp;#x2F;&amp;#x2F; I AM NOT DONE
+
+fn main() {
+    my_macro!();
+}
+
+macro_rules! my_macro {
+    () =&amp;gt; {
+        println!(&amp;quot;Check out my macro!&amp;quot;);
+    };
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;This one doesn&#x27;t give us any instruction but we can see the code is not compiling. Let&#x27;s look at the errors.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;macros2-rs-errors&quot;&gt;Macros2.rs Errors&lt;&#x2F;h2&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt; --&amp;gt; exercises&amp;#x2F;macros&amp;#x2F;macros2.rs:7:5
+  |
+7 |     my_macro!();
+  |     ^^^^^^^^
+  |
+  = help: have you added the `#[macro_use]` on the module&amp;#x2F;import?
+
+warning: unused macro definition: `my_macro`
+  --&amp;gt; exercises&amp;#x2F;macros&amp;#x2F;macros2.rs:10:14
+   |
+10 | macro_rules! my_macro {
+   |              ^^^^^^^^
+   |
+   = note: `#[warn(unused_macros)]` on by default
+
+error: aborting due to previous error; 1 warning emitted
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;We can see errors about not having the &lt;code&gt;#[macro_use]&lt;&#x2F;code&gt; module imported, but I&#x27;m not sure if that&#x27;s exactly what is wrong here. Let&#x27;s see if there&#x27;s an easy way to solve this problem below.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;macros2-rs-solution&quot;&gt;Macros2.rs Solution&lt;&#x2F;h2&gt;
+&lt;p&gt;The solution is rather simple, we have to change the placement of the &lt;code&gt;macro_rules!&lt;&#x2F;code&gt; function an place it before the &lt;code&gt;fn main()&lt;&#x2F;code&gt;. The reason is that macro&#x27;s don&#x27;t abide by the same set of rules that the rest of Rust does, in the sense that order does matter. So you have to define a macro before you can use it. So simply declaring it before calling it, or in our case copy and pasting &lt;code&gt;my_macro&lt;&#x2F;code&gt; before &lt;code&gt;fn main()&lt;&#x2F;code&gt; and everything should work.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;macro_rules! my_macro {
+    () =&amp;gt; {
+        println!(&amp;quot;Check out my macro!&amp;quot;);
+    };
+}
+
+fn main() {
+    my_macro!();
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;It compiles and prints out the same message as before. So we&#x27;re done here.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;macros3-rs&quot;&gt;Macros3.rs&lt;&#x2F;h2&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;&amp;#x2F;&amp;#x2F; macros3.rs
+&amp;#x2F;&amp;#x2F; Make me compile, without taking the macro out of the module!
+&amp;#x2F;&amp;#x2F; Execute `rustlings hint macros3` or use the `hint` watch subcommand for a hint.
+
+&amp;#x2F;&amp;#x2F; I AM NOT DONE
+
+mod macros {
+    macro_rules! my_macro {
+        () =&amp;gt; {
+            println!(&amp;quot;Check out my macro!&amp;quot;);
+        };
+    }
+}
+
+fn main() {
+    my_macro!();
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;it looks like we have a very similar set of lines here with this exercise except that we have the &lt;code&gt;mod macros&lt;&#x2F;code&gt; encapsulating our &lt;code&gt;my_macro&lt;&#x2F;code&gt; definition.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;macros3-rs-errors&quot;&gt;Macros3.rs Errors&lt;&#x2F;h2&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;error: cannot find macro `my_macro` in this scope
+  --&amp;gt; exercises&amp;#x2F;macros&amp;#x2F;macros3.rs:16:5
+   |
+16 |     my_macro!();
+   |     ^^^^^^^^
+   |
+   = help: have you added the `#[macro_use]` on the module&amp;#x2F;import?
+
+warning: unused macro definition: `my_macro`
+ --&amp;gt; exercises&amp;#x2F;macros&amp;#x2F;macros3.rs:8:18
+  |
+8 |     macro_rules! my_macro {
+  |                  ^^^^^^^^
+  |
+  = note: `#[warn(unused_macros)]` on by default
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;So here we see the similar message about &lt;code&gt;#[macro_use]&lt;&#x2F;code&gt; but this time we might have a legitimate reason to use it.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;macros3-rs-solution&quot;&gt;Macros3.rs Solution&lt;&#x2F;h2&gt;
+&lt;p&gt;So since we have the &lt;code&gt;my_macro&lt;&#x2F;code&gt; macro wrapped in the &lt;code&gt;mod macro&lt;&#x2F;code&gt;  we nee to use the &lt;code&gt;#[macro_use]&lt;&#x2F;code&gt; to allow use of the macro outside of the module.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;&amp;#x2F;&amp;#x2F; adding this line here
+#[macro_use]
+mod macros {
+    macro_rules! my_macro {
+        () =&amp;gt; {
+            println!(&amp;quot;Check out my macro!&amp;quot;);
+        };
+    }
+}
+
+fn main() {
+    my_macro!();
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Once again with this change we are compiling and printing &lt;code&gt;Check out my macro!&lt;&#x2F;code&gt; as before.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;macros4-rs&quot;&gt;Macros4.rs&lt;&#x2F;h2&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;&amp;#x2F;&amp;#x2F; macros4.rs
+&amp;#x2F;&amp;#x2F; Execute `rustlings hint macros4` or use the `hint` watch subcommand for a hint.
+
+&amp;#x2F;&amp;#x2F; I AM NOT DONE
+
+#[rustfmt::skip]
+macro_rules! my_macro {
+    () =&amp;gt; {
+        println!(&amp;quot;Check out my macro!&amp;quot;);
+    }
+    ($val:expr) =&amp;gt; {
+        println!(&amp;quot;Look at this other macro: {}&amp;quot;, $val);
+    }
+}
+
+fn main() {
+    my_macro!();
+    my_macro!(7777);
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;We see an expanded version of our macro that has an additional arm with that prints out a value if you give it one. But of course we&#x27;re not compiling right now with how the code is constructed. So, let&#x27;s look at the errors for any additional hints.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;macros4-rs-errors&quot;&gt;Macros4.rs Errors&lt;&#x2F;h2&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;⚠️  Compiling of exercises&amp;#x2F;macros&amp;#x2F;macros4.rs failed! Please try again. Here&amp;#x27;s the output:
+error: no rules expected the token `(`
+  --&amp;gt; exercises&amp;#x2F;macros&amp;#x2F;macros4.rs:11:5
+   |
+11 |     ($val:expr) =&amp;gt; {
+   |     ^ no rules expected this token in macro call
+
+error: aborting due to previous error
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;The error we&#x27;re seeing is that it was expecting a token,  specifically the &lt;code&gt;(&lt;&#x2F;code&gt; but for some reason it&#x27;s not seeing it. Typically when we&#x27;re trying to compile our code when we see this type of error it is because we are missing something between our blocks of code. What could that be?&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;macros4-rs-solution&quot;&gt;Macros4.rs Solution&lt;&#x2F;h2&gt;
+&lt;p&gt;This solution is again painfully simple all we need to do to get this to compile is properly separate the arms of the macro by adding &lt;code&gt;;&lt;&#x2F;code&gt; at the end of the first macro. This let&#x27;s the Rust compiler know that we&#x27;ve ended the first arm of our macro so it then knows we have 2 different arms in the &lt;code&gt;my_macro&lt;&#x2F;code&gt; macro.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;#[rustfmt::skip]
+macro_rules! my_macro {
+    () =&amp;gt; {
+        println!(&amp;quot;Check out my macro!&amp;quot;);
+    };
+    ($val:expr) =&amp;gt; {
+        println!(&amp;quot;Look at this other macro: {}&amp;quot;, $val);
+    }
+}
+
+fn main() {
+    my_macro!();
+    my_macro!(7777);
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;with this we have our code compiling and printing:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;✅ Successfully ran exercises&amp;#x2F;macros&amp;#x2F;macros4.rs!
+
+🎉 🎉  The code is compiling! 🎉 🎉
+
+Output:
+====================
+Check out my macro!
+Look at this other macro: 7777
+
+====================
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h2 id=&quot;conclusion&quot;&gt;Conclusion&lt;&#x2F;h2&gt;
+&lt;p&gt;Working with macros in Rust can initially seem daunting due to their unique syntax and behavior. However, as we&#x27;ve seen in these exercises, common issues often have straightforward solutions once you understand how macros operate. Remember, macros are expanded at compile time, and their scope and definition order matter. By practicing with examples and understanding the error messages, you can become more comfortable with using and creating macros in Rust. They are a powerful tool in the Rust programmer&#x27;s toolkit, enabling more expressive and flexible code. Keep experimenting and exploring the Rust documentation and community resources to deepen your understanding of macros and their capabilities in Rust programming.&lt;&#x2F;p&gt;
+</description>
+      </item>
       <item>
           <title>23 Rustlings Smart Pointers</title>
           <pubDate>Fri, 17 Nov 2023 00:00:00 +0000</pubDate>

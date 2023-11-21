@@ -110,6 +110,10 @@
         <lastmod>2023-11-17</lastmod>
     </url>
     <url>
+        <loc>https://desmodrone.github.io/posts/24-rustlings-macros/</loc>
+        <lastmod>2023-11-21</lastmod>
+    </url>
+    <url>
         <loc>https://desmodrone.github.io/posts/hello-rustlings/</loc>
         <lastmod>2023-04-11</lastmod>
     </url>
@@ -210,6 +214,9 @@
     </url>
     <url>
         <loc>https://desmodrone.github.io/tags/lock/</loc>
+    </url>
+    <url>
+        <loc>https://desmodrone.github.io/tags/macros/</loc>
     </url>
     <url>
         <loc>https://desmodrone.github.io/tags/match/</loc>
