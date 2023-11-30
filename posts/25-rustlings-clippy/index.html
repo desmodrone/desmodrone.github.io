@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <meta itemprop="name" content="desmo" />
+  <meta itemprop="description" content="Random Ideas" />
+
+  <link rel="apple-touch-icon" sizes="180x180" href="https://desmodrone.github.io/apple-touch-icon.png"/>
+  <link rel="icon" type="image/png" sizes="32x32" href="https://desmodrone.github.io/favicon-32x32.png" />
+  <link
+    rel="icon"
+    type="image/png"
+    sizes="16x16"
+    href="https://desmodrone.github.io/favicon-16x16.png"
+  />
+  <link
+    rel="shortcut icon"
+    href="https://desmodrone.github.io/favicon.ico"
+  />
+  <link rel="stylesheet" href="https://desmodrone.github.io/style.css"/>
+  
+  <title>25 Rustlings Clippy</title>
+  
+
+  
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="https://desmodrone.github.io/rss.xml">
+  
+
+  <body id="page">
+
+	
+<header id="site-header" class="animated slideInUp faster">
+  <div class="hdr-wrapper section-inner">
+    <div class="hdr-left">
+      <div class="site-branding">
+        <a href="https:&#x2F;&#x2F;desmodrone.github.io">desmo</a>
+      </div>
+      <nav class="site-nav hide-in-mobile">
+            
+        
+        <a href="https://desmodrone.github.io/posts">posts</a>
+        
+        <a href="https://desmodrone.github.io/about">about</a>
+        
+        <a href="https://desmodrone.github.io/work">work</a>
+        
+      </nav>
+    </div>
+    <div class="hdr-right hdr-icons">
+      <span class="hdr-social hide-in-mobile">
+        
+
+<a href="https:&#x2F;&#x2F;twitter.com&#x2F;desmo_io" target="_blank" rel="noopener me"
+   title="twitter">
+  
+  <svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg>
+  
+</a>
+
+<a href="https:&#x2F;&#x2F;github.com&#x2F;desmodrone" target="_blank" rel="noopener me"
+   title="github">
+  
+  <svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+  
+</a>
+
+<a href="mailto:erick@apexwins.com" target="_blank" rel="noopener me"
+   title="email">
+  
+  <svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+  
+</a>
+
+
+      </span>
+      <button id="menu-btn" class="hdr-btn" title="Menu">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="feather feather-menu"
+        >
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+  </div>
+</header>
+<div id="mobile-menu" class="animated fast">
+  <ul>
+    
+    <li><a href="https://desmodrone.github.io/posts">posts</a></li>
+    
+    <li><a href="https://desmodrone.github.io/about">about</a></li>
+    
+    <li><a href="https://desmodrone.github.io/work">work</a></li>
+    
+  </ul>
+</div>
+
+	
+	
+
+		
+<main class="site-main section-inner animated fadeIn faster">
+  <article class="thin">
+	<header class="post-header">
+	  <div class="post-meta">
+		
+		<span>Nov 30, 2023</span>
+		<small> - 
+<span class="reading-time" title="Estimated read time">
+  
+  9 min read
+  
+</span>
+</small>
+		
+            
+	  </div>
+	  <h1>25 Rustlings Clippy</h1>
+	</header>
+
+	<div class="content">
+        
+	  <p>The Clippy tool is a collection of lints to analyze your code so you can catch common mistakes and improve your Rust code.</p>
+<p>If you used the installation script for Rustlings, Clippy should be already installed.
+If not you can install it manually via <code>rustup component add clippy</code>.</p>
+<h2 id="further-information">Further information</h2>
+<ul>
+<li><a href="https://github.com/rust-lang/rust-clippy">GitHub Repository</a>.</li>
+</ul>
+<h2 id="clippy1-rs">Clippy1.rs</h2>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">&#x2F;&#x2F; clippy1.rs
+&#x2F;&#x2F; The Clippy tool is a collection of lints to analyze your code
+&#x2F;&#x2F; so you can catch common mistakes and improve your Rust code.
+&#x2F;&#x2F;
+&#x2F;&#x2F; For these exercises the code will fail to compile when there are clippy warnings
+&#x2F;&#x2F; check clippy&#x27;s suggestions from the output to solve the exercise.
+&#x2F;&#x2F; Execute `rustlings hint clippy1` or use the `hint` watch subcommand for a hint.
+
+&#x2F;&#x2F; I AM NOT DONE
+
+use std::f32;
+
+fn main() {
+    let pi = 3.14f32;
+    let radius = 5.00f32;
+
+    let area = pi * f32::powi(radius, 2);
+
+    println!(
+        &quot;The area of a circle with radius {:.2} is {:.5}!&quot;,
+        radius, area
+    )
+}
+</code></pre>
+<p>Our instructions are straight forward make the code compile and use Clippy's suggestions to make it happen. So let's look at the error's and suggestions.</p>
+<h2 id="clippy1-rs-errors">Clippy1.rs Errors</h2>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">Progress: [######################################################&gt;-----] 86&#x2F;94 (90.4 %)
+⚠️  Compiling of exercises&#x2F;clippy&#x2F;clippy1.rs failed! Please try again. Here&#x27;s the output:
+    Checking clippy1 v0.0.1 (&#x2F;Users&#x2F;desmo&#x2F;Projects&#x2F;rustlings&#x2F;exercises&#x2F;clippy)
+error: approximate value of `f32::consts::PI` found
+  --&gt; clippy1.rs:14:14
+   |
+14 |     let pi = 3.14f32;
+   |              ^^^^^^^
+   |
+   = help: consider using the constant directly
+   = help: for further information visit https:&#x2F;&#x2F;rust-lang.github.io&#x2F;rust-clippy&#x2F;master&#x2F;index.html#approx_constant
+   = note: `#[deny(clippy::approx_constant)]` on by default
+
+error: could not compile `clippy1` (bin &quot;clippy1&quot;) due to previous error
+Welcome to watch mode! You can type &#x27;help&#x27; to get an overview of the commands you can use here.
+</code></pre>
+<p>So Clippy doesn't like us using an approximate value of <code>PI</code> with <code>3.14f32</code> instead it suggests for us to use use the constant directly, there's even a link let's take a look at it in the solution.</p>
+<h2 id="clippy2-rs-solution">Clippy2.rs Solution</h2>
+<p>We're given the <a href="https://rust-lang.github.io/rust-clippy/master/index.html#/approx_constant">approx_constant</a> link above which if you click, I'll save you the trouble and summarize what is shows:</p>
+<h2 id="approx-constant">approx_constant</h2>
+<h3 id="what-it-does">What it does</h3>
+<p>Checks for floating point literals that approximate constants which are defined in <a href="https://doc.rust-lang.org/stable/std/f32/consts/#constants"><code>std::f32::consts</code></a> or <a href="https://doc.rust-lang.org/stable/std/f64/consts/#constants"><code>std::f64::consts</code></a>, respectively, suggesting to use the predefined constant.</p>
+<h3 id="why-is-this-bad">Why is this bad?</h3>
+<p>Usually, the definition in the standard library is more precise than what people come up with. If you find that your definition is actually more precise, please <a href="https://github.com/rust-lang/rust/issues">file a Rust issue</a>.</p>
+<h3 id="example">Example</h3>
+<pre><code>let x = 3.14;
+let y = 1_f64 &#x2F; x;
+</code></pre>
+<p>Use instead:</p>
+<pre><code>let x = std::f32::consts::PI;
+let y = std::f64::consts::FRAC_1_PI;
+</code></pre>
+<h2 id="applying-pi">Applying <code>PI</code></h2>
+<p>We clearly see above that Clippy doesn't like us to use our own approximate value and wants us to import the <code>std::f32::consts::PI</code> from the standard library. So let's do that, but instead of using it in the variable, which is fine as they have done in the example, it might be easier to read and also use later in code if we import it with <code>use</code>  and later just use <code>PI</code> in our variable...let's try that.</p>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">use std::f32::consts::PI;
+
+fn main() {
+    let pi = PI;
+    let radius = 5.00f32;
+
+    let area = pi * f32::powi(radius, 2);
+
+    println!(
+        &quot;The area of a circle with radius {:.2} is {:.5}!&quot;,
+        radius, area
+    )
+}
+</code></pre>
+<p>And with this we are compiling, of course you are free to use the other method of access <code>PI</code> directly by not importing it at the top of your code and then only modifying the <code>pi</code> variable like this:</p>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">let pi = std::f32::consts::PI;
+</code></pre>
+<p>Either way will compile and Clippy will be happy.</p>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">✅ Successfully compiled exercises&#x2F;clippy&#x2F;clippy1.rs!
+
+🎉 🎉  The code is compiling, and 📎 Clippy 📎 is happy! 🎉 🎉
+</code></pre>
+<h2 id="clippy2-rs">Clippy2.rs</h2>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">&#x2F;&#x2F; clippy2.rs
+&#x2F;&#x2F; Execute `rustlings hint clippy2` or use the `hint` watch subcommand for a hint.
+
+&#x2F;&#x2F; I AM NOT DONE
+
+fn main() {
+    let mut res = 42;
+    let option = Some(12);
+    for x in option {
+        res += x;
+    }
+    println!(&quot;{}&quot;, res);
+}
+</code></pre>
+<p>Here' we don't get any additional instructions but with a quick glance at the code, it seems that something doesn't seem quite right, but let's inspect the errors and see if we get additional details.</p>
+<h2 id="clippy2-rs-errors">Clippy2.rs Errors</h2>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">Checking clippy2 v0.0.1 (&#x2F;Users&#x2F;desmo&#x2F;Projects&#x2F;rustlings&#x2F;exercises&#x2F;clippy)
+error: for loop over an `Option`. This is more readably written as an `if let` statement
+ --&gt; clippy2.rs:9:14
+  |
+9 |     for x in option {
+  |              ^^^^^^
+  |
+  = note: `-D for-loops-over-fallibles` implied by `-D warnings`
+  = help: to override `-D warnings` add `#[allow(for_loops_over_fallibles)]`
+help: to check pattern in a loop use `while let`
+  |
+9 |     while let Some(x) = option {
+  |     ~~~~~~~~~~~~~~~ ~~~
+help: consider using `if let` to clear intent
+  |
+9 |     if let Some(x) = option {
+  |     ~~~~~~~~~~~~ ~~~
+
+error: could not compile `clippy2` (bin &quot;clippy2&quot;) due to previous error
+
+</code></pre>
+<p>So, we're getting a clear error with:</p>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">`for loop over an `Option`. This is more readably written as an `if let` statement`
+</code></pre>
+<h2 id="clippy2-rs-solution-1">Clippy2.rs Solution</h2>
+<p>Because we have an <code>Option</code> here, we should use either <code>if let</code> or <code>while let</code> which essentially tells our code that <em>if (or while) there is something</em> inside of our <code>option</code> variable, we should then put that something inside of <code>option</code> and increment <code>option</code> by <code>res</code> in this case 42, <em>if</em> there is <code>None</code> then do nothing.</p>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">fn main() {
+    let mut res = 42;
+    let option = Some(12);
+
+	  &#x2F;&#x2F; updated with `if let` here
+        if let Some(x) = option {
+            res += x;
+        }
+
+    println!(&quot;{}&quot;, res);
+}
+</code></pre>
+<p>if we were to print this we would see <code>54</code> as the output.</p>
+<p>So with that updated <code>if let</code> our code compiles and we make Clippy happy again:</p>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">✅ Successfully compiled exercises&#x2F;clippy&#x2F;clippy2.rs!
+
+🎉 🎉  The code is compiling, and 📎 Clippy 📎 is happy! 🎉 🎉
+</code></pre>
+<h2 id="clippy3-rs">Clippy3.rs</h2>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">&#x2F;&#x2F; clippy3.rs
+&#x2F;&#x2F; Here&#x27;s a couple more easy Clippy fixes, so you can see its utility.
+
+&#x2F;&#x2F; I AM NOT DONE
+
+#[allow(unused_variables, unused_assignments)]
+fn main() {
+    let my_option: Option&lt;()&gt; = None;
+    if my_option.is_none() {
+        my_option.unwrap();
+    }
+
+    let my_arr = &amp;[
+        -1, -2, -3
+        -4, -5, -6
+    ];
+    println!(&quot;My array! Here it is: {:?}&quot;, my_arr);
+
+    let my_empty_vec = vec![1, 2, 3, 4, 5].resize(0, 5);
+    println!(&quot;This Vec is empty, see? {:?}&quot;, my_empty_vec);
+
+    let mut value_a = 45;
+    let mut value_b = 66;
+    &#x2F;&#x2F; Let&#x27;s swap these two!
+    value_a = value_b;
+    value_b = value_a;
+    println!(&quot;value a: {}; value b: {}&quot;, value_a, value_b);
+}
+</code></pre>
+<p>We're told that we have a couple of more easy Clippy fixes so we see how useful it is. Alright let's look at the errors.</p>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">⚠️  Compiling of exercises&#x2F;clippy&#x2F;clippy3.rs failed! Please try again. Here&#x27;s the output:
+    Checking clippy3 v0.0.1 (&#x2F;Users&#x2F;desmo&#x2F;Projects&#x2F;rustlings&#x2F;exercises&#x2F;clippy)
+error: possibly missing a comma here
+  --&gt; clippy3.rs:14:19
+   |
+14 |         -1, -2, -3
+   |                   ^
+   |
+   = note: to remove this lint, add a comma or write the expr in a single line
+   = help: for further information visit https:&#x2F;&#x2F;rust-lang.github.io&#x2F;rust-clippy&#x2F;master&#x2F;index.html#possible_missing_comma
+   = note: `#[deny(clippy::possible_missing_comma)]` on by default
+
+error: this call to `unwrap()` will always panic
+  --&gt; clippy3.rs:10:9
+   |
+9  |     if my_option.is_none() {
+   |        ------------------- because of this check
+10 |         my_option.unwrap();
+   |         ^^^^^^^^^^^^^^^^^^
+   |
+   = help: for further information visit https:&#x2F;&#x2F;rust-lang.github.io&#x2F;rust-clippy&#x2F;master&#x2F;index.html#panicking_unwrap
+   = note: `#[deny(clippy::panicking_unwrap)]` on by default
+
+error: this looks like you are trying to swap `value_a` and `value_b`
+  --&gt; clippy3.rs:25:5
+   |
+25 | &#x2F;     value_a = value_b;
+26 | |     value_b = value_a;
+   | |_____________________^ help: try: `std::mem::swap(&amp;mut value_a, &amp;mut value_b)`
+   |
+   = note: or maybe you should use `std::mem::replace`?
+   = help: for further information visit https:&#x2F;&#x2F;rust-lang.github.io&#x2F;rust-clippy&#x2F;master&#x2F;index.html#almost_swapped
+   = note: `#[deny(clippy::almost_swapped)]` on by default
+
+error: used `unwrap()` on `None` value
+  --&gt; clippy3.rs:10:9
+   |
+10 |         my_option.unwrap();
+   |         ^^^^^^^^^^^^^^^^^^
+   |
+help: remove the `None` and `unwrap()`
+  --&gt; clippy3.rs:8:33
+   |
+8  |     let my_option: Option&lt;()&gt; = None;
+   |                                 ^^^^
+   = help: for further information visit https:&#x2F;&#x2F;rust-lang.github.io&#x2F;rust-clippy&#x2F;master&#x2F;index.html#unnecessary_literal_unwrap
+   = note: `-D clippy::unnecessary-literal-unwrap` implied by `-D warnings`
+   = help: to override `-D warnings` add `#[allow(clippy::unnecessary_literal_unwrap)]`
+
+error: this let-binding has unit value
+  --&gt; clippy3.rs:19:5
+   |
+19 |     let my_empty_vec = vec![1, 2, 3, 4, 5].resize(0, 5);
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ help: omit the `let` binding: `vec![1, 2, 3, 4, 5].resize(0, 5);`
+   |
+   = help: for further information visit https:&#x2F;&#x2F;rust-lang.github.io&#x2F;rust-clippy&#x2F;master&#x2F;index.html#let_unit_value
+   = note: `-D clippy::let-unit-value` implied by `-D warnings`
+   = help: to override `-D warnings` add `#[allow(clippy::let_unit_value)]`
+
+error: could not compile `clippy3` (bin &quot;clippy3&quot;) due to 5 previous errors
+</code></pre>
+<p>Alright looks like we have a lot of work to do here going through each of them one by one and see how we can get this code to compile.</p>
+<h2 id="clippy3-rs-solution">Clippy3.rs Solution</h2>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">#[allow(unused_variables, unused_assignments)]
+fn main() {
+    let my_option: Option&lt;()&gt; = None;
+    if my_option.is_none() {
+        my_option.unwrap();
+    }
+
+    let my_arr = &amp;[
+        -1, -2, -3
+        -4, -5, -6
+    ];
+    println!(&quot;My array! Here it is: {:?}&quot;, my_arr);
+
+    let my_empty_vec = vec![1, 2, 3, 4, 5].resize(0, 5);
+    println!(&quot;This Vec is empty, see? {:?}&quot;, my_empty_vec);
+
+    let mut value_a = 45;
+    let mut value_b = 66;
+    &#x2F;&#x2F; Let&#x27;s swap these two!
+    value_a = value_b;
+    value_b = value_a;
+    println!(&quot;value a: {}; value b: {}&quot;, value_a, value_b);
+}
+</code></pre>
+<h3 id="error-1">Error 1</h3>
+<p>Our first error focuses on <code>my_arr</code> where it seems like we're missing a comma.</p>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">error: possibly missing a comma here
+  --&gt; clippy3.rs:14:19
+   |
+14 |         -1, -2, -3
+   |                   ^
+   |
+   = note: to remove this lint, add a comma or write the expr in a single line
+   = help: for further information visit https:&#x2F;&#x2F;rust-lang.github.io&#x2F;rust-clippy&#x2F;master&#x2F;index.html#possible_missing_comma
+   = note: `#[deny(clippy::possible_missing_comma)]` on by default
+</code></pre>
+<p>So by adding the comma after the <code>-3,</code> this issue is fixed.</p>
+<h3 id="error-2">Error 2</h3>
+<p>This error is highlighting a misuse of the <code>unwrap()</code> method on an <code>Option</code> type. Specifically, it's warning against calling <code>unwrap()</code> on an <code>Option</code> that is <em>known</em> to be <code>None</code>, as this will always cause a panic at runtime.</p>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">error: this call to `unwrap()` will always panic
+  --&gt; clippy3.rs:10:9
+   |
+9  |     if my_option.is_none() {
+   |        ------------------- because of this check
+10 |         my_option.unwrap();
+   |         ^^^^^^^^^^^^^^^^^^
+   |
+   = help: for further information visit https:&#x2F;&#x2F;rust-lang.github.io&#x2F;rust-clippy&#x2F;master&#x2F;index.html#panicking_unwrap
+   = note: `#[deny(clippy::panicking_unwrap)]` on by default
+</code></pre>
+<p>This code checks if <code>my_option</code> is <code>None</code>, and if so, attempts to <code>unwrap</code> it, which is exactly the pattern Clippy is advising against. It's logically inconsistent to check for <code>None</code> and then <code>unwrap</code> it, as <code>unwrap</code> is meant for situations where you are sure the <code>Option</code> is <code>Some</code>. So what do we do, just remove the <code>if</code> check so this error goes away.</p>
+<h3 id="error-3">Error 3</h3>
+<p>Here Clippy understands that we're trying to swap values and advises us to use <code>std::mem::swap</code>. Again, I prefer to use the <code>use</code> key word to import just to keep the code a little bit cleaner.</p>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">error: this looks like you are trying to swap `value_a` and `value_b`
+  --&gt; clippy3.rs:25:5
+   |
+25 | &#x2F;     value_a = value_b;
+26 | |     value_b = value_a;
+   | |_____________________^ help: try: `std::mem::swap(&amp;mut value_a, &amp;mut value_b)`
+   |
+   = note: or maybe you should use `std::mem::replace`?
+   = help: for further information visit https:&#x2F;&#x2F;rust-lang.github.io&#x2F;rust-clippy&#x2F;master&#x2F;index.html#almost_swapped
+   = note: `#[deny(clippy::almost_swapped)]` on by default
+</code></pre>
+<p>So our updated code would look like this.</p>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">&#x2F;&#x2F; import at the top of the file
+use std::mem::swap;
+
+&#x2F;&#x2F; -- snippet -- &#x2F;&#x2F;
+&#x2F;&#x2F; Swapping Values
+
+let mut value_a = 45;
+let mut value_b = 66;
+
+&#x2F;&#x2F; Let&#x27;s swap these two!
+swap(&amp;mut value_a, &amp;mut value_b);
+
+println!(&quot;value a: {}; value b: {}&quot;, value_a, value_b);
+</code></pre>
+<h3 id="error-4">Error 4</h3>
+<p>Our final error is related to wanting to create an empty <code>Vec</code> it looks like currently we are creating and then resizing, which is a waste of effort if all we want is an empty Vector.</p>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">error: this let-binding has unit value
+  --&gt; clippy3.rs:19:5
+   |
+19 |     let my_empty_vec = vec![1, 2, 3, 4, 5].resize(0, 5);
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ help: omit the `let` binding: `vec![1, 2, 3, 4, 5].resize(0, 5);`
+   |
+   = help: for further information visit https:&#x2F;&#x2F;rust-lang.github.io&#x2F;rust-clippy&#x2F;master&#x2F;index.html#let_unit_value
+   = note: `-D clippy::let-unit-value` implied by `-D warnings`
+   = help: to override `-D warnings` add `#[allow(clippy::let_unit_value)]`
+</code></pre>
+<p>There's a couple of ways to solve it but probably the easiest is to just remove the elements from the vector and the <code>.resize()</code> method at the end.</p>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">let my_empty_vec: Vec&lt;i32&gt; = vec![];
+</code></pre>
+<p>We're also asked to define it's type but that's pretty straightforward with <code>Vec&lt;i32&gt;</code> right before the empty <code>vec![]</code> macro. Here's the final code for reference.</p>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">use std::mem::swap;
+#[allow(unused_variables, unused_assignments)]
+fn main() {
+    let my_option: Option&lt;()&gt; = None;
+
+    &#x2F;&#x2F; array
+    let my_arr = &amp;[
+        -1, -2, -3,
+        -4, -5, -6
+    ];
+    println!(&quot;My array! Here it is: {:?}&quot;, my_arr);
+
+    &#x2F;&#x2F; Create empty Vector
+    let my_empty_vec: Vec&lt;i32&gt; = vec![];
+    println!(&quot;This Vec is empty, see? {:?}&quot;, my_empty_vec);
+
+    &#x2F;&#x2F; Swapping Values
+    let mut value_a = 45;
+    let mut value_b = 66;
+
+    &#x2F;&#x2F; Let&#x27;s swap these two!
+    swap(&amp;mut value_a, &amp;mut value_b);
+
+    println!(&quot;value a: {}; value b: {}&quot;, value_a, value_b);
+}
+</code></pre>
+<p>with these changes Clippy is once again a happy camper:</p>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">✅ Successfully compiled exercises&#x2F;clippy&#x2F;clippy3.rs!
+
+🎉 🎉  The code is compiling, and 📎 Clippy 📎 is happy! 🎉 🎉
+</code></pre>
+<h2 id="conclusion">Conclusion</h2>
+<p>In conclusion, navigating through Rust's Clippy lints is not only an exercise in resolving compile-time errors but also a journey into the depths of idiomatic Rust programming. Clippy, as a linter, serves a pivotal role in guiding developers towards best practices, ensuring code reliability, and maintaining the high standards of Rust's safety guarantees.</p>
+<p>Through the examples of <code>clippy1.rs</code>, <code>clippy2.rs</code>, and <code>clippy3.rs</code>, we saw common pitfalls and learned how to address them effectively. Whether it was using the precise value of <code>PI</code> in <code>clippy1.rs</code>, embracing the <code>if let</code> construct for <code>Option</code> types in <code>clippy2.rs</code>, or understanding the importance of proper array syntax and variable swapping in <code>clippy3.rs</code>, each scenario brought its unique learning experience.</p>
+<p>These exercises underscore the importance of attention to detail and the nuances of the Rust language. Clippy acts not just as a linter but as an educator, reinforcing the Rust philosophy of writing clear, efficient, and safe code. As Rust continues to evolve, tools like Clippy will remain invaluable for developers, whether they are beginners just starting their Rust journey or experienced coders refining their craft. In the world of Rust, Clippy is more than a tool; it's a companion on the path to mastering one of the most promising systems programming languages of our time.</p>
+
+	</div>
+	<hr class="post-end">
+	<footer class="post-info">
+    
+	  <p>
+		<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg>
+		
+		
+		<span class="tag"><a href="https://desmodrone.github.io/tags/rust/">rust</a></span>
+		
+		<span class="tag"><a href="https://desmodrone.github.io/tags/clippy/">clippy</a></span>
+		
+		<span class="tag"><a href="https://desmodrone.github.io/tags/rustlings/">rustlings</a></span>
+		
+		<span class="tag"><a href="https://desmodrone.github.io/tags/option/">Option</a></span>
+		
+		<span class="tag"><a href="https://desmodrone.github.io/tags/if-let/">if let</a></span>
+		
+		
+    </p>
+    
+    <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>2354 Words</p>
+    
+    <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2023-11-30</p>
+    
+	</footer>
+  </article>
+    
+  
+  <div class="post-nav thin">
+	
+	
+  </div>
+
+  
+</main>
+
+	  </div>
+	  
+	  
+
+
+
+<footer id="site-footer" class="section-inner thin animated fadeIn faster">
+  <p>&copy; 2023 <a href="https:&#x2F;&#x2F;desmodrone.github.io">erick</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
+  <p>Made with <a href="https://www.getzola.org" target="_blank" rel="noopener">Zola</a> &#183; Theme <a href="https://github.com/VersBinarii/hermit_zola" target="_blank" rel="noopener">Hermit_Zola</a>
+	
+	&#183; <a href="https://desmodrone.github.io/rss.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
+	
+  </p>
+</footer>
+
+
+
+
+	</div>
+	
+	<script src="https://desmodrone.github.io/js/main.js"></script>
+
+	<!-- Math rendering -->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css" integrity="sha384-zB1R0rpPzHqg7Kpt0Aljp8JPLqbXI3bhnPWROx27a9N0Ll6ZP/+DiW/UqRcLbRjq" crossorigin="anonymous">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js" integrity="sha384-y23I5Q6l+B6vatafAwxRu/0oK/79VlbSz7Q9aiSZUvyWYIYsd+qj+o24G5ZU2zJz" crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous"
+        onload="renderMathInElement(document.body, { delimiters: [ {left: '$$', right: '$$', display: true}, {left: '$', right: '$', display: false}, {left: '\\[', right: '\\]', display: true}, {left: '\\(', right: '\\)', display: false}]});"></script>
+
+    
+		<link href="https://unpkg.com/highlightjs-badge/highlightjs/styles/monokai.css" rel="stylesheet">
+		<!-- https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.1/build/styles/  for min version -->
+		<script src="https://unpkg.com/highlightjs-badge/highlightjs/highlight.pack.js"></script>
+		<script src="https://unpkg.com/highlightjs-badge/highlightjs-badge.min.js"></script>
+		<script>
+			var pres = document.querySelectorAll("pre>code");
+			for (var i = 0; i < pres.length; i++) {
+				hljs.highlightBlock(pres[i]);
+			}
+		</script>
+		
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js"></script>
+			<script>
+				var options = {
+					copyIconClass: "gg-clipboard",
+					checkIconClass: "gg-check"
+				};
+				window.highlightJsBadge(options);
+			</script>
+		
+
+	
+
+	
+	<script src="https://desmodrone.github.io/js/main.js"></script>
+
+    
+    
+
+	
+    <!-- Global Site Tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-9MNTYXYNHK"></script>
+    <script>
+     window.dataLayer = window.dataLayer || [];
+     function gtag(){dataLayer.push(arguments);}
+     gtag('js', new Date());
+     gtag('config', 'G-9MNTYXYNHK');
+    </script>
+    
+  </body>
+</html>

@@ -114,6 +114,10 @@
         <lastmod>2023-11-21</lastmod>
     </url>
     <url>
+        <loc>https://desmodrone.github.io/posts/25-rustlings-clippy/</loc>
+        <lastmod>2023-11-30</lastmod>
+    </url>
+    <url>
         <loc>https://desmodrone.github.io/posts/hello-rustlings/</loc>
         <lastmod>2023-04-11</lastmod>
     </url>
@@ -160,6 +164,9 @@
     </url>
     <url>
         <loc>https://desmodrone.github.io/tags/classic/</loc>
+    </url>
+    <url>
+        <loc>https://desmodrone.github.io/tags/clippy/</loc>
     </url>
     <url>
         <loc>https://desmodrone.github.io/tags/closures/</loc>
@@ -244,6 +251,9 @@
     </url>
     <url>
         <loc>https://desmodrone.github.io/tags/ok/</loc>
+    </url>
+    <url>
+        <loc>https://desmodrone.github.io/tags/option/</loc>
     </url>
     <url>
         <loc>https://desmodrone.github.io/tags/options/</loc>

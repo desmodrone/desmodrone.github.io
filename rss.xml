@@ -7,7 +7,390 @@
       <generator>Zola</generator>
       <language>en</language>
       <atom:link href="https://desmodrone.github.io/rss.xml" rel="self" type="application/rss+xml"/>
-      <lastBuildDate>Tue, 21 Nov 2023 00:00:00 +0000</lastBuildDate>
+      <lastBuildDate>Thu, 30 Nov 2023 00:00:00 +0000</lastBuildDate>
+      <item>
+          <title>25 Rustlings Clippy</title>
+          <pubDate>Thu, 30 Nov 2023 00:00:00 +0000</pubDate>
+          <author>Unknown</author>
+          <link>https://desmodrone.github.io/posts/25-rustlings-clippy/</link>
+          <guid>https://desmodrone.github.io/posts/25-rustlings-clippy/</guid>
+          <description>&lt;p&gt;The Clippy tool is a collection of lints to analyze your code so you can catch common mistakes and improve your Rust code.&lt;&#x2F;p&gt;
+&lt;p&gt;If you used the installation script for Rustlings, Clippy should be already installed.
+If not you can install it manually via &lt;code&gt;rustup component add clippy&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;further-information&quot;&gt;Further information&lt;&#x2F;h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;rust-lang&#x2F;rust-clippy&quot;&gt;GitHub Repository&lt;&#x2F;a&gt;.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h2 id=&quot;clippy1-rs&quot;&gt;Clippy1.rs&lt;&#x2F;h2&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;&amp;#x2F;&amp;#x2F; clippy1.rs
+&amp;#x2F;&amp;#x2F; The Clippy tool is a collection of lints to analyze your code
+&amp;#x2F;&amp;#x2F; so you can catch common mistakes and improve your Rust code.
+&amp;#x2F;&amp;#x2F;
+&amp;#x2F;&amp;#x2F; For these exercises the code will fail to compile when there are clippy warnings
+&amp;#x2F;&amp;#x2F; check clippy&amp;#x27;s suggestions from the output to solve the exercise.
+&amp;#x2F;&amp;#x2F; Execute `rustlings hint clippy1` or use the `hint` watch subcommand for a hint.
+
+&amp;#x2F;&amp;#x2F; I AM NOT DONE
+
+use std::f32;
+
+fn main() {
+    let pi = 3.14f32;
+    let radius = 5.00f32;
+
+    let area = pi * f32::powi(radius, 2);
+
+    println!(
+        &amp;quot;The area of a circle with radius {:.2} is {:.5}!&amp;quot;,
+        radius, area
+    )
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Our instructions are straight forward make the code compile and use Clippy&#x27;s suggestions to make it happen. So let&#x27;s look at the error&#x27;s and suggestions.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;clippy1-rs-errors&quot;&gt;Clippy1.rs Errors&lt;&#x2F;h2&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;Progress: [######################################################&amp;gt;-----] 86&amp;#x2F;94 (90.4 %)
+⚠️  Compiling of exercises&amp;#x2F;clippy&amp;#x2F;clippy1.rs failed! Please try again. Here&amp;#x27;s the output:
+    Checking clippy1 v0.0.1 (&amp;#x2F;Users&amp;#x2F;desmo&amp;#x2F;Projects&amp;#x2F;rustlings&amp;#x2F;exercises&amp;#x2F;clippy)
+error: approximate value of `f32::consts::PI` found
+  --&amp;gt; clippy1.rs:14:14
+   |
+14 |     let pi = 3.14f32;
+   |              ^^^^^^^
+   |
+   = help: consider using the constant directly
+   = help: for further information visit https:&amp;#x2F;&amp;#x2F;rust-lang.github.io&amp;#x2F;rust-clippy&amp;#x2F;master&amp;#x2F;index.html#approx_constant
+   = note: `#[deny(clippy::approx_constant)]` on by default
+
+error: could not compile `clippy1` (bin &amp;quot;clippy1&amp;quot;) due to previous error
+Welcome to watch mode! You can type &amp;#x27;help&amp;#x27; to get an overview of the commands you can use here.
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;So Clippy doesn&#x27;t like us using an approximate value of &lt;code&gt;PI&lt;&#x2F;code&gt; with &lt;code&gt;3.14f32&lt;&#x2F;code&gt; instead it suggests for us to use use the constant directly, there&#x27;s even a link let&#x27;s take a look at it in the solution.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;clippy2-rs-solution&quot;&gt;Clippy2.rs Solution&lt;&#x2F;h2&gt;
+&lt;p&gt;We&#x27;re given the &lt;a href=&quot;https:&#x2F;&#x2F;rust-lang.github.io&#x2F;rust-clippy&#x2F;master&#x2F;index.html#&#x2F;approx_constant&quot;&gt;approx_constant&lt;&#x2F;a&gt; link above which if you click, I&#x27;ll save you the trouble and summarize what is shows:&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;approx-constant&quot;&gt;approx_constant&lt;&#x2F;h2&gt;
+&lt;h3 id=&quot;what-it-does&quot;&gt;What it does&lt;&#x2F;h3&gt;
+&lt;p&gt;Checks for floating point literals that approximate constants which are defined in &lt;a href=&quot;https:&#x2F;&#x2F;doc.rust-lang.org&#x2F;stable&#x2F;std&#x2F;f32&#x2F;consts&#x2F;#constants&quot;&gt;&lt;code&gt;std::f32::consts&lt;&#x2F;code&gt;&lt;&#x2F;a&gt; or &lt;a href=&quot;https:&#x2F;&#x2F;doc.rust-lang.org&#x2F;stable&#x2F;std&#x2F;f64&#x2F;consts&#x2F;#constants&quot;&gt;&lt;code&gt;std::f64::consts&lt;&#x2F;code&gt;&lt;&#x2F;a&gt;, respectively, suggesting to use the predefined constant.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;why-is-this-bad&quot;&gt;Why is this bad?&lt;&#x2F;h3&gt;
+&lt;p&gt;Usually, the definition in the standard library is more precise than what people come up with. If you find that your definition is actually more precise, please &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;rust-lang&#x2F;rust&#x2F;issues&quot;&gt;file a Rust issue&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;example&quot;&gt;Example&lt;&#x2F;h3&gt;
+&lt;pre&gt;&lt;code&gt;let x = 3.14;
+let y = 1_f64 &amp;#x2F; x;
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Use instead:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;let x = std::f32::consts::PI;
+let y = std::f64::consts::FRAC_1_PI;
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h2 id=&quot;applying-pi&quot;&gt;Applying &lt;code&gt;PI&lt;&#x2F;code&gt;&lt;&#x2F;h2&gt;
+&lt;p&gt;We clearly see above that Clippy doesn&#x27;t like us to use our own approximate value and wants us to import the &lt;code&gt;std::f32::consts::PI&lt;&#x2F;code&gt; from the standard library. So let&#x27;s do that, but instead of using it in the variable, which is fine as they have done in the example, it might be easier to read and also use later in code if we import it with &lt;code&gt;use&lt;&#x2F;code&gt;  and later just use &lt;code&gt;PI&lt;&#x2F;code&gt; in our variable...let&#x27;s try that.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;use std::f32::consts::PI;
+
+fn main() {
+    let pi = PI;
+    let radius = 5.00f32;
+
+    let area = pi * f32::powi(radius, 2);
+
+    println!(
+        &amp;quot;The area of a circle with radius {:.2} is {:.5}!&amp;quot;,
+        radius, area
+    )
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;And with this we are compiling, of course you are free to use the other method of access &lt;code&gt;PI&lt;&#x2F;code&gt; directly by not importing it at the top of your code and then only modifying the &lt;code&gt;pi&lt;&#x2F;code&gt; variable like this:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;let pi = std::f32::consts::PI;
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Either way will compile and Clippy will be happy.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;✅ Successfully compiled exercises&amp;#x2F;clippy&amp;#x2F;clippy1.rs!
+
+🎉 🎉  The code is compiling, and 📎 Clippy 📎 is happy! 🎉 🎉
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h2 id=&quot;clippy2-rs&quot;&gt;Clippy2.rs&lt;&#x2F;h2&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;&amp;#x2F;&amp;#x2F; clippy2.rs
+&amp;#x2F;&amp;#x2F; Execute `rustlings hint clippy2` or use the `hint` watch subcommand for a hint.
+
+&amp;#x2F;&amp;#x2F; I AM NOT DONE
+
+fn main() {
+    let mut res = 42;
+    let option = Some(12);
+    for x in option {
+        res += x;
+    }
+    println!(&amp;quot;{}&amp;quot;, res);
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Here&#x27; we don&#x27;t get any additional instructions but with a quick glance at the code, it seems that something doesn&#x27;t seem quite right, but let&#x27;s inspect the errors and see if we get additional details.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;clippy2-rs-errors&quot;&gt;Clippy2.rs Errors&lt;&#x2F;h2&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;Checking clippy2 v0.0.1 (&amp;#x2F;Users&amp;#x2F;desmo&amp;#x2F;Projects&amp;#x2F;rustlings&amp;#x2F;exercises&amp;#x2F;clippy)
+error: for loop over an `Option`. This is more readably written as an `if let` statement
+ --&amp;gt; clippy2.rs:9:14
+  |
+9 |     for x in option {
+  |              ^^^^^^
+  |
+  = note: `-D for-loops-over-fallibles` implied by `-D warnings`
+  = help: to override `-D warnings` add `#[allow(for_loops_over_fallibles)]`
+help: to check pattern in a loop use `while let`
+  |
+9 |     while let Some(x) = option {
+  |     ~~~~~~~~~~~~~~~ ~~~
+help: consider using `if let` to clear intent
+  |
+9 |     if let Some(x) = option {
+  |     ~~~~~~~~~~~~ ~~~
+
+error: could not compile `clippy2` (bin &amp;quot;clippy2&amp;quot;) due to previous error
+
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;So, we&#x27;re getting a clear error with:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;`for loop over an `Option`. This is more readably written as an `if let` statement`
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h2 id=&quot;clippy2-rs-solution-1&quot;&gt;Clippy2.rs Solution&lt;&#x2F;h2&gt;
+&lt;p&gt;Because we have an &lt;code&gt;Option&lt;&#x2F;code&gt; here, we should use either &lt;code&gt;if let&lt;&#x2F;code&gt; or &lt;code&gt;while let&lt;&#x2F;code&gt; which essentially tells our code that &lt;em&gt;if (or while) there is something&lt;&#x2F;em&gt; inside of our &lt;code&gt;option&lt;&#x2F;code&gt; variable, we should then put that something inside of &lt;code&gt;option&lt;&#x2F;code&gt; and increment &lt;code&gt;option&lt;&#x2F;code&gt; by &lt;code&gt;res&lt;&#x2F;code&gt; in this case 42, &lt;em&gt;if&lt;&#x2F;em&gt; there is &lt;code&gt;None&lt;&#x2F;code&gt; then do nothing.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;fn main() {
+    let mut res = 42;
+    let option = Some(12);
+
+	  &amp;#x2F;&amp;#x2F; updated with `if let` here
+        if let Some(x) = option {
+            res += x;
+        }
+
+    println!(&amp;quot;{}&amp;quot;, res);
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;if we were to print this we would see &lt;code&gt;54&lt;&#x2F;code&gt; as the output.&lt;&#x2F;p&gt;
+&lt;p&gt;So with that updated &lt;code&gt;if let&lt;&#x2F;code&gt; our code compiles and we make Clippy happy again:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;✅ Successfully compiled exercises&amp;#x2F;clippy&amp;#x2F;clippy2.rs!
+
+🎉 🎉  The code is compiling, and 📎 Clippy 📎 is happy! 🎉 🎉
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h2 id=&quot;clippy3-rs&quot;&gt;Clippy3.rs&lt;&#x2F;h2&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;&amp;#x2F;&amp;#x2F; clippy3.rs
+&amp;#x2F;&amp;#x2F; Here&amp;#x27;s a couple more easy Clippy fixes, so you can see its utility.
+
+&amp;#x2F;&amp;#x2F; I AM NOT DONE
+
+#[allow(unused_variables, unused_assignments)]
+fn main() {
+    let my_option: Option&amp;lt;()&amp;gt; = None;
+    if my_option.is_none() {
+        my_option.unwrap();
+    }
+
+    let my_arr = &amp;amp;[
+        -1, -2, -3
+        -4, -5, -6
+    ];
+    println!(&amp;quot;My array! Here it is: {:?}&amp;quot;, my_arr);
+
+    let my_empty_vec = vec![1, 2, 3, 4, 5].resize(0, 5);
+    println!(&amp;quot;This Vec is empty, see? {:?}&amp;quot;, my_empty_vec);
+
+    let mut value_a = 45;
+    let mut value_b = 66;
+    &amp;#x2F;&amp;#x2F; Let&amp;#x27;s swap these two!
+    value_a = value_b;
+    value_b = value_a;
+    println!(&amp;quot;value a: {}; value b: {}&amp;quot;, value_a, value_b);
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;We&#x27;re told that we have a couple of more easy Clippy fixes so we see how useful it is. Alright let&#x27;s look at the errors.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;⚠️  Compiling of exercises&amp;#x2F;clippy&amp;#x2F;clippy3.rs failed! Please try again. Here&amp;#x27;s the output:
+    Checking clippy3 v0.0.1 (&amp;#x2F;Users&amp;#x2F;desmo&amp;#x2F;Projects&amp;#x2F;rustlings&amp;#x2F;exercises&amp;#x2F;clippy)
+error: possibly missing a comma here
+  --&amp;gt; clippy3.rs:14:19
+   |
+14 |         -1, -2, -3
+   |                   ^
+   |
+   = note: to remove this lint, add a comma or write the expr in a single line
+   = help: for further information visit https:&amp;#x2F;&amp;#x2F;rust-lang.github.io&amp;#x2F;rust-clippy&amp;#x2F;master&amp;#x2F;index.html#possible_missing_comma
+   = note: `#[deny(clippy::possible_missing_comma)]` on by default
+
+error: this call to `unwrap()` will always panic
+  --&amp;gt; clippy3.rs:10:9
+   |
+9  |     if my_option.is_none() {
+   |        ------------------- because of this check
+10 |         my_option.unwrap();
+   |         ^^^^^^^^^^^^^^^^^^
+   |
+   = help: for further information visit https:&amp;#x2F;&amp;#x2F;rust-lang.github.io&amp;#x2F;rust-clippy&amp;#x2F;master&amp;#x2F;index.html#panicking_unwrap
+   = note: `#[deny(clippy::panicking_unwrap)]` on by default
+
+error: this looks like you are trying to swap `value_a` and `value_b`
+  --&amp;gt; clippy3.rs:25:5
+   |
+25 | &amp;#x2F;     value_a = value_b;
+26 | |     value_b = value_a;
+   | |_____________________^ help: try: `std::mem::swap(&amp;amp;mut value_a, &amp;amp;mut value_b)`
+   |
+   = note: or maybe you should use `std::mem::replace`?
+   = help: for further information visit https:&amp;#x2F;&amp;#x2F;rust-lang.github.io&amp;#x2F;rust-clippy&amp;#x2F;master&amp;#x2F;index.html#almost_swapped
+   = note: `#[deny(clippy::almost_swapped)]` on by default
+
+error: used `unwrap()` on `None` value
+  --&amp;gt; clippy3.rs:10:9
+   |
+10 |         my_option.unwrap();
+   |         ^^^^^^^^^^^^^^^^^^
+   |
+help: remove the `None` and `unwrap()`
+  --&amp;gt; clippy3.rs:8:33
+   |
+8  |     let my_option: Option&amp;lt;()&amp;gt; = None;
+   |                                 ^^^^
+   = help: for further information visit https:&amp;#x2F;&amp;#x2F;rust-lang.github.io&amp;#x2F;rust-clippy&amp;#x2F;master&amp;#x2F;index.html#unnecessary_literal_unwrap
+   = note: `-D clippy::unnecessary-literal-unwrap` implied by `-D warnings`
+   = help: to override `-D warnings` add `#[allow(clippy::unnecessary_literal_unwrap)]`
+
+error: this let-binding has unit value
+  --&amp;gt; clippy3.rs:19:5
+   |
+19 |     let my_empty_vec = vec![1, 2, 3, 4, 5].resize(0, 5);
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ help: omit the `let` binding: `vec![1, 2, 3, 4, 5].resize(0, 5);`
+   |
+   = help: for further information visit https:&amp;#x2F;&amp;#x2F;rust-lang.github.io&amp;#x2F;rust-clippy&amp;#x2F;master&amp;#x2F;index.html#let_unit_value
+   = note: `-D clippy::let-unit-value` implied by `-D warnings`
+   = help: to override `-D warnings` add `#[allow(clippy::let_unit_value)]`
+
+error: could not compile `clippy3` (bin &amp;quot;clippy3&amp;quot;) due to 5 previous errors
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Alright looks like we have a lot of work to do here going through each of them one by one and see how we can get this code to compile.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;clippy3-rs-solution&quot;&gt;Clippy3.rs Solution&lt;&#x2F;h2&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;#[allow(unused_variables, unused_assignments)]
+fn main() {
+    let my_option: Option&amp;lt;()&amp;gt; = None;
+    if my_option.is_none() {
+        my_option.unwrap();
+    }
+
+    let my_arr = &amp;amp;[
+        -1, -2, -3
+        -4, -5, -6
+    ];
+    println!(&amp;quot;My array! Here it is: {:?}&amp;quot;, my_arr);
+
+    let my_empty_vec = vec![1, 2, 3, 4, 5].resize(0, 5);
+    println!(&amp;quot;This Vec is empty, see? {:?}&amp;quot;, my_empty_vec);
+
+    let mut value_a = 45;
+    let mut value_b = 66;
+    &amp;#x2F;&amp;#x2F; Let&amp;#x27;s swap these two!
+    value_a = value_b;
+    value_b = value_a;
+    println!(&amp;quot;value a: {}; value b: {}&amp;quot;, value_a, value_b);
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h3 id=&quot;error-1&quot;&gt;Error 1&lt;&#x2F;h3&gt;
+&lt;p&gt;Our first error focuses on &lt;code&gt;my_arr&lt;&#x2F;code&gt; where it seems like we&#x27;re missing a comma.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;error: possibly missing a comma here
+  --&amp;gt; clippy3.rs:14:19
+   |
+14 |         -1, -2, -3
+   |                   ^
+   |
+   = note: to remove this lint, add a comma or write the expr in a single line
+   = help: for further information visit https:&amp;#x2F;&amp;#x2F;rust-lang.github.io&amp;#x2F;rust-clippy&amp;#x2F;master&amp;#x2F;index.html#possible_missing_comma
+   = note: `#[deny(clippy::possible_missing_comma)]` on by default
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;So by adding the comma after the &lt;code&gt;-3,&lt;&#x2F;code&gt; this issue is fixed.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;error-2&quot;&gt;Error 2&lt;&#x2F;h3&gt;
+&lt;p&gt;This error is highlighting a misuse of the &lt;code&gt;unwrap()&lt;&#x2F;code&gt; method on an &lt;code&gt;Option&lt;&#x2F;code&gt; type. Specifically, it&#x27;s warning against calling &lt;code&gt;unwrap()&lt;&#x2F;code&gt; on an &lt;code&gt;Option&lt;&#x2F;code&gt; that is &lt;em&gt;known&lt;&#x2F;em&gt; to be &lt;code&gt;None&lt;&#x2F;code&gt;, as this will always cause a panic at runtime.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;error: this call to `unwrap()` will always panic
+  --&amp;gt; clippy3.rs:10:9
+   |
+9  |     if my_option.is_none() {
+   |        ------------------- because of this check
+10 |         my_option.unwrap();
+   |         ^^^^^^^^^^^^^^^^^^
+   |
+   = help: for further information visit https:&amp;#x2F;&amp;#x2F;rust-lang.github.io&amp;#x2F;rust-clippy&amp;#x2F;master&amp;#x2F;index.html#panicking_unwrap
+   = note: `#[deny(clippy::panicking_unwrap)]` on by default
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;This code checks if &lt;code&gt;my_option&lt;&#x2F;code&gt; is &lt;code&gt;None&lt;&#x2F;code&gt;, and if so, attempts to &lt;code&gt;unwrap&lt;&#x2F;code&gt; it, which is exactly the pattern Clippy is advising against. It&#x27;s logically inconsistent to check for &lt;code&gt;None&lt;&#x2F;code&gt; and then &lt;code&gt;unwrap&lt;&#x2F;code&gt; it, as &lt;code&gt;unwrap&lt;&#x2F;code&gt; is meant for situations where you are sure the &lt;code&gt;Option&lt;&#x2F;code&gt; is &lt;code&gt;Some&lt;&#x2F;code&gt;. So what do we do, just remove the &lt;code&gt;if&lt;&#x2F;code&gt; check so this error goes away.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;error-3&quot;&gt;Error 3&lt;&#x2F;h3&gt;
+&lt;p&gt;Here Clippy understands that we&#x27;re trying to swap values and advises us to use &lt;code&gt;std::mem::swap&lt;&#x2F;code&gt;. Again, I prefer to use the &lt;code&gt;use&lt;&#x2F;code&gt; key word to import just to keep the code a little bit cleaner.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;error: this looks like you are trying to swap `value_a` and `value_b`
+  --&amp;gt; clippy3.rs:25:5
+   |
+25 | &amp;#x2F;     value_a = value_b;
+26 | |     value_b = value_a;
+   | |_____________________^ help: try: `std::mem::swap(&amp;amp;mut value_a, &amp;amp;mut value_b)`
+   |
+   = note: or maybe you should use `std::mem::replace`?
+   = help: for further information visit https:&amp;#x2F;&amp;#x2F;rust-lang.github.io&amp;#x2F;rust-clippy&amp;#x2F;master&amp;#x2F;index.html#almost_swapped
+   = note: `#[deny(clippy::almost_swapped)]` on by default
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;So our updated code would look like this.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;&amp;#x2F;&amp;#x2F; import at the top of the file
+use std::mem::swap;
+
+&amp;#x2F;&amp;#x2F; -- snippet -- &amp;#x2F;&amp;#x2F;
+&amp;#x2F;&amp;#x2F; Swapping Values
+
+let mut value_a = 45;
+let mut value_b = 66;
+
+&amp;#x2F;&amp;#x2F; Let&amp;#x27;s swap these two!
+swap(&amp;amp;mut value_a, &amp;amp;mut value_b);
+
+println!(&amp;quot;value a: {}; value b: {}&amp;quot;, value_a, value_b);
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h3 id=&quot;error-4&quot;&gt;Error 4&lt;&#x2F;h3&gt;
+&lt;p&gt;Our final error is related to wanting to create an empty &lt;code&gt;Vec&lt;&#x2F;code&gt; it looks like currently we are creating and then resizing, which is a waste of effort if all we want is an empty Vector.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;error: this let-binding has unit value
+  --&amp;gt; clippy3.rs:19:5
+   |
+19 |     let my_empty_vec = vec![1, 2, 3, 4, 5].resize(0, 5);
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ help: omit the `let` binding: `vec![1, 2, 3, 4, 5].resize(0, 5);`
+   |
+   = help: for further information visit https:&amp;#x2F;&amp;#x2F;rust-lang.github.io&amp;#x2F;rust-clippy&amp;#x2F;master&amp;#x2F;index.html#let_unit_value
+   = note: `-D clippy::let-unit-value` implied by `-D warnings`
+   = help: to override `-D warnings` add `#[allow(clippy::let_unit_value)]`
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;There&#x27;s a couple of ways to solve it but probably the easiest is to just remove the elements from the vector and the &lt;code&gt;.resize()&lt;&#x2F;code&gt; method at the end.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;let my_empty_vec: Vec&amp;lt;i32&amp;gt; = vec![];
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;We&#x27;re also asked to define it&#x27;s type but that&#x27;s pretty straightforward with &lt;code&gt;Vec&amp;lt;i32&amp;gt;&lt;&#x2F;code&gt; right before the empty &lt;code&gt;vec![]&lt;&#x2F;code&gt; macro. Here&#x27;s the final code for reference.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;use std::mem::swap;
+#[allow(unused_variables, unused_assignments)]
+fn main() {
+    let my_option: Option&amp;lt;()&amp;gt; = None;
+
+    &amp;#x2F;&amp;#x2F; array
+    let my_arr = &amp;amp;[
+        -1, -2, -3,
+        -4, -5, -6
+    ];
+    println!(&amp;quot;My array! Here it is: {:?}&amp;quot;, my_arr);
+
+    &amp;#x2F;&amp;#x2F; Create empty Vector
+    let my_empty_vec: Vec&amp;lt;i32&amp;gt; = vec![];
+    println!(&amp;quot;This Vec is empty, see? {:?}&amp;quot;, my_empty_vec);
+
+    &amp;#x2F;&amp;#x2F; Swapping Values
+    let mut value_a = 45;
+    let mut value_b = 66;
+
+    &amp;#x2F;&amp;#x2F; Let&amp;#x27;s swap these two!
+    swap(&amp;amp;mut value_a, &amp;amp;mut value_b);
+
+    println!(&amp;quot;value a: {}; value b: {}&amp;quot;, value_a, value_b);
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;with these changes Clippy is once again a happy camper:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;✅ Successfully compiled exercises&amp;#x2F;clippy&amp;#x2F;clippy3.rs!
+
+🎉 🎉  The code is compiling, and 📎 Clippy 📎 is happy! 🎉 🎉
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h2 id=&quot;conclusion&quot;&gt;Conclusion&lt;&#x2F;h2&gt;
+&lt;p&gt;In conclusion, navigating through Rust&#x27;s Clippy lints is not only an exercise in resolving compile-time errors but also a journey into the depths of idiomatic Rust programming. Clippy, as a linter, serves a pivotal role in guiding developers towards best practices, ensuring code reliability, and maintaining the high standards of Rust&#x27;s safety guarantees.&lt;&#x2F;p&gt;
+&lt;p&gt;Through the examples of &lt;code&gt;clippy1.rs&lt;&#x2F;code&gt;, &lt;code&gt;clippy2.rs&lt;&#x2F;code&gt;, and &lt;code&gt;clippy3.rs&lt;&#x2F;code&gt;, we saw common pitfalls and learned how to address them effectively. Whether it was using the precise value of &lt;code&gt;PI&lt;&#x2F;code&gt; in &lt;code&gt;clippy1.rs&lt;&#x2F;code&gt;, embracing the &lt;code&gt;if let&lt;&#x2F;code&gt; construct for &lt;code&gt;Option&lt;&#x2F;code&gt; types in &lt;code&gt;clippy2.rs&lt;&#x2F;code&gt;, or understanding the importance of proper array syntax and variable swapping in &lt;code&gt;clippy3.rs&lt;&#x2F;code&gt;, each scenario brought its unique learning experience.&lt;&#x2F;p&gt;
+&lt;p&gt;These exercises underscore the importance of attention to detail and the nuances of the Rust language. Clippy acts not just as a linter but as an educator, reinforcing the Rust philosophy of writing clear, efficient, and safe code. As Rust continues to evolve, tools like Clippy will remain invaluable for developers, whether they are beginners just starting their Rust journey or experienced coders refining their craft. In the world of Rust, Clippy is more than a tool; it&#x27;s a companion on the path to mastering one of the most promising systems programming languages of our time.&lt;&#x2F;p&gt;
+</description>
+      </item>
       <item>
           <title>24 Rustlings Macros</title>
           <pubDate>Tue, 21 Nov 2023 00:00:00 +0000</pubDate>
