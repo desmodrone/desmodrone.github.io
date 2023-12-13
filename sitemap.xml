@@ -118,6 +118,10 @@
         <lastmod>2023-11-30</lastmod>
     </url>
     <url>
+        <loc>https://desmodrone.github.io/posts/26-rustlings-conversions/</loc>
+        <lastmod>2023-12-13</lastmod>
+    </url>
+    <url>
         <loc>https://desmodrone.github.io/posts/hello-rustlings/</loc>
         <lastmod>2023-04-11</lastmod>
     </url>
@@ -146,6 +150,12 @@
     </url>
     <url>
         <loc>https://desmodrone.github.io/tags/arc/</loc>
+    </url>
+    <url>
+        <loc>https://desmodrone.github.io/tags/asmut/</loc>
+    </url>
+    <url>
+        <loc>https://desmodrone.github.io/tags/asref/</loc>
     </url>
     <url>
         <loc>https://desmodrone.github.io/tags/assert-eq/</loc>
@@ -187,6 +197,12 @@
         <loc>https://desmodrone.github.io/tags/first/</loc>
     </url>
     <url>
+        <loc>https://desmodrone.github.io/tags/from/</loc>
+    </url>
+    <url>
+        <loc>https://desmodrone.github.io/tags/fromstr/</loc>
+    </url>
+    <url>
         <loc>https://desmodrone.github.io/tags/functions/</loc>
     </url>
     <url>
@@ -206,6 +222,9 @@
     </url>
     <url>
         <loc>https://desmodrone.github.io/tags/impl/</loc>
+    </url>
+    <url>
+        <loc>https://desmodrone.github.io/tags/into/</loc>
     </url>
     <url>
         <loc>https://desmodrone.github.io/tags/iterators/</loc>
@@ -313,7 +332,16 @@
         <loc>https://desmodrone.github.io/tags/traits/</loc>
     </url>
     <url>
+        <loc>https://desmodrone.github.io/tags/tryfrom/</loc>
+    </url>
+    <url>
+        <loc>https://desmodrone.github.io/tags/tryinto/</loc>
+    </url>
+    <url>
         <loc>https://desmodrone.github.io/tags/tuples/</loc>
+    </url>
+    <url>
+        <loc>https://desmodrone.github.io/tags/type-conversion/</loc>
     </url>
     <url>
         <loc>https://desmodrone.github.io/tags/types/</loc>
