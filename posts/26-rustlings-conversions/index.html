@@ -120,7 +120,7 @@
 		<small> - 
 <span class="reading-time" title="Estimated read time">
   
-  3 min read
+  6 min read
   
 </span>
 </small>
@@ -232,6 +232,213 @@ fn main() {
     println!(&quot;{}&quot;, average(&amp;values));
 }
 </code></pre>
+<h2 id="from-into-rs">From_into.rs</h2>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">&#x2F;&#x2F; The From trait is used for value-to-value conversions.
+&#x2F;&#x2F; If From is implemented correctly for a type, the Into trait should work conversely.
+&#x2F;&#x2F; You can read more about it at https:&#x2F;&#x2F;doc.rust-lang.org&#x2F;std&#x2F;convert&#x2F;trait.From.html
+&#x2F;&#x2F; Execute `rustlings hint from_into` or use the `hint` watch subcommand for a hint.
+
+#[derive(Debug)]
+struct Person {
+    name: String,
+    age: usize,
+}
+
+&#x2F;&#x2F; We implement the Default trait to use it as a fallback
+&#x2F;&#x2F; when the provided string is not convertible into a Person object
+impl Default for Person {
+    fn default() -&gt; Person {
+        Person {
+            name: String::from(&quot;John&quot;),
+            age: 30,
+        }
+    }
+}
+
+&#x2F;&#x2F; Your task is to complete this implementation
+&#x2F;&#x2F; in order for the line `let p = Person::from(&quot;Mark,20&quot;)` to compile
+&#x2F;&#x2F; Please note that you&#x27;ll need to parse the age component into a `usize`
+&#x2F;&#x2F; with something like `&quot;4&quot;.parse::&lt;usize&gt;()`. The outcome of this needs to
+&#x2F;&#x2F; be handled appropriately.
+&#x2F;&#x2F;
+&#x2F;&#x2F; Steps:
+&#x2F;&#x2F; 1. If the length of the provided string is 0, then return the default of Person
+&#x2F;&#x2F; 2. Split the given string on the commas present in it
+&#x2F;&#x2F; 3. Extract the first element from the split operation and use it as the name
+&#x2F;&#x2F; 4. If the name is empty, then return the default of Person
+&#x2F;&#x2F; 5. Extract the other element from the split operation and parse it into a `usize` as the age
+&#x2F;&#x2F; If while parsing the age, something goes wrong, then return the default of Person
+&#x2F;&#x2F; Otherwise, then return an instantiated Person object with the results
+
+&#x2F;&#x2F; I AM NOT DONE
+
+impl From&lt;&amp;str&gt; for Person {
+    fn from(s: &amp;str) -&gt; Person {
+    }
+}
+
+fn main() {
+    &#x2F;&#x2F; Use the `from` function
+    let p1 = Person::from(&quot;Mark,20&quot;);
+    &#x2F;&#x2F; Since From is implemented for Person, we should be able to use Into
+    let p2: Person = &quot;Gerald,70&quot;.into();
+    println!(&quot;{:?}&quot;, p1);
+    println!(&quot;{:?}&quot;, p2);
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    #[test]
+    fn test_default() {
+        &#x2F;&#x2F; Test that the default person is 30 year old John
+        let dp = Person::default();
+        assert_eq!(dp.name, &quot;John&quot;);
+        assert_eq!(dp.age, 30);
+    }
+    #[test]
+    fn test_bad_convert() {
+        &#x2F;&#x2F; Test that John is returned when bad string is provided
+        let p = Person::from(&quot;&quot;);
+        assert_eq!(p.name, &quot;John&quot;);
+        assert_eq!(p.age, 30);
+    }
+    #[test]
+    fn test_good_convert() {
+        &#x2F;&#x2F; Test that &quot;Mark,20&quot; works
+        let p = Person::from(&quot;Mark,20&quot;);
+        assert_eq!(p.name, &quot;Mark&quot;);
+        assert_eq!(p.age, 20);
+    }
+    #[test]
+    fn test_bad_age() {
+        &#x2F;&#x2F; Test that &quot;Mark,twenty&quot; will return the default person due to an error in parsing age
+        let p = Person::from(&quot;Mark,twenty&quot;);
+        assert_eq!(p.name, &quot;John&quot;);
+        assert_eq!(p.age, 30);
+    }
+
+    #[test]
+    fn test_missing_comma_and_age() {
+        let p: Person = Person::from(&quot;Mark&quot;);
+        assert_eq!(p.name, &quot;John&quot;);
+        assert_eq!(p.age, 30);
+    }
+
+    #[test]
+    fn test_missing_age() {
+        let p: Person = Person::from(&quot;Mark,&quot;);
+        assert_eq!(p.name, &quot;John&quot;);
+        assert_eq!(p.age, 30);
+    }
+
+    #[test]
+    fn test_missing_name() {
+        let p: Person = Person::from(&quot;,1&quot;);
+        assert_eq!(p.name, &quot;John&quot;);
+        assert_eq!(p.age, 30);
+    }
+
+    #[test]
+    fn test_missing_name_and_age() {
+        let p: Person = Person::from(&quot;,&quot;);
+        assert_eq!(p.name, &quot;John&quot;);
+        assert_eq!(p.age, 30);
+    }
+
+    #[test]
+    fn test_missing_name_and_invalid_age() {
+        let p: Person = Person::from(&quot;,one&quot;);
+        assert_eq!(p.name, &quot;John&quot;);
+        assert_eq!(p.age, 30);
+    }
+
+    #[test]
+    fn test_trailing_comma() {
+        let p: Person = Person::from(&quot;Mike,32,&quot;);
+        assert_eq!(p.name, &quot;John&quot;);
+        assert_eq!(p.age, 30);
+    }
+
+    #[test]
+    fn test_trailing_comma_and_some_string() {
+        let p: Person = Person::from(&quot;Mike,32,man&quot;);
+        assert_eq!(p.name, &quot;John&quot;);
+        assert_eq!(p.age, 30);
+    }
+}
+</code></pre>
+<p>We have clear instructions in the comments that tell us to complete the implementation and we even have specific steps, we'll review those later, for now let's look at the errors, to make sure we're not missing anything.</p>
+<h2 id="from-into-rs-errors">From_into.rs Errors</h2>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">⚠️  Compiling of exercises&#x2F;conversions&#x2F;from_into.rs failed! Please try again. Here&#x27;s the output:
+error[E0308]: mismatched types
+  --&gt; exercises&#x2F;conversions&#x2F;from_into.rs:41:25
+   |
+41 |     fn from(s: &amp;str) -&gt; Person {
+   |        ----             ^^^^^^ expected `Person`, found `()`
+   |        |
+   |        implicitly returns `()` as its body has no tail or `return` expression
+
+error: aborting due to previous error
+
+For more information about this error, try `rustc --explain E0308`.
+</code></pre>
+<p>These errors are not providing much insight as we have a missing implementation</p>
+<h2 id="from-into-rs-solution">From_into.rs Solution</h2>
+<p>To solve this exercise, we need to implement the <code>From&lt;&amp;str&gt;</code> trait for the <code>Person</code> struct. The trait implementation should convert a string in the format <code>&quot;Name,Age&quot;</code> into a <code>Person</code> object. Let's go through the steps required:</p>
+<ol>
+<li>Check if the provided string is empty. If it is, return the default <code>Person</code>.</li>
+<li>Split the string on commas.</li>
+<li>Extract the name and age from the split string.</li>
+<li>Handle any parsing errors for the age.</li>
+</ol>
+<p>Here's the complete implementation:</p>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">impl From&lt;&amp;str&gt; for Person {
+    fn from(s: &amp;str) -&gt; Person {
+        &#x2F;&#x2F; Step 1: Check if the string is empty
+        if s.is_empty() {
+            return Person::default();
+        }
+
+        &#x2F;&#x2F; Step 2: Split the string on the comma
+        let parts: Vec&lt;&amp;str&gt; = s.split(&#x27;,&#x27;).collect();
+
+        &#x2F;&#x2F; Check for the correct number of parts (name and age)
+        if parts.len() != 2 {
+            return Person::default();
+        }
+
+        &#x2F;&#x2F; Step 3: Extract name and age
+        let name = parts[0].to_string();
+        let age_str = parts[1];
+
+        &#x2F;&#x2F; Step 4: Handle parsing errors for age
+        if name.is_empty() || age_str.is_empty() {
+            return Person::default();
+        }
+
+        match age_str.parse::&lt;usize&gt;() {
+            Ok(age) =&gt; Person { name, age },
+            Err(_) =&gt; Person::default(),
+        }
+    }
+}
+
+fn main() {
+    let p1 = Person::from(&quot;Mark,20&quot;);
+    let p2: Person = &quot;Gerald,70&quot;.into();
+    println!(&quot;{:?}&quot;, p1);
+    println!(&quot;{:?}&quot;, p2);
+}
+</code></pre>
+<p>In this implementation:</p>
+<ul>
+<li>The string is split into two parts based on the comma.</li>
+<li>If the number of parts isn't exactly 2 (name and age), or if either part is empty, the default <code>Person</code> is returned.</li>
+<li>If the age part can't be parsed into a <code>usize</code>, the default <code>Person</code> is returned.</li>
+<li>If all conditions are met, a new <code>Person</code> instance is created and returned.</li>
+</ul>
+<p>With these changes our code compiles!</p>
 
 	</div>
 	<hr class="post-end">
@@ -264,7 +471,7 @@ fn main() {
 		
     </p>
     
-    <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>806 Words</p>
+    <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>1681 Words</p>
     
     <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2023-12-13</p>
     

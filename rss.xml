@@ -114,6 +114,213 @@ fn main() {
     println!(&amp;quot;{}&amp;quot;, average(&amp;amp;values));
 }
 &lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h2 id=&quot;from-into-rs&quot;&gt;From_into.rs&lt;&#x2F;h2&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;&amp;#x2F;&amp;#x2F; The From trait is used for value-to-value conversions.
+&amp;#x2F;&amp;#x2F; If From is implemented correctly for a type, the Into trait should work conversely.
+&amp;#x2F;&amp;#x2F; You can read more about it at https:&amp;#x2F;&amp;#x2F;doc.rust-lang.org&amp;#x2F;std&amp;#x2F;convert&amp;#x2F;trait.From.html
+&amp;#x2F;&amp;#x2F; Execute `rustlings hint from_into` or use the `hint` watch subcommand for a hint.
+
+#[derive(Debug)]
+struct Person {
+    name: String,
+    age: usize,
+}
+
+&amp;#x2F;&amp;#x2F; We implement the Default trait to use it as a fallback
+&amp;#x2F;&amp;#x2F; when the provided string is not convertible into a Person object
+impl Default for Person {
+    fn default() -&amp;gt; Person {
+        Person {
+            name: String::from(&amp;quot;John&amp;quot;),
+            age: 30,
+        }
+    }
+}
+
+&amp;#x2F;&amp;#x2F; Your task is to complete this implementation
+&amp;#x2F;&amp;#x2F; in order for the line `let p = Person::from(&amp;quot;Mark,20&amp;quot;)` to compile
+&amp;#x2F;&amp;#x2F; Please note that you&amp;#x27;ll need to parse the age component into a `usize`
+&amp;#x2F;&amp;#x2F; with something like `&amp;quot;4&amp;quot;.parse::&amp;lt;usize&amp;gt;()`. The outcome of this needs to
+&amp;#x2F;&amp;#x2F; be handled appropriately.
+&amp;#x2F;&amp;#x2F;
+&amp;#x2F;&amp;#x2F; Steps:
+&amp;#x2F;&amp;#x2F; 1. If the length of the provided string is 0, then return the default of Person
+&amp;#x2F;&amp;#x2F; 2. Split the given string on the commas present in it
+&amp;#x2F;&amp;#x2F; 3. Extract the first element from the split operation and use it as the name
+&amp;#x2F;&amp;#x2F; 4. If the name is empty, then return the default of Person
+&amp;#x2F;&amp;#x2F; 5. Extract the other element from the split operation and parse it into a `usize` as the age
+&amp;#x2F;&amp;#x2F; If while parsing the age, something goes wrong, then return the default of Person
+&amp;#x2F;&amp;#x2F; Otherwise, then return an instantiated Person object with the results
+
+&amp;#x2F;&amp;#x2F; I AM NOT DONE
+
+impl From&amp;lt;&amp;amp;str&amp;gt; for Person {
+    fn from(s: &amp;amp;str) -&amp;gt; Person {
+    }
+}
+
+fn main() {
+    &amp;#x2F;&amp;#x2F; Use the `from` function
+    let p1 = Person::from(&amp;quot;Mark,20&amp;quot;);
+    &amp;#x2F;&amp;#x2F; Since From is implemented for Person, we should be able to use Into
+    let p2: Person = &amp;quot;Gerald,70&amp;quot;.into();
+    println!(&amp;quot;{:?}&amp;quot;, p1);
+    println!(&amp;quot;{:?}&amp;quot;, p2);
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    #[test]
+    fn test_default() {
+        &amp;#x2F;&amp;#x2F; Test that the default person is 30 year old John
+        let dp = Person::default();
+        assert_eq!(dp.name, &amp;quot;John&amp;quot;);
+        assert_eq!(dp.age, 30);
+    }
+    #[test]
+    fn test_bad_convert() {
+        &amp;#x2F;&amp;#x2F; Test that John is returned when bad string is provided
+        let p = Person::from(&amp;quot;&amp;quot;);
+        assert_eq!(p.name, &amp;quot;John&amp;quot;);
+        assert_eq!(p.age, 30);
+    }
+    #[test]
+    fn test_good_convert() {
+        &amp;#x2F;&amp;#x2F; Test that &amp;quot;Mark,20&amp;quot; works
+        let p = Person::from(&amp;quot;Mark,20&amp;quot;);
+        assert_eq!(p.name, &amp;quot;Mark&amp;quot;);
+        assert_eq!(p.age, 20);
+    }
+    #[test]
+    fn test_bad_age() {
+        &amp;#x2F;&amp;#x2F; Test that &amp;quot;Mark,twenty&amp;quot; will return the default person due to an error in parsing age
+        let p = Person::from(&amp;quot;Mark,twenty&amp;quot;);
+        assert_eq!(p.name, &amp;quot;John&amp;quot;);
+        assert_eq!(p.age, 30);
+    }
+
+    #[test]
+    fn test_missing_comma_and_age() {
+        let p: Person = Person::from(&amp;quot;Mark&amp;quot;);
+        assert_eq!(p.name, &amp;quot;John&amp;quot;);
+        assert_eq!(p.age, 30);
+    }
+
+    #[test]
+    fn test_missing_age() {
+        let p: Person = Person::from(&amp;quot;Mark,&amp;quot;);
+        assert_eq!(p.name, &amp;quot;John&amp;quot;);
+        assert_eq!(p.age, 30);
+    }
+
+    #[test]
+    fn test_missing_name() {
+        let p: Person = Person::from(&amp;quot;,1&amp;quot;);
+        assert_eq!(p.name, &amp;quot;John&amp;quot;);
+        assert_eq!(p.age, 30);
+    }
+
+    #[test]
+    fn test_missing_name_and_age() {
+        let p: Person = Person::from(&amp;quot;,&amp;quot;);
+        assert_eq!(p.name, &amp;quot;John&amp;quot;);
+        assert_eq!(p.age, 30);
+    }
+
+    #[test]
+    fn test_missing_name_and_invalid_age() {
+        let p: Person = Person::from(&amp;quot;,one&amp;quot;);
+        assert_eq!(p.name, &amp;quot;John&amp;quot;);
+        assert_eq!(p.age, 30);
+    }
+
+    #[test]
+    fn test_trailing_comma() {
+        let p: Person = Person::from(&amp;quot;Mike,32,&amp;quot;);
+        assert_eq!(p.name, &amp;quot;John&amp;quot;);
+        assert_eq!(p.age, 30);
+    }
+
+    #[test]
+    fn test_trailing_comma_and_some_string() {
+        let p: Person = Person::from(&amp;quot;Mike,32,man&amp;quot;);
+        assert_eq!(p.name, &amp;quot;John&amp;quot;);
+        assert_eq!(p.age, 30);
+    }
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;We have clear instructions in the comments that tell us to complete the implementation and we even have specific steps, we&#x27;ll review those later, for now let&#x27;s look at the errors, to make sure we&#x27;re not missing anything.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;from-into-rs-errors&quot;&gt;From_into.rs Errors&lt;&#x2F;h2&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;⚠️  Compiling of exercises&amp;#x2F;conversions&amp;#x2F;from_into.rs failed! Please try again. Here&amp;#x27;s the output:
+error[E0308]: mismatched types
+  --&amp;gt; exercises&amp;#x2F;conversions&amp;#x2F;from_into.rs:41:25
+   |
+41 |     fn from(s: &amp;amp;str) -&amp;gt; Person {
+   |        ----             ^^^^^^ expected `Person`, found `()`
+   |        |
+   |        implicitly returns `()` as its body has no tail or `return` expression
+
+error: aborting due to previous error
+
+For more information about this error, try `rustc --explain E0308`.
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;These errors are not providing much insight as we have a missing implementation&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;from-into-rs-solution&quot;&gt;From_into.rs Solution&lt;&#x2F;h2&gt;
+&lt;p&gt;To solve this exercise, we need to implement the &lt;code&gt;From&amp;lt;&amp;amp;str&amp;gt;&lt;&#x2F;code&gt; trait for the &lt;code&gt;Person&lt;&#x2F;code&gt; struct. The trait implementation should convert a string in the format &lt;code&gt;&amp;quot;Name,Age&amp;quot;&lt;&#x2F;code&gt; into a &lt;code&gt;Person&lt;&#x2F;code&gt; object. Let&#x27;s go through the steps required:&lt;&#x2F;p&gt;
+&lt;ol&gt;
+&lt;li&gt;Check if the provided string is empty. If it is, return the default &lt;code&gt;Person&lt;&#x2F;code&gt;.&lt;&#x2F;li&gt;
+&lt;li&gt;Split the string on commas.&lt;&#x2F;li&gt;
+&lt;li&gt;Extract the name and age from the split string.&lt;&#x2F;li&gt;
+&lt;li&gt;Handle any parsing errors for the age.&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;p&gt;Here&#x27;s the complete implementation:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;impl From&amp;lt;&amp;amp;str&amp;gt; for Person {
+    fn from(s: &amp;amp;str) -&amp;gt; Person {
+        &amp;#x2F;&amp;#x2F; Step 1: Check if the string is empty
+        if s.is_empty() {
+            return Person::default();
+        }
+
+        &amp;#x2F;&amp;#x2F; Step 2: Split the string on the comma
+        let parts: Vec&amp;lt;&amp;amp;str&amp;gt; = s.split(&amp;#x27;,&amp;#x27;).collect();
+
+        &amp;#x2F;&amp;#x2F; Check for the correct number of parts (name and age)
+        if parts.len() != 2 {
+            return Person::default();
+        }
+
+        &amp;#x2F;&amp;#x2F; Step 3: Extract name and age
+        let name = parts[0].to_string();
+        let age_str = parts[1];
+
+        &amp;#x2F;&amp;#x2F; Step 4: Handle parsing errors for age
+        if name.is_empty() || age_str.is_empty() {
+            return Person::default();
+        }
+
+        match age_str.parse::&amp;lt;usize&amp;gt;() {
+            Ok(age) =&amp;gt; Person { name, age },
+            Err(_) =&amp;gt; Person::default(),
+        }
+    }
+}
+
+fn main() {
+    let p1 = Person::from(&amp;quot;Mark,20&amp;quot;);
+    let p2: Person = &amp;quot;Gerald,70&amp;quot;.into();
+    println!(&amp;quot;{:?}&amp;quot;, p1);
+    println!(&amp;quot;{:?}&amp;quot;, p2);
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;In this implementation:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;The string is split into two parts based on the comma.&lt;&#x2F;li&gt;
+&lt;li&gt;If the number of parts isn&#x27;t exactly 2 (name and age), or if either part is empty, the default &lt;code&gt;Person&lt;&#x2F;code&gt; is returned.&lt;&#x2F;li&gt;
+&lt;li&gt;If the age part can&#x27;t be parsed into a &lt;code&gt;usize&lt;&#x2F;code&gt;, the default &lt;code&gt;Person&lt;&#x2F;code&gt; is returned.&lt;&#x2F;li&gt;
+&lt;li&gt;If all conditions are met, a new &lt;code&gt;Person&lt;&#x2F;code&gt; instance is created and returned.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;With these changes our code compiles!&lt;&#x2F;p&gt;
 </description>
       </item>
       <item>
