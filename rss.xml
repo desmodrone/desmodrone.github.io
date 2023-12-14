@@ -320,7 +320,220 @@ fn main() {
 &lt;li&gt;If the age part can&#x27;t be parsed into a &lt;code&gt;usize&lt;&#x2F;code&gt;, the default &lt;code&gt;Person&lt;&#x2F;code&gt; is returned.&lt;&#x2F;li&gt;
 &lt;li&gt;If all conditions are met, a new &lt;code&gt;Person&lt;&#x2F;code&gt; instance is created and returned.&lt;&#x2F;li&gt;
 &lt;&#x2F;ul&gt;
-&lt;p&gt;With these changes our code compiles!&lt;&#x2F;p&gt;
+&lt;p&gt;With these changes our code compiles! On to the next one.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;from-str-rs&quot;&gt;From_str.rs&lt;&#x2F;h2&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;&amp;#x2F;&amp;#x2F; from_str.rs
+&amp;#x2F;&amp;#x2F; This is similar to from_into.rs, but this time we&amp;#x27;ll implement `FromStr`
+&amp;#x2F;&amp;#x2F; and return errors instead of falling back to a default value.
+&amp;#x2F;&amp;#x2F; Additionally, upon implementing FromStr, you can use the `parse` method
+&amp;#x2F;&amp;#x2F; on strings to generate an object of the implementor type.
+&amp;#x2F;&amp;#x2F; You can read more about it at https:&amp;#x2F;&amp;#x2F;doc.rust-lang.org&amp;#x2F;std&amp;#x2F;str&amp;#x2F;trait.FromStr.html
+&amp;#x2F;&amp;#x2F; Execute `rustlings hint from_str` or use the `hint` watch subcommand for a hint.
+
+use std::num::ParseIntError;
+use std::str::FromStr;
+
+#[derive(Debug, PartialEq)]
+struct Person {
+    name: String,
+    age: usize,
+}
+
+&amp;#x2F;&amp;#x2F; We will use this error type for the `FromStr` implementation.
+#[derive(Debug, PartialEq)]
+enum ParsePersonError {
+    &amp;#x2F;&amp;#x2F; Empty input string
+    Empty,
+    &amp;#x2F;&amp;#x2F; Incorrect number of fields
+    BadLen,
+    &amp;#x2F;&amp;#x2F; Empty name field
+    NoName,
+    &amp;#x2F;&amp;#x2F; Wrapped error from parse::&amp;lt;usize&amp;gt;()
+    ParseInt(ParseIntError),
+}
+
+&amp;#x2F;&amp;#x2F; I AM NOT DONE
+
+&amp;#x2F;&amp;#x2F; Steps:
+&amp;#x2F;&amp;#x2F; 1. If the length of the provided string is 0, an error should be returned
+&amp;#x2F;&amp;#x2F; 2. Split the given string on the commas present in it
+&amp;#x2F;&amp;#x2F; 3. Only 2 elements should be returned from the split, otherwise return an error
+&amp;#x2F;&amp;#x2F; 4. Extract the first element from the split operation and use it as the name
+&amp;#x2F;&amp;#x2F; 5. Extract the other element from the split operation and parse it into a `usize` as the age
+&amp;#x2F;&amp;#x2F;    with something like `&amp;quot;4&amp;quot;.parse::&amp;lt;usize&amp;gt;()`
+&amp;#x2F;&amp;#x2F; 6. If while extracting the name and the age something goes wrong, an error should be returned
+&amp;#x2F;&amp;#x2F; If everything goes well, then return a Result of a Person object
+&amp;#x2F;&amp;#x2F;
+&amp;#x2F;&amp;#x2F; As an aside: `Box&amp;lt;dyn Error&amp;gt;` implements `From&amp;lt;&amp;amp;&amp;#x27;_ str&amp;gt;`. This means that if you want to return a
+&amp;#x2F;&amp;#x2F; string error message, you can do so via just using return `Err(&amp;quot;my error message&amp;quot;.into())`.
+
+impl FromStr for Person {
+    type Err = ParsePersonError;
+    fn from_str(s: &amp;amp;str) -&amp;gt; Result&amp;lt;Person, Self::Err&amp;gt; {
+    }
+}
+
+fn main() {
+    let p = &amp;quot;Mark,20&amp;quot;.parse::&amp;lt;Person&amp;gt;().unwrap();
+    println!(&amp;quot;{:?}&amp;quot;, p);
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn empty_input() {
+        assert_eq!(&amp;quot;&amp;quot;.parse::&amp;lt;Person&amp;gt;(), Err(ParsePersonError::Empty));
+    }
+    #[test]
+    fn good_input() {
+        let p = &amp;quot;John,32&amp;quot;.parse::&amp;lt;Person&amp;gt;();
+        assert!(p.is_ok());
+        let p = p.unwrap();
+        assert_eq!(p.name, &amp;quot;John&amp;quot;);
+        assert_eq!(p.age, 32);
+    }
+    #[test]
+    fn missing_age() {
+        assert!(matches!(
+            &amp;quot;John,&amp;quot;.parse::&amp;lt;Person&amp;gt;(),
+            Err(ParsePersonError::ParseInt(_))
+        ));
+    }
+
+    #[test]
+    fn invalid_age() {
+        assert!(matches!(
+            &amp;quot;John,twenty&amp;quot;.parse::&amp;lt;Person&amp;gt;(),
+            Err(ParsePersonError::ParseInt(_))
+        ));
+    }
+
+    #[test]
+    fn missing_comma_and_age() {
+        assert_eq!(&amp;quot;John&amp;quot;.parse::&amp;lt;Person&amp;gt;(), Err(ParsePersonError::BadLen));
+    }
+
+    #[test]
+    fn missing_name() {
+        assert_eq!(&amp;quot;,1&amp;quot;.parse::&amp;lt;Person&amp;gt;(), Err(ParsePersonError::NoName));
+    }
+
+    #[test]
+    fn missing_name_and_age() {
+        assert!(matches!(
+            &amp;quot;,&amp;quot;.parse::&amp;lt;Person&amp;gt;(),
+            Err(ParsePersonError::NoName | ParsePersonError::ParseInt(_))
+        ));
+    }
+
+    #[test]
+    fn missing_name_and_invalid_age() {
+        assert!(matches!(
+            &amp;quot;,one&amp;quot;.parse::&amp;lt;Person&amp;gt;(),
+            Err(ParsePersonError::NoName | ParsePersonError::ParseInt(_))
+        ));
+    }
+
+    #[test]
+    fn trailing_comma() {
+        assert_eq!(&amp;quot;John,32,&amp;quot;.parse::&amp;lt;Person&amp;gt;(), Err(ParsePersonError::BadLen));
+    }
+
+    #[test]
+    fn trailing_comma_and_some_string() {
+        assert_eq!(
+            &amp;quot;John,32,man&amp;quot;.parse::&amp;lt;Person&amp;gt;(),
+            Err(ParsePersonError::BadLen)
+        );
+    }
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;We have a similar exercise as before except that instead of using &lt;code&gt;from_into&lt;&#x2F;code&gt; we&#x27;ll be we&#x27;ll be using &lt;code&gt;FromStr&lt;&#x2F;code&gt;, similarly we have the instructions in the comments that tell us exactly what we need to be doing, and again we&#x27;ll look at those in detail after we look at the errors.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;from-str-rs-errors&quot;&gt;From_str.rs Errors&lt;&#x2F;h2&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;error[E0308]: mismatched types
+  --&amp;gt; exercises&amp;#x2F;conversions&amp;#x2F;from_str.rs:48:29
+   |
+48 |     fn from_str(s: &amp;amp;str) -&amp;gt; Result&amp;lt;Person, Self::Err&amp;gt; {
+   |        --------             ^^^^^^^^^^^^^^^^^^^^^^^^^ expected `Result&amp;lt;Person, ParsePersonError&amp;gt;`, found `()`
+   |        |
+   |        implicitly returns `()` as its body has no tail or `return` expression
+   |
+   = note:   expected enum `Result&amp;lt;Person, ParsePersonError&amp;gt;`
+           found unit type `()`
+
+error: aborting due to previous error
+
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Here we see that the error is related to the compiler wanting an &lt;code&gt;enum&lt;&#x2F;code&gt; type or essentially a &lt;code&gt;Result&lt;&#x2F;code&gt; type but it found a &lt;code&gt;()&lt;&#x2F;code&gt; type because our solution isn&#x27;t implemented yet.  So, let&#x27;s fix that.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;from-str-rs-solution&quot;&gt;From_str.rs Solution&lt;&#x2F;h2&gt;
+&lt;p&gt;Before we implement a solution let&#x27;s make sure we&#x27;re all on the same page here with the &lt;code&gt;FromStr&lt;&#x2F;code&gt; trait.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;understanding-the-fromstr-trait&quot;&gt;Understanding the FromStr Trait&lt;&#x2F;h3&gt;
+&lt;p&gt;&lt;strong&gt;Purpose of FromStr:&lt;&#x2F;strong&gt; The FromStr trait in Rust is used for converting a string into another type. In this case, we are converting a string into a Person struct.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;strong&gt;Why Use FromStr:&lt;&#x2F;strong&gt; Implementing FromStr allows you to use the parse method on strings, which simplifies the conversion process. This is particularly useful when you want to turn user input (which is often in string format) into more complex data types.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;breaking-down-the-implementation&quot;&gt;Breaking Down the Implementation&lt;&#x2F;h3&gt;
+&lt;p&gt;&lt;strong&gt;Error Handling:&lt;&#x2F;strong&gt;
+The FromStr trait requires you to define an error type. In this example, ParsePersonError is used to represent different kinds of errors that might occur during parsing (like empty input, incorrect format, etc.).
+Using custom error types makes your code more robust and easier to debug.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;strong&gt;Parsing Logic:&lt;&#x2F;strong&gt;
+The input string is split on commas, assuming the format &lt;code&gt;name,age&lt;&#x2F;code&gt;.
+The code then checks if the input is correctly formatted and handles each part (name and age) separately.
+The parse method is used to convert the age from a string to a &lt;code&gt;usize&lt;&#x2F;code&gt;. If this fails, the error is captured and returned.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;strong&gt;Creating the Person Object:&lt;&#x2F;strong&gt;
+If all validations pass, a new Person object is created with the parsed name and age.
+This object is then returned as a Result&amp;lt;Person, ParsePersonError&amp;gt;, indicating a successful parsing or an error.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;impl FromStr for Person {
+    type Err = ParsePersonError;
+
+    fn from_str(s: &amp;amp;str) -&amp;gt; Result&amp;lt;Person, Self::Err&amp;gt; {
+        &amp;#x2F;&amp;#x2F; Check if the input string is empty
+        if s.is_empty() {
+            return Err(ParsePersonError::Empty);
+        }
+
+        &amp;#x2F;&amp;#x2F; Split the input string on the comma
+        let parts: Vec&amp;lt;&amp;amp;str&amp;gt; = s.split(&amp;#x27;,&amp;#x27;).collect();
+        &amp;#x2F;&amp;#x2F; Ensure that there are exactly two parts (name and age)
+        if parts.len() != 2 {
+            return Err(ParsePersonError::BadLen);
+        }
+
+        &amp;#x2F;&amp;#x2F; Extract the first part as the name
+        let name = parts[0].to_string();
+        &amp;#x2F;&amp;#x2F; Ensure that the name is not empty
+        if name.is_empty() {
+            return Err(ParsePersonError::NoName);
+        }
+
+        &amp;#x2F;&amp;#x2F; Parse the second part as age and handle any parsing errors
+        let age = parts[1].parse::&amp;lt;usize&amp;gt;().map_err(ParsePersonError::ParseInt)?;
+
+        &amp;#x2F;&amp;#x2F; Return a Person object if all is well
+        Ok(Person { name, age })
+    }
+}
+
+fn main() {
+    let p = &amp;quot;Mark,20&amp;quot;.parse::&amp;lt;Person&amp;gt;().unwrap();
+    println!(&amp;quot;{:?}&amp;quot;, p);
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;This code does the following:&lt;&#x2F;p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Error Checking&lt;&#x2F;strong&gt;: It checks for empty input, an incorrect number of fields, and parsing errors for the age field.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;String Splitting and Parsing&lt;&#x2F;strong&gt;: It splits the input string by a comma, extracting the name and age, and attempts to parse the age as an &lt;code&gt;usize&lt;&#x2F;code&gt;.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Error Handling&lt;&#x2F;strong&gt;: It uses custom error types to handle different error scenarios such as empty input, no name, or parsing errors.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Person Creation&lt;&#x2F;strong&gt;: If all checks pass, it creates and returns a &lt;code&gt;Person&lt;&#x2F;code&gt; object.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Testing with Main&lt;&#x2F;strong&gt;: The &lt;code&gt;main&lt;&#x2F;code&gt; function demonstrates how to parse a string to create a &lt;code&gt;Person&lt;&#x2F;code&gt; object, using the implemented &lt;code&gt;from_str&lt;&#x2F;code&gt; method.&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;h3 id=&quot;why-this-example-is-important&quot;&gt;Why This Example is Important&lt;&#x2F;h3&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Real-world Application&lt;&#x2F;strong&gt;: Parsing user input is a common requirement in many applications. Understanding how to do it properly in Rust is crucial for writing robust software.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Learning Rust’s Conventions&lt;&#x2F;strong&gt;: Rust emphasizes safety and clear error handling. Implementing &lt;code&gt;FromStr&lt;&#x2F;code&gt; with comprehensive error checking is a great exercise in learning these aspects of Rust.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Hands-on Practice&lt;&#x2F;strong&gt;: By working through this example, beginners get practical experience with common Rust concepts like traits, error handling, and generics.&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;p&gt;With the changes above our code is compiling and we can move on to our next exercise!&lt;&#x2F;p&gt;
 </description>
       </item>
       <item>
