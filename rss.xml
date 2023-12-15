@@ -534,7 +534,7 @@ fn main() {
 &lt;li&gt;&lt;strong&gt;Hands-on Practice&lt;&#x2F;strong&gt;: By working through this example, beginners get practical experience with common Rust concepts like traits, error handling, and generics.&lt;&#x2F;li&gt;
 &lt;&#x2F;ol&gt;
 &lt;p&gt;With the changes above our code is compiling and we can move on to our next exercise!&lt;&#x2F;p&gt;
-&lt;h2 id=&quot;from-try-into-rs&quot;&gt;From_try_into.rs&lt;&#x2F;h2&gt;
+&lt;h2 id=&quot;try-from-into-rs&quot;&gt;Try_from_into.rs&lt;&#x2F;h2&gt;
 &lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;&amp;#x2F;&amp;#x2F; try_from_into.rs
 &amp;#x2F;&amp;#x2F; TryFrom is a simple and safe type conversion that may fail in a controlled way under some circumstances.
 &amp;#x2F;&amp;#x2F; Basically, this is the same as From. The main difference is that this should return a Result type
@@ -727,7 +727,7 @@ mod tests {
 }
 &lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
 &lt;p&gt;In this exercise, our specific task is to implement the TryFrom trait for a Color struct, catering to different types of inputs: tuples, arrays, and slices of i16. Each of these inputs represents potential RGB color values. The challenge involves not only facilitating these conversions but also meticulously handling potential errors. This includes managing out-of-range color values and ensuring that inputs, especially slices, are of appropriate lengths. By doing so, we aim to leverage Rust&#x27;s robust type conversion capabilities while adhering to its strict safety and error-handling principles.&lt;&#x2F;p&gt;
-&lt;h2 id=&quot;from-try-into-errors-rs&quot;&gt;From_try_into Errors.rs&lt;&#x2F;h2&gt;
+&lt;h2 id=&quot;try-from-into-errors-rs&quot;&gt;Try_from_into Errors.rs&lt;&#x2F;h2&gt;
 &lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;⚠️  Compiling of exercises&amp;#x2F;conversions&amp;#x2F;try_from_into.rs failed! Please try again. Here&amp;#x27;s the output:
 error[E0308]: mismatched types
   --&amp;gt; exercises&amp;#x2F;conversions&amp;#x2F;try_from_into.rs:40:44
@@ -765,7 +765,7 @@ error[E0308]: mismatched types
 error: aborting due to 3 previous errors
 &lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
 &lt;p&gt;The compiler errors we&#x27;re encountering are due to mismatched types in our &lt;code&gt;try_from&lt;&#x2F;code&gt; function implementations. These functions currently return the unit type &lt;code&gt;()&lt;&#x2F;code&gt;, but they are expected to return a &lt;code&gt;Result&amp;lt;Color, IntoColorError&amp;gt;&lt;&#x2F;code&gt;. The errors indicate that the body of each implementation is empty and lacks the necessary logic to perform the conversion and return the correct type.&lt;&#x2F;p&gt;
-&lt;h2 id=&quot;from-try-into-solution&quot;&gt;From_try_into Solution&lt;&#x2F;h2&gt;
+&lt;h2 id=&quot;try-from-into-solution&quot;&gt;Try_from_into Solution&lt;&#x2F;h2&gt;
 &lt;p&gt;To resolve these errors and fulfill the exercise&#x27;s requirements, we&#x27;ll need to implement the &lt;code&gt;TryFrom&lt;&#x2F;code&gt; trait for tuples &lt;code&gt;(i16, i16, i16)&lt;&#x2F;code&gt;, arrays &lt;code&gt;[i16; 3]&lt;&#x2F;code&gt;, and slices &lt;code&gt;&amp;amp;[i16]&lt;&#x2F;code&gt; with the following considerations:&lt;&#x2F;p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;Range Validation&lt;&#x2F;strong&gt;: Ensure that each color value (red, green, blue) is within the 0 to 255 range. If any value is outside this range, return an &lt;code&gt;Err&lt;&#x2F;code&gt; with &lt;code&gt;IntoColorError::IntConversion&lt;&#x2F;code&gt;.&lt;&#x2F;li&gt;
@@ -780,6 +780,7 @@ impl TryFrom&amp;lt;&amp;amp;[i16]&amp;gt; for Color { &amp;#x2F;* ... *&amp;#x2
 
 &lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
 &lt;p&gt;In each case, we ensure proper error handling and validation, adhering to the &lt;code&gt;TryFrom&lt;&#x2F;code&gt; trait&#x27;s requirements.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;complete-code&quot;&gt;Complete Code&lt;&#x2F;h2&gt;
 &lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;impl TryFrom&amp;lt;(i16, i16, i16)&amp;gt; for Color {
     type Error = IntoColorError;
 
@@ -842,6 +843,7 @@ impl TryFrom&amp;lt;&amp;amp;[i16]&amp;gt; for Color {
 &lt;li&gt;&lt;strong&gt;Type Conversions&lt;&#x2F;strong&gt;: The valid &lt;code&gt;i16&lt;&#x2F;code&gt; values are safely converted to &lt;code&gt;u8&lt;&#x2F;code&gt; for the &lt;code&gt;Color&lt;&#x2F;code&gt; struct fields.&lt;&#x2F;li&gt;
 &lt;&#x2F;ul&gt;
 &lt;p&gt;This exercise demonstrates the importance and utility of the &lt;code&gt;TryFrom&lt;&#x2F;code&gt; trait in Rust for handling fallible conversions. By carefully implementing &lt;code&gt;TryFrom&lt;&#x2F;code&gt;, we can create robust and error-resilient code, especially when working with data that requires validation or has specific constraints, like our &lt;code&gt;Color&lt;&#x2F;code&gt; struct in this case.&lt;&#x2F;p&gt;
+&lt;p&gt;With these updates our code is now compiling.&lt;&#x2F;p&gt;
 </description>
       </item>
       <item>
