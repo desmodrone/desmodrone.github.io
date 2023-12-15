@@ -527,13 +527,321 @@ fn main() {
 &lt;li&gt;&lt;strong&gt;Person Creation&lt;&#x2F;strong&gt;: If all checks pass, it creates and returns a &lt;code&gt;Person&lt;&#x2F;code&gt; object.&lt;&#x2F;li&gt;
 &lt;li&gt;&lt;strong&gt;Testing with Main&lt;&#x2F;strong&gt;: The &lt;code&gt;main&lt;&#x2F;code&gt; function demonstrates how to parse a string to create a &lt;code&gt;Person&lt;&#x2F;code&gt; object, using the implemented &lt;code&gt;from_str&lt;&#x2F;code&gt; method.&lt;&#x2F;li&gt;
 &lt;&#x2F;ol&gt;
-&lt;h3 id=&quot;why-this-example-is-important&quot;&gt;Why This Example is Important&lt;&#x2F;h3&gt;
+&lt;h3 id=&quot;additional-notes-on-this-exercise&quot;&gt;Additional Notes on this Exercise&lt;&#x2F;h3&gt;
 &lt;ol&gt;
 &lt;li&gt;&lt;strong&gt;Real-world Application&lt;&#x2F;strong&gt;: Parsing user input is a common requirement in many applications. Understanding how to do it properly in Rust is crucial for writing robust software.&lt;&#x2F;li&gt;
 &lt;li&gt;&lt;strong&gt;Learning Rust’s Conventions&lt;&#x2F;strong&gt;: Rust emphasizes safety and clear error handling. Implementing &lt;code&gt;FromStr&lt;&#x2F;code&gt; with comprehensive error checking is a great exercise in learning these aspects of Rust.&lt;&#x2F;li&gt;
 &lt;li&gt;&lt;strong&gt;Hands-on Practice&lt;&#x2F;strong&gt;: By working through this example, beginners get practical experience with common Rust concepts like traits, error handling, and generics.&lt;&#x2F;li&gt;
 &lt;&#x2F;ol&gt;
 &lt;p&gt;With the changes above our code is compiling and we can move on to our next exercise!&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;from-try-into-rs&quot;&gt;From_try_into.rs&lt;&#x2F;h2&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;&amp;#x2F;&amp;#x2F; try_from_into.rs
+&amp;#x2F;&amp;#x2F; TryFrom is a simple and safe type conversion that may fail in a controlled way under some circumstances.
+&amp;#x2F;&amp;#x2F; Basically, this is the same as From. The main difference is that this should return a Result type
+&amp;#x2F;&amp;#x2F; instead of the target type itself.
+&amp;#x2F;&amp;#x2F; You can read more about it at https:&amp;#x2F;&amp;#x2F;doc.rust-lang.org&amp;#x2F;std&amp;#x2F;convert&amp;#x2F;trait.TryFrom.html
+&amp;#x2F;&amp;#x2F; Execute `rustlings hint try_from_into` or use the `hint` watch subcommand for a hint.
+
+use std::convert::{TryFrom, TryInto};
+
+#[derive(Debug, PartialEq)]
+struct Color {
+    red: u8,
+    green: u8,
+    blue: u8,
+}
+
+&amp;#x2F;&amp;#x2F; We will use this error type for these `TryFrom` conversions.
+#[derive(Debug, PartialEq)]
+enum IntoColorError {
+    &amp;#x2F;&amp;#x2F; Incorrect length of slice
+    BadLen,
+    &amp;#x2F;&amp;#x2F; Integer conversion error
+    IntConversion,
+}
+
+&amp;#x2F;&amp;#x2F; I AM NOT DONE
+
+&amp;#x2F;&amp;#x2F; Your task is to complete this implementation
+&amp;#x2F;&amp;#x2F; and return an Ok result of inner type Color.
+&amp;#x2F;&amp;#x2F; You need to create an implementation for a tuple of three integers,
+&amp;#x2F;&amp;#x2F; an array of three integers, and a slice of integers.
+&amp;#x2F;&amp;#x2F;
+&amp;#x2F;&amp;#x2F; Note that the implementation for tuple and array will be checked at compile time,
+&amp;#x2F;&amp;#x2F; but the slice implementation needs to check the slice length!
+&amp;#x2F;&amp;#x2F; Also note that correct RGB color values must be integers in the 0..=255 range.
+
+&amp;#x2F;&amp;#x2F; Tuple implementation
+impl TryFrom&amp;lt;(i16, i16, i16)&amp;gt; for Color {
+    type Error = IntoColorError;
+    fn try_from(tuple: (i16, i16, i16)) -&amp;gt; Result&amp;lt;Self, Self::Error&amp;gt; {
+    }
+}
+
+&amp;#x2F;&amp;#x2F; Array implementation
+impl TryFrom&amp;lt;[i16; 3]&amp;gt; for Color {
+    type Error = IntoColorError;
+    fn try_from(arr: [i16; 3]) -&amp;gt; Result&amp;lt;Self, Self::Error&amp;gt; {
+    }
+}
+
+&amp;#x2F;&amp;#x2F; Slice implementation
+impl TryFrom&amp;lt;&amp;amp;[i16]&amp;gt; for Color {
+    type Error = IntoColorError;
+    fn try_from(slice: &amp;amp;[i16]) -&amp;gt; Result&amp;lt;Self, Self::Error&amp;gt; {
+    }
+}
+
+fn main() {
+    &amp;#x2F;&amp;#x2F; Use the `try_from` function
+    let c1 = Color::try_from((183, 65, 14));
+    println!(&amp;quot;{:?}&amp;quot;, c1);
+
+    &amp;#x2F;&amp;#x2F; Since TryFrom is implemented for Color, we should be able to use TryInto
+    let c2: Result&amp;lt;Color, _&amp;gt; = [183, 65, 14].try_into();
+    println!(&amp;quot;{:?}&amp;quot;, c2);
+
+    let v = vec![183, 65, 14];
+    &amp;#x2F;&amp;#x2F; With slice we should use `try_from` function
+    let c3 = Color::try_from(&amp;amp;v[..]);
+    println!(&amp;quot;{:?}&amp;quot;, c3);
+    &amp;#x2F;&amp;#x2F; or take slice within round brackets and use TryInto
+    let c4: Result&amp;lt;Color, _&amp;gt; = (&amp;amp;v[..]).try_into();
+    println!(&amp;quot;{:?}&amp;quot;, c4);
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_tuple_out_of_range_positive() {
+        assert_eq!(
+            Color::try_from((256, 1000, 10000)),
+            Err(IntoColorError::IntConversion)
+        );
+    }
+    #[test]
+    fn test_tuple_out_of_range_negative() {
+        assert_eq!(
+            Color::try_from((-1, -10, -256)),
+            Err(IntoColorError::IntConversion)
+        );
+    }
+    #[test]
+    fn test_tuple_sum() {
+        assert_eq!(
+            Color::try_from((-1, 255, 255)),
+            Err(IntoColorError::IntConversion)
+        );
+    }
+    #[test]
+    fn test_tuple_correct() {
+        let c: Result&amp;lt;Color, _&amp;gt; = (183, 65, 14).try_into();
+        assert!(c.is_ok());
+        assert_eq!(
+            c.unwrap(),
+            Color {
+                red: 183,
+                green: 65,
+                blue: 14
+            }
+        );
+    }
+    #[test]
+    fn test_array_out_of_range_positive() {
+        let c: Result&amp;lt;Color, _&amp;gt; = [1000, 10000, 256].try_into();
+        assert_eq!(c, Err(IntoColorError::IntConversion));
+    }
+    #[test]
+    fn test_array_out_of_range_negative() {
+        let c: Result&amp;lt;Color, _&amp;gt; = [-10, -256, -1].try_into();
+        assert_eq!(c, Err(IntoColorError::IntConversion));
+    }
+    #[test]
+    fn test_array_sum() {
+        let c: Result&amp;lt;Color, _&amp;gt; = [-1, 255, 255].try_into();
+        assert_eq!(c, Err(IntoColorError::IntConversion));
+    }
+    #[test]
+    fn test_array_correct() {
+        let c: Result&amp;lt;Color, _&amp;gt; = [183, 65, 14].try_into();
+        assert!(c.is_ok());
+        assert_eq!(
+            c.unwrap(),
+            Color {
+                red: 183,
+                green: 65,
+                blue: 14
+            }
+        );
+    }
+    #[test]
+    fn test_slice_out_of_range_positive() {
+        let arr = [10000, 256, 1000];
+        assert_eq!(
+            Color::try_from(&amp;amp;arr[..]),
+            Err(IntoColorError::IntConversion)
+        );
+    }
+    #[test]
+    fn test_slice_out_of_range_negative() {
+        let arr = [-256, -1, -10];
+        assert_eq!(
+            Color::try_from(&amp;amp;arr[..]),
+            Err(IntoColorError::IntConversion)
+        );
+    }
+    #[test]
+    fn test_slice_sum() {
+        let arr = [-1, 255, 255];
+        assert_eq!(
+            Color::try_from(&amp;amp;arr[..]),
+            Err(IntoColorError::IntConversion)
+        );
+    }
+    #[test]
+    fn test_slice_correct() {
+        let v = vec![183, 65, 14];
+        let c: Result&amp;lt;Color, _&amp;gt; = Color::try_from(&amp;amp;v[..]);
+        assert!(c.is_ok());
+        assert_eq!(
+            c.unwrap(),
+            Color {
+                red: 183,
+                green: 65,
+                blue: 14
+            }
+        );
+    }
+    #[test]
+    fn test_slice_excess_length() {
+        let v = vec![0, 0, 0, 0];
+        assert_eq!(Color::try_from(&amp;amp;v[..]), Err(IntoColorError::BadLen));
+    }
+    #[test]
+    fn test_slice_insufficient_length() {
+        let v = vec![0, 0];
+        assert_eq!(Color::try_from(&amp;amp;v[..]), Err(IntoColorError::BadLen));
+    }
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;In this exercise, our specific task is to implement the TryFrom trait for a Color struct, catering to different types of inputs: tuples, arrays, and slices of i16. Each of these inputs represents potential RGB color values. The challenge involves not only facilitating these conversions but also meticulously handling potential errors. This includes managing out-of-range color values and ensuring that inputs, especially slices, are of appropriate lengths. By doing so, we aim to leverage Rust&#x27;s robust type conversion capabilities while adhering to its strict safety and error-handling principles.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;from-try-into-errors-rs&quot;&gt;From_try_into Errors.rs&lt;&#x2F;h2&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;⚠️  Compiling of exercises&amp;#x2F;conversions&amp;#x2F;try_from_into.rs failed! Please try again. Here&amp;#x27;s the output:
+error[E0308]: mismatched types
+  --&amp;gt; exercises&amp;#x2F;conversions&amp;#x2F;try_from_into.rs:40:44
+   |
+40 |     fn try_from(tuple: (i16, i16, i16)) -&amp;gt; Result&amp;lt;Self, Self::Error&amp;gt; {
+   |        --------                            ^^^^^^^^^^^^^^^^^^^^^^^^^ expected `Result&amp;lt;Color, IntoColorError&amp;gt;`, found `()`
+   |        |
+   |        implicitly returns `()` as its body has no tail or `return` expression
+   |
+   = note:   expected enum `Result&amp;lt;Color, IntoColorError&amp;gt;`
+           found unit type `()`
+
+error[E0308]: mismatched types
+  --&amp;gt; exercises&amp;#x2F;conversions&amp;#x2F;try_from_into.rs:47:35
+   |
+47 |     fn try_from(arr: [i16; 3]) -&amp;gt; Result&amp;lt;Self, Self::Error&amp;gt; {
+   |        --------                   ^^^^^^^^^^^^^^^^^^^^^^^^^ expected `Result&amp;lt;Color, IntoColorError&amp;gt;`, found `()`
+   |        |
+   |        implicitly returns `()` as its body has no tail or `return` expression
+   |
+   = note:   expected enum `Result&amp;lt;Color, IntoColorError&amp;gt;`
+           found unit type `()`
+
+error[E0308]: mismatched types
+  --&amp;gt; exercises&amp;#x2F;conversions&amp;#x2F;try_from_into.rs:54:35
+   |
+54 |     fn try_from(slice: &amp;amp;[i16]) -&amp;gt; Result&amp;lt;Self, Self::Error&amp;gt; {
+   |        --------                   ^^^^^^^^^^^^^^^^^^^^^^^^^ expected `Result&amp;lt;Color, IntoColorError&amp;gt;`, found `()`
+   |        |
+   |        implicitly returns `()` as its body has no tail or `return` expression
+   |
+   = note:   expected enum `Result&amp;lt;Color, IntoColorError&amp;gt;`
+           found unit type `()`
+
+error: aborting due to 3 previous errors
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;The compiler errors we&#x27;re encountering are due to mismatched types in our &lt;code&gt;try_from&lt;&#x2F;code&gt; function implementations. These functions currently return the unit type &lt;code&gt;()&lt;&#x2F;code&gt;, but they are expected to return a &lt;code&gt;Result&amp;lt;Color, IntoColorError&amp;gt;&lt;&#x2F;code&gt;. The errors indicate that the body of each implementation is empty and lacks the necessary logic to perform the conversion and return the correct type.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;from-try-into-solution&quot;&gt;From_try_into Solution&lt;&#x2F;h2&gt;
+&lt;p&gt;To resolve these errors and fulfill the exercise&#x27;s requirements, we&#x27;ll need to implement the &lt;code&gt;TryFrom&lt;&#x2F;code&gt; trait for tuples &lt;code&gt;(i16, i16, i16)&lt;&#x2F;code&gt;, arrays &lt;code&gt;[i16; 3]&lt;&#x2F;code&gt;, and slices &lt;code&gt;&amp;amp;[i16]&lt;&#x2F;code&gt; with the following considerations:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Range Validation&lt;&#x2F;strong&gt;: Ensure that each color value (red, green, blue) is within the 0 to 255 range. If any value is outside this range, return an &lt;code&gt;Err&lt;&#x2F;code&gt; with &lt;code&gt;IntoColorError::IntConversion&lt;&#x2F;code&gt;.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Handling Slice Length&lt;&#x2F;strong&gt;: For the slice implementation, check that the length of the slice is exactly 3. If not, return an &lt;code&gt;Err&lt;&#x2F;code&gt; with &lt;code&gt;IntoColorError::BadLen&lt;&#x2F;code&gt;.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Type Conversion&lt;&#x2F;strong&gt;: Convert the valid &lt;code&gt;i16&lt;&#x2F;code&gt; values to &lt;code&gt;u8&lt;&#x2F;code&gt; for constructing the &lt;code&gt;Color&lt;&#x2F;code&gt; struct, and return &lt;code&gt;Ok(Color)&lt;&#x2F;code&gt;.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;Here&#x27;s an overview of how the implementations should look:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;&amp;#x2F;&amp;#x2F; Tuple, array, and slice implementations for TryFrom
+impl TryFrom&amp;lt;(i16, i16, i16)&amp;gt; for Color { &amp;#x2F;* ... *&amp;#x2F; }
+impl TryFrom&amp;lt;[i16; 3]&amp;gt; for Color { &amp;#x2F;* ... *&amp;#x2F; }
+impl TryFrom&amp;lt;&amp;amp;[i16]&amp;gt; for Color { &amp;#x2F;* ... *&amp;#x2F; }
+
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;In each case, we ensure proper error handling and validation, adhering to the &lt;code&gt;TryFrom&lt;&#x2F;code&gt; trait&#x27;s requirements.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;impl TryFrom&amp;lt;(i16, i16, i16)&amp;gt; for Color {
+    type Error = IntoColorError;
+
+    fn try_from(tuple: (i16, i16, i16)) -&amp;gt; Result&amp;lt;Self, Self::Error&amp;gt; {
+        let (red, green, blue) = tuple;
+        if red &amp;lt; 0 || red &amp;gt; 255 || green &amp;lt; 0 || green &amp;gt; 255 || blue &amp;lt; 0 || blue &amp;gt; 255 {
+            return Err(IntoColorError::IntConversion);
+        }
+        Ok(Color {
+            red: red as u8,
+            green: green as u8,
+            blue: blue as u8,
+        })
+    }
+}
+
+impl TryFrom&amp;lt;[i16; 3]&amp;gt; for Color {
+    type Error = IntoColorError;
+
+    fn try_from(arr: [i16; 3]) -&amp;gt; Result&amp;lt;Self, Self::Error&amp;gt; {
+        let [red, green, blue] = arr;
+        if red &amp;lt; 0 || red &amp;gt; 255 || green &amp;lt; 0 || green &amp;gt; 255 || blue &amp;lt; 0 || blue &amp;gt; 255 {
+            return Err(IntoColorError::IntConversion);
+        }
+        Ok(Color {
+            red: red as u8,
+            green: green as u8,
+            blue: blue as u8,
+        })
+    }
+}
+
+impl TryFrom&amp;lt;&amp;amp;[i16]&amp;gt; for Color {
+    type Error = IntoColorError;
+
+    fn try_from(slice: &amp;amp;[i16]) -&amp;gt; Result&amp;lt;Self, Self::Error&amp;gt; {
+        if slice.len() != 3 {
+            return Err(IntoColorError::BadLen);
+        }
+        let [red, green, blue] = match slice.try_into() {
+            Ok(arr) =&amp;gt; arr,
+            Err(_) =&amp;gt; return Err(IntoColorError::IntConversion),
+        };
+        if red &amp;lt; 0 || red &amp;gt; 255 || green &amp;lt; 0 || green &amp;gt; 255 || blue &amp;lt; 0 || blue &amp;gt; 255 {
+            return Err(IntoColorError::IntConversion);
+        }
+        Ok(Color {
+            red: red as u8,
+            green: green as u8,
+            blue: blue as u8,
+        })
+    }
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;This implementation includes:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Tuple, Array, and Slice Implementations&lt;&#x2F;strong&gt;: It implements &lt;code&gt;TryFrom&lt;&#x2F;code&gt; for a tuple of three &lt;code&gt;i16&lt;&#x2F;code&gt;s, an array of three &lt;code&gt;i16&lt;&#x2F;code&gt;s, and a slice of &lt;code&gt;i16&lt;&#x2F;code&gt;s.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Error Handling&lt;&#x2F;strong&gt;: It checks for valid RGB values (0 to 255) and handles errors accordingly using the &lt;code&gt;IntoColorError&lt;&#x2F;code&gt; enum.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Length Check for Slice&lt;&#x2F;strong&gt;: For the slice implementation, it checks if the length of the slice is exactly 3, which is crucial for correct color value extraction.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Type Conversions&lt;&#x2F;strong&gt;: The valid &lt;code&gt;i16&lt;&#x2F;code&gt; values are safely converted to &lt;code&gt;u8&lt;&#x2F;code&gt; for the &lt;code&gt;Color&lt;&#x2F;code&gt; struct fields.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;This exercise demonstrates the importance and utility of the &lt;code&gt;TryFrom&lt;&#x2F;code&gt; trait in Rust for handling fallible conversions. By carefully implementing &lt;code&gt;TryFrom&lt;&#x2F;code&gt;, we can create robust and error-resilient code, especially when working with data that requires validation or has specific constraints, like our &lt;code&gt;Color&lt;&#x2F;code&gt; struct in this case.&lt;&#x2F;p&gt;
 </description>
       </item>
       <item>
