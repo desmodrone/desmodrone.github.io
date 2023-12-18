@@ -120,7 +120,7 @@
 		<small> - 
 <span class="reading-time" title="Estimated read time">
   
-  16 min read
+  20 min read
   
 </span>
 </small>
@@ -962,6 +962,208 @@ impl TryFrom&lt;&amp;[i16]&gt; for Color {
 </ul>
 <p>This exercise demonstrates the importance and utility of the <code>TryFrom</code> trait in Rust for handling fallible conversions. By carefully implementing <code>TryFrom</code>, we can create robust and error-resilient code, especially when working with data that requires validation or has specific constraints, like our <code>Color</code> struct in this case.</p>
 <p>With these updates our code is now compiling.</p>
+<h2 id="as-ref-mut-rs">As_ref_mut.rs</h2>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">&#x2F;&#x2F; AsRef and AsMut allow for cheap reference-to-reference conversions.
+&#x2F;&#x2F; Read more about them at https:&#x2F;&#x2F;doc.rust-lang.org&#x2F;std&#x2F;convert&#x2F;trait.AsRef.html
+&#x2F;&#x2F; and https:&#x2F;&#x2F;doc.rust-lang.org&#x2F;std&#x2F;convert&#x2F;trait.AsMut.html, respectively.
+&#x2F;&#x2F; Execute `rustlings hint as_ref_mut` or use the `hint` watch subcommand for a hint.
+
+&#x2F;&#x2F; I AM NOT DONE
+
+&#x2F;&#x2F; Obtain the number of bytes (not characters) in the given argument.
+&#x2F;&#x2F; TODO: Add the AsRef trait appropriately as a trait bound.
+fn byte_counter&lt;T&gt;(arg: T) -&gt; usize {
+    arg.as_ref().as_bytes().len()
+}
+
+&#x2F;&#x2F; Obtain the number of characters (not bytes) in the given argument.
+&#x2F;&#x2F; TODO: Add the AsRef trait appropriately as a trait bound.
+fn char_counter&lt;T&gt;(arg: T) -&gt; usize {
+    arg.as_ref().chars().count()
+}
+
+&#x2F;&#x2F; Squares a number using as_mut().
+&#x2F;&#x2F; TODO: Add the appropriate trait bound.
+fn num_sq&lt;T&gt;(arg: &amp;mut T) {
+    &#x2F;&#x2F; TODO: Implement the function body.
+    ???
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn different_counts() {
+        let s = &quot;Café au lait&quot;;
+        assert_ne!(char_counter(s), byte_counter(s));
+    }
+
+    #[test]
+    fn same_counts() {
+        let s = &quot;Cafe au lait&quot;;
+        assert_eq!(char_counter(s), byte_counter(s));
+    }
+
+    #[test]
+    fn different_counts_using_string() {
+        let s = String::from(&quot;Café au lait&quot;);
+        assert_ne!(char_counter(s.clone()), byte_counter(s));
+    }
+
+    #[test]
+    fn same_counts_using_string() {
+        let s = String::from(&quot;Cafe au lait&quot;);
+        assert_eq!(char_counter(s.clone()), byte_counter(s));
+    }
+
+    #[test]
+    fn mult_box() {
+        let mut num: Box&lt;u32&gt; = Box::new(3);
+        num_sq(&amp;mut num);
+        assert_eq!(*num, 9);
+    }
+}
+</code></pre>
+<p>In this exercise, the objective is to correctly implement the <code>AsRef</code> and <code>AsMut</code> traits. These traits are crucial for type conversion in Rust, allowing for flexible yet safe conversions between different types.</p>
+<h3 id="exercise-tasks">Exercise Tasks</h3>
+<ol>
+<li>
+<p><strong>Implement <code>byte_counter</code> and <code>char_counter</code> Functions</strong>: These functions should work with any type that can be converted to a string slice (<code>&amp;str</code>), thus requiring the implementation of the <code>AsRef&lt;str&gt;</code> trait.</p>
+</li>
+<li>
+<p><strong>Implement <code>num_sq</code> Function</strong>: This function is intended to mutate a numeric value. It should work with any type that can provide a mutable reference to a <code>u32</code>, necessitating the use of the <code>AsMut&lt;u32&gt;</code> trait. Let's review the errors.</p>
+</li>
+</ol>
+<h2 id="as-ref-mut-rs-errors">As_ref_mut.rs Errors</h2>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">⚠️  Compiling of exercises&#x2F;conversions&#x2F;as_ref_mut.rs failed! Please try again. Here&#x27;s the output:
+error: expected expression, found `?`
+  --&gt; exercises&#x2F;conversions&#x2F;as_ref_mut.rs:24:5
+   |
+24 |     ???
+   |     ^ expected expression
+
+error[E0599]: no method named `as_ref` found for type parameter `T` in the current scope
+  --&gt; exercises&#x2F;conversions&#x2F;as_ref_mut.rs:11:9
+   |
+10 | fn byte_counter&lt;T&gt;(arg: T) -&gt; usize {
+   |                 - method `as_ref` not found for this type parameter
+11 |     arg.as_ref().as_bytes().len()
+   |         ^^^^^^ method not found in `T`
+   |
+   = help: items from traits can only be used if the type parameter is bounded by the trait
+help: the following trait defines an item `as_ref`, perhaps you need to restrict type parameter `T` with it:
+   |
+10 | fn byte_counter&lt;T: AsRef&gt;(arg: T) -&gt; usize {
+   |                  +++++++
+
+error[E0599]: no method named `as_ref` found for type parameter `T` in the current scope
+  --&gt; exercises&#x2F;conversions&#x2F;as_ref_mut.rs:17:9
+   |
+16 | fn char_counter&lt;T&gt;(arg: T) -&gt; usize {
+   |                 - method `as_ref` not found for this type parameter
+17 |     arg.as_ref().chars().count()
+   |         ^^^^^^ method not found in `T`
+   |
+   = help: items from traits can only be used if the type parameter is bounded by the trait
+help: the following trait defines an item `as_ref`, perhaps you need to restrict type parameter `T` with it:
+   |
+16 | fn char_counter&lt;T: AsRef&gt;(arg: T) -&gt; usize {
+   |                  +++++++
+
+error: aborting due to 3 previous errors
+</code></pre>
+<p>The errors encountered during compilation are primarily due to:</p>
+<ol>
+<li>
+<p><strong>Missing Trait Bounds</strong>: Functions <code>byte_counter</code> and <code>char_counter</code> are trying to use <code>as_ref()</code> without the type <code>T</code> being bounded by <code>AsRef&lt;str&gt;</code>. This results in the error that the method <code>as_ref</code> is not found for the generic type <code>T</code>.</p>
+</li>
+<li>
+<p><strong>Incomplete Implementation</strong>: The <code>num_sq</code> function has an incomplete implementation, indicated by the placeholder <code>???</code>.</p>
+</li>
+</ol>
+<h2 id="as-ref-mut-rs-solution">As_ref_mut.rs Solution</h2>
+<p>Here's how to implement the <code>AsRef</code> and <code>AsMut</code> traits in this Rust exercise:</p>
+<ol>
+<li><strong><code>byte_counter</code> and <code>char_counter</code> Functions</strong>:
+<ul>
+<li>These functions are designed to work with any type <code>T</code> that can be referenced as a string slice (<code>&amp;str</code>).</li>
+<li>By specifying <code>T: AsRef&lt;str&gt;</code> as the trait bound, you're indicating that these functions can accept any type <code>T</code> that implements the <code>AsRef&lt;str&gt;</code> trait.</li>
+<li><code>arg.as_ref()</code> converts <code>arg</code> into a string slice, on which you can then call <code>.as_bytes()</code> or <code>.chars()</code> to get the length in bytes or characters, respectively.</li>
+</ul>
+</li>
+<li><strong><code>num_sq</code> Function</strong>:
+<ul>
+<li>This function is supposed to mutate a numeric value.</li>
+<li>By using <code>T: AsMut&lt;u32&gt;</code>, you're specifying that it accepts a mutable reference to any type <code>T</code> that can be mutated into a <code>u32</code>.</li>
+<li>Inside the function, <code>*arg.as_mut()</code> gives you a mutable reference to the inner <code>u32</code>, which you then square.</li>
+</ul>
+</li>
+</ol>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">use std::convert::AsRef;
+use std::convert::AsMut;
+
+fn byte_counter&lt;T: AsRef&lt;str&gt;&gt;(arg: T) -&gt; usize {
+    arg.as_ref().as_bytes().len()
+}
+
+fn char_counter&lt;T: AsRef&lt;str&gt;&gt;(arg: T) -&gt; usize {
+    arg.as_ref().chars().count()
+}
+
+fn num_sq&lt;T: AsMut&lt;u32&gt;&gt;(arg: &amp;mut T) {
+    let value = arg.as_mut();
+    *value *= *value;
+}
+</code></pre>
+<p>And with that we are done we are compiling!</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>In conclusion, Rust's comprehensive type conversion system, including <code>as</code>, <code>From</code>/<code>Into</code>, <code>TryFrom</code>/<code>TryInto</code>, <code>FromStr</code>, <code>AsRef</code>, and <code>AsMut</code>, provides programmers with a versatile toolkit to handle various scenarios of type conversions safely and efficiently.</p>
+<ul>
+<li>
+<p><strong><code>as</code> Operator</strong>: Essential for basic type casting, especially when dealing with primitive data types. It's a straightforward way to convert between compatible types, ensuring that the programmer explicitly acknowledges and handles the conversion.</p>
+</li>
+<li>
+<p><strong><code>From</code>/<code>Into</code> Traits</strong>: These traits offer a more Rust-idiomatic way of handling infallible conversions between types. They simplify code and reduce boilerplate, making conversions more readable and intuitive.</p>
+</li>
+<li>
+<p><strong><code>TryFrom</code>/<code>TryInto</code> Traits</strong>: They extend the capabilities of <code>From</code>/<code>Into</code> to include fallible conversions, where there's a possibility of failure. This is particularly important in Rust, which emphasizes safety and error handling.</p>
+</li>
+<li>
+<p><strong><code>FromStr</code> Trait</strong>: Tailored for parsing strings into other types, <code>FromStr</code> is crucial in scenarios where data comes as strings (like user input or file reading) and needs to be converted to more specific types.</p>
+</li>
+<li>
+<p><strong><code>AsRef</code> and <code>AsMut</code> Traits</strong>: They facilitate cheap, non-owning conversions to references, allowing functions to accept a wide variety of arguments without sacrificing performance or flexibility. This is particularly useful in generic programming.</p>
+</li>
+</ul>
+<p>Together, these mechanisms contribute to Rust's robust type system, ensuring that type conversions are handled explicitly and safely, reducing the risk of errors and increasing the overall reliability of the code. By understanding and utilizing these tools effectively, you can write Rust code that is both efficient and elegant.</p>
+<p>And with that we are DONE! I hope you've enjoyed going through these exercises with me.</p>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">🎉 All exercises completed! 🎉
+
++----------------------------------------------------+
+|          You made it to the Fe-nish line!          |
++--------------------------  ------------------------+
+                          \\&#x2F;
+     ▒▒          ▒▒▒▒▒▒▒▒      ▒▒▒▒▒▒▒▒          ▒▒
+   ▒▒▒▒  ▒▒    ▒▒        ▒▒  ▒▒        ▒▒    ▒▒  ▒▒▒▒
+   ▒▒▒▒  ▒▒  ▒▒            ▒▒            ▒▒  ▒▒  ▒▒▒▒
+ ░░▒▒▒▒░░▒▒  ▒▒            ▒▒            ▒▒  ▒▒░░▒▒▒▒
+   ▓▓▓▓▓▓▓▓  ▓▓      ▓▓██  ▓▓  ▓▓██      ▓▓  ▓▓▓▓▓▓▓▓
+     ▒▒▒▒    ▒▒      ████  ▒▒  ████      ▒▒░░  ▒▒▒▒
+       ▒▒  ▒▒▒▒▒▒        ▒▒▒▒▒▒        ▒▒▒▒▒▒  ▒▒
+         ▒▒▒▒▒▒▒▒▒▒▓▓▓▓▓▓▒▒▒▒▒▒▒▒▓▓▒▒▓▓▒▒▒▒▒▒▒▒
+           ▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒
+             ▒▒▒▒▒▒▒▒▒▒██▒▒▒▒▒▒██▒▒▒▒▒▒▒▒▒▒
+           ▒▒  ▒▒▒▒▒▒▒▒▒▒██████▒▒▒▒▒▒▒▒▒▒  ▒▒
+         ▒▒    ▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒    ▒▒
+       ▒▒    ▒▒    ▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒    ▒▒    ▒▒
+       ▒▒  ▒▒    ▒▒                  ▒▒    ▒▒  ▒▒
+           ▒▒  ▒▒                      ▒▒  ▒▒
+
+We hope you enjoyed learning about the various aspects of Rust!
+If you noticed any issues, please don&#x27;t hesitate to report them to our repo.
+You can also contribute your own exercises to help the greater community!
+</code></pre>
 
 	</div>
 	<hr class="post-end">
@@ -994,7 +1196,7 @@ impl TryFrom&lt;&amp;[i16]&gt; for Color {
 		
     </p>
     
-    <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>4177 Words</p>
+    <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>5265 Words</p>
     
     <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2023-12-13</p>
     

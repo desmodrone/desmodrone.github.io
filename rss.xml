@@ -844,6 +844,208 @@ impl TryFrom&amp;lt;&amp;amp;[i16]&amp;gt; for Color {
 &lt;&#x2F;ul&gt;
 &lt;p&gt;This exercise demonstrates the importance and utility of the &lt;code&gt;TryFrom&lt;&#x2F;code&gt; trait in Rust for handling fallible conversions. By carefully implementing &lt;code&gt;TryFrom&lt;&#x2F;code&gt;, we can create robust and error-resilient code, especially when working with data that requires validation or has specific constraints, like our &lt;code&gt;Color&lt;&#x2F;code&gt; struct in this case.&lt;&#x2F;p&gt;
 &lt;p&gt;With these updates our code is now compiling.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;as-ref-mut-rs&quot;&gt;As_ref_mut.rs&lt;&#x2F;h2&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;&amp;#x2F;&amp;#x2F; AsRef and AsMut allow for cheap reference-to-reference conversions.
+&amp;#x2F;&amp;#x2F; Read more about them at https:&amp;#x2F;&amp;#x2F;doc.rust-lang.org&amp;#x2F;std&amp;#x2F;convert&amp;#x2F;trait.AsRef.html
+&amp;#x2F;&amp;#x2F; and https:&amp;#x2F;&amp;#x2F;doc.rust-lang.org&amp;#x2F;std&amp;#x2F;convert&amp;#x2F;trait.AsMut.html, respectively.
+&amp;#x2F;&amp;#x2F; Execute `rustlings hint as_ref_mut` or use the `hint` watch subcommand for a hint.
+
+&amp;#x2F;&amp;#x2F; I AM NOT DONE
+
+&amp;#x2F;&amp;#x2F; Obtain the number of bytes (not characters) in the given argument.
+&amp;#x2F;&amp;#x2F; TODO: Add the AsRef trait appropriately as a trait bound.
+fn byte_counter&amp;lt;T&amp;gt;(arg: T) -&amp;gt; usize {
+    arg.as_ref().as_bytes().len()
+}
+
+&amp;#x2F;&amp;#x2F; Obtain the number of characters (not bytes) in the given argument.
+&amp;#x2F;&amp;#x2F; TODO: Add the AsRef trait appropriately as a trait bound.
+fn char_counter&amp;lt;T&amp;gt;(arg: T) -&amp;gt; usize {
+    arg.as_ref().chars().count()
+}
+
+&amp;#x2F;&amp;#x2F; Squares a number using as_mut().
+&amp;#x2F;&amp;#x2F; TODO: Add the appropriate trait bound.
+fn num_sq&amp;lt;T&amp;gt;(arg: &amp;amp;mut T) {
+    &amp;#x2F;&amp;#x2F; TODO: Implement the function body.
+    ???
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn different_counts() {
+        let s = &amp;quot;Café au lait&amp;quot;;
+        assert_ne!(char_counter(s), byte_counter(s));
+    }
+
+    #[test]
+    fn same_counts() {
+        let s = &amp;quot;Cafe au lait&amp;quot;;
+        assert_eq!(char_counter(s), byte_counter(s));
+    }
+
+    #[test]
+    fn different_counts_using_string() {
+        let s = String::from(&amp;quot;Café au lait&amp;quot;);
+        assert_ne!(char_counter(s.clone()), byte_counter(s));
+    }
+
+    #[test]
+    fn same_counts_using_string() {
+        let s = String::from(&amp;quot;Cafe au lait&amp;quot;);
+        assert_eq!(char_counter(s.clone()), byte_counter(s));
+    }
+
+    #[test]
+    fn mult_box() {
+        let mut num: Box&amp;lt;u32&amp;gt; = Box::new(3);
+        num_sq(&amp;amp;mut num);
+        assert_eq!(*num, 9);
+    }
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;In this exercise, the objective is to correctly implement the &lt;code&gt;AsRef&lt;&#x2F;code&gt; and &lt;code&gt;AsMut&lt;&#x2F;code&gt; traits. These traits are crucial for type conversion in Rust, allowing for flexible yet safe conversions between different types.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;exercise-tasks&quot;&gt;Exercise Tasks&lt;&#x2F;h3&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Implement &lt;code&gt;byte_counter&lt;&#x2F;code&gt; and &lt;code&gt;char_counter&lt;&#x2F;code&gt; Functions&lt;&#x2F;strong&gt;: These functions should work with any type that can be converted to a string slice (&lt;code&gt;&amp;amp;str&lt;&#x2F;code&gt;), thus requiring the implementation of the &lt;code&gt;AsRef&amp;lt;str&amp;gt;&lt;&#x2F;code&gt; trait.&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Implement &lt;code&gt;num_sq&lt;&#x2F;code&gt; Function&lt;&#x2F;strong&gt;: This function is intended to mutate a numeric value. It should work with any type that can provide a mutable reference to a &lt;code&gt;u32&lt;&#x2F;code&gt;, necessitating the use of the &lt;code&gt;AsMut&amp;lt;u32&amp;gt;&lt;&#x2F;code&gt; trait. Let&#x27;s review the errors.&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;h2 id=&quot;as-ref-mut-rs-errors&quot;&gt;As_ref_mut.rs Errors&lt;&#x2F;h2&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;⚠️  Compiling of exercises&amp;#x2F;conversions&amp;#x2F;as_ref_mut.rs failed! Please try again. Here&amp;#x27;s the output:
+error: expected expression, found `?`
+  --&amp;gt; exercises&amp;#x2F;conversions&amp;#x2F;as_ref_mut.rs:24:5
+   |
+24 |     ???
+   |     ^ expected expression
+
+error[E0599]: no method named `as_ref` found for type parameter `T` in the current scope
+  --&amp;gt; exercises&amp;#x2F;conversions&amp;#x2F;as_ref_mut.rs:11:9
+   |
+10 | fn byte_counter&amp;lt;T&amp;gt;(arg: T) -&amp;gt; usize {
+   |                 - method `as_ref` not found for this type parameter
+11 |     arg.as_ref().as_bytes().len()
+   |         ^^^^^^ method not found in `T`
+   |
+   = help: items from traits can only be used if the type parameter is bounded by the trait
+help: the following trait defines an item `as_ref`, perhaps you need to restrict type parameter `T` with it:
+   |
+10 | fn byte_counter&amp;lt;T: AsRef&amp;gt;(arg: T) -&amp;gt; usize {
+   |                  +++++++
+
+error[E0599]: no method named `as_ref` found for type parameter `T` in the current scope
+  --&amp;gt; exercises&amp;#x2F;conversions&amp;#x2F;as_ref_mut.rs:17:9
+   |
+16 | fn char_counter&amp;lt;T&amp;gt;(arg: T) -&amp;gt; usize {
+   |                 - method `as_ref` not found for this type parameter
+17 |     arg.as_ref().chars().count()
+   |         ^^^^^^ method not found in `T`
+   |
+   = help: items from traits can only be used if the type parameter is bounded by the trait
+help: the following trait defines an item `as_ref`, perhaps you need to restrict type parameter `T` with it:
+   |
+16 | fn char_counter&amp;lt;T: AsRef&amp;gt;(arg: T) -&amp;gt; usize {
+   |                  +++++++
+
+error: aborting due to 3 previous errors
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;The errors encountered during compilation are primarily due to:&lt;&#x2F;p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Missing Trait Bounds&lt;&#x2F;strong&gt;: Functions &lt;code&gt;byte_counter&lt;&#x2F;code&gt; and &lt;code&gt;char_counter&lt;&#x2F;code&gt; are trying to use &lt;code&gt;as_ref()&lt;&#x2F;code&gt; without the type &lt;code&gt;T&lt;&#x2F;code&gt; being bounded by &lt;code&gt;AsRef&amp;lt;str&amp;gt;&lt;&#x2F;code&gt;. This results in the error that the method &lt;code&gt;as_ref&lt;&#x2F;code&gt; is not found for the generic type &lt;code&gt;T&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Incomplete Implementation&lt;&#x2F;strong&gt;: The &lt;code&gt;num_sq&lt;&#x2F;code&gt; function has an incomplete implementation, indicated by the placeholder &lt;code&gt;???&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;h2 id=&quot;as-ref-mut-rs-solution&quot;&gt;As_ref_mut.rs Solution&lt;&#x2F;h2&gt;
+&lt;p&gt;Here&#x27;s how to implement the &lt;code&gt;AsRef&lt;&#x2F;code&gt; and &lt;code&gt;AsMut&lt;&#x2F;code&gt; traits in this Rust exercise:&lt;&#x2F;p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;&lt;code&gt;byte_counter&lt;&#x2F;code&gt; and &lt;code&gt;char_counter&lt;&#x2F;code&gt; Functions&lt;&#x2F;strong&gt;:
+&lt;ul&gt;
+&lt;li&gt;These functions are designed to work with any type &lt;code&gt;T&lt;&#x2F;code&gt; that can be referenced as a string slice (&lt;code&gt;&amp;amp;str&lt;&#x2F;code&gt;).&lt;&#x2F;li&gt;
+&lt;li&gt;By specifying &lt;code&gt;T: AsRef&amp;lt;str&amp;gt;&lt;&#x2F;code&gt; as the trait bound, you&#x27;re indicating that these functions can accept any type &lt;code&gt;T&lt;&#x2F;code&gt; that implements the &lt;code&gt;AsRef&amp;lt;str&amp;gt;&lt;&#x2F;code&gt; trait.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;code&gt;arg.as_ref()&lt;&#x2F;code&gt; converts &lt;code&gt;arg&lt;&#x2F;code&gt; into a string slice, on which you can then call &lt;code&gt;.as_bytes()&lt;&#x2F;code&gt; or &lt;code&gt;.chars()&lt;&#x2F;code&gt; to get the length in bytes or characters, respectively.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;code&gt;num_sq&lt;&#x2F;code&gt; Function&lt;&#x2F;strong&gt;:
+&lt;ul&gt;
+&lt;li&gt;This function is supposed to mutate a numeric value.&lt;&#x2F;li&gt;
+&lt;li&gt;By using &lt;code&gt;T: AsMut&amp;lt;u32&amp;gt;&lt;&#x2F;code&gt;, you&#x27;re specifying that it accepts a mutable reference to any type &lt;code&gt;T&lt;&#x2F;code&gt; that can be mutated into a &lt;code&gt;u32&lt;&#x2F;code&gt;.&lt;&#x2F;li&gt;
+&lt;li&gt;Inside the function, &lt;code&gt;*arg.as_mut()&lt;&#x2F;code&gt; gives you a mutable reference to the inner &lt;code&gt;u32&lt;&#x2F;code&gt;, which you then square.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;use std::convert::AsRef;
+use std::convert::AsMut;
+
+fn byte_counter&amp;lt;T: AsRef&amp;lt;str&amp;gt;&amp;gt;(arg: T) -&amp;gt; usize {
+    arg.as_ref().as_bytes().len()
+}
+
+fn char_counter&amp;lt;T: AsRef&amp;lt;str&amp;gt;&amp;gt;(arg: T) -&amp;gt; usize {
+    arg.as_ref().chars().count()
+}
+
+fn num_sq&amp;lt;T: AsMut&amp;lt;u32&amp;gt;&amp;gt;(arg: &amp;amp;mut T) {
+    let value = arg.as_mut();
+    *value *= *value;
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;And with that we are done we are compiling!&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;conclusion&quot;&gt;Conclusion&lt;&#x2F;h2&gt;
+&lt;p&gt;In conclusion, Rust&#x27;s comprehensive type conversion system, including &lt;code&gt;as&lt;&#x2F;code&gt;, &lt;code&gt;From&lt;&#x2F;code&gt;&#x2F;&lt;code&gt;Into&lt;&#x2F;code&gt;, &lt;code&gt;TryFrom&lt;&#x2F;code&gt;&#x2F;&lt;code&gt;TryInto&lt;&#x2F;code&gt;, &lt;code&gt;FromStr&lt;&#x2F;code&gt;, &lt;code&gt;AsRef&lt;&#x2F;code&gt;, and &lt;code&gt;AsMut&lt;&#x2F;code&gt;, provides programmers with a versatile toolkit to handle various scenarios of type conversions safely and efficiently.&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;&lt;code&gt;as&lt;&#x2F;code&gt; Operator&lt;&#x2F;strong&gt;: Essential for basic type casting, especially when dealing with primitive data types. It&#x27;s a straightforward way to convert between compatible types, ensuring that the programmer explicitly acknowledges and handles the conversion.&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;&lt;code&gt;From&lt;&#x2F;code&gt;&#x2F;&lt;code&gt;Into&lt;&#x2F;code&gt; Traits&lt;&#x2F;strong&gt;: These traits offer a more Rust-idiomatic way of handling infallible conversions between types. They simplify code and reduce boilerplate, making conversions more readable and intuitive.&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;&lt;code&gt;TryFrom&lt;&#x2F;code&gt;&#x2F;&lt;code&gt;TryInto&lt;&#x2F;code&gt; Traits&lt;&#x2F;strong&gt;: They extend the capabilities of &lt;code&gt;From&lt;&#x2F;code&gt;&#x2F;&lt;code&gt;Into&lt;&#x2F;code&gt; to include fallible conversions, where there&#x27;s a possibility of failure. This is particularly important in Rust, which emphasizes safety and error handling.&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;&lt;code&gt;FromStr&lt;&#x2F;code&gt; Trait&lt;&#x2F;strong&gt;: Tailored for parsing strings into other types, &lt;code&gt;FromStr&lt;&#x2F;code&gt; is crucial in scenarios where data comes as strings (like user input or file reading) and needs to be converted to more specific types.&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;&lt;code&gt;AsRef&lt;&#x2F;code&gt; and &lt;code&gt;AsMut&lt;&#x2F;code&gt; Traits&lt;&#x2F;strong&gt;: They facilitate cheap, non-owning conversions to references, allowing functions to accept a wide variety of arguments without sacrificing performance or flexibility. This is particularly useful in generic programming.&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;Together, these mechanisms contribute to Rust&#x27;s robust type system, ensuring that type conversions are handled explicitly and safely, reducing the risk of errors and increasing the overall reliability of the code. By understanding and utilizing these tools effectively, you can write Rust code that is both efficient and elegant.&lt;&#x2F;p&gt;
+&lt;p&gt;And with that we are DONE! I hope you&#x27;ve enjoyed going through these exercises with me.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;🎉 All exercises completed! 🎉
+
++----------------------------------------------------+
+|          You made it to the Fe-nish line!          |
++--------------------------  ------------------------+
+                          \\&amp;#x2F;
+     ▒▒          ▒▒▒▒▒▒▒▒      ▒▒▒▒▒▒▒▒          ▒▒
+   ▒▒▒▒  ▒▒    ▒▒        ▒▒  ▒▒        ▒▒    ▒▒  ▒▒▒▒
+   ▒▒▒▒  ▒▒  ▒▒            ▒▒            ▒▒  ▒▒  ▒▒▒▒
+ ░░▒▒▒▒░░▒▒  ▒▒            ▒▒            ▒▒  ▒▒░░▒▒▒▒
+   ▓▓▓▓▓▓▓▓  ▓▓      ▓▓██  ▓▓  ▓▓██      ▓▓  ▓▓▓▓▓▓▓▓
+     ▒▒▒▒    ▒▒      ████  ▒▒  ████      ▒▒░░  ▒▒▒▒
+       ▒▒  ▒▒▒▒▒▒        ▒▒▒▒▒▒        ▒▒▒▒▒▒  ▒▒
+         ▒▒▒▒▒▒▒▒▒▒▓▓▓▓▓▓▒▒▒▒▒▒▒▒▓▓▒▒▓▓▒▒▒▒▒▒▒▒
+           ▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒
+             ▒▒▒▒▒▒▒▒▒▒██▒▒▒▒▒▒██▒▒▒▒▒▒▒▒▒▒
+           ▒▒  ▒▒▒▒▒▒▒▒▒▒██████▒▒▒▒▒▒▒▒▒▒  ▒▒
+         ▒▒    ▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒    ▒▒
+       ▒▒    ▒▒    ▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒    ▒▒    ▒▒
+       ▒▒  ▒▒    ▒▒                  ▒▒    ▒▒  ▒▒
+           ▒▒  ▒▒                      ▒▒  ▒▒
+
+We hope you enjoyed learning about the various aspects of Rust!
+If you noticed any issues, please don&amp;#x27;t hesitate to report them to our repo.
+You can also contribute your own exercises to help the greater community!
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
 </description>
       </item>
       <item>
