@@ -14,7 +14,134 @@
           <author>Unknown</author>
           <link>https://desmodrone.github.io/posts/01-leetcode-two-sum/</link>
           <guid>https://desmodrone.github.io/posts/01-leetcode-two-sum/</guid>
-          <description xml:base="https://desmodrone.github.io/posts/01-leetcode-two-sum/"></description>
+          <description xml:base="https://desmodrone.github.io/posts/01-leetcode-two-sum/">&lt;h1 id=&quot;1-two-sum&quot;&gt;1. Two Sum&lt;&#x2F;h1&gt;
+&lt;h2 id=&quot;description-on-leetcode&quot;&gt;&lt;a href=&quot;https:&#x2F;&#x2F;leetcode.com&#x2F;problems&#x2F;two-sum&#x2F;description&#x2F;&quot;&gt;Description on LeetCode&lt;&#x2F;a&gt;&lt;&#x2F;h2&gt;
+&lt;p&gt;Given an array of integers &lt;code&gt;nums&lt;&#x2F;code&gt; and an integer &lt;code&gt;target&lt;&#x2F;code&gt;, return &lt;em&gt;indices of the two numbers such that they add up to &lt;code&gt;target&lt;&#x2F;code&gt;&lt;&#x2F;em&gt;.
+You may assume that each input would have &lt;strong&gt;&lt;em&gt;exactly&lt;&#x2F;em&gt; one solution&lt;&#x2F;strong&gt;, and you may not use the &lt;em&gt;same&lt;&#x2F;em&gt; element twice.&lt;&#x2F;p&gt;
+&lt;p&gt;You can return the answer in any order.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;strong&gt;Example 1:&lt;&#x2F;strong&gt;&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;Input: nums = [2,7,11,15], target = 9
+Output: [0,1]
+Explanation: Because nums[0] + nums[1] == 9, we return [0, 1]
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;&lt;strong&gt;Example 2:&lt;&#x2F;strong&gt;&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;Input: nums = [3,2,4], target = 6
+Output: [1,2]
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;&lt;strong&gt;Example 3:&lt;&#x2F;strong&gt;&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;Input: nums = [3,3], target = 6
+Output: [0,1]`
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;&lt;strong&gt;Constraints:&lt;&#x2F;strong&gt;&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;2 &amp;lt;= nums.length &amp;lt;= 104&lt;&#x2F;code&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;code&gt;-109 &amp;lt;= nums[i] &amp;lt;= 109&lt;&#x2F;code&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;code&gt;-109 &amp;lt;= target &amp;lt;= 109&lt;&#x2F;code&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Only one valid answer exists.&lt;&#x2F;strong&gt;&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;&lt;strong&gt;Follow-up:&lt;&#x2F;strong&gt; Can you come up with an algorithm that is less than &lt;code&gt;O(n2)&lt;&#x2F;code&gt; time complexity?&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;breakdown&quot;&gt;Breakdown&lt;&#x2F;h2&gt;
+&lt;p&gt;Although this problem is not overly complex, breaking it down can provide further insight. Essentially we have  to find two numbers in an array that add up to a given target value. Our task is to return the indices of these two numbers. If no such pair exists in our array, we return an empty array (or Vector in Rust)&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;approach&quot;&gt;Approach&lt;&#x2F;h2&gt;
+&lt;p&gt;We&#x27;ll try two different approaches for this exercise a &lt;em&gt;brute force&lt;&#x2F;em&gt; and a &lt;em&gt;hashmap&lt;&#x2F;em&gt;&lt;&#x2F;p&gt;
+&lt;ol&gt;
+&lt;li&gt;The brute force version uses nested loops to iterate through the pair of elements. Although it&#x27;s a simple and straightforward approach it&#x27;s not the most efficient.&lt;&#x2F;li&gt;
+&lt;li&gt;The HashMap version is more efficient as we only need to iterate through the array once, and check if the target minus the current element is in the array.&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;h2 id=&quot;code&quot;&gt;Code&lt;&#x2F;h2&gt;
+&lt;h3 id=&quot;brute-force-approach&quot;&gt;Brute Force Approach&lt;&#x2F;h3&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;&amp;#x2F;&amp;#x2F; Function to find two numbers in the array that add up to the target
+fn two_sum(nums: Vec&amp;lt;i32&amp;gt;, target: i32) -&amp;gt; Vec&amp;lt;i32&amp;gt; {
+    &amp;#x2F;&amp;#x2F; Iterate over each element in the array with its index
+    for (i, num1) in nums.iter().enumerate() {
+        &amp;#x2F;&amp;#x2F; Iterate over the rest of the array starting from the next element
+        for (j, num2) in nums.iter().skip(i + 1).enumerate() {
+            &amp;#x2F;&amp;#x2F; Check if the sum of the current pair equals the target
+            if num1 + num2 == target {
+                &amp;#x2F;&amp;#x2F; If a pair is found, return their indices
+                return vec![i as i32, (j + i + 1) as i32];
+            }
+        }
+    }
+    &amp;#x2F;&amp;#x2F; Return an empty array if no pair is found
+    vec![]
+}
+
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h3 id=&quot;hashmap-approach&quot;&gt;HashMap Approach&lt;&#x2F;h3&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;use std::collections::HashMap; &amp;#x2F;&amp;#x2F; Import the HashMap from the standard library
+
+&amp;#x2F;&amp;#x2F; Function to find two numbers in the array that add up to the target
+fn two_sum(nums: Vec&amp;lt;i32&amp;gt;, target: i32) -&amp;gt; Vec&amp;lt;i32&amp;gt; {
+    let mut hm = HashMap::new(); &amp;#x2F;&amp;#x2F; Create a new, empty HashMap
+
+    &amp;#x2F;&amp;#x2F; Iterate over each element in the array with its index
+    for (i, num) in nums.iter().enumerate() {
+        let complement = target - num; &amp;#x2F;&amp;#x2F; Calculate the complement of the current number
+
+        &amp;#x2F;&amp;#x2F; Check if the complement is already in the HashMap
+        if let Some(&amp;amp;index) = hm.get(&amp;amp;complement){
+            &amp;#x2F;&amp;#x2F; If found, return the indices of the complement and the current number
+            return vec![index as i32, i as i32];
+        }
+        &amp;#x2F;&amp;#x2F; Insert the current number and its index into the HashMap
+        hm.insert(*num, i);
+    }
+    &amp;#x2F;&amp;#x2F; Return an empty array if no pair is found
+    vec![]
+}
+
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h2 id=&quot;explanation&quot;&gt;Explanation&lt;&#x2F;h2&gt;
+&lt;p&gt;The &lt;strong&gt;Brute Force Approach&lt;&#x2F;strong&gt; iteratively checks each pair of numbers in the array to see if they sum up to the target. This is done by using two nested loops: the outer loop iterates through each element, and the inner loop checks all subsequent elements to find a pair that adds up to the target.&lt;&#x2F;p&gt;
+&lt;p&gt;The &lt;strong&gt;HashMap Approach&lt;&#x2F;strong&gt; is more efficient. It iterates through the array once, using a HashMap to store elements already traversed. For each element, we calculate its complement (target - current element) and check if this complement is already in the HashMap. If it is, we found a pair; if not, we add the current element to the HashMap. This approach significantly reduces the time complexity as it avoids the need for nested iteration.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;complexity-analysis&quot;&gt;Complexity Analysis&lt;&#x2F;h2&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Brute Force Approach&lt;&#x2F;strong&gt;:
+&lt;ul&gt;
+&lt;li&gt;Time Complexity: O(n^2) where n is the number of elements in the array. This is because we need to check each pair of elements.&lt;&#x2F;li&gt;
+&lt;li&gt;Space Complexity: O(1), as it only uses a few extra variables for iteration and no additional data structures.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;HashMap Approach&lt;&#x2F;strong&gt;:
+&lt;ul&gt;
+&lt;li&gt;Time Complexity: O(n), as we traverse the list containing n elements only once. Each look up in the table costs only O(1) time.&lt;&#x2F;li&gt;
+&lt;li&gt;Space Complexity: O(n), to store the elements and their indices in the HashMap.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;h2 id=&quot;additional-information&quot;&gt;Additional Information&lt;&#x2F;h2&gt;
+&lt;p&gt;When implementing solutions like the HashMap approach, it&#x27;s crucial to consider possible edge cases, such as duplicate elements in the array, and ensure your implementation correctly handles these cases. We can dive deeper into some examples in other problems, for now it&#x27;s good to just think about the potiental of these cases.&lt;&#x2F;p&gt;
+&lt;h4 id=&quot;follow-up-question&quot;&gt;Follow-up Question&lt;&#x2F;h4&gt;
+&lt;p&gt;The follow up question challenged us to come up with a better solution &lt;em&gt;Can you come up with an algorithm that is less than &lt;code&gt;O(n2)&lt;&#x2F;code&gt; time complexity?&lt;&#x2F;em&gt;
+and we did so with the &lt;em&gt;HashMap&lt;&#x2F;em&gt; solution so let&#x27;s dive down a little bit more as to why it&#x27;s better and how it does it.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;hashmap-approach-details&quot;&gt;HashMap Approach Details&lt;&#x2F;h3&gt;
+&lt;p&gt;&lt;strong&gt;Initialize a HashMap&lt;&#x2F;strong&gt;: This map will store elements from the array as keys and their indices as values.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;strong&gt;Iterate through the Array&lt;&#x2F;strong&gt;:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;For each element, calculate its complement by subtracting it from the target (i.e., &lt;code&gt;complement = target - num&lt;&#x2F;code&gt;).&lt;&#x2F;li&gt;
+&lt;li&gt;Check if the complement is already in the HashMap.
+&lt;ul&gt;
+&lt;li&gt;If it is, it means we have found a pair of numbers that add up to the target. Return their indices.&lt;&#x2F;li&gt;
+&lt;li&gt;If not, add the current element and its index to the HashMap.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;&lt;strong&gt;Return&lt;&#x2F;strong&gt;: If no pair is found by the end of the iteration, return an indication that no solution exists (e.g., an empty array).&lt;&#x2F;p&gt;
+&lt;h4 id=&quot;time-complexity&quot;&gt;Time Complexity:&lt;&#x2F;h4&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;HashMap Lookups&lt;&#x2F;strong&gt;: The time complexity of looking up keys in a HashMap is ( O(1) ) on average.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Single Iteration&lt;&#x2F;strong&gt;: The algorithm iterates through the array only once.&lt;&#x2F;li&gt;
+&lt;li&gt;Therefore, the overall time complexity is ( O(n) ), where ( n ) is the number of elements in the array.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h4 id=&quot;space-complexity&quot;&gt;Space Complexity:&lt;&#x2F;h4&gt;
+&lt;ul&gt;
+&lt;li&gt;The space complexity is ( O(n) ), as in the worst case, we might need to add every element to the HashMap.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;This HashMap approach is significantly more efficient than a brute-force method with nested loops, which has a time complexity of ( O(n^2) ). By utilizing a HashMap to store and quickly look up complements, we reduce the problem to a single pass through the array, achieving the desired time complexity of less than ( O(n^2) ).&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;conclusion&quot;&gt;Conclusion&lt;&#x2F;h2&gt;
+&lt;p&gt;In solving the &amp;quot;Two Sum&amp;quot; problem, we explored both a brute force and a HashMap approach, illustrating the trade-offs between time and space complexity. While the brute force method is straightforward, the HashMap approach offers a more efficient solution, highlighting the importance of understanding data structures and algorithms in problem-solving. Practicing such problems enhances not only coding skills but also analytical thinking, which is vital in tackling real-world challenges.&lt;&#x2F;p&gt;
+</description>
       </item>
       <item>
           <title>Hello LeetCode</title>
