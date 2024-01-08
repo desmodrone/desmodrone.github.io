@@ -7,14 +7,36 @@
       <generator>Zola</generator>
       <language>en</language>
       <atom:link href="https://desmodrone.github.io/rss.xml" rel="self" type="application/rss+xml"/>
-      <lastBuildDate>Wed, 13 Dec 2023 00:00:00 +0000</lastBuildDate>
+      <lastBuildDate>Sun, 07 Jan 2024 00:00:00 +0000</lastBuildDate>
+      <item>
+          <title>Hello LeetCode</title>
+          <pubDate>Sun, 07 Jan 2024 00:00:00 +0000</pubDate>
+          <author>Unknown</author>
+          <link>https://desmodrone.github.io/posts/00-hello-leetcode/</link>
+          <guid>https://desmodrone.github.io/posts/00-hello-leetcode/</guid>
+          <description xml:base="https://desmodrone.github.io/posts/00-hello-leetcode/">&lt;p&gt;Happy New Year!🥳&lt;&#x2F;p&gt;
+&lt;p&gt;I&#x27;ve been writing about my journey with the &lt;a href=&quot;https:&#x2F;&#x2F;desmodrone.github.io&#x2F;posts&#x2F;hello-rustlings&#x2F;&quot;&gt;Rustlings exercises&lt;&#x2F;a&gt; for some time now, and these exercises are excellent for mastering the fundamentals of Rust.&lt;&#x2F;p&gt;
+&lt;p&gt;If you&#x27;re not familiar with the &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;rust-lang&#x2F;rustlings&#x2F;&quot;&gt;Rustlings project&lt;&#x2F;a&gt;, it&#x27;s a fantastic starting point for learning Rust. It&#x27;s interactive and quickly gets you familiar with Rust&#x27;s syntax and compiler errors. Each section also includes a README that directs you to further reading on each problem you encounter.&lt;&#x2F;p&gt;
+&lt;p&gt;Having completed these exercises, I thought it would be interesting to elevate my learning by tackling LeetCode problems in Rust. I recognize that there are many solutions out there; some offer great explanations, while others do not. I also understand that there are many ways to solve these problems, so my goal is to approach each problem with both a simpler, more &amp;quot;imperative&amp;quot; style, and a more &amp;quot;functional&amp;quot; or idiomatic Rust solution.&lt;&#x2F;p&gt;
+&lt;p&gt;As always, here&#x27;s my disclaimer: I&#x27;m not an expert, but I am continuing my journey of learning. I mostly do this for my own development, but if it helps others, that&#x27;s even better. I welcome your feedback and suggestions for improvement.&lt;&#x2F;p&gt;
+&lt;p&gt;Let&#x27;s start with the most basic, or at least the first question numerically on LeetCode, the literal first problem: &lt;strong&gt;1. Two Sum&lt;&#x2F;strong&gt;.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;leetcode-problem-index&quot;&gt;LeetCode Problem Index&lt;&#x2F;h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;ol&gt;
+&lt;li&gt;Two Sum&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+</description>
+      </item>
       <item>
           <title>26 Rustlings Conversions</title>
           <pubDate>Wed, 13 Dec 2023 00:00:00 +0000</pubDate>
           <author>Unknown</author>
           <link>https://desmodrone.github.io/posts/26-rustlings-conversions/</link>
           <guid>https://desmodrone.github.io/posts/26-rustlings-conversions/</guid>
-          <description>&lt;h1 id=&quot;type-conversions&quot;&gt;Type conversions&lt;&#x2F;h1&gt;
+          <description xml:base="https://desmodrone.github.io/posts/26-rustlings-conversions/">&lt;h1 id=&quot;type-conversions&quot;&gt;Type conversions&lt;&#x2F;h1&gt;
 &lt;p&gt;Rust offers a multitude of ways to convert a value of a given type into another type.&lt;&#x2F;p&gt;
 &lt;p&gt;The simplest form of type conversion is a type cast expression. It is denoted with the binary operator &lt;code&gt;as&lt;&#x2F;code&gt;. For instance, &lt;code&gt;println!(&amp;quot;{}&amp;quot;, 1 + 1.0);&lt;&#x2F;code&gt; would not compile, since &lt;code&gt;1&lt;&#x2F;code&gt; is an integer while &lt;code&gt;1.0&lt;&#x2F;code&gt; is a float. However, &lt;code&gt;println!(&amp;quot;{}&amp;quot;, 1 as f32 + 1.0)&lt;&#x2F;code&gt; should compile. The exercise &lt;a href=&quot;https:&#x2F;&#x2F;desmodrone.github.io&#x2F;posts&#x2F;26-rustlings-conversions&#x2F;using_as.rs&quot;&gt;&lt;code&gt;using_as&lt;&#x2F;code&gt;&lt;&#x2F;a&gt; tries to cover this.&lt;&#x2F;p&gt;
 &lt;p&gt;Rust also offers traits that facilitate type conversions upon implementation. These traits can be found under the &lt;a href=&quot;https:&#x2F;&#x2F;doc.rust-lang.org&#x2F;std&#x2F;convert&#x2F;index.html&quot;&gt;&lt;code&gt;convert&lt;&#x2F;code&gt;&lt;&#x2F;a&gt; module.
@@ -1054,7 +1076,7 @@ You can also contribute your own exercises to help the greater community!
           <author>Unknown</author>
           <link>https://desmodrone.github.io/posts/25-rustlings-clippy/</link>
           <guid>https://desmodrone.github.io/posts/25-rustlings-clippy/</guid>
-          <description>&lt;p&gt;The Clippy tool is a collection of lints to analyze your code so you can catch common mistakes and improve your Rust code.&lt;&#x2F;p&gt;
+          <description xml:base="https://desmodrone.github.io/posts/25-rustlings-clippy/">&lt;p&gt;The Clippy tool is a collection of lints to analyze your code so you can catch common mistakes and improve your Rust code.&lt;&#x2F;p&gt;
 &lt;p&gt;If you used the installation script for Rustlings, Clippy should be already installed.
 If not you can install it manually via &lt;code&gt;rustup component add clippy&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
 &lt;h2 id=&quot;further-information&quot;&gt;Further information&lt;&#x2F;h2&gt;
@@ -1437,7 +1459,7 @@ fn main() {
           <author>Unknown</author>
           <link>https://desmodrone.github.io/posts/24-rustlings-macros/</link>
           <guid>https://desmodrone.github.io/posts/24-rustlings-macros/</guid>
-          <description>&lt;p&gt;Rust&#x27;s macro system is very powerful, but also kind of difficult to wrap your
+          <description xml:base="https://desmodrone.github.io/posts/24-rustlings-macros/">&lt;p&gt;Rust&#x27;s macro system is very powerful, but also kind of difficult to wrap your
 head around. We&#x27;re not going to teach you how to write your own fully-featured
 macros. Instead, we&#x27;ll show you how to use and create them.&lt;&#x2F;p&gt;
 &lt;p&gt;If you&#x27;d like to learn more about writing your own macros, the
@@ -1680,7 +1702,7 @@ Look at this other macro: 7777
           <author>Unknown</author>
           <link>https://desmodrone.github.io/posts/23-rustlings-smart-pointers/</link>
           <guid>https://desmodrone.github.io/posts/23-rustlings-smart-pointers/</guid>
-          <description>&lt;p&gt;In Rust, smart pointers are variables that contain an address in memory and reference some other data, but they also have additional metadata and capabilities.
+          <description xml:base="https://desmodrone.github.io/posts/23-rustlings-smart-pointers/">&lt;p&gt;In Rust, smart pointers are variables that contain an address in memory and reference some other data, but they also have additional metadata and capabilities.
 Smart pointers in Rust often own the data they point to, while references only borrow data.&lt;&#x2F;p&gt;
 &lt;h2 id=&quot;further-information&quot;&gt;Further Information&lt;&#x2F;h2&gt;
 &lt;ul&gt;
@@ -2422,7 +2444,7 @@ fn reference_no_mutation() -&amp;gt; Result&amp;lt;(), &amp;amp;&amp;#x27;static
           <author>Unknown</author>
           <link>https://desmodrone.github.io/posts/22-rustlings-threads/</link>
           <guid>https://desmodrone.github.io/posts/22-rustlings-threads/</guid>
-          <description>&lt;p&gt;In most current operating systems, an executed program’s code is run in a process, and the operating system manages multiple processes at once.
+          <description xml:base="https://desmodrone.github.io/posts/22-rustlings-threads/">&lt;p&gt;In most current operating systems, an executed program’s code is run in a process, and the operating system manages multiple processes at once.
 Within your program, you can also have independent parts that run simultaneously. The features that run these independent parts are called threads.&lt;&#x2F;p&gt;
 &lt;h2 id=&quot;further-information&quot;&gt;Further information&lt;&#x2F;h2&gt;
 &lt;ul&gt;
@@ -2892,7 +2914,7 @@ total numbers received: 10
           <author>Unknown</author>
           <link>https://desmodrone.github.io/posts/21-rustlings-iterators/</link>
           <guid>https://desmodrone.github.io/posts/21-rustlings-iterators/</guid>
-          <description>&lt;h1 id=&quot;iterators&quot;&gt;Iterators&lt;&#x2F;h1&gt;
+          <description xml:base="https://desmodrone.github.io/posts/21-rustlings-iterators/">&lt;h1 id=&quot;iterators&quot;&gt;Iterators&lt;&#x2F;h1&gt;
 &lt;p&gt;Rust&#x27;s journey towards becoming one of the most loved programming languages isn&#x27;t just by accident. At the heart of its rapidly growing ecosystem are several features that make it both powerful and unique. Among these, iterators stand out as a foundational concept, bridging the gap between functionality and performance. In this section, we&#x27;ll look into the world of iterators in Rust, unraveling their elegance and efficiency. By understanding and mastering iterators, you&#x27;ll unlock a significant aspect of Rust&#x27;s capabilities, enabling you to write code that&#x27;s both expressive and performant.&lt;&#x2F;p&gt;
 &lt;h2 id=&quot;further-information&quot;&gt;Further information&lt;&#x2F;h2&gt;
 &lt;ul&gt;
@@ -3625,7 +3647,7 @@ fn count_collection_iterator(collection: &amp;amp;[HashMap&amp;lt;String, Progre
           <author>Unknown</author>
           <link>https://desmodrone.github.io/posts/20-rustlings-lifetimes/</link>
           <guid>https://desmodrone.github.io/posts/20-rustlings-lifetimes/</guid>
-          <description>&lt;h1 id=&quot;lifetimes&quot;&gt;Lifetimes&lt;&#x2F;h1&gt;
+          <description xml:base="https://desmodrone.github.io/posts/20-rustlings-lifetimes/">&lt;h1 id=&quot;lifetimes&quot;&gt;Lifetimes&lt;&#x2F;h1&gt;
 &lt;h4 id=&quot;readme&quot;&gt;ReadMe&lt;&#x2F;h4&gt;
 &lt;p&gt;Lifetimes tell the compiler how to check whether references live long
 enough to be valid in any given situation. For example lifetimes say
@@ -3904,7 +3926,7 @@ Fish Flying by Jill Smith
           <author>Unknown</author>
           <link>https://desmodrone.github.io/posts/19-rustlings-tests/</link>
           <guid>https://desmodrone.github.io/posts/19-rustlings-tests/</guid>
-          <description>&lt;p&gt;We&#x27;re going out of order from the book to cover tests -- many of the following exercises will ask you to make tests pass!&lt;&#x2F;p&gt;
+          <description xml:base="https://desmodrone.github.io/posts/19-rustlings-tests/">&lt;p&gt;We&#x27;re going out of order from the book to cover tests -- many of the following exercises will ask you to make tests pass!&lt;&#x2F;p&gt;
 &lt;h2 id=&quot;further-information&quot;&gt;Further information&lt;&#x2F;h2&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;doc.rust-lang.org&#x2F;book&#x2F;ch11-01-writing-tests.html&quot;&gt;Writing Tests&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
@@ -4152,7 +4174,7 @@ test tests::is_true_when_even ... ok
           <author>Unknown</author>
           <link>https://desmodrone.github.io/posts/18-rustlings-quiz3/</link>
           <guid>https://desmodrone.github.io/posts/18-rustlings-quiz3/</guid>
-          <description>&lt;h2 id=&quot;quiz3-rs&quot;&gt;Quiz3.rs&lt;&#x2F;h2&gt;
+          <description xml:base="https://desmodrone.github.io/posts/18-rustlings-quiz3/">&lt;h2 id=&quot;quiz3-rs&quot;&gt;Quiz3.rs&lt;&#x2F;h2&gt;
 &lt;p&gt;It&#x27;s time to revisit what we&#x27;ve learned so far. In this case, we&#x27;re focusing on generics and traits in Rust. Let&#x27;s dive into the exercise.&lt;&#x2F;p&gt;
 &lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;&amp;#x2F;&amp;#x2F; quiz3.rs
 &amp;#x2F;&amp;#x2F; This quiz tests:
@@ -4431,7 +4453,7 @@ fn main() {
           <author>Unknown</author>
           <link>https://desmodrone.github.io/posts/17-rustlings-traits/</link>
           <guid>https://desmodrone.github.io/posts/17-rustlings-traits/</guid>
-          <description>&lt;h1 id=&quot;traits&quot;&gt;Traits&lt;&#x2F;h1&gt;
+          <description xml:base="https://desmodrone.github.io/posts/17-rustlings-traits/">&lt;h1 id=&quot;traits&quot;&gt;Traits&lt;&#x2F;h1&gt;
 &lt;h3 id=&quot;from-the-readme&quot;&gt;From the README&lt;&#x2F;h3&gt;
 &lt;p&gt;A trait is a collection of methods.&lt;&#x2F;p&gt;
 &lt;p&gt;Data types can implement traits. To do so, the methods making up the trait are defined for the data type. For example, the &lt;code&gt;String&lt;&#x2F;code&gt; data type implements the &lt;code&gt;From&amp;lt;&amp;amp;str&amp;gt;&lt;&#x2F;code&gt; trait. Will allow a user to write the following:&lt;&#x2F;p&gt;
@@ -5024,7 +5046,7 @@ error: aborting due to 3 previous errors
           <author>Unknown</author>
           <link>https://desmodrone.github.io/posts/16-rustlings-generics/</link>
           <guid>https://desmodrone.github.io/posts/16-rustlings-generics/</guid>
-          <description>&lt;h1 id=&quot;generics&quot;&gt;Generics&lt;&#x2F;h1&gt;
+          <description xml:base="https://desmodrone.github.io/posts/16-rustlings-generics/">&lt;h1 id=&quot;generics&quot;&gt;Generics&lt;&#x2F;h1&gt;
 &lt;h3 id=&quot;from-the-readme&quot;&gt;From the README&lt;&#x2F;h3&gt;
 &lt;p&gt;Generics is the topic of generalizing types and functionalities to broader cases.
 This is extremely useful for reducing code duplication in many ways, but can call for rather involving syntax.
@@ -5170,7 +5192,7 @@ struct Wrapper&amp;lt;T&amp;gt; {
           <author>Unknown</author>
           <link>https://desmodrone.github.io/posts/15-rustlings-errors2/</link>
           <guid>https://desmodrone.github.io/posts/15-rustlings-errors2/</guid>
-          <description>&lt;h1 id=&quot;error-handling-part-2&quot;&gt;Error Handling Part 2&lt;&#x2F;h1&gt;
+          <description xml:base="https://desmodrone.github.io/posts/15-rustlings-errors2/">&lt;h1 id=&quot;error-handling-part-2&quot;&gt;Error Handling Part 2&lt;&#x2F;h1&gt;
 &lt;p&gt;We&#x27;re back with the 2nd part of our Error handling post we&#x27;ll cover exercises 3-6. If you haven&#x27;t read &lt;a href=&quot;https:&#x2F;&#x2F;desmodrone.github.io&#x2F;posts&#x2F;15-rustlings-errors1&#x2F;&quot;&gt;Error Handling Part 1&lt;&#x2F;a&gt; it&#x27;s a good idea to go through that first before moving on to these.&lt;&#x2F;p&gt;
 &lt;h3 id=&quot;this-is-from-the-rustlings-readme&quot;&gt;This is from the Rustlings README:&lt;&#x2F;h3&gt;
 &lt;p&gt;Most errors aren’t serious enough to require the program to stop entirely.
@@ -5686,7 +5708,7 @@ impl ParsePosNonzeroError {
           <author>Unknown</author>
           <link>https://desmodrone.github.io/posts/15-rustlings-errors1/</link>
           <guid>https://desmodrone.github.io/posts/15-rustlings-errors1/</guid>
-          <description>&lt;h1 id=&quot;error-handling-part-1&quot;&gt;Error Handling Part 1&lt;&#x2F;h1&gt;
+          <description xml:base="https://desmodrone.github.io/posts/15-rustlings-errors1/">&lt;h1 id=&quot;error-handling-part-1&quot;&gt;Error Handling Part 1&lt;&#x2F;h1&gt;
 &lt;p&gt;There&#x27;s 6 exercises so I&#x27;m breaking them up into batches of 3.&lt;&#x2F;p&gt;
 &lt;p&gt;Most errors aren’t serious enough to require the program to stop entirely.
 Sometimes, when a function fails, it’s for a reason that you can easily interpret and respond to.
@@ -6085,7 +6107,7 @@ You now have 59 tokens.
           <author>Unknown</author>
           <link>https://desmodrone.github.io/posts/14-rustlings-options/</link>
           <guid>https://desmodrone.github.io/posts/14-rustlings-options/</guid>
-          <description>&lt;h1 id=&quot;options&quot;&gt;Options&lt;&#x2F;h1&gt;
+          <description xml:base="https://desmodrone.github.io/posts/14-rustlings-options/">&lt;h1 id=&quot;options&quot;&gt;Options&lt;&#x2F;h1&gt;
 &lt;h5 id=&quot;from-the-rustlings-readme&quot;&gt;From the Rustlings README&lt;&#x2F;h5&gt;
 &lt;p&gt;Type Option represents an optional value: every Option is either Some and contains a value, or None, and does not.
 Option types are very common in Rust code, as they have a number of uses:&lt;&#x2F;p&gt;
@@ -6493,7 +6515,7 @@ fn print_coordinates(point: Option&amp;lt;Point&amp;gt;) {
           <author>Unknown</author>
           <link>https://desmodrone.github.io/posts/13-rustlings-quiz2/</link>
           <guid>https://desmodrone.github.io/posts/13-rustlings-quiz2/</guid>
-          <description>&lt;h2 id=&quot;quiz-2&quot;&gt;Quiz 2&lt;&#x2F;h2&gt;
+          <description xml:base="https://desmodrone.github.io/posts/13-rustlings-quiz2/">&lt;h2 id=&quot;quiz-2&quot;&gt;Quiz 2&lt;&#x2F;h2&gt;
 &lt;p&gt;It&#x27;s quiz time again! We&#x27;ve been through a bunch of different exercises and now we&#x27;ll be putting in action what we&#x27;ve learned.&lt;&#x2F;p&gt;
 &lt;h2 id=&quot;quiz2-rs&quot;&gt;quiz2.rs&lt;&#x2F;h2&gt;
 &lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;&amp;#x2F;&amp;#x2F; quiz2.rs
@@ -6740,7 +6762,7 @@ mod tests {
           <author>Unknown</author>
           <link>https://desmodrone.github.io/posts/12-rustlings-hashmaps/</link>
           <guid>https://desmodrone.github.io/posts/12-rustlings-hashmaps/</guid>
-          <description>&lt;h1 id=&quot;hashmaps&quot;&gt;Hashmaps&lt;&#x2F;h1&gt;
+          <description xml:base="https://desmodrone.github.io/posts/12-rustlings-hashmaps/">&lt;h1 id=&quot;hashmaps&quot;&gt;Hashmaps&lt;&#x2F;h1&gt;
 &lt;h5 id=&quot;from-the-rustlings-readme&quot;&gt;From the Rustlings README&lt;&#x2F;h5&gt;
 &lt;p&gt;A &lt;em&gt;hash map&lt;&#x2F;em&gt; allows you to associate a value with a particular key.
 You may also know this by the names &lt;a href=&quot;https:&#x2F;&#x2F;en.cppreference.com&#x2F;w&#x2F;cpp&#x2F;container&#x2F;unordered_map&quot;&gt;&lt;em&gt;unordered map&lt;&#x2F;em&gt; in C++&lt;&#x2F;a&gt;,
@@ -7299,7 +7321,7 @@ This solution combined &lt;code&gt;if let&lt;&#x2F;code&gt; with &lt;code&gt;mat
           <author>Unknown</author>
           <link>https://desmodrone.github.io/posts/11-rustlings-modules/</link>
           <guid>https://desmodrone.github.io/posts/11-rustlings-modules/</guid>
-          <description>&lt;h1 id=&quot;modules&quot;&gt;Modules&lt;&#x2F;h1&gt;
+          <description xml:base="https://desmodrone.github.io/posts/11-rustlings-modules/">&lt;h1 id=&quot;modules&quot;&gt;Modules&lt;&#x2F;h1&gt;
 &lt;p&gt;In this section we&#x27;ll give you an introduction to Rust&#x27;s module system.&lt;&#x2F;p&gt;
 &lt;h2 id=&quot;further-information&quot;&gt;Further information&lt;&#x2F;h2&gt;
 &lt;ul&gt;
@@ -7520,7 +7542,7 @@ fn main() {
           <author>Unknown</author>
           <link>https://desmodrone.github.io/posts/10-rustlings-strings/</link>
           <guid>https://desmodrone.github.io/posts/10-rustlings-strings/</guid>
-          <description>&lt;h3 id=&quot;from-the-readme&quot;&gt;From the ReadMe:&lt;&#x2F;h3&gt;
+          <description xml:base="https://desmodrone.github.io/posts/10-rustlings-strings/">&lt;h3 id=&quot;from-the-readme&quot;&gt;From the ReadMe:&lt;&#x2F;h3&gt;
 &lt;p&gt;Rust has two string types, a string slice (&lt;code&gt;&amp;amp;str&lt;&#x2F;code&gt;) and an owned string (&lt;code&gt;String&lt;&#x2F;code&gt;).
 We&#x27;re not going to dictate when you should use which one, but we&#x27;ll show you how
 to identify and create them, as well as use them.&lt;&#x2F;p&gt;
@@ -7833,7 +7855,7 @@ fn main() {
           <author>Unknown</author>
           <link>https://desmodrone.github.io/posts/09-rustlings-enums/</link>
           <guid>https://desmodrone.github.io/posts/09-rustlings-enums/</guid>
-          <description>&lt;p&gt;Rust allows you to define types called &amp;quot;enums&amp;quot; which enumerate possible values.
+          <description xml:base="https://desmodrone.github.io/posts/09-rustlings-enums/">&lt;p&gt;Rust allows you to define types called &amp;quot;enums&amp;quot; which enumerate possible values.
 Enums are a feature in many languages, but their capabilities differ in each language. Rust’s enums are most similar to algebraic data types in functional languages, such as F#, OCaml, and Haskell.
 Useful in combination with enums is Rust&#x27;s &amp;quot;pattern matching&amp;quot; facility, which makes it easy to run different code for different values of an enumeration.&lt;&#x2F;p&gt;
 &lt;h2 id=&quot;further-information&quot;&gt;Further information&lt;&#x2F;h2&gt;
@@ -8301,7 +8323,7 @@ mod tests {
           <author>Unknown</author>
           <link>https://desmodrone.github.io/posts/08-rustlings-structs/</link>
           <guid>https://desmodrone.github.io/posts/08-rustlings-structs/</guid>
-          <description>&lt;p&gt;From the ReadMe:
+          <description xml:base="https://desmodrone.github.io/posts/08-rustlings-structs/">&lt;p&gt;From the ReadMe:
 Rust has three struct types: a classic C struct, a tuple struct, and a unit struct.&lt;&#x2F;p&gt;
 &lt;h2 id=&quot;further-information&quot;&gt;Further information&lt;&#x2F;h2&gt;
 &lt;ul&gt;
@@ -9043,7 +9065,7 @@ Through this exploration, we gained a better understanding of Rust&#x27;s data s
           <author>Unknown</author>
           <link>https://desmodrone.github.io/posts/07-rustlings-move-semantics2/</link>
           <guid>https://desmodrone.github.io/posts/07-rustlings-move-semantics2/</guid>
-          <description>&lt;p&gt;From the Rustlings ReadMe:
+          <description xml:base="https://desmodrone.github.io/posts/07-rustlings-move-semantics2/">&lt;p&gt;From the Rustlings ReadMe:
 These exercises are adapted from &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;pnkfelix&quot;&gt;pnkfelix&lt;&#x2F;a&gt;&#x27;s &lt;a href=&quot;https:&#x2F;&#x2F;pnkfelix.github.io&#x2F;rust-examples-icfp2014&#x2F;&quot;&gt;Rust Tutorial&lt;&#x2F;a&gt; -- Thank you Felix!!!&lt;&#x2F;p&gt;
 &lt;h2 id=&quot;further-information&quot;&gt;Further information&lt;&#x2F;h2&gt;
 &lt;p&gt;For this section, the book links are especially important.&lt;&#x2F;p&gt;
@@ -9440,7 +9462,7 @@ RUST IS GREAT!
           <author>Unknown</author>
           <link>https://desmodrone.github.io/posts/07-rustlings-move-semantics1/</link>
           <guid>https://desmodrone.github.io/posts/07-rustlings-move-semantics1/</guid>
-          <description>&lt;p&gt;From the Rustlings ReadMe:
+          <description xml:base="https://desmodrone.github.io/posts/07-rustlings-move-semantics1/">&lt;p&gt;From the Rustlings ReadMe:
 These exercises are adapted from &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;pnkfelix&quot;&gt;pnkfelix&lt;&#x2F;a&gt;&#x27;s &lt;a href=&quot;https:&#x2F;&#x2F;pnkfelix.github.io&#x2F;rust-examples-icfp2014&#x2F;&quot;&gt;Rust Tutorial&lt;&#x2F;a&gt; -- Thank you Felix!!!&lt;&#x2F;p&gt;
 &lt;h2 id=&quot;further-information&quot;&gt;Further information&lt;&#x2F;h2&gt;
 &lt;p&gt;For this section, the book links are especially important.&lt;&#x2F;p&gt;
@@ -9828,7 +9850,7 @@ vec1 has length 4 content `[22, 44, 66, 88]`
           <author>Unknown</author>
           <link>https://desmodrone.github.io/posts/06-rustlings-vecs/</link>
           <guid>https://desmodrone.github.io/posts/06-rustlings-vecs/</guid>
-          <description>&lt;h1 id=&quot;vectors&quot;&gt;Vectors&lt;&#x2F;h1&gt;
+          <description xml:base="https://desmodrone.github.io/posts/06-rustlings-vecs/">&lt;h1 id=&quot;vectors&quot;&gt;Vectors&lt;&#x2F;h1&gt;
 &lt;p&gt;Vectors are a widely-used data structure in Rust programming. In many programming languages, they might be referred to as Arrays. However, Rust operates at a lower level, which leads to a distinction between arrays and vectors. In Rust, an array is usually stored on the stack, which means it cannot grow or shrink, and its size must be determined at compile time. On the other hand, a vector is stored in the heap, allowing for greater flexibility as these size restrictions do not apply.&lt;&#x2F;p&gt;
 &lt;p&gt;Let&#x27;s look at these couple of exercises from Rustlings&lt;&#x2F;p&gt;
 &lt;h2 id=&quot;further-information&quot;&gt;Further information&lt;&#x2F;h2&gt;
@@ -10090,7 +10112,7 @@ mod tests {
           <author>Unknown</author>
           <link>https://desmodrone.github.io/posts/05-rustlings-primitive-types/</link>
           <guid>https://desmodrone.github.io/posts/05-rustlings-primitive-types/</guid>
-          <description>&lt;p&gt;Rust has a couple of basic types that are directly implemented into the
+          <description xml:base="https://desmodrone.github.io/posts/05-rustlings-primitive-types/">&lt;p&gt;Rust has a couple of basic types that are directly implemented into the
 compiler. In this section, we&#x27;ll go through the most important ones.&lt;&#x2F;p&gt;
 &lt;h2 id=&quot;further-information&quot;&gt;Further information&lt;&#x2F;h2&gt;
 &lt;p&gt;Additional reading resources can be found here:&lt;&#x2F;p&gt;
@@ -10542,7 +10564,7 @@ test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; 
           <author>Unknown</author>
           <link>https://desmodrone.github.io/posts/04-rustlings-quiz1/</link>
           <guid>https://desmodrone.github.io/posts/04-rustlings-quiz1/</guid>
-          <description>&lt;p&gt;Now we have our first quiz building on what we&#x27;ve learned so far. Here is the code and instructions written in the comments.&lt;&#x2F;p&gt;
+          <description xml:base="https://desmodrone.github.io/posts/04-rustlings-quiz1/">&lt;p&gt;Now we have our first quiz building on what we&#x27;ve learned so far. Here is the code and instructions written in the comments.&lt;&#x2F;p&gt;
 &lt;h2 id=&quot;quiz1-rs&quot;&gt;&lt;code&gt;quiz1.rs&lt;&#x2F;code&gt;&lt;&#x2F;h2&gt;
 &lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;&amp;#x2F;&amp;#x2F; quiz1.rs
 &amp;#x2F;&amp;#x2F; This is a quiz for the following sections:
@@ -10719,7 +10741,7 @@ fn verify_test() {
           <author>Unknown</author>
           <link>https://desmodrone.github.io/posts/03-rustlings-if/</link>
           <guid>https://desmodrone.github.io/posts/03-rustlings-if/</guid>
-          <description>&lt;p&gt;&lt;code&gt;if&lt;&#x2F;code&gt;, is the most basic but still very versatile type of control flow, these next couple of exercises will go through this little word.&lt;&#x2F;p&gt;
+          <description xml:base="https://desmodrone.github.io/posts/03-rustlings-if/">&lt;p&gt;&lt;code&gt;if&lt;&#x2F;code&gt;, is the most basic but still very versatile type of control flow, these next couple of exercises will go through this little word.&lt;&#x2F;p&gt;
 &lt;h2 id=&quot;additional-reading&quot;&gt;Additional Reading&lt;&#x2F;h2&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;doc.rust-lang.org&#x2F;book&#x2F;ch03-05-control-flow.html#if-expressions&quot;&gt;Control Flow - if expressions&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
@@ -10975,7 +10997,7 @@ test result: FAILED. 2 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; 
           <author>Unknown</author>
           <link>https://desmodrone.github.io/posts/02-rustlings-functions/</link>
           <guid>https://desmodrone.github.io/posts/02-rustlings-functions/</guid>
-          <description>&lt;p&gt;With function we can learn to write more complex code and lean on the Rust debug errors for help.&lt;&#x2F;p&gt;
+          <description xml:base="https://desmodrone.github.io/posts/02-rustlings-functions/">&lt;p&gt;With function we can learn to write more complex code and lean on the Rust debug errors for help.&lt;&#x2F;p&gt;
 &lt;h2 id=&quot;further-information&quot;&gt;Further information&lt;&#x2F;h2&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;doc.rust-lang.org&#x2F;book&#x2F;ch03-03-how-functions-work.html&quot;&gt;How Functions Work&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
@@ -11294,7 +11316,7 @@ The square of 3 is 9
           <author>Unknown</author>
           <link>https://desmodrone.github.io/posts/01-rustlings-variables/</link>
           <guid>https://desmodrone.github.io/posts/01-rustlings-variables/</guid>
-          <description>&lt;p&gt;In Rust, variables are immutable by default.
+          <description xml:base="https://desmodrone.github.io/posts/01-rustlings-variables/">&lt;p&gt;In Rust, variables are immutable by default.
 When a variable is immutable, once a value is bound to a name, you can’t change that value.
 You can however, make a variable mutable by adding &lt;code&gt;mut&lt;&#x2F;code&gt; in front of the variable name.&lt;&#x2F;p&gt;
 &lt;h2 id=&quot;further-reading&quot;&gt;Further reading:&lt;&#x2F;h2&gt;
@@ -11384,7 +11406,7 @@ fn main() {
           <author>Unknown</author>
           <link>https://desmodrone.github.io/posts/hello-rustlings/</link>
           <guid>https://desmodrone.github.io/posts/hello-rustlings/</guid>
-          <description>&lt;h2 id=&quot;rustling-s-index&quot;&gt;Rustling&#x27;s Index&lt;&#x2F;h2&gt;
+          <description xml:base="https://desmodrone.github.io/posts/hello-rustlings/">&lt;h2 id=&quot;rustling-s-index&quot;&gt;Rustling&#x27;s Index&lt;&#x2F;h2&gt;
 &lt;ul&gt;
 &lt;li&gt;
 &lt;p&gt;&lt;a href=&quot;https:&#x2F;&#x2F;desmodrone.github.io&#x2F;posts&#x2F;01-rustlings-variables&#x2F;&quot;&gt;01_rustlings_variables&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
@@ -11486,7 +11508,7 @@ fn main() {
           <author>Unknown</author>
           <link>https://desmodrone.github.io/posts/traits-301/</link>
           <guid>https://desmodrone.github.io/posts/traits-301/</guid>
-          <description>&lt;h4 id=&quot;original-content-by-nell-shamrell-harrington&quot;&gt;Original content by Nell Shamrell-Harrington&lt;&#x2F;h4&gt;
+          <description xml:base="https://desmodrone.github.io/posts/traits-301/">&lt;h4 id=&quot;original-content-by-nell-shamrell-harrington&quot;&gt;Original content by Nell Shamrell-Harrington&lt;&#x2F;h4&gt;
 &lt;p&gt;When looking for resources to help me better understand Rust Traits, I found &lt;a href=&quot;https:&#x2F;&#x2F;youtu.be&#x2F;grU-4u0Okto&quot;&gt;this video&lt;&#x2F;a&gt;from &lt;a href=&quot;https:&#x2F;&#x2F;twitter.com&#x2F;nellshamrell?s=21&amp;amp;t=EhxGdIZ2VJ9HIqIS1LXcpw&quot;&gt;Nell Shamrell-Harrington&lt;&#x2F;a&gt;. It&#x27;s a great intro and overview into using Traits, which can be a little confusing when you first start learning Rust.&lt;&#x2F;p&gt;
 &lt;p&gt;So these are my notes on this talk, if you haven&#x27;t watched it and are struggling with learning Traits, I strongly suggest that you watch the video above before you do anything else. But if you&#x27;re short on time and just want to reference my notes -- here they are. Disclaimer: these notes are my own interpretation of the talk and may not necessarily reflect the views of the original speaker. These note are primarily for me to learn these concepts, and I publish them for others to see and maybe benefit from. Feel free to let me know if I have errors or have misrepresentations.&lt;&#x2F;p&gt;
 &lt;h2 id=&quot;introduction&quot;&gt;Introduction&lt;&#x2F;h2&gt;
@@ -11642,7 +11664,7 @@ spell_book.run(); &amp;#x2F;&amp;#x2F; this casts each spell, in which ever way 
           <author>Unknown</author>
           <link>https://desmodrone.github.io/posts/traits-201/</link>
           <guid>https://desmodrone.github.io/posts/traits-201/</guid>
-          <description>&lt;h4 id=&quot;original-content-by-nell-shamrell-harrington&quot;&gt;Original content by Nell Shamrell-Harrington&lt;&#x2F;h4&gt;
+          <description xml:base="https://desmodrone.github.io/posts/traits-201/">&lt;h4 id=&quot;original-content-by-nell-shamrell-harrington&quot;&gt;Original content by Nell Shamrell-Harrington&lt;&#x2F;h4&gt;
 &lt;p&gt;When looking for resources to help me better understand Rust Traits, I found &lt;a href=&quot;https:&#x2F;&#x2F;youtu.be&#x2F;grU-4u0Okto&quot;&gt;this video&lt;&#x2F;a&gt;from &lt;a href=&quot;https:&#x2F;&#x2F;twitter.com&#x2F;nellshamrell?s=21&amp;amp;t=EhxGdIZ2VJ9HIqIS1LXcpw&quot;&gt;Nell Shamrell-Harrington&lt;&#x2F;a&gt;. It&#x27;s a great intro and overview into using Traits, which can be a little confusing when you first start learning Rust.&lt;&#x2F;p&gt;
 &lt;p&gt;So these are my notes on this talk, if you haven&#x27;t watched it and are struggling with learning Traits, I strongly suggest that you watch the video above before you do anything else. But if you&#x27;re short on time and just want to reference my notes -- here they are. Disclaimer: these notes are my own interpretation of the talk and may not necessarily reflect the views of the original speaker. These note are primarily for me to learn these concepts, and I publish them for others to see and maybe benefit from. Feel free to let me know if I have errors or have misrepresentations.&lt;&#x2F;p&gt;
 &lt;h2 id=&quot;introduction&quot;&gt;Introduction&lt;&#x2F;h2&gt;
@@ -11746,7 +11768,7 @@ speak_elvish(my_half_orc)
           <author>Unknown</author>
           <link>https://desmodrone.github.io/posts/traits-101/</link>
           <guid>https://desmodrone.github.io/posts/traits-101/</guid>
-          <description>&lt;h4 id=&quot;original-content-by-nell-shamrell-harrington&quot;&gt;Original content by Nell Shamrell-Harrington&lt;&#x2F;h4&gt;
+          <description xml:base="https://desmodrone.github.io/posts/traits-101/">&lt;h4 id=&quot;original-content-by-nell-shamrell-harrington&quot;&gt;Original content by Nell Shamrell-Harrington&lt;&#x2F;h4&gt;
 &lt;p&gt;When looking for resources to help me better understand Rust Traits, I found &lt;a href=&quot;https:&#x2F;&#x2F;youtu.be&#x2F;grU-4u0Okto&quot;&gt;this video&lt;&#x2F;a&gt;from &lt;a href=&quot;https:&#x2F;&#x2F;twitter.com&#x2F;nellshamrell?s=21&amp;amp;t=EhxGdIZ2VJ9HIqIS1LXcpw&quot;&gt;Nell Shamrell-Harrington&lt;&#x2F;a&gt;. It&#x27;s a great intro and overview into using Traits, which can be a little confusing when you first start learning Rust.&lt;&#x2F;p&gt;
 &lt;p&gt;So these are my notes on this talk, if you haven&#x27;t watched it and are struggling with learning Traits, I strongly suggest that you watch the video above before you do anything else. But if you&#x27;re short on time and just want to reference my notes -- here they are. Disclaimer: these notes are my own interpretation of the talk and may not necessarily reflect the views of the original speaker. These note are primarily for me to learn these concepts, and I publish them for others to see and maybe benefit from. Feel free to let me know if I have errors or have misrepresentations.&lt;&#x2F;p&gt;
 &lt;h2 id=&quot;introduction&quot;&gt;Introduction&lt;&#x2F;h2&gt;
@@ -11936,7 +11958,7 @@ my_human.constitution_bonus(); &amp;#x2F;&amp;#x2F; Returns 0
           <author>Unknown</author>
           <link>https://desmodrone.github.io/posts/rust-closures/</link>
           <guid>https://desmodrone.github.io/posts/rust-closures/</guid>
-          <description>&lt;h2 id=&quot;intro&quot;&gt;Intro&lt;&#x2F;h2&gt;
+          <description xml:base="https://desmodrone.github.io/posts/rust-closures/">&lt;h2 id=&quot;intro&quot;&gt;Intro&lt;&#x2F;h2&gt;
 &lt;p&gt;I&#x27;m new to Rust and programming in general, and while I&#x27;ve dabbled in different languages and technologies, I&#x27;ve never gone headfirst into any language to become proficient. I&#x27;m trying to change that now with Rust. Please forgive my inaccuracies or lack of understanding of more complex topics, but I&#x27;ll get there eventually. For now, I thought closures were an interesting topic, so I decided to write about this this topic first.&lt;&#x2F;p&gt;
 &lt;h2 id=&quot;what-are-closures&quot;&gt;What are closures?&lt;&#x2F;h2&gt;
 &lt;p&gt;A closure can be thought of as a quick function that doesn&#x27;t need a name, or an anonymous function that can be saved in a variable or passed into other functions as arguments. A unique thing about closures is that they can capture their environment and this makes them a versatile tool that can be fun and efficient to use.&lt;&#x2F;p&gt;
@@ -12154,7 +12176,7 @@ fn main(){
           <author>Unknown</author>
           <link>https://desmodrone.github.io/posts/hello-world/</link>
           <guid>https://desmodrone.github.io/posts/hello-world/</guid>
-          <description>&lt;p&gt;Yes, the obligatory Hello World post...and code.&lt;&#x2F;p&gt;
+          <description xml:base="https://desmodrone.github.io/posts/hello-world/">&lt;p&gt;Yes, the obligatory Hello World post...and code.&lt;&#x2F;p&gt;
 &lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;fn main(){
     println!(&amp;quot;hello world!&amp;quot;)
 }

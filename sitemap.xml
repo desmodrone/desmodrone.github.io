@@ -10,6 +10,10 @@
         <loc>https://desmodrone.github.io/posts/</loc>
     </url>
     <url>
+        <loc>https://desmodrone.github.io/posts/00-hello-leetcode/</loc>
+        <lastmod>2024-01-07</lastmod>
+    </url>
+    <url>
         <loc>https://desmodrone.github.io/posts/01-rustlings-variables/</loc>
         <lastmod>2023-04-17</lastmod>
     </url>
@@ -149,6 +153,9 @@
         <loc>https://desmodrone.github.io/tags/</loc>
     </url>
     <url>
+        <loc>https://desmodrone.github.io/tags//</loc>
+    </url>
+    <url>
         <loc>https://desmodrone.github.io/tags/arc/</loc>
     </url>
     <url>
@@ -236,6 +243,9 @@
         <loc>https://desmodrone.github.io/tags/key/</loc>
     </url>
     <url>
+        <loc>https://desmodrone.github.io/tags/leetcode/</loc>
+    </url>
+    <url>
         <loc>https://desmodrone.github.io/tags/lifetimes/</loc>
     </url>
     <url>
@@ -267,6 +277,9 @@
     </url>
     <url>
         <loc>https://desmodrone.github.io/tags/mutex/</loc>
+    </url>
+    <url>
+        <loc>https://desmodrone.github.io/tags/nested-loops/</loc>
     </url>
     <url>
         <loc>https://desmodrone.github.io/tags/ok/</loc>
