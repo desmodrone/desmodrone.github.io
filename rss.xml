@@ -7,7 +7,15 @@
       <generator>Zola</generator>
       <language>en</language>
       <atom:link href="https://desmodrone.github.io/rss.xml" rel="self" type="application/rss+xml"/>
-      <lastBuildDate>Sun, 07 Jan 2024 00:00:00 +0000</lastBuildDate>
+      <lastBuildDate>Mon, 08 Jan 2024 00:00:00 +0000</lastBuildDate>
+      <item>
+          <title>LeetCode: 1. Two Sum</title>
+          <pubDate>Mon, 08 Jan 2024 00:00:00 +0000</pubDate>
+          <author>Unknown</author>
+          <link>https://desmodrone.github.io/posts/01-leetcode-two-sum/</link>
+          <guid>https://desmodrone.github.io/posts/01-leetcode-two-sum/</guid>
+          <description xml:base="https://desmodrone.github.io/posts/01-leetcode-two-sum/"></description>
+      </item>
       <item>
           <title>Hello LeetCode</title>
           <pubDate>Sun, 07 Jan 2024 00:00:00 +0000</pubDate>
