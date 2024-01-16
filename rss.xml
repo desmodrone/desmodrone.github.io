@@ -7,14 +7,144 @@
       <generator>Zola</generator>
       <language>en</language>
       <atom:link href="https://desmodrone.github.io/rss.xml" rel="self" type="application/rss+xml"/>
-      <lastBuildDate>Mon, 08 Jan 2024 00:00:00 +0000</lastBuildDate>
+      <lastBuildDate>Tue, 16 Jan 2024 00:00:00 +0000</lastBuildDate>
+      <item>
+          <title>LeetCode: 13. Roman to Integer</title>
+          <pubDate>Tue, 16 Jan 2024 00:00:00 +0000</pubDate>
+          <author>Unknown</author>
+          <link>https://desmodrone.github.io/posts/leetcode-roman-to-integer/</link>
+          <guid>https://desmodrone.github.io/posts/leetcode-roman-to-integer/</guid>
+          <description xml:base="https://desmodrone.github.io/posts/leetcode-roman-to-integer/">&lt;h1 id=&quot;13-roman-to-integer&quot;&gt;13. Roman to Integer&lt;&#x2F;h1&gt;
+&lt;h2 id=&quot;decoding-roman-numerals-two-rust-approaches-to-a-classic-problem&quot;&gt;Decoding Roman Numerals: Two Rust Approaches to a Classic Problem&lt;&#x2F;h2&gt;
+&lt;p&gt;&lt;a href=&quot;https:&#x2F;&#x2F;leetcode.com&#x2F;problems&#x2F;roman-to-integer&#x2F;description&#x2F;&quot;&gt;13. Roman to Integer on LeetCode&lt;&#x2F;a&gt;
+Roman numerals are represented by seven different symbols: &lt;code&gt;I&lt;&#x2F;code&gt;, &lt;code&gt;V&lt;&#x2F;code&gt;, &lt;code&gt;X&lt;&#x2F;code&gt;, &lt;code&gt;L&lt;&#x2F;code&gt;, &lt;code&gt;C&lt;&#x2F;code&gt;, &lt;code&gt;D&lt;&#x2F;code&gt; and &lt;code&gt;M&lt;&#x2F;code&gt;.
+&lt;strong&gt;Symbol&lt;&#x2F;strong&gt;                       &lt;strong&gt;Value&lt;&#x2F;strong&gt;&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;I             1
+V             5
+X             10
+L             50
+C             100
+D             500
+M             1000
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;For example, &lt;code&gt;2&lt;&#x2F;code&gt; is written as &lt;code&gt;II&lt;&#x2F;code&gt; in Roman numeral, just two ones added together. &lt;code&gt;12&lt;&#x2F;code&gt; is written as &lt;code&gt;XII&lt;&#x2F;code&gt;, which is simply &lt;code&gt;X + II&lt;&#x2F;code&gt;. The number &lt;code&gt;27&lt;&#x2F;code&gt; is written as &lt;code&gt;XXVII&lt;&#x2F;code&gt;, which is &lt;code&gt;XX + V + II&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;Roman numerals are usually written largest to smallest from left to right. However, the numeral for four is not &lt;code&gt;IIII&lt;&#x2F;code&gt;. Instead, the number four is written as &lt;code&gt;IV&lt;&#x2F;code&gt;. Because the one is before the five we subtract it making four. The same principle applies to the number nine, which is written as &lt;code&gt;IX&lt;&#x2F;code&gt;. There are six instances where subtraction is used:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;I&lt;&#x2F;code&gt; can be placed before &lt;code&gt;V&lt;&#x2F;code&gt; (5) and &lt;code&gt;X&lt;&#x2F;code&gt; (10) to make 4 and 9. &lt;&#x2F;li&gt;
+&lt;li&gt;&lt;code&gt;X&lt;&#x2F;code&gt; can be placed before &lt;code&gt;L&lt;&#x2F;code&gt; (50) and &lt;code&gt;C&lt;&#x2F;code&gt; (100) to make 40 and 90. &lt;&#x2F;li&gt;
+&lt;li&gt;&lt;code&gt;C&lt;&#x2F;code&gt; can be placed before &lt;code&gt;D&lt;&#x2F;code&gt; (500) and &lt;code&gt;M&lt;&#x2F;code&gt; (1000) to make 400 and 900.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;Given a roman numeral, convert it to an integer.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;strong&gt;Example 1:&lt;&#x2F;strong&gt;&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;Input: s = &amp;quot;III&amp;quot;
+Output: 3
+Explanation: III = 3.
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;&lt;strong&gt;Example 2:&lt;&#x2F;strong&gt;&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;Input: s = &amp;quot;LVIII&amp;quot;
+Output: 58
+Explanation: L = 50, V= 5, III = 3.
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;&lt;strong&gt;Example 3:&lt;&#x2F;strong&gt;&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;Input: s = &amp;quot;MCMXCIV&amp;quot;
+Output: 1994
+Explanation: M = 1000, CM = 900, XC = 90 and IV = 4.
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h2 id=&quot;intro&quot;&gt;Intro&lt;&#x2F;h2&gt;
+&lt;p&gt;Roman numerals, the numerical system of ancient Rome, have been used for centuries, from monumental Roman architecture to the pages of classical literature. Today, while our modern digital world primarily operates on the decimal system, the echoes of Roman numerals still resound in various areas, such as clock faces, book chapter titles, and annual events like the Super Bowl. Understanding and converting these numerals to integers is not just an exercise in historical linguistics but also finds its relevance in modern computing, where translating different numeral systems forms a foundational aspect of data processing and software development.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;intuition&quot;&gt;Intuition&lt;&#x2F;h2&gt;
+&lt;p&gt;At first glance, Roman numerals might seem straightforward, with each symbol representing a fixed value. However, the intriguing aspect lies in their lack of a positional value system, unlike our familiar decimal system where the position of a digit significantly changes its value. In Roman numerals, the value is often dictated by the sequence and combination of symbols, leading to a unique set of rules for interpretation. This absence of positional values presents an interesting challenge in designing algorithms for conversion, as one must carefully interpret the order and combination of numerals to accurately derive the corresponding integer.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;approach&quot;&gt;Approach&lt;&#x2F;h2&gt;
+&lt;p&gt;In exploring the conversion of Roman numerals to integers, two distinct approaches in Rust offer insights into the language&#x27;s capabilities and the trade-offs in programming styles. The imperative approach, utilizing a &lt;code&gt;match&lt;&#x2F;code&gt; statement, aligns with a straightforward, step-by-step process of decision making, echoing traditional procedural programming. It&#x27;s generally easier to understand, especially for those new to Rust or programming in general. On the other hand, the functional approach, employing a &lt;code&gt;HashMap&lt;&#x2F;code&gt;, embraces Rust&#x27;s powerful features in functional programming. This method shines in code readability and maintainability, especially in scenarios where the mapping might evolve or expand, offering a more scalable solution. However, it might introduce a slight overhead due to the creation and management of the &lt;code&gt;HashMap&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;code&quot;&gt;Code&lt;&#x2F;h2&gt;
+&lt;h3 id=&quot;imperative-approach-with-match&quot;&gt;Imperative Approach with &lt;code&gt;match&lt;&#x2F;code&gt;&lt;&#x2F;h3&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;fn roman_to_int(s: String) -&amp;gt; i32 {
+
+    let mut result = 0;
+    let mut prev = 0;
+
+    for c in s.chars() {
+        let current = match c {
+            &amp;#x27;I&amp;#x27; =&amp;gt; 1,
+            &amp;#x27;V&amp;#x27; =&amp;gt; 5,
+            &amp;#x27;X&amp;#x27; =&amp;gt; 10,
+            &amp;#x27;L&amp;#x27; =&amp;gt; 50,
+            &amp;#x27;C&amp;#x27; =&amp;gt; 100,
+            &amp;#x27;D&amp;#x27; =&amp;gt; 500,
+            &amp;#x27;M&amp;#x27; =&amp;gt; 1000,
+            _ =&amp;gt; 0,
+        };
+
+        result += current;
+        if current &amp;gt; prev {
+            result -= 2 * prev
+        }
+        prev = current
+    }
+    result
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h3 id=&quot;functional-approach-using-hashmap&quot;&gt;Functional Approach using &lt;code&gt;HashMap&lt;&#x2F;code&gt;&lt;&#x2F;h3&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;use std::collections::HashMap;
+
+fn roman_to_int(s: String) -&amp;gt; i32 {
+
+    let translation: HashMap&amp;lt;char, i32&amp;gt; = [
+        (&amp;#x27;I&amp;#x27;, 1),
+        (&amp;#x27;V&amp;#x27;, 5),
+        (&amp;#x27;X&amp;#x27;, 10),
+        (&amp;#x27;L&amp;#x27;, 50),
+        (&amp;#x27;C&amp;#x27;, 100),
+        (&amp;#x27;D&amp;#x27;, 500),
+        (&amp;#x27;M&amp;#x27;, 1000),
+    ].iter().cloned().collect();
+
+    s.chars().enumerate().fold(0, |acc, (i, c)| {
+
+
+        let current_value = translation[&amp;amp;c];
+
+        if let Some(next_char) = s.chars().nth(i+1) {
+
+            let next_value = translation[&amp;amp;next_char];
+
+            if next_value &amp;gt; current_value {
+                acc - current_value
+            } else {
+                acc + current_value
+            }
+        } else {
+            acc + current_value
+        }
+    })
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h2 id=&quot;explanation&quot;&gt;Explanation&lt;&#x2F;h2&gt;
+&lt;p&gt;To illustrate these approaches, let&#x27;s consider converting &amp;quot;IX&amp;quot; to 9. In the imperative method, as we iterate through the string, we first encounter &#x27;I&#x27; (1), followed by &#x27;X&#x27; (10). Recognizing that &#x27;I&#x27; is less than &#x27;X&#x27;, the algorithm adapts by subtracting twice the value of &#x27;I&#x27; (once to negate the initial addition and once more for the actual subtraction). In the functional approach, the &lt;code&gt;HashMap&lt;&#x2F;code&gt; provides a quick lookup for each numeral&#x27;s value. When processing &#x27;I&#x27; and then &#x27;X&#x27;, the algorithm checks if the value of the next numeral (&#x27;X&#x27;) is greater than the current (&#x27;I&#x27;), leading to a subtraction of &#x27;I&#x27;. Both methods effectively capture the essence of Roman numeral logic but through different computational lenses.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;imperative-approach-with-match-1&quot;&gt;Imperative Approach with &lt;code&gt;match&lt;&#x2F;code&gt;&lt;&#x2F;h3&gt;
+&lt;p&gt;In this approach, each Roman numeral character is converted to its integer value using a &lt;code&gt;match&lt;&#x2F;code&gt; statement. The function iterates over each character of the input string, and for each character, it checks its value and adds it to the cumulative result. If the current value is greater than the previous value (indicating a subtractive notation like IV or IX), the function subtracts twice the previous value from the result. This adjustment is necessary because the previous value was added before knowing that a subtractive notation was in use.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;functional-approach-using-hashmap-1&quot;&gt;Functional Approach using &lt;code&gt;HashMap&lt;&#x2F;code&gt;&lt;&#x2F;h3&gt;
+&lt;p&gt;This version uses a &lt;code&gt;HashMap&lt;&#x2F;code&gt; to store the mappings from Roman numerals to integers. The &lt;code&gt;fold&lt;&#x2F;code&gt; function iterates over each character of the string, accumulating the total value. The lambda function inside &lt;code&gt;fold&lt;&#x2F;code&gt; checks the current and next character&#x27;s value. If the next character&#x27;s value is larger (indicating a subtractive combination), the current value is subtracted from the accumulator. Otherwise, it&#x27;s added. The use of &lt;code&gt;enumerate&lt;&#x2F;code&gt; along with &lt;code&gt;nth&lt;&#x2F;code&gt; allows access to the current and next characters in the string.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;complexity-analysis&quot;&gt;Complexity Analysis&lt;&#x2F;h2&gt;
+&lt;p&gt;&lt;strong&gt;Time Complexity:&lt;&#x2F;strong&gt; Both implementations operate in O(n) time complexity, where n is the length of the input string. Each character is processed once in the loop.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;strong&gt;Space Complexity:&lt;&#x2F;strong&gt; The space complexity is O(1) for both approaches, as the storage used does not grow with the size of the input. In the case of the functional approach, although a &lt;code&gt;HashMap&lt;&#x2F;code&gt; is used, its size remains constant regardless of the input.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;additional-information&quot;&gt;Additional Information&lt;&#x2F;h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Rust&#x27;s Ownership and Borrowing:&lt;&#x2F;strong&gt; Rust&#x27;s ownership model ensures memory safety without a garbage collector. The functional approach demonstrates how Rust can elegantly handle data without explicit memory management.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Idiomatic Rust:&lt;&#x2F;strong&gt; Using &lt;code&gt;fold&lt;&#x2F;code&gt; and &lt;code&gt;HashMap&lt;&#x2F;code&gt; for the functional approach is more idiomatic in Rust and showcases the language&#x27;s capabilities in functional programming.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Error Handling:&lt;&#x2F;strong&gt; Both implementations assume valid Roman numeral input. If invalid characters are possible, additional error handling would be needed.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h2 id=&quot;conclusion&quot;&gt;Conclusion&lt;&#x2F;h2&gt;
+&lt;p&gt;Choosing between the imperative and functional approaches in Rust can depend on various factors, such as the programmer&#x27;s familiarity with Rust, the specific project requirements, and the preference for a particular programming paradigm. For beginners or those preferring straightforward logic, the imperative method with &lt;code&gt;match&lt;&#x2F;code&gt; might be more appealing. Conversely, for those who appreciate the elegance and scalability of functional programming, especially in a language like Rust that excellently supports it, the &lt;code&gt;HashMap&lt;&#x2F;code&gt; approach could be more suitable. Ultimately, both methods offer valuable insights into solving problems efficiently and idiomatically in Rust.&lt;&#x2F;p&gt;
+</description>
+      </item>
       <item>
           <title>LeetCode: 1. Two Sum</title>
           <pubDate>Mon, 08 Jan 2024 00:00:00 +0000</pubDate>
           <author>Unknown</author>
-          <link>https://desmodrone.github.io/posts/01-leetcode-two-sum/</link>
-          <guid>https://desmodrone.github.io/posts/01-leetcode-two-sum/</guid>
-          <description xml:base="https://desmodrone.github.io/posts/01-leetcode-two-sum/">&lt;h1 id=&quot;1-two-sum&quot;&gt;1. Two Sum&lt;&#x2F;h1&gt;
+          <link>https://desmodrone.github.io/posts/leetcode-two-sum/</link>
+          <guid>https://desmodrone.github.io/posts/leetcode-two-sum/</guid>
+          <description xml:base="https://desmodrone.github.io/posts/leetcode-two-sum/">&lt;h1 id=&quot;1-two-sum&quot;&gt;1. Two Sum&lt;&#x2F;h1&gt;
 &lt;h2 id=&quot;description-on-leetcode&quot;&gt;&lt;a href=&quot;https:&#x2F;&#x2F;leetcode.com&#x2F;problems&#x2F;two-sum&#x2F;description&#x2F;&quot;&gt;Description on LeetCode&lt;&#x2F;a&gt;&lt;&#x2F;h2&gt;
 &lt;p&gt;Given an array of integers &lt;code&gt;nums&lt;&#x2F;code&gt; and an integer &lt;code&gt;target&lt;&#x2F;code&gt;, return &lt;em&gt;indices of the two numbers such that they add up to &lt;code&gt;target&lt;&#x2F;code&gt;&lt;&#x2F;em&gt;.
 You may assume that each input would have &lt;strong&gt;&lt;em&gt;exactly&lt;&#x2F;em&gt; one solution&lt;&#x2F;strong&gt;, and you may not use the &lt;em&gt;same&lt;&#x2F;em&gt; element twice.&lt;&#x2F;p&gt;
