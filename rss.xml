@@ -9,13 +9,214 @@
       <atom:link href="https://desmodrone.github.io/rss.xml" rel="self" type="application/rss+xml"/>
       <lastBuildDate>Tue, 16 Jan 2024 00:00:00 +0000</lastBuildDate>
       <item>
+          <title>LeetCode: 9. Palindrome Number</title>
+          <pubDate>Tue, 16 Jan 2024 00:00:00 +0000</pubDate>
+          <author>Unknown</author>
+          <link>https://desmodrone.github.io/posts/leetcode-palindrome-number/</link>
+          <guid>https://desmodrone.github.io/posts/leetcode-palindrome-number/</guid>
+          <description xml:base="https://desmodrone.github.io/posts/leetcode-palindrome-number/">&lt;h2 id=&quot;problem-statment&quot;&gt;Problem Statment&lt;&#x2F;h2&gt;
+&lt;p&gt;Given an integer &lt;code&gt;x&lt;&#x2F;code&gt;, return &lt;code&gt;true&lt;&#x2F;code&gt; &lt;em&gt;if&lt;&#x2F;em&gt; &lt;code&gt;x&lt;&#x2F;code&gt; &lt;em&gt;is a&lt;&#x2F;em&gt; &lt;strong&gt;palindrome&lt;&#x2F;strong&gt;, and_ &lt;code&gt;false&lt;&#x2F;code&gt; &lt;em&gt;otherwise&lt;&#x2F;em&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;strong&gt;Example 1:&lt;&#x2F;strong&gt;&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;Input: x = 121
+Output: true
+Explanation: 121 reads as 121 from left to right and from right to left.
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;&lt;strong&gt;Example 2:&lt;&#x2F;strong&gt;&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;Input: x = -121
+Output: false
+Explanation: From left to right, it reads -121. From right to left, it becomes 121-. Therefore it is not a palindrome.
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;&lt;strong&gt;Example 3:&lt;&#x2F;strong&gt;&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;Input: x = 10
+Output: false
+Explanation: Reads 01 from right to left. Therefore it is not a palindrome.
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;&lt;strong&gt;Follow up:&lt;&#x2F;strong&gt; Could you solve it without converting the integer to a string?&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;intuition&quot;&gt;Intuition&lt;&#x2F;h2&gt;
+&lt;p&gt;The core intuition behind solving the palindrome number problem lies in understanding what a palindrome is: a sequence that reads the same backward as forward. For an integer, this means that if we reverse the digits of the number, it should remain the same as the original number.&lt;&#x2F;p&gt;
+&lt;p&gt;Here&#x27;s the thought process:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Negative Numbers:&lt;&#x2F;strong&gt; Any negative number cannot be a palindrome due to the presence of the minus sign &lt;code&gt;-&lt;&#x2F;code&gt;, which cannot be at the end of a number.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Reversal and Comparison:&lt;&#x2F;strong&gt; If we can reverse the number and it remains unchanged, it&#x27;s a palindrome.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Efficiency Considerations:&lt;&#x2F;strong&gt; While converting the number to a string and reversing it is straightforward, doing so increases the space complexity. An in-place mathematical reversal could be more efficient.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h2 id=&quot;approach&quot;&gt;Approach&lt;&#x2F;h2&gt;
+&lt;p&gt;Our approach starts by handling the simplest and most intuitive method: converting the number to a string and then comparing the original string with its reversed version. This method is easy to understand and implement but uses extra space for the string conversion.&lt;&#x2F;p&gt;
+&lt;h4 id=&quot;imperative-approach-using-string-conversion&quot;&gt;Imperative Approach Using String Conversion&lt;&#x2F;h4&gt;
+&lt;p&gt;This approach converts the integer to a string and then uses two pointers to compare characters from both ends of the string, moving towards the center. It&#x27;s imperative because it uses loops and manual index manipulation. This method is straightforward and readable, but it involves additional space for the string.&lt;&#x2F;p&gt;
+&lt;h4 id=&quot;functional-approach-using-string-conversion&quot;&gt;Functional Approach Using String Conversion&lt;&#x2F;h4&gt;
+&lt;p&gt;This approach also converts the number to a string but then leverages Rust&#x27;s functional programming capabilities to check for palindromicity. By using &lt;code&gt;chars().eq(chars().rev())&lt;&#x2F;code&gt;, it compares the character sequence directly with its reversed version. This method is concise and leverages Rust&#x27;s iterator and functional capabilities, providing a clear and elegant solution.&lt;&#x2F;p&gt;
+&lt;h4 id=&quot;extra-challenge-imperative-version-using-math&quot;&gt;Extra Challenge: Imperative Version Using Math&lt;&#x2F;h4&gt;
+&lt;p&gt;The mathematical approach avoids converting the integer to a string, thus saving space. The idea is to construct the reversed number digit by digit from the original number. By repeatedly extracting the last digit of the original number (&lt;code&gt;original % 10&lt;&#x2F;code&gt;) and adding it to the reversed number (&lt;code&gt;reversed = reversed * 10 + last_digit&lt;&#x2F;code&gt;), we effectively build the reversed number. Then, we compare the reversed number with the original number to check for palindromicity. This approach is more efficient in terms of space but requires a good understanding of numerical manipulations.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;code&quot;&gt;Code&lt;&#x2F;h2&gt;
+&lt;h3 id=&quot;imperative-approach-using-string-conversion-1&quot;&gt;Imperative Approach Using String Conversion&lt;&#x2F;h3&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;    pub fn is_palindrome(x: i32) -&amp;gt; bool {
+        	if x &amp;lt; 0 {
+		return false;
+	}
+
+	let s = x.to_string();
+	let bytes = s.as_bytes();
+	let mut i = 0;
+	let mut j = s.len() -1;
+
+	while i &amp;lt; j {
+		if bytes[i] != bytes[j] {
+			return false;
+		}
+		i += 1;
+		j -= 1;
+	}
+	true
+    }
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h3 id=&quot;functional-approach-using-string-conversion-1&quot;&gt;Functional Approach Using String Conversion&lt;&#x2F;h3&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;fn is_palindrome(x: i32) -&amp;gt; bool {
+	if x &amp;lt; 0 {
+		return false;
+	}
+
+    let x = x.to_string();
+    x.chars().eq(x.chars().rev())
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h3 id=&quot;extra-challenge-imperative-version-using-math-1&quot;&gt;Extra Challenge: Imperative Version using Math&lt;&#x2F;h3&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;fn is_palindrome(x: i32) -&amp;gt; bool {
+    if x &amp;lt; 0 {
+        return false;
+    }
+
+    let mut original = x;
+    let mut reversed = 0;
+
+    while original &amp;gt; 0 {
+        reversed = reversed * 10 + original % 10;
+        original &amp;#x2F;= 10;
+    }
+
+    x == reversed
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h2 id=&quot;explanation&quot;&gt;Explanation&lt;&#x2F;h2&gt;
+&lt;p&gt;Each approach to determining whether an integer is a palindrome highlights different programming techniques and considerations. Let&#x27;s delve into the details of each version:&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;imperative-approach-using-string-conversion-2&quot;&gt;Imperative Approach Using String Conversion&lt;&#x2F;h3&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;pub fn is_palindrome(x: i32) -&amp;gt; bool {
+    &amp;#x2F;&amp;#x2F; negative check
+    if x &amp;lt; 0 {
+        return false;
+    }
+
+	&amp;#x2F;&amp;#x2F; string converion
+    let s = x.to_string();
+    &amp;#x2F;&amp;#x2F; byte conversion
+    let bytes = s.as_bytes();
+    &amp;#x2F;&amp;#x2F; two pointers
+    let mut i = 0;
+    let mut j = s.len() - 1;
+
+	&amp;#x2F;&amp;#x2F; compare number pairs
+    while i &amp;lt; j {
+        if bytes[i] != bytes[j] {
+            return false;
+        }
+        i += 1;
+        j -= 1;
+    }
+    true
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Negative Check:&lt;&#x2F;strong&gt; The function immediately returns &lt;code&gt;false&lt;&#x2F;code&gt; for negative numbers since the minus sign would invalidate palindrome properties.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;String Conversion:&lt;&#x2F;strong&gt; The number is converted to a string to utilize character comparison. This allows an easy check from both ends towards the center.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Byte Array:&lt;&#x2F;strong&gt; Conversion to a byte array (&lt;code&gt;as_bytes()&lt;&#x2F;code&gt;) allows for efficient indexing and comparison of characters.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Two-Pointer Technique:&lt;&#x2F;strong&gt; Two indices (&lt;code&gt;i&lt;&#x2F;code&gt; and &lt;code&gt;j&lt;&#x2F;code&gt;) are used to compare characters from opposite ends of the string. If any pair of characters doesn&#x27;t match, the function returns &lt;code&gt;false&lt;&#x2F;code&gt;. The loop continues until the indices meet or cross, confirming the number is a palindrome.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h3 id=&quot;functional-approach-using-string-conversion-2&quot;&gt;Functional Approach Using String Conversion&lt;&#x2F;h3&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;fn is_palindrome(x: i32) -&amp;gt; bool {
+    &amp;#x2F;&amp;#x2F; negative check
+
+    if x &amp;lt; 0 {
+        return false;
+    }
+    &amp;#x2F;&amp;#x2F; convert x to a string
+    let x = x.to_string();
+    &amp;#x2F;&amp;#x2F; compare `x` with `eq()` and reversed version of `x` with `rev()`
+    x.chars().eq(x.chars().rev())
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Simplicity:&lt;&#x2F;strong&gt; This approach is more succinct, leveraging Rust&#x27;s powerful iterator and functional programming features.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Character Iterator:&lt;&#x2F;strong&gt; &lt;code&gt;x.chars()&lt;&#x2F;code&gt; creates an iterator over the characters of the string.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Reverse Iterator:&lt;&#x2F;strong&gt; &lt;code&gt;x.chars().rev()&lt;&#x2F;code&gt; creates a reverse iterator, allowing direct comparison of the original character sequence with its reversed version.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Equality Check:&lt;&#x2F;strong&gt; The &lt;code&gt;eq&lt;&#x2F;code&gt; method compares two iterators element by element. If all corresponding characters match, it confirms the palindrome property.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h3 id=&quot;follow-up-challenge-imperative-version-using-math&quot;&gt;Follow-Up Challenge: Imperative Version Using Math&lt;&#x2F;h3&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;fn is_palindrome(x: i32) -&amp;gt; bool {
+    &amp;#x2F;&amp;#x2F; negative check
+    if x &amp;lt; 0 {
+        return false;
+    }
+
+    &amp;#x2F;&amp;#x2F; define our variables to hold
+    &amp;#x2F;&amp;#x2F; our original version to manipulate
+    &amp;#x2F;&amp;#x2F; and our reveresed version to compare to
+    let mut original = x;
+    let mut reversed = 0;
+
+    &amp;#x2F;&amp;#x2F; while our original version is
+    &amp;#x2F;&amp;#x2F; greater than 0 we continue with
+    &amp;#x2F;&amp;#x2F; mathematical calculations
+    while original &amp;gt; 0 {
+        reversed = reversed * 10 + original % 10;
+        original &amp;#x2F;= 10;
+    }
+    &amp;#x2F;&amp;#x2F; compare `x` to the `reversed` version
+    x == reversed
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;In-Place Reversal:&lt;&#x2F;strong&gt; This method avoids string conversion, instead reversing the number mathematically. This is efficient in terms of memory usage.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Digit Extraction and Reversal:&lt;&#x2F;strong&gt; The last digit of &lt;code&gt;original&lt;&#x2F;code&gt; is appended to &lt;code&gt;reversed&lt;&#x2F;code&gt; by first multiplying &lt;code&gt;reversed&lt;&#x2F;code&gt; by 10 (shifting it one decimal place up) and then adding the last digit of &lt;code&gt;original&lt;&#x2F;code&gt;.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Original Number Modification:&lt;&#x2F;strong&gt; &lt;code&gt;original&lt;&#x2F;code&gt; is divided by 10 to remove the last digit, progressively shortening the number until all digits have been processed.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Palindrome Check:&lt;&#x2F;strong&gt; The function compares the original number with the reversed number. If they match, the number is a palindrome.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h2 id=&quot;complexity-analysis&quot;&gt;Complexity Analysis&lt;&#x2F;h2&gt;
+&lt;h3 id=&quot;imperative-approach-using-string-conversion-3&quot;&gt;Imperative Approach Using String Conversion&lt;&#x2F;h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Time Complexity:&lt;&#x2F;strong&gt; (O(n)), where (n) is the number of digits in the integer. This is because the function iterates over each character of the string representation of the integer once.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Space Complexity:&lt;&#x2F;strong&gt; (O(n)). The additional space comes from converting the integer to a string, which requires space proportional to the number of digits in the integer.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h3 id=&quot;functional-approach-using-string-conversion-3&quot;&gt;Functional Approach Using String Conversion&lt;&#x2F;h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Time Complexity:&lt;&#x2F;strong&gt; (O(n)). Similar to the imperative approach, it needs to iterate over each character to compare them.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Space Complexity:&lt;&#x2F;strong&gt; (O(n)). The conversion of the integer to a string and the creation of the reverse iterator both contribute to the space used.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h3 id=&quot;imperative-version-using-math&quot;&gt;Imperative Version Using Math&lt;&#x2F;h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Time Complexity:&lt;&#x2F;strong&gt; (O(\log_{10}(x))), where (x) is the value of the integer. The number of digits in (x) is proportional to the logarithm of (x), and the loop iterates once for each digit.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Space Complexity:&lt;&#x2F;strong&gt; (O(1)). This approach uses a fixed amount of space, only a few integers, regardless of the size of the input number.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h2 id=&quot;additional-information&quot;&gt;Additional Information&lt;&#x2F;h2&gt;
+&lt;p&gt;When choosing between these approaches, consider the context of your application. If space efficiency is paramount, the mathematical approach is preferable. For readability and ease of understanding, string conversion methods might be more suitable.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;further-reading-references&quot;&gt;Further Reading &#x2F; References&lt;&#x2F;h3&gt;
+&lt;p&gt;To deepen your understanding of the concepts used in these solutions, you might explore the following topics:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;&lt;a href=&quot;https:&#x2F;&#x2F;doc.rust-lang.org&#x2F;rust-by-example&#x2F;std&#x2F;str.html&quot;&gt;String Manipulation in Rust:&lt;&#x2F;a&gt;&lt;&#x2F;strong&gt; Learn more about how strings work in Rust, including ownership, borrowing, and methods associated with string manipulation.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;a href=&quot;https:&#x2F;&#x2F;doc.rust-lang.org&#x2F;book&#x2F;ch13-00-functional-features.html&quot;&gt;Iterators and Closures in Rust&lt;&#x2F;a&gt;:&lt;&#x2F;strong&gt; These are powerful features that allow for concise and expressive code, especially in functional-style programming.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;a href=&quot;https:&#x2F;&#x2F;brilliant.org&#x2F;number-theory&#x2F;?subtopic=integers&amp;amp;utm_medium=cpc&amp;amp;utm_source=performancemax&amp;amp;utm_campaign=Mixed_Performance_Max&amp;amp;gad_source=1&amp;amp;gclid=Cj0KCQiAqsitBhDlARIsAGMR1RiDtPeLQ4liz3oNNs2ZEArvw5Z0FBemQ6X2r6O6T2Tg5yYTy9kgqykaAslSEALw_wcB&quot;&gt;Number Theory Basics&lt;&#x2F;a&gt;:&lt;&#x2F;strong&gt; Understanding how numbers can be manipulated, reversed, and analyzed is crucial in many algorithmic problems.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h2 id=&quot;conclusion&quot;&gt;Conclusion&lt;&#x2F;h2&gt;
+&lt;p&gt;In this blog post, we explored three different approaches to solving the palindrome number problem in Rust, each illustrating a unique aspect of Rust&#x27;s capabilities. From simple string manipulation to more complex mathematical solutions, Rust provides the tools and features to implement efficient and readable solutions. Whether you prefer the imperative or functional programming paradigm, Rust accommodates both styles, allowing us to leverage its powerful type system and safety guarantees to write high-quality code.&lt;&#x2F;p&gt;
+&lt;p&gt;Remember, the best solution often depends on the specific requirements and constraints of your project. By understanding the trade-offs between different approaches, we can make informed decisions that balance performance, readability, and Rust&#x27;s idiomatic practices.&lt;&#x2F;p&gt;
+</description>
+      </item>
+      <item>
           <title>LeetCode: 13. Roman to Integer</title>
           <pubDate>Tue, 16 Jan 2024 00:00:00 +0000</pubDate>
           <author>Unknown</author>
           <link>https://desmodrone.github.io/posts/leetcode-roman-to-integer/</link>
           <guid>https://desmodrone.github.io/posts/leetcode-roman-to-integer/</guid>
-          <description xml:base="https://desmodrone.github.io/posts/leetcode-roman-to-integer/">&lt;h1 id=&quot;13-roman-to-integer&quot;&gt;13. Roman to Integer&lt;&#x2F;h1&gt;
-&lt;h2 id=&quot;decoding-roman-numerals-two-rust-approaches-to-a-classic-problem&quot;&gt;Decoding Roman Numerals: Two Rust Approaches to a Classic Problem&lt;&#x2F;h2&gt;
+          <description xml:base="https://desmodrone.github.io/posts/leetcode-roman-to-integer/">&lt;h2 id=&quot;decoding-roman-numerals-two-rust-approaches-to-a-classic-problem&quot;&gt;Decoding Roman Numerals: Two Rust Approaches to a Classic Problem&lt;&#x2F;h2&gt;
 &lt;p&gt;&lt;a href=&quot;https:&#x2F;&#x2F;leetcode.com&#x2F;problems&#x2F;roman-to-integer&#x2F;description&#x2F;&quot;&gt;13. Roman to Integer on LeetCode&lt;&#x2F;a&gt;
 Roman numerals are represented by seven different symbols: &lt;code&gt;I&lt;&#x2F;code&gt;, &lt;code&gt;V&lt;&#x2F;code&gt;, &lt;code&gt;X&lt;&#x2F;code&gt;, &lt;code&gt;L&lt;&#x2F;code&gt;, &lt;code&gt;C&lt;&#x2F;code&gt;, &lt;code&gt;D&lt;&#x2F;code&gt; and &lt;code&gt;M&lt;&#x2F;code&gt;.
 &lt;strong&gt;Symbol&lt;&#x2F;strong&gt;                       &lt;strong&gt;Value&lt;&#x2F;strong&gt;&lt;&#x2F;p&gt;
@@ -288,6 +489,7 @@ and we did so with the &lt;em&gt;HashMap&lt;&#x2F;em&gt; solution so let&#x27;s 
 &lt;h2 id=&quot;leetcode-problem-index&quot;&gt;LeetCode Problem Index&lt;&#x2F;h2&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;desmodrone.github.io&#x2F;posts&#x2F;01-leetcode-two-sum&#x2F;&quot;&gt;01. Two Sum&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;desmodrone.github.io&#x2F;posts&#x2F;leetcode-roman-to-integer&#x2F;&quot;&gt;13. Roman to Integer&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
 &lt;&#x2F;ul&gt;
 </description>
       </item>
