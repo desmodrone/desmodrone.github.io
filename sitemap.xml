@@ -146,6 +146,10 @@
         <lastmod>2024-01-08</lastmod>
     </url>
     <url>
+        <loc>https://desmodrone.github.io/posts/new-journey-at-extropy-io/</loc>
+        <lastmod>2024-03-12</lastmod>
+    </url>
+    <url>
         <loc>https://desmodrone.github.io/posts/rust-closures/</loc>
         <lastmod>2023-03-08</lastmod>
     </url>
@@ -186,6 +190,9 @@
         <loc>https://desmodrone.github.io/tags/assert/</loc>
     </url>
     <url>
+        <loc>https://desmodrone.github.io/tags/blockchain/</loc>
+    </url>
+    <url>
         <loc>https://desmodrone.github.io/tags/blog/</loc>
     </url>
     <url>
@@ -193,6 +200,9 @@
     </url>
     <url>
         <loc>https://desmodrone.github.io/tags/box/</loc>
+    </url>
+    <url>
+        <loc>https://desmodrone.github.io/tags/cario/</loc>
     </url>
     <url>
         <loc>https://desmodrone.github.io/tags/chars/</loc>
@@ -210,6 +220,9 @@
         <loc>https://desmodrone.github.io/tags/cow/</loc>
     </url>
     <url>
+        <loc>https://desmodrone.github.io/tags/cryptography/</loc>
+    </url>
+    <url>
         <loc>https://desmodrone.github.io/tags/enums/</loc>
     </url>
     <url>
@@ -217,6 +230,9 @@
     </url>
     <url>
         <loc>https://desmodrone.github.io/tags/errors/</loc>
+    </url>
+    <url>
+        <loc>https://desmodrone.github.io/tags/extropy/</loc>
     </url>
     <url>
         <loc>https://desmodrone.github.io/tags/first/</loc>
@@ -406,6 +422,9 @@
     </url>
     <url>
         <loc>https://desmodrone.github.io/tags/while-let/</loc>
+    </url>
+    <url>
+        <loc>https://desmodrone.github.io/tags/zero-knowledge/</loc>
     </url>
     <url>
         <loc>https://desmodrone.github.io/work/</loc>

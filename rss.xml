@@ -7,7 +7,23 @@
       <generator>Zola</generator>
       <language>en</language>
       <atom:link href="https://desmodrone.github.io/rss.xml" rel="self" type="application/rss+xml"/>
-      <lastBuildDate>Tue, 16 Jan 2024 00:00:00 +0000</lastBuildDate>
+      <lastBuildDate>Tue, 12 Mar 2024 00:00:00 +0000</lastBuildDate>
+      <item>
+          <title>Embarking on a New Journey</title>
+          <pubDate>Tue, 12 Mar 2024 00:00:00 +0000</pubDate>
+          <author>Unknown</author>
+          <link>https://desmodrone.github.io/posts/new-journey-at-extropy-io/</link>
+          <guid>https://desmodrone.github.io/posts/new-journey-at-extropy-io/</guid>
+          <description xml:base="https://desmodrone.github.io/posts/new-journey-at-extropy-io/">&lt;h2 id=&quot;joining-extropy-io&quot;&gt;Joining Extropy.io&lt;&#x2F;h2&gt;
+&lt;p&gt;It&#x27;s been a while since I last updated my blog, and I&#x27;m thrilled to break the silence with some exciting news. I&#x27;ve recently accepted a position as a Blockchain Engineer at &lt;a href=&quot;http:&#x2F;&#x2F;extropy.io&quot;&gt;Extropy.io&lt;&#x2F;a&gt;, and I can&#x27;t wait to embark on this new chapter of my professional journey.&lt;&#x2F;p&gt;
+&lt;p&gt;What really got me excited about Extropy.io is their commitment to breaking down the barriers to blockchain understanding. They&#x27;ve got this awesome mix of services — from consulting on the nuts and bolts of Distributed Ledger Technology (DLT) and Cryptography, to hands-on workshops and deep-dives into software development and security auditing.&lt;&#x2F;p&gt;
+&lt;p&gt;But here&#x27;s the kicker for me: their vibe is all about opening up the world of blockchain to everyone, not just the tech nerds. Their mission to spread knowledge, ensure security, and push the envelope on innovation. That&#x27;s exactly where I want to be, working alongside some incredibly smart folks.&lt;&#x2F;p&gt;
+&lt;p&gt;I&#x27;m ready to dive in headfirst. Think of me as a bit of a blockchain Swiss Army knife – from tightening up our security protocols to bringing our blockchain applications to life. I&#x27;m also stepping up to lead the charge on the tech training front, sharing the ins and outs with everyone who&#x27;s as psyched about this stuff as we are.&lt;&#x2F;p&gt;
+&lt;p&gt;And here’s where it gets even more interesting: I’ll be bridging the gap between our tech advancements and the rest of the world. I&#x27;m on a mission to decode the complex lingo of blockchain for everyone to understand. It&#x27;s about igniting that same excitement for blockchain&#x27;s potential in everyone, and I&#x27;m here for it.&lt;&#x2F;p&gt;
+&lt;p&gt;Stay tuned for updates on our projects, technical deep dives, and the occasional reflection on the blockchain landscape. I&#x27;ll be diving into more Zero Knowledge projects involving Rust and Cairo soon.&lt;&#x2F;p&gt;
+&lt;p&gt;Here&#x27;s to new beginnings and making a positive impact in the world of blockchain!&lt;&#x2F;p&gt;
+</description>
+      </item>
       <item>
           <title>LeetCode: 9. Palindrome Number</title>
           <pubDate>Tue, 16 Jan 2024 00:00:00 +0000</pubDate>
