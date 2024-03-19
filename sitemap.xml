@@ -146,6 +146,10 @@
         <lastmod>2024-01-08</lastmod>
     </url>
     <url>
+        <loc>https://desmodrone.github.io/posts/madara-node-quick-start/</loc>
+        <lastmod>2024-03-19</lastmod>
+    </url>
+    <url>
         <loc>https://desmodrone.github.io/posts/new-journey-at-extropy-io/</loc>
         <lastmod>2024-03-12</lastmod>
     </url>
@@ -292,6 +296,9 @@
         <loc>https://desmodrone.github.io/tags/macros/</loc>
     </url>
     <url>
+        <loc>https://desmodrone.github.io/tags/madara/</loc>
+    </url>
+    <url>
         <loc>https://desmodrone.github.io/tags/match/</loc>
     </url>
     <url>
@@ -374,6 +381,9 @@
     </url>
     <url>
         <loc>https://desmodrone.github.io/tags/structs/</loc>
+    </url>
+    <url>
+        <loc>https://desmodrone.github.io/tags/substrate/</loc>
     </url>
     <url>
         <loc>https://desmodrone.github.io/tags/tests/</loc>
