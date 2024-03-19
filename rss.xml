@@ -37,7 +37,7 @@
 &lt;p&gt;Once cloned, from inside the &lt;code&gt;madara&lt;&#x2F;code&gt; folder of this newly cloned repo run the following command.
 Replace the &lt;code&gt;&#x2F;User&#x2F;desmo&#x2F;madara-state&lt;&#x2F;code&gt; with the location where you want to store your Madara state: &lt;code&gt;&#x2F;home&#x2F;user&#x2F;directory&lt;&#x2F;code&gt;&lt;&#x2F;p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;Note
+&lt;p&gt;Note:
 These commands are different than the commands given in the Madara repo and allow us to save the node&#x27;s state locally.&lt;&#x2F;p&gt;
 &lt;&#x2F;blockquote&gt;
 &lt;pre data-lang=&quot;zsh&quot; class=&quot;language-zsh &quot;&gt;&lt;code class=&quot;language-zsh&quot; data-lang=&quot;zsh&quot;&gt;cargo run --release -- setup --from-local .&amp;#x2F;configs&amp;#x2F; --chain=dev --base-path=&amp;#x2F;Users&amp;#x2F;desmo&amp;#x2F;madara-state
