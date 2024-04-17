@@ -258,13 +258,13 @@ pub const ChainId: Felt252Wrapper = MADARA_CHAIN_ID;
 </description>
       </item>
       <item>
-          <title>LeetCode: 9. Palindrome Number</title>
+          <title>Rust LeetCode: 9. Palindrome Number</title>
           <pubDate>Tue, 16 Jan 2024 00:00:00 +0000</pubDate>
           <author>Unknown</author>
-          <link>https://desmodrone.github.io/posts/leetcode-palindrome-number/</link>
-          <guid>https://desmodrone.github.io/posts/leetcode-palindrome-number/</guid>
-          <description xml:base="https://desmodrone.github.io/posts/leetcode-palindrome-number/">&lt;h2 id=&quot;problem-statment&quot;&gt;Problem Statment&lt;&#x2F;h2&gt;
-&lt;p&gt;Given an integer &lt;code&gt;x&lt;&#x2F;code&gt;, return &lt;code&gt;true&lt;&#x2F;code&gt; &lt;em&gt;if&lt;&#x2F;em&gt; &lt;code&gt;x&lt;&#x2F;code&gt; &lt;em&gt;is a&lt;&#x2F;em&gt; &lt;strong&gt;palindrome&lt;&#x2F;strong&gt;, and_ &lt;code&gt;false&lt;&#x2F;code&gt; &lt;em&gt;otherwise&lt;&#x2F;em&gt;.&lt;&#x2F;p&gt;
+          <link>https://desmodrone.github.io/posts/rust-leetcode-palindrome-number/</link>
+          <guid>https://desmodrone.github.io/posts/rust-leetcode-palindrome-number/</guid>
+          <description xml:base="https://desmodrone.github.io/posts/rust-leetcode-palindrome-number/">&lt;h2 id=&quot;problem-statment&quot;&gt;Problem Statment&lt;&#x2F;h2&gt;
+&lt;p&gt;Given an integer &lt;code&gt;x&lt;&#x2F;code&gt;, return &lt;code&gt;true&lt;&#x2F;code&gt; &lt;em&gt;if&lt;&#x2F;em&gt; &lt;code&gt;x&lt;&#x2F;code&gt; &lt;em&gt;is a&lt;&#x2F;em&gt; &lt;strong&gt;palindrome&lt;&#x2F;strong&gt;, and* &lt;code&gt;false&lt;&#x2F;code&gt; _otherwise*.&lt;&#x2F;p&gt;
 &lt;p&gt;&lt;strong&gt;Example 1:&lt;&#x2F;strong&gt;&lt;&#x2F;p&gt;
 &lt;pre&gt;&lt;code&gt;Input: x = 121
 Output: true
@@ -460,15 +460,15 @@ Explanation: Reads 01 from right to left. Therefore it is not a palindrome.
 </description>
       </item>
       <item>
-          <title>LeetCode: 13. Roman to Integer</title>
+          <title>Rust LeetCode: 13. Roman to Integer</title>
           <pubDate>Tue, 16 Jan 2024 00:00:00 +0000</pubDate>
           <author>Unknown</author>
-          <link>https://desmodrone.github.io/posts/leetcode-roman-to-integer/</link>
-          <guid>https://desmodrone.github.io/posts/leetcode-roman-to-integer/</guid>
-          <description xml:base="https://desmodrone.github.io/posts/leetcode-roman-to-integer/">&lt;h2 id=&quot;decoding-roman-numerals-two-rust-approaches-to-a-classic-problem&quot;&gt;Decoding Roman Numerals: Two Rust Approaches to a Classic Problem&lt;&#x2F;h2&gt;
+          <link>https://desmodrone.github.io/posts/rust-leetcode-roman-to-integer/</link>
+          <guid>https://desmodrone.github.io/posts/rust-leetcode-roman-to-integer/</guid>
+          <description xml:base="https://desmodrone.github.io/posts/rust-leetcode-roman-to-integer/">&lt;h2 id=&quot;decoding-roman-numerals-two-rust-approaches-to-a-classic-problem&quot;&gt;Decoding Roman Numerals: Two Rust Approaches to a Classic Problem&lt;&#x2F;h2&gt;
 &lt;p&gt;&lt;a href=&quot;https:&#x2F;&#x2F;leetcode.com&#x2F;problems&#x2F;roman-to-integer&#x2F;description&#x2F;&quot;&gt;13. Roman to Integer on LeetCode&lt;&#x2F;a&gt;
 Roman numerals are represented by seven different symbols: &lt;code&gt;I&lt;&#x2F;code&gt;, &lt;code&gt;V&lt;&#x2F;code&gt;, &lt;code&gt;X&lt;&#x2F;code&gt;, &lt;code&gt;L&lt;&#x2F;code&gt;, &lt;code&gt;C&lt;&#x2F;code&gt;, &lt;code&gt;D&lt;&#x2F;code&gt; and &lt;code&gt;M&lt;&#x2F;code&gt;.
-&lt;strong&gt;Symbol&lt;&#x2F;strong&gt;                       &lt;strong&gt;Value&lt;&#x2F;strong&gt;&lt;&#x2F;p&gt;
+&lt;strong&gt;Symbol&lt;&#x2F;strong&gt; &lt;strong&gt;Value&lt;&#x2F;strong&gt;&lt;&#x2F;p&gt;
 &lt;pre&gt;&lt;code&gt;I             1
 V             5
 X             10
@@ -480,8 +480,8 @@ M             1000
 &lt;p&gt;For example, &lt;code&gt;2&lt;&#x2F;code&gt; is written as &lt;code&gt;II&lt;&#x2F;code&gt; in Roman numeral, just two ones added together. &lt;code&gt;12&lt;&#x2F;code&gt; is written as &lt;code&gt;XII&lt;&#x2F;code&gt;, which is simply &lt;code&gt;X + II&lt;&#x2F;code&gt;. The number &lt;code&gt;27&lt;&#x2F;code&gt; is written as &lt;code&gt;XXVII&lt;&#x2F;code&gt;, which is &lt;code&gt;XX + V + II&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
 &lt;p&gt;Roman numerals are usually written largest to smallest from left to right. However, the numeral for four is not &lt;code&gt;IIII&lt;&#x2F;code&gt;. Instead, the number four is written as &lt;code&gt;IV&lt;&#x2F;code&gt;. Because the one is before the five we subtract it making four. The same principle applies to the number nine, which is written as &lt;code&gt;IX&lt;&#x2F;code&gt;. There are six instances where subtraction is used:&lt;&#x2F;p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;code&gt;I&lt;&#x2F;code&gt; can be placed before &lt;code&gt;V&lt;&#x2F;code&gt; (5) and &lt;code&gt;X&lt;&#x2F;code&gt; (10) to make 4 and 9. &lt;&#x2F;li&gt;
-&lt;li&gt;&lt;code&gt;X&lt;&#x2F;code&gt; can be placed before &lt;code&gt;L&lt;&#x2F;code&gt; (50) and &lt;code&gt;C&lt;&#x2F;code&gt; (100) to make 40 and 90. &lt;&#x2F;li&gt;
+&lt;li&gt;&lt;code&gt;I&lt;&#x2F;code&gt; can be placed before &lt;code&gt;V&lt;&#x2F;code&gt; (5) and &lt;code&gt;X&lt;&#x2F;code&gt; (10) to make 4 and 9.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;code&gt;X&lt;&#x2F;code&gt; can be placed before &lt;code&gt;L&lt;&#x2F;code&gt; (50) and &lt;code&gt;C&lt;&#x2F;code&gt; (100) to make 40 and 90.&lt;&#x2F;li&gt;
 &lt;li&gt;&lt;code&gt;C&lt;&#x2F;code&gt; can be placed before &lt;code&gt;D&lt;&#x2F;code&gt; (500) and &lt;code&gt;M&lt;&#x2F;code&gt; (1000) to make 400 and 900.&lt;&#x2F;li&gt;
 &lt;&#x2F;ul&gt;
 &lt;p&gt;Given a roman numeral, convert it to an integer.&lt;&#x2F;p&gt;
@@ -589,12 +589,12 @@ fn roman_to_int(s: String) -&amp;gt; i32 {
 </description>
       </item>
       <item>
-          <title>LeetCode: 1. Two Sum</title>
+          <title>Rust LeetCode: 1. Two Sum</title>
           <pubDate>Mon, 08 Jan 2024 00:00:00 +0000</pubDate>
           <author>Unknown</author>
-          <link>https://desmodrone.github.io/posts/leetcode-two-sum/</link>
-          <guid>https://desmodrone.github.io/posts/leetcode-two-sum/</guid>
-          <description xml:base="https://desmodrone.github.io/posts/leetcode-two-sum/">&lt;h1 id=&quot;1-two-sum&quot;&gt;1. Two Sum&lt;&#x2F;h1&gt;
+          <link>https://desmodrone.github.io/posts/rust-leetcode-two-sum/</link>
+          <guid>https://desmodrone.github.io/posts/rust-leetcode-two-sum/</guid>
+          <description xml:base="https://desmodrone.github.io/posts/rust-leetcode-two-sum/">&lt;h1 id=&quot;1-two-sum&quot;&gt;1. Two Sum&lt;&#x2F;h1&gt;
 &lt;h2 id=&quot;description-on-leetcode&quot;&gt;&lt;a href=&quot;https:&#x2F;&#x2F;leetcode.com&#x2F;problems&#x2F;two-sum&#x2F;description&#x2F;&quot;&gt;Description on LeetCode&lt;&#x2F;a&gt;&lt;&#x2F;h2&gt;
 &lt;p&gt;Given an array of integers &lt;code&gt;nums&lt;&#x2F;code&gt; and an integer &lt;code&gt;target&lt;&#x2F;code&gt;, return &lt;em&gt;indices of the two numbers such that they add up to &lt;code&gt;target&lt;&#x2F;code&gt;&lt;&#x2F;em&gt;.
 You may assume that each input would have &lt;strong&gt;&lt;em&gt;exactly&lt;&#x2F;em&gt; one solution&lt;&#x2F;strong&gt;, and you may not use the &lt;em&gt;same&lt;&#x2F;em&gt; element twice.&lt;&#x2F;p&gt;
@@ -621,7 +621,7 @@ Output: [0,1]`
 &lt;&#x2F;ul&gt;
 &lt;p&gt;&lt;strong&gt;Follow-up:&lt;&#x2F;strong&gt; Can you come up with an algorithm that is less than &lt;code&gt;O(n2)&lt;&#x2F;code&gt; time complexity?&lt;&#x2F;p&gt;
 &lt;h2 id=&quot;breakdown&quot;&gt;Breakdown&lt;&#x2F;h2&gt;
-&lt;p&gt;Although this problem is not overly complex, breaking it down can provide further insight. Essentially we have  to find two numbers in an array that add up to a given target value. Our task is to return the indices of these two numbers. If no such pair exists in our array, we return an empty array (or Vector in Rust)&lt;&#x2F;p&gt;
+&lt;p&gt;Although this problem is not overly complex, breaking it down can provide further insight. Essentially we have to find two numbers in an array that add up to a given target value. Our task is to return the indices of these two numbers. If no such pair exists in our array, we return an empty array (or Vector in Rust)&lt;&#x2F;p&gt;
 &lt;h2 id=&quot;approach&quot;&gt;Approach&lt;&#x2F;h2&gt;
 &lt;p&gt;We&#x27;ll try two different approaches for this exercise a &lt;em&gt;brute force&lt;&#x2F;em&gt; and a &lt;em&gt;hashmap&lt;&#x2F;em&gt;&lt;&#x2F;p&gt;
 &lt;ol&gt;

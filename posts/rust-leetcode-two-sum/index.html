@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <meta itemprop="name" content="desmo" />
+  <meta itemprop="description" content="Random Ideas" />
+
+  <link rel="apple-touch-icon" sizes="180x180" href="https://desmodrone.github.io/apple-touch-icon.png"/>
+  <link rel="icon" type="image/png" sizes="32x32" href="https://desmodrone.github.io/favicon-32x32.png" />
+  <link
+    rel="icon"
+    type="image/png"
+    sizes="16x16"
+    href="https://desmodrone.github.io/favicon-16x16.png"
+  />
+  <link
+    rel="shortcut icon"
+    href="https://desmodrone.github.io/favicon.ico"
+  />
+  <link rel="stylesheet" href="https://desmodrone.github.io/style.css"/>
+  
+  <title>Rust LeetCode: 1. Two Sum</title>
+  
+
+  
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="https://desmodrone.github.io/rss.xml">
+  
+
+  <body id="page">
+
+	
+<header id="site-header" class="animated slideInUp faster">
+  <div class="hdr-wrapper section-inner">
+    <div class="hdr-left">
+      <div class="site-branding">
+        <a href="https:&#x2F;&#x2F;desmodrone.github.io">desmo</a>
+      </div>
+      <nav class="site-nav hide-in-mobile">
+            
+        
+        <a href="https://desmodrone.github.io/posts">posts</a>
+        
+        <a href="https://desmodrone.github.io/about">about</a>
+        
+        <a href="https://desmodrone.github.io/work">work</a>
+        
+      </nav>
+    </div>
+    <div class="hdr-right hdr-icons">
+      <span class="hdr-social hide-in-mobile">
+        
+
+<a href="https:&#x2F;&#x2F;twitter.com&#x2F;desmo_io" target="_blank" rel="noopener me"
+   title="twitter">
+  
+  <svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg>
+  
+</a>
+
+<a href="https:&#x2F;&#x2F;github.com&#x2F;desmodrone" target="_blank" rel="noopener me"
+   title="github">
+  
+  <svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+  
+</a>
+
+<a href="mailto:erick@apexwins.com" target="_blank" rel="noopener me"
+   title="email">
+  
+  <svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+  
+</a>
+
+
+      </span>
+      <button id="menu-btn" class="hdr-btn" title="Menu">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="feather feather-menu"
+        >
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+  </div>
+</header>
+<div id="mobile-menu" class="animated fast">
+  <ul>
+    
+    <li><a href="https://desmodrone.github.io/posts">posts</a></li>
+    
+    <li><a href="https://desmodrone.github.io/about">about</a></li>
+    
+    <li><a href="https://desmodrone.github.io/work">work</a></li>
+    
+  </ul>
+</div>
+
+	
+	
+
+		
+<main class="site-main section-inner animated fadeIn faster">
+  <article class="thin">
+	<header class="post-header">
+	  <div class="post-meta">
+		
+		<span>Jan 08, 2024</span>
+		<small> - 
+<span class="reading-time" title="Estimated read time">
+  
+  4 min read
+  
+</span>
+</small>
+		
+            
+	  </div>
+	  <h1>Rust LeetCode: 1. Two Sum</h1>
+	</header>
+
+	<div class="content">
+        
+	  <h1 id="1-two-sum">1. Two Sum</h1>
+<h2 id="description-on-leetcode"><a href="https://leetcode.com/problems/two-sum/description/">Description on LeetCode</a></h2>
+<p>Given an array of integers <code>nums</code> and an integer <code>target</code>, return <em>indices of the two numbers such that they add up to <code>target</code></em>.
+You may assume that each input would have <strong><em>exactly</em> one solution</strong>, and you may not use the <em>same</em> element twice.</p>
+<p>You can return the answer in any order.</p>
+<p><strong>Example 1:</strong></p>
+<pre><code>Input: nums = [2,7,11,15], target = 9
+Output: [0,1]
+Explanation: Because nums[0] + nums[1] == 9, we return [0, 1]
+</code></pre>
+<p><strong>Example 2:</strong></p>
+<pre><code>Input: nums = [3,2,4], target = 6
+Output: [1,2]
+</code></pre>
+<p><strong>Example 3:</strong></p>
+<pre><code>Input: nums = [3,3], target = 6
+Output: [0,1]`
+</code></pre>
+<p><strong>Constraints:</strong></p>
+<ul>
+<li><code>2 &lt;= nums.length &lt;= 104</code></li>
+<li><code>-109 &lt;= nums[i] &lt;= 109</code></li>
+<li><code>-109 &lt;= target &lt;= 109</code></li>
+<li><strong>Only one valid answer exists.</strong></li>
+</ul>
+<p><strong>Follow-up:</strong> Can you come up with an algorithm that is less than <code>O(n2)</code> time complexity?</p>
+<h2 id="breakdown">Breakdown</h2>
+<p>Although this problem is not overly complex, breaking it down can provide further insight. Essentially we have to find two numbers in an array that add up to a given target value. Our task is to return the indices of these two numbers. If no such pair exists in our array, we return an empty array (or Vector in Rust)</p>
+<h2 id="approach">Approach</h2>
+<p>We'll try two different approaches for this exercise a <em>brute force</em> and a <em>hashmap</em></p>
+<ol>
+<li>The brute force version uses nested loops to iterate through the pair of elements. Although it's a simple and straightforward approach it's not the most efficient.</li>
+<li>The HashMap version is more efficient as we only need to iterate through the array once, and check if the target minus the current element is in the array.</li>
+</ol>
+<h2 id="code">Code</h2>
+<h3 id="brute-force-approach">Brute Force Approach</h3>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">&#x2F;&#x2F; Function to find two numbers in the array that add up to the target
+fn two_sum(nums: Vec&lt;i32&gt;, target: i32) -&gt; Vec&lt;i32&gt; {
+    &#x2F;&#x2F; Iterate over each element in the array with its index
+    for (i, num1) in nums.iter().enumerate() {
+        &#x2F;&#x2F; Iterate over the rest of the array starting from the next element
+        for (j, num2) in nums.iter().skip(i + 1).enumerate() {
+            &#x2F;&#x2F; Check if the sum of the current pair equals the target
+            if num1 + num2 == target {
+                &#x2F;&#x2F; If a pair is found, return their indices
+                return vec![i as i32, (j + i + 1) as i32];
+            }
+        }
+    }
+    &#x2F;&#x2F; Return an empty array if no pair is found
+    vec![]
+}
+
+</code></pre>
+<h3 id="hashmap-approach">HashMap Approach</h3>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">use std::collections::HashMap; &#x2F;&#x2F; Import the HashMap from the standard library
+
+&#x2F;&#x2F; Function to find two numbers in the array that add up to the target
+fn two_sum(nums: Vec&lt;i32&gt;, target: i32) -&gt; Vec&lt;i32&gt; {
+    let mut hm = HashMap::new(); &#x2F;&#x2F; Create a new, empty HashMap
+
+    &#x2F;&#x2F; Iterate over each element in the array with its index
+    for (i, num) in nums.iter().enumerate() {
+        let complement = target - num; &#x2F;&#x2F; Calculate the complement of the current number
+
+        &#x2F;&#x2F; Check if the complement is already in the HashMap
+        if let Some(&amp;index) = hm.get(&amp;complement){
+            &#x2F;&#x2F; If found, return the indices of the complement and the current number
+            return vec![index as i32, i as i32];
+        }
+        &#x2F;&#x2F; Insert the current number and its index into the HashMap
+        hm.insert(*num, i);
+    }
+    &#x2F;&#x2F; Return an empty array if no pair is found
+    vec![]
+}
+
+</code></pre>
+<h2 id="explanation">Explanation</h2>
+<p>The <strong>Brute Force Approach</strong> iteratively checks each pair of numbers in the array to see if they sum up to the target. This is done by using two nested loops: the outer loop iterates through each element, and the inner loop checks all subsequent elements to find a pair that adds up to the target.</p>
+<p>The <strong>HashMap Approach</strong> is more efficient. It iterates through the array once, using a HashMap to store elements already traversed. For each element, we calculate its complement (target - current element) and check if this complement is already in the HashMap. If it is, we found a pair; if not, we add the current element to the HashMap. This approach significantly reduces the time complexity as it avoids the need for nested iteration.</p>
+<h2 id="complexity-analysis">Complexity Analysis</h2>
+<ol>
+<li><strong>Brute Force Approach</strong>:
+<ul>
+<li>Time Complexity: O(n^2) where n is the number of elements in the array. This is because we need to check each pair of elements.</li>
+<li>Space Complexity: O(1), as it only uses a few extra variables for iteration and no additional data structures.</li>
+</ul>
+</li>
+<li><strong>HashMap Approach</strong>:
+<ul>
+<li>Time Complexity: O(n), as we traverse the list containing n elements only once. Each look up in the table costs only O(1) time.</li>
+<li>Space Complexity: O(n), to store the elements and their indices in the HashMap.</li>
+</ul>
+</li>
+</ol>
+<h2 id="additional-information">Additional Information</h2>
+<p>When implementing solutions like the HashMap approach, it's crucial to consider possible edge cases, such as duplicate elements in the array, and ensure your implementation correctly handles these cases. We can dive deeper into some examples in other problems, for now it's good to just think about the potiental of these cases.</p>
+<h4 id="follow-up-question">Follow-up Question</h4>
+<p>The follow up question challenged us to come up with a better solution <em>Can you come up with an algorithm that is less than <code>O(n2)</code> time complexity?</em>
+and we did so with the <em>HashMap</em> solution so let's dive down a little bit more as to why it's better and how it does it.</p>
+<h3 id="hashmap-approach-details">HashMap Approach Details</h3>
+<p><strong>Initialize a HashMap</strong>: This map will store elements from the array as keys and their indices as values.</p>
+<p><strong>Iterate through the Array</strong>:</p>
+<ul>
+<li>For each element, calculate its complement by subtracting it from the target (i.e., <code>complement = target - num</code>).</li>
+<li>Check if the complement is already in the HashMap.
+<ul>
+<li>If it is, it means we have found a pair of numbers that add up to the target. Return their indices.</li>
+<li>If not, add the current element and its index to the HashMap.</li>
+</ul>
+</li>
+</ul>
+<p><strong>Return</strong>: If no pair is found by the end of the iteration, return an indication that no solution exists (e.g., an empty array).</p>
+<h4 id="time-complexity">Time Complexity:</h4>
+<ul>
+<li><strong>HashMap Lookups</strong>: The time complexity of looking up keys in a HashMap is ( O(1) ) on average.</li>
+<li><strong>Single Iteration</strong>: The algorithm iterates through the array only once.</li>
+<li>Therefore, the overall time complexity is ( O(n) ), where ( n ) is the number of elements in the array.</li>
+</ul>
+<h4 id="space-complexity">Space Complexity:</h4>
+<ul>
+<li>The space complexity is ( O(n) ), as in the worst case, we might need to add every element to the HashMap.</li>
+</ul>
+<p>This HashMap approach is significantly more efficient than a brute-force method with nested loops, which has a time complexity of ( O(n^2) ). By utilizing a HashMap to store and quickly look up complements, we reduce the problem to a single pass through the array, achieving the desired time complexity of less than ( O(n^2) ).</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>In solving the &quot;Two Sum&quot; problem, we explored both a brute force and a HashMap approach, illustrating the trade-offs between time and space complexity. While the brute force method is straightforward, the HashMap approach offers a more efficient solution, highlighting the importance of understanding data structures and algorithms in problem-solving. Practicing such problems enhances not only coding skills but also analytical thinking, which is vital in tackling real-world challenges.</p>
+
+	</div>
+	<hr class="post-end">
+	<footer class="post-info">
+    
+	  <p>
+		<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg>
+		
+		
+		<span class="tag"><a href="https://desmodrone.github.io/tags/rust/">rust</a></span>
+		
+		<span class="tag"><a href="https://desmodrone.github.io/tags/leetcode/">leetcode</a></span>
+		
+		<span class="tag"><a href="https://desmodrone.github.io/tags/hashmaps/">hashmaps</a></span>
+		
+		<span class="tag"><a href="https://desmodrone.github.io/tags/nested-loops/">nested loops</a></span>
+		
+		<span class="tag"><a href="https://desmodrone.github.io/tags/vectors/">vectors</a></span>
+		
+		
+    </p>
+    
+    <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>1145 Words</p>
+    
+    <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2024-01-08</p>
+    
+	</footer>
+  </article>
+    
+  
+  <div class="post-nav thin">
+	
+	
+  </div>
+
+  
+</main>
+
+	  </div>
+	  
+	  
+
+
+
+<footer id="site-footer" class="section-inner thin animated fadeIn faster">
+  <p>&copy; 2024 <a href="https:&#x2F;&#x2F;desmodrone.github.io">erick</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
+  <p>Made with <a href="https://www.getzola.org" target="_blank" rel="noopener">Zola</a> &#183; Theme <a href="https://github.com/VersBinarii/hermit_zola" target="_blank" rel="noopener">Hermit_Zola</a>
+	
+	&#183; <a href="https://desmodrone.github.io/rss.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
+	
+  </p>
+</footer>
+
+
+
+
+	</div>
+	
+	<script src="https://desmodrone.github.io/js/main.js"></script>
+
+	<!-- Math rendering -->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css" integrity="sha384-zB1R0rpPzHqg7Kpt0Aljp8JPLqbXI3bhnPWROx27a9N0Ll6ZP/+DiW/UqRcLbRjq" crossorigin="anonymous">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js" integrity="sha384-y23I5Q6l+B6vatafAwxRu/0oK/79VlbSz7Q9aiSZUvyWYIYsd+qj+o24G5ZU2zJz" crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous"
+        onload="renderMathInElement(document.body, { delimiters: [ {left: '$$', right: '$$', display: true}, {left: '$', right: '$', display: false}, {left: '\\[', right: '\\]', display: true}, {left: '\\(', right: '\\)', display: false}]});"></script>
+
+    
+		<link href="https://unpkg.com/highlightjs-badge/highlightjs/styles/monokai.css" rel="stylesheet">
+		<!-- https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.1/build/styles/  for min version -->
+		<script src="https://unpkg.com/highlightjs-badge/highlightjs/highlight.pack.js"></script>
+		<script src="https://unpkg.com/highlightjs-badge/highlightjs-badge.min.js"></script>
+		<script>
+			var pres = document.querySelectorAll("pre>code");
+			for (var i = 0; i < pres.length; i++) {
+				hljs.highlightBlock(pres[i]);
+			}
+		</script>
+		
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js"></script>
+			<script>
+				var options = {
+					copyIconClass: "gg-clipboard",
+					checkIconClass: "gg-check"
+				};
+				window.highlightJsBadge(options);
+			</script>
+		
+
+	
+
+	
+	<script src="https://desmodrone.github.io/js/main.js"></script>
+
+    
+    
+
+	
+    <!-- Global Site Tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-9MNTYXYNHK"></script>
+    <script>
+     window.dataLayer = window.dataLayer || [];
+     function gtag(){dataLayer.push(arguments);}
+     gtag('js', new Date());
+     gtag('config', 'G-9MNTYXYNHK');
+    </script>
+    
+  </body>
+</html>
