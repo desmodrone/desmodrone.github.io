@@ -146,6 +146,10 @@
         <lastmod>2023-03-08</lastmod>
     </url>
     <url>
+        <loc>https://desmodrone.github.io/posts/rust-leetcode-most-frequent-even/</loc>
+        <lastmod>2024-04-17</lastmod>
+    </url>
+    <url>
         <loc>https://desmodrone.github.io/posts/rust-leetcode-palindrome-number/</loc>
         <lastmod>2024-01-16</lastmod>
     </url>
@@ -239,6 +243,9 @@
         <loc>https://desmodrone.github.io/tags/extropy/</loc>
     </url>
     <url>
+        <loc>https://desmodrone.github.io/tags/filter/</loc>
+    </url>
+    <url>
         <loc>https://desmodrone.github.io/tags/first/</loc>
     </url>
     <url>
@@ -255,6 +262,9 @@
     </url>
     <url>
         <loc>https://desmodrone.github.io/tags/generics/</loc>
+    </url>
+    <url>
+        <loc>https://desmodrone.github.io/tags/hashmap/</loc>
     </url>
     <url>
         <loc>https://desmodrone.github.io/tags/hashmaps/</loc>

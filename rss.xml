@@ -7,7 +7,142 @@
       <generator>Zola</generator>
       <language>en</language>
       <atom:link href="https://desmodrone.github.io/rss.xml" rel="self" type="application/rss+xml"/>
-      <lastBuildDate>Tue, 19 Mar 2024 00:00:00 +0000</lastBuildDate>
+      <lastBuildDate>Wed, 17 Apr 2024 00:00:00 +0000</lastBuildDate>
+      <item>
+          <title>Rust LeetCode: 2404. Most Frequent Even Element</title>
+          <pubDate>Wed, 17 Apr 2024 00:00:00 +0000</pubDate>
+          <author>Unknown</author>
+          <link>https://desmodrone.github.io/posts/rust-leetcode-most-frequent-even/</link>
+          <guid>https://desmodrone.github.io/posts/rust-leetcode-most-frequent-even/</guid>
+          <description xml:base="https://desmodrone.github.io/posts/rust-leetcode-most-frequent-even/">&lt;h2 id=&quot;even-the-odds-untangling-vectors-with-rust&quot;&gt;Even the Odds: Untangling Vectors with Rust&lt;&#x2F;h2&gt;
+&lt;h2 id=&quot;problem-statment&quot;&gt;Problem Statment&lt;&#x2F;h2&gt;
+&lt;p&gt;&lt;a href=&quot;https:&#x2F;&#x2F;leetcode.com&#x2F;problems&#x2F;most-frequent-even-element&#x2F;description&#x2F;&quot;&gt;2404. Most Frequent Even Element&lt;&#x2F;a&gt; presented as follows: Given an integer array &lt;code&gt;nums&lt;&#x2F;code&gt;, return the most frequent even element
+If there is a tie, return the &lt;em&gt;smallest one&lt;&#x2F;em&gt;. If there is no such element, return &lt;code&gt;-1&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;strong&gt;Example 1:&lt;&#x2F;strong&gt;&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;Input: nums = [0, 1, 2, 2, 4, 4, 1]
+Output: 2
+Explanation:
+The even elements are 0, 2, and 4. Of these, 2 and 4 appear the most.
+We return the smallest one, which is 2.
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;&lt;strong&gt;Example 2:&lt;&#x2F;strong&gt;&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;Input: nums = [4, 4, 4, 9, 2, 4]
+Output: 4
+Explanation: 4 is the even element that appears the most
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;&lt;strong&gt;Example 3:&lt;&#x2F;strong&gt;&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;Input: nums = [29, 47, 21, 41, 13, 37, 25, 7]
+Output: -1
+Explanation: There is no even element.
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;&lt;strong&gt;Constraints:&lt;&#x2F;strong&gt;&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;1 &amp;lt;= nums.length &amp;lt;= 2000&lt;&#x2F;code&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;code&gt;0 &amp;lt;= nums[i] &amp;lt;= 105&lt;&#x2F;code&gt;&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h2 id=&quot;intuition&quot;&gt;Intuition&lt;&#x2F;h2&gt;
+&lt;p&gt;The task is to find the most frequent even number in an array or vector in our case with Rust. If multiple even numbers have the highest frequency, we return the smallest among them. The challenge involves efficiently counting occurrences while considering the parity of the numbers. Using a &lt;code&gt;HashMap&lt;&#x2F;code&gt; enables us to count each even number&#x27;s occurrences as we iterate through the array. Once populated, we can determine which even number(s) occur most frequently and resolve ties by selecting the smallest number. This approach is both intuitive and efficient for the constraints provided.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;approach&quot;&gt;Approach&lt;&#x2F;h2&gt;
+&lt;p&gt;As usual we&#x27;ll approach this in 2 different ways, although both use &lt;code&gt;HashMaps&lt;&#x2F;code&gt; we&#x27;ll have a more straightforward imperative way, with a more functional approach that uses some of Rust&#x27;s method&#x27;s.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;code&quot;&gt;Code&lt;&#x2F;h2&gt;
+&lt;h3 id=&quot;imperative-solution&quot;&gt;Imperative Solution&lt;&#x2F;h3&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;use std::collections::HashMap;
+
+fn most_freq_even(nums: Vec&amp;lt;i32&amp;gt;) -&amp;gt; i32 {
+    let mut hm = HashMap::new();
+
+    for i in nums {
+        if i % 2 == 0 {
+            let count = hm.entry(i).or_insert(0);
+            *count += 1;
+        }
+    }
+
+    let mut freq = -1;
+    let mut max = 0;
+
+    for (k, v) in hm {
+        if v &amp;gt; max || (v == v &amp;amp;&amp;amp; k &amp;lt; freq){
+            freq = k;
+            max = v;
+        }
+    }
+    freq
+}
+fn main() {
+    println!(&amp;quot;{}&amp;quot;, most_freq_even(vec![2, 2, 2, 4, 4, 4]));
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h3 id=&quot;functional&quot;&gt;Functional&lt;&#x2F;h3&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;use std::collections::HashMap;
+
+fn most_freq_even(nums: Vec&amp;lt;i32&amp;gt;) -&amp;gt; i32 {
+
+    let hm = nums.into_iter()
+        .filter(|i| i % 2 == 0)
+        .fold(HashMap::new(), |mut acc, i|{
+            *acc.entry(i).or_insert(0) += 1;
+            acc
+        });
+
+    hm.into_iter()
+        .fold((-1, 0), |(freq, max), (k, v)|{
+            if v &amp;gt; max || (v == max &amp;amp;&amp;amp; k &amp;lt; freq){
+                (k,v)
+            } else {
+                (freq, max)
+            }
+        }).0
+}
+fn main() {
+    println!(&amp;quot;{}&amp;quot;, most_freq_even(vec![2, 2, 2, 4, 4, 4]));
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h2 id=&quot;explanation&quot;&gt;Explanation&lt;&#x2F;h2&gt;
+&lt;p&gt;As previously stated the solutions are implemented in Rust, using its powerful &lt;code&gt;HashMap&lt;&#x2F;code&gt; collection to track the counts of even numbers.&lt;&#x2F;p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Imperative Solution&lt;&#x2F;strong&gt;: This approach involves iterating through the array, filtering even numbers, and counting their occurrences using a hash map. After constructing the hash map, another pass through the map&#x27;s keys allows us to determine the most frequent even element. We check each key-value pair, updating our result if we find a higher count or a smaller number with the same count. This method straightforwardly handles counting and comparison in separate steps.&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Functional Solution&lt;&#x2F;strong&gt;: Here, the solution leverages Rust’s functional programming features, such as &lt;code&gt;into_iter&lt;&#x2F;code&gt;, &lt;code&gt;filter&lt;&#x2F;code&gt;, and &lt;code&gt;fold&lt;&#x2F;code&gt;, to achieve the same task in a more condensed form. The &lt;code&gt;into_iter&lt;&#x2F;code&gt; and &lt;code&gt;filter&lt;&#x2F;code&gt; functions build an iterator of even numbers, which &lt;code&gt;fold&lt;&#x2F;code&gt; uses to populate a hash map. Another &lt;code&gt;fold&lt;&#x2F;code&gt; operation determines the most frequent even element by comparing counts directly within the tuple manipulation, streamlining the process into a more declarative form.&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;p&gt;Both methods efficiently use &lt;code&gt;HashMap&lt;&#x2F;code&gt; to address the problem, with the imperative method being more transparent in its steps and the functional method providing a more elegant and concise solution.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;complexity-analysis&quot;&gt;Complexity Analysis&lt;&#x2F;h2&gt;
+&lt;p&gt;Now let&#x27;s review the time and space complexity for each of these solutions.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;time-complexity&quot;&gt;Time Complexity:&lt;&#x2F;h2&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Imperative Solution:&lt;&#x2F;strong&gt;&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Iteration to build the hash map:&lt;&#x2F;strong&gt; We iterate through the vector once, examining each element to determine if it is even and, if so, updating its count in the hash map. This operation takes (O(n)) time, where (n) is the length of the vector.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Iteration to find the most frequent even element:&lt;&#x2F;strong&gt; After building the hash map, we iterate through it to find the most frequent even element. In the worst case, if all elements in the array are even and unique, the size of the hash map could be as large as (O(n)). However, typically, the number of unique elements (and thus the number of hash map entries) is much less than (n). Still, the complexity of this step is (O(u)), where (u) is the number of unique even numbers in the vector.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Total Time Complexity:&lt;&#x2F;strong&gt; (O(n + u)), which simplifies to (O(n)) assuming (u \leq n).&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Functional Solution:&lt;&#x2F;strong&gt;&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Building the hash map using &lt;code&gt;fold&lt;&#x2F;code&gt;:&lt;&#x2F;strong&gt; Similar to the imperative solution, the functional approach filters even numbers and populates the hash map in a single pass, with a time complexity of (O(n)).&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Finding the most frequent number using another &lt;code&gt;fold&lt;&#x2F;code&gt;:&lt;&#x2F;strong&gt; The second &lt;code&gt;fold&lt;&#x2F;code&gt; operation that determines the most frequent even number has the same (O(u)) complexity as in the imperative solution.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Total Time Complexity:&lt;&#x2F;strong&gt; (O(n + u)), which also simplifies to (O(n)).&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;h2 id=&quot;space-complexity&quot;&gt;Space Complexity:&lt;&#x2F;h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Both Solutions:&lt;&#x2F;strong&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Hash Map Storage:&lt;&#x2F;strong&gt; The space complexity is dominated by the hash map that stores the counts of even numbers. In the worst case, where all elements are even and unique, the space required would be (O(n)). More typically, the space complexity will be (O(u)), where (u) is the number of unique even numbers in the vector.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Total Space Complexity:&lt;&#x2F;strong&gt; (O(u)), which could be at most (O(n)) in a scenario where all numbers are unique and even.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h2 id=&quot;conclusion&quot;&gt;Conclusion&lt;&#x2F;h2&gt;
+&lt;p&gt;Both the imperative and functional approaches effectively solve the problem of finding the most frequent even number in an array. The use of &lt;code&gt;HashMap&lt;&#x2F;code&gt; allows for efficient counting of elements, and the logic to determine the smallest frequent even number ensures that all criteria of the problem statement are met. These solutions demonstrate not only the utility of hash maps in frequency counting tasks but also the versatility of Rust&#x27;s programming paradigms. This problem serves as an excellent example of how different approaches can be used to solve a problem efficiently while adhering to the constraints and requirements specified.&lt;&#x2F;p&gt;
+</description>
+      </item>
       <item>
           <title>Madara Node Quick Start Guide</title>
           <pubDate>Tue, 19 Mar 2024 00:00:00 +0000</pubDate>

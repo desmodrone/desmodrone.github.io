@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <meta itemprop="name" content="desmo" />
+  <meta itemprop="description" content="Random Ideas" />
+
+  <link rel="apple-touch-icon" sizes="180x180" href="https://desmodrone.github.io/apple-touch-icon.png"/>
+  <link rel="icon" type="image/png" sizes="32x32" href="https://desmodrone.github.io/favicon-32x32.png" />
+  <link
+    rel="icon"
+    type="image/png"
+    sizes="16x16"
+    href="https://desmodrone.github.io/favicon-16x16.png"
+  />
+  <link
+    rel="shortcut icon"
+    href="https://desmodrone.github.io/favicon.ico"
+  />
+  <link rel="stylesheet" href="https://desmodrone.github.io/style.css"/>
+  
+  <title>Rust LeetCode: 2404. Most Frequent Even Element</title>
+  
+
+  
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="https://desmodrone.github.io/rss.xml">
+  
+
+  <body id="page">
+
+	
+<header id="site-header" class="animated slideInUp faster">
+  <div class="hdr-wrapper section-inner">
+    <div class="hdr-left">
+      <div class="site-branding">
+        <a href="https:&#x2F;&#x2F;desmodrone.github.io">desmo</a>
+      </div>
+      <nav class="site-nav hide-in-mobile">
+            
+        
+        <a href="https://desmodrone.github.io/posts">posts</a>
+        
+        <a href="https://desmodrone.github.io/about">about</a>
+        
+        <a href="https://desmodrone.github.io/work">work</a>
+        
+      </nav>
+    </div>
+    <div class="hdr-right hdr-icons">
+      <span class="hdr-social hide-in-mobile">
+        
+
+<a href="https:&#x2F;&#x2F;twitter.com&#x2F;desmo_io" target="_blank" rel="noopener me"
+   title="twitter">
+  
+  <svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg>
+  
+</a>
+
+<a href="https:&#x2F;&#x2F;github.com&#x2F;desmodrone" target="_blank" rel="noopener me"
+   title="github">
+  
+  <svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+  
+</a>
+
+<a href="mailto:erick@apexwins.com" target="_blank" rel="noopener me"
+   title="email">
+  
+  <svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+  
+</a>
+
+
+      </span>
+      <button id="menu-btn" class="hdr-btn" title="Menu">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="feather feather-menu"
+        >
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+  </div>
+</header>
+<div id="mobile-menu" class="animated fast">
+  <ul>
+    
+    <li><a href="https://desmodrone.github.io/posts">posts</a></li>
+    
+    <li><a href="https://desmodrone.github.io/about">about</a></li>
+    
+    <li><a href="https://desmodrone.github.io/work">work</a></li>
+    
+  </ul>
+</div>
+
+	
+	
+
+		
+<main class="site-main section-inner animated fadeIn faster">
+  <article class="thin">
+	<header class="post-header">
+	  <div class="post-meta">
+		
+		<span>Apr 17, 2024</span>
+		<small> - 
+<span class="reading-time" title="Estimated read time">
+  
+  4 min read
+  
+</span>
+</small>
+		
+            
+	  </div>
+	  <h1>Rust LeetCode: 2404. Most Frequent Even Element</h1>
+	</header>
+
+	<div class="content">
+        
+	  <h2 id="even-the-odds-untangling-vectors-with-rust">Even the Odds: Untangling Vectors with Rust</h2>
+<h2 id="problem-statment">Problem Statment</h2>
+<p><a href="https://leetcode.com/problems/most-frequent-even-element/description/">2404. Most Frequent Even Element</a> presented as follows: Given an integer array <code>nums</code>, return the most frequent even element
+If there is a tie, return the <em>smallest one</em>. If there is no such element, return <code>-1</code>.</p>
+<p><strong>Example 1:</strong></p>
+<pre><code>Input: nums = [0, 1, 2, 2, 4, 4, 1]
+Output: 2
+Explanation:
+The even elements are 0, 2, and 4. Of these, 2 and 4 appear the most.
+We return the smallest one, which is 2.
+</code></pre>
+<p><strong>Example 2:</strong></p>
+<pre><code>Input: nums = [4, 4, 4, 9, 2, 4]
+Output: 4
+Explanation: 4 is the even element that appears the most
+</code></pre>
+<p><strong>Example 3:</strong></p>
+<pre><code>Input: nums = [29, 47, 21, 41, 13, 37, 25, 7]
+Output: -1
+Explanation: There is no even element.
+</code></pre>
+<p><strong>Constraints:</strong></p>
+<ul>
+<li><code>1 &lt;= nums.length &lt;= 2000</code></li>
+<li><code>0 &lt;= nums[i] &lt;= 105</code></li>
+</ul>
+<h2 id="intuition">Intuition</h2>
+<p>The task is to find the most frequent even number in an array or vector in our case with Rust. If multiple even numbers have the highest frequency, we return the smallest among them. The challenge involves efficiently counting occurrences while considering the parity of the numbers. Using a <code>HashMap</code> enables us to count each even number's occurrences as we iterate through the array. Once populated, we can determine which even number(s) occur most frequently and resolve ties by selecting the smallest number. This approach is both intuitive and efficient for the constraints provided.</p>
+<h2 id="approach">Approach</h2>
+<p>As usual we'll approach this in 2 different ways, although both use <code>HashMaps</code> we'll have a more straightforward imperative way, with a more functional approach that uses some of Rust's method's.</p>
+<h2 id="code">Code</h2>
+<h3 id="imperative-solution">Imperative Solution</h3>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">use std::collections::HashMap;
+
+fn most_freq_even(nums: Vec&lt;i32&gt;) -&gt; i32 {
+    let mut hm = HashMap::new();
+
+    for i in nums {
+        if i % 2 == 0 {
+            let count = hm.entry(i).or_insert(0);
+            *count += 1;
+        }
+    }
+
+    let mut freq = -1;
+    let mut max = 0;
+
+    for (k, v) in hm {
+        if v &gt; max || (v == v &amp;&amp; k &lt; freq){
+            freq = k;
+            max = v;
+        }
+    }
+    freq
+}
+fn main() {
+    println!(&quot;{}&quot;, most_freq_even(vec![2, 2, 2, 4, 4, 4]));
+}
+</code></pre>
+<h3 id="functional">Functional</h3>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">use std::collections::HashMap;
+
+fn most_freq_even(nums: Vec&lt;i32&gt;) -&gt; i32 {
+
+    let hm = nums.into_iter()
+        .filter(|i| i % 2 == 0)
+        .fold(HashMap::new(), |mut acc, i|{
+            *acc.entry(i).or_insert(0) += 1;
+            acc
+        });
+
+    hm.into_iter()
+        .fold((-1, 0), |(freq, max), (k, v)|{
+            if v &gt; max || (v == max &amp;&amp; k &lt; freq){
+                (k,v)
+            } else {
+                (freq, max)
+            }
+        }).0
+}
+fn main() {
+    println!(&quot;{}&quot;, most_freq_even(vec![2, 2, 2, 4, 4, 4]));
+}
+</code></pre>
+<h2 id="explanation">Explanation</h2>
+<p>As previously stated the solutions are implemented in Rust, using its powerful <code>HashMap</code> collection to track the counts of even numbers.</p>
+<ol>
+<li>
+<p><strong>Imperative Solution</strong>: This approach involves iterating through the array, filtering even numbers, and counting their occurrences using a hash map. After constructing the hash map, another pass through the map's keys allows us to determine the most frequent even element. We check each key-value pair, updating our result if we find a higher count or a smaller number with the same count. This method straightforwardly handles counting and comparison in separate steps.</p>
+</li>
+<li>
+<p><strong>Functional Solution</strong>: Here, the solution leverages Rust’s functional programming features, such as <code>into_iter</code>, <code>filter</code>, and <code>fold</code>, to achieve the same task in a more condensed form. The <code>into_iter</code> and <code>filter</code> functions build an iterator of even numbers, which <code>fold</code> uses to populate a hash map. Another <code>fold</code> operation determines the most frequent even element by comparing counts directly within the tuple manipulation, streamlining the process into a more declarative form.</p>
+</li>
+</ol>
+<p>Both methods efficiently use <code>HashMap</code> to address the problem, with the imperative method being more transparent in its steps and the functional method providing a more elegant and concise solution.</p>
+<h2 id="complexity-analysis">Complexity Analysis</h2>
+<p>Now let's review the time and space complexity for each of these solutions.</p>
+<h2 id="time-complexity">Time Complexity:</h2>
+<ol>
+<li>
+<p><strong>Imperative Solution:</strong></p>
+<ul>
+<li><strong>Iteration to build the hash map:</strong> We iterate through the vector once, examining each element to determine if it is even and, if so, updating its count in the hash map. This operation takes (O(n)) time, where (n) is the length of the vector.</li>
+<li><strong>Iteration to find the most frequent even element:</strong> After building the hash map, we iterate through it to find the most frequent even element. In the worst case, if all elements in the array are even and unique, the size of the hash map could be as large as (O(n)). However, typically, the number of unique elements (and thus the number of hash map entries) is much less than (n). Still, the complexity of this step is (O(u)), where (u) is the number of unique even numbers in the vector.</li>
+<li><strong>Total Time Complexity:</strong> (O(n + u)), which simplifies to (O(n)) assuming (u \leq n).</li>
+</ul>
+</li>
+<li>
+<p><strong>Functional Solution:</strong></p>
+<ul>
+<li><strong>Building the hash map using <code>fold</code>:</strong> Similar to the imperative solution, the functional approach filters even numbers and populates the hash map in a single pass, with a time complexity of (O(n)).</li>
+<li><strong>Finding the most frequent number using another <code>fold</code>:</strong> The second <code>fold</code> operation that determines the most frequent even number has the same (O(u)) complexity as in the imperative solution.</li>
+<li><strong>Total Time Complexity:</strong> (O(n + u)), which also simplifies to (O(n)).</li>
+</ul>
+</li>
+</ol>
+<h2 id="space-complexity">Space Complexity:</h2>
+<ul>
+<li><strong>Both Solutions:</strong>
+<ul>
+<li><strong>Hash Map Storage:</strong> The space complexity is dominated by the hash map that stores the counts of even numbers. In the worst case, where all elements are even and unique, the space required would be (O(n)). More typically, the space complexity will be (O(u)), where (u) is the number of unique even numbers in the vector.</li>
+<li><strong>Total Space Complexity:</strong> (O(u)), which could be at most (O(n)) in a scenario where all numbers are unique and even.</li>
+</ul>
+</li>
+</ul>
+<h2 id="conclusion">Conclusion</h2>
+<p>Both the imperative and functional approaches effectively solve the problem of finding the most frequent even number in an array. The use of <code>HashMap</code> allows for efficient counting of elements, and the logic to determine the smallest frequent even number ensures that all criteria of the problem statement are met. These solutions demonstrate not only the utility of hash maps in frequency counting tasks but also the versatility of Rust's programming paradigms. This problem serves as an excellent example of how different approaches can be used to solve a problem efficiently while adhering to the constraints and requirements specified.</p>
+
+	</div>
+	<hr class="post-end">
+	<footer class="post-info">
+    
+	  <p>
+		<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg>
+		
+		
+		<span class="tag"><a href="https://desmodrone.github.io/tags/rust/">rust</a></span>
+		
+		<span class="tag"><a href="https://desmodrone.github.io/tags/leetcode/">leetcode</a></span>
+		
+		<span class="tag"><a href="https://desmodrone.github.io/tags/hashmap/">hashmap</a></span>
+		
+		<span class="tag"><a href="https://desmodrone.github.io/tags/vectors/">vectors</a></span>
+		
+		<span class="tag"><a href="https://desmodrone.github.io/tags/fold/">fold</a></span>
+		
+		<span class="tag"><a href="https://desmodrone.github.io/tags/filter/">filter</a></span>
+		
+		<span class="tag"><a href="https://desmodrone.github.io/tags/to-string/">to_string</a></span>
+		
+		
+    </p>
+    
+    <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>1035 Words</p>
+    
+    <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2024-04-17</p>
+    
+	</footer>
+  </article>
+    
+  
+  <div class="post-nav thin">
+	
+	
+  </div>
+
+  
+</main>
+
+	  </div>
+	  
+	  
+
+
+
+<footer id="site-footer" class="section-inner thin animated fadeIn faster">
+  <p>&copy; 2024 <a href="https:&#x2F;&#x2F;desmodrone.github.io">erick</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
+  <p>Made with <a href="https://www.getzola.org" target="_blank" rel="noopener">Zola</a> &#183; Theme <a href="https://github.com/VersBinarii/hermit_zola" target="_blank" rel="noopener">Hermit_Zola</a>
+	
+	&#183; <a href="https://desmodrone.github.io/rss.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
+	
+  </p>
+</footer>
+
+
+
+
+	</div>
+	
+	<script src="https://desmodrone.github.io/js/main.js"></script>
+
+	<!-- Math rendering -->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css" integrity="sha384-zB1R0rpPzHqg7Kpt0Aljp8JPLqbXI3bhnPWROx27a9N0Ll6ZP/+DiW/UqRcLbRjq" crossorigin="anonymous">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js" integrity="sha384-y23I5Q6l+B6vatafAwxRu/0oK/79VlbSz7Q9aiSZUvyWYIYsd+qj+o24G5ZU2zJz" crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous"
+        onload="renderMathInElement(document.body, { delimiters: [ {left: '$$', right: '$$', display: true}, {left: '$', right: '$', display: false}, {left: '\\[', right: '\\]', display: true}, {left: '\\(', right: '\\)', display: false}]});"></script>
+
+    
+		<link href="https://unpkg.com/highlightjs-badge/highlightjs/styles/monokai.css" rel="stylesheet">
+		<!-- https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.1/build/styles/  for min version -->
+		<script src="https://unpkg.com/highlightjs-badge/highlightjs/highlight.pack.js"></script>
+		<script src="https://unpkg.com/highlightjs-badge/highlightjs-badge.min.js"></script>
+		<script>
+			var pres = document.querySelectorAll("pre>code");
+			for (var i = 0; i < pres.length; i++) {
+				hljs.highlightBlock(pres[i]);
+			}
+		</script>
+		
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js"></script>
+			<script>
+				var options = {
+					copyIconClass: "gg-clipboard",
+					checkIconClass: "gg-check"
+				};
+				window.highlightJsBadge(options);
+			</script>
+		
+
+	
+
+	
+	<script src="https://desmodrone.github.io/js/main.js"></script>
+
+    
+    
+
+	
+    <!-- Global Site Tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-9MNTYXYNHK"></script>
+    <script>
+     window.dataLayer = window.dataLayer || [];
+     function gtag(){dataLayer.push(arguments);}
+     gtag('js', new Date());
+     gtag('config', 'G-9MNTYXYNHK');
+    </script>
+    
+  </body>
+</html>
