@@ -20,7 +20,7 @@
   />
   <link rel="stylesheet" href="https://desmodrone.github.io/style.css"/>
   
-  <title>13 Rustlings Quiz2</title>
+  <title>13 Rustlings Quiz2 Solution</title>
   
 
   
@@ -127,7 +127,7 @@
 		
             
 	  </div>
-	  <h1>13 Rustlings Quiz2</h1>
+	  <h1>13 Rustlings Quiz2 Solution</h1>
 	</header>
 
 	<div class="content">
@@ -269,12 +269,12 @@ mod tests {
 </ol>
 <h2 id="quiz2-rs-solution">quiz2.rs solution</h2>
 <h3 id="completing-the-function-signature">Completing the Function Signature</h3>
-<p>Let's go through these in order, let's look at the function signature, and our instructions which tell us that:  <em>input will be a Vector of a 2-length tuple</em></p>
+<p>Let's go through these in order, let's look at the function signature, and our instructions which tell us that: <em>input will be a Vector of a 2-length tuple</em></p>
 <pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">    pub fn transformer(input: ???) -&gt; ??? {
 </code></pre>
 <p>So a vector is declared as <code>Vec&lt;&gt;</code> but in this particular case we need a tuple stored inside of the vector which would make it look something like this <code>Vec&lt;(,)&gt;</code> when empty, but we know that we need to pass in 2 items as we're told in our instructions: <em>first element is a string, second one is a command</em>
 so to complete it, it should look something like this: <code>Vec&lt;(String, command)&gt;</code>.</p>
-<p>Now, let's look at the return value which we were told is: <em>output is going to be a Vector of strings</em>  with that we can complete our function signature to look like this:</p>
+<p>Now, let's look at the return value which we were told is: <em>output is going to be a Vector of strings</em> with that we can complete our function signature to look like this:</p>
 <pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">    pub fn transformer(input: Vec&lt;(String, Command)&gt;) -&gt; Vec&lt;String&gt; {
 </code></pre>
 <p>This should complete our function signature for <code>transformer</code>.</p>
@@ -305,13 +305,13 @@ so to complete it, it should look something like this: <code>Vec&lt;(String, com
 }
 
 </code></pre>
-<p>So one of the ways that we know we can use enums is with match statements, we know that if something matches a certain criteria we can perform certain actions and return a value. So matching each <code>Command</code> in the <code>enum</code> using the <code>Command::Uppercase =&gt;</code> style  matching we can perform an action for each match.
+<p>So one of the ways that we know we can use enums is with match statements, we know that if something matches a certain criteria we can perform certain actions and return a value. So matching each <code>Command</code> in the <code>enum</code> using the <code>Command::Uppercase =&gt;</code> style matching we can perform an action for each match.
 In the first two cases, it's pretty simple all we have to do is call the appropriate method like <code>.to_upercase()</code> in the first match and <code>.trim()</code> (along with the <code>.to_string()</code> method on in <code>Trim</code>) but when we get to <code>Append</code> we have to perform an additional manipulation.</p>
 <h3 id="appending">Appending</h3>
 <p>If we look back to our instructions we have to <em>Append &quot;bar&quot; to a string a specified amount of times</em>. So we can simply call a method or two and be done with our string. We have to add the logic to be able to do this. First let's create a new variable called <code>appended_string</code> and let's use the <code>format!</code> macro to put it into the format we want to use. In this case we use:</p>
 <pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">format!(&quot;{}{}&quot;, string, &quot;bar&quot;.repeat(*count));
 </code></pre>
-<p>This takes the original string, and concatenates &quot;bar&quot; to it by using <code>.repeat</code> we repeat it by the <code>count</code> we define in the <code>Command::Append(count)</code> branch. Finally, we return the  <code>appended_string</code>, reminder this only happens if the <code>Append</code> arm matches.</p>
+<p>This takes the original string, and concatenates &quot;bar&quot; to it by using <code>.repeat</code> we repeat it by the <code>count</code> we define in the <code>Command::Append(count)</code> branch. Finally, we return the <code>appended_string</code>, reminder this only happens if the <code>Append</code> arm matches.</p>
 <p>So at this point we have one of the three arms of the match inside of <code>modified_string</code> at this point we need to push this modified string to our <code>mut output</code>
 Vec. Once that is completed we can then return our <code>output</code> variable with the correctly modified string.</p>
 <h3 id="importing-transformer">Importing <code>transformer</code></h3>

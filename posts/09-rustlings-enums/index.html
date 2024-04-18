@@ -20,7 +20,7 @@
   />
   <link rel="stylesheet" href="https://desmodrone.github.io/style.css"/>
   
-  <title>09 Rustlings Enums</title>
+  <title>09 Rustlings Enums Solution</title>
   
 
   
@@ -127,7 +127,7 @@
 		
             
 	  </div>
-	  <h1>09 Rustlings Enums</h1>
+	  <h1>09 Rustlings Enums Solution</h1>
 	</header>
 
 	<div class="content">
@@ -158,7 +158,7 @@ fn main() {
     println!(&quot;{:?}&quot;, Message::ChangeColor);
 }
 </code></pre>
-<p>Here we have our code, with not much instruction and no hint this time! But we do have a message in the comments: <code>TODO: define a few types of messages as used below</code>.  Let's take a look at the errors as well.</p>
+<p>Here we have our code, with not much instruction and no hint this time! But we do have a message in the comments: <code>TODO: define a few types of messages as used below</code>. Let's take a look at the errors as well.</p>
 <h2 id="enums1-rs-errors"><code>enums1.rs</code> errors</h2>
 <pre data-lang="zsh" class="language-zsh "><code class="language-zsh" data-lang="zsh">⚠️  Compiling of exercises&#x2F;enums&#x2F;enums1.rs failed! Please try again. Here is the output:
 
@@ -208,7 +208,7 @@ error: aborting due to 4 previous errors
    | ------------ variant or associated item `Quit` not found for this enum
 </code></pre>
 <p>Which is telling us that we're missing items in the <code>enum</code> which of course makes sense since we know that we have to fill out the rest of the <code>enum</code>. What's nice is that the message is very clear and show's us where our item are missing which is clearly the <code>enum Message</code>. So let's get to it and fill out that <code>enum</code> and see what happens.</p>
-<h2 id="enums1-rs-solution"><code>enums1.rs</code>  solution</h2>
+<h2 id="enums1-rs-solution"><code>enums1.rs</code> solution</h2>
 <pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">#[derive(Debug)]
 enum Message {
     Quit,
@@ -307,7 +307,7 @@ error: aborting due to 4 previous errors
 </code></pre>
 <p>Errors are similar to last time as well, but we can see that there's something different so let's take a look at how to solve this problem.</p>
 <h2 id="enums2-rs-solution"><code>enums2.rs</code> Solution</h2>
-<p>We can see that in the <code>main()</code> there isn't simply a name of a enum variant like <code>Move</code> or <code>Echo</code> but there's data attached to it. This is because unlike in other languages, <code>enums</code> in Rust can have data like structs, strings, integers, in fact you can even include another <code>enum</code>. So in this case we solve this problem by adding the variant with the data that is expected. If we look at  <code>Move</code>  we add the <code>{ x: i32, y: i32}</code> struct information. Let's do the same for the rest of the variants.</p>
+<p>We can see that in the <code>main()</code> there isn't simply a name of a enum variant like <code>Move</code> or <code>Echo</code> but there's data attached to it. This is because unlike in other languages, <code>enums</code> in Rust can have data like structs, strings, integers, in fact you can even include another <code>enum</code>. So in this case we solve this problem by adding the variant with the data that is expected. If we look at <code>Move</code> we add the <code>{ x: i32, y: i32}</code> struct information. Let's do the same for the rest of the variants.</p>
 <pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">#[derive(Debug)]
 enum Message {
     Move { x: i32, y: i32 },

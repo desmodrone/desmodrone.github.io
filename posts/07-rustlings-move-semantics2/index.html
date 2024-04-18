@@ -20,7 +20,7 @@
   />
   <link rel="stylesheet" href="https://desmodrone.github.io/style.css"/>
   
-  <title>07 Rustlings Move Semantics Part 2</title>
+  <title>07 Rustlings Move Semantics Part 2 Solution</title>
   
 
   
@@ -127,7 +127,7 @@
 		
             
 	  </div>
-	  <h1>07 Rustlings Move Semantics Part 2</h1>
+	  <h1>07 Rustlings Move Semantics Part 2 Solution</h1>
 	</header>
 
 	<div class="content">
@@ -201,7 +201,7 @@ help: remove the extra argument
 
 error: aborting due to 2 previous errors
 </code></pre>
-<p>Error's  are telling us that on line 23, <code>vec</code> is not a value in addition it tells us that the function <code>fill_vec()</code> takes 0 arguments but one is being supplied.  So let's remove the argument on line 12 from the <code>fill_vec(vec0)</code>.</p>
+<p>Error's are telling us that on line 23, <code>vec</code> is not a value in addition it tells us that the function <code>fill_vec()</code> takes 0 arguments but one is being supplied. So let's remove the argument on line 12 from the <code>fill_vec(vec0)</code>.</p>
 <p>After we do that we still get some errors, but they're different now.</p>
 <pre data-lang="zsh" class="language-zsh "><code class="language-zsh" data-lang="zsh">⚠️  Compiling of exercises&#x2F;move_semantics&#x2F;move_semantics4.rs failed! Please try again. Here is the output:
 error[E0423]: expected value, found macro `vec`

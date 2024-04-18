@@ -20,7 +20,7 @@
   />
   <link rel="stylesheet" href="https://desmodrone.github.io/style.css"/>
   
-  <title>03 Rustlings if</title>
+  <title>03 Rustlings if Solution</title>
   
 
   
@@ -127,7 +127,7 @@
 		
             
 	  </div>
-	  <h1>03 Rustlings if</h1>
+	  <h1>03 Rustlings if Solution</h1>
 	</header>
 
 	<div class="content">
@@ -186,8 +186,8 @@ note: consider returning one of these bindings
 error: aborting due to previous error
 </code></pre>
 <p>Let's look at what the <code>rust_errors</code> are telling us here.</p>
-<p>The line <code>^^^ expected</code>i32<code>, found </code>()`` is essentially telling us that there is no return expression because there is nothing in the body of the function <code>bigger</code>.</p>
-<p>The solution is pretty simple, it's  to add an <code>if</code> <code>a &lt; b</code> expression.</p>
+<p>The line <code>^^^ expected</code>i32<code>, found </code>()``is essentially telling us that there is no return expression because there is nothing in the body of the function<code>bigger</code>.</p>
+<p>The solution is pretty simple, it's to add an <code>if</code> <code>a &lt; b</code> expression.</p>
 <h2 id="if1-rs-solution"><code>if1.rs</code> Solution</h2>
 <pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">pub fn bigger(a: i32, b: i32) -&gt; i32 {
     if a &lt; b {

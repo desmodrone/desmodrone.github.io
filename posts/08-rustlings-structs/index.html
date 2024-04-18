@@ -20,7 +20,7 @@
   />
   <link rel="stylesheet" href="https://desmodrone.github.io/style.css"/>
   
-  <title>08 Rustlings Structs</title>
+  <title>08 Rustlings Structs Solution</title>
   
 
   
@@ -127,7 +127,7 @@
 		
             
 	  </div>
-	  <h1>08 Rustlings Structs</h1>
+	  <h1>08 Rustlings Structs Solution</h1>
 	</header>
 
 	<div class="content">
@@ -208,7 +208,7 @@ Rust has three struct types: a classic C struct, a tuple struct, and a unit stru
 
 </code></pre>
 <p>So here we're getting clear instructions on what to do. We need to implement different types of structs in each <code>//TODO</code> section. For completeness here are our errors.</p>
-<h2 id="structs1-rs-errors"><code>Structs1.rs</code>  errors</h2>
+<h2 id="structs1-rs-errors"><code>Structs1.rs</code> errors</h2>
 <pre data-lang="zsh" class="language-zsh "><code class="language-zsh" data-lang="zsh">⚠️  Compiling of exercises&#x2F;structs&#x2F;structs1.rs failed! Please try again. Here is the output:
 error[E0425]: cannot find value `green` in this scope
   --&gt; exercises&#x2F;structs&#x2F;structs1.rs:25:20
@@ -275,7 +275,7 @@ error: aborting due to 7 previous errors; 1 warning emitted
 
     struct ColorTupleStruct(&#x2F;* TODO: Something goes here *&#x2F;);
 </code></pre>
-<p>We have 2 different styles of structs that we need to create a &quot;classic&quot; and &quot;tuple&quot; types struct.  We fill out the structs using their usual structure and we get an indication of what is needed by looking at the <code>assert_eq!</code> listed in each section. We can see that in the <code>assert_eq!</code> we have values that could fit and <code>i32</code>'s since we see the max value is <code>255</code> we'll use <code>i32</code>s as it's the default value in Rust.</p>
+<p>We have 2 different styles of structs that we need to create a &quot;classic&quot; and &quot;tuple&quot; types struct. We fill out the structs using their usual structure and we get an indication of what is needed by looking at the <code>assert_eq!</code> listed in each section. We can see that in the <code>assert_eq!</code> we have values that could fit and <code>i32</code>'s since we see the max value is <code>255</code> we'll use <code>i32</code>s as it's the default value in Rust.</p>
 <pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">struct ColorClassicStruct {
     red: i32,
     green: i32,
@@ -356,7 +356,7 @@ struct ColorTupleStruct(i32, i32, i32);
     }
 </code></pre>
 <p>That should do the trick, let's see if our code complies. It does!</p>
-<h2 id="structs1-rs-solution"><code>Structs1.rs</code>  Solution</h2>
+<h2 id="structs1-rs-solution"><code>Structs1.rs</code> Solution</h2>
 <pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">
 struct ColorClassicStruct {
     red: i32,
@@ -512,7 +512,7 @@ error: aborting due to 7 previous errors
 </code></pre>
 <p>We have a total of 7 errors all created by our missing struct instantiation. So, let's get it to it, we'll start from the top.</p>
 <h2 id="instantiating-your-order">Instantiating <code>your_order</code></h2>
-<p>If we look  at our first error we get a major hint as to what the compiler expects to see: <code> assert_eq!(your_order.name, &quot;Hacker in Rust&quot;)</code> so if we take a look at our sample code and build our <code>Order</code> in the same way as in the <code>create_order_template</code> function we should have a great start for what we need to do.</p>
+<p>If we look at our first error we get a major hint as to what the compiler expects to see: <code> assert_eq!(your_order.name, &quot;Hacker in Rust&quot;)</code> so if we take a look at our sample code and build our <code>Order</code> in the same way as in the <code>create_order_template</code> function we should have a great start for what we need to do.</p>
 <p>If we use our <code>Order</code> struct as a guide we can start entering the values for each field.</p>
 <pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">struct Order {
     name: String,
@@ -828,7 +828,7 @@ help: consider returning the local binding `cents_per_gram`
 <p>This function will return a <code>bool</code> type, which is a boolean that can be either <code>true</code> or <code>false</code> as we have already defined earlier.</p>
 <h3 id="function-body">Function body:</h3>
 <p>Inside the function, we add <code>self.sender_country != self.recipient_country</code> which is the basic logic that determines whether a package is international.</p>
-<p><code>self.sender_country</code> accesses the <code>sender_country</code> field  of the current <code>Package</code> instance, and <code>self.recipient_country</code> accesses the <code>recipient_country</code> field.</p>
+<p><code>self.sender_country</code> accesses the <code>sender_country</code> field of the current <code>Package</code> instance, and <code>self.recipient_country</code> accesses the <code>recipient_country</code> field.</p>
 <p><code>!=</code> is the inequality operator in Rust, which checks if the two values on its left and right are not equal. In this case, it's comparing the <code>sender_country</code> and <code>recipient_country</code>.</p>
 <h3 id="return-value">Return value:</h3>
 <p>If <code>sender_country</code> and <code>recipient_country</code> are not equal, the expression evaluates to <code>true</code>, meaning that the package is international. If they are equal, the expression evaluates to <code>false</code>, meaning that the package is not international.</p>

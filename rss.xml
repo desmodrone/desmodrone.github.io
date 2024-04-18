@@ -7358,7 +7358,7 @@ fn print_coordinates(point: Option&amp;lt;Point&amp;gt;) {
 </description>
       </item>
       <item>
-          <title>13 Rustlings Quiz2</title>
+          <title>13 Rustlings Quiz2 Solution</title>
           <pubDate>Fri, 28 Jul 2023 00:00:00 +0000</pubDate>
           <author>Unknown</author>
           <link>https://desmodrone.github.io/posts/13-rustlings-quiz2/</link>
@@ -7500,12 +7500,12 @@ mod tests {
 &lt;&#x2F;ol&gt;
 &lt;h2 id=&quot;quiz2-rs-solution&quot;&gt;quiz2.rs solution&lt;&#x2F;h2&gt;
 &lt;h3 id=&quot;completing-the-function-signature&quot;&gt;Completing the Function Signature&lt;&#x2F;h3&gt;
-&lt;p&gt;Let&#x27;s go through these in order, let&#x27;s look at the function signature, and our instructions which tell us that:  &lt;em&gt;input will be a Vector of a 2-length tuple&lt;&#x2F;em&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;Let&#x27;s go through these in order, let&#x27;s look at the function signature, and our instructions which tell us that: &lt;em&gt;input will be a Vector of a 2-length tuple&lt;&#x2F;em&gt;&lt;&#x2F;p&gt;
 &lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;    pub fn transformer(input: ???) -&amp;gt; ??? {
 &lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
 &lt;p&gt;So a vector is declared as &lt;code&gt;Vec&amp;lt;&amp;gt;&lt;&#x2F;code&gt; but in this particular case we need a tuple stored inside of the vector which would make it look something like this &lt;code&gt;Vec&amp;lt;(,)&amp;gt;&lt;&#x2F;code&gt; when empty, but we know that we need to pass in 2 items as we&#x27;re told in our instructions: &lt;em&gt;first element is a string, second one is a command&lt;&#x2F;em&gt;
 so to complete it, it should look something like this: &lt;code&gt;Vec&amp;lt;(String, command)&amp;gt;&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
-&lt;p&gt;Now, let&#x27;s look at the return value which we were told is: &lt;em&gt;output is going to be a Vector of strings&lt;&#x2F;em&gt;  with that we can complete our function signature to look like this:&lt;&#x2F;p&gt;
+&lt;p&gt;Now, let&#x27;s look at the return value which we were told is: &lt;em&gt;output is going to be a Vector of strings&lt;&#x2F;em&gt; with that we can complete our function signature to look like this:&lt;&#x2F;p&gt;
 &lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;    pub fn transformer(input: Vec&amp;lt;(String, Command)&amp;gt;) -&amp;gt; Vec&amp;lt;String&amp;gt; {
 &lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
 &lt;p&gt;This should complete our function signature for &lt;code&gt;transformer&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
@@ -7536,13 +7536,13 @@ so to complete it, it should look something like this: &lt;code&gt;Vec&amp;lt;(S
 }
 
 &lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
-&lt;p&gt;So one of the ways that we know we can use enums is with match statements, we know that if something matches a certain criteria we can perform certain actions and return a value. So matching each &lt;code&gt;Command&lt;&#x2F;code&gt; in the &lt;code&gt;enum&lt;&#x2F;code&gt; using the &lt;code&gt;Command::Uppercase =&amp;gt;&lt;&#x2F;code&gt; style  matching we can perform an action for each match.
+&lt;p&gt;So one of the ways that we know we can use enums is with match statements, we know that if something matches a certain criteria we can perform certain actions and return a value. So matching each &lt;code&gt;Command&lt;&#x2F;code&gt; in the &lt;code&gt;enum&lt;&#x2F;code&gt; using the &lt;code&gt;Command::Uppercase =&amp;gt;&lt;&#x2F;code&gt; style matching we can perform an action for each match.
 In the first two cases, it&#x27;s pretty simple all we have to do is call the appropriate method like &lt;code&gt;.to_upercase()&lt;&#x2F;code&gt; in the first match and &lt;code&gt;.trim()&lt;&#x2F;code&gt; (along with the &lt;code&gt;.to_string()&lt;&#x2F;code&gt; method on in &lt;code&gt;Trim&lt;&#x2F;code&gt;) but when we get to &lt;code&gt;Append&lt;&#x2F;code&gt; we have to perform an additional manipulation.&lt;&#x2F;p&gt;
 &lt;h3 id=&quot;appending&quot;&gt;Appending&lt;&#x2F;h3&gt;
 &lt;p&gt;If we look back to our instructions we have to &lt;em&gt;Append &amp;quot;bar&amp;quot; to a string a specified amount of times&lt;&#x2F;em&gt;. So we can simply call a method or two and be done with our string. We have to add the logic to be able to do this. First let&#x27;s create a new variable called &lt;code&gt;appended_string&lt;&#x2F;code&gt; and let&#x27;s use the &lt;code&gt;format!&lt;&#x2F;code&gt; macro to put it into the format we want to use. In this case we use:&lt;&#x2F;p&gt;
 &lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;format!(&amp;quot;{}{}&amp;quot;, string, &amp;quot;bar&amp;quot;.repeat(*count));
 &lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
-&lt;p&gt;This takes the original string, and concatenates &amp;quot;bar&amp;quot; to it by using &lt;code&gt;.repeat&lt;&#x2F;code&gt; we repeat it by the &lt;code&gt;count&lt;&#x2F;code&gt; we define in the &lt;code&gt;Command::Append(count)&lt;&#x2F;code&gt; branch. Finally, we return the  &lt;code&gt;appended_string&lt;&#x2F;code&gt;, reminder this only happens if the &lt;code&gt;Append&lt;&#x2F;code&gt; arm matches.&lt;&#x2F;p&gt;
+&lt;p&gt;This takes the original string, and concatenates &amp;quot;bar&amp;quot; to it by using &lt;code&gt;.repeat&lt;&#x2F;code&gt; we repeat it by the &lt;code&gt;count&lt;&#x2F;code&gt; we define in the &lt;code&gt;Command::Append(count)&lt;&#x2F;code&gt; branch. Finally, we return the &lt;code&gt;appended_string&lt;&#x2F;code&gt;, reminder this only happens if the &lt;code&gt;Append&lt;&#x2F;code&gt; arm matches.&lt;&#x2F;p&gt;
 &lt;p&gt;So at this point we have one of the three arms of the match inside of &lt;code&gt;modified_string&lt;&#x2F;code&gt; at this point we need to push this modified string to our &lt;code&gt;mut output&lt;&#x2F;code&gt;
 Vec. Once that is completed we can then return our &lt;code&gt;output&lt;&#x2F;code&gt; variable with the correctly modified string.&lt;&#x2F;p&gt;
 &lt;h3 id=&quot;importing-transformer&quot;&gt;Importing &lt;code&gt;transformer&lt;&#x2F;code&gt;&lt;&#x2F;h3&gt;
@@ -7605,7 +7605,7 @@ mod tests {
 </description>
       </item>
       <item>
-          <title>12 Rustlings HashMaps</title>
+          <title>12 Rustlings HashMaps Solution</title>
           <pubDate>Wed, 26 Jul 2023 00:00:00 +0000</pubDate>
           <author>Unknown</author>
           <link>https://desmodrone.github.io/posts/12-rustlings-hashmaps/</link>
@@ -7687,7 +7687,7 @@ For more information about this error, try `rustc --explain E0425`.
 &lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
 &lt;h2 id=&quot;hashmaps1-solution&quot;&gt;hashmaps1 solution&lt;&#x2F;h2&gt;
 &lt;p&gt;So now let&#x27;s move on to the solution. We first declare our &lt;code&gt;HashMap&lt;&#x2F;code&gt; by completing line 5 with &lt;code&gt;let mut basket = HashMap::new();&lt;&#x2F;code&gt;
-That let&#x27;s us create our hashmap so it&#x27;s usable  in the next lines, meaning we can add some more fruit to it.
+That let&#x27;s us create our hashmap so it&#x27;s usable in the next lines, meaning we can add some more fruit to it.
 We already have our first line defined as &lt;code&gt;basket.insert(String::from(&amp;quot;banana&amp;quot;), 2);&lt;&#x2F;code&gt; so if we use this same pattern but add different fruits, keeping in mind our quantity requirements, we should be good.&lt;&#x2F;p&gt;
 &lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;use std::collections::HashMap;
 
@@ -8164,7 +8164,7 @@ This solution combined &lt;code&gt;if let&lt;&#x2F;code&gt; with &lt;code&gt;mat
 </description>
       </item>
       <item>
-          <title>11 Rustlings Modules</title>
+          <title>11 Rustlings Modules Solution</title>
           <pubDate>Mon, 17 Jul 2023 00:00:00 +0000</pubDate>
           <author>Unknown</author>
           <link>https://desmodrone.github.io/posts/11-rustlings-modules/</link>
@@ -8306,7 +8306,7 @@ fn main() {
     );
 }
 &lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
-&lt;p&gt;And it works, we&#x27;re printing out of favorite snacks a pear and  cucumber using the &lt;code&gt;as&lt;&#x2F;code&gt; keyword.&lt;&#x2F;p&gt;
+&lt;p&gt;And it works, we&#x27;re printing out of favorite snacks a pear and cucumber using the &lt;code&gt;as&lt;&#x2F;code&gt; keyword.&lt;&#x2F;p&gt;
 &lt;pre data-lang=&quot;zsh&quot; class=&quot;language-zsh &quot;&gt;&lt;code class=&quot;language-zsh&quot; data-lang=&quot;zsh&quot;&gt;Output:
 ====================
 favorite snacks: Pear and Cucumber
@@ -8385,7 +8385,7 @@ fn main() {
 </description>
       </item>
       <item>
-          <title>10 Rustlings Strings</title>
+          <title>10 Rustlings Strings Solution</title>
           <pubDate>Wed, 28 Jun 2023 00:00:00 +0000</pubDate>
           <author>Unknown</author>
           <link>https://desmodrone.github.io/posts/10-rustlings-strings/</link>
@@ -8698,7 +8698,7 @@ fn main() {
 </description>
       </item>
       <item>
-          <title>09 Rustlings Enums</title>
+          <title>09 Rustlings Enums Solution</title>
           <pubDate>Wed, 07 Jun 2023 00:00:00 +0000</pubDate>
           <author>Unknown</author>
           <link>https://desmodrone.github.io/posts/09-rustlings-enums/</link>
@@ -8729,7 +8729,7 @@ fn main() {
     println!(&amp;quot;{:?}&amp;quot;, Message::ChangeColor);
 }
 &lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
-&lt;p&gt;Here we have our code, with not much instruction and no hint this time! But we do have a message in the comments: &lt;code&gt;TODO: define a few types of messages as used below&lt;&#x2F;code&gt;.  Let&#x27;s take a look at the errors as well.&lt;&#x2F;p&gt;
+&lt;p&gt;Here we have our code, with not much instruction and no hint this time! But we do have a message in the comments: &lt;code&gt;TODO: define a few types of messages as used below&lt;&#x2F;code&gt;. Let&#x27;s take a look at the errors as well.&lt;&#x2F;p&gt;
 &lt;h2 id=&quot;enums1-rs-errors&quot;&gt;&lt;code&gt;enums1.rs&lt;&#x2F;code&gt; errors&lt;&#x2F;h2&gt;
 &lt;pre data-lang=&quot;zsh&quot; class=&quot;language-zsh &quot;&gt;&lt;code class=&quot;language-zsh&quot; data-lang=&quot;zsh&quot;&gt;⚠️  Compiling of exercises&amp;#x2F;enums&amp;#x2F;enums1.rs failed! Please try again. Here is the output:
 
@@ -8779,7 +8779,7 @@ error: aborting due to 4 previous errors
    | ------------ variant or associated item `Quit` not found for this enum
 &lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
 &lt;p&gt;Which is telling us that we&#x27;re missing items in the &lt;code&gt;enum&lt;&#x2F;code&gt; which of course makes sense since we know that we have to fill out the rest of the &lt;code&gt;enum&lt;&#x2F;code&gt;. What&#x27;s nice is that the message is very clear and show&#x27;s us where our item are missing which is clearly the &lt;code&gt;enum Message&lt;&#x2F;code&gt;. So let&#x27;s get to it and fill out that &lt;code&gt;enum&lt;&#x2F;code&gt; and see what happens.&lt;&#x2F;p&gt;
-&lt;h2 id=&quot;enums1-rs-solution&quot;&gt;&lt;code&gt;enums1.rs&lt;&#x2F;code&gt;  solution&lt;&#x2F;h2&gt;
+&lt;h2 id=&quot;enums1-rs-solution&quot;&gt;&lt;code&gt;enums1.rs&lt;&#x2F;code&gt; solution&lt;&#x2F;h2&gt;
 &lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;#[derive(Debug)]
 enum Message {
     Quit,
@@ -8878,7 +8878,7 @@ error: aborting due to 4 previous errors
 &lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
 &lt;p&gt;Errors are similar to last time as well, but we can see that there&#x27;s something different so let&#x27;s take a look at how to solve this problem.&lt;&#x2F;p&gt;
 &lt;h2 id=&quot;enums2-rs-solution&quot;&gt;&lt;code&gt;enums2.rs&lt;&#x2F;code&gt; Solution&lt;&#x2F;h2&gt;
-&lt;p&gt;We can see that in the &lt;code&gt;main()&lt;&#x2F;code&gt; there isn&#x27;t simply a name of a enum variant like &lt;code&gt;Move&lt;&#x2F;code&gt; or &lt;code&gt;Echo&lt;&#x2F;code&gt; but there&#x27;s data attached to it. This is because unlike in other languages, &lt;code&gt;enums&lt;&#x2F;code&gt; in Rust can have data like structs, strings, integers, in fact you can even include another &lt;code&gt;enum&lt;&#x2F;code&gt;. So in this case we solve this problem by adding the variant with the data that is expected. If we look at  &lt;code&gt;Move&lt;&#x2F;code&gt;  we add the &lt;code&gt;{ x: i32, y: i32}&lt;&#x2F;code&gt; struct information. Let&#x27;s do the same for the rest of the variants.&lt;&#x2F;p&gt;
+&lt;p&gt;We can see that in the &lt;code&gt;main()&lt;&#x2F;code&gt; there isn&#x27;t simply a name of a enum variant like &lt;code&gt;Move&lt;&#x2F;code&gt; or &lt;code&gt;Echo&lt;&#x2F;code&gt; but there&#x27;s data attached to it. This is because unlike in other languages, &lt;code&gt;enums&lt;&#x2F;code&gt; in Rust can have data like structs, strings, integers, in fact you can even include another &lt;code&gt;enum&lt;&#x2F;code&gt;. So in this case we solve this problem by adding the variant with the data that is expected. If we look at &lt;code&gt;Move&lt;&#x2F;code&gt; we add the &lt;code&gt;{ x: i32, y: i32}&lt;&#x2F;code&gt; struct information. Let&#x27;s do the same for the rest of the variants.&lt;&#x2F;p&gt;
 &lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;#[derive(Debug)]
 enum Message {
     Move { x: i32, y: i32 },
@@ -9166,7 +9166,7 @@ mod tests {
 </description>
       </item>
       <item>
-          <title>08 Rustlings Structs</title>
+          <title>08 Rustlings Structs Solution</title>
           <pubDate>Thu, 01 Jun 2023 00:00:00 +0000</pubDate>
           <author>Unknown</author>
           <link>https://desmodrone.github.io/posts/08-rustlings-structs/</link>
@@ -9247,7 +9247,7 @@ Rust has three struct types: a classic C struct, a tuple struct, and a unit stru
 
 &lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
 &lt;p&gt;So here we&#x27;re getting clear instructions on what to do. We need to implement different types of structs in each &lt;code&gt;&#x2F;&#x2F;TODO&lt;&#x2F;code&gt; section. For completeness here are our errors.&lt;&#x2F;p&gt;
-&lt;h2 id=&quot;structs1-rs-errors&quot;&gt;&lt;code&gt;Structs1.rs&lt;&#x2F;code&gt;  errors&lt;&#x2F;h2&gt;
+&lt;h2 id=&quot;structs1-rs-errors&quot;&gt;&lt;code&gt;Structs1.rs&lt;&#x2F;code&gt; errors&lt;&#x2F;h2&gt;
 &lt;pre data-lang=&quot;zsh&quot; class=&quot;language-zsh &quot;&gt;&lt;code class=&quot;language-zsh&quot; data-lang=&quot;zsh&quot;&gt;⚠️  Compiling of exercises&amp;#x2F;structs&amp;#x2F;structs1.rs failed! Please try again. Here is the output:
 error[E0425]: cannot find value `green` in this scope
   --&amp;gt; exercises&amp;#x2F;structs&amp;#x2F;structs1.rs:25:20
@@ -9314,7 +9314,7 @@ error: aborting due to 7 previous errors; 1 warning emitted
 
     struct ColorTupleStruct(&amp;#x2F;* TODO: Something goes here *&amp;#x2F;);
 &lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
-&lt;p&gt;We have 2 different styles of structs that we need to create a &amp;quot;classic&amp;quot; and &amp;quot;tuple&amp;quot; types struct.  We fill out the structs using their usual structure and we get an indication of what is needed by looking at the &lt;code&gt;assert_eq!&lt;&#x2F;code&gt; listed in each section. We can see that in the &lt;code&gt;assert_eq!&lt;&#x2F;code&gt; we have values that could fit and &lt;code&gt;i32&lt;&#x2F;code&gt;&#x27;s since we see the max value is &lt;code&gt;255&lt;&#x2F;code&gt; we&#x27;ll use &lt;code&gt;i32&lt;&#x2F;code&gt;s as it&#x27;s the default value in Rust.&lt;&#x2F;p&gt;
+&lt;p&gt;We have 2 different styles of structs that we need to create a &amp;quot;classic&amp;quot; and &amp;quot;tuple&amp;quot; types struct. We fill out the structs using their usual structure and we get an indication of what is needed by looking at the &lt;code&gt;assert_eq!&lt;&#x2F;code&gt; listed in each section. We can see that in the &lt;code&gt;assert_eq!&lt;&#x2F;code&gt; we have values that could fit and &lt;code&gt;i32&lt;&#x2F;code&gt;&#x27;s since we see the max value is &lt;code&gt;255&lt;&#x2F;code&gt; we&#x27;ll use &lt;code&gt;i32&lt;&#x2F;code&gt;s as it&#x27;s the default value in Rust.&lt;&#x2F;p&gt;
 &lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;struct ColorClassicStruct {
     red: i32,
     green: i32,
@@ -9395,7 +9395,7 @@ struct ColorTupleStruct(i32, i32, i32);
     }
 &lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
 &lt;p&gt;That should do the trick, let&#x27;s see if our code complies. It does!&lt;&#x2F;p&gt;
-&lt;h2 id=&quot;structs1-rs-solution&quot;&gt;&lt;code&gt;Structs1.rs&lt;&#x2F;code&gt;  Solution&lt;&#x2F;h2&gt;
+&lt;h2 id=&quot;structs1-rs-solution&quot;&gt;&lt;code&gt;Structs1.rs&lt;&#x2F;code&gt; Solution&lt;&#x2F;h2&gt;
 &lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;
 struct ColorClassicStruct {
     red: i32,
@@ -9551,7 +9551,7 @@ error: aborting due to 7 previous errors
 &lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
 &lt;p&gt;We have a total of 7 errors all created by our missing struct instantiation. So, let&#x27;s get it to it, we&#x27;ll start from the top.&lt;&#x2F;p&gt;
 &lt;h2 id=&quot;instantiating-your-order&quot;&gt;Instantiating &lt;code&gt;your_order&lt;&#x2F;code&gt;&lt;&#x2F;h2&gt;
-&lt;p&gt;If we look  at our first error we get a major hint as to what the compiler expects to see: &lt;code&gt; assert_eq!(your_order.name, &amp;quot;Hacker in Rust&amp;quot;)&lt;&#x2F;code&gt; so if we take a look at our sample code and build our &lt;code&gt;Order&lt;&#x2F;code&gt; in the same way as in the &lt;code&gt;create_order_template&lt;&#x2F;code&gt; function we should have a great start for what we need to do.&lt;&#x2F;p&gt;
+&lt;p&gt;If we look at our first error we get a major hint as to what the compiler expects to see: &lt;code&gt; assert_eq!(your_order.name, &amp;quot;Hacker in Rust&amp;quot;)&lt;&#x2F;code&gt; so if we take a look at our sample code and build our &lt;code&gt;Order&lt;&#x2F;code&gt; in the same way as in the &lt;code&gt;create_order_template&lt;&#x2F;code&gt; function we should have a great start for what we need to do.&lt;&#x2F;p&gt;
 &lt;p&gt;If we use our &lt;code&gt;Order&lt;&#x2F;code&gt; struct as a guide we can start entering the values for each field.&lt;&#x2F;p&gt;
 &lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;struct Order {
     name: String,
@@ -9867,7 +9867,7 @@ help: consider returning the local binding `cents_per_gram`
 &lt;p&gt;This function will return a &lt;code&gt;bool&lt;&#x2F;code&gt; type, which is a boolean that can be either &lt;code&gt;true&lt;&#x2F;code&gt; or &lt;code&gt;false&lt;&#x2F;code&gt; as we have already defined earlier.&lt;&#x2F;p&gt;
 &lt;h3 id=&quot;function-body&quot;&gt;Function body:&lt;&#x2F;h3&gt;
 &lt;p&gt;Inside the function, we add &lt;code&gt;self.sender_country != self.recipient_country&lt;&#x2F;code&gt; which is the basic logic that determines whether a package is international.&lt;&#x2F;p&gt;
-&lt;p&gt;&lt;code&gt;self.sender_country&lt;&#x2F;code&gt; accesses the &lt;code&gt;sender_country&lt;&#x2F;code&gt; field  of the current &lt;code&gt;Package&lt;&#x2F;code&gt; instance, and &lt;code&gt;self.recipient_country&lt;&#x2F;code&gt; accesses the &lt;code&gt;recipient_country&lt;&#x2F;code&gt; field.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;code&gt;self.sender_country&lt;&#x2F;code&gt; accesses the &lt;code&gt;sender_country&lt;&#x2F;code&gt; field of the current &lt;code&gt;Package&lt;&#x2F;code&gt; instance, and &lt;code&gt;self.recipient_country&lt;&#x2F;code&gt; accesses the &lt;code&gt;recipient_country&lt;&#x2F;code&gt; field.&lt;&#x2F;p&gt;
 &lt;p&gt;&lt;code&gt;!=&lt;&#x2F;code&gt; is the inequality operator in Rust, which checks if the two values on its left and right are not equal. In this case, it&#x27;s comparing the &lt;code&gt;sender_country&lt;&#x2F;code&gt; and &lt;code&gt;recipient_country&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
 &lt;h3 id=&quot;return-value&quot;&gt;Return value:&lt;&#x2F;h3&gt;
 &lt;p&gt;If &lt;code&gt;sender_country&lt;&#x2F;code&gt; and &lt;code&gt;recipient_country&lt;&#x2F;code&gt; are not equal, the expression evaluates to &lt;code&gt;true&lt;&#x2F;code&gt;, meaning that the package is international. If they are equal, the expression evaluates to &lt;code&gt;false&lt;&#x2F;code&gt;, meaning that the package is not international.&lt;&#x2F;p&gt;
@@ -9908,7 +9908,7 @@ Through this exploration, we gained a better understanding of Rust&#x27;s data s
 </description>
       </item>
       <item>
-          <title>07 Rustlings Move Semantics Part 2</title>
+          <title>07 Rustlings Move Semantics Part 2 Solution</title>
           <pubDate>Wed, 24 May 2023 00:00:00 +0000</pubDate>
           <author>Unknown</author>
           <link>https://desmodrone.github.io/posts/07-rustlings-move-semantics2/</link>
@@ -9982,7 +9982,7 @@ help: remove the extra argument
 
 error: aborting due to 2 previous errors
 &lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
-&lt;p&gt;Error&#x27;s  are telling us that on line 23, &lt;code&gt;vec&lt;&#x2F;code&gt; is not a value in addition it tells us that the function &lt;code&gt;fill_vec()&lt;&#x2F;code&gt; takes 0 arguments but one is being supplied.  So let&#x27;s remove the argument on line 12 from the &lt;code&gt;fill_vec(vec0)&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;Error&#x27;s are telling us that on line 23, &lt;code&gt;vec&lt;&#x2F;code&gt; is not a value in addition it tells us that the function &lt;code&gt;fill_vec()&lt;&#x2F;code&gt; takes 0 arguments but one is being supplied. So let&#x27;s remove the argument on line 12 from the &lt;code&gt;fill_vec(vec0)&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
 &lt;p&gt;After we do that we still get some errors, but they&#x27;re different now.&lt;&#x2F;p&gt;
 &lt;pre data-lang=&quot;zsh&quot; class=&quot;language-zsh &quot;&gt;&lt;code class=&quot;language-zsh&quot; data-lang=&quot;zsh&quot;&gt;⚠️  Compiling of exercises&amp;#x2F;move_semantics&amp;#x2F;move_semantics4.rs failed! Please try again. Here is the output:
 error[E0423]: expected value, found macro `vec`
@@ -10305,7 +10305,7 @@ RUST IS GREAT!
 </description>
       </item>
       <item>
-          <title>07 Rustlings Move Semantics Part 1</title>
+          <title>07 Rustlings Move Semantics Part 1 Solution</title>
           <pubDate>Mon, 15 May 2023 00:00:00 +0000</pubDate>
           <author>Unknown</author>
           <link>https://desmodrone.github.io/posts/07-rustlings-move-semantics1/</link>
@@ -10485,7 +10485,7 @@ help: consider cloning the value if the performance cost is acceptable
 error: aborting due to previous error
 &lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
 &lt;p&gt;Alright, we have a lot to see here, the first error on line 8 tells us that &lt;code&gt;vec0&lt;&#x2F;code&gt; is being moved to line 10 to the line &lt;code&gt;let mut vec1 = fill_vec(0);&lt;&#x2F;code&gt;
-The note tells us to consider changing the parameter type, but that shouldn&#x27;t be where we should be looking because in this case we do want to return a &lt;code&gt;Vec&amp;lt;i32&amp;gt;&lt;&#x2F;code&gt;. If we continue reading our errors, we get the answer in the line  &lt;code&gt;help: consider cloning the value if the performanc cost is acceptable&lt;&#x2F;code&gt;. This is very helpful and clear answer.  If you played around with the code on [[#move_semantics1.rs]] you might have already encountered this solution. So let&#x27;s try this &lt;code&gt;clone()&lt;&#x2F;code&gt; solution.&lt;&#x2F;p&gt;
+The note tells us to consider changing the parameter type, but that shouldn&#x27;t be where we should be looking because in this case we do want to return a &lt;code&gt;Vec&amp;lt;i32&amp;gt;&lt;&#x2F;code&gt;. If we continue reading our errors, we get the answer in the line &lt;code&gt;help: consider cloning the value if the performanc cost is acceptable&lt;&#x2F;code&gt;. This is very helpful and clear answer. If you played around with the code on [[#move_semantics1.rs]] you might have already encountered this solution. So let&#x27;s try this &lt;code&gt;clone()&lt;&#x2F;code&gt; solution.&lt;&#x2F;p&gt;
 &lt;h2 id=&quot;move-semantics2-solution&quot;&gt;&lt;code&gt;move_semantics2&lt;&#x2F;code&gt; solution&lt;&#x2F;h2&gt;
 &lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;
 fn main() {
@@ -10685,7 +10685,7 @@ vec1 has length 4 content `[22, 44, 66, 88]`
 
 ====================
 &lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
-&lt;p&gt;Following the Rust compiler&#x27;s help is very easy  in this case, if we notice the code is very similar to the previous exercise but this code is missing the &lt;code&gt;let mut vec = vec;&lt;&#x2F;code&gt; line from the &lt;code&gt;fn fill_vec&lt;&#x2F;code&gt; function.&lt;&#x2F;p&gt;
+&lt;p&gt;Following the Rust compiler&#x27;s help is very easy in this case, if we notice the code is very similar to the previous exercise but this code is missing the &lt;code&gt;let mut vec = vec;&lt;&#x2F;code&gt; line from the &lt;code&gt;fn fill_vec&lt;&#x2F;code&gt; function.&lt;&#x2F;p&gt;
 &lt;h2 id=&quot;wrapping-up-the-rustlings-move-semantics-journey-continues&quot;&gt;Wrapping Up: The Rustlings Move Semantics Journey Continues!&lt;&#x2F;h2&gt;
 &lt;p&gt;There you have it! We&#x27;ve explored the first three &lt;code&gt;move_semantics&lt;&#x2F;code&gt; exercises from the Rustlings course. To keep these blog posts digestible, we&#x27;ll be diving into the next 3 &lt;code&gt;move_semantics&lt;&#x2F;code&gt; challenges in a separate post, so keep an eye out for that!&lt;&#x2F;p&gt;
 &lt;p&gt;Now, let&#x27;s do a quick recap of what we&#x27;ve covered in this post: we guided you through the first 3 &lt;code&gt;move_semantics&lt;&#x2F;code&gt; exercises, shedding light on how to tackle each problem by interpreting the error messages and hints provided. We also compared various solutions for each exercise, highlighting the trade-offs and stressing the importance of choosing the right method based on your code&#x27;s specific needs. Our focus was on understanding the concepts of ownership, borrowing, and mutable borrowing in Rust – essential ingredients for writing efficient and safe code.&lt;&#x2F;p&gt;
@@ -10693,7 +10693,7 @@ vec1 has length 4 content `[22, 44, 66, 88]`
 </description>
       </item>
       <item>
-          <title>06 Rustlings Vectors</title>
+          <title>06 Rustlings Vectors Solution</title>
           <pubDate>Wed, 10 May 2023 00:00:00 +0000</pubDate>
           <author>Unknown</author>
           <link>https://desmodrone.github.io/posts/06-rustlings-vecs/</link>
@@ -10887,7 +10887,7 @@ error: aborting due to 2 previous errors
     v
 }
 &lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
-&lt;p&gt;It&#x27;s a pretty simple solution, using &lt;code&gt;*i *= 2&lt;&#x2F;code&gt;  to multiply each element by 2, the main thing to remember is the use of the dereference &lt;code&gt;*&lt;&#x2F;code&gt; operator when accessing each element and then &lt;code&gt;*=&lt;&#x2F;code&gt; to modify or update each element with the new number. If we run the code now, we see that we&#x27;re down to one error. So far so good.&lt;&#x2F;p&gt;
+&lt;p&gt;It&#x27;s a pretty simple solution, using &lt;code&gt;*i *= 2&lt;&#x2F;code&gt; to multiply each element by 2, the main thing to remember is the use of the dereference &lt;code&gt;*&lt;&#x2F;code&gt; operator when accessing each element and then &lt;code&gt;*=&lt;&#x2F;code&gt; to modify or update each element with the new number. If we run the code now, we see that we&#x27;re down to one error. So far so good.&lt;&#x2F;p&gt;
 &lt;pre data-lang=&quot;zsh&quot; class=&quot;language-zsh &quot;&gt;&lt;code class=&quot;language-zsh&quot; data-lang=&quot;zsh&quot;&gt;⚠️  Compiling of exercises&amp;#x2F;vecs&amp;#x2F;vecs2.rs failed! Please try again. Here&amp;#x27;s the output:
 error: expected expression, found `?`
   --&amp;gt; exercises&amp;#x2F;vecs&amp;#x2F;vecs2.rs:25:13
@@ -10955,7 +10955,7 @@ mod tests {
 </description>
       </item>
       <item>
-          <title>05 Rustlings Primitive Types</title>
+          <title>05 Rustlings Primitive Types Solution</title>
           <pubDate>Wed, 03 May 2023 00:00:00 +0000</pubDate>
           <author>Unknown</author>
           <link>https://desmodrone.github.io/posts/05-rustlings-primitive-types/</link>
@@ -11116,7 +11116,7 @@ error: aborting due to 2 previous errors
 &lt;p&gt;This looks similar to what we got in our previous exercise, essentially telling us that the &lt;code&gt;your_character&lt;&#x2F;code&gt; part of the code is incomplete.&lt;&#x2F;p&gt;
 &lt;p&gt;Let&#x27;s go through the comments in the code.&lt;&#x2F;p&gt;
 &lt;ul&gt;
-&lt;li&gt;The first comment in &lt;code&gt;fn main()&lt;&#x2F;code&gt;  tells us that we are looking at &lt;strong&gt;Characters&lt;&#x2F;strong&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;The first comment in &lt;code&gt;fn main()&lt;&#x2F;code&gt; tells us that we are looking at &lt;strong&gt;Characters&lt;&#x2F;strong&gt;&lt;&#x2F;li&gt;
 &lt;li&gt;Second comment makes sure that we notice the use of single quotes on the line &lt;code&gt;let my_first_intial = &#x27;C&#x27; &lt;&#x2F;code&gt;&lt;&#x2F;li&gt;
 &lt;li&gt;The third comment tells us to finish the &lt;code&gt;let&lt;&#x2F;code&gt; statement using the example we&#x27;ve seen but use our favorite character.&lt;&#x2F;li&gt;
 &lt;&#x2F;ul&gt;
@@ -11160,7 +11160,7 @@ fn main() {
     }
 }
 &lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
-&lt;p&gt;Here we have clear instructions on what we need to do, and we even have a hint if we need it.  But let&#x27;s look at the errors first:&lt;&#x2F;p&gt;
+&lt;p&gt;Here we have clear instructions on what we need to do, and we even have a hint if we need it. But let&#x27;s look at the errors first:&lt;&#x2F;p&gt;
 &lt;pre data-lang=&quot;zsh&quot; class=&quot;language-zsh &quot;&gt;&lt;code class=&quot;language-zsh&quot; data-lang=&quot;zsh&quot;&gt;⚠️  Compiling of exercises&amp;#x2F;primitive_types&amp;#x2F;primitive_types3.rs failed! Please try again. Here&amp;#x27;s the output:
 error: expected expression, found `?`
  --&amp;gt; exercises&amp;#x2F;primitive_types&amp;#x2F;primitive_types3.rs:8:13
@@ -11240,7 +11240,7 @@ error: expected expression, found `?`
 
 error: aborting due to previous error
 &lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
-&lt;p&gt;In this piece of code we see almost the exact same set-up having to define a variable, in this case we need to define it with a slice.  Remembering a slice is essentially how we refer to part of an array, remember when we had the 100 element array in the previous exercise, or even a bigger array that had thousands of elements. Well what if only needed to access part of the array? We would use a slice in this scenario so let&#x27;s do it.&lt;&#x2F;p&gt;
+&lt;p&gt;In this piece of code we see almost the exact same set-up having to define a variable, in this case we need to define it with a slice. Remembering a slice is essentially how we refer to part of an array, remember when we had the 100 element array in the previous exercise, or even a bigger array that had thousands of elements. Well what if only needed to access part of the array? We would use a slice in this scenario so let&#x27;s do it.&lt;&#x2F;p&gt;
 &lt;p&gt;We define a slice by using &lt;code&gt;&amp;amp;[ ]&lt;&#x2F;code&gt; the &lt;code&gt;&amp;amp;&lt;&#x2F;code&gt; makes it like a reference, so we don&#x27;t have ownership of the array, but we can go deeper into this another time, let&#x27;s just define this slice.&lt;&#x2F;p&gt;
 &lt;p&gt;The error code is also very straightforward, we&#x27;re being told that we&#x27;re missing an expression.&lt;&#x2F;p&gt;
 &lt;h2 id=&quot;primitive-types4-rs-solution&quot;&gt;&lt;code&gt;primitive_types4.rs&lt;&#x2F;code&gt; solution&lt;&#x2F;h2&gt;
@@ -11297,7 +11297,7 @@ fn main() {
     println!(&amp;quot;{} is {} years old.&amp;quot;, name, age);
 }
 &lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
-&lt;h2 id=&quot;primitive-types5-rs-error&quot;&gt;&lt;code&gt;primitive_types5.rs&lt;&#x2F;code&gt;  error&lt;&#x2F;h2&gt;
+&lt;h2 id=&quot;primitive-types5-rs-error&quot;&gt;&lt;code&gt;primitive_types5.rs&lt;&#x2F;code&gt; error&lt;&#x2F;h2&gt;
 &lt;pre data-lang=&quot;zsh&quot; class=&quot;language-zsh &quot;&gt;&lt;code class=&quot;language-zsh&quot; data-lang=&quot;zsh&quot;&gt;⚠️  Compiling of exercises&amp;#x2F;primitive_types&amp;#x2F;primitive_types5.rs failed! Please try again. Here&amp;#x27;s the output:
 error: expected pattern, found `=`
  --&amp;gt; exercises&amp;#x2F;primitive_types&amp;#x2F;primitive_types5.rs:9:33
@@ -11317,7 +11317,7 @@ Let&#x27;s keep things simple for now and not go too deep into the &lt;code&gt;&
 &lt;p&gt;When we bind tuple to a variable, like in this case &lt;code&gt;cat&lt;&#x2F;code&gt; the variable is bound to the entire tuple as it&#x27;s considered a single compound element. So to get a single element out of the tuple we have to &lt;em&gt;destructure&lt;&#x2F;em&gt; the tuple by sort of inverting the variable like this:&lt;&#x2F;p&gt;
 &lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;let (a, b) = variable
 &lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
-&lt;h2 id=&quot;primitive-types5-rs-solution&quot;&gt;&lt;code&gt;primitive_types5.rs&lt;&#x2F;code&gt;  solution&lt;&#x2F;h2&gt;
+&lt;h2 id=&quot;primitive-types5-rs-solution&quot;&gt;&lt;code&gt;primitive_types5.rs&lt;&#x2F;code&gt; solution&lt;&#x2F;h2&gt;
 &lt;p&gt;In our case we can see that in the &lt;code&gt;println!&lt;&#x2F;code&gt; statement we are looking for a &lt;code&gt;name&lt;&#x2F;code&gt; and &lt;code&gt;age&lt;&#x2F;code&gt; elements, so let&#x27;s plug these into our code.&lt;&#x2F;p&gt;
 &lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;fn main() {
     let cat = (&amp;quot;Furry McFurson&amp;quot;, 3.5);
@@ -11351,7 +11351,7 @@ fn indexing_tuple() {
         &amp;quot;This is not the 2nd number in the tuple!&amp;quot;)
 }
 &lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
-&lt;h2 id=&quot;primitive-types6-rs-error&quot;&gt;&lt;code&gt;primitive_types6.rs&lt;&#x2F;code&gt;  error&lt;&#x2F;h2&gt;
+&lt;h2 id=&quot;primitive-types6-rs-error&quot;&gt;&lt;code&gt;primitive_types6.rs&lt;&#x2F;code&gt; error&lt;&#x2F;h2&gt;
 &lt;pre data-lang=&quot;zsh&quot; class=&quot;language-zsh &quot;&gt;&lt;code class=&quot;language-zsh&quot; data-lang=&quot;zsh&quot;&gt;⚠️  Compiling of exercises&amp;#x2F;primitive_types&amp;#x2F;primitive_types6.rs failed! Please try again. Here&amp;#x27;s the output:
 error: expected expression, found `?`
   --&amp;gt; exercises&amp;#x2F;primitive_types&amp;#x2F;primitive_types6.rs:12:18
@@ -11367,7 +11367,7 @@ error: aborting due to previous error
 &lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;let indexing = variable.0
 &lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
 &lt;p&gt;Alright then, let&#x27;s apply this to our problem.&lt;&#x2F;p&gt;
-&lt;h2 id=&quot;primitive-types6-rs-solution&quot;&gt;&lt;code&gt;primitive_types6.rs&lt;&#x2F;code&gt;  solution&lt;&#x2F;h2&gt;
+&lt;h2 id=&quot;primitive-types6-rs-solution&quot;&gt;&lt;code&gt;primitive_types6.rs&lt;&#x2F;code&gt; solution&lt;&#x2F;h2&gt;
 &lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;#[test]
 fn indexing_tuple() {
     let numbers = (1, 2, 3);
@@ -11399,7 +11399,7 @@ failures:
 
 test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
 &lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
-&lt;p&gt;With the correct index number we don&#x27;t get anything special but a celebratory &lt;code&gt;code is compiling &lt;&#x2F;code&gt; message.  &lt;&#x2F;p&gt;
+&lt;p&gt;With the correct index number we don&#x27;t get anything special but a celebratory &lt;code&gt;code is compiling &lt;&#x2F;code&gt; message.&lt;&#x2F;p&gt;
 &lt;h2 id=&quot;conclusion&quot;&gt;Conclusion&lt;&#x2F;h2&gt;
 &lt;p&gt;In this post, we tackled various exercises related to primitive types in Rust. We explored arrays, tuples, slices, and tuple indexing while understanding how to create and manipulate them. We also learned about the error messages provided by the Rust compiler and how to interpret and resolve them to make our code work as expected.&lt;&#x2F;p&gt;
 &lt;p&gt;These exercises are essential for building a strong foundation in Rust, as primitive types are the building blocks for more complex data structures and programs. By mastering these concepts, you&#x27;ll be well-prepared to tackle more advanced Rust topics and further enhance your Rust programming skills.&lt;&#x2F;p&gt;
@@ -11407,7 +11407,7 @@ test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; 
 </description>
       </item>
       <item>
-          <title>04 Rustlings quiz1</title>
+          <title>04 Rustlings quiz1 Solution</title>
           <pubDate>Wed, 26 Apr 2023 00:00:00 +0000</pubDate>
           <author>Unknown</author>
           <link>https://desmodrone.github.io/posts/04-rustlings-quiz1/</link>
@@ -11584,7 +11584,7 @@ fn verify_test() {
 </description>
       </item>
       <item>
-          <title>03 Rustlings if</title>
+          <title>03 Rustlings if Solution</title>
           <pubDate>Fri, 21 Apr 2023 00:00:00 +0000</pubDate>
           <author>Unknown</author>
           <link>https://desmodrone.github.io/posts/03-rustlings-if/</link>
@@ -11643,8 +11643,8 @@ note: consider returning one of these bindings
 error: aborting due to previous error
 &lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
 &lt;p&gt;Let&#x27;s look at what the &lt;code&gt;rust_errors&lt;&#x2F;code&gt; are telling us here.&lt;&#x2F;p&gt;
-&lt;p&gt;The line &lt;code&gt;^^^ expected&lt;&#x2F;code&gt;i32&lt;code&gt;, found &lt;&#x2F;code&gt;()`` is essentially telling us that there is no return expression because there is nothing in the body of the function &lt;code&gt;bigger&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
-&lt;p&gt;The solution is pretty simple, it&#x27;s  to add an &lt;code&gt;if&lt;&#x2F;code&gt; &lt;code&gt;a &amp;lt; b&lt;&#x2F;code&gt; expression.&lt;&#x2F;p&gt;
+&lt;p&gt;The line &lt;code&gt;^^^ expected&lt;&#x2F;code&gt;i32&lt;code&gt;, found &lt;&#x2F;code&gt;()``is essentially telling us that there is no return expression because there is nothing in the body of the function&lt;code&gt;bigger&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;The solution is pretty simple, it&#x27;s to add an &lt;code&gt;if&lt;&#x2F;code&gt; &lt;code&gt;a &amp;lt; b&lt;&#x2F;code&gt; expression.&lt;&#x2F;p&gt;
 &lt;h2 id=&quot;if1-rs-solution&quot;&gt;&lt;code&gt;if1.rs&lt;&#x2F;code&gt; Solution&lt;&#x2F;h2&gt;
 &lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;pub fn bigger(a: i32, b: i32) -&amp;gt; i32 {
     if a &amp;lt; b {
@@ -11840,7 +11840,7 @@ test result: FAILED. 2 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; 
 </description>
       </item>
       <item>
-          <title>02 Rustlings functions</title>
+          <title>02 Rustlings Functions Solution</title>
           <pubDate>Wed, 19 Apr 2023 00:00:00 +0000</pubDate>
           <author>Unknown</author>
           <link>https://desmodrone.github.io/posts/02-rustlings-functions/</link>
@@ -12159,7 +12159,7 @@ The square of 3 is 9
 </description>
       </item>
       <item>
-          <title>01 Rustlings variables</title>
+          <title>01 Rustlings Variables Solution</title>
           <pubDate>Mon, 17 Apr 2023 00:00:00 +0000</pubDate>
           <author>Unknown</author>
           <link>https://desmodrone.github.io/posts/01-rustlings-variables/</link>
@@ -12218,7 +12218,7 @@ fn main() {
     println!(&amp;quot;Number {}&amp;quot;, x);
 }
 &lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
-&lt;p&gt;As the opening text declares variables are immutable by default so this code doesn&#x27;t compile because &lt;code&gt;x&lt;&#x2F;code&gt; is being  bound twice to different numbers without declaring it &lt;code&gt;mut&lt;&#x2F;code&gt;, this code will not compile.&lt;&#x2F;p&gt;
+&lt;p&gt;As the opening text declares variables are immutable by default so this code doesn&#x27;t compile because &lt;code&gt;x&lt;&#x2F;code&gt; is being bound twice to different numbers without declaring it &lt;code&gt;mut&lt;&#x2F;code&gt;, this code will not compile.&lt;&#x2F;p&gt;
 &lt;h2 id=&quot;variables5-rs&quot;&gt;&lt;code&gt;variables5.rs&lt;&#x2F;code&gt;&lt;&#x2F;h2&gt;
 &lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;&amp;#x2F;&amp;#x2F; variables5.rs
 &amp;#x2F;&amp;#x2F; Execute `rustlings hint variables5` or use the `hint` watch subcommand for a hint.

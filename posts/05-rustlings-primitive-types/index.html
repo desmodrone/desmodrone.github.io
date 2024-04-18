@@ -20,7 +20,7 @@
   />
   <link rel="stylesheet" href="https://desmodrone.github.io/style.css"/>
   
-  <title>05 Rustlings Primitive Types</title>
+  <title>05 Rustlings Primitive Types Solution</title>
   
 
   
@@ -127,7 +127,7 @@
 		
             
 	  </div>
-	  <h1>05 Rustlings Primitive Types</h1>
+	  <h1>05 Rustlings Primitive Types Solution</h1>
 	</header>
 
 	<div class="content">
@@ -288,7 +288,7 @@ error: aborting due to 2 previous errors
 <p>This looks similar to what we got in our previous exercise, essentially telling us that the <code>your_character</code> part of the code is incomplete.</p>
 <p>Let's go through the comments in the code.</p>
 <ul>
-<li>The first comment in <code>fn main()</code>  tells us that we are looking at <strong>Characters</strong></li>
+<li>The first comment in <code>fn main()</code> tells us that we are looking at <strong>Characters</strong></li>
 <li>Second comment makes sure that we notice the use of single quotes on the line <code>let my_first_intial = 'C' </code></li>
 <li>The third comment tells us to finish the <code>let</code> statement using the example we've seen but use our favorite character.</li>
 </ul>
@@ -332,7 +332,7 @@ fn main() {
     }
 }
 </code></pre>
-<p>Here we have clear instructions on what we need to do, and we even have a hint if we need it.  But let's look at the errors first:</p>
+<p>Here we have clear instructions on what we need to do, and we even have a hint if we need it. But let's look at the errors first:</p>
 <pre data-lang="zsh" class="language-zsh "><code class="language-zsh" data-lang="zsh">⚠️  Compiling of exercises&#x2F;primitive_types&#x2F;primitive_types3.rs failed! Please try again. Here&#x27;s the output:
 error: expected expression, found `?`
  --&gt; exercises&#x2F;primitive_types&#x2F;primitive_types3.rs:8:13
@@ -412,7 +412,7 @@ error: expected expression, found `?`
 
 error: aborting due to previous error
 </code></pre>
-<p>In this piece of code we see almost the exact same set-up having to define a variable, in this case we need to define it with a slice.  Remembering a slice is essentially how we refer to part of an array, remember when we had the 100 element array in the previous exercise, or even a bigger array that had thousands of elements. Well what if only needed to access part of the array? We would use a slice in this scenario so let's do it.</p>
+<p>In this piece of code we see almost the exact same set-up having to define a variable, in this case we need to define it with a slice. Remembering a slice is essentially how we refer to part of an array, remember when we had the 100 element array in the previous exercise, or even a bigger array that had thousands of elements. Well what if only needed to access part of the array? We would use a slice in this scenario so let's do it.</p>
 <p>We define a slice by using <code>&amp;[ ]</code> the <code>&amp;</code> makes it like a reference, so we don't have ownership of the array, but we can go deeper into this another time, let's just define this slice.</p>
 <p>The error code is also very straightforward, we're being told that we're missing an expression.</p>
 <h2 id="primitive-types4-rs-solution"><code>primitive_types4.rs</code> solution</h2>
@@ -469,7 +469,7 @@ fn main() {
     println!(&quot;{} is {} years old.&quot;, name, age);
 }
 </code></pre>
-<h2 id="primitive-types5-rs-error"><code>primitive_types5.rs</code>  error</h2>
+<h2 id="primitive-types5-rs-error"><code>primitive_types5.rs</code> error</h2>
 <pre data-lang="zsh" class="language-zsh "><code class="language-zsh" data-lang="zsh">⚠️  Compiling of exercises&#x2F;primitive_types&#x2F;primitive_types5.rs failed! Please try again. Here&#x27;s the output:
 error: expected pattern, found `=`
  --&gt; exercises&#x2F;primitive_types&#x2F;primitive_types5.rs:9:33
@@ -489,7 +489,7 @@ Let's keep things simple for now and not go too deep into the <code>&amp;str</co
 <p>When we bind tuple to a variable, like in this case <code>cat</code> the variable is bound to the entire tuple as it's considered a single compound element. So to get a single element out of the tuple we have to <em>destructure</em> the tuple by sort of inverting the variable like this:</p>
 <pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">let (a, b) = variable
 </code></pre>
-<h2 id="primitive-types5-rs-solution"><code>primitive_types5.rs</code>  solution</h2>
+<h2 id="primitive-types5-rs-solution"><code>primitive_types5.rs</code> solution</h2>
 <p>In our case we can see that in the <code>println!</code> statement we are looking for a <code>name</code> and <code>age</code> elements, so let's plug these into our code.</p>
 <pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">fn main() {
     let cat = (&quot;Furry McFurson&quot;, 3.5);
@@ -523,7 +523,7 @@ fn indexing_tuple() {
         &quot;This is not the 2nd number in the tuple!&quot;)
 }
 </code></pre>
-<h2 id="primitive-types6-rs-error"><code>primitive_types6.rs</code>  error</h2>
+<h2 id="primitive-types6-rs-error"><code>primitive_types6.rs</code> error</h2>
 <pre data-lang="zsh" class="language-zsh "><code class="language-zsh" data-lang="zsh">⚠️  Compiling of exercises&#x2F;primitive_types&#x2F;primitive_types6.rs failed! Please try again. Here&#x27;s the output:
 error: expected expression, found `?`
   --&gt; exercises&#x2F;primitive_types&#x2F;primitive_types6.rs:12:18
@@ -539,7 +539,7 @@ error: aborting due to previous error
 <pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">let indexing = variable.0
 </code></pre>
 <p>Alright then, let's apply this to our problem.</p>
-<h2 id="primitive-types6-rs-solution"><code>primitive_types6.rs</code>  solution</h2>
+<h2 id="primitive-types6-rs-solution"><code>primitive_types6.rs</code> solution</h2>
 <pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">#[test]
 fn indexing_tuple() {
     let numbers = (1, 2, 3);
@@ -571,7 +571,7 @@ failures:
 
 test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
 </code></pre>
-<p>With the correct index number we don't get anything special but a celebratory <code>code is compiling </code> message.  </p>
+<p>With the correct index number we don't get anything special but a celebratory <code>code is compiling </code> message.</p>
 <h2 id="conclusion">Conclusion</h2>
 <p>In this post, we tackled various exercises related to primitive types in Rust. We explored arrays, tuples, slices, and tuple indexing while understanding how to create and manipulate them. We also learned about the error messages provided by the Rust compiler and how to interpret and resolve them to make our code work as expected.</p>
 <p>These exercises are essential for building a strong foundation in Rust, as primitive types are the building blocks for more complex data structures and programs. By mastering these concepts, you'll be well-prepared to tackle more advanced Rust topics and further enhance your Rust programming skills.</p>

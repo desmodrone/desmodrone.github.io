@@ -20,7 +20,7 @@
   />
   <link rel="stylesheet" href="https://desmodrone.github.io/style.css"/>
   
-  <title>07 Rustlings Move Semantics Part 1</title>
+  <title>07 Rustlings Move Semantics Part 1 Solution</title>
   
 
   
@@ -127,7 +127,7 @@
 		
             
 	  </div>
-	  <h1>07 Rustlings Move Semantics Part 1</h1>
+	  <h1>07 Rustlings Move Semantics Part 1 Solution</h1>
 	</header>
 
 	<div class="content">
@@ -307,7 +307,7 @@ help: consider cloning the value if the performance cost is acceptable
 error: aborting due to previous error
 </code></pre>
 <p>Alright, we have a lot to see here, the first error on line 8 tells us that <code>vec0</code> is being moved to line 10 to the line <code>let mut vec1 = fill_vec(0);</code>
-The note tells us to consider changing the parameter type, but that shouldn't be where we should be looking because in this case we do want to return a <code>Vec&lt;i32&gt;</code>. If we continue reading our errors, we get the answer in the line  <code>help: consider cloning the value if the performanc cost is acceptable</code>. This is very helpful and clear answer.  If you played around with the code on [[#move_semantics1.rs]] you might have already encountered this solution. So let's try this <code>clone()</code> solution.</p>
+The note tells us to consider changing the parameter type, but that shouldn't be where we should be looking because in this case we do want to return a <code>Vec&lt;i32&gt;</code>. If we continue reading our errors, we get the answer in the line <code>help: consider cloning the value if the performanc cost is acceptable</code>. This is very helpful and clear answer. If you played around with the code on [[#move_semantics1.rs]] you might have already encountered this solution. So let's try this <code>clone()</code> solution.</p>
 <h2 id="move-semantics2-solution"><code>move_semantics2</code> solution</h2>
 <pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">
 fn main() {
@@ -507,7 +507,7 @@ vec1 has length 4 content `[22, 44, 66, 88]`
 
 ====================
 </code></pre>
-<p>Following the Rust compiler's help is very easy  in this case, if we notice the code is very similar to the previous exercise but this code is missing the <code>let mut vec = vec;</code> line from the <code>fn fill_vec</code> function.</p>
+<p>Following the Rust compiler's help is very easy in this case, if we notice the code is very similar to the previous exercise but this code is missing the <code>let mut vec = vec;</code> line from the <code>fn fill_vec</code> function.</p>
 <h2 id="wrapping-up-the-rustlings-move-semantics-journey-continues">Wrapping Up: The Rustlings Move Semantics Journey Continues!</h2>
 <p>There you have it! We've explored the first three <code>move_semantics</code> exercises from the Rustlings course. To keep these blog posts digestible, we'll be diving into the next 3 <code>move_semantics</code> challenges in a separate post, so keep an eye out for that!</p>
 <p>Now, let's do a quick recap of what we've covered in this post: we guided you through the first 3 <code>move_semantics</code> exercises, shedding light on how to tackle each problem by interpreting the error messages and hints provided. We also compared various solutions for each exercise, highlighting the trade-offs and stressing the importance of choosing the right method based on your code's specific needs. Our focus was on understanding the concepts of ownership, borrowing, and mutable borrowing in Rust – essential ingredients for writing efficient and safe code.</p>
