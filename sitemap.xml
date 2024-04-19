@@ -126,6 +126,10 @@
         <lastmod>2023-12-13</lastmod>
     </url>
     <url>
+        <loc>https://desmodrone.github.io/posts/cairo-hello-starklings/</loc>
+        <lastmod>2024-04-19</lastmod>
+    </url>
+    <url>
         <loc>https://desmodrone.github.io/posts/hello-rustlings/</loc>
         <lastmod>2023-04-11</lastmod>
     </url>
@@ -208,6 +212,9 @@
     </url>
     <url>
         <loc>https://desmodrone.github.io/tags/box/</loc>
+    </url>
+    <url>
+        <loc>https://desmodrone.github.io/tags/cairo/</loc>
     </url>
     <url>
         <loc>https://desmodrone.github.io/tags/cario/</loc>
@@ -379,6 +386,9 @@
     </url>
     <url>
         <loc>https://desmodrone.github.io/tags/slice/</loc>
+    </url>
+    <url>
+        <loc>https://desmodrone.github.io/tags/starklings/</loc>
     </url>
     <url>
         <loc>https://desmodrone.github.io/tags/str/</loc>

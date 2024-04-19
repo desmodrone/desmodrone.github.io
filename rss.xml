@@ -7,7 +7,24 @@
       <generator>Zola</generator>
       <language>en</language>
       <atom:link href="https://desmodrone.github.io/rss.xml" rel="self" type="application/rss+xml"/>
-      <lastBuildDate>Wed, 17 Apr 2024 00:00:00 +0000</lastBuildDate>
+      <lastBuildDate>Fri, 19 Apr 2024 00:00:00 +0000</lastBuildDate>
+      <item>
+          <title>Hello Starklings</title>
+          <pubDate>Fri, 19 Apr 2024 00:00:00 +0000</pubDate>
+          <author>Unknown</author>
+          <link>https://desmodrone.github.io/posts/cairo-hello-starklings/</link>
+          <guid>https://desmodrone.github.io/posts/cairo-hello-starklings/</guid>
+          <description xml:base="https://desmodrone.github.io/posts/cairo-hello-starklings/">&lt;h2 id=&quot;exploring-cairo-through-rust-tinted-glasses&quot;&gt;Exploring Cairo Through Rust-Tinted Glasses&lt;&#x2F;h2&gt;
+&lt;p&gt;In programming, specialized languages tailor-made for specific sectors are revolutionizing the way developers approach problems and solutions. One such niche language is &lt;strong&gt;Cairo&lt;&#x2F;strong&gt;, developed by Starkware. It’s designed to facilitate the creation and handling of &lt;strong&gt;Zero Knowledge Proofs&lt;&#x2F;strong&gt; (ZKPs), a burgeoning technology that promises enhanced privacy and security in blockchain applications and beyond.&lt;&#x2F;p&gt;
+&lt;p&gt;As someone who has explored Rust via the &lt;a href=&quot;https:&#x2F;&#x2F;desmodrone.github.io&#x2F;posts&#x2F;hello-rustlings&#x2F;&quot;&gt;Rustlings Exercises&lt;&#x2F;a&gt;, my curiosity led me to a similar adventure, but this time in the realm of Cairo. My aim? To dissect and understand the nuances of this domain-specific language through the lens Rust.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;what-is-cairo&quot;&gt;What is Cairo?&lt;&#x2F;h2&gt;
+&lt;p&gt;Before diving into the exercises, let&#x27;s briefly touch on what makes Cairo stand out. Cairo—named intriguingly enough not after the capital of Egypt but as an acronym— (CPU + Air) brings a novel approach to programming for blockchain-based technologies, especially those revolving around ZKPs. Its syntax and operational paradigms differ significantly from general-purpose languages, offering optimizations and functionalities geared towards high-efficiency cryptographic operations.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;why-zero-knowledge-proofs&quot;&gt;Why Zero Knowledge Proofs?&lt;&#x2F;h2&gt;
+&lt;p&gt;Zero Knowledge Proofs offer a fascinating functionality: they allow one party to prove to another that a given statement is true, without revealing any information apart from the fact that the statement is indeed true. This technology is not just a cornerstone for privacy-enhancing techniques but is also critical in scaling blockchain technologies securely and efficiently.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;join-me-on-this-quest&quot;&gt;Join Me on This Quest&lt;&#x2F;h2&gt;
+&lt;p&gt;This series aims to demystify Cairo and make Zero Knowledge programming more accessible to those familiar with Rust or new to the concept of domain-specific languages. Whether you’re a blockchain enthusiast, a privacy advocate, or simply a programming language aficionado, join me as we explore the intricate and fascinating world of Cairo through this series of exercises and comparisons.&lt;&#x2F;p&gt;
+</description>
+      </item>
       <item>
           <title>Rust LeetCode: 2404. Most Frequent Even Element</title>
           <pubDate>Wed, 17 Apr 2024 00:00:00 +0000</pubDate>
