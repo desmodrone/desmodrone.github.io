@@ -14,6 +14,10 @@
         <lastmod>2024-01-07</lastmod>
     </url>
     <url>
+        <loc>https://desmodrone.github.io/posts/00-zero-knowledge-proof-history/</loc>
+        <lastmod>2024-04-29</lastmod>
+    </url>
+    <url>
         <loc>https://desmodrone.github.io/posts/01-rustlings-variables/</loc>
         <lastmod>2023-04-17</lastmod>
     </url>
@@ -388,7 +392,13 @@
         <loc>https://desmodrone.github.io/tags/slice/</loc>
     </url>
     <url>
+        <loc>https://desmodrone.github.io/tags/snarks/</loc>
+    </url>
+    <url>
         <loc>https://desmodrone.github.io/tags/starklings/</loc>
+    </url>
+    <url>
+        <loc>https://desmodrone.github.io/tags/starks/</loc>
     </url>
     <url>
         <loc>https://desmodrone.github.io/tags/str/</loc>
@@ -454,7 +464,13 @@
         <loc>https://desmodrone.github.io/tags/while-let/</loc>
     </url>
     <url>
+        <loc>https://desmodrone.github.io/tags/zero-knowledge-proofs/</loc>
+    </url>
+    <url>
         <loc>https://desmodrone.github.io/tags/zero-knowledge/</loc>
+    </url>
+    <url>
+        <loc>https://desmodrone.github.io/tags/zkp/</loc>
     </url>
     <url>
         <loc>https://desmodrone.github.io/work/</loc>
