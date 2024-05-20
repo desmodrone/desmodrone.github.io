@@ -7,7 +7,480 @@
       <generator>Zola</generator>
       <language>en</language>
       <atom:link href="https://desmodrone.github.io/rss.xml" rel="self" type="application/rss+xml"/>
-      <lastBuildDate>Mon, 29 Apr 2024 00:00:00 +0000</lastBuildDate>
+      <lastBuildDate>Mon, 20 May 2024 00:00:00 +0000</lastBuildDate>
+      <item>
+          <title>Starklings-Cairo1: Variables in Cairo</title>
+          <pubDate>Mon, 20 May 2024 00:00:00 +0000</pubDate>
+          <author>Unknown</author>
+          <link>https://desmodrone.github.io/posts/01-starklings-cario-variables/</link>
+          <guid>https://desmodrone.github.io/posts/01-starklings-cario-variables/</guid>
+          <description xml:base="https://desmodrone.github.io/posts/01-starklings-cario-variables/">&lt;h2 id=&quot;overview&quot;&gt;Overview&lt;&#x2F;h2&gt;
+&lt;p&gt;In Cairo, variables are immutable by default.
+When a variable is immutable, once a value is bound to a name, you can’t change that value.
+You can make them mutable by adding &lt;code&gt;mut&lt;&#x2F;code&gt; in front of the variable name.&lt;&#x2F;p&gt;
+&lt;p&gt;It is however important to clarify the fact that even though the variable can be made mutable, Cairo works with an immutable memory model, meaning that changing the value of a variable will not change the value in memory but rather assign a new memory location to that variable.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;further-information&quot;&gt;Further information&lt;&#x2F;h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;www.cairo-lang.org&#x2F;docs&#x2F;how_cairo_works&#x2F;cairo_intro.html#memory-model&quot;&gt;Memory model in Cairo&lt;&#x2F;a&gt; - Explains how Cairo handles memory operations, emphasizing its immutable memory model.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;book.cairo-lang.org&#x2F;ch02-01-variables-and-mutability.html&quot;&gt;Variables in Cairo&lt;&#x2F;a&gt; - Detailed guide on how variables work in Cairo and how mutability can be applied.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;book.cairo-lang.org&#x2F;ch02-02-data-types.html#integer-types&quot;&gt;Integer Types&lt;&#x2F;a&gt; - Overview of integer data types available in Cairo.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h2 id=&quot;intro&quot;&gt;Intro&lt;&#x2F;h2&gt;
+&lt;p&gt;We&#x27;ll start from the very basics, since this is where the exercises start -- let&#x27;s get started!&lt;&#x2F;p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;[!Note]
+For simplicity in presentation, we&#x27;re denoting code as &lt;code&gt;rust&lt;&#x2F;code&gt; in the blog since &lt;code&gt;cairo&lt;&#x2F;code&gt; is not yet supported as a syntax highlighting option.&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;h2 id=&quot;variables1-cairo&quot;&gt;&lt;code&gt;variables1.cairo&lt;&#x2F;code&gt;&lt;&#x2F;h2&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;&amp;#x2F;&amp;#x2F; variables1.cairo
+&amp;#x2F;&amp;#x2F; Make me compile!
+&amp;#x2F;&amp;#x2F; Execute `starklings hint variables1` or use the `hint` watch subcommand for a hint.
+
+&amp;#x2F;&amp;#x2F; I AM NOT DONE
+
+use debug::PrintTrait;
+
+fn main() {
+    x = 5 ;
+    println!(&amp;quot; x is {}&amp;quot;, x)
+}
+
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;our first exercise shows a basic function that is giving us an error:&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;variables1-cairo-errors&quot;&gt;&lt;code&gt;variables1.cairo&lt;&#x2F;code&gt; Errors&lt;&#x2F;h2&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;   Compiling exercise_crate v0.1.0 (&amp;#x2F;Users&amp;#x2F;desmo&amp;#x2F;repos&amp;#x2F;starklings-cairo1&amp;#x2F;runner-crate&amp;#x2F;Scarb.toml)
+error: Identifier not found.
+ --&amp;gt; &amp;#x2F;Users&amp;#x2F;desmo&amp;#x2F;repos&amp;#x2F;starklings-cairo1&amp;#x2F;runner-crate&amp;#x2F;src&amp;#x2F;lib.cairo:10:5
+    x = 5 ;
+    ^
+
+error: Invalid left-hand side of assignment.
+ --&amp;gt; &amp;#x2F;Users&amp;#x2F;desmo&amp;#x2F;repos&amp;#x2F;starklings-cairo1&amp;#x2F;runner-crate&amp;#x2F;src&amp;#x2F;lib.cairo:10:5
+    x = 5 ;
+    ^
+
+error: Identifier not found.
+ --&amp;gt; &amp;#x2F;Users&amp;#x2F;desmo&amp;#x2F;repos&amp;#x2F;starklings-cairo1&amp;#x2F;runner-crate&amp;#x2F;src&amp;#x2F;lib.cairo:11:26
+    println!(&amp;quot; x is {}&amp;quot;, x)
+                         ^
+
+error: Type annotations needed. Failed to infer ?4
+ --&amp;gt; &amp;#x2F;Users&amp;#x2F;desmo&amp;#x2F;repos&amp;#x2F;starklings-cairo1&amp;#x2F;runner-crate&amp;#x2F;src&amp;#x2F;lib.cairo[println_macro][writeln_macro]:4:22
+    match core::fmt::Display::fmt(__write_macro_arg0__, ref __formatter_for_print_macros__) {
+                     ^*****^
+
+could not compile `exercise_crate` due to previous error
+
+⚠️  Failed to run exercises&amp;#x2F;variables&amp;#x2F;variables1.cairo! Please try again.
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;The errors indicate several issues:&lt;&#x2F;p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Identifier not found&lt;&#x2F;strong&gt;: The variable &lt;code&gt;x&lt;&#x2F;code&gt; is not declared before it is used.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Invalid left-hand side of assignment&lt;&#x2F;strong&gt;: The &lt;code&gt;x&lt;&#x2F;code&gt; needs to be declared properly.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Type annotations needed&lt;&#x2F;strong&gt;: The type of &lt;code&gt;x&lt;&#x2F;code&gt; is not inferred correctly by the compiler.&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;p&gt;If you&#x27;re familiar with Rust, you&#x27;ll quickly spot that the issue is that the &lt;code&gt;let&lt;&#x2F;code&gt; keyword is missing.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;variables1-cairo-solution&quot;&gt;&lt;code&gt;variables1.cairo&lt;&#x2F;code&gt; Solution&lt;&#x2F;h2&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;fn main() {
+    let x = 5 ; &amp;#x2F;&amp;#x2F; adding `let` before `x`
+    println!(&amp;quot; x is {}&amp;quot;, x)
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Adding &lt;code&gt;let&lt;&#x2F;code&gt; as shown above quickly and easily fixes our errors and get&#x27;s our code to compile.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;explanation&quot;&gt;Explanation&lt;&#x2F;h3&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Declaration with &lt;code&gt;let&lt;&#x2F;code&gt;&lt;&#x2F;strong&gt;: In Rust and Cairo, variables must be declared before they are used. The &lt;code&gt;let&lt;&#x2F;code&gt; keyword is used for this purpose. It tells the compiler that a new variable is being declared.&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;let x = 5;
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;ol start=&quot;2&quot;&gt;
+&lt;li&gt;&lt;strong&gt;Type Inference&lt;&#x2F;strong&gt;: While Rust and Cairo can infer types in many cases, constants and certain other values require explicit type annotations. In this example, type inference works fine because &lt;code&gt;5&lt;&#x2F;code&gt; is clearly an integer.&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;p&gt;. &lt;strong&gt;Printing Variables&lt;&#x2F;strong&gt;: The &lt;code&gt;println!&lt;&#x2F;code&gt; macro is used to print values. In this case, it prints the value of &lt;code&gt;x&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;println!(&amp;quot; x is {}&amp;quot;, x);
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h2 id=&quot;variables2-cairo&quot;&gt;&lt;code&gt;variables2.cairo&lt;&#x2F;code&gt;&lt;&#x2F;h2&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;&amp;#x2F;&amp;#x2F; variables2.cairo
+&amp;#x2F;&amp;#x2F; Execute `starklings hint variables2` or use the `hint` watch subcommand for a hint.
+
+&amp;#x2F;&amp;#x2F; I AM NOT DONE
+use debug::PrintTrait;
+
+fn main() {
+    let x;
+    if x == 10 {
+       println!(&amp;quot;x is ten! &amp;quot;);
+    } else {
+        println!(&amp;quot;x is not ten! &amp;quot;);
+    }
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Here we have another simple function with an &lt;code&gt;x&lt;&#x2F;code&gt; variable as well as an &lt;code&gt;if&lt;&#x2F;code&gt; statement that compares &lt;code&gt;x&lt;&#x2F;code&gt; to &lt;code&gt;10&lt;&#x2F;code&gt; but it&#x27;s not compiling. Let&#x27;s look at our errors:&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;variables2-cairo-errors&quot;&gt;&lt;code&gt;variables2.cairo&lt;&#x2F;code&gt; Errors&lt;&#x2F;h2&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;🟡 Running exercises&amp;#x2F;variables&amp;#x2F;variables2.cairo exercise...
+
+   Compiling exercise_crate v0.1.0 (&amp;#x2F;Users&amp;#x2F;desmo&amp;#x2F;repos&amp;#x2F;starklings-cairo1&amp;#x2F;runner-crate&amp;#x2F;Scarb.toml)
+error: Missing token TerminalEq.
+ --&amp;gt; &amp;#x2F;Users&amp;#x2F;desmo&amp;#x2F;repos&amp;#x2F;starklings-cairo1&amp;#x2F;runner-crate&amp;#x2F;src&amp;#x2F;lib.cairo:8:10
+    let x;
+         ^
+
+error: Missing tokens. Expected an expression.
+ --&amp;gt; &amp;#x2F;Users&amp;#x2F;desmo&amp;#x2F;repos&amp;#x2F;starklings-cairo1&amp;#x2F;runner-crate&amp;#x2F;src&amp;#x2F;lib.cairo:8:10
+    let x;
+         ^
+
+error: Unsupported feature.
+ --&amp;gt; &amp;#x2F;Users&amp;#x2F;desmo&amp;#x2F;repos&amp;#x2F;starklings-cairo1&amp;#x2F;runner-crate&amp;#x2F;src&amp;#x2F;lib.cairo:8:10
+    let x;
+         ^
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;It&#x27;s pretty clear that our first line in our function is not correct syntax and should be written differently, the compiler tells us that we&#x27;re &lt;code&gt;Missing tokens. Expected an expression.&lt;&#x2F;code&gt; So let&#x27;s fix it.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;variables2-cairo-solution&quot;&gt;&lt;code&gt;variables2.cairo&lt;&#x2F;code&gt; Solution&lt;&#x2F;h2&gt;
+&lt;p&gt;As we saw in the first exercise that was missing the &lt;code&gt;let&lt;&#x2F;code&gt; keyword before &lt;code&gt;x&lt;&#x2F;code&gt; this exercise is missing the value we want &lt;code&gt;x&lt;&#x2F;code&gt; to be. We fix that by adding the &lt;em&gt;assignment operator&lt;&#x2F;em&gt; = and an actual value.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;let x;
+&amp;#x2F;&amp;#x2F; to
+let x = 10;
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Now depending on what value we use we&#x27;ll get different outputs as we can see with the &lt;code&gt;else&lt;&#x2F;code&gt; part of the &lt;code&gt;if&lt;&#x2F;code&gt; statement. Feel free to experiment and recompile with different numbers as the &lt;code&gt;x&lt;&#x2F;code&gt; value and see what happens. But here&#x27;s a solution with the value &lt;code&gt;1&lt;&#x2F;code&gt;. This would of course print: &lt;code&gt;x is not ten!&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;fn main() {
+    let x = 1;
+    if x == 10 {
+       println!(&amp;quot;x is ten! &amp;quot;);
+    } else {
+        println!(&amp;quot;x is not ten! &amp;quot;);
+    }
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h3 id=&quot;explanation-1&quot;&gt;Explanation&lt;&#x2F;h3&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Variable Declaration and Initialization&lt;&#x2F;strong&gt;:
+&lt;ul&gt;
+&lt;li&gt;In the initial code, &lt;code&gt;let x;&lt;&#x2F;code&gt; declares the variable &lt;code&gt;x&lt;&#x2F;code&gt; but does not initialize it with a value, which is why the compiler throws an error.&lt;&#x2F;li&gt;
+&lt;li&gt;Correcting it to &lt;code&gt;let x = 10;&lt;&#x2F;code&gt; initializes &lt;code&gt;x&lt;&#x2F;code&gt; with the value &lt;code&gt;10&lt;&#x2F;code&gt;.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Conditional Statement&lt;&#x2F;strong&gt;:
+&lt;ul&gt;
+&lt;li&gt;The &lt;code&gt;if&lt;&#x2F;code&gt; statement checks whether &lt;code&gt;x&lt;&#x2F;code&gt; is equal to &lt;code&gt;10&lt;&#x2F;code&gt;.&lt;&#x2F;li&gt;
+&lt;li&gt;If &lt;code&gt;x&lt;&#x2F;code&gt; equals &lt;code&gt;10&lt;&#x2F;code&gt;, it prints &lt;code&gt;&amp;quot;x is ten!&amp;quot;&lt;&#x2F;code&gt;.&lt;&#x2F;li&gt;
+&lt;li&gt;Otherwise, it prints &lt;code&gt;&amp;quot;x is not ten!&amp;quot;&lt;&#x2F;code&gt;.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Experimentation&lt;&#x2F;strong&gt;:
+&lt;ul&gt;
+&lt;li&gt;Changing the value of &lt;code&gt;x&lt;&#x2F;code&gt; to different numbers and recompiling will result in different outputs based on the &lt;code&gt;if&lt;&#x2F;code&gt;condition.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;p&gt;So far so good right, it&#x27;s pretty straight forward. Let&#x27;s move on to exercise 3.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;variables3-cairo&quot;&gt;&lt;code&gt;variables3.cairo&lt;&#x2F;code&gt;&lt;&#x2F;h2&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;&amp;#x2F;&amp;#x2F; variables3.cairo
+&amp;#x2F;&amp;#x2F; Execute `starklings hint variables3` or use the `hint` watch subcommand for a hint.
+
+&amp;#x2F;&amp;#x2F; I AM NOT DONE
+
+use debug::PrintTrait;
+
+fn main() {
+    let x: felt252;
+    println!(&amp;quot;x is {}&amp;quot;, x);
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Here we see another similar scenario as exercise 2, but we see a different type of syntax the &lt;code&gt;: felt252&lt;&#x2F;code&gt; after the variable &lt;code&gt;x&lt;&#x2F;code&gt;. Let&#x27;s look at the errors.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;variables3-cairo-errors&quot;&gt;&lt;code&gt;variables3.cairo&lt;&#x2F;code&gt; Errors&lt;&#x2F;h2&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;🟡 Running exercises&amp;#x2F;variables&amp;#x2F;variables3.cairo exercise...
+
+   Compiling exercise_crate v0.1.0 (&amp;#x2F;Users&amp;#x2F;desmo&amp;#x2F;repos&amp;#x2F;starklings-cairo1&amp;#x2F;runner-crate&amp;#x2F;Scarb.toml)
+error: Missing token TerminalEq.
+ --&amp;gt; &amp;#x2F;Users&amp;#x2F;desmo&amp;#x2F;repos&amp;#x2F;starklings-cairo1&amp;#x2F;runner-crate&amp;#x2F;src&amp;#x2F;lib.cairo:9:19
+    let x: felt252;
+                  ^
+
+error: Missing tokens. Expected an expression.
+ --&amp;gt; &amp;#x2F;Users&amp;#x2F;desmo&amp;#x2F;repos&amp;#x2F;starklings-cairo1&amp;#x2F;runner-crate&amp;#x2F;src&amp;#x2F;lib.cairo:9:19
+    let x: felt252;
+                  ^
+
+error: Unsupported feature.
+ --&amp;gt; &amp;#x2F;Users&amp;#x2F;desmo&amp;#x2F;repos&amp;#x2F;starklings-cairo1&amp;#x2F;runner-crate&amp;#x2F;src&amp;#x2F;lib.cairo:9:19
+    let x: felt252;
+                  ^
+
+could not compile `exercise_crate` due to previous error
+
+⚠️  Failed to run exercises&amp;#x2F;variables&amp;#x2F;variables3.cairo! Please try again.
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;The errors indicate that the expression is incomplete. Specifically, the variable &lt;code&gt;x&lt;&#x2F;code&gt; is declared with a type &lt;code&gt;felt252&lt;&#x2F;code&gt; but is not initialized with a value.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;variables3-cairo-solution&quot;&gt;&lt;code&gt;variables3.cairo&lt;&#x2F;code&gt; Solution&lt;&#x2F;h2&gt;
+&lt;p&gt;In Cairo, as in Rust, you can specify types after variables. This is beneficial for clarity and type safety. Although the Cairo compiler often infers the type (defaulting to &lt;code&gt;felt252&lt;&#x2F;code&gt; if unspecified), it&#x27;s good practice to explicitly declare types, especially for beginners.&lt;&#x2F;p&gt;
+&lt;p&gt;To fix the error, we need to initialize &lt;code&gt;x&lt;&#x2F;code&gt; with a value by adding the &lt;em&gt;assignment operator&lt;&#x2F;em&gt; = and the value.&lt;&#x2F;p&gt;
+&lt;p&gt;This is what the updated code looks like:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;fn main() {
+    let x: felt252 = 10;
+    println!(&amp;quot;x is {}&amp;quot;, x);
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;With this change, the code compiles and outputs the value of &lt;code&gt;x&lt;&#x2F;code&gt;, which in this case is &lt;code&gt;10&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;For more information on &lt;code&gt;felt252&lt;&#x2F;code&gt;, you can refer to the Cairo book&#x27;s &lt;a href=&quot;https:&#x2F;&#x2F;book.cairo-lang.org&#x2F;ch02-02-data-types.html&quot;&gt;Data Types&lt;&#x2F;a&gt; section.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;explanation-2&quot;&gt;Explanation&lt;&#x2F;h3&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Type Annotation&lt;&#x2F;strong&gt;:
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;let x: felt252;&lt;&#x2F;code&gt; declares a variable &lt;code&gt;x&lt;&#x2F;code&gt; of type &lt;code&gt;felt252&lt;&#x2F;code&gt; but does not initialize it.&lt;&#x2F;li&gt;
+&lt;li&gt;The compiler needs both declaration and initialization.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Assignment Operator&lt;&#x2F;strong&gt;:
+&lt;ul&gt;
+&lt;li&gt;Adding &lt;code&gt;= 10&lt;&#x2F;code&gt; initializes &lt;code&gt;x&lt;&#x2F;code&gt; with the value &lt;code&gt;10&lt;&#x2F;code&gt;.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Printing the Variable&lt;&#x2F;strong&gt;:
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;println!(&amp;quot;x is {}&amp;quot;, x);&lt;&#x2F;code&gt; prints the value of &lt;code&gt;x&lt;&#x2F;code&gt;.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;p&gt;This exercise reinforces the importance of initializing variables and understanding type annotations in Cairo. Let&#x27;s move on to the next exercise.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;variables4-cairo&quot;&gt;&lt;code&gt;variables4.cairo&lt;&#x2F;code&gt;&lt;&#x2F;h2&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;&amp;#x2F;&amp;#x2F; variables4.cairo
+&amp;#x2F;&amp;#x2F; Execute `starklings hint variables4` or use the `hint` watch subcommand for a hint.
+
+&amp;#x2F;&amp;#x2F; I AM NOT DONE
+use debug::PrintTrait;
+
+fn main() {
+    let x = 3;
+    println!(&amp;quot;x is {}&amp;quot;, x);
+    x = 5; &amp;#x2F;&amp;#x2F; don&amp;#x27;t change this line
+    println!(&amp;quot;x is now {}&amp;quot;, x);
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;This seems like a pretty simple exercise, and we&#x27;re told that we&#x27;re not allowed to change the &lt;code&gt;x = 5&lt;&#x2F;code&gt; line. But let&#x27;s look at the errors and see if there&#x27;s a hint as to how to fix our error.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;variables4-cairo-errors&quot;&gt;&lt;code&gt;variables4.cairo&lt;&#x2F;code&gt; Errors&lt;&#x2F;h2&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;🟡 Running exercises&amp;#x2F;variables&amp;#x2F;variables4.cairo exercise...
+
+   Compiling exercise_crate v0.1.0 (&amp;#x2F;Users&amp;#x2F;desmo&amp;#x2F;repos&amp;#x2F;starklings-cairo1&amp;#x2F;runner-crate&amp;#x2F;Scarb.toml)
+error: Cannot assign to an immutable variable.
+ --&amp;gt; &amp;#x2F;Users&amp;#x2F;desmo&amp;#x2F;repos&amp;#x2F;starklings-cairo1&amp;#x2F;runner-crate&amp;#x2F;src&amp;#x2F;lib.cairo:10:5
+    x = 5; &amp;#x2F;&amp;#x2F; don&amp;#x27;t change this line
+    ^***^
+
+could not compile `exercise_crate` due to previous error
+
+⚠️  Failed to run exercises&amp;#x2F;variables&amp;#x2F;variables4.cairo! Please try again.
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;The key part of the output is: &lt;code&gt;error: Cannot assign to an immutable variable.&lt;&#x2F;code&gt; If you&#x27;re familiar with Rust, and now looking at Cairo, we need to remember that variables are &lt;em&gt;immutable&lt;&#x2F;em&gt; by default. This means that we cannot simply assign a new value but must declare the variable that we want to modify as mutable. So let&#x27;s see how we fix this.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;variables4-cairo-solution&quot;&gt;&lt;code&gt;variables4.cairo&lt;&#x2F;code&gt; Solution&lt;&#x2F;h2&gt;
+&lt;p&gt;In Cairo, variables are immutable by default, similar to Rust. This means that you cannot reassign a value to a variable unless it is declared as mutable using the &lt;code&gt;mut&lt;&#x2F;code&gt; keyword.&lt;&#x2F;p&gt;
+&lt;p&gt;In this exercise, we are trying to assign &lt;code&gt;x&lt;&#x2F;code&gt; to &lt;code&gt;5&lt;&#x2F;code&gt; after we&#x27;ve already assigned &lt;code&gt;x&lt;&#x2F;code&gt; to &lt;code&gt;3&lt;&#x2F;code&gt; on line 8. This won&#x27;t work unless we put the &lt;code&gt;mut&lt;&#x2F;code&gt; keyword in front of &lt;code&gt;x&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;Here&#x27;s the updated code:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;fn main() {
+    let mut x = 3; &amp;#x2F;&amp;#x2F; add `mut` keyword
+    println!(&amp;quot;x is {}&amp;quot;, x);
+    x = 5; &amp;#x2F;&amp;#x2F; don&amp;#x27;t change this line
+    println!(&amp;quot;x is now {}&amp;quot;, x);
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;With this simple update we can now see that our code compiles and we successfully update the value of &lt;code&gt;x&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;explanation-3&quot;&gt;Explanation&lt;&#x2F;h3&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Immutability by Default&lt;&#x2F;strong&gt;:
+&lt;ul&gt;
+&lt;li&gt;In Cairo, as in Rust, variables are immutable by default. This means that once a variable is assigned a value, it cannot be changed unless explicitly declared as mutable.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Mutable Variables&lt;&#x2F;strong&gt;:
+&lt;ul&gt;
+&lt;li&gt;To make a variable mutable, you need to use the &lt;code&gt;mut&lt;&#x2F;code&gt; keyword. This allows you to reassign values to the variable.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Assignment and Reassignment&lt;&#x2F;strong&gt;:
+&lt;ul&gt;
+&lt;li&gt;The line &lt;code&gt;let x = 3;&lt;&#x2F;code&gt; declares an immutable variable &lt;code&gt;x&lt;&#x2F;code&gt; and assigns it the value &lt;code&gt;3&lt;&#x2F;code&gt;.&lt;&#x2F;li&gt;
+&lt;li&gt;Trying to reassign &lt;code&gt;x&lt;&#x2F;code&gt; to &lt;code&gt;5&lt;&#x2F;code&gt; (&lt;code&gt;x = 5;&lt;&#x2F;code&gt;) without making &lt;code&gt;x&lt;&#x2F;code&gt; mutable results in a compilation error.&lt;&#x2F;li&gt;
+&lt;li&gt;Adding &lt;code&gt;mut&lt;&#x2F;code&gt; (&lt;code&gt;let mut x = 3;&lt;&#x2F;code&gt;) makes &lt;code&gt;x&lt;&#x2F;code&gt; mutable, allowing reassignment.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;p&gt;By making this simple update, our code compiles, and we successfully update the value of &lt;code&gt;x&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;For more detailed information on variables and mutability in Cairo, you can refer to the &lt;a href=&quot;https:&#x2F;&#x2F;book.cairo-lang.org&#x2F;ch02-01-variables-and-mutability.html&quot;&gt;Variables and Mutability&lt;&#x2F;a&gt; chapter in the Cairo book.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;variables5-cairo&quot;&gt;&lt;code&gt;variables5.cairo&lt;&#x2F;code&gt;&lt;&#x2F;h2&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;&amp;#x2F;&amp;#x2F; variables5.cairo
+&amp;#x2F;&amp;#x2F; Execute `starklings hint variables5` or use the `hint` watch subcommand for a hint.
+
+&amp;#x2F;&amp;#x2F; I AM NOT DONE
+use debug::PrintTrait;
+
+fn main() {
+    let number = 1_u8; &amp;#x2F;&amp;#x2F; don&amp;#x27;t change this line
+    println!(&amp;quot;number is {}&amp;quot;, number);
+    number = 3; &amp;#x2F;&amp;#x2F; don&amp;#x27;t rename this variable
+    println!(&amp;quot;number is {}&amp;quot;, number);
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;In &lt;code&gt;variables5.cairo&lt;&#x2F;code&gt;, we face a similar exercise to &lt;code&gt;variables4.cairo&lt;&#x2F;code&gt;, but with an additional challenge: we can&#x27;t change the line &lt;code&gt;let number = 1_u8&lt;&#x2F;code&gt;, and we also cannot rename the variable &lt;code&gt;number&lt;&#x2F;code&gt; on line &lt;code&gt;10&lt;&#x2F;code&gt;. So, what can we do? Let&#x27;s see if the compiler can help.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;variables5-cairo-errors&quot;&gt;&lt;code&gt;variables5.cairo&lt;&#x2F;code&gt; Errors&lt;&#x2F;h2&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;  Compiling exercise_crate v0.1.0 (&amp;#x2F;Users&amp;#x2F;desmo&amp;#x2F;repos&amp;#x2F;starklings-cairo1&amp;#x2F;runner-crate&amp;#x2F;Scarb.toml)
+error: Cannot assign to an immutable variable.
+ --&amp;gt; &amp;#x2F;Users&amp;#x2F;desmo&amp;#x2F;repos&amp;#x2F;starklings-cairo1&amp;#x2F;runner-crate&amp;#x2F;src&amp;#x2F;lib.cairo:10:5
+    number = 3; &amp;#x2F;&amp;#x2F; don&amp;#x27;t rename this variable
+    ^********^
+
+could not compile `exercise_crate` due to previous error
+
+⚠️  Failed to run exercises&amp;#x2F;variables&amp;#x2F;variables5.cairo! Please try again.
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;This output looks familiar—it&#x27;s the same as the previous exercise. Since we can&#x27;t use &lt;code&gt;mut&lt;&#x2F;code&gt;, we need to find another solution. Experienced Rust programmers might already know what to do here: &lt;strong&gt;variable shadowing&lt;&#x2F;strong&gt;.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;variables5-cairo-solution&quot;&gt;&lt;code&gt;variables5.cairo&lt;&#x2F;code&gt; Solution&lt;&#x2F;h2&gt;
+&lt;p&gt;In Cairo (as in Rust), variables are immutable by default, but we can use a technique called &lt;strong&gt;shadowing&lt;&#x2F;strong&gt;. Shadowing allows us to declare a new variable with the same name as a previous variable, effectively creating a new variable that can hold a different value or type.&lt;&#x2F;p&gt;
+&lt;p&gt;Shadowing is done using the &lt;code&gt;let&lt;&#x2F;code&gt; keyword again with the same variable name. This might seem confusing at first, but it&#x27;s quite powerful as it allows us to reuse variable names within different scopes or with different types.&lt;&#x2F;p&gt;
+&lt;p&gt;Here&#x27;s the updated code:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;fn main() {
+    let number = 1_u8; &amp;#x2F;&amp;#x2F; don&amp;#x27;t change this line
+    println!(&amp;quot;number is {}&amp;quot;, number);
+    let number = 3; &amp;#x2F;&amp;#x2F; don&amp;#x27;t rename this variable
+    println!(&amp;quot;number is {}&amp;quot;, number);
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h3 id=&quot;explanation-4&quot;&gt;Explanation&lt;&#x2F;h3&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Shadowing&lt;&#x2F;strong&gt;:
+&lt;ul&gt;
+&lt;li&gt;Shadowing allows you to declare a new variable with the same name as a previous variable. This new variable can have a different value or type.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;code&gt;let number = 1_u8;&lt;&#x2F;code&gt; declares the first &lt;code&gt;number&lt;&#x2F;code&gt; with a type of &lt;code&gt;u8&lt;&#x2F;code&gt; and value &lt;code&gt;1&lt;&#x2F;code&gt;.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;code&gt;let number = 3;&lt;&#x2F;code&gt; declares a new &lt;code&gt;number&lt;&#x2F;code&gt; variable, shadowing the previous one. This new &lt;code&gt;number&lt;&#x2F;code&gt; can have a different type or value.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Print Statements&lt;&#x2F;strong&gt;:
+&lt;ul&gt;
+&lt;li&gt;The first &lt;code&gt;println!(&amp;quot;number is {}&amp;quot;, number);&lt;&#x2F;code&gt; prints the value &lt;code&gt;1&lt;&#x2F;code&gt;.&lt;&#x2F;li&gt;
+&lt;li&gt;The second &lt;code&gt;println!(&amp;quot;number is {}&amp;quot;, number);&lt;&#x2F;code&gt; prints the value &lt;code&gt;3&lt;&#x2F;code&gt;.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;h3 id=&quot;why-shadowing&quot;&gt;Why Shadowing?&lt;&#x2F;h3&gt;
+&lt;p&gt;Shadowing is useful because:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;It allows reusing variable names without mutating the original variable.&lt;&#x2F;li&gt;
+&lt;li&gt;It helps in maintaining cleaner code by avoiding unnecessary variable names.&lt;&#x2F;li&gt;
+&lt;li&gt;It allows changing the type of a variable within a certain scope.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;For more information on shadowing, you can refer to the &lt;a href=&quot;https:&#x2F;&#x2F;book.cairo-lang.org&#x2F;ch02-01-variables-and-mutability.html?highlight=shadow#shadowing&quot;&gt;Variables and Mutability&lt;&#x2F;a&gt; chapter in the Cairo book.&lt;&#x2F;p&gt;
+&lt;p&gt;Alright let&#x27;s move on to our final &lt;code&gt;variables&lt;&#x2F;code&gt; exercise!&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;variables6-cairo&quot;&gt;&lt;code&gt;variables6.cairo&lt;&#x2F;code&gt;&lt;&#x2F;h2&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;&amp;#x2F;&amp;#x2F; variables6.cairo
+&amp;#x2F;&amp;#x2F; Execute `starklings hint variables6` or use the `hint` watch subcommand for a hint.
+
+&amp;#x2F;&amp;#x2F; I AM NOT DONE
+use debug::PrintTrait;
+
+const NUMBER = 3;
+const SMALL_NUMBER = 3_u8;
+fn main() {
+    println!(&amp;quot;NUMBER is {}&amp;quot;, NUMBER);
+    println!(&amp;quot;SMALL_NUMBER is {}&amp;quot;, SMALL_NUMBER);
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;We have the introduction of the keyword &lt;code&gt;const&lt;&#x2F;code&gt; in &lt;code&gt;varaibles5.cairo&lt;&#x2F;code&gt; other than this, we don&#x27;t have too much else going on but obviously the code is not compiling. Let&#x27;s take a look at our errors.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;variables6-cairo-errors&quot;&gt;&lt;code&gt;variables6.cairo&lt;&#x2F;code&gt; Errors&lt;&#x2F;h2&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;🟡 Running exercises&amp;#x2F;variables&amp;#x2F;variables6.cairo exercise...
+
+   Compiling exercise_crate v0.1.0 (&amp;#x2F;Users&amp;#x2F;desmo&amp;#x2F;repos&amp;#x2F;starklings-cairo1&amp;#x2F;runner-crate&amp;#x2F;Scarb.toml)
+error: Unexpected token, `expected &amp;#x27;:&amp;#x27; followed by a type.`
+ --&amp;gt; &amp;#x2F;Users&amp;#x2F;desmo&amp;#x2F;repos&amp;#x2F;starklings-cairo1&amp;#x2F;runner-crate&amp;#x2F;src&amp;#x2F;lib.cairo:7:13
+const NUMBER = 3;
+            ^
+
+error: Unexpected token, expected &amp;#x27;:&amp;#x27; followed by a type.
+ --&amp;gt; &amp;#x2F;Users&amp;#x2F;desmo&amp;#x2F;repos&amp;#x2F;starklings-cairo1&amp;#x2F;runner-crate&amp;#x2F;src&amp;#x2F;lib.cairo:8:19
+const SMALL_NUMBER = 3_u8;
+                  ^
+
+error: Unknown type.
+ --&amp;gt; &amp;#x2F;Users&amp;#x2F;desmo&amp;#x2F;repos&amp;#x2F;starklings-cairo1&amp;#x2F;runner-crate&amp;#x2F;src&amp;#x2F;lib.cairo:7:14
+const NUMBER = 3;
+             ^
+
+error: Unknown type.
+ --&amp;gt; &amp;#x2F;Users&amp;#x2F;desmo&amp;#x2F;repos&amp;#x2F;starklings-cairo1&amp;#x2F;runner-crate&amp;#x2F;src&amp;#x2F;lib.cairo:8:20
+const SMALL_NUMBER = 3_u8;
+                   ^
+
+could not compile `exercise_crate` due to previous error
+
+⚠️  Failed to run exercises&amp;#x2F;variables&amp;#x2F;variables6.cairo! Please try again.
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;It seems that the compiler is not happy with how we are declaring our constants and it actually tells us what it is expecting: &lt;code&gt;expected &#x27;:&#x27; followed by a type.&lt;&#x2F;code&gt; That&#x27;s handy. Constants behave a little differently than variables, so let&#x27;s explore how in our solution below.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;variables6-cairo-solution&quot;&gt;&lt;code&gt;variables6.cairo&lt;&#x2F;code&gt; Solution&lt;&#x2F;h2&gt;
+&lt;p&gt;&lt;em&gt;Constants&lt;&#x2F;em&gt; are similar to variables in that they are immutable, but they are &lt;em&gt;always&lt;&#x2F;em&gt; immutable. You are not allowed to use the &lt;code&gt;mut&lt;&#x2F;code&gt; keyword with them. Instead of using &lt;code&gt;let&lt;&#x2F;code&gt;, you use &lt;code&gt;const&lt;&#x2F;code&gt; and you &lt;em&gt;must&lt;&#x2F;em&gt; annotate the type of the value.
+Knowing this information, let&#x27;s fix our code. You can read more about this in the Cairo Book here: &lt;a href=&quot;https:&#x2F;&#x2F;book.cairo-lang.org&#x2F;ch02-01-variables-and-mutability.html?highlight=const#constants&quot;&gt;Constants&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;const NUMBER:u8 = 3_u8;
+const SMALL_NUMBER:u8 = 3_u8;
+fn main() {
+    println!(&amp;quot;NUMBER is {}&amp;quot;, NUMBER);
+    println!(&amp;quot;SMALL_NUMBER is {}&amp;quot;, SMALL_NUMBER);
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;With these changes, our code compiles successfully and outputs the values of &lt;code&gt;NUMBER&lt;&#x2F;code&gt; and &lt;code&gt;SMALL_NUMBER&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;explanation-5&quot;&gt;Explanation&lt;&#x2F;h3&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Constants Declaration&lt;&#x2F;strong&gt;:
+&lt;ul&gt;
+&lt;li&gt;Unlike variables, constants must have their types explicitly annotated.&lt;&#x2F;li&gt;
+&lt;li&gt;The type annotation ensures clarity and helps the compiler enforce strong typing principles.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Correcting the Code&lt;&#x2F;strong&gt;:
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;const NUMBER: u8 = 3_u8;&lt;&#x2F;code&gt; declares a constant &lt;code&gt;NUMBER&lt;&#x2F;code&gt; with type &lt;code&gt;u8&lt;&#x2F;code&gt; and value &lt;code&gt;3&lt;&#x2F;code&gt;.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;code&gt;const SMALL_NUMBER: u8 = 3_u8;&lt;&#x2F;code&gt; declares a constant &lt;code&gt;SMALL_NUMBER&lt;&#x2F;code&gt; with type &lt;code&gt;u8&lt;&#x2F;code&gt; and value &lt;code&gt;3&lt;&#x2F;code&gt;.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Print Statements&lt;&#x2F;strong&gt;:
+&lt;ul&gt;
+&lt;li&gt;The &lt;code&gt;println!&lt;&#x2F;code&gt; macros print the values of the constants.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;blockquote&gt;
+&lt;p&gt;[!Note]
+While the type suffix (&lt;code&gt;3_u8&lt;&#x2F;code&gt;) provides a hint to the compiler about the type of the literal, Cairo still requires an explicit type annotation for constants to ensure clarity and to uphold the language&#x27;s strong typing principles.&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;h2 id=&quot;conclusion&quot;&gt;Conclusion&lt;&#x2F;h2&gt;
+&lt;p&gt;Congratulations on completing the &lt;code&gt;variables&lt;&#x2F;code&gt; exercises! By now, you should have a solid understanding of variable declaration, mutability, and constants in Cairo. Here&#x27;s a quick recap of what we&#x27;ve covered:&lt;&#x2F;p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Variable Declaration and Initialization&lt;&#x2F;strong&gt;:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;Learned how to declare and initialize variables.&lt;&#x2F;li&gt;
+&lt;li&gt;Understood the importance of initializing variables to avoid compilation errors.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Mutability&lt;&#x2F;strong&gt;:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;Explored the concept of immutability by default and how to declare mutable variables using the &lt;code&gt;mut&lt;&#x2F;code&gt; keyword.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Shadowing&lt;&#x2F;strong&gt;:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;Discovered how to use variable shadowing to redeclare variables with the same name within different scopes or with different types.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Constants&lt;&#x2F;strong&gt;:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;Understood the distinction between variables and constants.&lt;&#x2F;li&gt;
+&lt;li&gt;Learned how to declare constants with explicit type annotations and the importance of their immutability.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;p&gt;These exercises have provided a foundational understanding of how Cairo handles variables and constants, which is crucial for more advanced topics and projects. We&#x27;ll see you in the next set of exercises where we will cover &lt;a href=&quot;https:&#x2F;&#x2F;book.cairo-lang.org&#x2F;ch02-02-data-types.html&quot;&gt;Primitive Types&lt;&#x2F;a&gt;, until then, happy coding!&lt;&#x2F;p&gt;
+</description>
+      </item>
       <item>
           <title>Zero-Knowledge Proofs: A Journey from Theory to Blockchain and Beyond</title>
           <pubDate>Mon, 29 Apr 2024 00:00:00 +0000</pubDate>

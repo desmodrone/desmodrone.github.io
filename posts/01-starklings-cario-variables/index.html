@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <meta itemprop="name" content="desmo" />
+  <meta itemprop="description" content="Random Ideas" />
+
+  <link rel="apple-touch-icon" sizes="180x180" href="https://desmodrone.github.io/apple-touch-icon.png"/>
+  <link rel="icon" type="image/png" sizes="32x32" href="https://desmodrone.github.io/favicon-32x32.png" />
+  <link
+    rel="icon"
+    type="image/png"
+    sizes="16x16"
+    href="https://desmodrone.github.io/favicon-16x16.png"
+  />
+  <link
+    rel="shortcut icon"
+    href="https://desmodrone.github.io/favicon.ico"
+  />
+  <link rel="stylesheet" href="https://desmodrone.github.io/style.css"/>
+  
+  <title>Starklings-Cairo1: Variables in Cairo</title>
+  
+
+  
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="https://desmodrone.github.io/rss.xml">
+  
+
+  <body id="page">
+
+	
+<header id="site-header" class="animated slideInUp faster">
+  <div class="hdr-wrapper section-inner">
+    <div class="hdr-left">
+      <div class="site-branding">
+        <a href="https:&#x2F;&#x2F;desmodrone.github.io">desmo</a>
+      </div>
+      <nav class="site-nav hide-in-mobile">
+            
+        
+        <a href="https://desmodrone.github.io/posts">posts</a>
+        
+        <a href="https://desmodrone.github.io/about">about</a>
+        
+        <a href="https://desmodrone.github.io/work">work</a>
+        
+      </nav>
+    </div>
+    <div class="hdr-right hdr-icons">
+      <span class="hdr-social hide-in-mobile">
+        
+
+<a href="https:&#x2F;&#x2F;twitter.com&#x2F;desmo_io" target="_blank" rel="noopener me"
+   title="twitter">
+  
+  <svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg>
+  
+</a>
+
+<a href="https:&#x2F;&#x2F;github.com&#x2F;desmodrone" target="_blank" rel="noopener me"
+   title="github">
+  
+  <svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+  
+</a>
+
+<a href="mailto:erick@apexwins.com" target="_blank" rel="noopener me"
+   title="email">
+  
+  <svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+  
+</a>
+
+
+      </span>
+      <button id="menu-btn" class="hdr-btn" title="Menu">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="feather feather-menu"
+        >
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+  </div>
+</header>
+<div id="mobile-menu" class="animated fast">
+  <ul>
+    
+    <li><a href="https://desmodrone.github.io/posts">posts</a></li>
+    
+    <li><a href="https://desmodrone.github.io/about">about</a></li>
+    
+    <li><a href="https://desmodrone.github.io/work">work</a></li>
+    
+  </ul>
+</div>
+
+	
+	
+
+		
+<main class="site-main section-inner animated fadeIn faster">
+  <article class="thin">
+	<header class="post-header">
+	  <div class="post-meta">
+		
+		<span>May 20, 2024</span>
+		<small> - 
+<span class="reading-time" title="Estimated read time">
+  
+  11 min read
+  
+</span>
+</small>
+		
+            
+	  </div>
+	  <h1>Starklings-Cairo1: Variables in Cairo</h1>
+	</header>
+
+	<div class="content">
+        
+	  <h2 id="overview">Overview</h2>
+<p>In Cairo, variables are immutable by default.
+When a variable is immutable, once a value is bound to a name, you can’t change that value.
+You can make them mutable by adding <code>mut</code> in front of the variable name.</p>
+<p>It is however important to clarify the fact that even though the variable can be made mutable, Cairo works with an immutable memory model, meaning that changing the value of a variable will not change the value in memory but rather assign a new memory location to that variable.</p>
+<h2 id="further-information">Further information</h2>
+<ul>
+<li><a href="https://www.cairo-lang.org/docs/how_cairo_works/cairo_intro.html#memory-model">Memory model in Cairo</a> - Explains how Cairo handles memory operations, emphasizing its immutable memory model.</li>
+<li><a href="https://book.cairo-lang.org/ch02-01-variables-and-mutability.html">Variables in Cairo</a> - Detailed guide on how variables work in Cairo and how mutability can be applied.</li>
+<li><a href="https://book.cairo-lang.org/ch02-02-data-types.html#integer-types">Integer Types</a> - Overview of integer data types available in Cairo.</li>
+</ul>
+<h2 id="intro">Intro</h2>
+<p>We'll start from the very basics, since this is where the exercises start -- let's get started!</p>
+<blockquote>
+<p>[!Note]
+For simplicity in presentation, we're denoting code as <code>rust</code> in the blog since <code>cairo</code> is not yet supported as a syntax highlighting option.</p>
+</blockquote>
+<h2 id="variables1-cairo"><code>variables1.cairo</code></h2>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">&#x2F;&#x2F; variables1.cairo
+&#x2F;&#x2F; Make me compile!
+&#x2F;&#x2F; Execute `starklings hint variables1` or use the `hint` watch subcommand for a hint.
+
+&#x2F;&#x2F; I AM NOT DONE
+
+use debug::PrintTrait;
+
+fn main() {
+    x = 5 ;
+    println!(&quot; x is {}&quot;, x)
+}
+
+</code></pre>
+<p>our first exercise shows a basic function that is giving us an error:</p>
+<h2 id="variables1-cairo-errors"><code>variables1.cairo</code> Errors</h2>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">   Compiling exercise_crate v0.1.0 (&#x2F;Users&#x2F;desmo&#x2F;repos&#x2F;starklings-cairo1&#x2F;runner-crate&#x2F;Scarb.toml)
+error: Identifier not found.
+ --&gt; &#x2F;Users&#x2F;desmo&#x2F;repos&#x2F;starklings-cairo1&#x2F;runner-crate&#x2F;src&#x2F;lib.cairo:10:5
+    x = 5 ;
+    ^
+
+error: Invalid left-hand side of assignment.
+ --&gt; &#x2F;Users&#x2F;desmo&#x2F;repos&#x2F;starklings-cairo1&#x2F;runner-crate&#x2F;src&#x2F;lib.cairo:10:5
+    x = 5 ;
+    ^
+
+error: Identifier not found.
+ --&gt; &#x2F;Users&#x2F;desmo&#x2F;repos&#x2F;starklings-cairo1&#x2F;runner-crate&#x2F;src&#x2F;lib.cairo:11:26
+    println!(&quot; x is {}&quot;, x)
+                         ^
+
+error: Type annotations needed. Failed to infer ?4
+ --&gt; &#x2F;Users&#x2F;desmo&#x2F;repos&#x2F;starklings-cairo1&#x2F;runner-crate&#x2F;src&#x2F;lib.cairo[println_macro][writeln_macro]:4:22
+    match core::fmt::Display::fmt(__write_macro_arg0__, ref __formatter_for_print_macros__) {
+                     ^*****^
+
+could not compile `exercise_crate` due to previous error
+
+⚠️  Failed to run exercises&#x2F;variables&#x2F;variables1.cairo! Please try again.
+</code></pre>
+<p>The errors indicate several issues:</p>
+<ol>
+<li><strong>Identifier not found</strong>: The variable <code>x</code> is not declared before it is used.</li>
+<li><strong>Invalid left-hand side of assignment</strong>: The <code>x</code> needs to be declared properly.</li>
+<li><strong>Type annotations needed</strong>: The type of <code>x</code> is not inferred correctly by the compiler.</li>
+</ol>
+<p>If you're familiar with Rust, you'll quickly spot that the issue is that the <code>let</code> keyword is missing.</p>
+<h2 id="variables1-cairo-solution"><code>variables1.cairo</code> Solution</h2>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">fn main() {
+    let x = 5 ; &#x2F;&#x2F; adding `let` before `x`
+    println!(&quot; x is {}&quot;, x)
+}
+</code></pre>
+<p>Adding <code>let</code> as shown above quickly and easily fixes our errors and get's our code to compile.</p>
+<h3 id="explanation">Explanation</h3>
+<ol>
+<li><strong>Declaration with <code>let</code></strong>: In Rust and Cairo, variables must be declared before they are used. The <code>let</code> keyword is used for this purpose. It tells the compiler that a new variable is being declared.</li>
+</ol>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">let x = 5;
+</code></pre>
+<ol start="2">
+<li><strong>Type Inference</strong>: While Rust and Cairo can infer types in many cases, constants and certain other values require explicit type annotations. In this example, type inference works fine because <code>5</code> is clearly an integer.</li>
+</ol>
+<p>. <strong>Printing Variables</strong>: The <code>println!</code> macro is used to print values. In this case, it prints the value of <code>x</code>.</p>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">println!(&quot; x is {}&quot;, x);
+</code></pre>
+<h2 id="variables2-cairo"><code>variables2.cairo</code></h2>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">&#x2F;&#x2F; variables2.cairo
+&#x2F;&#x2F; Execute `starklings hint variables2` or use the `hint` watch subcommand for a hint.
+
+&#x2F;&#x2F; I AM NOT DONE
+use debug::PrintTrait;
+
+fn main() {
+    let x;
+    if x == 10 {
+       println!(&quot;x is ten! &quot;);
+    } else {
+        println!(&quot;x is not ten! &quot;);
+    }
+}
+</code></pre>
+<p>Here we have another simple function with an <code>x</code> variable as well as an <code>if</code> statement that compares <code>x</code> to <code>10</code> but it's not compiling. Let's look at our errors:</p>
+<h2 id="variables2-cairo-errors"><code>variables2.cairo</code> Errors</h2>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">🟡 Running exercises&#x2F;variables&#x2F;variables2.cairo exercise...
+
+   Compiling exercise_crate v0.1.0 (&#x2F;Users&#x2F;desmo&#x2F;repos&#x2F;starklings-cairo1&#x2F;runner-crate&#x2F;Scarb.toml)
+error: Missing token TerminalEq.
+ --&gt; &#x2F;Users&#x2F;desmo&#x2F;repos&#x2F;starklings-cairo1&#x2F;runner-crate&#x2F;src&#x2F;lib.cairo:8:10
+    let x;
+         ^
+
+error: Missing tokens. Expected an expression.
+ --&gt; &#x2F;Users&#x2F;desmo&#x2F;repos&#x2F;starklings-cairo1&#x2F;runner-crate&#x2F;src&#x2F;lib.cairo:8:10
+    let x;
+         ^
+
+error: Unsupported feature.
+ --&gt; &#x2F;Users&#x2F;desmo&#x2F;repos&#x2F;starklings-cairo1&#x2F;runner-crate&#x2F;src&#x2F;lib.cairo:8:10
+    let x;
+         ^
+</code></pre>
+<p>It's pretty clear that our first line in our function is not correct syntax and should be written differently, the compiler tells us that we're <code>Missing tokens. Expected an expression.</code> So let's fix it.</p>
+<h2 id="variables2-cairo-solution"><code>variables2.cairo</code> Solution</h2>
+<p>As we saw in the first exercise that was missing the <code>let</code> keyword before <code>x</code> this exercise is missing the value we want <code>x</code> to be. We fix that by adding the <em>assignment operator</em> = and an actual value.</p>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">let x;
+&#x2F;&#x2F; to
+let x = 10;
+</code></pre>
+<p>Now depending on what value we use we'll get different outputs as we can see with the <code>else</code> part of the <code>if</code> statement. Feel free to experiment and recompile with different numbers as the <code>x</code> value and see what happens. But here's a solution with the value <code>1</code>. This would of course print: <code>x is not ten!</code>.</p>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">fn main() {
+    let x = 1;
+    if x == 10 {
+       println!(&quot;x is ten! &quot;);
+    } else {
+        println!(&quot;x is not ten! &quot;);
+    }
+}
+</code></pre>
+<h3 id="explanation-1">Explanation</h3>
+<ol>
+<li><strong>Variable Declaration and Initialization</strong>:
+<ul>
+<li>In the initial code, <code>let x;</code> declares the variable <code>x</code> but does not initialize it with a value, which is why the compiler throws an error.</li>
+<li>Correcting it to <code>let x = 10;</code> initializes <code>x</code> with the value <code>10</code>.</li>
+</ul>
+</li>
+<li><strong>Conditional Statement</strong>:
+<ul>
+<li>The <code>if</code> statement checks whether <code>x</code> is equal to <code>10</code>.</li>
+<li>If <code>x</code> equals <code>10</code>, it prints <code>&quot;x is ten!&quot;</code>.</li>
+<li>Otherwise, it prints <code>&quot;x is not ten!&quot;</code>.</li>
+</ul>
+</li>
+<li><strong>Experimentation</strong>:
+<ul>
+<li>Changing the value of <code>x</code> to different numbers and recompiling will result in different outputs based on the <code>if</code>condition.</li>
+</ul>
+</li>
+</ol>
+<p>So far so good right, it's pretty straight forward. Let's move on to exercise 3.</p>
+<h2 id="variables3-cairo"><code>variables3.cairo</code></h2>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">&#x2F;&#x2F; variables3.cairo
+&#x2F;&#x2F; Execute `starklings hint variables3` or use the `hint` watch subcommand for a hint.
+
+&#x2F;&#x2F; I AM NOT DONE
+
+use debug::PrintTrait;
+
+fn main() {
+    let x: felt252;
+    println!(&quot;x is {}&quot;, x);
+}
+</code></pre>
+<p>Here we see another similar scenario as exercise 2, but we see a different type of syntax the <code>: felt252</code> after the variable <code>x</code>. Let's look at the errors.</p>
+<h2 id="variables3-cairo-errors"><code>variables3.cairo</code> Errors</h2>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">🟡 Running exercises&#x2F;variables&#x2F;variables3.cairo exercise...
+
+   Compiling exercise_crate v0.1.0 (&#x2F;Users&#x2F;desmo&#x2F;repos&#x2F;starklings-cairo1&#x2F;runner-crate&#x2F;Scarb.toml)
+error: Missing token TerminalEq.
+ --&gt; &#x2F;Users&#x2F;desmo&#x2F;repos&#x2F;starklings-cairo1&#x2F;runner-crate&#x2F;src&#x2F;lib.cairo:9:19
+    let x: felt252;
+                  ^
+
+error: Missing tokens. Expected an expression.
+ --&gt; &#x2F;Users&#x2F;desmo&#x2F;repos&#x2F;starklings-cairo1&#x2F;runner-crate&#x2F;src&#x2F;lib.cairo:9:19
+    let x: felt252;
+                  ^
+
+error: Unsupported feature.
+ --&gt; &#x2F;Users&#x2F;desmo&#x2F;repos&#x2F;starklings-cairo1&#x2F;runner-crate&#x2F;src&#x2F;lib.cairo:9:19
+    let x: felt252;
+                  ^
+
+could not compile `exercise_crate` due to previous error
+
+⚠️  Failed to run exercises&#x2F;variables&#x2F;variables3.cairo! Please try again.
+</code></pre>
+<p>The errors indicate that the expression is incomplete. Specifically, the variable <code>x</code> is declared with a type <code>felt252</code> but is not initialized with a value.</p>
+<h2 id="variables3-cairo-solution"><code>variables3.cairo</code> Solution</h2>
+<p>In Cairo, as in Rust, you can specify types after variables. This is beneficial for clarity and type safety. Although the Cairo compiler often infers the type (defaulting to <code>felt252</code> if unspecified), it's good practice to explicitly declare types, especially for beginners.</p>
+<p>To fix the error, we need to initialize <code>x</code> with a value by adding the <em>assignment operator</em> = and the value.</p>
+<p>This is what the updated code looks like:</p>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">fn main() {
+    let x: felt252 = 10;
+    println!(&quot;x is {}&quot;, x);
+}
+</code></pre>
+<p>With this change, the code compiles and outputs the value of <code>x</code>, which in this case is <code>10</code>.</p>
+<p>For more information on <code>felt252</code>, you can refer to the Cairo book's <a href="https://book.cairo-lang.org/ch02-02-data-types.html">Data Types</a> section.</p>
+<h3 id="explanation-2">Explanation</h3>
+<ol>
+<li><strong>Type Annotation</strong>:
+<ul>
+<li><code>let x: felt252;</code> declares a variable <code>x</code> of type <code>felt252</code> but does not initialize it.</li>
+<li>The compiler needs both declaration and initialization.</li>
+</ul>
+</li>
+<li><strong>Assignment Operator</strong>:
+<ul>
+<li>Adding <code>= 10</code> initializes <code>x</code> with the value <code>10</code>.</li>
+</ul>
+</li>
+<li><strong>Printing the Variable</strong>:
+<ul>
+<li><code>println!(&quot;x is {}&quot;, x);</code> prints the value of <code>x</code>.</li>
+</ul>
+</li>
+</ol>
+<p>This exercise reinforces the importance of initializing variables and understanding type annotations in Cairo. Let's move on to the next exercise.</p>
+<h2 id="variables4-cairo"><code>variables4.cairo</code></h2>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">&#x2F;&#x2F; variables4.cairo
+&#x2F;&#x2F; Execute `starklings hint variables4` or use the `hint` watch subcommand for a hint.
+
+&#x2F;&#x2F; I AM NOT DONE
+use debug::PrintTrait;
+
+fn main() {
+    let x = 3;
+    println!(&quot;x is {}&quot;, x);
+    x = 5; &#x2F;&#x2F; don&#x27;t change this line
+    println!(&quot;x is now {}&quot;, x);
+}
+</code></pre>
+<p>This seems like a pretty simple exercise, and we're told that we're not allowed to change the <code>x = 5</code> line. But let's look at the errors and see if there's a hint as to how to fix our error.</p>
+<h2 id="variables4-cairo-errors"><code>variables4.cairo</code> Errors</h2>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">🟡 Running exercises&#x2F;variables&#x2F;variables4.cairo exercise...
+
+   Compiling exercise_crate v0.1.0 (&#x2F;Users&#x2F;desmo&#x2F;repos&#x2F;starklings-cairo1&#x2F;runner-crate&#x2F;Scarb.toml)
+error: Cannot assign to an immutable variable.
+ --&gt; &#x2F;Users&#x2F;desmo&#x2F;repos&#x2F;starklings-cairo1&#x2F;runner-crate&#x2F;src&#x2F;lib.cairo:10:5
+    x = 5; &#x2F;&#x2F; don&#x27;t change this line
+    ^***^
+
+could not compile `exercise_crate` due to previous error
+
+⚠️  Failed to run exercises&#x2F;variables&#x2F;variables4.cairo! Please try again.
+</code></pre>
+<p>The key part of the output is: <code>error: Cannot assign to an immutable variable.</code> If you're familiar with Rust, and now looking at Cairo, we need to remember that variables are <em>immutable</em> by default. This means that we cannot simply assign a new value but must declare the variable that we want to modify as mutable. So let's see how we fix this.</p>
+<h2 id="variables4-cairo-solution"><code>variables4.cairo</code> Solution</h2>
+<p>In Cairo, variables are immutable by default, similar to Rust. This means that you cannot reassign a value to a variable unless it is declared as mutable using the <code>mut</code> keyword.</p>
+<p>In this exercise, we are trying to assign <code>x</code> to <code>5</code> after we've already assigned <code>x</code> to <code>3</code> on line 8. This won't work unless we put the <code>mut</code> keyword in front of <code>x</code>.</p>
+<p>Here's the updated code:</p>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">fn main() {
+    let mut x = 3; &#x2F;&#x2F; add `mut` keyword
+    println!(&quot;x is {}&quot;, x);
+    x = 5; &#x2F;&#x2F; don&#x27;t change this line
+    println!(&quot;x is now {}&quot;, x);
+}
+</code></pre>
+<p>With this simple update we can now see that our code compiles and we successfully update the value of <code>x</code>.</p>
+<h3 id="explanation-3">Explanation</h3>
+<ol>
+<li><strong>Immutability by Default</strong>:
+<ul>
+<li>In Cairo, as in Rust, variables are immutable by default. This means that once a variable is assigned a value, it cannot be changed unless explicitly declared as mutable.</li>
+</ul>
+</li>
+<li><strong>Mutable Variables</strong>:
+<ul>
+<li>To make a variable mutable, you need to use the <code>mut</code> keyword. This allows you to reassign values to the variable.</li>
+</ul>
+</li>
+<li><strong>Assignment and Reassignment</strong>:
+<ul>
+<li>The line <code>let x = 3;</code> declares an immutable variable <code>x</code> and assigns it the value <code>3</code>.</li>
+<li>Trying to reassign <code>x</code> to <code>5</code> (<code>x = 5;</code>) without making <code>x</code> mutable results in a compilation error.</li>
+<li>Adding <code>mut</code> (<code>let mut x = 3;</code>) makes <code>x</code> mutable, allowing reassignment.</li>
+</ul>
+</li>
+</ol>
+<p>By making this simple update, our code compiles, and we successfully update the value of <code>x</code>.</p>
+<p>For more detailed information on variables and mutability in Cairo, you can refer to the <a href="https://book.cairo-lang.org/ch02-01-variables-and-mutability.html">Variables and Mutability</a> chapter in the Cairo book.</p>
+<h2 id="variables5-cairo"><code>variables5.cairo</code></h2>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">&#x2F;&#x2F; variables5.cairo
+&#x2F;&#x2F; Execute `starklings hint variables5` or use the `hint` watch subcommand for a hint.
+
+&#x2F;&#x2F; I AM NOT DONE
+use debug::PrintTrait;
+
+fn main() {
+    let number = 1_u8; &#x2F;&#x2F; don&#x27;t change this line
+    println!(&quot;number is {}&quot;, number);
+    number = 3; &#x2F;&#x2F; don&#x27;t rename this variable
+    println!(&quot;number is {}&quot;, number);
+}
+</code></pre>
+<p>In <code>variables5.cairo</code>, we face a similar exercise to <code>variables4.cairo</code>, but with an additional challenge: we can't change the line <code>let number = 1_u8</code>, and we also cannot rename the variable <code>number</code> on line <code>10</code>. So, what can we do? Let's see if the compiler can help.</p>
+<h2 id="variables5-cairo-errors"><code>variables5.cairo</code> Errors</h2>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">  Compiling exercise_crate v0.1.0 (&#x2F;Users&#x2F;desmo&#x2F;repos&#x2F;starklings-cairo1&#x2F;runner-crate&#x2F;Scarb.toml)
+error: Cannot assign to an immutable variable.
+ --&gt; &#x2F;Users&#x2F;desmo&#x2F;repos&#x2F;starklings-cairo1&#x2F;runner-crate&#x2F;src&#x2F;lib.cairo:10:5
+    number = 3; &#x2F;&#x2F; don&#x27;t rename this variable
+    ^********^
+
+could not compile `exercise_crate` due to previous error
+
+⚠️  Failed to run exercises&#x2F;variables&#x2F;variables5.cairo! Please try again.
+</code></pre>
+<p>This output looks familiar—it's the same as the previous exercise. Since we can't use <code>mut</code>, we need to find another solution. Experienced Rust programmers might already know what to do here: <strong>variable shadowing</strong>.</p>
+<h2 id="variables5-cairo-solution"><code>variables5.cairo</code> Solution</h2>
+<p>In Cairo (as in Rust), variables are immutable by default, but we can use a technique called <strong>shadowing</strong>. Shadowing allows us to declare a new variable with the same name as a previous variable, effectively creating a new variable that can hold a different value or type.</p>
+<p>Shadowing is done using the <code>let</code> keyword again with the same variable name. This might seem confusing at first, but it's quite powerful as it allows us to reuse variable names within different scopes or with different types.</p>
+<p>Here's the updated code:</p>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">fn main() {
+    let number = 1_u8; &#x2F;&#x2F; don&#x27;t change this line
+    println!(&quot;number is {}&quot;, number);
+    let number = 3; &#x2F;&#x2F; don&#x27;t rename this variable
+    println!(&quot;number is {}&quot;, number);
+}
+</code></pre>
+<h3 id="explanation-4">Explanation</h3>
+<ol>
+<li><strong>Shadowing</strong>:
+<ul>
+<li>Shadowing allows you to declare a new variable with the same name as a previous variable. This new variable can have a different value or type.</li>
+<li><code>let number = 1_u8;</code> declares the first <code>number</code> with a type of <code>u8</code> and value <code>1</code>.</li>
+<li><code>let number = 3;</code> declares a new <code>number</code> variable, shadowing the previous one. This new <code>number</code> can have a different type or value.</li>
+</ul>
+</li>
+<li><strong>Print Statements</strong>:
+<ul>
+<li>The first <code>println!(&quot;number is {}&quot;, number);</code> prints the value <code>1</code>.</li>
+<li>The second <code>println!(&quot;number is {}&quot;, number);</code> prints the value <code>3</code>.</li>
+</ul>
+</li>
+</ol>
+<h3 id="why-shadowing">Why Shadowing?</h3>
+<p>Shadowing is useful because:</p>
+<ul>
+<li>It allows reusing variable names without mutating the original variable.</li>
+<li>It helps in maintaining cleaner code by avoiding unnecessary variable names.</li>
+<li>It allows changing the type of a variable within a certain scope.</li>
+</ul>
+<p>For more information on shadowing, you can refer to the <a href="https://book.cairo-lang.org/ch02-01-variables-and-mutability.html?highlight=shadow#shadowing">Variables and Mutability</a> chapter in the Cairo book.</p>
+<p>Alright let's move on to our final <code>variables</code> exercise!</p>
+<h2 id="variables6-cairo"><code>variables6.cairo</code></h2>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">&#x2F;&#x2F; variables6.cairo
+&#x2F;&#x2F; Execute `starklings hint variables6` or use the `hint` watch subcommand for a hint.
+
+&#x2F;&#x2F; I AM NOT DONE
+use debug::PrintTrait;
+
+const NUMBER = 3;
+const SMALL_NUMBER = 3_u8;
+fn main() {
+    println!(&quot;NUMBER is {}&quot;, NUMBER);
+    println!(&quot;SMALL_NUMBER is {}&quot;, SMALL_NUMBER);
+}
+</code></pre>
+<p>We have the introduction of the keyword <code>const</code> in <code>varaibles5.cairo</code> other than this, we don't have too much else going on but obviously the code is not compiling. Let's take a look at our errors.</p>
+<h2 id="variables6-cairo-errors"><code>variables6.cairo</code> Errors</h2>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">🟡 Running exercises&#x2F;variables&#x2F;variables6.cairo exercise...
+
+   Compiling exercise_crate v0.1.0 (&#x2F;Users&#x2F;desmo&#x2F;repos&#x2F;starklings-cairo1&#x2F;runner-crate&#x2F;Scarb.toml)
+error: Unexpected token, `expected &#x27;:&#x27; followed by a type.`
+ --&gt; &#x2F;Users&#x2F;desmo&#x2F;repos&#x2F;starklings-cairo1&#x2F;runner-crate&#x2F;src&#x2F;lib.cairo:7:13
+const NUMBER = 3;
+            ^
+
+error: Unexpected token, expected &#x27;:&#x27; followed by a type.
+ --&gt; &#x2F;Users&#x2F;desmo&#x2F;repos&#x2F;starklings-cairo1&#x2F;runner-crate&#x2F;src&#x2F;lib.cairo:8:19
+const SMALL_NUMBER = 3_u8;
+                  ^
+
+error: Unknown type.
+ --&gt; &#x2F;Users&#x2F;desmo&#x2F;repos&#x2F;starklings-cairo1&#x2F;runner-crate&#x2F;src&#x2F;lib.cairo:7:14
+const NUMBER = 3;
+             ^
+
+error: Unknown type.
+ --&gt; &#x2F;Users&#x2F;desmo&#x2F;repos&#x2F;starklings-cairo1&#x2F;runner-crate&#x2F;src&#x2F;lib.cairo:8:20
+const SMALL_NUMBER = 3_u8;
+                   ^
+
+could not compile `exercise_crate` due to previous error
+
+⚠️  Failed to run exercises&#x2F;variables&#x2F;variables6.cairo! Please try again.
+</code></pre>
+<p>It seems that the compiler is not happy with how we are declaring our constants and it actually tells us what it is expecting: <code>expected ':' followed by a type.</code> That's handy. Constants behave a little differently than variables, so let's explore how in our solution below.</p>
+<h2 id="variables6-cairo-solution"><code>variables6.cairo</code> Solution</h2>
+<p><em>Constants</em> are similar to variables in that they are immutable, but they are <em>always</em> immutable. You are not allowed to use the <code>mut</code> keyword with them. Instead of using <code>let</code>, you use <code>const</code> and you <em>must</em> annotate the type of the value.
+Knowing this information, let's fix our code. You can read more about this in the Cairo Book here: <a href="https://book.cairo-lang.org/ch02-01-variables-and-mutability.html?highlight=const#constants">Constants</a>.</p>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">const NUMBER:u8 = 3_u8;
+const SMALL_NUMBER:u8 = 3_u8;
+fn main() {
+    println!(&quot;NUMBER is {}&quot;, NUMBER);
+    println!(&quot;SMALL_NUMBER is {}&quot;, SMALL_NUMBER);
+}
+</code></pre>
+<p>With these changes, our code compiles successfully and outputs the values of <code>NUMBER</code> and <code>SMALL_NUMBER</code>.</p>
+<h3 id="explanation-5">Explanation</h3>
+<ol>
+<li><strong>Constants Declaration</strong>:
+<ul>
+<li>Unlike variables, constants must have their types explicitly annotated.</li>
+<li>The type annotation ensures clarity and helps the compiler enforce strong typing principles.</li>
+</ul>
+</li>
+<li><strong>Correcting the Code</strong>:
+<ul>
+<li><code>const NUMBER: u8 = 3_u8;</code> declares a constant <code>NUMBER</code> with type <code>u8</code> and value <code>3</code>.</li>
+<li><code>const SMALL_NUMBER: u8 = 3_u8;</code> declares a constant <code>SMALL_NUMBER</code> with type <code>u8</code> and value <code>3</code>.</li>
+</ul>
+</li>
+<li><strong>Print Statements</strong>:
+<ul>
+<li>The <code>println!</code> macros print the values of the constants.</li>
+</ul>
+</li>
+</ol>
+<blockquote>
+<p>[!Note]
+While the type suffix (<code>3_u8</code>) provides a hint to the compiler about the type of the literal, Cairo still requires an explicit type annotation for constants to ensure clarity and to uphold the language's strong typing principles.</p>
+</blockquote>
+<h2 id="conclusion">Conclusion</h2>
+<p>Congratulations on completing the <code>variables</code> exercises! By now, you should have a solid understanding of variable declaration, mutability, and constants in Cairo. Here's a quick recap of what we've covered:</p>
+<ol>
+<li>
+<p><strong>Variable Declaration and Initialization</strong>:</p>
+<ul>
+<li>Learned how to declare and initialize variables.</li>
+<li>Understood the importance of initializing variables to avoid compilation errors.</li>
+</ul>
+</li>
+<li>
+<p><strong>Mutability</strong>:</p>
+<ul>
+<li>Explored the concept of immutability by default and how to declare mutable variables using the <code>mut</code> keyword.</li>
+</ul>
+</li>
+<li>
+<p><strong>Shadowing</strong>:</p>
+<ul>
+<li>Discovered how to use variable shadowing to redeclare variables with the same name within different scopes or with different types.</li>
+</ul>
+</li>
+<li>
+<p><strong>Constants</strong>:</p>
+<ul>
+<li>Understood the distinction between variables and constants.</li>
+<li>Learned how to declare constants with explicit type annotations and the importance of their immutability.</li>
+</ul>
+</li>
+</ol>
+<p>These exercises have provided a foundational understanding of how Cairo handles variables and constants, which is crucial for more advanced topics and projects. We'll see you in the next set of exercises where we will cover <a href="https://book.cairo-lang.org/ch02-02-data-types.html">Primitive Types</a>, until then, happy coding!</p>
+
+	</div>
+	<hr class="post-end">
+	<footer class="post-info">
+    
+	  <p>
+		<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg>
+		
+		
+		<span class="tag"><a href="https://desmodrone.github.io/tags/zero-knowledge-proofs/">zero knowledge proofs</a></span>
+		
+		<span class="tag"><a href="https://desmodrone.github.io/tags/rust/">rust</a></span>
+		
+		<span class="tag"><a href="https://desmodrone.github.io/tags/starks/">STARKs</a></span>
+		
+		<span class="tag"><a href="https://desmodrone.github.io/tags/variables/">variables</a></span>
+		
+		<span class="tag"><a href="https://desmodrone.github.io/tags/cairo/">cairo</a></span>
+		
+		
+    </p>
+    
+    <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>2925 Words</p>
+    
+    <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2024-05-20</p>
+    
+	</footer>
+  </article>
+    
+  
+  <div class="post-nav thin">
+	
+	
+  </div>
+
+  
+</main>
+
+	  </div>
+	  
+	  
+
+
+
+<footer id="site-footer" class="section-inner thin animated fadeIn faster">
+  <p>&copy; 2024 <a href="https:&#x2F;&#x2F;desmodrone.github.io">erick</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
+  <p>Made with <a href="https://www.getzola.org" target="_blank" rel="noopener">Zola</a> &#183; Theme <a href="https://github.com/VersBinarii/hermit_zola" target="_blank" rel="noopener">Hermit_Zola</a>
+	
+	&#183; <a href="https://desmodrone.github.io/rss.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
+	
+  </p>
+</footer>
+
+
+
+
+	</div>
+	
+	<script src="https://desmodrone.github.io/js/main.js"></script>
+
+	<!-- Math rendering -->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css" integrity="sha384-zB1R0rpPzHqg7Kpt0Aljp8JPLqbXI3bhnPWROx27a9N0Ll6ZP/+DiW/UqRcLbRjq" crossorigin="anonymous">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js" integrity="sha384-y23I5Q6l+B6vatafAwxRu/0oK/79VlbSz7Q9aiSZUvyWYIYsd+qj+o24G5ZU2zJz" crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous"
+        onload="renderMathInElement(document.body, { delimiters: [ {left: '$$', right: '$$', display: true}, {left: '$', right: '$', display: false}, {left: '\\[', right: '\\]', display: true}, {left: '\\(', right: '\\)', display: false}]});"></script>
+
+    
+		<link href="https://unpkg.com/highlightjs-badge/highlightjs/styles/monokai.css" rel="stylesheet">
+		<!-- https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.1/build/styles/  for min version -->
+		<script src="https://unpkg.com/highlightjs-badge/highlightjs/highlight.pack.js"></script>
+		<script src="https://unpkg.com/highlightjs-badge/highlightjs-badge.min.js"></script>
+		<script>
+			var pres = document.querySelectorAll("pre>code");
+			for (var i = 0; i < pres.length; i++) {
+				hljs.highlightBlock(pres[i]);
+			}
+		</script>
+		
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js"></script>
+			<script>
+				var options = {
+					copyIconClass: "gg-clipboard",
+					checkIconClass: "gg-check"
+				};
+				window.highlightJsBadge(options);
+			</script>
+		
+
+	
+
+	
+	<script src="https://desmodrone.github.io/js/main.js"></script>
+
+    
+    
+
+	
+    <!-- Global Site Tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-9MNTYXYNHK"></script>
+    <script>
+     window.dataLayer = window.dataLayer || [];
+     function gtag(){dataLayer.push(arguments);}
+     gtag('js', new Date());
+     gtag('config', 'G-9MNTYXYNHK');
+    </script>
+    
+  </body>
+</html>
