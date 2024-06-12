@@ -30,6 +30,10 @@
         <lastmod>2023-04-19</lastmod>
     </url>
     <url>
+        <loc>https://desmodrone.github.io/posts/02-starklings-cairo-primitive-types/</loc>
+        <lastmod>2024-06-12</lastmod>
+    </url>
+    <url>
         <loc>https://desmodrone.github.io/posts/03-rustlings-if/</loc>
         <lastmod>2023-04-21</lastmod>
     </url>
@@ -361,6 +365,9 @@
     </url>
     <url>
         <loc>https://desmodrone.github.io/tags/ownership/</loc>
+    </url>
+    <url>
+        <loc>https://desmodrone.github.io/tags/primitive-types/</loc>
     </url>
     <url>
         <loc>https://desmodrone.github.io/tags/primitive/</loc>

@@ -1,0 +1,869 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <meta itemprop="name" content="desmo" />
+  <meta itemprop="description" content="Random Ideas" />
+
+  <link rel="apple-touch-icon" sizes="180x180" href="https://desmodrone.github.io/apple-touch-icon.png"/>
+  <link rel="icon" type="image/png" sizes="32x32" href="https://desmodrone.github.io/favicon-32x32.png" />
+  <link
+    rel="icon"
+    type="image/png"
+    sizes="16x16"
+    href="https://desmodrone.github.io/favicon-16x16.png"
+  />
+  <link
+    rel="shortcut icon"
+    href="https://desmodrone.github.io/favicon.ico"
+  />
+  <link rel="stylesheet" href="https://desmodrone.github.io/style.css"/>
+  
+  <title>Starklings-Cairo1: Primitive Types</title>
+  
+
+  
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="https://desmodrone.github.io/rss.xml">
+  
+
+  <body id="page">
+
+	
+<header id="site-header" class="animated slideInUp faster">
+  <div class="hdr-wrapper section-inner">
+    <div class="hdr-left">
+      <div class="site-branding">
+        <a href="https:&#x2F;&#x2F;desmodrone.github.io">desmo</a>
+      </div>
+      <nav class="site-nav hide-in-mobile">
+            
+        
+        <a href="https://desmodrone.github.io/posts">posts</a>
+        
+        <a href="https://desmodrone.github.io/about">about</a>
+        
+        <a href="https://desmodrone.github.io/work">work</a>
+        
+      </nav>
+    </div>
+    <div class="hdr-right hdr-icons">
+      <span class="hdr-social hide-in-mobile">
+        
+
+<a href="https:&#x2F;&#x2F;twitter.com&#x2F;desmo_io" target="_blank" rel="noopener me"
+   title="twitter">
+  
+  <svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg>
+  
+</a>
+
+<a href="https:&#x2F;&#x2F;github.com&#x2F;desmodrone" target="_blank" rel="noopener me"
+   title="github">
+  
+  <svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+  
+</a>
+
+<a href="mailto:erick@apexwins.com" target="_blank" rel="noopener me"
+   title="email">
+  
+  <svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+  
+</a>
+
+
+      </span>
+      <button id="menu-btn" class="hdr-btn" title="Menu">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="feather feather-menu"
+        >
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+  </div>
+</header>
+<div id="mobile-menu" class="animated fast">
+  <ul>
+    
+    <li><a href="https://desmodrone.github.io/posts">posts</a></li>
+    
+    <li><a href="https://desmodrone.github.io/about">about</a></li>
+    
+    <li><a href="https://desmodrone.github.io/work">work</a></li>
+    
+  </ul>
+</div>
+
+	
+	
+
+		
+<main class="site-main section-inner animated fadeIn faster">
+  <article class="thin">
+	<header class="post-header">
+	  <div class="post-meta">
+		
+		<span>Jun 12, 2024</span>
+		<small> - 
+<span class="reading-time" title="Estimated read time">
+  
+  14 min read
+  
+</span>
+</small>
+		
+            
+	  </div>
+	  <h1>Starklings-Cairo1: Primitive Types</h1>
+	</header>
+
+	<div class="content">
+        
+	  <h2 id="overview">Overview</h2>
+<p>Cairo has several basic types that are directly implemented into the compiler, which are essential for building more complex data structures and functions. Understanding these primitive types is crucial as they form the foundation of Cairo programming. In this section, we’ll explore:</p>
+<ol>
+<li>
+<p><strong>Boolean Types</strong>:
+• Booleans (<code>bool</code>) represent true or false values and are fundamental for control flow in programming. We will see how to define and use booleans in conditional statements.</p>
+</li>
+<li>
+<p><strong>Integer Types</strong>:
+• Cairo supports various integer types, such as <code>u8</code> and <code>u16</code>, which represent unsigned integers of different sizes. We will learn how to use these types, perform arithmetic operations, and prevent common issues like overflow.</p>
+</li>
+<li>
+<p><strong>Tuples</strong>:
+• Tuples allow us to group multiple values into a single compound value. We will practice destructuring tuples to access and manipulate individual elements effectively.</p>
+</li>
+<li>
+<p><strong>Strings and felt252</strong>:
+• Cairo represents short strings as <code>felt252</code> (field elements). We’ll explore how these representations work, how to convert between strings and numerical values, and the implications for printing and data handling.</p>
+</li>
+</ol>
+<p>By the end of this post, you’ll have a solid understanding of these basic types and how to use them in Cairo, setting a strong foundation for more advanced topics.</p>
+<h3 id="further-information">Further Information</h3>
+<p>For more detailed information on data types in Cairo, you can refer to the official documentation: <a href="https://book.cairo-lang.org/ch02-02-data-types.html">Cairo Data Types</a></p>
+<h2 id="intro">Intro</h2>
+<p>So let’s dive into the first exercise: <code>primitive_types1.cairo</code>. Let's walk through these exercises so you get a better understanding of how Cairo works.</p>
+<h2 id="primitive-types1-cairo"><code>primitive_types1.cairo</code></h2>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">&#x2F;&#x2F; primitive_types1.cairo
+&#x2F;&#x2F; Fill in the rest of the line that has code missing!
+&#x2F;&#x2F; No hints, there&#x27;s no tricks, just get used to typing these :)
+
+&#x2F;&#x2F; I AM NOT DONE
+
+fn main() {
+    &#x2F;&#x2F; Booleans (`bool`)
+
+    let is_morning = true;
+    if is_morning {
+        println!(&quot;Good morning!&quot;);
+    }
+
+    let &#x2F;&#x2F; Finish the rest of this line like the example! Or make it be false!
+    if is_evening {
+        println!(&quot;Good evening!&quot;);
+    }
+}
+</code></pre>
+<p>Our instructions tell us to complete the bit of code above. Let's take a look at the error output for more context.</p>
+<h2 id="primitive-types1-cairo-errors"><code>primitive_types1.cairo</code> Errors</h2>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">🟡 Running exercises&#x2F;primitive_types&#x2F;primitive_types1.cairo exercise...
+
+   Compiling exercise_crate v0.1.0 (&#x2F;Users&#x2F;desmo&#x2F;repos&#x2F;starklings-cairo1&#x2F;runner-crate&#x2F;Scarb.toml)
+error: Missing token TerminalUnderscore.
+ --&gt; &#x2F;Users&#x2F;desmo&#x2F;repos&#x2F;starklings-cairo1&#x2F;runner-crate&#x2F;src&#x2F;lib.cairo:15:8
+    let &#x2F;&#x2F; Finish the rest of this line like the example! Or make it be false!
+       ^
+
+error: Missing token TerminalEq.
+ --&gt; &#x2F;Users&#x2F;desmo&#x2F;repos&#x2F;starklings-cairo1&#x2F;runner-crate&#x2F;src&#x2F;lib.cairo:15:8
+    let &#x2F;&#x2F; Finish the rest of this line like the example! Or make it be false!
+       ^
+
+error: Missing token TerminalSemicolon.
+ --&gt; &#x2F;Users&#x2F;desmo&#x2F;repos&#x2F;starklings-cairo1&#x2F;runner-crate&#x2F;src&#x2F;lib.cairo:18:6
+    }
+     ^
+
+error: Identifier not found.
+ --&gt; &#x2F;Users&#x2F;desmo&#x2F;repos&#x2F;starklings-cairo1&#x2F;runner-crate&#x2F;src&#x2F;lib.cairo:16:8
+    if is_evening {
+       ^********^
+
+could not compile `exercise_crate` due to previous error
+
+⚠️  Failed to run exercises&#x2F;primitive_types&#x2F;primitive_types1.cairo! Please try again.
+</code></pre>
+<p>The compiler provides useful hints such as <code>error: Missing token TerminalSemicolon.</code> and <code>error: Identifier not found.</code>. These indicate that we haven't completed the line of code, making it an incomplete statement. Let's fix this.</p>
+<h2 id="primitive-types1-cairo-solution"><code>primitive_types1.cairo</code> Solution</h2>
+<p>As mentioned, we're not done with the line of code on line 15. Observing the code above, we see that <code>is_morning</code> is assigned a <code>bool</code> value of <code>true</code>:</p>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">    let is_morning = true;
+</code></pre>
+<p>Let's do the same for <code>is_evening</code>. We can assign a <code>bool</code> value to it, either <code>true</code> or <code>false</code>. We'll start with <code>true</code>.</p>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">let is_evening = true;
+</code></pre>
+<p>With this change, the code compiles successfully! The output is:</p>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">Good morning!
+Good evening!
+
+✅ Successfully ran exercises&#x2F;primitive_types&#x2F;primitive_types1.cairo!
+</code></pre>
+<p>If we change the <code>bool</code> value to <code>false</code>, the output changes accordingly:</p>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">Good morning!
+
+✅ Successfully ran exercises&#x2F;primitive_types&#x2F;primitive_types1.cairo!
+</code></pre>
+<p>Here's the full corrected code:</p>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">fn main() {
+    &#x2F;&#x2F; Booleans (`bool`)
+
+    let is_morning = true;
+    if is_morning {
+        println!(&quot;Good morning!&quot;);
+    }
+
+    let is_evening = true;
+    if is_evening {
+        println!(&quot;Good evening!&quot;);
+    }
+}
+</code></pre>
+<h3 id="explanation">Explanation</h3>
+<ol>
+<li>
+<p><strong>Variable Declaration and Initialization</strong>:</p>
+<ul>
+<li>Initially, the code uses <code>let</code> but doesn't assign any value to a variable.</li>
+<li>Correcting it to <code>let is_evening = true;</code> initializes <code>is_evening</code> with the value <code>true</code> (or <code>false</code> if you prefer).</li>
+</ul>
+</li>
+<li>
+<p><strong>Conditional Statement</strong>:</p>
+<ul>
+<li>The <code>if</code> statement checks whether <code>is_morning</code> and <code>is_evening</code> are <code>true</code> or <code>false</code>.</li>
+<li>If either is <code>true</code>, it prints the appropriate message: <code>&quot;Good morning!&quot;</code> or <code>&quot;Good evening!&quot;</code> or even both.</li>
+<li>If both are <code>false</code>, it prints nothing but still compiles correctly.</li>
+</ul>
+</li>
+<li>
+<p><strong>Experimentation</strong>:</p>
+<ul>
+<li>Changing the values of <code>is_morning</code> and <code>is_evening</code> to different <code>bool</code> values and recompiling will result in different outputs based on the <code>if</code> condition.</li>
+</ul>
+</li>
+</ol>
+<p>Great let's move on to the next exercise!</p>
+<h2 id="primitive-types2-cairo"><code>primitive_types2.cairo</code></h2>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">&#x2F;&#x2F; primitive_types2.cairo
+&#x2F;&#x2F; Fill in the rest of the line that has code missing!
+&#x2F;&#x2F; No hints, there&#x27;s no tricks, just get used to typing these :)
+
+&#x2F;&#x2F; I AM NOT DONE
+
+fn main() {
+    &#x2F;&#x2F; A short string is a string whose length is at most 31 characters, and therefore can fit into a single field element.
+    &#x2F;&#x2F; Short strings are actually felts, they are not a real string.
+    &#x2F;&#x2F; Note the _single_ quotes that are used with short strings.
+
+    let mut my_first_initial = &#x27;C&#x27;;
+    if is_alphabetic(
+        ref my_first_initial
+    ) {
+        println!(&quot; Alphabetical !&quot;);
+    } else if is_numeric(
+        ref my_first_initial
+    ) {
+        println!(&quot; Numerical !&quot;);
+    } else {
+        println!(&quot; Neither alphabetic nor numeric!&quot;);
+    }
+
+    let  &#x2F;&#x2F; Finish this line like the example! What&#x27;s your favorite short string?
+    &#x2F;&#x2F; Try a letter, try a number, try a special character, try a short string!
+    if is_alphabetic(
+        ref your_character
+    ) {
+        println!(&quot; Alphabetical !&quot;);
+    } else if is_numeric(
+        ref your_character
+    ) {
+        println!(&quot; Numerical!&quot;);
+    } else {
+        println!(&quot; Neither alphabetic nor numeric!&quot;);
+    }
+}
+
+fn is_alphabetic(ref char: felt252) -&gt; bool {
+    if char &gt;= &#x27;a&#x27; {
+        if char &lt;= &#x27;z&#x27; {
+            return true;
+        }
+    }
+    if char &gt;= &#x27;A&#x27; {
+        if char &lt;= &#x27;Z&#x27; {
+            return true;
+        }
+    }
+    false
+}
+
+fn is_numeric(ref char: felt252) -&gt; bool {
+    if char &gt;= &#x27;0&#x27; {
+        if char &lt;= &#x27;9&#x27; {
+            return true;
+        }
+    }
+    false
+}
+</code></pre>
+<p>In this exercise, we are dealing with short strings in Cairo. A short string is a string whose length is at most 31 characters, and it can fit into a single field element (felt). Short strings are actually felts and not real strings. We need to use use single quotes for short strings.</p>
+<h2 id="primitive-types2-cairo-errors"><code>primitive_types2.cairo</code> Errors</h2>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">🟡 Running exercises&#x2F;primitive_types&#x2F;primitive_types2.cairo exercise...
+
+   Compiling exercise_crate v0.1.0 (&#x2F;Users&#x2F;desmo&#x2F;repos&#x2F;starklings-cairo1&#x2F;runner-crate&#x2F;Scarb.toml)
+error: Missing token TerminalUnderscore.
+ --&gt; &#x2F;Users&#x2F;desmo&#x2F;repos&#x2F;starklings-cairo1&#x2F;runner-crate&#x2F;src&#x2F;lib.cairo:25:8
+    let  &#x2F;&#x2F; Finish this line like the example! What&#x27;s your favorite short string?
+       ^
+
+error: Missing token TerminalEq.
+ --&gt; &#x2F;Users&#x2F;desmo&#x2F;repos&#x2F;starklings-cairo1&#x2F;runner-crate&#x2F;src&#x2F;lib.cairo:25:8
+    let  &#x2F;&#x2F; Finish this line like the example! What&#x27;s your favorite short string?
+       ^
+
+error: Missing token TerminalSemicolon.
+ --&gt; &#x2F;Users&#x2F;desmo&#x2F;repos&#x2F;starklings-cairo1&#x2F;runner-crate&#x2F;src&#x2F;lib.cairo:37:6
+    }
+     ^
+
+error: Identifier not found.
+ --&gt; &#x2F;Users&#x2F;desmo&#x2F;repos&#x2F;starklings-cairo1&#x2F;runner-crate&#x2F;src&#x2F;lib.cairo:28:13
+        ref your_character
+            ^************^
+
+error: ref argument must be a variable.
+ --&gt; &#x2F;Users&#x2F;desmo&#x2F;repos&#x2F;starklings-cairo1&#x2F;runner-crate&#x2F;src&#x2F;lib.cairo:28:13
+        ref your_character
+            ^************^
+
+error: Identifier not found.
+ --&gt; &#x2F;Users&#x2F;desmo&#x2F;repos&#x2F;starklings-cairo1&#x2F;runner-crate&#x2F;src&#x2F;lib.cairo:32:13
+        ref your_character
+            ^************^
+
+error: ref argument must be a variable.
+ --&gt; &#x2F;Users&#x2F;desmo&#x2F;repos&#x2F;starklings-cairo1&#x2F;runner-crate&#x2F;src&#x2F;lib.cairo:32:13
+        ref your_character
+            ^************^
+
+could not compile `exercise_crate` due to previous error
+</code></pre>
+<p>The compiler errors indicate missing tokens such as <code>TerminalUnderscore</code> and <code>TerminalEq</code> and <code>TerminalSemicolon</code>. Additionally, a the key errors of<code>Identifier not found</code> and <code>ref arguement must be a variable </code> suggest that <code>your_character</code> is not correctly defined and referenced.</p>
+<h2 id="primitive-types2-cairo-solution"><code>primitive_types2.cairo</code> Solution</h2>
+<p>To solve this, let's complete the line that define's <code>your_character</code>. Here's the solution:</p>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">fn main() {
+
+    let mut my_first_initial = &#x27;C&#x27;;
+    if is_alphabetic(
+        ref my_first_initial
+    ) {
+        println!(&quot; Alphabetical !&quot;);
+    } else if is_numeric(
+        ref my_first_initial
+    ) {
+        println!(&quot; Numerical !&quot;);
+    } else {
+        println!(&quot; Neither alphabetic nor numeric!&quot;);
+    }
+
+    let mut your_character = &#x27;E&#x27;; &#x2F;&#x2F; Finishing the line here
+    if is_alphabetic(
+        ref your_character
+    ) {
+        println!(&quot; Alphabetical !&quot;);
+    } else if is_numeric(
+        ref your_character
+    ) {
+        println!(&quot; Numerical!&quot;);
+    } else {
+        println!(&quot; Neither alphabetic nor numeric!&quot;);
+    }
+}
+
+fn is_alphabetic(ref char: felt252) -&gt; bool {
+    if char &gt;= &#x27;a&#x27; {
+        if char &lt;= &#x27;z&#x27; {
+            return true;
+        }
+    }
+    if char &gt;= &#x27;A&#x27; {
+        if char &lt;= &#x27;Z&#x27; {
+            return true;
+        }
+    }
+    false
+}
+
+fn is_numeric(ref char: felt252) -&gt; bool {
+    if char &gt;= &#x27;0&#x27; {
+        if char &lt;= &#x27;9&#x27; {
+            return true;
+        }
+    }
+    false
+}
+</code></pre>
+<h3 id="explanation-1">Explanation</h3>
+<ol>
+<li>
+<p><strong>Variable Declaration and Initialization</strong>:
+• Initially, the code uses <code>let</code> without assigning any value to <code>your_character</code>.
+• Correcting it to <code>let mut your_character = 'A';</code> initializes <code>your_character</code> with a short string value, which can be a letter, number, or special character.</p>
+</li>
+<li>
+<p><strong>Conditional Statement</strong>:
+• The <code>if</code> statement checks whether <code>my_first_initial</code> and <code>your_character</code> are alphabetic or numeric.
+• If either is alphabetic, it prints <code>&quot;Alphabetical!&quot;</code>.
+• If either is numeric, it prints <code>&quot;Numerical!&quot;</code>.
+• Otherwise, it prints<code> &quot;Neither alphabetic nor numeric!&quot;</code>.</p>
+</li>
+<li>
+<p><strong>Ref Keyword</strong>:
+• The <code>ref</code> keyword is used to pass the variable by reference to the <code>is_alphabetic</code> and <code>is_numeric</code> functions.</p>
+</li>
+<li>
+<p><strong>Experimentation</strong>:
+• Changing the values of <code>my_first_initial</code> and <code>your_character</code> to different short string values and recompiling will result in different outputs based on the if condition.</p>
+</li>
+</ol>
+<p>You might have noticed that we used the <code>mut</code> keyword in the line <code>let mut your_character = 'E';</code> and if you tried to experiment with removing it, you'd notice that the code doesn't compile anymore so, let's make sure we understand why that is happening.</p>
+<h3 id="why-mutability-is-necessary">Why Mutability is Necessary</h3>
+<ol>
+<li>
+<p><strong>Exclusive Access</strong>: The <code>ref</code> keyword indicates that the function requires an exclusive reference to the variable. This exclusive access might involve potential changes or ensuring that no other references exist to maintain data integrity during the function’s execution.</p>
+</li>
+<li>
+<p><strong>Compiler Enforcement</strong>: Rust and Cairo enforce immutability by default to ensure safety and prevent unintended side-effects. By requiring variables to be explicitly marked as mutable, the language ensures that developers are aware of where changes can occur, thus making the code more predictable and safer.</p>
+</li>
+<li>
+<p><strong>Function Semantics</strong>: The functions <code>is_alphabetic</code> and <code>is_numeric</code> in this context do not modify the variable, but the use of ref suggests a potential for future modifications or an exclusive read, necessitating the variable to be mutable.</p>
+</li>
+</ol>
+<p>By marking <code>your_character</code> as <code>mut</code>, you signal to the compiler and future readers of the code that <code>your_character</code> may be modified or requires exclusive access, aligning with the expected semantics of using<code> ref</code>.</p>
+<h2 id="primitive-types3-cairo"><code>primitive_types3.cairo</code></h2>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">&#x2F;&#x2F; primitive_types3.cairo
+&#x2F;&#x2F; Destructure the `cat` tuple to call print on each member.
+&#x2F;&#x2F; Execute `starklings hint primitive_types3` or use the `hint` watch subcommand for a hint.
+
+&#x2F;&#x2F; I AM NOT DONE
+
+fn main() {
+    let cat = (&#x27;Furry McFurson&#x27;, 3);
+    let &#x2F;&#x2F; your pattern here = cat;
+    println!(&quot;name is {}&quot;, name);
+    println!(&quot;age is {}&quot;, age);
+}
+</code></pre>
+<p>here we have a very simple piece of code and our instructions are to destructure the <code>cat</code> tuple to allow us to call print on each of the members of the tuple. We already know the problem, but just so we are consistent, let's look at the errors.</p>
+<h2 id="primitive-types3-cairo-errors"><code>primitive_types3.cairo</code> Errors</h2>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">🟡 Running exercises&#x2F;primitive_types&#x2F;primitive_types3.cairo exercise...
+
+   Compiling exercise_crate v0.1.0 (&#x2F;Users&#x2F;desmo&#x2F;repos&#x2F;starklings-cairo1&#x2F;runner-crate&#x2F;Scarb.toml)
+error: Missing token TerminalEq.
+ --&gt; &#x2F;Users&#x2F;desmo&#x2F;repos&#x2F;starklings-cairo1&#x2F;runner-crate&#x2F;src&#x2F;lib.cairo:10:12
+    println!(&quot;name is {}&quot;, name);
+           ^
+
+error: Identifier not found.
+ --&gt; &#x2F;Users&#x2F;desmo&#x2F;repos&#x2F;starklings-cairo1&#x2F;runner-crate&#x2F;src&#x2F;lib.cairo:10:28
+    println!(&quot;name is {}&quot;, name);
+                           ^**^
+
+error: Identifier not found.
+ --&gt; &#x2F;Users&#x2F;desmo&#x2F;repos&#x2F;starklings-cairo1&#x2F;runner-crate&#x2F;src&#x2F;lib.cairo:11:27
+    println!(&quot;age is {}&quot;, age);
+                          ^*^
+
+warn: Unused variable. Consider ignoring by prefixing with `_`.
+ --&gt; &#x2F;Users&#x2F;desmo&#x2F;repos&#x2F;starklings-cairo1&#x2F;runner-crate&#x2F;src&#x2F;lib.cairo:8:9
+    let cat = (&#x27;Furry McFurson&#x27;, 3);
+        ^*^
+
+warn: Unused variable. Consider ignoring by prefixing with `_`.
+ --&gt; &#x2F;Users&#x2F;desmo&#x2F;repos&#x2F;starklings-cairo1&#x2F;runner-crate&#x2F;src&#x2F;lib.cairo:10:5
+    println!(&quot;name is {}&quot;, name);
+    ^*****^
+
+error: Type annotations needed. Failed to infer ?2
+ --&gt; &#x2F;Users&#x2F;desmo&#x2F;repos&#x2F;starklings-cairo1&#x2F;runner-crate&#x2F;src&#x2F;lib.cairo:10:14
+    println!(&quot;name is {}&quot;, name);
+             ^**********^
+
+could not compile `exercise_crate` due to previous error
+</code></pre>
+<p>We get a bunch of errors, but we know the cause we don't have our tuple destructured to allow us to print <code>name</code> and <code>age</code>. So let's fix it!</p>
+<h2 id="primitive-types3-cairo-solution"><code>primitive_types3.cairo</code> Solution</h2>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">fn main() {
+    let cat = (&#x27;Furry McFurson&#x27;, 3);
+    let (name, age) = cat;
+    println!(&quot;name is {}&quot;, name);
+    println!(&quot;age is {}&quot;, age);
+}
+</code></pre>
+<p>Using the <code>(name, age)</code> syntax we can destructure the <code>('Furry McFurson', 3)</code> tuple into something that we can use later on in our print statements. This seems simple enough and our code compiles with these changes, so let's move on -- but wait, what do we see on the print out!?</p>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">Running exercises&#x2F;primitive_types&#x2F;primitive_types3.cairo
+
+name is 1429073786950451143196132410355566
+age is 3
+
+✅ Successfully ran exercises&#x2F;primitive_types&#x2F;primitive_types3.cairo!
+
+🎉 🎉  The code is compiling! 🎉 🎉
+</code></pre>
+<p>The name we have in our program is <code>'Furry McFurson'</code> but we get a print out that says: <code>1429073786950451143196132410355566</code>, so what's going on here?</p>
+<h3 id="why-does-the-output-show-numbers-instead-of-strings">Why Does the Output Show Numbers Instead of Strings?</h3>
+<p>In Cairo, short strings are represented as <code>felt252</code> (field elements), which are large numerical values. This is why printing a short string directly might show a long number instead of the expected text.</p>
+<p>The value <code>1429073786950451143196132410355566</code> is the result of encoding the entire string <code>“Furry McFurson”</code> into a single large integer. This encoding typically involves treating the string as a sequence of characters and converting each character into its corresponding ASCII (or Unicode) value, then packing these values into a large integer.</p>
+<p>For simplicity, let’s break down a smaller example manually to understand how it works. I’ll also show you how to do it with “F”.</p>
+<p><strong>Example with a Single Character</strong>
+Let’s take ‘F’. The ASCII value of ‘F’ is 70. In decimal, it is 70, which is straightforward. You can try this in the exercise and you will see <code>70</code></p>
+<p><strong>Example with a String</strong>
+For a string like “Furry”, we need to consider how each character is converted and packed together. Here’s a basic explanation:</p>
+<ol>
+<li>Convert each character to its ASCII value:</li>
+</ol>
+<pre><code>• ‘F’ -&gt; 70
+• ‘u’ -&gt; 117
+• ‘r’ -&gt; 114
+• ‘r’ -&gt; 114
+• ‘y’ -&gt; 121
+</code></pre>
+<ol start="2">
+<li>Pack these ASCII values together into a single large integer. This packing depends on the specific encoding scheme used. A simple scheme would be to treat the ASCII values as bytes in a large number.</li>
+</ol>
+<p>Alright, let's not dive in too deep into the weeds here and stay focused and summarize what we did here.</p>
+<h3 id="explanation-2">Explanation</h3>
+<ol>
+<li>
+<p><strong>Tuple Destructuring</strong>:
+• The original problem requires us to destructure the tuple cat to access and print its individual elements. The solution correctly uses <code>(name, age)</code> to destructure the tuple.
+• By writing <code>let (name, age) = cat;</code>, the tuple <code>('Furry McFurson', 3) </code>is split into <code>name</code> and <code>age</code>.</p>
+</li>
+<li>
+<p><strong>String Representation in Cairo</strong>:
+• In Cairo, strings are represented as <code>felt252</code> (field elements), which are large numerical values.
+• When we print a string directly, it shows the numerical representation instead of the readable text. This is why <code>1429073786950451143196132410355566</code> appears instead of <code>“Furry McFurson”</code>.</p>
+</li>
+</ol>
+<p>Let's move on to our final exercise!</p>
+<h2 id="primitive-types4-cairo"><code>primitive_types4.cairo</code></h2>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">&#x2F;&#x2F; primitive_types4.cairo
+&#x2F;&#x2F; Modify the integer types to make the tests pass.
+&#x2F;&#x2F; Learn how to convert between integer types, and felts.
+&#x2F;&#x2F; Execute `starklings hint primitive_types4` or use the `hint` watch subcommand for a hint.
+
+&#x2F;&#x2F; I AM NOT DONE
+
+use traits::Into;
+use traits::TryInto;
+use option::OptionTrait;
+
+fn sum_u8s(x: u8, y: u8) -&gt; u8 {
+    x + y
+}
+
+&#x2F;&#x2F;TODO modify the types of this function to prevent an overflow when summing big values
+fn sum_big_numbers(x: u8, y: u8) -&gt; u8 {
+    x + y
+}
+
+fn convert_to_felt(x: u8) -&gt; felt252 { &#x2F;&#x2F;TODO return x as a felt252.
+}
+
+fn convert_felt_to_u8(x: felt252) -&gt; u8 { &#x2F;&#x2F;TODO return x as a u8.
+}
+
+#[test]
+fn test_sum_u8s() {
+    assert(sum_u8s(1, 2_u8) == 3_u8, &#x27;Something went wrong&#x27;);
+}
+
+#[test]
+fn test_sum_big_numbers() {
+    &#x2F;&#x2F;TODO modify this test to use the correct integer types.
+    &#x2F;&#x2F; Don&#x27;t modify the values, just the types.
+    &#x2F;&#x2F; See how using the _u8 suffix on the numbers lets us specify the type?
+    &#x2F;&#x2F; Try to do the same thing with other integer types.
+    assert(sum_big_numbers(255_u8, 255_u8) == 510_u8, &#x27;Something went wrong&#x27;);
+}
+
+#[test]
+fn test_convert_to_felt() {
+    assert(convert_to_felt(1_u8) == 1, &#x27;Type conversion went wrong&#x27;);
+}
+
+#[test]
+fn test_convert_to_u8() {
+    assert(convert_felt_to_u8(1) == 1_u8, &#x27;Type conversion went wrong&#x27;);
+}
+</code></pre>
+<p>In this exercise we are tasked with modifying the integer types  and felt252 to make the tests pass, seems simple enough let's take a look at the errors for any hints on how to fix this problem.</p>
+<h2 id="primitive-types4-cairo-errors"><code>primitive_types4.cairo</code> Errors</h2>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">🟡 Testing exercises&#x2F;primitive_types&#x2F;primitive_types4.cairo exercise...
+
+   Compiling test(exercise_crate_unittest) exercise_crate v0.1.0 (&#x2F;Users&#x2F;desmo&#x2F;repos&#x2F;starklings-cairo1&#x2F;runner-crate&#x2F;Scarb.toml)
+error: Unexpected return type. Expected: &quot;core::felt252&quot;, found: &quot;()&quot;.
+ --&gt; &#x2F;Users&#x2F;desmo&#x2F;repos&#x2F;starklings-cairo1&#x2F;runner-crate&#x2F;src&#x2F;lib.cairo:21:38
+fn convert_to_felt(x: u8) -&gt; felt252 { &#x2F;&#x2F;TODO return x as a felt252.
+                                     ^*****************************^
+
+error: Unexpected return type. Expected: &quot;core::integer::u8&quot;, found: &quot;()&quot;.
+ --&gt; &#x2F;Users&#x2F;desmo&#x2F;repos&#x2F;starklings-cairo1&#x2F;runner-crate&#x2F;src&#x2F;lib.cairo:24:41
+fn convert_felt_to_u8(x: felt252) -&gt; u8 { &#x2F;&#x2F;TODO return x as a u8.
+                                        ^************************^
+
+error: The value does not fit within the range of type core::integer::u8.
+ --&gt; &#x2F;Users&#x2F;desmo&#x2F;repos&#x2F;starklings-cairo1&#x2F;runner-crate&#x2F;src&#x2F;lib.cairo:38:47
+    assert(sum_big_numbers(255_u8, 255_u8) == 510_u8, &#x27;Something went wrong&#x27;);
+                                              ^****^
+</code></pre>
+<p>Here we see that we have 3 main errors <code>Unexpected return type</code> which is for our unfinished functions, and  <code>error: The value does not fit within the range of type core::integer::u8</code> which is telling us that the value doesn't fit in a <code>u8</code>. So let's fix this.</p>
+<h2 id="primitive-types4-cairo-solution"><code>primitive_types4.cairo</code> Solution</h2>
+<p>Since this one is a little more involved let’s work through the solution step-by-step. As we know the tasks involve modifying types to prevent overflow and converting between integer types and felt252.</p>
+<p><strong>Step 1: Prevent Overflow in sum_big_numbers</strong>
+The function <code>sum_big_numbers</code> currently takes <code>u8</code> types, which can hold values from <code>0</code> to <code>255</code>. Summing two <code>u8</code> values that are close to their maximum can cause an overflow. To prevent this, we’ll change the types to a larger integer type, such as <code>u16</code>, which can hold values from <code>0</code> to <code>65535</code>.</p>
+<p><strong>Step 2: Implement convert_to_felt and convert_felt_to_u8</strong>
+For converting between <code>u8</code> and <code>felt252</code>, we’ll use the .into() and .try_into() traits.</p>
+<p><strong>Step 3: Modify Tests</strong>
+Update the types in the test <code>test_sum_big_numbers</code> to reflect the changes made in the <code>sum_big_numbers</code> function.</p>
+<p>Here’s the modified code:</p>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">use traits::Into;
+use traits::TryInto;
+use option::OptionTrait;
+
+fn sum_u8s(x: u8, y: u8) -&gt; u8 {
+    x + y
+}
+
+&#x2F;&#x2F; Modified the types of this function to prevent an overflow when summing big values
+&#x2F;&#x2F; from u8 to u16
+fn sum_big_numbers(x: u16, y: u16) -&gt; u16 {
+    x + y
+}
+
+&#x2F;&#x2F; Return x as a felt252
+fn convert_to_felt(x: u8) -&gt; felt252 {
+    x.into() &#x2F;&#x2F; use .into() method on x
+}
+
+&#x2F;&#x2F; Return x as a u8
+fn convert_felt_to_u8(x: felt252) -&gt; u8 {
+    x.try_into().unwrap() &#x2F;&#x2F; use .try_into() with .unwrap() methods on x
+}
+
+#[test]
+fn test_sum_u8s() {
+    assert(sum_u8s(1, 2_u8) == 3_u8, &#x27;Something went wrong&#x27;);
+}
+
+#[test]
+fn test_sum_big_numbers() {
+    &#x2F;&#x2F; Modified this test to use the correct integer types from u8 to u16
+    assert(sum_big_numbers(255_u16, 255_u16) == 510_u16, &#x27;Something went wrong&#x27;);
+}
+
+#[test]
+fn test_convert_to_felt() {
+    assert(convert_to_felt(1_u8) == 1, &#x27;Type conversion went wrong&#x27;);
+}
+
+#[test]
+fn test_convert_to_u8() {
+    assert(convert_felt_to_u8(1) == 1_u8, &#x27;Type conversion went wrong&#x27;);
+}
+</code></pre>
+<p>with these these changes our code compiles and tests pass!</p>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">   Compiling test(exercise_crate_unittest) exercise_crate v0.1.0 (&#x2F;starklings-cairo1&#x2F;runner-crate&#x2F;Scarb.toml)
+    Finished release target(s) in 1 second
+running 4 tests
+test exercise_crate::test_convert_to_felt ... ok (gas usage est.: 900)
+test exercise_crate::test_sum_big_numbers ... ok (gas usage est.: 1670)
+test exercise_crate::test_convert_to_u8 ... ok (gas usage est.: 2010)
+test exercise_crate::test_sum_u8s ... ok (gas usage est.: 1670)
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 filtered out;
+</code></pre>
+<h3 id="explanation-3">Explanation</h3>
+<ol>
+<li>
+<p><strong>Prevent Overflow</strong>:</p>
+<ul>
+<li>The function <code>sum_big_numbers</code> originally used <code>u8</code> types, which can only hold values from <code>0</code> to <code>255</code>. Summing two large <code>u8</code> values could cause an overflow.</li>
+<li>To prevent this, we changed the parameter types from <code>u8</code> to <code>u16</code>. The <code>u16</code> type can hold values from <code>0</code> to <code>65535</code>, thus avoiding overflow when summing large values.</li>
+</ul>
+</li>
+<li>
+<p><strong>Implement Conversion Functions</strong>:</p>
+<ul>
+<li><strong><code>convert_to_felt</code></strong>: This function converts a <code>u8</code> value to a <code>felt252</code>. Using the <code>.into()</code> trait, the conversion is straightforward.</li>
+<li><strong><code>convert_felt_to_u8</code></strong>: This function converts a <code>felt252</code> value back to a <code>u8</code>. The <code>.try_into()</code> trait is used for this conversion, and <code>.unwrap()</code> ensures the conversion is successful. If it isn't, the program will panic.</li>
+</ul>
+</li>
+<li>
+<p><strong>Modify Tests</strong>:</p>
+<ul>
+<li>Updated the <code>test_sum_big_numbers</code> test to use <code>u16</code> types for the values and the expected result. This matches the updated function signature and ensures the test values do not cause overflow.</li>
+<li>The tests for conversion functions <code>test_convert_to_felt</code> and <code>test_convert_to_u8</code> confirm that the type conversions work as expected.</li>
+</ul>
+</li>
+</ol>
+<p>By modifying the integer types from <code>u8</code> to <code>u16</code>, we prevent overflow in the <code>sum_big_numbers</code> function. We implemented the conversion functions using <code>.into()</code> and <code>.try_into()</code> traits, ensuring seamless type conversions between <code>u8</code> and <code>felt252</code>. The tests were updated to reflect these changes, verifying that the functions operate correctly and the integer operations are safe from overflow.</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>Alright, we've finished! Well done if you are still reading. In this post of Starklings <code>primitive_types</code> exercises, we explored fundamental concepts of working with primitive types in Cairo. Here’s a recap of what we covered:</p>
+<ol>
+<li>
+<p><strong>Basic Variable Initialization</strong>:
+• We started with simple variable initialization and boolean checks. By defining and using boolean variables, we learned how to control the flow of our program based on conditional statements.</p>
+</li>
+<li>
+<p><strong>Tuple Destructuring</strong>:
+• We looked into tuple destructuring, which allowed us to break down composite data structures into individual elements. This helped us print and manipulate each member of a tuple effectively.</p>
+</li>
+<li>
+<p><strong>Understanding Cairo’s String Representation</strong>:
+• We discovered how Cairo represents short strings as <code>felt252</code>, which are large numerical values. We examined how these numerical values correspond to the original string and learned why they appear as large numbers when printed directly.</p>
+</li>
+<li>
+<p><strong>Preventing Overflow</strong>:
+• We addressed the issue of overflow by changing the integer types in our functions. By upgrading from <code>u8</code> to <code>u16</code>, we ensured that our functions could handle larger values without running into overflow problems.</p>
+</li>
+<li>
+<p><strong>Type Conversion</strong>:
+• We implemented functions to convert between different integer types and <code>felt252</code>. Using the <code>.into()</code> and <code>.try_into()</code> traits, we efficiently converted <code>u8</code> values to <code>felt252</code> and vice versa, ensuring compatibility and correctness in our operations.</p>
+</li>
+<li>
+<p><strong>Modifying Tests</strong>:
+• Throughout the exercises, we modified tests to verify the correctness of our functions. These tests ensured that our functions behaved as expected, handling edge cases and type conversions properly.</p>
+</li>
+</ol>
+<p>By working through these exercises, we’ve unlocked a deeper understanding of primitive types in Cairo and learned how to manipulate them effectively. We’ve mastered writing robust code that seamlessly handles various data types and skillfully avoids common pitfalls like overflow. These foundational skills are our stepping stones as we venture into more advanced and exciting topics in Cairo programming.</p>
+
+	</div>
+	<hr class="post-end">
+	<footer class="post-info">
+    
+	  <p>
+		<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg>
+		
+		
+		<span class="tag"><a href="https://desmodrone.github.io/tags/zero-knowledge-proofs/">zero knowledge proofs</a></span>
+		
+		<span class="tag"><a href="https://desmodrone.github.io/tags/rust/">rust</a></span>
+		
+		<span class="tag"><a href="https://desmodrone.github.io/tags/starks/">STARKs</a></span>
+		
+		<span class="tag"><a href="https://desmodrone.github.io/tags/primitive-types/">primitive types</a></span>
+		
+		<span class="tag"><a href="https://desmodrone.github.io/tags/cairo/">cairo</a></span>
+		
+		
+    </p>
+    
+    <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>3642 Words</p>
+    
+    <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2024-06-12</p>
+    
+	</footer>
+  </article>
+    
+  
+  <div class="post-nav thin">
+	
+	
+  </div>
+
+  
+</main>
+
+	  </div>
+	  
+	  
+
+
+
+<footer id="site-footer" class="section-inner thin animated fadeIn faster">
+  <p>&copy; 2024 <a href="https:&#x2F;&#x2F;desmodrone.github.io">erick</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
+  <p>Made with <a href="https://www.getzola.org" target="_blank" rel="noopener">Zola</a> &#183; Theme <a href="https://github.com/VersBinarii/hermit_zola" target="_blank" rel="noopener">Hermit_Zola</a>
+	
+	&#183; <a href="https://desmodrone.github.io/rss.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
+	
+  </p>
+</footer>
+
+
+
+
+	</div>
+	
+	<script src="https://desmodrone.github.io/js/main.js"></script>
+
+	<!-- Math rendering -->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css" integrity="sha384-zB1R0rpPzHqg7Kpt0Aljp8JPLqbXI3bhnPWROx27a9N0Ll6ZP/+DiW/UqRcLbRjq" crossorigin="anonymous">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js" integrity="sha384-y23I5Q6l+B6vatafAwxRu/0oK/79VlbSz7Q9aiSZUvyWYIYsd+qj+o24G5ZU2zJz" crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous"
+        onload="renderMathInElement(document.body, { delimiters: [ {left: '$$', right: '$$', display: true}, {left: '$', right: '$', display: false}, {left: '\\[', right: '\\]', display: true}, {left: '\\(', right: '\\)', display: false}]});"></script>
+
+    
+		<link href="https://unpkg.com/highlightjs-badge/highlightjs/styles/monokai.css" rel="stylesheet">
+		<!-- https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.1/build/styles/  for min version -->
+		<script src="https://unpkg.com/highlightjs-badge/highlightjs/highlight.pack.js"></script>
+		<script src="https://unpkg.com/highlightjs-badge/highlightjs-badge.min.js"></script>
+		<script>
+			var pres = document.querySelectorAll("pre>code");
+			for (var i = 0; i < pres.length; i++) {
+				hljs.highlightBlock(pres[i]);
+			}
+		</script>
+		
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js"></script>
+			<script>
+				var options = {
+					copyIconClass: "gg-clipboard",
+					checkIconClass: "gg-check"
+				};
+				window.highlightJsBadge(options);
+			</script>
+		
+
+	
+
+	
+	<script src="https://desmodrone.github.io/js/main.js"></script>
+
+    
+    
+
+	
+    <!-- Global Site Tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-9MNTYXYNHK"></script>
+    <script>
+     window.dataLayer = window.dataLayer || [];
+     function gtag(){dataLayer.push(arguments);}
+     gtag('js', new Date());
+     gtag('config', 'G-9MNTYXYNHK');
+    </script>
+    
+  </body>
+</html>

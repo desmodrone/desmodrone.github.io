@@ -20,7 +20,7 @@
   />
   <link rel="stylesheet" href="https://desmodrone.github.io/style.css"/>
   
-  <title>19 Rustlings Tests</title>
+  <title>19 Rustlings Tests Solution</title>
   
 
   
@@ -127,7 +127,7 @@
 		
             
 	  </div>
-	  <h1>19 Rustlings Tests</h1>
+	  <h1>19 Rustlings Tests Solution</h1>
 	</header>
 
 	<div class="content">
@@ -138,23 +138,23 @@
 <li><a href="https://doc.rust-lang.org/book/ch11-01-writing-tests.html">Writing Tests</a></li>
 </ul>
 <h2 id="tests1-rs">Tests1.rs</h2>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">&#x2F;&#x2F; tests1.rs  
-&#x2F;&#x2F; Tests are important to ensure that your code does what you think it should do.  
-&#x2F;&#x2F; Tests can be run on this file with the following command:  
-&#x2F;&#x2F; rustlings run tests1  
-  
-&#x2F;&#x2F; This test has a problem with it -- make the test compile! Make the test  
-&#x2F;&#x2F; pass! Make the test fail!  
-&#x2F;&#x2F; Execute `rustlings hint tests1` or use the `hint` watch subcommand for a hint.  
-  
-&#x2F;&#x2F; I AM NOT DONE  
-  
-#[cfg(test)]  
-mod tests {  
-    #[test]  
-    fn you_can_assert() {  
-        assert!();  
-    }  
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">&#x2F;&#x2F; tests1.rs
+&#x2F;&#x2F; Tests are important to ensure that your code does what you think it should do.
+&#x2F;&#x2F; Tests can be run on this file with the following command:
+&#x2F;&#x2F; rustlings run tests1
+
+&#x2F;&#x2F; This test has a problem with it -- make the test compile! Make the test
+&#x2F;&#x2F; pass! Make the test fail!
+&#x2F;&#x2F; Execute `rustlings hint tests1` or use the `hint` watch subcommand for a hint.
+
+&#x2F;&#x2F; I AM NOT DONE
+
+#[cfg(test)]
+mod tests {
+    #[test]
+    fn you_can_assert() {
+        assert!();
+    }
 }
 </code></pre>
 <p>So now we're looking at tests, an important part of the development process in any language is being able to test your code. In our first exercise we see instructions that tells us to make the test compile, make the test fail, essentially to play around with the code.
@@ -171,13 +171,13 @@ error: aborting due to previous error
 </code></pre>
 <p>The compiler gives us a big hint, we need to add a boolean expression. So let's try that.</p>
 <h2 id="test1-rs-solution">Test1.rs Solution</h2>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">  
-#[cfg(test)]  
-mod tests {  
-    #[test]  
-    fn you_can_assert() {  
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">
+#[cfg(test)]
+mod tests {
+    #[test]
+    fn you_can_assert() {
         assert!(false == false); &#x2F;&#x2F; let&#x27;s add false == false
-    }  
+    }
 }
 </code></pre>
 <p>if we add this we actually compile and pass the tests:</p>
@@ -212,19 +212,19 @@ assert!(&quot;hi&quot; == &quot;hi&quot;); &#x2F;&#x2F; this passes ✅
 </code></pre>
 <p>Alright, we get the idea we need to have something to compare it, and have it be equal for it to pass, alright got it! Let's move on.</p>
 <h2 id="test2-rs">Test2.rs</h2>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">&#x2F;&#x2F; tests2.rs  
-&#x2F;&#x2F; This test has a problem with it -- make the test compile! Make the test  
-&#x2F;&#x2F; pass! Make the test fail!  
-&#x2F;&#x2F; Execute `rustlings hint tests2` or use the `hint` watch subcommand for a hint.  
-  
-&#x2F;&#x2F; I AM NOT DONE  
-  
-#[cfg(test)]  
-mod tests {  
-    #[test]  
-    fn you_can_assert_eq() {  
-        assert_eq!();  
-    }  
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">&#x2F;&#x2F; tests2.rs
+&#x2F;&#x2F; This test has a problem with it -- make the test compile! Make the test
+&#x2F;&#x2F; pass! Make the test fail!
+&#x2F;&#x2F; Execute `rustlings hint tests2` or use the `hint` watch subcommand for a hint.
+
+&#x2F;&#x2F; I AM NOT DONE
+
+#[cfg(test)]
+mod tests {
+    #[test]
+    fn you_can_assert_eq() {
+        assert_eq!();
+    }
 }
 </code></pre>
 <p>Our instructions are again similar, we need to make the code compile and pass tests.</p>
@@ -242,12 +242,12 @@ note: while trying to match meta-variable `$left:expr`
 </code></pre>
 <p>Again we get a clear statement saying we have missing tokens in the macro arguments. So let's play around and see what we get.</p>
 <h2 id="test2-rs-solution">Test2.rs Solution</h2>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">#[cfg(test)]  
-mod tests {  
-    #[test]  
-    fn you_can_assert_eq() {  
-        assert_eq!(0, true);  
-    }  
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">#[cfg(test)]
+mod tests {
+    #[test]
+    fn you_can_assert_eq() {
+        assert_eq!(0, true);
+    }
 }
 </code></pre>
 <p>This fails!  Let's see what the compiler says</p>
@@ -278,31 +278,31 @@ assert_eq!(true, false); ❌
 </code></pre>
 <p>Similar to our last exercise, we can enter comma separated values and see what happens. We clearly. have to enter matching values or the tests fail. Great, moving on!</p>
 <h2 id="test3-rs">Test3.rs</h2>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">&#x2F;&#x2F; tests3.rs  
-&#x2F;&#x2F; This test isn&#x27;t testing our function -- make it do that in such a way that  
-&#x2F;&#x2F; the test passes. Then write a second test that tests whether we get the result  
-&#x2F;&#x2F; we expect to get when we call `is_even(5)`.  
-&#x2F;&#x2F; Execute `rustlings hint tests3` or use the `hint` watch subcommand for a hint.  
-  
-&#x2F;&#x2F; I AM NOT DONE  
-  
-pub fn is_even(num: i32) -&gt; bool {  
-    num % 2 == 0  
-}  
-  
-#[cfg(test)]  
-mod tests {  
-    use super::*;  
-  
-    #[test]  
-    fn is_true_when_even() {  
-        assert!();  
-    }  
-  
-    #[test]  
-    fn is_false_when_odd() {  
-        assert!();  
-    }  
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">&#x2F;&#x2F; tests3.rs
+&#x2F;&#x2F; This test isn&#x27;t testing our function -- make it do that in such a way that
+&#x2F;&#x2F; the test passes. Then write a second test that tests whether we get the result
+&#x2F;&#x2F; we expect to get when we call `is_even(5)`.
+&#x2F;&#x2F; Execute `rustlings hint tests3` or use the `hint` watch subcommand for a hint.
+
+&#x2F;&#x2F; I AM NOT DONE
+
+pub fn is_even(num: i32) -&gt; bool {
+    num % 2 == 0
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn is_true_when_even() {
+        assert!();
+    }
+
+    #[test]
+    fn is_false_when_odd() {
+        assert!();
+    }
 }
 </code></pre>
 <p>Now, we finally get a function to test, it looks like we have to make the code compile and pass tests. If we look at the function we can see that it takes in an <code>i32</code> and returns a <code>bool</code> meaning, either <code>true</code> or <code>false</code> so does that give us a hint as to what to do?</p>
@@ -332,24 +332,24 @@ warning: unused import: `super::*`
 </code></pre>
 <h2 id="test3-rs-solution">Test3.rs Solution</h2>
 <p>We've been playing with these tests for a couple of exercises and we can say that we've seen that we need to have matching values. So we know that we need to match a <code>bool</code> so let's try that..</p>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">  
-pub fn is_even(num: i32) -&gt; bool {  
-    num % 2 == 0  
-}  
-  
-#[cfg(test)]  
-mod tests {  
-    use super::*;  
-  
-    #[test]  
-    fn is_true_when_even() {  
-        assert!(true == true);  
-    }  
-  
-    #[test]  
-    fn is_false_when_odd() {  
-        assert!(false == false);  
-    }  
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">
+pub fn is_even(num: i32) -&gt; bool {
+    num % 2 == 0
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn is_true_when_even() {
+        assert!(true == true);
+    }
+
+    #[test]
+    fn is_false_when_odd() {
+        assert!(false == false);
+    }
 }
 </code></pre>
 <p>And there we have it! Our tests are passing and our code is compiling.</p>

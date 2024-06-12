@@ -7,7 +7,642 @@
       <generator>Zola</generator>
       <language>en</language>
       <atom:link href="https://desmodrone.github.io/rss.xml" rel="self" type="application/rss+xml"/>
-      <lastBuildDate>Mon, 20 May 2024 00:00:00 +0000</lastBuildDate>
+      <lastBuildDate>Wed, 12 Jun 2024 00:00:00 +0000</lastBuildDate>
+      <item>
+          <title>Starklings-Cairo1: Primitive Types</title>
+          <pubDate>Wed, 12 Jun 2024 00:00:00 +0000</pubDate>
+          <author>Unknown</author>
+          <link>https://desmodrone.github.io/posts/02-starklings-cairo-primitive-types/</link>
+          <guid>https://desmodrone.github.io/posts/02-starklings-cairo-primitive-types/</guid>
+          <description xml:base="https://desmodrone.github.io/posts/02-starklings-cairo-primitive-types/">&lt;h2 id=&quot;overview&quot;&gt;Overview&lt;&#x2F;h2&gt;
+&lt;p&gt;Cairo has several basic types that are directly implemented into the compiler, which are essential for building more complex data structures and functions. Understanding these primitive types is crucial as they form the foundation of Cairo programming. In this section, we’ll explore:&lt;&#x2F;p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Boolean Types&lt;&#x2F;strong&gt;:
+• Booleans (&lt;code&gt;bool&lt;&#x2F;code&gt;) represent true or false values and are fundamental for control flow in programming. We will see how to define and use booleans in conditional statements.&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Integer Types&lt;&#x2F;strong&gt;:
+• Cairo supports various integer types, such as &lt;code&gt;u8&lt;&#x2F;code&gt; and &lt;code&gt;u16&lt;&#x2F;code&gt;, which represent unsigned integers of different sizes. We will learn how to use these types, perform arithmetic operations, and prevent common issues like overflow.&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Tuples&lt;&#x2F;strong&gt;:
+• Tuples allow us to group multiple values into a single compound value. We will practice destructuring tuples to access and manipulate individual elements effectively.&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Strings and felt252&lt;&#x2F;strong&gt;:
+• Cairo represents short strings as &lt;code&gt;felt252&lt;&#x2F;code&gt; (field elements). We’ll explore how these representations work, how to convert between strings and numerical values, and the implications for printing and data handling.&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;p&gt;By the end of this post, you’ll have a solid understanding of these basic types and how to use them in Cairo, setting a strong foundation for more advanced topics.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;further-information&quot;&gt;Further Information&lt;&#x2F;h3&gt;
+&lt;p&gt;For more detailed information on data types in Cairo, you can refer to the official documentation: &lt;a href=&quot;https:&#x2F;&#x2F;book.cairo-lang.org&#x2F;ch02-02-data-types.html&quot;&gt;Cairo Data Types&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;intro&quot;&gt;Intro&lt;&#x2F;h2&gt;
+&lt;p&gt;So let’s dive into the first exercise: &lt;code&gt;primitive_types1.cairo&lt;&#x2F;code&gt;. Let&#x27;s walk through these exercises so you get a better understanding of how Cairo works.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;primitive-types1-cairo&quot;&gt;&lt;code&gt;primitive_types1.cairo&lt;&#x2F;code&gt;&lt;&#x2F;h2&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;&amp;#x2F;&amp;#x2F; primitive_types1.cairo
+&amp;#x2F;&amp;#x2F; Fill in the rest of the line that has code missing!
+&amp;#x2F;&amp;#x2F; No hints, there&amp;#x27;s no tricks, just get used to typing these :)
+
+&amp;#x2F;&amp;#x2F; I AM NOT DONE
+
+fn main() {
+    &amp;#x2F;&amp;#x2F; Booleans (`bool`)
+
+    let is_morning = true;
+    if is_morning {
+        println!(&amp;quot;Good morning!&amp;quot;);
+    }
+
+    let &amp;#x2F;&amp;#x2F; Finish the rest of this line like the example! Or make it be false!
+    if is_evening {
+        println!(&amp;quot;Good evening!&amp;quot;);
+    }
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Our instructions tell us to complete the bit of code above. Let&#x27;s take a look at the error output for more context.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;primitive-types1-cairo-errors&quot;&gt;&lt;code&gt;primitive_types1.cairo&lt;&#x2F;code&gt; Errors&lt;&#x2F;h2&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;🟡 Running exercises&amp;#x2F;primitive_types&amp;#x2F;primitive_types1.cairo exercise...
+
+   Compiling exercise_crate v0.1.0 (&amp;#x2F;Users&amp;#x2F;desmo&amp;#x2F;repos&amp;#x2F;starklings-cairo1&amp;#x2F;runner-crate&amp;#x2F;Scarb.toml)
+error: Missing token TerminalUnderscore.
+ --&amp;gt; &amp;#x2F;Users&amp;#x2F;desmo&amp;#x2F;repos&amp;#x2F;starklings-cairo1&amp;#x2F;runner-crate&amp;#x2F;src&amp;#x2F;lib.cairo:15:8
+    let &amp;#x2F;&amp;#x2F; Finish the rest of this line like the example! Or make it be false!
+       ^
+
+error: Missing token TerminalEq.
+ --&amp;gt; &amp;#x2F;Users&amp;#x2F;desmo&amp;#x2F;repos&amp;#x2F;starklings-cairo1&amp;#x2F;runner-crate&amp;#x2F;src&amp;#x2F;lib.cairo:15:8
+    let &amp;#x2F;&amp;#x2F; Finish the rest of this line like the example! Or make it be false!
+       ^
+
+error: Missing token TerminalSemicolon.
+ --&amp;gt; &amp;#x2F;Users&amp;#x2F;desmo&amp;#x2F;repos&amp;#x2F;starklings-cairo1&amp;#x2F;runner-crate&amp;#x2F;src&amp;#x2F;lib.cairo:18:6
+    }
+     ^
+
+error: Identifier not found.
+ --&amp;gt; &amp;#x2F;Users&amp;#x2F;desmo&amp;#x2F;repos&amp;#x2F;starklings-cairo1&amp;#x2F;runner-crate&amp;#x2F;src&amp;#x2F;lib.cairo:16:8
+    if is_evening {
+       ^********^
+
+could not compile `exercise_crate` due to previous error
+
+⚠️  Failed to run exercises&amp;#x2F;primitive_types&amp;#x2F;primitive_types1.cairo! Please try again.
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;The compiler provides useful hints such as &lt;code&gt;error: Missing token TerminalSemicolon.&lt;&#x2F;code&gt; and &lt;code&gt;error: Identifier not found.&lt;&#x2F;code&gt;. These indicate that we haven&#x27;t completed the line of code, making it an incomplete statement. Let&#x27;s fix this.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;primitive-types1-cairo-solution&quot;&gt;&lt;code&gt;primitive_types1.cairo&lt;&#x2F;code&gt; Solution&lt;&#x2F;h2&gt;
+&lt;p&gt;As mentioned, we&#x27;re not done with the line of code on line 15. Observing the code above, we see that &lt;code&gt;is_morning&lt;&#x2F;code&gt; is assigned a &lt;code&gt;bool&lt;&#x2F;code&gt; value of &lt;code&gt;true&lt;&#x2F;code&gt;:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;    let is_morning = true;
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Let&#x27;s do the same for &lt;code&gt;is_evening&lt;&#x2F;code&gt;. We can assign a &lt;code&gt;bool&lt;&#x2F;code&gt; value to it, either &lt;code&gt;true&lt;&#x2F;code&gt; or &lt;code&gt;false&lt;&#x2F;code&gt;. We&#x27;ll start with &lt;code&gt;true&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;let is_evening = true;
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;With this change, the code compiles successfully! The output is:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;Good morning!
+Good evening!
+
+✅ Successfully ran exercises&amp;#x2F;primitive_types&amp;#x2F;primitive_types1.cairo!
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;If we change the &lt;code&gt;bool&lt;&#x2F;code&gt; value to &lt;code&gt;false&lt;&#x2F;code&gt;, the output changes accordingly:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;Good morning!
+
+✅ Successfully ran exercises&amp;#x2F;primitive_types&amp;#x2F;primitive_types1.cairo!
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Here&#x27;s the full corrected code:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;fn main() {
+    &amp;#x2F;&amp;#x2F; Booleans (`bool`)
+
+    let is_morning = true;
+    if is_morning {
+        println!(&amp;quot;Good morning!&amp;quot;);
+    }
+
+    let is_evening = true;
+    if is_evening {
+        println!(&amp;quot;Good evening!&amp;quot;);
+    }
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h3 id=&quot;explanation&quot;&gt;Explanation&lt;&#x2F;h3&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Variable Declaration and Initialization&lt;&#x2F;strong&gt;:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;Initially, the code uses &lt;code&gt;let&lt;&#x2F;code&gt; but doesn&#x27;t assign any value to a variable.&lt;&#x2F;li&gt;
+&lt;li&gt;Correcting it to &lt;code&gt;let is_evening = true;&lt;&#x2F;code&gt; initializes &lt;code&gt;is_evening&lt;&#x2F;code&gt; with the value &lt;code&gt;true&lt;&#x2F;code&gt; (or &lt;code&gt;false&lt;&#x2F;code&gt; if you prefer).&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Conditional Statement&lt;&#x2F;strong&gt;:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;The &lt;code&gt;if&lt;&#x2F;code&gt; statement checks whether &lt;code&gt;is_morning&lt;&#x2F;code&gt; and &lt;code&gt;is_evening&lt;&#x2F;code&gt; are &lt;code&gt;true&lt;&#x2F;code&gt; or &lt;code&gt;false&lt;&#x2F;code&gt;.&lt;&#x2F;li&gt;
+&lt;li&gt;If either is &lt;code&gt;true&lt;&#x2F;code&gt;, it prints the appropriate message: &lt;code&gt;&amp;quot;Good morning!&amp;quot;&lt;&#x2F;code&gt; or &lt;code&gt;&amp;quot;Good evening!&amp;quot;&lt;&#x2F;code&gt; or even both.&lt;&#x2F;li&gt;
+&lt;li&gt;If both are &lt;code&gt;false&lt;&#x2F;code&gt;, it prints nothing but still compiles correctly.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Experimentation&lt;&#x2F;strong&gt;:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;Changing the values of &lt;code&gt;is_morning&lt;&#x2F;code&gt; and &lt;code&gt;is_evening&lt;&#x2F;code&gt; to different &lt;code&gt;bool&lt;&#x2F;code&gt; values and recompiling will result in different outputs based on the &lt;code&gt;if&lt;&#x2F;code&gt; condition.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;p&gt;Great let&#x27;s move on to the next exercise!&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;primitive-types2-cairo&quot;&gt;&lt;code&gt;primitive_types2.cairo&lt;&#x2F;code&gt;&lt;&#x2F;h2&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;&amp;#x2F;&amp;#x2F; primitive_types2.cairo
+&amp;#x2F;&amp;#x2F; Fill in the rest of the line that has code missing!
+&amp;#x2F;&amp;#x2F; No hints, there&amp;#x27;s no tricks, just get used to typing these :)
+
+&amp;#x2F;&amp;#x2F; I AM NOT DONE
+
+fn main() {
+    &amp;#x2F;&amp;#x2F; A short string is a string whose length is at most 31 characters, and therefore can fit into a single field element.
+    &amp;#x2F;&amp;#x2F; Short strings are actually felts, they are not a real string.
+    &amp;#x2F;&amp;#x2F; Note the _single_ quotes that are used with short strings.
+
+    let mut my_first_initial = &amp;#x27;C&amp;#x27;;
+    if is_alphabetic(
+        ref my_first_initial
+    ) {
+        println!(&amp;quot; Alphabetical !&amp;quot;);
+    } else if is_numeric(
+        ref my_first_initial
+    ) {
+        println!(&amp;quot; Numerical !&amp;quot;);
+    } else {
+        println!(&amp;quot; Neither alphabetic nor numeric!&amp;quot;);
+    }
+
+    let  &amp;#x2F;&amp;#x2F; Finish this line like the example! What&amp;#x27;s your favorite short string?
+    &amp;#x2F;&amp;#x2F; Try a letter, try a number, try a special character, try a short string!
+    if is_alphabetic(
+        ref your_character
+    ) {
+        println!(&amp;quot; Alphabetical !&amp;quot;);
+    } else if is_numeric(
+        ref your_character
+    ) {
+        println!(&amp;quot; Numerical!&amp;quot;);
+    } else {
+        println!(&amp;quot; Neither alphabetic nor numeric!&amp;quot;);
+    }
+}
+
+fn is_alphabetic(ref char: felt252) -&amp;gt; bool {
+    if char &amp;gt;= &amp;#x27;a&amp;#x27; {
+        if char &amp;lt;= &amp;#x27;z&amp;#x27; {
+            return true;
+        }
+    }
+    if char &amp;gt;= &amp;#x27;A&amp;#x27; {
+        if char &amp;lt;= &amp;#x27;Z&amp;#x27; {
+            return true;
+        }
+    }
+    false
+}
+
+fn is_numeric(ref char: felt252) -&amp;gt; bool {
+    if char &amp;gt;= &amp;#x27;0&amp;#x27; {
+        if char &amp;lt;= &amp;#x27;9&amp;#x27; {
+            return true;
+        }
+    }
+    false
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;In this exercise, we are dealing with short strings in Cairo. A short string is a string whose length is at most 31 characters, and it can fit into a single field element (felt). Short strings are actually felts and not real strings. We need to use use single quotes for short strings.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;primitive-types2-cairo-errors&quot;&gt;&lt;code&gt;primitive_types2.cairo&lt;&#x2F;code&gt; Errors&lt;&#x2F;h2&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;🟡 Running exercises&amp;#x2F;primitive_types&amp;#x2F;primitive_types2.cairo exercise...
+
+   Compiling exercise_crate v0.1.0 (&amp;#x2F;Users&amp;#x2F;desmo&amp;#x2F;repos&amp;#x2F;starklings-cairo1&amp;#x2F;runner-crate&amp;#x2F;Scarb.toml)
+error: Missing token TerminalUnderscore.
+ --&amp;gt; &amp;#x2F;Users&amp;#x2F;desmo&amp;#x2F;repos&amp;#x2F;starklings-cairo1&amp;#x2F;runner-crate&amp;#x2F;src&amp;#x2F;lib.cairo:25:8
+    let  &amp;#x2F;&amp;#x2F; Finish this line like the example! What&amp;#x27;s your favorite short string?
+       ^
+
+error: Missing token TerminalEq.
+ --&amp;gt; &amp;#x2F;Users&amp;#x2F;desmo&amp;#x2F;repos&amp;#x2F;starklings-cairo1&amp;#x2F;runner-crate&amp;#x2F;src&amp;#x2F;lib.cairo:25:8
+    let  &amp;#x2F;&amp;#x2F; Finish this line like the example! What&amp;#x27;s your favorite short string?
+       ^
+
+error: Missing token TerminalSemicolon.
+ --&amp;gt; &amp;#x2F;Users&amp;#x2F;desmo&amp;#x2F;repos&amp;#x2F;starklings-cairo1&amp;#x2F;runner-crate&amp;#x2F;src&amp;#x2F;lib.cairo:37:6
+    }
+     ^
+
+error: Identifier not found.
+ --&amp;gt; &amp;#x2F;Users&amp;#x2F;desmo&amp;#x2F;repos&amp;#x2F;starklings-cairo1&amp;#x2F;runner-crate&amp;#x2F;src&amp;#x2F;lib.cairo:28:13
+        ref your_character
+            ^************^
+
+error: ref argument must be a variable.
+ --&amp;gt; &amp;#x2F;Users&amp;#x2F;desmo&amp;#x2F;repos&amp;#x2F;starklings-cairo1&amp;#x2F;runner-crate&amp;#x2F;src&amp;#x2F;lib.cairo:28:13
+        ref your_character
+            ^************^
+
+error: Identifier not found.
+ --&amp;gt; &amp;#x2F;Users&amp;#x2F;desmo&amp;#x2F;repos&amp;#x2F;starklings-cairo1&amp;#x2F;runner-crate&amp;#x2F;src&amp;#x2F;lib.cairo:32:13
+        ref your_character
+            ^************^
+
+error: ref argument must be a variable.
+ --&amp;gt; &amp;#x2F;Users&amp;#x2F;desmo&amp;#x2F;repos&amp;#x2F;starklings-cairo1&amp;#x2F;runner-crate&amp;#x2F;src&amp;#x2F;lib.cairo:32:13
+        ref your_character
+            ^************^
+
+could not compile `exercise_crate` due to previous error
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;The compiler errors indicate missing tokens such as &lt;code&gt;TerminalUnderscore&lt;&#x2F;code&gt; and &lt;code&gt;TerminalEq&lt;&#x2F;code&gt; and &lt;code&gt;TerminalSemicolon&lt;&#x2F;code&gt;. Additionally, a the key errors of&lt;code&gt;Identifier not found&lt;&#x2F;code&gt; and &lt;code&gt;ref arguement must be a variable &lt;&#x2F;code&gt; suggest that &lt;code&gt;your_character&lt;&#x2F;code&gt; is not correctly defined and referenced.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;primitive-types2-cairo-solution&quot;&gt;&lt;code&gt;primitive_types2.cairo&lt;&#x2F;code&gt; Solution&lt;&#x2F;h2&gt;
+&lt;p&gt;To solve this, let&#x27;s complete the line that define&#x27;s &lt;code&gt;your_character&lt;&#x2F;code&gt;. Here&#x27;s the solution:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;fn main() {
+
+    let mut my_first_initial = &amp;#x27;C&amp;#x27;;
+    if is_alphabetic(
+        ref my_first_initial
+    ) {
+        println!(&amp;quot; Alphabetical !&amp;quot;);
+    } else if is_numeric(
+        ref my_first_initial
+    ) {
+        println!(&amp;quot; Numerical !&amp;quot;);
+    } else {
+        println!(&amp;quot; Neither alphabetic nor numeric!&amp;quot;);
+    }
+
+    let mut your_character = &amp;#x27;E&amp;#x27;; &amp;#x2F;&amp;#x2F; Finishing the line here
+    if is_alphabetic(
+        ref your_character
+    ) {
+        println!(&amp;quot; Alphabetical !&amp;quot;);
+    } else if is_numeric(
+        ref your_character
+    ) {
+        println!(&amp;quot; Numerical!&amp;quot;);
+    } else {
+        println!(&amp;quot; Neither alphabetic nor numeric!&amp;quot;);
+    }
+}
+
+fn is_alphabetic(ref char: felt252) -&amp;gt; bool {
+    if char &amp;gt;= &amp;#x27;a&amp;#x27; {
+        if char &amp;lt;= &amp;#x27;z&amp;#x27; {
+            return true;
+        }
+    }
+    if char &amp;gt;= &amp;#x27;A&amp;#x27; {
+        if char &amp;lt;= &amp;#x27;Z&amp;#x27; {
+            return true;
+        }
+    }
+    false
+}
+
+fn is_numeric(ref char: felt252) -&amp;gt; bool {
+    if char &amp;gt;= &amp;#x27;0&amp;#x27; {
+        if char &amp;lt;= &amp;#x27;9&amp;#x27; {
+            return true;
+        }
+    }
+    false
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h3 id=&quot;explanation-1&quot;&gt;Explanation&lt;&#x2F;h3&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Variable Declaration and Initialization&lt;&#x2F;strong&gt;:
+• Initially, the code uses &lt;code&gt;let&lt;&#x2F;code&gt; without assigning any value to &lt;code&gt;your_character&lt;&#x2F;code&gt;.
+• Correcting it to &lt;code&gt;let mut your_character = &#x27;A&#x27;;&lt;&#x2F;code&gt; initializes &lt;code&gt;your_character&lt;&#x2F;code&gt; with a short string value, which can be a letter, number, or special character.&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Conditional Statement&lt;&#x2F;strong&gt;:
+• The &lt;code&gt;if&lt;&#x2F;code&gt; statement checks whether &lt;code&gt;my_first_initial&lt;&#x2F;code&gt; and &lt;code&gt;your_character&lt;&#x2F;code&gt; are alphabetic or numeric.
+• If either is alphabetic, it prints &lt;code&gt;&amp;quot;Alphabetical!&amp;quot;&lt;&#x2F;code&gt;.
+• If either is numeric, it prints &lt;code&gt;&amp;quot;Numerical!&amp;quot;&lt;&#x2F;code&gt;.
+• Otherwise, it prints&lt;code&gt; &amp;quot;Neither alphabetic nor numeric!&amp;quot;&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Ref Keyword&lt;&#x2F;strong&gt;:
+• The &lt;code&gt;ref&lt;&#x2F;code&gt; keyword is used to pass the variable by reference to the &lt;code&gt;is_alphabetic&lt;&#x2F;code&gt; and &lt;code&gt;is_numeric&lt;&#x2F;code&gt; functions.&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Experimentation&lt;&#x2F;strong&gt;:
+• Changing the values of &lt;code&gt;my_first_initial&lt;&#x2F;code&gt; and &lt;code&gt;your_character&lt;&#x2F;code&gt; to different short string values and recompiling will result in different outputs based on the if condition.&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;p&gt;You might have noticed that we used the &lt;code&gt;mut&lt;&#x2F;code&gt; keyword in the line &lt;code&gt;let mut your_character = &#x27;E&#x27;;&lt;&#x2F;code&gt; and if you tried to experiment with removing it, you&#x27;d notice that the code doesn&#x27;t compile anymore so, let&#x27;s make sure we understand why that is happening.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;why-mutability-is-necessary&quot;&gt;Why Mutability is Necessary&lt;&#x2F;h3&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Exclusive Access&lt;&#x2F;strong&gt;: The &lt;code&gt;ref&lt;&#x2F;code&gt; keyword indicates that the function requires an exclusive reference to the variable. This exclusive access might involve potential changes or ensuring that no other references exist to maintain data integrity during the function’s execution.&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Compiler Enforcement&lt;&#x2F;strong&gt;: Rust and Cairo enforce immutability by default to ensure safety and prevent unintended side-effects. By requiring variables to be explicitly marked as mutable, the language ensures that developers are aware of where changes can occur, thus making the code more predictable and safer.&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Function Semantics&lt;&#x2F;strong&gt;: The functions &lt;code&gt;is_alphabetic&lt;&#x2F;code&gt; and &lt;code&gt;is_numeric&lt;&#x2F;code&gt; in this context do not modify the variable, but the use of ref suggests a potential for future modifications or an exclusive read, necessitating the variable to be mutable.&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;p&gt;By marking &lt;code&gt;your_character&lt;&#x2F;code&gt; as &lt;code&gt;mut&lt;&#x2F;code&gt;, you signal to the compiler and future readers of the code that &lt;code&gt;your_character&lt;&#x2F;code&gt; may be modified or requires exclusive access, aligning with the expected semantics of using&lt;code&gt; ref&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;primitive-types3-cairo&quot;&gt;&lt;code&gt;primitive_types3.cairo&lt;&#x2F;code&gt;&lt;&#x2F;h2&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;&amp;#x2F;&amp;#x2F; primitive_types3.cairo
+&amp;#x2F;&amp;#x2F; Destructure the `cat` tuple to call print on each member.
+&amp;#x2F;&amp;#x2F; Execute `starklings hint primitive_types3` or use the `hint` watch subcommand for a hint.
+
+&amp;#x2F;&amp;#x2F; I AM NOT DONE
+
+fn main() {
+    let cat = (&amp;#x27;Furry McFurson&amp;#x27;, 3);
+    let &amp;#x2F;&amp;#x2F; your pattern here = cat;
+    println!(&amp;quot;name is {}&amp;quot;, name);
+    println!(&amp;quot;age is {}&amp;quot;, age);
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;here we have a very simple piece of code and our instructions are to destructure the &lt;code&gt;cat&lt;&#x2F;code&gt; tuple to allow us to call print on each of the members of the tuple. We already know the problem, but just so we are consistent, let&#x27;s look at the errors.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;primitive-types3-cairo-errors&quot;&gt;&lt;code&gt;primitive_types3.cairo&lt;&#x2F;code&gt; Errors&lt;&#x2F;h2&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;🟡 Running exercises&amp;#x2F;primitive_types&amp;#x2F;primitive_types3.cairo exercise...
+
+   Compiling exercise_crate v0.1.0 (&amp;#x2F;Users&amp;#x2F;desmo&amp;#x2F;repos&amp;#x2F;starklings-cairo1&amp;#x2F;runner-crate&amp;#x2F;Scarb.toml)
+error: Missing token TerminalEq.
+ --&amp;gt; &amp;#x2F;Users&amp;#x2F;desmo&amp;#x2F;repos&amp;#x2F;starklings-cairo1&amp;#x2F;runner-crate&amp;#x2F;src&amp;#x2F;lib.cairo:10:12
+    println!(&amp;quot;name is {}&amp;quot;, name);
+           ^
+
+error: Identifier not found.
+ --&amp;gt; &amp;#x2F;Users&amp;#x2F;desmo&amp;#x2F;repos&amp;#x2F;starklings-cairo1&amp;#x2F;runner-crate&amp;#x2F;src&amp;#x2F;lib.cairo:10:28
+    println!(&amp;quot;name is {}&amp;quot;, name);
+                           ^**^
+
+error: Identifier not found.
+ --&amp;gt; &amp;#x2F;Users&amp;#x2F;desmo&amp;#x2F;repos&amp;#x2F;starklings-cairo1&amp;#x2F;runner-crate&amp;#x2F;src&amp;#x2F;lib.cairo:11:27
+    println!(&amp;quot;age is {}&amp;quot;, age);
+                          ^*^
+
+warn: Unused variable. Consider ignoring by prefixing with `_`.
+ --&amp;gt; &amp;#x2F;Users&amp;#x2F;desmo&amp;#x2F;repos&amp;#x2F;starklings-cairo1&amp;#x2F;runner-crate&amp;#x2F;src&amp;#x2F;lib.cairo:8:9
+    let cat = (&amp;#x27;Furry McFurson&amp;#x27;, 3);
+        ^*^
+
+warn: Unused variable. Consider ignoring by prefixing with `_`.
+ --&amp;gt; &amp;#x2F;Users&amp;#x2F;desmo&amp;#x2F;repos&amp;#x2F;starklings-cairo1&amp;#x2F;runner-crate&amp;#x2F;src&amp;#x2F;lib.cairo:10:5
+    println!(&amp;quot;name is {}&amp;quot;, name);
+    ^*****^
+
+error: Type annotations needed. Failed to infer ?2
+ --&amp;gt; &amp;#x2F;Users&amp;#x2F;desmo&amp;#x2F;repos&amp;#x2F;starklings-cairo1&amp;#x2F;runner-crate&amp;#x2F;src&amp;#x2F;lib.cairo:10:14
+    println!(&amp;quot;name is {}&amp;quot;, name);
+             ^**********^
+
+could not compile `exercise_crate` due to previous error
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;We get a bunch of errors, but we know the cause we don&#x27;t have our tuple destructured to allow us to print &lt;code&gt;name&lt;&#x2F;code&gt; and &lt;code&gt;age&lt;&#x2F;code&gt;. So let&#x27;s fix it!&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;primitive-types3-cairo-solution&quot;&gt;&lt;code&gt;primitive_types3.cairo&lt;&#x2F;code&gt; Solution&lt;&#x2F;h2&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;fn main() {
+    let cat = (&amp;#x27;Furry McFurson&amp;#x27;, 3);
+    let (name, age) = cat;
+    println!(&amp;quot;name is {}&amp;quot;, name);
+    println!(&amp;quot;age is {}&amp;quot;, age);
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Using the &lt;code&gt;(name, age)&lt;&#x2F;code&gt; syntax we can destructure the &lt;code&gt;(&#x27;Furry McFurson&#x27;, 3)&lt;&#x2F;code&gt; tuple into something that we can use later on in our print statements. This seems simple enough and our code compiles with these changes, so let&#x27;s move on -- but wait, what do we see on the print out!?&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;Running exercises&amp;#x2F;primitive_types&amp;#x2F;primitive_types3.cairo
+
+name is 1429073786950451143196132410355566
+age is 3
+
+✅ Successfully ran exercises&amp;#x2F;primitive_types&amp;#x2F;primitive_types3.cairo!
+
+🎉 🎉  The code is compiling! 🎉 🎉
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;The name we have in our program is &lt;code&gt;&#x27;Furry McFurson&#x27;&lt;&#x2F;code&gt; but we get a print out that says: &lt;code&gt;1429073786950451143196132410355566&lt;&#x2F;code&gt;, so what&#x27;s going on here?&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;why-does-the-output-show-numbers-instead-of-strings&quot;&gt;Why Does the Output Show Numbers Instead of Strings?&lt;&#x2F;h3&gt;
+&lt;p&gt;In Cairo, short strings are represented as &lt;code&gt;felt252&lt;&#x2F;code&gt; (field elements), which are large numerical values. This is why printing a short string directly might show a long number instead of the expected text.&lt;&#x2F;p&gt;
+&lt;p&gt;The value &lt;code&gt;1429073786950451143196132410355566&lt;&#x2F;code&gt; is the result of encoding the entire string &lt;code&gt;“Furry McFurson”&lt;&#x2F;code&gt; into a single large integer. This encoding typically involves treating the string as a sequence of characters and converting each character into its corresponding ASCII (or Unicode) value, then packing these values into a large integer.&lt;&#x2F;p&gt;
+&lt;p&gt;For simplicity, let’s break down a smaller example manually to understand how it works. I’ll also show you how to do it with “F”.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;strong&gt;Example with a Single Character&lt;&#x2F;strong&gt;
+Let’s take ‘F’. The ASCII value of ‘F’ is 70. In decimal, it is 70, which is straightforward. You can try this in the exercise and you will see &lt;code&gt;70&lt;&#x2F;code&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;strong&gt;Example with a String&lt;&#x2F;strong&gt;
+For a string like “Furry”, we need to consider how each character is converted and packed together. Here’s a basic explanation:&lt;&#x2F;p&gt;
+&lt;ol&gt;
+&lt;li&gt;Convert each character to its ASCII value:&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;pre&gt;&lt;code&gt;• ‘F’ -&amp;gt; 70
+• ‘u’ -&amp;gt; 117
+• ‘r’ -&amp;gt; 114
+• ‘r’ -&amp;gt; 114
+• ‘y’ -&amp;gt; 121
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;ol start=&quot;2&quot;&gt;
+&lt;li&gt;Pack these ASCII values together into a single large integer. This packing depends on the specific encoding scheme used. A simple scheme would be to treat the ASCII values as bytes in a large number.&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;p&gt;Alright, let&#x27;s not dive in too deep into the weeds here and stay focused and summarize what we did here.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;explanation-2&quot;&gt;Explanation&lt;&#x2F;h3&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Tuple Destructuring&lt;&#x2F;strong&gt;:
+• The original problem requires us to destructure the tuple cat to access and print its individual elements. The solution correctly uses &lt;code&gt;(name, age)&lt;&#x2F;code&gt; to destructure the tuple.
+• By writing &lt;code&gt;let (name, age) = cat;&lt;&#x2F;code&gt;, the tuple &lt;code&gt;(&#x27;Furry McFurson&#x27;, 3) &lt;&#x2F;code&gt;is split into &lt;code&gt;name&lt;&#x2F;code&gt; and &lt;code&gt;age&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;String Representation in Cairo&lt;&#x2F;strong&gt;:
+• In Cairo, strings are represented as &lt;code&gt;felt252&lt;&#x2F;code&gt; (field elements), which are large numerical values.
+• When we print a string directly, it shows the numerical representation instead of the readable text. This is why &lt;code&gt;1429073786950451143196132410355566&lt;&#x2F;code&gt; appears instead of &lt;code&gt;“Furry McFurson”&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;p&gt;Let&#x27;s move on to our final exercise!&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;primitive-types4-cairo&quot;&gt;&lt;code&gt;primitive_types4.cairo&lt;&#x2F;code&gt;&lt;&#x2F;h2&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;&amp;#x2F;&amp;#x2F; primitive_types4.cairo
+&amp;#x2F;&amp;#x2F; Modify the integer types to make the tests pass.
+&amp;#x2F;&amp;#x2F; Learn how to convert between integer types, and felts.
+&amp;#x2F;&amp;#x2F; Execute `starklings hint primitive_types4` or use the `hint` watch subcommand for a hint.
+
+&amp;#x2F;&amp;#x2F; I AM NOT DONE
+
+use traits::Into;
+use traits::TryInto;
+use option::OptionTrait;
+
+fn sum_u8s(x: u8, y: u8) -&amp;gt; u8 {
+    x + y
+}
+
+&amp;#x2F;&amp;#x2F;TODO modify the types of this function to prevent an overflow when summing big values
+fn sum_big_numbers(x: u8, y: u8) -&amp;gt; u8 {
+    x + y
+}
+
+fn convert_to_felt(x: u8) -&amp;gt; felt252 { &amp;#x2F;&amp;#x2F;TODO return x as a felt252.
+}
+
+fn convert_felt_to_u8(x: felt252) -&amp;gt; u8 { &amp;#x2F;&amp;#x2F;TODO return x as a u8.
+}
+
+#[test]
+fn test_sum_u8s() {
+    assert(sum_u8s(1, 2_u8) == 3_u8, &amp;#x27;Something went wrong&amp;#x27;);
+}
+
+#[test]
+fn test_sum_big_numbers() {
+    &amp;#x2F;&amp;#x2F;TODO modify this test to use the correct integer types.
+    &amp;#x2F;&amp;#x2F; Don&amp;#x27;t modify the values, just the types.
+    &amp;#x2F;&amp;#x2F; See how using the _u8 suffix on the numbers lets us specify the type?
+    &amp;#x2F;&amp;#x2F; Try to do the same thing with other integer types.
+    assert(sum_big_numbers(255_u8, 255_u8) == 510_u8, &amp;#x27;Something went wrong&amp;#x27;);
+}
+
+#[test]
+fn test_convert_to_felt() {
+    assert(convert_to_felt(1_u8) == 1, &amp;#x27;Type conversion went wrong&amp;#x27;);
+}
+
+#[test]
+fn test_convert_to_u8() {
+    assert(convert_felt_to_u8(1) == 1_u8, &amp;#x27;Type conversion went wrong&amp;#x27;);
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;In this exercise we are tasked with modifying the integer types  and felt252 to make the tests pass, seems simple enough let&#x27;s take a look at the errors for any hints on how to fix this problem.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;primitive-types4-cairo-errors&quot;&gt;&lt;code&gt;primitive_types4.cairo&lt;&#x2F;code&gt; Errors&lt;&#x2F;h2&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;🟡 Testing exercises&amp;#x2F;primitive_types&amp;#x2F;primitive_types4.cairo exercise...
+
+   Compiling test(exercise_crate_unittest) exercise_crate v0.1.0 (&amp;#x2F;Users&amp;#x2F;desmo&amp;#x2F;repos&amp;#x2F;starklings-cairo1&amp;#x2F;runner-crate&amp;#x2F;Scarb.toml)
+error: Unexpected return type. Expected: &amp;quot;core::felt252&amp;quot;, found: &amp;quot;()&amp;quot;.
+ --&amp;gt; &amp;#x2F;Users&amp;#x2F;desmo&amp;#x2F;repos&amp;#x2F;starklings-cairo1&amp;#x2F;runner-crate&amp;#x2F;src&amp;#x2F;lib.cairo:21:38
+fn convert_to_felt(x: u8) -&amp;gt; felt252 { &amp;#x2F;&amp;#x2F;TODO return x as a felt252.
+                                     ^*****************************^
+
+error: Unexpected return type. Expected: &amp;quot;core::integer::u8&amp;quot;, found: &amp;quot;()&amp;quot;.
+ --&amp;gt; &amp;#x2F;Users&amp;#x2F;desmo&amp;#x2F;repos&amp;#x2F;starklings-cairo1&amp;#x2F;runner-crate&amp;#x2F;src&amp;#x2F;lib.cairo:24:41
+fn convert_felt_to_u8(x: felt252) -&amp;gt; u8 { &amp;#x2F;&amp;#x2F;TODO return x as a u8.
+                                        ^************************^
+
+error: The value does not fit within the range of type core::integer::u8.
+ --&amp;gt; &amp;#x2F;Users&amp;#x2F;desmo&amp;#x2F;repos&amp;#x2F;starklings-cairo1&amp;#x2F;runner-crate&amp;#x2F;src&amp;#x2F;lib.cairo:38:47
+    assert(sum_big_numbers(255_u8, 255_u8) == 510_u8, &amp;#x27;Something went wrong&amp;#x27;);
+                                              ^****^
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Here we see that we have 3 main errors &lt;code&gt;Unexpected return type&lt;&#x2F;code&gt; which is for our unfinished functions, and  &lt;code&gt;error: The value does not fit within the range of type core::integer::u8&lt;&#x2F;code&gt; which is telling us that the value doesn&#x27;t fit in a &lt;code&gt;u8&lt;&#x2F;code&gt;. So let&#x27;s fix this.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;primitive-types4-cairo-solution&quot;&gt;&lt;code&gt;primitive_types4.cairo&lt;&#x2F;code&gt; Solution&lt;&#x2F;h2&gt;
+&lt;p&gt;Since this one is a little more involved let’s work through the solution step-by-step. As we know the tasks involve modifying types to prevent overflow and converting between integer types and felt252.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;strong&gt;Step 1: Prevent Overflow in sum_big_numbers&lt;&#x2F;strong&gt;
+The function &lt;code&gt;sum_big_numbers&lt;&#x2F;code&gt; currently takes &lt;code&gt;u8&lt;&#x2F;code&gt; types, which can hold values from &lt;code&gt;0&lt;&#x2F;code&gt; to &lt;code&gt;255&lt;&#x2F;code&gt;. Summing two &lt;code&gt;u8&lt;&#x2F;code&gt; values that are close to their maximum can cause an overflow. To prevent this, we’ll change the types to a larger integer type, such as &lt;code&gt;u16&lt;&#x2F;code&gt;, which can hold values from &lt;code&gt;0&lt;&#x2F;code&gt; to &lt;code&gt;65535&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;strong&gt;Step 2: Implement convert_to_felt and convert_felt_to_u8&lt;&#x2F;strong&gt;
+For converting between &lt;code&gt;u8&lt;&#x2F;code&gt; and &lt;code&gt;felt252&lt;&#x2F;code&gt;, we’ll use the .into() and .try_into() traits.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;strong&gt;Step 3: Modify Tests&lt;&#x2F;strong&gt;
+Update the types in the test &lt;code&gt;test_sum_big_numbers&lt;&#x2F;code&gt; to reflect the changes made in the &lt;code&gt;sum_big_numbers&lt;&#x2F;code&gt; function.&lt;&#x2F;p&gt;
+&lt;p&gt;Here’s the modified code:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;use traits::Into;
+use traits::TryInto;
+use option::OptionTrait;
+
+fn sum_u8s(x: u8, y: u8) -&amp;gt; u8 {
+    x + y
+}
+
+&amp;#x2F;&amp;#x2F; Modified the types of this function to prevent an overflow when summing big values
+&amp;#x2F;&amp;#x2F; from u8 to u16
+fn sum_big_numbers(x: u16, y: u16) -&amp;gt; u16 {
+    x + y
+}
+
+&amp;#x2F;&amp;#x2F; Return x as a felt252
+fn convert_to_felt(x: u8) -&amp;gt; felt252 {
+    x.into() &amp;#x2F;&amp;#x2F; use .into() method on x
+}
+
+&amp;#x2F;&amp;#x2F; Return x as a u8
+fn convert_felt_to_u8(x: felt252) -&amp;gt; u8 {
+    x.try_into().unwrap() &amp;#x2F;&amp;#x2F; use .try_into() with .unwrap() methods on x
+}
+
+#[test]
+fn test_sum_u8s() {
+    assert(sum_u8s(1, 2_u8) == 3_u8, &amp;#x27;Something went wrong&amp;#x27;);
+}
+
+#[test]
+fn test_sum_big_numbers() {
+    &amp;#x2F;&amp;#x2F; Modified this test to use the correct integer types from u8 to u16
+    assert(sum_big_numbers(255_u16, 255_u16) == 510_u16, &amp;#x27;Something went wrong&amp;#x27;);
+}
+
+#[test]
+fn test_convert_to_felt() {
+    assert(convert_to_felt(1_u8) == 1, &amp;#x27;Type conversion went wrong&amp;#x27;);
+}
+
+#[test]
+fn test_convert_to_u8() {
+    assert(convert_felt_to_u8(1) == 1_u8, &amp;#x27;Type conversion went wrong&amp;#x27;);
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;with these these changes our code compiles and tests pass!&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;   Compiling test(exercise_crate_unittest) exercise_crate v0.1.0 (&amp;#x2F;starklings-cairo1&amp;#x2F;runner-crate&amp;#x2F;Scarb.toml)
+    Finished release target(s) in 1 second
+running 4 tests
+test exercise_crate::test_convert_to_felt ... ok (gas usage est.: 900)
+test exercise_crate::test_sum_big_numbers ... ok (gas usage est.: 1670)
+test exercise_crate::test_convert_to_u8 ... ok (gas usage est.: 2010)
+test exercise_crate::test_sum_u8s ... ok (gas usage est.: 1670)
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 filtered out;
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h3 id=&quot;explanation-3&quot;&gt;Explanation&lt;&#x2F;h3&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Prevent Overflow&lt;&#x2F;strong&gt;:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;The function &lt;code&gt;sum_big_numbers&lt;&#x2F;code&gt; originally used &lt;code&gt;u8&lt;&#x2F;code&gt; types, which can only hold values from &lt;code&gt;0&lt;&#x2F;code&gt; to &lt;code&gt;255&lt;&#x2F;code&gt;. Summing two large &lt;code&gt;u8&lt;&#x2F;code&gt; values could cause an overflow.&lt;&#x2F;li&gt;
+&lt;li&gt;To prevent this, we changed the parameter types from &lt;code&gt;u8&lt;&#x2F;code&gt; to &lt;code&gt;u16&lt;&#x2F;code&gt;. The &lt;code&gt;u16&lt;&#x2F;code&gt; type can hold values from &lt;code&gt;0&lt;&#x2F;code&gt; to &lt;code&gt;65535&lt;&#x2F;code&gt;, thus avoiding overflow when summing large values.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Implement Conversion Functions&lt;&#x2F;strong&gt;:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;&lt;code&gt;convert_to_felt&lt;&#x2F;code&gt;&lt;&#x2F;strong&gt;: This function converts a &lt;code&gt;u8&lt;&#x2F;code&gt; value to a &lt;code&gt;felt252&lt;&#x2F;code&gt;. Using the &lt;code&gt;.into()&lt;&#x2F;code&gt; trait, the conversion is straightforward.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;code&gt;convert_felt_to_u8&lt;&#x2F;code&gt;&lt;&#x2F;strong&gt;: This function converts a &lt;code&gt;felt252&lt;&#x2F;code&gt; value back to a &lt;code&gt;u8&lt;&#x2F;code&gt;. The &lt;code&gt;.try_into()&lt;&#x2F;code&gt; trait is used for this conversion, and &lt;code&gt;.unwrap()&lt;&#x2F;code&gt; ensures the conversion is successful. If it isn&#x27;t, the program will panic.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Modify Tests&lt;&#x2F;strong&gt;:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;Updated the &lt;code&gt;test_sum_big_numbers&lt;&#x2F;code&gt; test to use &lt;code&gt;u16&lt;&#x2F;code&gt; types for the values and the expected result. This matches the updated function signature and ensures the test values do not cause overflow.&lt;&#x2F;li&gt;
+&lt;li&gt;The tests for conversion functions &lt;code&gt;test_convert_to_felt&lt;&#x2F;code&gt; and &lt;code&gt;test_convert_to_u8&lt;&#x2F;code&gt; confirm that the type conversions work as expected.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;p&gt;By modifying the integer types from &lt;code&gt;u8&lt;&#x2F;code&gt; to &lt;code&gt;u16&lt;&#x2F;code&gt;, we prevent overflow in the &lt;code&gt;sum_big_numbers&lt;&#x2F;code&gt; function. We implemented the conversion functions using &lt;code&gt;.into()&lt;&#x2F;code&gt; and &lt;code&gt;.try_into()&lt;&#x2F;code&gt; traits, ensuring seamless type conversions between &lt;code&gt;u8&lt;&#x2F;code&gt; and &lt;code&gt;felt252&lt;&#x2F;code&gt;. The tests were updated to reflect these changes, verifying that the functions operate correctly and the integer operations are safe from overflow.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;conclusion&quot;&gt;Conclusion&lt;&#x2F;h2&gt;
+&lt;p&gt;Alright, we&#x27;ve finished! Well done if you are still reading. In this post of Starklings &lt;code&gt;primitive_types&lt;&#x2F;code&gt; exercises, we explored fundamental concepts of working with primitive types in Cairo. Here’s a recap of what we covered:&lt;&#x2F;p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Basic Variable Initialization&lt;&#x2F;strong&gt;:
+• We started with simple variable initialization and boolean checks. By defining and using boolean variables, we learned how to control the flow of our program based on conditional statements.&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Tuple Destructuring&lt;&#x2F;strong&gt;:
+• We looked into tuple destructuring, which allowed us to break down composite data structures into individual elements. This helped us print and manipulate each member of a tuple effectively.&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Understanding Cairo’s String Representation&lt;&#x2F;strong&gt;:
+• We discovered how Cairo represents short strings as &lt;code&gt;felt252&lt;&#x2F;code&gt;, which are large numerical values. We examined how these numerical values correspond to the original string and learned why they appear as large numbers when printed directly.&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Preventing Overflow&lt;&#x2F;strong&gt;:
+• We addressed the issue of overflow by changing the integer types in our functions. By upgrading from &lt;code&gt;u8&lt;&#x2F;code&gt; to &lt;code&gt;u16&lt;&#x2F;code&gt;, we ensured that our functions could handle larger values without running into overflow problems.&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Type Conversion&lt;&#x2F;strong&gt;:
+• We implemented functions to convert between different integer types and &lt;code&gt;felt252&lt;&#x2F;code&gt;. Using the &lt;code&gt;.into()&lt;&#x2F;code&gt; and &lt;code&gt;.try_into()&lt;&#x2F;code&gt; traits, we efficiently converted &lt;code&gt;u8&lt;&#x2F;code&gt; values to &lt;code&gt;felt252&lt;&#x2F;code&gt; and vice versa, ensuring compatibility and correctness in our operations.&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Modifying Tests&lt;&#x2F;strong&gt;:
+• Throughout the exercises, we modified tests to verify the correctness of our functions. These tests ensured that our functions behaved as expected, handling edge cases and type conversions properly.&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;p&gt;By working through these exercises, we’ve unlocked a deeper understanding of primitive types in Cairo and learned how to manipulate them effectively. We’ve mastered writing robust code that seamlessly handles various data types and skillfully avoids common pitfalls like overflow. These foundational skills are our stepping stones as we venture into more advanced and exciting topics in Cairo programming.&lt;&#x2F;p&gt;
+</description>
+      </item>
       <item>
           <title>Starklings-Cairo1: Variables in Cairo</title>
           <pubDate>Mon, 20 May 2024 00:00:00 +0000</pubDate>
@@ -1406,7 +2041,7 @@ and we did so with the &lt;em&gt;HashMap&lt;&#x2F;em&gt; solution so let&#x27;s 
 </description>
       </item>
       <item>
-          <title>26 Rustlings Conversions</title>
+          <title>26 Rustlings Conversions Solution</title>
           <pubDate>Wed, 13 Dec 2023 00:00:00 +0000</pubDate>
           <author>Unknown</author>
           <link>https://desmodrone.github.io/posts/26-rustlings-conversions/</link>
@@ -2446,7 +3081,7 @@ You can also contribute your own exercises to help the greater community!
 </description>
       </item>
       <item>
-          <title>25 Rustlings Clippy</title>
+          <title>25 Rustlings Clippy Solution</title>
           <pubDate>Thu, 30 Nov 2023 00:00:00 +0000</pubDate>
           <author>Unknown</author>
           <link>https://desmodrone.github.io/posts/25-rustlings-clippy/</link>
@@ -2829,7 +3464,7 @@ fn main() {
 </description>
       </item>
       <item>
-          <title>24 Rustlings Macros</title>
+          <title>24 Rustlings Macros Solution</title>
           <pubDate>Tue, 21 Nov 2023 00:00:00 +0000</pubDate>
           <author>Unknown</author>
           <link>https://desmodrone.github.io/posts/24-rustlings-macros/</link>
@@ -3072,7 +3707,7 @@ Look at this other macro: 7777
 </description>
       </item>
       <item>
-          <title>23 Rustlings Smart Pointers</title>
+          <title>23 Rustlings Smart Pointers Solution</title>
           <pubDate>Fri, 17 Nov 2023 00:00:00 +0000</pubDate>
           <author>Unknown</author>
           <link>https://desmodrone.github.io/posts/23-rustlings-smart-pointers/</link>
@@ -3814,7 +4449,7 @@ fn reference_no_mutation() -&amp;gt; Result&amp;lt;(), &amp;amp;&amp;#x27;static
 </description>
       </item>
       <item>
-          <title>22 Rustlings Threads</title>
+          <title>22 Rustlings Threads Solution</title>
           <pubDate>Mon, 06 Nov 2023 00:00:00 +0000</pubDate>
           <author>Unknown</author>
           <link>https://desmodrone.github.io/posts/22-rustlings-threads/</link>
@@ -4284,7 +4919,7 @@ total numbers received: 10
 </description>
       </item>
       <item>
-          <title>21 Rustlings Iterators</title>
+          <title>21 Rustlings Iterators Solution</title>
           <pubDate>Fri, 27 Oct 2023 00:00:00 +0000</pubDate>
           <author>Unknown</author>
           <link>https://desmodrone.github.io/posts/21-rustlings-iterators/</link>
@@ -5017,7 +5652,7 @@ fn count_collection_iterator(collection: &amp;amp;[HashMap&amp;lt;String, Progre
 </description>
       </item>
       <item>
-          <title>20 Rustlings Lifetimes</title>
+          <title>20 Rustlings Lifetimes Solution</title>
           <pubDate>Tue, 17 Oct 2023 00:00:00 +0000</pubDate>
           <author>Unknown</author>
           <link>https://desmodrone.github.io/posts/20-rustlings-lifetimes/</link>
@@ -5296,7 +5931,7 @@ Fish Flying by Jill Smith
 </description>
       </item>
       <item>
-          <title>19 Rustlings Tests</title>
+          <title>19 Rustlings Tests Solution</title>
           <pubDate>Fri, 15 Sep 2023 00:00:00 +0000</pubDate>
           <author>Unknown</author>
           <link>https://desmodrone.github.io/posts/19-rustlings-tests/</link>
@@ -5307,23 +5942,23 @@ Fish Flying by Jill Smith
 &lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;doc.rust-lang.org&#x2F;book&#x2F;ch11-01-writing-tests.html&quot;&gt;Writing Tests&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
 &lt;&#x2F;ul&gt;
 &lt;h2 id=&quot;tests1-rs&quot;&gt;Tests1.rs&lt;&#x2F;h2&gt;
-&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;&amp;#x2F;&amp;#x2F; tests1.rs  
-&amp;#x2F;&amp;#x2F; Tests are important to ensure that your code does what you think it should do.  
-&amp;#x2F;&amp;#x2F; Tests can be run on this file with the following command:  
-&amp;#x2F;&amp;#x2F; rustlings run tests1  
-  
-&amp;#x2F;&amp;#x2F; This test has a problem with it -- make the test compile! Make the test  
-&amp;#x2F;&amp;#x2F; pass! Make the test fail!  
-&amp;#x2F;&amp;#x2F; Execute `rustlings hint tests1` or use the `hint` watch subcommand for a hint.  
-  
-&amp;#x2F;&amp;#x2F; I AM NOT DONE  
-  
-#[cfg(test)]  
-mod tests {  
-    #[test]  
-    fn you_can_assert() {  
-        assert!();  
-    }  
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;&amp;#x2F;&amp;#x2F; tests1.rs
+&amp;#x2F;&amp;#x2F; Tests are important to ensure that your code does what you think it should do.
+&amp;#x2F;&amp;#x2F; Tests can be run on this file with the following command:
+&amp;#x2F;&amp;#x2F; rustlings run tests1
+
+&amp;#x2F;&amp;#x2F; This test has a problem with it -- make the test compile! Make the test
+&amp;#x2F;&amp;#x2F; pass! Make the test fail!
+&amp;#x2F;&amp;#x2F; Execute `rustlings hint tests1` or use the `hint` watch subcommand for a hint.
+
+&amp;#x2F;&amp;#x2F; I AM NOT DONE
+
+#[cfg(test)]
+mod tests {
+    #[test]
+    fn you_can_assert() {
+        assert!();
+    }
 }
 &lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
 &lt;p&gt;So now we&#x27;re looking at tests, an important part of the development process in any language is being able to test your code. In our first exercise we see instructions that tells us to make the test compile, make the test fail, essentially to play around with the code.
@@ -5340,13 +5975,13 @@ error: aborting due to previous error
 &lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
 &lt;p&gt;The compiler gives us a big hint, we need to add a boolean expression. So let&#x27;s try that.&lt;&#x2F;p&gt;
 &lt;h2 id=&quot;test1-rs-solution&quot;&gt;Test1.rs Solution&lt;&#x2F;h2&gt;
-&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;  
-#[cfg(test)]  
-mod tests {  
-    #[test]  
-    fn you_can_assert() {  
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;
+#[cfg(test)]
+mod tests {
+    #[test]
+    fn you_can_assert() {
         assert!(false == false); &amp;#x2F;&amp;#x2F; let&amp;#x27;s add false == false
-    }  
+    }
 }
 &lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
 &lt;p&gt;if we add this we actually compile and pass the tests:&lt;&#x2F;p&gt;
@@ -5381,19 +6016,19 @@ assert!(&amp;quot;hi&amp;quot; == &amp;quot;hi&amp;quot;); &amp;#x2F;&amp;#x2F; 
 &lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
 &lt;p&gt;Alright, we get the idea we need to have something to compare it, and have it be equal for it to pass, alright got it! Let&#x27;s move on.&lt;&#x2F;p&gt;
 &lt;h2 id=&quot;test2-rs&quot;&gt;Test2.rs&lt;&#x2F;h2&gt;
-&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;&amp;#x2F;&amp;#x2F; tests2.rs  
-&amp;#x2F;&amp;#x2F; This test has a problem with it -- make the test compile! Make the test  
-&amp;#x2F;&amp;#x2F; pass! Make the test fail!  
-&amp;#x2F;&amp;#x2F; Execute `rustlings hint tests2` or use the `hint` watch subcommand for a hint.  
-  
-&amp;#x2F;&amp;#x2F; I AM NOT DONE  
-  
-#[cfg(test)]  
-mod tests {  
-    #[test]  
-    fn you_can_assert_eq() {  
-        assert_eq!();  
-    }  
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;&amp;#x2F;&amp;#x2F; tests2.rs
+&amp;#x2F;&amp;#x2F; This test has a problem with it -- make the test compile! Make the test
+&amp;#x2F;&amp;#x2F; pass! Make the test fail!
+&amp;#x2F;&amp;#x2F; Execute `rustlings hint tests2` or use the `hint` watch subcommand for a hint.
+
+&amp;#x2F;&amp;#x2F; I AM NOT DONE
+
+#[cfg(test)]
+mod tests {
+    #[test]
+    fn you_can_assert_eq() {
+        assert_eq!();
+    }
 }
 &lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
 &lt;p&gt;Our instructions are again similar, we need to make the code compile and pass tests.&lt;&#x2F;p&gt;
@@ -5411,12 +6046,12 @@ note: while trying to match meta-variable `$left:expr`
 &lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
 &lt;p&gt;Again we get a clear statement saying we have missing tokens in the macro arguments. So let&#x27;s play around and see what we get.&lt;&#x2F;p&gt;
 &lt;h2 id=&quot;test2-rs-solution&quot;&gt;Test2.rs Solution&lt;&#x2F;h2&gt;
-&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;#[cfg(test)]  
-mod tests {  
-    #[test]  
-    fn you_can_assert_eq() {  
-        assert_eq!(0, true);  
-    }  
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;#[cfg(test)]
+mod tests {
+    #[test]
+    fn you_can_assert_eq() {
+        assert_eq!(0, true);
+    }
 }
 &lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
 &lt;p&gt;This fails!  Let&#x27;s see what the compiler says&lt;&#x2F;p&gt;
@@ -5447,31 +6082,31 @@ assert_eq!(true, false); ❌
 &lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
 &lt;p&gt;Similar to our last exercise, we can enter comma separated values and see what happens. We clearly. have to enter matching values or the tests fail. Great, moving on!&lt;&#x2F;p&gt;
 &lt;h2 id=&quot;test3-rs&quot;&gt;Test3.rs&lt;&#x2F;h2&gt;
-&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;&amp;#x2F;&amp;#x2F; tests3.rs  
-&amp;#x2F;&amp;#x2F; This test isn&amp;#x27;t testing our function -- make it do that in such a way that  
-&amp;#x2F;&amp;#x2F; the test passes. Then write a second test that tests whether we get the result  
-&amp;#x2F;&amp;#x2F; we expect to get when we call `is_even(5)`.  
-&amp;#x2F;&amp;#x2F; Execute `rustlings hint tests3` or use the `hint` watch subcommand for a hint.  
-  
-&amp;#x2F;&amp;#x2F; I AM NOT DONE  
-  
-pub fn is_even(num: i32) -&amp;gt; bool {  
-    num % 2 == 0  
-}  
-  
-#[cfg(test)]  
-mod tests {  
-    use super::*;  
-  
-    #[test]  
-    fn is_true_when_even() {  
-        assert!();  
-    }  
-  
-    #[test]  
-    fn is_false_when_odd() {  
-        assert!();  
-    }  
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;&amp;#x2F;&amp;#x2F; tests3.rs
+&amp;#x2F;&amp;#x2F; This test isn&amp;#x27;t testing our function -- make it do that in such a way that
+&amp;#x2F;&amp;#x2F; the test passes. Then write a second test that tests whether we get the result
+&amp;#x2F;&amp;#x2F; we expect to get when we call `is_even(5)`.
+&amp;#x2F;&amp;#x2F; Execute `rustlings hint tests3` or use the `hint` watch subcommand for a hint.
+
+&amp;#x2F;&amp;#x2F; I AM NOT DONE
+
+pub fn is_even(num: i32) -&amp;gt; bool {
+    num % 2 == 0
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn is_true_when_even() {
+        assert!();
+    }
+
+    #[test]
+    fn is_false_when_odd() {
+        assert!();
+    }
 }
 &lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
 &lt;p&gt;Now, we finally get a function to test, it looks like we have to make the code compile and pass tests. If we look at the function we can see that it takes in an &lt;code&gt;i32&lt;&#x2F;code&gt; and returns a &lt;code&gt;bool&lt;&#x2F;code&gt; meaning, either &lt;code&gt;true&lt;&#x2F;code&gt; or &lt;code&gt;false&lt;&#x2F;code&gt; so does that give us a hint as to what to do?&lt;&#x2F;p&gt;
@@ -5501,24 +6136,24 @@ warning: unused import: `super::*`
 &lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
 &lt;h2 id=&quot;test3-rs-solution&quot;&gt;Test3.rs Solution&lt;&#x2F;h2&gt;
 &lt;p&gt;We&#x27;ve been playing with these tests for a couple of exercises and we can say that we&#x27;ve seen that we need to have matching values. So we know that we need to match a &lt;code&gt;bool&lt;&#x2F;code&gt; so let&#x27;s try that..&lt;&#x2F;p&gt;
-&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;  
-pub fn is_even(num: i32) -&amp;gt; bool {  
-    num % 2 == 0  
-}  
-  
-#[cfg(test)]  
-mod tests {  
-    use super::*;  
-  
-    #[test]  
-    fn is_true_when_even() {  
-        assert!(true == true);  
-    }  
-  
-    #[test]  
-    fn is_false_when_odd() {  
-        assert!(false == false);  
-    }  
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;
+pub fn is_even(num: i32) -&amp;gt; bool {
+    num % 2 == 0
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn is_true_when_even() {
+        assert!(true == true);
+    }
+
+    #[test]
+    fn is_false_when_odd() {
+        assert!(false == false);
+    }
 }
 &lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
 &lt;p&gt;And there we have it! Our tests are passing and our code is compiling.&lt;&#x2F;p&gt;
@@ -5544,7 +6179,7 @@ test tests::is_true_when_even ... ok
 </description>
       </item>
       <item>
-          <title>18 Rustlings Quiz 3</title>
+          <title>18 Rustlings Quiz 3 Solution</title>
           <pubDate>Tue, 05 Sep 2023 00:00:00 +0000</pubDate>
           <author>Unknown</author>
           <link>https://desmodrone.github.io/posts/18-rustlings-quiz3/</link>
@@ -5823,7 +6458,7 @@ fn main() {
 </description>
       </item>
       <item>
-          <title>17 Rustlings Traits</title>
+          <title>17 Rustlings Traits Solution</title>
           <pubDate>Fri, 25 Aug 2023 00:00:00 +0000</pubDate>
           <author>Unknown</author>
           <link>https://desmodrone.github.io/posts/17-rustlings-traits/</link>
@@ -6416,7 +7051,7 @@ error: aborting due to 3 previous errors
 </description>
       </item>
       <item>
-          <title>16 Rustlings Generics</title>
+          <title>16 Rustlings Generics Solution</title>
           <pubDate>Wed, 16 Aug 2023 00:00:00 +0000</pubDate>
           <author>Unknown</author>
           <link>https://desmodrone.github.io/posts/16-rustlings-generics/</link>
@@ -6562,7 +7197,7 @@ struct Wrapper&amp;lt;T&amp;gt; {
 </description>
       </item>
       <item>
-          <title>15 Rustlings Errors Part 2</title>
+          <title>15 Rustlings Errors Part 2 Solution</title>
           <pubDate>Fri, 11 Aug 2023 00:00:00 +0000</pubDate>
           <author>Unknown</author>
           <link>https://desmodrone.github.io/posts/15-rustlings-errors2/</link>
@@ -7078,7 +7713,7 @@ impl ParsePosNonzeroError {
 </description>
       </item>
       <item>
-          <title>15 Rustlings Errors Part 1</title>
+          <title>15 Rustlings Errors Part 1 Solution</title>
           <pubDate>Tue, 08 Aug 2023 00:00:00 +0000</pubDate>
           <author>Unknown</author>
           <link>https://desmodrone.github.io/posts/15-rustlings-errors1/</link>
@@ -7477,7 +8112,7 @@ You now have 59 tokens.
 </description>
       </item>
       <item>
-          <title>14 Rustlings Options</title>
+          <title>14 Rustlings Options Solution</title>
           <pubDate>Mon, 31 Jul 2023 00:00:00 +0000</pubDate>
           <author>Unknown</author>
           <link>https://desmodrone.github.io/posts/14-rustlings-options/</link>
@@ -12783,87 +13418,34 @@ fn main() {
           <guid>https://desmodrone.github.io/posts/hello-rustlings/</guid>
           <description xml:base="https://desmodrone.github.io/posts/hello-rustlings/">&lt;h2 id=&quot;rustling-s-index&quot;&gt;Rustling&#x27;s Index&lt;&#x2F;h2&gt;
 &lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;a href=&quot;https:&#x2F;&#x2F;desmodrone.github.io&#x2F;posts&#x2F;01-rustlings-variables&#x2F;&quot;&gt;01_rustlings_variables&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
-&lt;&#x2F;li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;a href=&quot;https:&#x2F;&#x2F;desmodrone.github.io&#x2F;posts&#x2F;02-rustlings-functions&#x2F;&quot;&gt;02_rustlings_functions&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
-&lt;&#x2F;li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;a href=&quot;https:&#x2F;&#x2F;desmodrone.github.io&#x2F;posts&#x2F;03-rustlings-if&#x2F;&quot;&gt;03_rustlings_functions&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
-&lt;&#x2F;li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;a href=&quot;https:&#x2F;&#x2F;desmodrone.github.io&#x2F;posts&#x2F;04-rustlings-quiz1&#x2F;&quot;&gt;04_rustlings_quiz1&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
-&lt;&#x2F;li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;a href=&quot;https:&#x2F;&#x2F;desmodrone.github.io&#x2F;posts&#x2F;05-rustlings-primitive-types&#x2F;&quot;&gt;05_rustlings_primitive_types&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
-&lt;&#x2F;li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;a href=&quot;https:&#x2F;&#x2F;desmodrone.github.io&#x2F;posts&#x2F;06-rustlings-vecs&#x2F;&quot;&gt;06_rustlings_vecs&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
-&lt;&#x2F;li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;a href=&quot;https:&#x2F;&#x2F;desmodrone.github.io&#x2F;posts&#x2F;07-rustlings-move-semantics1&#x2F;&quot;&gt;07_rustlings_move_semantics_part_1&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
-&lt;&#x2F;li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;a href=&quot;https:&#x2F;&#x2F;desmodrone.github.io&#x2F;posts&#x2F;07-rustlings-move-semantics2&#x2F;&quot;&gt;07_rustlings_move_semantics_part_2&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
-&lt;&#x2F;li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;a href=&quot;https:&#x2F;&#x2F;desmodrone.github.io&#x2F;posts&#x2F;08-rustlings-structs&#x2F;&quot;&gt;08_rustlings_structs&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
-&lt;&#x2F;li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;a href=&quot;https:&#x2F;&#x2F;desmodrone.github.io&#x2F;posts&#x2F;09-rustlings-enums&#x2F;&quot;&gt;09_rustlings_enums&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
-&lt;&#x2F;li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;a href=&quot;https:&#x2F;&#x2F;desmodrone.github.io&#x2F;posts&#x2F;10-rustlings-strings&quot;&gt;10_rustlings_strings&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
-&lt;&#x2F;li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;a href=&quot;https:&#x2F;&#x2F;desmodrone.github.io&#x2F;posts&#x2F;11-rustlings-modules&quot;&gt;11_rustlings_modules&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
-&lt;&#x2F;li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;a href=&quot;https:&#x2F;&#x2F;desmodrone.github.io&#x2F;posts&#x2F;12-rustlings-hashmaps&quot;&gt;12_rustlings_hashmaps&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
-&lt;&#x2F;li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;a href=&quot;https:&#x2F;&#x2F;desmodrone.github.io&#x2F;posts&#x2F;13-rustlings-quiz2&quot;&gt;13_rustlings_quiz2&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
-&lt;&#x2F;li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;a href=&quot;https:&#x2F;&#x2F;desmodrone.github.io&#x2F;posts&#x2F;14-rustlings-options&quot;&gt;14_rustlings_options&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
-&lt;&#x2F;li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;a href=&quot;https:&#x2F;&#x2F;desmodrone.github.io&#x2F;posts&#x2F;15-rustlings-errors1&#x2F;&quot;&gt;15_rustlings_errors_part_1&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
-&lt;&#x2F;li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;a href=&quot;https:&#x2F;&#x2F;desmodrone.github.io&#x2F;posts&#x2F;15-rustlings-errors2&#x2F;&quot;&gt;15_rustlings_errors_part_2&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
-&lt;&#x2F;li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;a href=&quot;https:&#x2F;&#x2F;desmodrone.github.io&#x2F;posts&#x2F;16-rustlings-generics&#x2F;&quot;&gt;16_rustlings_generics&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
-&lt;&#x2F;li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;a href=&quot;https:&#x2F;&#x2F;desmodrone.github.io&#x2F;posts&#x2F;17-rustlings-traits&quot;&gt;17_rustlings_traits&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
-&lt;&#x2F;li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;a href=&quot;https:&#x2F;&#x2F;desmodrone.github.io&#x2F;posts&#x2F;18-rustlings-quiz3&quot;&gt;18_rustlings_quiz3&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
-&lt;&#x2F;li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;a href=&quot;https:&#x2F;&#x2F;desmodrone.github.io&#x2F;posts&#x2F;19-rustlings-tests&quot;&gt;19_rustlings_tests&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
-&lt;&#x2F;li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;a href=&quot;https:&#x2F;&#x2F;desmodrone.github.io&#x2F;posts&#x2F;20-rustlings-lifetimes&quot;&gt;20_rustlings_lifetimes&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
-&lt;&#x2F;li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;a href=&quot;https:&#x2F;&#x2F;desmodrone.github.io&#x2F;posts&#x2F;21-rustlings-iterators&quot;&gt;21_rustlings_iterators&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
-&lt;&#x2F;li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;a href=&quot;https:&#x2F;&#x2F;desmodrone.github.io&#x2F;posts&#x2F;22-rustlings-threads&quot;&gt;22_rustlings_threads&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
-&lt;&#x2F;li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;a href=&quot;https:&#x2F;&#x2F;desmodrone.github.io&#x2F;posts&#x2F;23-rustlings-smart-pointers&quot;&gt;23_rustlings_smart_pointers&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
-&lt;&#x2F;li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;a href=&quot;https:&#x2F;&#x2F;desmodrone.github.io&#x2F;posts&#x2F;24-rustlings-macros&quot;&gt;24_rustlings_macros&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
-&lt;&#x2F;li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;a href=&quot;https:&#x2F;&#x2F;desmodrone.github.io&#x2F;posts&#x2F;25-rustlings-clippy&quot;&gt;25_rustlings_clippy&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
-&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;desmodrone.github.io&#x2F;posts&#x2F;01-rustlings-variables&#x2F;&quot;&gt;01_rustlings_variables_solution&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;desmodrone.github.io&#x2F;posts&#x2F;02-rustlings-functions&#x2F;&quot;&gt;02_rustlings_functions_solution&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;desmodrone.github.io&#x2F;posts&#x2F;03-rustlings-if&#x2F;&quot;&gt;03_rustlings_functions_solution&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;desmodrone.github.io&#x2F;posts&#x2F;04-rustlings-quiz1&#x2F;&quot;&gt;04_rustlings_quiz1_solution&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;desmodrone.github.io&#x2F;posts&#x2F;05-rustlings-primitive-types&#x2F;&quot;&gt;05_rustlings_primitive_types_solution&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;desmodrone.github.io&#x2F;posts&#x2F;06-rustlings-vecs&#x2F;&quot;&gt;06_rustlings_vecs_solution&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;desmodrone.github.io&#x2F;posts&#x2F;07-rustlings-move-semantics1&#x2F;&quot;&gt;07_rustlings_move_semantics_part_1_solution&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;desmodrone.github.io&#x2F;posts&#x2F;07-rustlings-move-semantics2&#x2F;&quot;&gt;07_rustlings_move_semantics_part_2_solution&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;desmodrone.github.io&#x2F;posts&#x2F;08-rustlings-structs&#x2F;&quot;&gt;08_rustlings_structs_solution&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;desmodrone.github.io&#x2F;posts&#x2F;09-rustlings-enums&#x2F;&quot;&gt;09_rustlings_enums_solution&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;desmodrone.github.io&#x2F;posts&#x2F;10-rustlings-strings&quot;&gt;10_rustlings_strings_solution&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;desmodrone.github.io&#x2F;posts&#x2F;11-rustlings-modules&quot;&gt;11_rustlings_modules_solution&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;desmodrone.github.io&#x2F;posts&#x2F;12-rustlings-hashmaps&quot;&gt;12_rustlings_hashmaps_solution&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;desmodrone.github.io&#x2F;posts&#x2F;13-rustlings-quiz2&quot;&gt;13_rustlings_quiz2_solution&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;desmodrone.github.io&#x2F;posts&#x2F;14-rustlings-options&quot;&gt;14_rustlings_options_solution&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;desmodrone.github.io&#x2F;posts&#x2F;15-rustlings-errors1&#x2F;&quot;&gt;15_rustlings_errors_part_1_solution&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;desmodrone.github.io&#x2F;posts&#x2F;15-rustlings-errors2&#x2F;&quot;&gt;15_rustlings_errors_part_2_solution&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;desmodrone.github.io&#x2F;posts&#x2F;16-rustlings-generics&#x2F;&quot;&gt;16_rustlings_generics_solution&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;desmodrone.github.io&#x2F;posts&#x2F;17-rustlings-traits&quot;&gt;17_rustlings_traits_solution&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;desmodrone.github.io&#x2F;posts&#x2F;18-rustlings-quiz3&quot;&gt;18_rustlings_quiz3_solution&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;desmodrone.github.io&#x2F;posts&#x2F;19-rustlings-tests&quot;&gt;19_rustlings_tests_solution&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;desmodrone.github.io&#x2F;posts&#x2F;20-rustlings-lifetimes&quot;&gt;20_rustlings_lifetimes_solution&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;desmodrone.github.io&#x2F;posts&#x2F;21-rustlings-iterators&quot;&gt;21_rustlings_iterators_solution&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;desmodrone.github.io&#x2F;posts&#x2F;22-rustlings-threads&quot;&gt;22_rustlings_threads_solution&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;desmodrone.github.io&#x2F;posts&#x2F;23-rustlings-smart-pointers&quot;&gt;23_rustlings_smart_pointers_solution&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;desmodrone.github.io&#x2F;posts&#x2F;24-rustlings-macros&quot;&gt;24_rustlings_macros_solution&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;desmodrone.github.io&#x2F;posts&#x2F;25-rustlings-clippy&quot;&gt;25_rustlings_clippy_solution&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;desmodrone.github.io&#x2F;posts&#x2F;25-rustlings-conversions&quot;&gt;25_rustlings_conversions_solution&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
 &lt;&#x2F;ul&gt;
 &lt;p&gt;Inspired by Tris Oaten&#x27;s recent video &lt;a href=&quot;https:&#x2F;&#x2F;youtu.be&#x2F;2hXNd6x9sZs&quot;&gt;How to Learn Rust&lt;&#x2F;a&gt; on his excellent YouTube channel &lt;a href=&quot;https:&#x2F;&#x2F;www.youtube.com&#x2F;@NoBoilerplate&quot;&gt;No Boilerplate&lt;&#x2F;a&gt;, I&#x27;ve decided to refocus my journey with the Rust programming language. In hopes of effectively learning Rust, I&#x27;ll be following the holy trinity of Rust learning resources as recommended by Tris:&lt;&#x2F;p&gt;
 &lt;ul&gt;
