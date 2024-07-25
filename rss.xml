@@ -1158,6 +1158,7 @@ Despite significant advancements, challenges remain. The quest for a universal p
           <description xml:base="https://desmodrone.github.io/posts/cairo-hello-starklings/">&lt;h2 id=&quot;starklings-index&quot;&gt;Starklings Index&lt;&#x2F;h2&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;desmodrone.github.io&#x2F;posts&#x2F;01-starklings-cario-variables&#x2F;&quot;&gt;01_starklings_cairo_variables&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;desmodrone.github.io&#x2F;posts&#x2F;02-starklings-cairo-primitive-types&#x2F;&quot;&gt;02_starklings_cairo_primitive_types&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
 &lt;&#x2F;ul&gt;
 &lt;h2 id=&quot;exploring-cairo-through-rust-tinted-glasses&quot;&gt;Exploring Cairo Through Rust-Tinted Glasses&lt;&#x2F;h2&gt;
 &lt;p&gt;In programming, specialized languages tailor-made for specific sectors are revolutionizing the way developers approach problems and solutions. One such niche language is &lt;strong&gt;Cairo&lt;&#x2F;strong&gt;, developed by Starkware. It’s designed to facilitate the creation and handling of &lt;strong&gt;Zero Knowledge Proofs&lt;&#x2F;strong&gt; (ZKPs), a burgeoning technology that promises enhanced privacy and security in blockchain applications and beyond.&lt;&#x2F;p&gt;
