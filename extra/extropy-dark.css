@@ -1,0 +1,208 @@
+:root {
+    --r-background-color: #002147;
+    --r-main-font: "Foundry Sterling", sans-serif;
+    --r-main-font-size: 24px;
+    --r-main-color: #ffffff;
+    --r-block-margin: 20px;
+    --r-heading-margin: 0 0 20px 0;
+    --r-heading-font: "Foundry Sterling", sans-serif;
+    --r-heading-color: #ed254e;
+    --r-subheading-color: #99ddcc;
+    --r-heading-line-height: 1em;
+    --r-heading-letter-spacing: normal;
+    --r-heading-text-transform: uppercase;
+    --r-heading-text-shadow: none;
+    --r-heading1-font-weight: bold;
+    --r-heading2-font-weight: bold;
+    --r-heading3-font-weight: bold;
+    --r-heading4-font-weight: bold;
+    --r-heading5-font-weight: bold;
+    --r-heading6-font-weight: bold;
+    --r-heading1-text-shadow: none;
+    --r-heading1-size: 3.77em;
+    --r-heading2-size: 2.11em;
+    --r-heading3-size: 1.55em;
+    --r-heading4-size: 1em;
+    --r-heading5-size: 0.8em;
+    --r-heading6-size: 0.6em;
+    --r-code-font: monospace;
+    --r-link-color: #ed254e;
+    --r-link-color-dark: #d08a1d;
+    --r-link-color-hover: #f0cd95;
+    --r-selection-background-color: #f7e2c2;
+    --r-selection-color: #fff;
+}
+
+body {
+    background-color: var(--r-background-color) !important;
+}
+
+.reveal-viewport {
+    background-color: var(--r-background-color) !important;
+}
+
+.reveal {
+    font-family: var(--r-main-font);
+    font-size: var(--r-main-font-size);
+    font-weight: normal;
+    color: var(--r-main-color);
+    background-image: url("https://desmodrone.github.io/images/left-to-right-flatter-centered-arrows-5p.png");
+    background-size: contain;
+    background-position: top center;
+    background-repeat: no-repeat;
+    opacity: 1;
+    position: relative;
+}
+
+.reveal .slides {
+    text-align: left !important;
+}
+
+.reveal .slides section {
+    text-align: left !important;
+}
+
+.reveal .slides section h1,
+.reveal .slides section h2,
+.reveal .slides section h3,
+.reveal .slides section h4,
+.reveal .slides section h5,
+.reveal .slides section h6,
+.reveal .slides section p {
+    text-align: left !important;
+}
+
+.reveal .slides section h1 {
+    margin: var(--r-heading-margin);
+    color: var(--r-heading-color);
+    font-family: var(--r-heading-font);
+    line-height: var(--r-heading-line-height);
+    letter-spacing: var(--r-heading-letter-spacing);
+    text-transform: var(--r-heading-text-transform);
+    text-shadow: var(--r-heading-text-shadow);
+    word-wrap: break-word;
+    font-weight: bold;
+    letter-spacing: -0em;
+    text-align: left !important;
+    font-size: 2.5em;
+}
+
+.reveal .slides section h2 {
+    margin: var(--r-heading-margin);
+    color: var(--r-subheading-color);
+    font-family: var(--r-heading-font);
+    line-height: var(--r-heading-line-height);
+    letter-spacing: var(--r-heading-letter-spacing);
+    text-transform: var(--r-heading-text-transform);
+    text-shadow: var(--r-heading-text-shadow);
+    word-wrap: break-word;
+    font-weight: bold;
+    letter-spacing: -0.1em;
+    text-align: left !important;
+    font-size: 2em;
+}
+
+.reveal .slides section h3 {
+    margin: var(--r-heading-margin);
+    color: var(--r-subheading-color);
+    font-family: var(--r-heading-font);
+    line-height: var(--r-heading-line-height);
+    letter-spacing: var(--r-heading-letter-spacing);
+    text-transform: var(--r-heading-text-transform);
+    text-shadow: var(--r-heading-text-shadow);
+    word-wrap: break-word;
+    font-weight: bold;
+    letter-spacing: -0.1em;
+    text-align: left !important; /* Force left alignment */
+    font-size: 1.75em;
+}
+
+.reveal .slides section h4 {
+    margin: var(--r-heading-margin);
+    color: var(--r-subheading-color);
+    font-family: var(--r-heading-font);
+    line-height: var(--r-heading-line-height);
+    letter-spacing: var(--r-heading-letter-spacing);
+    text-transform: var(--r-heading-text-transform);
+    text-shadow: var(--r-heading-text-shadow);
+    word-wrap: break-word;
+    font-weight: bold;
+    letter-spacing: -0.1em;
+    font-size: 1.5em;
+}
+
+.reveal .slides section h5 {
+    margin: var(--r-heading-margin);
+    color: var(--r-subheading-color);
+    font-family: var(--r-heading-font);
+    line-height: var(--r-heading-line-height);
+    letter-spacing: var(--r-heading-letter-spacing);
+    text-transform: var(--r-heading-text-transform);
+    text-shadow: var(--r-heading-text-shadow);
+    word-wrap: break-word;
+    font-weight: bold;
+    letter-spacing: -0.1em;
+    text-align: left !important;
+    font-size: 1.25em;
+}
+
+.reveal .slides section h6 {
+    margin: var(--r-heading-margin);
+    color: var(--r-subheading-color);
+    font-family: var(--r-heading-font);
+    line-height: var(--r-heading-line-height);
+    letter-spacing: var(--r-heading-letter-spacing);
+    text-transform: var(--r-heading-text-transform);
+    text-shadow: var(--r-heading-text-shadow);
+    word-wrap: break-word;
+    font-weight: bold;
+    letter-spacing: -0.1em;
+    text-align: left !important;
+    font-size: 1em;
+}
+
+.reveal .slides section p {
+    font-size: 1em;
+    text-align: left !important;
+}
+
+.reveal a {
+    color: var(--r-link-color);
+    text-decoration: none;
+    transition: color 0.15s ease;
+}
+
+.reveal a:hover {
+    color: var(--r-link-color-hover);
+    text-shadow: none;
+    border: none;
+}
+
+.reveal::before {
+    content: "";
+    position: fixed;
+    bottom: 50px;
+    left: 50px;
+    width: 100px;
+    height: 100px;
+    background-image: url("https://desmodrone.github.io/images/alt-extropy-light-for-dark-bg.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    opacity: 1;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.reveal::after {
+    content: "COURSE TEXT HERE";
+    position: fixed;
+    bottom: 10px;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    font-size: 24px;
+    color: #99ddcc;
+    background-color: #002147;
+    padding: 5px 0;
+    font-style: normal; /* Ensure text is not italic */
+}
