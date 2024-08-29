@@ -654,6 +654,30 @@ test result: ok. 4 passed; 0 failed; 0 ignored; 0 filtered out;
 When a variable is immutable, once a value is bound to a name, you can’t change that value.
 You can make them mutable by adding &lt;code&gt;mut&lt;&#x2F;code&gt; in front of the variable name.&lt;&#x2F;p&gt;
 &lt;p&gt;It is however important to clarify the fact that even though the variable can be made mutable, Cairo works with an immutable memory model, meaning that changing the value of a variable will not change the value in memory but rather assign a new memory location to that variable.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;now-available-in-video-format&quot;&gt;Now Available in Video Format&lt;&#x2F;h3&gt;
+&lt;p&gt;If you prefer watching over reading, a video version of this post is available.&lt;&#x2F;p&gt;
+&lt;style&gt;
+.video-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px 0;
+}
+
+.video-container iframe {
+  max-width: 90%;
+  height: auto;
+  min-height: 450px;
+  max-height: 70vh;
+}
+&lt;&#x2F;style&gt;
+&lt;div style=&quot;text-align: center;&quot;&gt;
+    &lt;iframe width=&quot;100%&quot; height=&quot;auto&quot; style=&quot;max-width: 800px; height: 450px;&quot;
+    src=&quot;https:&#x2F;&#x2F;www.youtube.com&#x2F;embed&#x2F;mR4wPglhhr0?si=IzSOlM7RG8ChEYds&quot;
+    title=&quot;YouTube video player&quot; frameborder=&quot;0&quot;
+    allow=&quot;accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share&quot;
+    referrerpolicy=&quot;strict-origin-when-cross-origin&quot; allowfullscreen&gt;&lt;&#x2F;iframe&gt;
+&lt;&#x2F;div&gt;
 &lt;h2 id=&quot;further-information&quot;&gt;Further information&lt;&#x2F;h2&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;www.cairo-lang.org&#x2F;docs&#x2F;how_cairo_works&#x2F;cairo_intro.html#memory-model&quot;&gt;Memory model in Cairo&lt;&#x2F;a&gt; - Explains how Cairo handles memory operations, emphasizing its immutable memory model.&lt;&#x2F;li&gt;
