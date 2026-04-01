@@ -27,6 +27,10 @@
   <link rel="alternate" type="application/rss+xml" title="RSS" href="https://desmodrone.github.io/rss.xml">
   
 
+  
+  <link rel="canonical" href="https://desmodrone.github.io/posts/21-rustlings-iterators/">
+  
+
   <body id="page">
 
 	
@@ -120,7 +124,7 @@
 		<small> - 
 <span class="reading-time" title="Estimated read time">
   
-  17 min read
+  9 min read
   
 </span>
 </small>
@@ -140,178 +144,178 @@
 <li><a href="https://doc.rust-lang.org/stable/std/iter/">Iterator documentation</a></li>
 </ul>
 <h2 id="iterators1-rs">Iterators1.rs</h2>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">&#x2F;&#x2F; iterators1.rs
-&#x2F;&#x2F;
-&#x2F;&#x2F;  Make me compile by filling in the `???`s
-&#x2F;&#x2F;
-&#x2F;&#x2F; When performing operations on elements within a collection, iterators are essential.
-&#x2F;&#x2F; This module helps you get familiar with the structure of using an iterator and
-&#x2F;&#x2F; how to go through elements within an iterable collection.
-&#x2F;&#x2F;
-&#x2F;&#x2F; Execute `rustlings hint iterators1` or use the `hint` watch subcommand for a hint.
-
-&#x2F;&#x2F; I AM NOT DONE
-
-fn main() {
-    let my_fav_fruits = vec![&quot;banana&quot;, &quot;custard apple&quot;, &quot;avocado&quot;, &quot;peach&quot;, &quot;raspberry&quot;];
-
-    let mut my_iterable_fav_fruits = ???;   &#x2F;&#x2F; TODO: Step 1
-
-    assert_eq!(my_iterable_fav_fruits.next(), Some(&amp;&quot;banana&quot;));
-    assert_eq!(my_iterable_fav_fruits.next(), ???);     &#x2F;&#x2F; TODO: Step 2
-    assert_eq!(my_iterable_fav_fruits.next(), Some(&amp;&quot;avocado&quot;));
-    assert_eq!(my_iterable_fav_fruits.next(), ???);     &#x2F;&#x2F; TODO: Step 3
-    assert_eq!(my_iterable_fav_fruits.next(), Some(&amp;&quot;raspberry&quot;));
-    assert_eq!(my_iterable_fav_fruits.next(), ???);     &#x2F;&#x2F; TODO: Step 4
-}
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#707180;">// iterators1.rs
+</span><span style="color:#707180;">//
+</span><span style="color:#707180;">//  Make me compile by filling in the `???`s
+</span><span style="color:#707180;">//
+</span><span style="color:#707180;">// When performing operations on elements within a collection, iterators are essential.
+</span><span style="color:#707180;">// This module helps you get familiar with the structure of using an iterator and
+</span><span style="color:#707180;">// how to go through elements within an iterable collection.
+</span><span style="color:#707180;">//
+</span><span style="color:#707180;">// Execute `rustlings hint iterators1` or use the `hint` watch subcommand for a hint.
+</span><span>
+</span><span style="color:#707180;">// I AM NOT DONE
+</span><span>
+</span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">main</span><span>() {
+</span><span>    </span><span style="color:#a3cbe3;">let</span><span> my_fav_fruits </span><span style="color:#db7c6d;">= </span><span>vec![</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>banana</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>, </span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>custard apple</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>, </span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>avocado</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>, </span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>peach</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>, </span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>raspberry</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>];
+</span><span>
+</span><span>    </span><span style="color:#a3cbe3;">let </span><span style="color:#dbbb3d;">mut</span><span> my_iterable_fav_fruits </span><span style="color:#db7c6d;">= ???</span><span>;   </span><span style="color:#707180;">// TODO: Step 1
+</span><span>
+</span><span>    assert_eq!(my_iterable_fav_fruits.</span><span style="color:#db7c6d;">next</span><span>(), </span><span style="color:#e7e7e7;">Some</span><span>(</span><span style="color:#db7c6d;">&amp;</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>banana</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>));
+</span><span>    assert_eq!(my_iterable_fav_fruits.</span><span style="color:#db7c6d;">next</span><span>(), </span><span style="color:#db7c6d;">???</span><span>);     </span><span style="color:#707180;">// TODO: Step 2
+</span><span>    assert_eq!(my_iterable_fav_fruits.</span><span style="color:#db7c6d;">next</span><span>(), </span><span style="color:#e7e7e7;">Some</span><span>(</span><span style="color:#db7c6d;">&amp;</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>avocado</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>));
+</span><span>    assert_eq!(my_iterable_fav_fruits.</span><span style="color:#db7c6d;">next</span><span>(), </span><span style="color:#db7c6d;">???</span><span>);     </span><span style="color:#707180;">// TODO: Step 3
+</span><span>    assert_eq!(my_iterable_fav_fruits.</span><span style="color:#db7c6d;">next</span><span>(), </span><span style="color:#e7e7e7;">Some</span><span>(</span><span style="color:#db7c6d;">&amp;</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>raspberry</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>));
+</span><span>    assert_eq!(my_iterable_fav_fruits.</span><span style="color:#db7c6d;">next</span><span>(), </span><span style="color:#db7c6d;">???</span><span>);     </span><span style="color:#707180;">// TODO: Step 4
+</span><span>}
+</span></code></pre>
 <p>In this exercise we're looking at how to make this code compile in this line: <code>let mut my_iterable_fav_fruits = ???; </code> as our first step.
 Before we proceed, let's look at the errors.</p>
 <h2 id="iterators1-rs-errors">Iterators1.rs Errors</h2>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">⚠️  Compiling of exercises&#x2F;iterators&#x2F;iterators1.rs failed! Please try again. Here&#x27;s the output:
-error: expected expression, found `?`
-  --&gt; exercises&#x2F;iterators&#x2F;iterators1.rs:16:38
-   |
-16 |     let mut my_iterable_fav_fruits = ???;   &#x2F;&#x2F; TODO: Step 1
-   |                                      ^ expected expression
-
-error: aborting due to previous error
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span>⚠️  Compiling of exercises</span><span style="color:#db7c6d;">/</span><span>iterators</span><span style="color:#db7c6d;">/</span><span>iterators1.rs failed</span><span style="color:#db7c6d;">!</span><span> Please try again. Here</span><span style="color:#dbbb3d;">&#39;s</span><span> the output:
+</span><span>error: expected expression, found `</span><span style="color:#db7c6d;">?</span><span>`
+</span><span>  </span><span style="color:#db7c6d;">-</span><span>-&gt; exercises</span><span style="color:#db7c6d;">/</span><span>iterators</span><span style="color:#db7c6d;">/</span><span>iterators1.rs:</span><span style="color:#db7c6d;">16</span><span>:</span><span style="color:#db7c6d;">38
+</span><span>   </span><span style="color:#db7c6d;">|
+</span><span style="color:#db7c6d;">16 |     </span><span style="color:#a3cbe3;">let </span><span style="color:#dbbb3d;">mut</span><span> my_iterable_fav_fruits </span><span style="color:#db7c6d;">= ???</span><span>;   </span><span style="color:#707180;">// TODO: Step 1
+</span><span>   </span><span style="color:#db7c6d;">|                                      ^</span><span> expected expression
+</span><span>
+</span><span>error: aborting due to previous error
+</span></code></pre>
 <p>We get an obvious error due to the missing expression in the variable assignment with the <code>???</code> so we have to implement an iterator. Let's solve this.</p>
 <h2 id="iterators1-rs-solution">Iterators1.rs Solution</h2>
 <p>With iterators we can easily go through an array (or vector in this case) of elements. If you're not familiar with iterators, they're rather easy to use. In our situation here we have a vector which is <code>my_fav_fruits</code> that has a list of fruits. We see in the next line of code a new mutable variable <code>my_iterable_fav_fruits</code> where we know we have to complete this. So how do we do it? Easy, we add the <code>.iter()</code> method to the end of our variable that represents our vector, like this <code>my_fav_fruits.iter()</code> the full line will now look like this:</p>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">let mut my_iterable_fav_fruits = my_fav_fruits.iter(); &#x2F;&#x2F; TODO: Step 1
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#a3cbe3;">let </span><span style="color:#dbbb3d;">mut</span><span> my_iterable_fav_fruits </span><span style="color:#db7c6d;">=</span><span> my_fav_fruits.</span><span style="color:#db7c6d;">iter</span><span>(); </span><span style="color:#707180;">// TODO: Step 1
+</span></code></pre>
 <p>The next part of TODO's  are in the <code>assert_eq!</code> section of the code:</p>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">    assert_eq!(my_iterable_fav_fruits.next(), Some(&amp;&quot;banana&quot;));
-    assert_eq!(my_iterable_fav_fruits.next(), ???);     &#x2F;&#x2F; TODO: Step 2
-    assert_eq!(my_iterable_fav_fruits.next(), Some(&amp;&quot;avocado&quot;));
-    assert_eq!(my_iterable_fav_fruits.next(), ???);     &#x2F;&#x2F; TODO: Step 3
-    assert_eq!(my_iterable_fav_fruits.next(), Some(&amp;&quot;raspberry&quot;));
-    assert_eq!(my_iterable_fav_fruits.next(), ???);     &#x2F;&#x2F; TODO: Step 4
-</code></pre>
-<p>And it looks pretty straightforward to follow the pattern of adding <code>Some(&amp;&quot;fruit&quot;)</code> as we already have some examples with <code>banana</code>, <code>avocado</code>, and <code>raspberry</code>. The only one that should be different is the final one since after <code>raspberry</code> there is nothing in the vector. So the logical answer would be <code>None</code> right? Let's try this out.</p>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">fn main() {
-    let my_fav_fruits = vec![&quot;banana&quot;, &quot;custard apple&quot;, &quot;avocado&quot;, &quot;peach&quot;, &quot;raspberry&quot;];
-
-    let mut my_iterable_fav_fruits = my_fav_fruits.iter();   &#x2F;&#x2F; TODO: Step 1
-
-    assert_eq!(my_iterable_fav_fruits.next(), Some(&amp;&quot;banana&quot;));
-    assert_eq!(my_iterable_fav_fruits.next(), Some(&amp;&quot;custard apple&quot;));     &#x2F;&#x2F; TODO: Step 2
-    assert_eq!(my_iterable_fav_fruits.next(), Some(&amp;&quot;avocado&quot;));
-    assert_eq!(my_iterable_fav_fruits.next(), Some(&amp;&quot;peach&quot;));     &#x2F;&#x2F; TODO: Step 3
-    assert_eq!(my_iterable_fav_fruits.next(), Some(&amp;&quot;raspberry&quot;));
-    assert_eq!(my_iterable_fav_fruits.next(), None);     &#x2F;&#x2F; TODO: Step 4
-}
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span>    assert_eq!(my_iterable_fav_fruits.</span><span style="color:#db7c6d;">next</span><span>(), </span><span style="color:#e7e7e7;">Some</span><span>(</span><span style="color:#db7c6d;">&amp;</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>banana</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>));
+</span><span>    assert_eq!(my_iterable_fav_fruits.</span><span style="color:#db7c6d;">next</span><span>(), </span><span style="color:#db7c6d;">???</span><span>);     </span><span style="color:#707180;">// TODO: Step 2
+</span><span>    assert_eq!(my_iterable_fav_fruits.</span><span style="color:#db7c6d;">next</span><span>(), </span><span style="color:#e7e7e7;">Some</span><span>(</span><span style="color:#db7c6d;">&amp;</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>avocado</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>));
+</span><span>    assert_eq!(my_iterable_fav_fruits.</span><span style="color:#db7c6d;">next</span><span>(), </span><span style="color:#db7c6d;">???</span><span>);     </span><span style="color:#707180;">// TODO: Step 3
+</span><span>    assert_eq!(my_iterable_fav_fruits.</span><span style="color:#db7c6d;">next</span><span>(), </span><span style="color:#e7e7e7;">Some</span><span>(</span><span style="color:#db7c6d;">&amp;</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>raspberry</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>));
+</span><span>    assert_eq!(my_iterable_fav_fruits.</span><span style="color:#db7c6d;">next</span><span>(), </span><span style="color:#db7c6d;">???</span><span>);     </span><span style="color:#707180;">// TODO: Step 4
+</span></code></pre>
+<p>And it looks pretty straightforward to follow the pattern of adding <code>Some(&amp;"fruit")</code> as we already have some examples with <code>banana</code>, <code>avocado</code>, and <code>raspberry</code>. The only one that should be different is the final one since after <code>raspberry</code> there is nothing in the vector. So the logical answer would be <code>None</code> right? Let's try this out.</p>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">main</span><span>() {
+</span><span>    </span><span style="color:#a3cbe3;">let</span><span> my_fav_fruits </span><span style="color:#db7c6d;">= </span><span>vec![</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>banana</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>, </span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>custard apple</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>, </span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>avocado</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>, </span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>peach</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>, </span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>raspberry</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>];
+</span><span>
+</span><span>    </span><span style="color:#a3cbe3;">let </span><span style="color:#dbbb3d;">mut</span><span> my_iterable_fav_fruits </span><span style="color:#db7c6d;">=</span><span> my_fav_fruits.</span><span style="color:#db7c6d;">iter</span><span>();   </span><span style="color:#707180;">// TODO: Step 1
+</span><span>
+</span><span>    assert_eq!(my_iterable_fav_fruits.</span><span style="color:#db7c6d;">next</span><span>(), </span><span style="color:#e7e7e7;">Some</span><span>(</span><span style="color:#db7c6d;">&amp;</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>banana</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>));
+</span><span>    assert_eq!(my_iterable_fav_fruits.</span><span style="color:#db7c6d;">next</span><span>(), </span><span style="color:#e7e7e7;">Some</span><span>(</span><span style="color:#db7c6d;">&amp;</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>custard apple</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>));     </span><span style="color:#707180;">// TODO: Step 2
+</span><span>    assert_eq!(my_iterable_fav_fruits.</span><span style="color:#db7c6d;">next</span><span>(), </span><span style="color:#e7e7e7;">Some</span><span>(</span><span style="color:#db7c6d;">&amp;</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>avocado</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>));
+</span><span>    assert_eq!(my_iterable_fav_fruits.</span><span style="color:#db7c6d;">next</span><span>(), </span><span style="color:#e7e7e7;">Some</span><span>(</span><span style="color:#db7c6d;">&amp;</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>peach</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>));     </span><span style="color:#707180;">// TODO: Step 3
+</span><span>    assert_eq!(my_iterable_fav_fruits.</span><span style="color:#db7c6d;">next</span><span>(), </span><span style="color:#e7e7e7;">Some</span><span>(</span><span style="color:#db7c6d;">&amp;</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>raspberry</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>));
+</span><span>    assert_eq!(my_iterable_fav_fruits.</span><span style="color:#db7c6d;">next</span><span>(), </span><span style="color:#e7e7e7;">None</span><span>);     </span><span style="color:#707180;">// TODO: Step 4
+</span><span>}
+</span></code></pre>
 <p>With those changes as defined above we are compiling, great let's move on to the next exercise.</p>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">✅ Successfully ran exercises&#x2F;iterators&#x2F;iterators1.rs!
-🎉 🎉  The code is compiling! 🎉 🎉
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span>✅ Successfully ran exercises</span><span style="color:#db7c6d;">/</span><span>iterators</span><span style="color:#db7c6d;">/</span><span>iterators1.rs</span><span style="color:#db7c6d;">!
+</span><span>🎉 🎉  The code is compiling</span><span style="color:#db7c6d;">!</span><span> 🎉 🎉
+</span></code></pre>
 <h2 id="iterators2-rs">Iterators2.rs</h2>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">&#x2F;&#x2F; iterators2.rs
-&#x2F;&#x2F; In this exercise, you&#x27;ll learn some of the unique advantages that iterators
-&#x2F;&#x2F; can offer. Follow the steps to complete the exercise.
-&#x2F;&#x2F; Execute `rustlings hint iterators2` or use the `hint` watch subcommand for a hint.
-
-&#x2F;&#x2F; I AM NOT DONE
-
-&#x2F;&#x2F; Step 1.
-&#x2F;&#x2F; Complete the `capitalize_first` function.
-&#x2F;&#x2F; &quot;hello&quot; -&gt; &quot;Hello&quot;
-pub fn capitalize_first(input: &amp;str) -&gt; String {
-    let mut c = input.chars();
-    match c.next() {
-        None =&gt; String::new(),
-        Some(first) =&gt; ???,
-    }
-}
-
-&#x2F;&#x2F; Step 2.
-&#x2F;&#x2F; Apply the `capitalize_first` function to a slice of string slices.
-&#x2F;&#x2F; Return a vector of strings.
-&#x2F;&#x2F; [&quot;hello&quot;, &quot;world&quot;] -&gt; [&quot;Hello&quot;, &quot;World&quot;]
-pub fn capitalize_words_vector(words: &amp;[&amp;str]) -&gt; Vec&lt;String&gt; {
-    vec![]
-}
-
-&#x2F;&#x2F; Step 3.
-&#x2F;&#x2F; Apply the `capitalize_first` function again to a slice of string slices.
-&#x2F;&#x2F; Return a single string.
-&#x2F;&#x2F; [&quot;hello&quot;, &quot; &quot;, &quot;world&quot;] -&gt; &quot;Hello World&quot;
-pub fn capitalize_words_string(words: &amp;[&amp;str]) -&gt; String {
-    String::new()
-}
-
-#[cfg(test)]
-mod tests {
-    use super::*;
-
-    #[test]
-    fn test_success() {
-        assert_eq!(capitalize_first(&quot;hello&quot;), &quot;Hello&quot;);
-    }
-
-    #[test]
-    fn test_empty() {
-        assert_eq!(capitalize_first(&quot;&quot;), &quot;&quot;);
-    }
-
-    #[test]
-    fn test_iterate_string_vec() {
-        let words = vec![&quot;hello&quot;, &quot;world&quot;];
-        assert_eq!(capitalize_words_vector(&amp;words), [&quot;Hello&quot;, &quot;World&quot;]);
-    }
-
-    #[test]
-    fn test_iterate_into_string() {
-        let words = vec![&quot;hello&quot;, &quot; &quot;, &quot;world&quot;];
-        assert_eq!(capitalize_words_string(&amp;words), &quot;Hello World&quot;);
-    }
-}
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#707180;">// iterators2.rs
+</span><span style="color:#707180;">// In this exercise, you&#39;ll learn some of the unique advantages that iterators
+</span><span style="color:#707180;">// can offer. Follow the steps to complete the exercise.
+</span><span style="color:#707180;">// Execute `rustlings hint iterators2` or use the `hint` watch subcommand for a hint.
+</span><span>
+</span><span style="color:#707180;">// I AM NOT DONE
+</span><span>
+</span><span style="color:#707180;">// Step 1.
+</span><span style="color:#707180;">// Complete the `capitalize_first` function.
+</span><span style="color:#707180;">// &quot;hello&quot; -&gt; &quot;Hello&quot;
+</span><span style="color:#dbbb3d;">pub </span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">capitalize_first</span><span>(</span><span style="color:#ffffff;">input</span><span>: </span><span style="color:#db7c6d;">&amp;</span><span style="color:#a3cbe3;">str</span><span>) -&gt; String {
+</span><span>    </span><span style="color:#a3cbe3;">let </span><span style="color:#dbbb3d;">mut</span><span> c </span><span style="color:#db7c6d;">=</span><span> input.</span><span style="color:#db7c6d;">chars</span><span>();
+</span><span>    </span><span style="color:#db7c6d;">match</span><span> c.</span><span style="color:#db7c6d;">next</span><span>() {
+</span><span>        </span><span style="color:#e7e7e7;">None </span><span style="color:#db7c6d;">=&gt; </span><span style="color:#e7e7e7;">String</span><span>::new(),
+</span><span>        </span><span style="color:#e7e7e7;">Some</span><span>(first) </span><span style="color:#db7c6d;">=&gt; ???</span><span>,
+</span><span>    }
+</span><span>}
+</span><span>
+</span><span style="color:#707180;">// Step 2.
+</span><span style="color:#707180;">// Apply the `capitalize_first` function to a slice of string slices.
+</span><span style="color:#707180;">// Return a vector of strings.
+</span><span style="color:#707180;">// [&quot;hello&quot;, &quot;world&quot;] -&gt; [&quot;Hello&quot;, &quot;World&quot;]
+</span><span style="color:#dbbb3d;">pub </span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">capitalize_words_vector</span><span>(</span><span style="color:#ffffff;">words</span><span>: </span><span style="color:#db7c6d;">&amp;</span><span>[</span><span style="color:#db7c6d;">&amp;</span><span style="color:#a3cbe3;">str</span><span>]) -&gt; </span><span style="color:#e7e7e7;">Vec</span><span>&lt;</span><span style="color:#e7e7e7;">String</span><span>&gt; {
+</span><span>    vec![]
+</span><span>}
+</span><span>
+</span><span style="color:#707180;">// Step 3.
+</span><span style="color:#707180;">// Apply the `capitalize_first` function again to a slice of string slices.
+</span><span style="color:#707180;">// Return a single string.
+</span><span style="color:#707180;">// [&quot;hello&quot;, &quot; &quot;, &quot;world&quot;] -&gt; &quot;Hello World&quot;
+</span><span style="color:#dbbb3d;">pub </span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">capitalize_words_string</span><span>(</span><span style="color:#ffffff;">words</span><span>: </span><span style="color:#db7c6d;">&amp;</span><span>[</span><span style="color:#db7c6d;">&amp;</span><span style="color:#a3cbe3;">str</span><span>]) -&gt; String {
+</span><span>    </span><span style="color:#e7e7e7;">String</span><span>::new()
+</span><span>}
+</span><span>
+</span><span>#[</span><span style="font-weight:bold;color:#a3cbe3;">cfg</span><span>(test)]
+</span><span style="color:#a3cbe3;">mod </span><span>tests {
+</span><span>    </span><span style="color:#db7c6d;">use super</span><span>::</span><span style="color:#db7c6d;">*</span><span>;
+</span><span>
+</span><span>    #[</span><span style="font-weight:bold;color:#a3cbe3;">test</span><span>]
+</span><span>    </span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">test_success</span><span>() {
+</span><span>        assert_eq!(</span><span style="color:#db7c6d;">capitalize_first</span><span>(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>hello</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>), </span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>Hello</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>);
+</span><span>    }
+</span><span>
+</span><span>    #[</span><span style="font-weight:bold;color:#a3cbe3;">test</span><span>]
+</span><span>    </span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">test_empty</span><span>() {
+</span><span>        assert_eq!(</span><span style="color:#db7c6d;">capitalize_first</span><span>(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;&quot;</span><span>), </span><span style="font-weight:bold;color:#dbbb3d;">&quot;&quot;</span><span>);
+</span><span>    }
+</span><span>
+</span><span>    #[</span><span style="font-weight:bold;color:#a3cbe3;">test</span><span>]
+</span><span>    </span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">test_iterate_string_vec</span><span>() {
+</span><span>        </span><span style="color:#a3cbe3;">let</span><span> words </span><span style="color:#db7c6d;">= </span><span>vec![</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>hello</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>, </span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>world</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>];
+</span><span>        assert_eq!(</span><span style="color:#db7c6d;">capitalize_words_vector</span><span>(</span><span style="color:#db7c6d;">&amp;</span><span>words), [</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>Hello</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>, </span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>World</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>]);
+</span><span>    }
+</span><span>
+</span><span>    #[</span><span style="font-weight:bold;color:#a3cbe3;">test</span><span>]
+</span><span>    </span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">test_iterate_into_string</span><span>() {
+</span><span>        </span><span style="color:#a3cbe3;">let</span><span> words </span><span style="color:#db7c6d;">= </span><span>vec![</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>hello</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>, </span><span style="font-weight:bold;color:#dbbb3d;">&quot; &quot;</span><span>, </span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>world</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>];
+</span><span>        assert_eq!(</span><span style="color:#db7c6d;">capitalize_words_string</span><span>(</span><span style="color:#db7c6d;">&amp;</span><span>words), </span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>Hello World</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>);
+</span><span>    }
+</span><span>}
+</span></code></pre>
 <h2 id="iterators2-rs-errors">Iterators2.rs Errors</h2>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">⚠️  Compiling of exercises&#x2F;iterators&#x2F;iterators2.rs failed! Please try again. Here&#x27;s the output:
-error: expected expression, found `?`
-  --&gt; exercises&#x2F;iterators&#x2F;iterators2.rs:15:24
-   |
-15 |         Some(first) =&gt; ???,
-   |                     -- ^ expected expression
-   |                     |
-   |                     while parsing the `match` arm starting here
-
-error: aborting due to previous error
-
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span>⚠️  Compiling of exercises</span><span style="color:#db7c6d;">/</span><span>iterators</span><span style="color:#db7c6d;">/</span><span>iterators2.rs failed</span><span style="color:#db7c6d;">!</span><span> Please try again. Here</span><span style="color:#dbbb3d;">&#39;s</span><span> the output:
+</span><span>error: expected expression, found `</span><span style="color:#db7c6d;">?</span><span>`
+</span><span>  </span><span style="color:#db7c6d;">-</span><span>-&gt; exercises</span><span style="color:#db7c6d;">/</span><span>iterators</span><span style="color:#db7c6d;">/</span><span>iterators2.rs:</span><span style="color:#db7c6d;">15</span><span>:</span><span style="color:#db7c6d;">24
+</span><span>   </span><span style="color:#db7c6d;">|
+</span><span style="color:#db7c6d;">15 |         </span><span style="color:#e7e7e7;">Some</span><span>(first) </span><span style="color:#db7c6d;">=&gt; ???</span><span>,
+</span><span>   |                     -- ^ expected expression
+</span><span>   </span><span style="color:#db7c6d;">|                     |
+</span><span>   </span><span style="color:#db7c6d;">|                     while</span><span> parsing the `</span><span style="color:#db7c6d;">match</span><span>` arm starting here
+</span><span>
+</span><span>error: aborting due to previous error
+</span><span>
+</span></code></pre>
 <p>our errors are to be expected with our incomplete functions, so let's move on to</p>
 <h2 id="iterators2-rs-solution">Iterators2.rs Solution</h2>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">&#x2F;&#x2F; Step 1.
-&#x2F;&#x2F; Complete the `capitalize_first` function.
-&#x2F;&#x2F; &quot;hello&quot; -&gt; &quot;Hello&quot;
-pub fn capitalize_first(input: &amp;str) -&gt; String {
-    let mut c = input.chars();
-    match c.next() {
-        None =&gt; String::new(),
-        Some(first) =&gt; first.to_uppercase().collect::&lt;String&gt;() + c.as_str(),
-    }
-}
-
-&#x2F;&#x2F; Step 2.
-&#x2F;&#x2F; Apply the `capitalize_first` function to a slice of string slices.
-&#x2F;&#x2F; Return a vector of strings.
-&#x2F;&#x2F; [&quot;hello&quot;, &quot;world&quot;] -&gt; [&quot;Hello&quot;, &quot;World&quot;]
-pub fn capitalize_words_vector(words: &amp;[&amp;str]) -&gt; Vec&lt;String&gt; {
-    words.iter().map(|x| capitalize_first(x)).collect()
-}
-
-&#x2F;&#x2F; Step 3.
-&#x2F;&#x2F; Apply the `capitalize_first` function again to a slice of string slices.
-&#x2F;&#x2F; Return a single string.
-&#x2F;&#x2F; [&quot;hello&quot;, &quot; &quot;, &quot;world&quot;] -&gt; &quot;Hello World&quot;
-pub fn capitalize_words_string(words: &amp;[&amp;str]) -&gt; String {
-    capitalize_words_vector(words).join(&quot;&quot;)
-}
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#707180;">// Step 1.
+</span><span style="color:#707180;">// Complete the `capitalize_first` function.
+</span><span style="color:#707180;">// &quot;hello&quot; -&gt; &quot;Hello&quot;
+</span><span style="color:#dbbb3d;">pub </span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">capitalize_first</span><span>(</span><span style="color:#ffffff;">input</span><span>: </span><span style="color:#db7c6d;">&amp;</span><span style="color:#a3cbe3;">str</span><span>) -&gt; String {
+</span><span>    </span><span style="color:#a3cbe3;">let </span><span style="color:#dbbb3d;">mut</span><span> c </span><span style="color:#db7c6d;">=</span><span> input.</span><span style="color:#db7c6d;">chars</span><span>();
+</span><span>    </span><span style="color:#db7c6d;">match</span><span> c.</span><span style="color:#db7c6d;">next</span><span>() {
+</span><span>        </span><span style="color:#e7e7e7;">None </span><span style="color:#db7c6d;">=&gt; </span><span style="color:#e7e7e7;">String</span><span>::new(),
+</span><span>        </span><span style="color:#e7e7e7;">Some</span><span>(first) </span><span style="color:#db7c6d;">=&gt;</span><span> first.</span><span style="color:#db7c6d;">to_uppercase</span><span>().collect::&lt;</span><span style="color:#e7e7e7;">String</span><span>&gt;() </span><span style="color:#db7c6d;">+</span><span> c.</span><span style="color:#db7c6d;">as_str</span><span>(),
+</span><span>    }
+</span><span>}
+</span><span>
+</span><span style="color:#707180;">// Step 2.
+</span><span style="color:#707180;">// Apply the `capitalize_first` function to a slice of string slices.
+</span><span style="color:#707180;">// Return a vector of strings.
+</span><span style="color:#707180;">// [&quot;hello&quot;, &quot;world&quot;] -&gt; [&quot;Hello&quot;, &quot;World&quot;]
+</span><span style="color:#dbbb3d;">pub </span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">capitalize_words_vector</span><span>(</span><span style="color:#ffffff;">words</span><span>: </span><span style="color:#db7c6d;">&amp;</span><span>[</span><span style="color:#db7c6d;">&amp;</span><span style="color:#a3cbe3;">str</span><span>]) -&gt; </span><span style="color:#e7e7e7;">Vec</span><span>&lt;</span><span style="color:#e7e7e7;">String</span><span>&gt; {
+</span><span>    words.</span><span style="color:#db7c6d;">iter</span><span>().</span><span style="color:#db7c6d;">map</span><span>(|</span><span style="color:#ffffff;">x</span><span>| </span><span style="color:#db7c6d;">capitalize_first</span><span>(x)).</span><span style="color:#db7c6d;">collect</span><span>()
+</span><span>}
+</span><span>
+</span><span style="color:#707180;">// Step 3.
+</span><span style="color:#707180;">// Apply the `capitalize_first` function again to a slice of string slices.
+</span><span style="color:#707180;">// Return a single string.
+</span><span style="color:#707180;">// [&quot;hello&quot;, &quot; &quot;, &quot;world&quot;] -&gt; &quot;Hello World&quot;
+</span><span style="color:#dbbb3d;">pub </span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">capitalize_words_string</span><span>(</span><span style="color:#ffffff;">words</span><span>: </span><span style="color:#db7c6d;">&amp;</span><span>[</span><span style="color:#db7c6d;">&amp;</span><span style="color:#a3cbe3;">str</span><span>]) -&gt; String {
+</span><span>    </span><span style="color:#db7c6d;">capitalize_words_vector</span><span>(words).</span><span style="color:#db7c6d;">join</span><span>(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;&quot;</span><span>)
+</span><span>}
+</span></code></pre>
 <p>This is one of the more involved solutions we've seen in a while, so let's go over each step and what we did to finish each function and make our code compile and pass the tests.</p>
 <ol>
 <li>
@@ -341,103 +345,103 @@ pub fn capitalize_words_string(words: &amp;[&amp;str]) -&gt; String {
 <ul>
 <li>We created a function called <code>capitalize_words_string</code> that takes a slice of string slices (<code>&amp;[&amp;str]</code>) as input.</li>
 <li>Inside the function, we reused the <code>capitalize_words_vector</code> function to get a vector of capitalized words.</li>
-<li>To create a single string, we used the <code>.join(&quot;&quot;)</code> method, which concatenates all the elements in the vector without any spaces between them.</li>
+<li>To create a single string, we used the <code>.join("")</code> method, which concatenates all the elements in the vector without any spaces between them.</li>
 </ul>
 </li>
 </ol>
 <p>Overall, the solution focuses on creating reusable functions (<code>capitalize_first</code> and <code>capitalize_words_vector</code>) to handle the capitalization of individual words and then uses these functions to achieve the desired output for the exercise (<code>capitalize_words_string</code>). This approach makes the code more modular and easier to understand.</p>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">✅ Successfully tested exercises&#x2F;iterators&#x2F;iterators2.rs!
-
-🎉 🎉  The code is compiling, and the tests pass! 🎉 🎉
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span>✅ Successfully tested exercises</span><span style="color:#db7c6d;">/</span><span>iterators</span><span style="color:#db7c6d;">/</span><span>iterators2.rs</span><span style="color:#db7c6d;">!
+</span><span>
+</span><span>🎉 🎉  The code is compiling, and the tests pass</span><span style="color:#db7c6d;">!</span><span> 🎉 🎉
+</span></code></pre>
 <p>With that we have passed the test, let's continue to our next exercise.</p>
 <h2 id="iterators3-rs">Iterators3.rs</h2>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">&#x2F;&#x2F; iterators3.rs
-&#x2F;&#x2F; This is a bigger exercise than most of the others! You can do it!
-&#x2F;&#x2F; Here is your mission, should you choose to accept it:
-&#x2F;&#x2F; 1. Complete the divide function to get the first four tests to pass.
-&#x2F;&#x2F; 2. Get the remaining tests to pass by completing the result_with_list and
-&#x2F;&#x2F;    list_of_results functions.
-&#x2F;&#x2F; Execute `rustlings hint iterators3` or use the `hint` watch subcommand for a hint.
-
-&#x2F;&#x2F; I AM NOT DONE
-
-#[derive(Debug, PartialEq, Eq)]
-pub enum DivisionError {
-    NotDivisible(NotDivisibleError),
-    DivideByZero,
-}
-
-#[derive(Debug, PartialEq, Eq)]
-pub struct NotDivisibleError {
-    dividend: i32,
-    divisor: i32,
-}
-
-&#x2F;&#x2F; Calculate `a` divided by `b` if `a` is evenly divisible by `b`.
-&#x2F;&#x2F; Otherwise, return a suitable error.
-pub fn divide(a: i32, b: i32) -&gt; Result&lt;i32, DivisionError&gt; {
-    todo!();
-}
-
-&#x2F;&#x2F; Complete the function and return a value of the correct type so the test passes.
-&#x2F;&#x2F; Desired output: Ok([1, 11, 1426, 3])
-fn result_with_list() -&gt; () {
-    let numbers = vec![27, 297, 38502, 81];
-    let division_results = numbers.into_iter().map(|n| divide(n, 27));
-}
-
-&#x2F;&#x2F; Complete the function and return a value of the correct type so the test passes.
-&#x2F;&#x2F; Desired output: [Ok(1), Ok(11), Ok(1426), Ok(3)]
-fn list_of_results() -&gt; () {
-    let numbers = vec![27, 297, 38502, 81];
-    let division_results = numbers.into_iter().map(|n| divide(n, 27));
-}
-
-#[cfg(test)]
-mod tests {
-    use super::*;
-
-    #[test]
-    fn test_success() {
-        assert_eq!(divide(81, 9), Ok(9));
-    }
-
-    #[test]
-    fn test_not_divisible() {
-        assert_eq!(
-            divide(81, 6),
-            Err(DivisionError::NotDivisible(NotDivisibleError {
-                dividend: 81,
-                divisor: 6
-            }))
-        );
-    }
-
-    #[test]
-    fn test_divide_by_0() {
-        assert_eq!(divide(81, 0), Err(DivisionError::DivideByZero));
-    }
-
-    #[test]
-    fn test_divide_0_by_something() {
-        assert_eq!(divide(0, 81), Ok(0));
-    }
-
-    #[test]
-    fn test_result_with_list() {
-        assert_eq!(format!(&quot;{:?}&quot;, result_with_list()), &quot;Ok([1, 11, 1426, 3])&quot;);
-    }
-
-    #[test]
-    fn test_list_of_results() {
-        assert_eq!(
-            format!(&quot;{:?}&quot;, list_of_results()),
-            &quot;[Ok(1), Ok(11), Ok(1426), Ok(3)]&quot;
-        );
-    }
-}
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#707180;">// iterators3.rs
+</span><span style="color:#707180;">// This is a bigger exercise than most of the others! You can do it!
+</span><span style="color:#707180;">// Here is your mission, should you choose to accept it:
+</span><span style="color:#707180;">// 1. Complete the divide function to get the first four tests to pass.
+</span><span style="color:#707180;">// 2. Get the remaining tests to pass by completing the result_with_list and
+</span><span style="color:#707180;">//    list_of_results functions.
+</span><span style="color:#707180;">// Execute `rustlings hint iterators3` or use the `hint` watch subcommand for a hint.
+</span><span>
+</span><span style="color:#707180;">// I AM NOT DONE
+</span><span>
+</span><span>#[</span><span style="font-weight:bold;color:#a3cbe3;">derive</span><span>(Debug, PartialEq, Eq)]
+</span><span style="color:#dbbb3d;">pub </span><span style="color:#a3cbe3;">enum </span><span>DivisionError {
+</span><span>    NotDivisible(NotDivisibleError),
+</span><span>    DivideByZero,
+</span><span>}
+</span><span>
+</span><span>#[</span><span style="font-weight:bold;color:#a3cbe3;">derive</span><span>(Debug, PartialEq, Eq)]
+</span><span style="color:#dbbb3d;">pub </span><span style="color:#a3cbe3;">struct </span><span>NotDivisibleError {
+</span><span>    </span><span style="font-weight:bold;color:#a3cbe3;">dividend</span><span>: </span><span style="color:#a3cbe3;">i32</span><span>,
+</span><span>    </span><span style="font-weight:bold;color:#a3cbe3;">divisor</span><span>: </span><span style="color:#a3cbe3;">i32</span><span>,
+</span><span>}
+</span><span>
+</span><span style="color:#707180;">// Calculate `a` divided by `b` if `a` is evenly divisible by `b`.
+</span><span style="color:#707180;">// Otherwise, return a suitable error.
+</span><span style="color:#dbbb3d;">pub </span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">divide</span><span>(</span><span style="color:#ffffff;">a</span><span>: </span><span style="color:#a3cbe3;">i32</span><span>, </span><span style="color:#ffffff;">b</span><span>: </span><span style="color:#a3cbe3;">i32</span><span>) -&gt; </span><span style="color:#e7e7e7;">Result</span><span>&lt;</span><span style="color:#a3cbe3;">i32</span><span>, DivisionError&gt; {
+</span><span>    todo!();
+</span><span>}
+</span><span>
+</span><span style="color:#707180;">// Complete the function and return a value of the correct type so the test passes.
+</span><span style="color:#707180;">// Desired output: Ok([1, 11, 1426, 3])
+</span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">result_with_list</span><span>() -&gt; () {
+</span><span>    </span><span style="color:#a3cbe3;">let</span><span> numbers </span><span style="color:#db7c6d;">= </span><span>vec![</span><span style="color:#db7c6d;">27</span><span>, </span><span style="color:#db7c6d;">297</span><span>, </span><span style="color:#db7c6d;">38502</span><span>, </span><span style="color:#db7c6d;">81</span><span>];
+</span><span>    </span><span style="color:#a3cbe3;">let</span><span> division_results </span><span style="color:#db7c6d;">=</span><span> numbers.</span><span style="color:#db7c6d;">into_iter</span><span>().</span><span style="color:#db7c6d;">map</span><span>(|</span><span style="color:#ffffff;">n</span><span>| </span><span style="color:#db7c6d;">divide</span><span>(n, </span><span style="color:#db7c6d;">27</span><span>));
+</span><span>}
+</span><span>
+</span><span style="color:#707180;">// Complete the function and return a value of the correct type so the test passes.
+</span><span style="color:#707180;">// Desired output: [Ok(1), Ok(11), Ok(1426), Ok(3)]
+</span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">list_of_results</span><span>() -&gt; () {
+</span><span>    </span><span style="color:#a3cbe3;">let</span><span> numbers </span><span style="color:#db7c6d;">= </span><span>vec![</span><span style="color:#db7c6d;">27</span><span>, </span><span style="color:#db7c6d;">297</span><span>, </span><span style="color:#db7c6d;">38502</span><span>, </span><span style="color:#db7c6d;">81</span><span>];
+</span><span>    </span><span style="color:#a3cbe3;">let</span><span> division_results </span><span style="color:#db7c6d;">=</span><span> numbers.</span><span style="color:#db7c6d;">into_iter</span><span>().</span><span style="color:#db7c6d;">map</span><span>(|</span><span style="color:#ffffff;">n</span><span>| </span><span style="color:#db7c6d;">divide</span><span>(n, </span><span style="color:#db7c6d;">27</span><span>));
+</span><span>}
+</span><span>
+</span><span>#[</span><span style="font-weight:bold;color:#a3cbe3;">cfg</span><span>(test)]
+</span><span style="color:#a3cbe3;">mod </span><span>tests {
+</span><span>    </span><span style="color:#db7c6d;">use super</span><span>::</span><span style="color:#db7c6d;">*</span><span>;
+</span><span>
+</span><span>    #[</span><span style="font-weight:bold;color:#a3cbe3;">test</span><span>]
+</span><span>    </span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">test_success</span><span>() {
+</span><span>        assert_eq!(</span><span style="color:#db7c6d;">divide</span><span>(</span><span style="color:#db7c6d;">81</span><span>, </span><span style="color:#db7c6d;">9</span><span>), </span><span style="color:#e7e7e7;">Ok</span><span>(</span><span style="color:#db7c6d;">9</span><span>));
+</span><span>    }
+</span><span>
+</span><span>    #[</span><span style="font-weight:bold;color:#a3cbe3;">test</span><span>]
+</span><span>    </span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">test_not_divisible</span><span>() {
+</span><span>        assert_eq!(
+</span><span>            </span><span style="color:#db7c6d;">divide</span><span>(</span><span style="color:#db7c6d;">81</span><span>, </span><span style="color:#db7c6d;">6</span><span>),
+</span><span>            </span><span style="color:#e7e7e7;">Err</span><span>(DivisionError::NotDivisible(NotDivisibleError {
+</span><span>                dividend: </span><span style="color:#db7c6d;">81</span><span>,
+</span><span>                divisor: </span><span style="color:#db7c6d;">6
+</span><span>            }))
+</span><span>        );
+</span><span>    }
+</span><span>
+</span><span>    #[</span><span style="font-weight:bold;color:#a3cbe3;">test</span><span>]
+</span><span>    </span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">test_divide_by_0</span><span>() {
+</span><span>        assert_eq!(</span><span style="color:#db7c6d;">divide</span><span>(</span><span style="color:#db7c6d;">81</span><span>, </span><span style="color:#db7c6d;">0</span><span>), </span><span style="color:#e7e7e7;">Err</span><span>(DivisionError::DivideByZero));
+</span><span>    }
+</span><span>
+</span><span>    #[</span><span style="font-weight:bold;color:#a3cbe3;">test</span><span>]
+</span><span>    </span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">test_divide_0_by_something</span><span>() {
+</span><span>        assert_eq!(</span><span style="color:#db7c6d;">divide</span><span>(</span><span style="color:#db7c6d;">0</span><span>, </span><span style="color:#db7c6d;">81</span><span>), </span><span style="color:#e7e7e7;">Ok</span><span>(</span><span style="color:#db7c6d;">0</span><span>));
+</span><span>    }
+</span><span>
+</span><span>    #[</span><span style="font-weight:bold;color:#a3cbe3;">test</span><span>]
+</span><span>    </span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">test_result_with_list</span><span>() {
+</span><span>        assert_eq!(format!(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span style="font-weight:bold;color:#a2ba43;">{:?}</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>, </span><span style="color:#db7c6d;">result_with_list</span><span>()), </span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>Ok([1, 11, 1426, 3])</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>);
+</span><span>    }
+</span><span>
+</span><span>    #[</span><span style="font-weight:bold;color:#a3cbe3;">test</span><span>]
+</span><span>    </span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">test_list_of_results</span><span>() {
+</span><span>        assert_eq!(
+</span><span>            format!(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span style="font-weight:bold;color:#a2ba43;">{:?}</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>, </span><span style="color:#db7c6d;">list_of_results</span><span>()),
+</span><span>            </span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>[Ok(1), Ok(11), Ok(1426), Ok(3)]</span><span style="font-weight:bold;color:#dbbb3d;">&quot;
+</span><span>        );
+</span><span>    }
+</span><span>}
+</span></code></pre>
 <p>Okay, this is a longer one, so let's breakdown the instructions.</p>
 <ol>
 <li>Complete the <code>divide</code> function</li>
@@ -445,112 +449,112 @@ mod tests {
 <li>Complete the <code>list_of_results</code> function</li>
 </ol>
 <h2 id="iterators3-rs-errors">Iterators3.rs Errors</h2>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">⚠️  Testing of exercises&#x2F;iterators&#x2F;iterators3.rs failed! Please try again. Here&#x27;s the output:
-
-running 6 tests
-test tests::test_divide_0_by_something ... FAILED
-test tests::test_not_divisible ... FAILED
-test tests::test_divide_by_0 ... FAILED
-test tests::test_result_with_list ... FAILED
-test tests::test_list_of_results ... FAILED
-test tests::test_success ... FAILED
-
-successes:
-
-successes:
-
-failures:
-
----- tests::test_divide_0_by_something stdout ----
-thread &#x27;tests::test_divide_0_by_something&#x27; panicked at exercises&#x2F;iterators&#x2F;iterators3.rs:26:5:
-not yet implemented
-
----- tests::test_not_divisible stdout ----
-thread &#x27;tests::test_not_divisible&#x27; panicked at exercises&#x2F;iterators&#x2F;iterators3.rs:26:5:
-not yet implemented
-
----- tests::test_divide_by_0 stdout ----
-thread &#x27;tests::test_divide_by_0&#x27; panicked at exercises&#x2F;iterators&#x2F;iterators3.rs:26:5:
-not yet implemented
-note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
-
----- tests::test_result_with_list stdout ----
-thread &#x27;tests::test_result_with_list&#x27; panicked at exercises&#x2F;iterators&#x2F;iterators3.rs:75:9:
-assertion `left == right` failed
-  left: &quot;()&quot;
- right: &quot;Ok([1, 11, 1426, 3])&quot;
-
----- tests::test_list_of_results stdout ----
-thread &#x27;tests::test_list_of_results&#x27; panicked at exercises&#x2F;iterators&#x2F;iterators3.rs:80:9:
-assertion `left == right` failed
-  left: &quot;()&quot;
- right: &quot;[Ok(1), Ok(11), Ok(1426), Ok(3)]&quot;
-
----- tests::test_success stdout ----
-thread &#x27;tests::test_success&#x27; panicked at exercises&#x2F;iterators&#x2F;iterators3.rs:26:5:
-not yet implemented
-
-
-failures:
-    tests::test_divide_0_by_something
-    tests::test_divide_by_0
-    tests::test_list_of_results
-    tests::test_not_divisible
-    tests::test_result_with_list
-    tests::test_success
-
-test result: FAILED. 0 passed; 6 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span>⚠️  Testing of exercises</span><span style="color:#db7c6d;">/</span><span>iterators</span><span style="color:#db7c6d;">/</span><span>iterators3.rs failed</span><span style="color:#db7c6d;">!</span><span> Please try again. Here</span><span style="color:#dbbb3d;">&#39;s</span><span> the output:
+</span><span>
+</span><span>running </span><span style="color:#db7c6d;">6</span><span> tests
+</span><span>test tests::test_divide_0_by_something </span><span style="color:#db7c6d;">... </span><span style="font-weight:bold;color:#a2ba43;">FAILED
+</span><span>test tests::test_not_divisible </span><span style="color:#db7c6d;">... </span><span style="font-weight:bold;color:#a2ba43;">FAILED
+</span><span>test tests::test_divide_by_0 </span><span style="color:#db7c6d;">... </span><span style="font-weight:bold;color:#a2ba43;">FAILED
+</span><span>test tests::test_result_with_list </span><span style="color:#db7c6d;">... </span><span style="font-weight:bold;color:#a2ba43;">FAILED
+</span><span>test tests::test_list_of_results </span><span style="color:#db7c6d;">... </span><span style="font-weight:bold;color:#a2ba43;">FAILED
+</span><span>test tests::test_success </span><span style="color:#db7c6d;">... </span><span style="font-weight:bold;color:#a2ba43;">FAILED
+</span><span>
+</span><span>successes:
+</span><span>
+</span><span>successes:
+</span><span>
+</span><span>failures:
+</span><span>
+</span><span style="color:#db7c6d;">---- </span><span>tests::test_divide_0_by_something stdout </span><span style="color:#db7c6d;">----
+</span><span>thread &#39;tests::test_divide_0_by_something</span><span style="color:#db7c6d;">&#39;</span><span> panicked at exercises</span><span style="color:#db7c6d;">/</span><span>iterators</span><span style="color:#db7c6d;">/</span><span>iterators3.rs:</span><span style="color:#db7c6d;">26</span><span>:</span><span style="color:#db7c6d;">5</span><span>:
+</span><span>not yet implemented
+</span><span>
+</span><span style="color:#db7c6d;">---- </span><span>tests::test_not_divisible stdout </span><span style="color:#db7c6d;">----
+</span><span>thread &#39;tests::test_not_divisible</span><span style="color:#db7c6d;">&#39;</span><span> panicked at exercises</span><span style="color:#db7c6d;">/</span><span>iterators</span><span style="color:#db7c6d;">/</span><span>iterators3.rs:</span><span style="color:#db7c6d;">26</span><span>:</span><span style="color:#db7c6d;">5</span><span>:
+</span><span>not yet implemented
+</span><span>
+</span><span style="color:#db7c6d;">---- </span><span>tests::test_divide_by_0 stdout </span><span style="color:#db7c6d;">----
+</span><span>thread &#39;tests::test_divide_by_0</span><span style="color:#db7c6d;">&#39;</span><span> panicked at exercises</span><span style="color:#db7c6d;">/</span><span>iterators</span><span style="color:#db7c6d;">/</span><span>iterators3.rs:</span><span style="color:#db7c6d;">26</span><span>:</span><span style="color:#db7c6d;">5</span><span>:
+</span><span>not yet implemented
+</span><span>note: run with `</span><span style="font-weight:bold;color:#a2ba43;">RUST_BACKTRACE</span><span style="color:#db7c6d;">=1</span><span>` environment variable to display a backtrace
+</span><span>
+</span><span style="color:#db7c6d;">---- </span><span>tests::test_result_with_list stdout </span><span style="color:#db7c6d;">----
+</span><span>thread &#39;tests::test_result_with_list</span><span style="color:#db7c6d;">&#39;</span><span> panicked at exercises</span><span style="color:#db7c6d;">/</span><span>iterators</span><span style="color:#db7c6d;">/</span><span>iterators3.rs:</span><span style="color:#db7c6d;">75</span><span>:</span><span style="color:#db7c6d;">9</span><span>:
+</span><span>assertion `left </span><span style="color:#db7c6d;">==</span><span> right` failed
+</span><span>  left: </span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>()</span><span style="font-weight:bold;color:#dbbb3d;">&quot;
+</span><span> right: </span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>Ok([1, 11, 1426, 3])</span><span style="font-weight:bold;color:#dbbb3d;">&quot;
+</span><span>
+</span><span style="color:#db7c6d;">---- </span><span>tests::test_list_of_results stdout </span><span style="color:#db7c6d;">----
+</span><span>thread &#39;tests::test_list_of_results</span><span style="color:#db7c6d;">&#39;</span><span> panicked at exercises</span><span style="color:#db7c6d;">/</span><span>iterators</span><span style="color:#db7c6d;">/</span><span>iterators3.rs:</span><span style="color:#db7c6d;">80</span><span>:</span><span style="color:#db7c6d;">9</span><span>:
+</span><span>assertion `left </span><span style="color:#db7c6d;">==</span><span> right` failed
+</span><span>  left: </span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>()</span><span style="font-weight:bold;color:#dbbb3d;">&quot;
+</span><span> right: </span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>[Ok(1), Ok(11), Ok(1426), Ok(3)]</span><span style="font-weight:bold;color:#dbbb3d;">&quot;
+</span><span>
+</span><span style="color:#db7c6d;">---- </span><span>tests::test_success stdout </span><span style="color:#db7c6d;">----
+</span><span>thread &#39;tests::test_success</span><span style="color:#db7c6d;">&#39;</span><span> panicked at exercises</span><span style="color:#db7c6d;">/</span><span>iterators</span><span style="color:#db7c6d;">/</span><span>iterators3.rs:</span><span style="color:#db7c6d;">26</span><span>:</span><span style="color:#db7c6d;">5</span><span>:
+</span><span>not yet implemented
+</span><span>
+</span><span>
+</span><span>failures:
+</span><span>    tests::test_divide_0_by_something
+</span><span>    tests::test_divide_by_0
+</span><span>    tests::test_list_of_results
+</span><span>    tests::test_not_divisible
+</span><span>    tests::test_result_with_list
+</span><span>    tests::test_success
+</span><span>
+</span><span>test result: </span><span style="font-weight:bold;color:#a2ba43;">FAILED</span><span>. </span><span style="color:#db7c6d;">0</span><span> passed; </span><span style="color:#db7c6d;">6</span><span> failed; </span><span style="color:#db7c6d;">0</span><span> ignored; </span><span style="color:#db7c6d;">0</span><span> measured; </span><span style="color:#db7c6d;">0</span><span> filtered out; finished </span><span style="color:#db7c6d;">in 0.00</span><span>s
+</span></code></pre>
 <p>We see that we have a total 6 tests and they're all failing. The first 3 are because the functions are not yet implemented as our compiler confirms, the next 2 show us that the <code>left</code> is not matching the <code>right</code> and our final test is also because it's not yet implemented.</p>
 <h2 id="iterators3-rs-solution">Iterators3.rs Solution</h2>
 <h3 id="1-complete-the-divide-function">1. Complete the <code>divide</code> function</h3>
 <p>Our instructions to complete the <code>divide</code> function are the following:</p>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">&#x2F;&#x2F; Calculate `a` divided by `b` if `a` is evenly divisible by `b`.
-&#x2F;&#x2F; Otherwise, return a suitable error.
-pub fn divide(a: i32, b: i32) -&gt; Result&lt;i32, DivisionError&gt; {
-    todo!();
-}
-</code></pre>
-<p>With this function we actually have a couple of different ways of solving it, we can use the classic <code>if</code> statement or use a more &quot;Rusty&quot; approach by using <code>match</code>. Let's first look at the more traditional method of completing this function. Our instructions tell is that we have to calculate if <code>a</code> can be evenly divided by <code>b</code> if, it can we do it, if not we return an error. If we look our <code>enum</code> <code>DivisionError</code> we can see that we have 2 possible errors, so that gives us a total of 3 possible scenarios:</p>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#707180;">// Calculate `a` divided by `b` if `a` is evenly divisible by `b`.
+</span><span style="color:#707180;">// Otherwise, return a suitable error.
+</span><span style="color:#dbbb3d;">pub </span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">divide</span><span>(</span><span style="color:#ffffff;">a</span><span>: </span><span style="color:#a3cbe3;">i32</span><span>, </span><span style="color:#ffffff;">b</span><span>: </span><span style="color:#a3cbe3;">i32</span><span>) -&gt; </span><span style="color:#e7e7e7;">Result</span><span>&lt;</span><span style="color:#a3cbe3;">i32</span><span>, DivisionError&gt; {
+</span><span>    todo!();
+</span><span>}
+</span></code></pre>
+<p>With this function we actually have a couple of different ways of solving it, we can use the classic <code>if</code> statement or use a more "Rusty" approach by using <code>match</code>. Let's first look at the more traditional method of completing this function. Our instructions tell is that we have to calculate if <code>a</code> can be evenly divided by <code>b</code> if, it can we do it, if not we return an error. If we look our <code>enum</code> <code>DivisionError</code> we can see that we have 2 possible errors, so that gives us a total of 3 possible scenarios:</p>
 <ol>
 <li><code>Ok()</code>: if <code>a</code> is divisible by <code>b</code> and we divided</li>
 <li><code>Err()</code>: if we are trying to divide by so if <code>b == 0</code> so we return the <code>DividebyZero</code>error.</li>
 <li><code>Err()</code>: if <code>a</code> is not evenly divisible by <code>b</code> we return <code>NotDivisible(NotDivisibleError)</code></li>
 </ol>
 <p>Alright let's implement this. Note, that we should implement the <code>if b == 0</code> first to make sure that <code>b</code> is not zero before proceeding to <code>a % b</code>.</p>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">pub fn divide(a: i32, b: i32) -&gt; Result&lt;i32, DivisionError&gt; {
-    if b == 0 {
-        &#x2F;&#x2F; If the divisor is zero, return the DivideByZero error.
-        Err(DivisionError::DivideByZero)
-    } else if a % b == 0 {
-        &#x2F;&#x2F; If &#x27;a&#x27; is evenly divisible by &#x27;b&#x27;, return the result.
-        Ok(a &#x2F; b)
-    } else {
-        &#x2F;&#x2F; If &#x27;a&#x27; is not evenly divisible by &#x27;b&#x27;, return the NotDivisible error.
-        Err(DivisionError::NotDivisible(NotDivisibleError {
-            dividend: a,
-            divisor: b,
-        }))
-    }
-}
-
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#dbbb3d;">pub </span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">divide</span><span>(</span><span style="color:#ffffff;">a</span><span>: </span><span style="color:#a3cbe3;">i32</span><span>, </span><span style="color:#ffffff;">b</span><span>: </span><span style="color:#a3cbe3;">i32</span><span>) -&gt; </span><span style="color:#e7e7e7;">Result</span><span>&lt;</span><span style="color:#a3cbe3;">i32</span><span>, DivisionError&gt; {
+</span><span>    </span><span style="color:#db7c6d;">if</span><span> b </span><span style="color:#db7c6d;">== 0 </span><span>{
+</span><span>        </span><span style="color:#707180;">// If the divisor is zero, return the DivideByZero error.
+</span><span>        </span><span style="color:#e7e7e7;">Err</span><span>(DivisionError::DivideByZero)
+</span><span>    } </span><span style="color:#db7c6d;">else if</span><span> a </span><span style="color:#db7c6d;">%</span><span> b </span><span style="color:#db7c6d;">== 0 </span><span>{
+</span><span>        </span><span style="color:#707180;">// If &#39;a&#39; is evenly divisible by &#39;b&#39;, return the result.
+</span><span>        </span><span style="color:#e7e7e7;">Ok</span><span>(a </span><span style="color:#db7c6d;">/</span><span> b)
+</span><span>    } </span><span style="color:#db7c6d;">else </span><span>{
+</span><span>        </span><span style="color:#707180;">// If &#39;a&#39; is not evenly divisible by &#39;b&#39;, return the NotDivisible error.
+</span><span>        </span><span style="color:#e7e7e7;">Err</span><span>(DivisionError::NotDivisible(NotDivisibleError {
+</span><span>            dividend: a,
+</span><span>            divisor: b,
+</span><span>        }))
+</span><span>    }
+</span><span>}
+</span><span>
+</span></code></pre>
 <p>Now let's look at this alternative version using using match:</p>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">pub fn divide(a: i32, b: i32) -&gt; Result&lt;i32, DivisionError&gt; {
-    match (a, b) {
-	    &#x2F;&#x2F; first check if the divisor is zero
-        (_, 0) =&gt; Err(DivisionError::DivideByZero),
-        &#x2F;&#x2F; then check if (x, y) are evenly divisible
-        (x, y) if x % y == 0 =&gt; Ok(x &#x2F; y),
-        &#x2F;&#x2F; lastly return an error if it&#x27;s not even divisible
-        (x, y) =&gt; Err(DivisionError::NotDivisible(NotDivisibleError {
-            dividend: x,
-            divisor: y,
-        })),
-    }
-}
-
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#dbbb3d;">pub </span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">divide</span><span>(</span><span style="color:#ffffff;">a</span><span>: </span><span style="color:#a3cbe3;">i32</span><span>, </span><span style="color:#ffffff;">b</span><span>: </span><span style="color:#a3cbe3;">i32</span><span>) -&gt; </span><span style="color:#e7e7e7;">Result</span><span>&lt;</span><span style="color:#a3cbe3;">i32</span><span>, DivisionError&gt; {
+</span><span>    </span><span style="color:#db7c6d;">match </span><span>(a, b) {
+</span><span>	    </span><span style="color:#707180;">// first check if the divisor is zero
+</span><span>        (</span><span style="color:#db7c6d;">_</span><span>, </span><span style="color:#db7c6d;">0</span><span>) </span><span style="color:#db7c6d;">=&gt; </span><span style="color:#e7e7e7;">Err</span><span>(DivisionError::DivideByZero),
+</span><span>        </span><span style="color:#707180;">// then check if (x, y) are evenly divisible
+</span><span>        (x, y) </span><span style="color:#db7c6d;">if</span><span> x </span><span style="color:#db7c6d;">%</span><span> y </span><span style="color:#db7c6d;">== 0 =&gt; </span><span style="color:#e7e7e7;">Ok</span><span>(x </span><span style="color:#db7c6d;">/</span><span> y),
+</span><span>        </span><span style="color:#707180;">// lastly return an error if it&#39;s not even divisible
+</span><span>        (x, y) </span><span style="color:#db7c6d;">=&gt; </span><span style="color:#e7e7e7;">Err</span><span>(DivisionError::NotDivisible(NotDivisibleError {
+</span><span>            dividend: x,
+</span><span>            divisor: y,
+</span><span>        })),
+</span><span>    }
+</span><span>}
+</span><span>
+</span></code></pre>
 <p>In this version:</p>
 <ul>
 <li>We use a <code>match</code> expression to pattern match with a the tuple <code>(a, b)</code>.</li>
@@ -559,75 +563,75 @@ pub fn divide(a: i32, b: i32) -&gt; Result&lt;i32, DivisionError&gt; {
 <li>The third arm <code>(x, y)</code> is a catch-all that matches any other case where <code>a</code> is not evenly divisible by <code>b</code>. It returns the <code>NotDivisible</code> error with the appropriate <code>NotDivisibleError</code> struct.</li>
 </ul>
 <p>Let's save at this point and see what happens:</p>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">test result: FAILED. 4 passed; 2 failed;
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span>test result: </span><span style="font-weight:bold;color:#a2ba43;">FAILED</span><span>. </span><span style="color:#db7c6d;">4</span><span> passed; </span><span style="color:#db7c6d;">2</span><span> failed;
+</span></code></pre>
 <p>Great, it looks like we have passed 4 tests, by completing that first function.</p>
 <h3 id="2-complete-the-results-with-list-function">2. Complete the  <code>results_with_list</code> function</h3>
 <p>These are the instructions to help us complete this function.</p>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">&#x2F;&#x2F; Complete the function and return a value of the correct type so the test passes.
-&#x2F;&#x2F; Desired output: Ok([1, 11, 1426, 3])
-fn result_with_list() -&gt; () {
-    let numbers = vec![27, 297, 38502, 81];
-    let division_results = numbers.into_iter().map(|n| divide(n, 27));
-}
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#707180;">// Complete the function and return a value of the correct type so the test passes.
+</span><span style="color:#707180;">// Desired output: Ok([1, 11, 1426, 3])
+</span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">result_with_list</span><span>() -&gt; () {
+</span><span>    </span><span style="color:#a3cbe3;">let</span><span> numbers </span><span style="color:#db7c6d;">= </span><span>vec![</span><span style="color:#db7c6d;">27</span><span>, </span><span style="color:#db7c6d;">297</span><span>, </span><span style="color:#db7c6d;">38502</span><span>, </span><span style="color:#db7c6d;">81</span><span>];
+</span><span>    </span><span style="color:#a3cbe3;">let</span><span> division_results </span><span style="color:#db7c6d;">=</span><span> numbers.</span><span style="color:#db7c6d;">into_iter</span><span>().</span><span style="color:#db7c6d;">map</span><span>(|</span><span style="color:#ffffff;">n</span><span>| </span><span style="color:#db7c6d;">divide</span><span>(n, </span><span style="color:#db7c6d;">27</span><span>));
+</span><span>}
+</span></code></pre>
 <p>So, let's add a return type, if we look at the rest of the function you can see that we are using a <code>Vec</code> so, that makes it pretty straight forward to understand what we have to return right?</p>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">fn result_with_list() -&gt; Result&lt;Vec&lt;i32&gt;, DivisionError&gt; {
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">result_with_list</span><span>() -&gt; </span><span style="color:#e7e7e7;">Result</span><span>&lt;</span><span style="color:#e7e7e7;">Vec</span><span>&lt;</span><span style="color:#a3cbe3;">i32</span><span>&gt;, DivisionError&gt; {
+</span></code></pre>
 <p>Our function signature should be updated to handle returning a <code>Vec&lt;i32&gt;</code> if all is <code>Ok</code> or a <code>DivisionError</code> if it's not so we put that in the function signature to  complete it. Next let's format the <code>division_results</code> function a little differently from the one liner to the having each method start on a new line.</p>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">let division_results = numbers
-    .into_iter()
-    .map(|n| divide(n, 27))
-    .collect();
-</code></pre>
-<p>This also give us the opportunity to add the <code>.collect()</code> method which was missing and essentially when &quot;collecting&quot; elements back into a vector. This also makes it easier to read in my opinion.</p>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#a3cbe3;">let</span><span> division_results </span><span style="color:#db7c6d;">=</span><span> numbers
+</span><span>    .</span><span style="color:#db7c6d;">into_iter</span><span>()
+</span><span>    .</span><span style="color:#db7c6d;">map</span><span>(|</span><span style="color:#ffffff;">n</span><span>| </span><span style="color:#db7c6d;">divide</span><span>(n, </span><span style="color:#db7c6d;">27</span><span>))
+</span><span>    .</span><span style="color:#db7c6d;">collect</span><span>();
+</span></code></pre>
+<p>This also give us the opportunity to add the <code>.collect()</code> method which was missing and essentially when "collecting" elements back into a vector. This also makes it easier to read in my opinion.</p>
 <p>Finally to complete this function we have to return a value. Right now if we compile we'd see this message:</p>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">40 | fn result_with_list() -&gt; Result&lt;Vec&lt;i32&gt;, DivisionError&gt; {
-   |    ----------------      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected `Result&lt;Vec&lt;i32&gt;, DivisionError&gt;`, found `()`
-   |    |
-   |    implicitly returns `()` as its body has no tail or `return` expression
-   |
-   = note:   expected enum `Result&lt;Vec&lt;i32&gt;, DivisionError&gt;`
-           found unit type `()`
-help: consider returning the local binding `division_results`
-   |
-45 ~         .collect();
-46 +     division_results
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#db7c6d;">40 | </span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">result_with_list</span><span>() -&gt; </span><span style="color:#e7e7e7;">Result</span><span>&lt;</span><span style="color:#e7e7e7;">Vec</span><span>&lt;</span><span style="color:#a3cbe3;">i32</span><span>&gt;, DivisionError&gt; {
+</span><span>   </span><span style="color:#db7c6d;">|    ----------------      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^</span><span> expected `</span><span style="color:#e7e7e7;">Result</span><span>&lt;</span><span style="color:#e7e7e7;">Vec</span><span>&lt;</span><span style="color:#a3cbe3;">i32</span><span>&gt;, DivisionError&gt;`, found `()`
+</span><span>   </span><span style="color:#db7c6d;">|    |
+</span><span>   </span><span style="color:#db7c6d;">|</span><span>    implicitly returns `()` </span><span style="color:#db7c6d;">as</span><span> its body has no tail or `</span><span style="color:#db7c6d;">return</span><span>` expression
+</span><span>   </span><span style="color:#db7c6d;">|
+</span><span>   </span><span style="color:#db7c6d;">=</span><span> note:   expected </span><span style="color:#a3cbe3;">enum</span><span> `</span><span style="color:#e7e7e7;">Result</span><span>&lt;</span><span style="color:#e7e7e7;">Vec</span><span>&lt;</span><span style="color:#a3cbe3;">i32</span><span>&gt;, DivisionError&gt;`
+</span><span>           found unit </span><span style="color:#a3cbe3;">type</span><span> `()`
+</span><span>help: consider returning the local binding `division_results`
+</span><span>   </span><span style="color:#db7c6d;">|
+</span><span style="color:#db7c6d;">45 ~         </span><span>.</span><span style="color:#db7c6d;">collect</span><span>();
+</span><span style="color:#db7c6d;">46 +</span><span>     division_results
+</span></code></pre>
 <p>Luckily the Rust's error message is explicit in telling you what you should return. If we add <code>division_results</code> on line <code>46</code> we get this printout:</p>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">running 6 tests
-test tests::test_divide_0_by_something ... ok
-test tests::test_divide_by_0 ... ok
-test tests::test_not_divisible ... ok
-test tests::test_result_with_list ... ok
-test tests::test_success ... ok
-test tests::test_list_of_results ... FAILED
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span>running </span><span style="color:#db7c6d;">6</span><span> tests
+</span><span>test tests::test_divide_0_by_something </span><span style="color:#db7c6d;">...</span><span> ok
+</span><span>test tests::test_divide_by_0 </span><span style="color:#db7c6d;">...</span><span> ok
+</span><span>test tests::test_not_divisible </span><span style="color:#db7c6d;">...</span><span> ok
+</span><span>test tests::test_result_with_list </span><span style="color:#db7c6d;">...</span><span> ok
+</span><span>test tests::test_success </span><span style="color:#db7c6d;">...</span><span> ok
+</span><span>test tests::test_list_of_results </span><span style="color:#db7c6d;">... </span><span style="font-weight:bold;color:#a2ba43;">FAILED
+</span></code></pre>
 <p>Alright we're almost there.</p>
 <h3 id="3-complete-the-list-of-results-function">3. Complete the <code>list_of_results</code> function</h3>
 <p>This is our final function to complete as you can see we are passing all our tests except our final one, so let's dig into the instructions for this one.</p>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">&#x2F;&#x2F; Complete the function and return a value of the correct type so the test passes.
-&#x2F;&#x2F; Desired output: [Ok(1), Ok(11), Ok(1426), Ok(3)]
-fn list_of_results() -&gt; () {
-    let numbers = vec![27, 297, 38502, 81];
-    let division_results = numbers.into_iter().map(|n| divide(n, 27));
-}
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#707180;">// Complete the function and return a value of the correct type so the test passes.
+</span><span style="color:#707180;">// Desired output: [Ok(1), Ok(11), Ok(1426), Ok(3)]
+</span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">list_of_results</span><span>() -&gt; () {
+</span><span>    </span><span style="color:#a3cbe3;">let</span><span> numbers </span><span style="color:#db7c6d;">= </span><span>vec![</span><span style="color:#db7c6d;">27</span><span>, </span><span style="color:#db7c6d;">297</span><span>, </span><span style="color:#db7c6d;">38502</span><span>, </span><span style="color:#db7c6d;">81</span><span>];
+</span><span>    </span><span style="color:#a3cbe3;">let</span><span> division_results </span><span style="color:#db7c6d;">=</span><span> numbers.</span><span style="color:#db7c6d;">into_iter</span><span>().</span><span style="color:#db7c6d;">map</span><span>(|</span><span style="color:#ffffff;">n</span><span>| </span><span style="color:#db7c6d;">divide</span><span>(n, </span><span style="color:#db7c6d;">27</span><span>));
+</span><span>}
+</span></code></pre>
 <p>Our starting point looks very similar to our previous function but the desired output is different. As it seems to be wanting one <code>Ok</code> result for every number vs a <code>Vec&lt;i32&gt;</code>. So how do we solve this?</p>
 <p>Instead of wrapping our <code>Vec&lt;i32&gt;</code> in <code>Result</code> we wrap our <code>Result</code> in a <code>Vec&lt;Result&lt;i32&gt;&gt;</code> like so:</p>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">fn list_of_results() -&gt; Vec&lt;Result&lt;i32, DivisionError&gt;&gt; {
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">list_of_results</span><span>() -&gt; </span><span style="color:#e7e7e7;">Vec</span><span>&lt;</span><span style="color:#e7e7e7;">Result</span><span>&lt;</span><span style="color:#a3cbe3;">i32</span><span>, DivisionError&gt;&gt; {
+</span></code></pre>
 <p>and then like in our previous example, we use the <code>.collect()</code> method and return<code>division_results</code>. Here's the full block for reference.</p>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">fn list_of_results() -&gt; Vec&lt;Result&lt;i32, DivisionError&gt;&gt; {
-    let numbers = vec![27, 297, 38502, 81];
-    let division_results: Vec&lt;Result&lt;i32, DivisionError&gt;&gt; = numbers
-        .into_iter()
-        .map(|n| divide(n, 27))
-        .collect();
-
-    division_results
-}
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">list_of_results</span><span>() -&gt; </span><span style="color:#e7e7e7;">Vec</span><span>&lt;</span><span style="color:#e7e7e7;">Result</span><span>&lt;</span><span style="color:#a3cbe3;">i32</span><span>, DivisionError&gt;&gt; {
+</span><span>    </span><span style="color:#a3cbe3;">let</span><span> numbers </span><span style="color:#db7c6d;">= </span><span>vec![</span><span style="color:#db7c6d;">27</span><span>, </span><span style="color:#db7c6d;">297</span><span>, </span><span style="color:#db7c6d;">38502</span><span>, </span><span style="color:#db7c6d;">81</span><span>];
+</span><span>    </span><span style="color:#a3cbe3;">let</span><span> division_results: </span><span style="color:#e7e7e7;">Vec</span><span>&lt;</span><span style="color:#e7e7e7;">Result</span><span>&lt;</span><span style="color:#a3cbe3;">i32</span><span>, DivisionError&gt;&gt; </span><span style="color:#db7c6d;">=</span><span> numbers
+</span><span>        .</span><span style="color:#db7c6d;">into_iter</span><span>()
+</span><span>        .</span><span style="color:#db7c6d;">map</span><span>(|</span><span style="color:#ffffff;">n</span><span>| </span><span style="color:#db7c6d;">divide</span><span>(n, </span><span style="color:#db7c6d;">27</span><span>))
+</span><span>        .</span><span style="color:#db7c6d;">collect</span><span>();
+</span><span>
+</span><span>    division_results
+</span><span>}
+</span></code></pre>
 <ol>
 <li>We specify the return type as <code>Vec&lt;Result&lt;i32, DivisionError&gt;&gt;</code> to match the desired output.</li>
 <li>We use the <code>collect</code> method on the iterator of division results. This method collects the individual results into a <code>Vec&lt;Result&lt;i32, DivisionError&gt;&gt;</code>.</li>
@@ -635,52 +639,52 @@ fn list_of_results() -&gt; () {
 <li>Finally, we return <code>division_results</code>, which is a <code>Vec</code> containing individual <code>Ok</code> results.</li>
 </ol>
 <p>This should make the test pass with the desired output <code>[Ok(1), Ok(11), Ok(1426), Ok(3)]</code>.</p>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">✅ Successfully tested exercises&#x2F;iterators&#x2F;iterators3.rs!
-
-🎉 🎉  The code is compiling, and the tests pass! 🎉 🎉
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span>✅ Successfully tested exercises</span><span style="color:#db7c6d;">/</span><span>iterators</span><span style="color:#db7c6d;">/</span><span>iterators3.rs</span><span style="color:#db7c6d;">!
+</span><span>
+</span><span>🎉 🎉  The code is compiling, and the tests pass</span><span style="color:#db7c6d;">!</span><span> 🎉 🎉
+</span></code></pre>
 <h2 id="iterators4-rs">Iterators4.rs</h2>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">&#x2F;&#x2F; iterators4.rs
-&#x2F;&#x2F; Execute `rustlings hint iterators4` or use the `hint` watch subcommand for a hint.
-
-&#x2F;&#x2F; I AM NOT DONE
-
-pub fn factorial(num: u64) -&gt; u64 {
-    &#x2F;&#x2F; Complete this function to return the factorial of num
-    &#x2F;&#x2F; Do not use:
-    &#x2F;&#x2F; - return
-    &#x2F;&#x2F; Try not to use:
-    &#x2F;&#x2F; - imperative style loops (for, while)
-    &#x2F;&#x2F; - additional variables
-    &#x2F;&#x2F; For an extra challenge, don&#x27;t use:
-    &#x2F;&#x2F; - recursion
-    &#x2F;&#x2F; Execute `rustlings hint iterators4` for hints.
-}
-
-#[cfg(test)]
-mod tests {
-    use super::*;
-
-    #[test]
-    fn factorial_of_0() {
-        assert_eq!(1, factorial(0));
-    }
-
-    #[test]
-    fn factorial_of_1() {
-        assert_eq!(1, factorial(1));
-    }
-    #[test]
-    fn factorial_of_2() {
-        assert_eq!(2, factorial(2));
-    }
-
-    #[test]
-    fn factorial_of_4() {
-        assert_eq!(24, factorial(4));
-    }
-}
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#707180;">// iterators4.rs
+</span><span style="color:#707180;">// Execute `rustlings hint iterators4` or use the `hint` watch subcommand for a hint.
+</span><span>
+</span><span style="color:#707180;">// I AM NOT DONE
+</span><span>
+</span><span style="color:#dbbb3d;">pub </span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">factorial</span><span>(</span><span style="color:#ffffff;">num</span><span>: </span><span style="color:#a3cbe3;">u64</span><span>) -&gt; </span><span style="color:#a3cbe3;">u64 </span><span>{
+</span><span>    </span><span style="color:#707180;">// Complete this function to return the factorial of num
+</span><span>    </span><span style="color:#707180;">// Do not use:
+</span><span>    </span><span style="color:#707180;">// - return
+</span><span>    </span><span style="color:#707180;">// Try not to use:
+</span><span>    </span><span style="color:#707180;">// - imperative style loops (for, while)
+</span><span>    </span><span style="color:#707180;">// - additional variables
+</span><span>    </span><span style="color:#707180;">// For an extra challenge, don&#39;t use:
+</span><span>    </span><span style="color:#707180;">// - recursion
+</span><span>    </span><span style="color:#707180;">// Execute `rustlings hint iterators4` for hints.
+</span><span>}
+</span><span>
+</span><span>#[</span><span style="font-weight:bold;color:#a3cbe3;">cfg</span><span>(test)]
+</span><span style="color:#a3cbe3;">mod </span><span>tests {
+</span><span>    </span><span style="color:#db7c6d;">use super</span><span>::</span><span style="color:#db7c6d;">*</span><span>;
+</span><span>
+</span><span>    #[</span><span style="font-weight:bold;color:#a3cbe3;">test</span><span>]
+</span><span>    </span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">factorial_of_0</span><span>() {
+</span><span>        assert_eq!(</span><span style="color:#db7c6d;">1</span><span>, </span><span style="color:#db7c6d;">factorial</span><span>(</span><span style="color:#db7c6d;">0</span><span>));
+</span><span>    }
+</span><span>
+</span><span>    #[</span><span style="font-weight:bold;color:#a3cbe3;">test</span><span>]
+</span><span>    </span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">factorial_of_1</span><span>() {
+</span><span>        assert_eq!(</span><span style="color:#db7c6d;">1</span><span>, </span><span style="color:#db7c6d;">factorial</span><span>(</span><span style="color:#db7c6d;">1</span><span>));
+</span><span>    }
+</span><span>    #[</span><span style="font-weight:bold;color:#a3cbe3;">test</span><span>]
+</span><span>    </span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">factorial_of_2</span><span>() {
+</span><span>        assert_eq!(</span><span style="color:#db7c6d;">2</span><span>, </span><span style="color:#db7c6d;">factorial</span><span>(</span><span style="color:#db7c6d;">2</span><span>));
+</span><span>    }
+</span><span>
+</span><span>    #[</span><span style="font-weight:bold;color:#a3cbe3;">test</span><span>]
+</span><span>    </span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">factorial_of_4</span><span>() {
+</span><span>        assert_eq!(</span><span style="color:#db7c6d;">24</span><span>, </span><span style="color:#db7c6d;">factorial</span><span>(</span><span style="color:#db7c6d;">4</span><span>));
+</span><span>    }
+</span><span>}
+</span></code></pre>
 <p>Okay it seems we have a little challenge here to create a function that returns the factorial of <code>num</code>
 we also have some added limitations.</p>
 <ol>
@@ -690,23 +694,23 @@ we also have some added limitations.</p>
 <li>Extra credit: Don't use recursion</li>
 </ol>
 <h2 id="iterators4-rs-errors">Iterators4.rs Errors</h2>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">⚠️  Compiling of exercises&#x2F;iterators&#x2F;iterators4.rs failed! Please try again. Here&#x27;s the output:
-error[E0308]: mismatched types
- --&gt; exercises&#x2F;iterators&#x2F;iterators4.rs:6:31
-  |
-6 | pub fn factorial(num: u64) -&gt; u64 {
-  |        ---------              ^^^ expected `u64`, found `()`
-  |        |
-  |        implicitly returns `()` as its body has no tail or `return` expression
-  |
-help: consider returning the local binding `num`
-  |
-6 ~ pub fn factorial(num: u64) -&gt; u64 {
-7 +     num
-  |
-error: aborting due to previous error
-
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span>⚠️  Compiling of exercises</span><span style="color:#db7c6d;">/</span><span>iterators</span><span style="color:#db7c6d;">/</span><span>iterators4.rs failed</span><span style="color:#db7c6d;">!</span><span> Please try again. Here</span><span style="color:#dbbb3d;">&#39;s</span><span> the output:
+</span><span>error[</span><span style="font-weight:bold;color:#a2ba43;">E0308</span><span>]: mismatched types
+</span><span> </span><span style="color:#db7c6d;">-</span><span>-&gt; exercises</span><span style="color:#db7c6d;">/</span><span>iterators</span><span style="color:#db7c6d;">/</span><span>iterators4.rs:</span><span style="color:#db7c6d;">6</span><span>:</span><span style="color:#db7c6d;">31
+</span><span>  </span><span style="color:#db7c6d;">|
+</span><span style="color:#db7c6d;">6 | </span><span style="color:#dbbb3d;">pub </span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">factorial</span><span>(</span><span style="color:#ffffff;">num</span><span>: </span><span style="color:#a3cbe3;">u64</span><span>) -&gt; </span><span style="color:#a3cbe3;">u64 </span><span>{
+</span><span>  </span><span style="color:#db7c6d;">|        ---------              ^^^</span><span> expected `</span><span style="color:#a3cbe3;">u64</span><span>`, found `()`
+</span><span>  </span><span style="color:#db7c6d;">|        |
+</span><span>  </span><span style="color:#db7c6d;">|</span><span>        implicitly returns `()` </span><span style="color:#db7c6d;">as</span><span> its body has no tail or `</span><span style="color:#db7c6d;">return</span><span>` expression
+</span><span>  </span><span style="color:#db7c6d;">|
+</span><span>help: consider returning the local binding `num`
+</span><span>  </span><span style="color:#db7c6d;">|
+</span><span style="color:#db7c6d;">6 ~ </span><span style="color:#dbbb3d;">pub </span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">factorial</span><span>(</span><span style="color:#ffffff;">num</span><span>: </span><span style="color:#a3cbe3;">u64</span><span>) -&gt; </span><span style="color:#a3cbe3;">u64 </span><span>{
+</span><span style="color:#db7c6d;">7 +</span><span>     num
+</span><span>  </span><span style="color:#db7c6d;">|
+</span><span>error: aborting due to previous error
+</span><span>
+</span></code></pre>
 <p>Our errors don't tell us much in this case we know we have an incomplete function</p>
 <h2 id="iterators4-rs-solution">Iterators4.rs Solution</h2>
 <p>So our challenge is pretty wide open, meaning we do have a possible few different ways to solve this, but let's try to stick as closely as possible to the requirements. It's clear this exercise is made for us to iterators and their associated methods.</p>
@@ -714,147 +718,147 @@ error: aborting due to previous error
 <h3 id="what-is-a-factorial">What is a Factorial?</h3>
 <p>Factorials are a fascinating concept in mathematics that involves multiplying a sequence of numbers together.</p>
 <p>Simply put, a factorial of a number is the product of all positive integers from 1 to that number. For example, the factorial of 5 is calculated as:</p>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">5! = 5 × 4 × 3 × 2 × 1 = 120
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#db7c6d;">5! = 5</span><span> × </span><span style="color:#db7c6d;">4</span><span> × </span><span style="color:#db7c6d;">3</span><span> × </span><span style="color:#db7c6d;">2</span><span> × </span><span style="color:#db7c6d;">1 = 120
+</span></code></pre>
 <p>In Rust, you can do this easily and efficiently using a few simple methods.</p>
 <p>So we said that to calculate a factorial we need a sequence of numbers from 1 to that numbers so how do we represent this in Rust?<code>1..num</code> seems like a logical choice. Right, so now we have to take this range and iterate over it but instead of using <code>iter</code> let's use <code>into_iter</code> which allows us to take ownership of each element and then we use <code>.product()</code> which we haven't used before but comes in handy in situations like these, more on product below.</p>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">pub fn factorial(num: u64) -&gt; u64 {
-    (1..=num).into_iter().product()
-}
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#dbbb3d;">pub </span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">factorial</span><span>(</span><span style="color:#ffffff;">num</span><span>: </span><span style="color:#a3cbe3;">u64</span><span>) -&gt; </span><span style="color:#a3cbe3;">u64 </span><span>{
+</span><span>    (</span><span style="color:#db7c6d;">1..=</span><span>num).</span><span style="color:#db7c6d;">into_iter</span><span>().</span><span style="color:#db7c6d;">product</span><span>()
+</span><span>}
+</span></code></pre>
 <h4 id="product-notes"><code>.product()</code> Notes</h4>
 <p><code>product()</code> method is a convenient way to calculate the product of all the numbers in an iterator or a range. In the context of calculating a factorial, think of it like this:</p>
-<p>Let's say you want to find the factorial of a number, like <code>5!</code> (read as &quot;5 factorial&quot;). This means you want to multiply all the positive whole numbers from <code>1</code> to <code>5</code> together: <code>1 * 2 * 3 * 4 * 5</code>.</p>
+<p>Let's say you want to find the factorial of a number, like <code>5!</code> (read as "5 factorial"). This means you want to multiply all the positive whole numbers from <code>1</code> to <code>5</code> together: <code>1 * 2 * 3 * 4 * 5</code>.</p>
 <p>Using an iterator or a range, you can create a sequence of these numbers: <code>1, 2, 3, 4, 5</code>. Then, when you apply the <code>product()</code> method to this sequence, it will perform the multiplication for you and give you the result, which in this case is <code>120</code>.</p>
 <p>So, in essence, <code>product()</code> takes a sequence of numbers and multiplies them all together, making it handy for tasks like calculating factorials. It's like a built-in calculator for products in Rust!</p>
 <p>So if we save this we will successfully compile.</p>
 <p>Let's move on to our final exercise.</p>
 <h2 id="iterators5-rs">Iterators5.rs</h2>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">&#x2F;&#x2F; iterators5.rs
-&#x2F;&#x2F; Let&#x27;s define a simple model to track Rustlings exercise progress. Progress
-&#x2F;&#x2F; will be modelled using a hash map. The name of the exercise is the key and
-&#x2F;&#x2F; the progress is the value. Two counting functions were created to count the
-&#x2F;&#x2F; number of exercises with a given progress. These counting functions use
-&#x2F;&#x2F; imperative style for loops. Recreate this counting functionality using
-&#x2F;&#x2F; iterators. Only the two iterator methods (count_iterator and
-&#x2F;&#x2F; count_collection_iterator) need to be modified.
-&#x2F;&#x2F; Execute `rustlings hint iterators5` or use the `hint` watch subcommand for a hint.
-&#x2F;&#x2F;
-&#x2F;&#x2F; Make the code compile and the tests pass.
-
-&#x2F;&#x2F; I AM NOT DONE
-
-use std::collections::HashMap;
-
-#[derive(Clone, Copy, PartialEq, Eq)]
-enum Progress {
-    None,
-    Some,
-    Complete,
-}
-
-fn count_for(map: &amp;HashMap&lt;String, Progress&gt;, value: Progress) -&gt; usize {
-    let mut count = 0;
-    for val in map.values() {
-        if val == &amp;value {
-            count += 1;
-        }
-    }
-    count
-}
-
-fn count_iterator(map: &amp;HashMap&lt;String, Progress&gt;, value: Progress) -&gt; usize {
-    &#x2F;&#x2F; map is a hashmap with String keys and Progress values.
-    &#x2F;&#x2F; map = { &quot;variables1&quot;: Complete, &quot;from_str&quot;: None, ... }
-    todo!();
-}
-
-fn count_collection_for(collection: &amp;[HashMap&lt;String, Progress&gt;], value: Progress) -&gt; usize {
-    let mut count = 0;
-    for map in collection {
-        for val in map.values() {
-            if val == &amp;value {
-                count += 1;
-            }
-        }
-    }
-    count
-}
-
-fn count_collection_iterator(collection: &amp;[HashMap&lt;String, Progress&gt;], value: Progress) -&gt; usize {
-    &#x2F;&#x2F; collection is a slice of hashmaps.
-    &#x2F;&#x2F; collection = [{ &quot;variables1&quot;: Complete, &quot;from_str&quot;: None, ... },
-    &#x2F;&#x2F;     { &quot;variables2&quot;: Complete, ... }, ... ]
-    todo!();
-}
-
-#[cfg(test)]
-mod tests {
-    use super::*;
-
-&#x2F;&#x2F; tests removed for space...
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#707180;">// iterators5.rs
+</span><span style="color:#707180;">// Let&#39;s define a simple model to track Rustlings exercise progress. Progress
+</span><span style="color:#707180;">// will be modelled using a hash map. The name of the exercise is the key and
+</span><span style="color:#707180;">// the progress is the value. Two counting functions were created to count the
+</span><span style="color:#707180;">// number of exercises with a given progress. These counting functions use
+</span><span style="color:#707180;">// imperative style for loops. Recreate this counting functionality using
+</span><span style="color:#707180;">// iterators. Only the two iterator methods (count_iterator and
+</span><span style="color:#707180;">// count_collection_iterator) need to be modified.
+</span><span style="color:#707180;">// Execute `rustlings hint iterators5` or use the `hint` watch subcommand for a hint.
+</span><span style="color:#707180;">//
+</span><span style="color:#707180;">// Make the code compile and the tests pass.
+</span><span>
+</span><span style="color:#707180;">// I AM NOT DONE
+</span><span>
+</span><span style="color:#db7c6d;">use </span><span>std::collections::HashMap;
+</span><span>
+</span><span>#[</span><span style="font-weight:bold;color:#a3cbe3;">derive</span><span>(Clone, Copy, PartialEq, Eq)]
+</span><span style="color:#a3cbe3;">enum </span><span>Progress {
+</span><span>    </span><span style="color:#e7e7e7;">None</span><span>,
+</span><span>    </span><span style="color:#e7e7e7;">Some</span><span>,
+</span><span>    Complete,
+</span><span>}
+</span><span>
+</span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">count_for</span><span>(</span><span style="color:#ffffff;">map</span><span>: </span><span style="color:#db7c6d;">&amp;</span><span>HashMap&lt;</span><span style="color:#e7e7e7;">String</span><span>, Progress&gt;, </span><span style="color:#ffffff;">value</span><span>: Progress) -&gt; </span><span style="color:#a3cbe3;">usize </span><span>{
+</span><span>    </span><span style="color:#a3cbe3;">let </span><span style="color:#dbbb3d;">mut</span><span> count </span><span style="color:#db7c6d;">= 0</span><span>;
+</span><span>    </span><span style="color:#db7c6d;">for</span><span> val </span><span style="color:#db7c6d;">in</span><span> map.</span><span style="color:#db7c6d;">values</span><span>() {
+</span><span>        </span><span style="color:#db7c6d;">if</span><span> val </span><span style="color:#db7c6d;">== &amp;</span><span>value {
+</span><span>            count </span><span style="color:#db7c6d;">+= 1</span><span>;
+</span><span>        }
+</span><span>    }
+</span><span>    count
+</span><span>}
+</span><span>
+</span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">count_iterator</span><span>(</span><span style="color:#ffffff;">map</span><span>: </span><span style="color:#db7c6d;">&amp;</span><span>HashMap&lt;</span><span style="color:#e7e7e7;">String</span><span>, Progress&gt;, </span><span style="color:#ffffff;">value</span><span>: Progress) -&gt; </span><span style="color:#a3cbe3;">usize </span><span>{
+</span><span>    </span><span style="color:#707180;">// map is a hashmap with String keys and Progress values.
+</span><span>    </span><span style="color:#707180;">// map = { &quot;variables1&quot;: Complete, &quot;from_str&quot;: None, ... }
+</span><span>    todo!();
+</span><span>}
+</span><span>
+</span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">count_collection_for</span><span>(</span><span style="color:#ffffff;">collection</span><span>: </span><span style="color:#db7c6d;">&amp;</span><span>[HashMap&lt;</span><span style="color:#e7e7e7;">String</span><span>, Progress&gt;], </span><span style="color:#ffffff;">value</span><span>: Progress) -&gt; </span><span style="color:#a3cbe3;">usize </span><span>{
+</span><span>    </span><span style="color:#a3cbe3;">let </span><span style="color:#dbbb3d;">mut</span><span> count </span><span style="color:#db7c6d;">= 0</span><span>;
+</span><span>    </span><span style="color:#db7c6d;">for</span><span> map </span><span style="color:#db7c6d;">in</span><span> collection {
+</span><span>        </span><span style="color:#db7c6d;">for</span><span> val </span><span style="color:#db7c6d;">in</span><span> map.</span><span style="color:#db7c6d;">values</span><span>() {
+</span><span>            </span><span style="color:#db7c6d;">if</span><span> val </span><span style="color:#db7c6d;">== &amp;</span><span>value {
+</span><span>                count </span><span style="color:#db7c6d;">+= 1</span><span>;
+</span><span>            }
+</span><span>        }
+</span><span>    }
+</span><span>    count
+</span><span>}
+</span><span>
+</span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">count_collection_iterator</span><span>(</span><span style="color:#ffffff;">collection</span><span>: </span><span style="color:#db7c6d;">&amp;</span><span>[HashMap&lt;</span><span style="color:#e7e7e7;">String</span><span>, Progress&gt;], </span><span style="color:#ffffff;">value</span><span>: Progress) -&gt; </span><span style="color:#a3cbe3;">usize </span><span>{
+</span><span>    </span><span style="color:#707180;">// collection is a slice of hashmaps.
+</span><span>    </span><span style="color:#707180;">// collection = [{ &quot;variables1&quot;: Complete, &quot;from_str&quot;: None, ... },
+</span><span>    </span><span style="color:#707180;">//     { &quot;variables2&quot;: Complete, ... }, ... ]
+</span><span>    todo!();
+</span><span>}
+</span><span>
+</span><span>#[</span><span style="font-weight:bold;color:#a3cbe3;">cfg</span><span>(test)]
+</span><span style="color:#a3cbe3;">mod </span><span>tests {
+</span><span>    </span><span style="color:#db7c6d;">use super</span><span>::</span><span style="color:#db7c6d;">*</span><span>;
+</span><span>
+</span><span style="color:#707180;">// tests removed for space...
+</span></code></pre>
 <p>Our instructions are to finish 2 functions using iterators instead of imperative style loops.</p>
 <h2 id="iterators5-rs-errors">Iterators5.rs Errors</h2>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">⚠️  Testing of exercises&#x2F;iterators&#x2F;iterators5.rs failed! Please try again. Here&#x27;s the output:
-
-running 4 tests
-test tests::count_complete ... FAILED
-test tests::count_equals_for ... FAILED
-test tests::count_collection_complete ... FAILED
-test tests::count_collection_equals_for ... FAILED
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span>⚠️  Testing of exercises</span><span style="color:#db7c6d;">/</span><span>iterators</span><span style="color:#db7c6d;">/</span><span>iterators5.rs failed</span><span style="color:#db7c6d;">!</span><span> Please try again. Here</span><span style="color:#dbbb3d;">&#39;s</span><span> the output:
+</span><span>
+</span><span>running </span><span style="color:#db7c6d;">4</span><span> tests
+</span><span>test tests::count_complete </span><span style="color:#db7c6d;">... </span><span style="font-weight:bold;color:#a2ba43;">FAILED
+</span><span>test tests::count_equals_for </span><span style="color:#db7c6d;">... </span><span style="font-weight:bold;color:#a2ba43;">FAILED
+</span><span>test tests::count_collection_complete </span><span style="color:#db7c6d;">... </span><span style="font-weight:bold;color:#a2ba43;">FAILED
+</span><span>test tests::count_collection_equals_for </span><span style="color:#db7c6d;">... </span><span style="font-weight:bold;color:#a2ba43;">FAILED
+</span></code></pre>
 <p>For reference,  here are failing tests, but this is expected as they are not implemented yet.</p>
 <h2 id="iterators5-rs-solution">Iterators5.rs Solution</h2>
 <h3 id="count-iterator-solution"><code>count_iterator</code> solution</h3>
 <p>For the first function <code>count_iterator</code> we have additional note to help us complete our function</p>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">fn count_iterator(map: &amp;HashMap&lt;String, Progress&gt;, value: Progress) -&gt; usize {
-    &#x2F;&#x2F; map is a hashmap with String keys and Progress values.
-    &#x2F;&#x2F; map = { &quot;variables1&quot;: Complete, &quot;from_str&quot;: None, ... }
-    todo!();
-}
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">count_iterator</span><span>(</span><span style="color:#ffffff;">map</span><span>: </span><span style="color:#db7c6d;">&amp;</span><span>HashMap&lt;</span><span style="color:#e7e7e7;">String</span><span>, Progress&gt;, </span><span style="color:#ffffff;">value</span><span>: Progress) -&gt; </span><span style="color:#a3cbe3;">usize </span><span>{
+</span><span>    </span><span style="color:#707180;">// map is a hashmap with String keys and Progress values.
+</span><span>    </span><span style="color:#707180;">// map = { &quot;variables1&quot;: Complete, &quot;from_str&quot;: None, ... }
+</span><span>    todo!();
+</span><span>}
+</span></code></pre>
 <p>Here's a way we can solve this function</p>
 <ul>
 <li>We use <code>map.values()</code> to obtain an iterator over the values in the hashmap.</li>
 <li>We use <code>filter</code> to keep only the values that are equal to the given <code>value</code>.</li>
 <li>Finally, we call <code>count()</code> to count the number of elements that match the condition.</li>
 </ul>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">fn count_iterator(map: &amp;HashMap&lt;String, Progress&gt;, value: Progress) -&gt; usize {
-    map.values()
-    .filter(|&amp;&amp;val| val == value)
-    .count()
-}
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">count_iterator</span><span>(</span><span style="color:#ffffff;">map</span><span>: </span><span style="color:#db7c6d;">&amp;</span><span>HashMap&lt;</span><span style="color:#e7e7e7;">String</span><span>, Progress&gt;, </span><span style="color:#ffffff;">value</span><span>: Progress) -&gt; </span><span style="color:#a3cbe3;">usize </span><span>{
+</span><span>    map.</span><span style="color:#db7c6d;">values</span><span>()
+</span><span>    .</span><span style="color:#db7c6d;">filter</span><span>(|</span><span style="color:#db7c6d;">&amp;&amp;</span><span style="color:#ffffff;">val</span><span>| val </span><span style="color:#db7c6d;">==</span><span> value)
+</span><span>    .</span><span style="color:#db7c6d;">count</span><span>()
+</span><span>}
+</span></code></pre>
 <p>This should complete our function and move us closer to compiling.</p>
 <h3 id="count-collection-iterator-solution"><code>count_collection_iterator</code> solution</h3>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">
-fn count_collection_iterator(collection: &amp;[HashMap&lt;String, Progress&gt;], value: Progress) -&gt; usize {
-    &#x2F;&#x2F; collection is a slice of hashmaps.
-    &#x2F;&#x2F; collection = [{ &quot;variables1&quot;: Complete, &quot;from_str&quot;: None, ... },
-    &#x2F;&#x2F;     { &quot;variables2&quot;: Complete, ... }, ... ]
-    todo!();
-}```
-again a similar situation where we have to complete our function with additional notes and instructions in the comments.
-
-We can approach this function like so:
-- We use `collection.iter()` to get an iterator over the slices of hashmaps.
-- We use `flat_map` to flatten each slice of hashmap values into a single iterator of values.
-- Then, we apply the same `filter` and `count` operations as in `count_iterator` to count the matching values across all hashmaps in the collection.
-
-Our final code block looks like this:
-```rust
-fn count_collection_iterator(collection: &amp;[HashMap&lt;String, Progress&gt;], value: Progress) -&gt; usize {
-    collection.iter()
-    .flat_map(|map| map.values())
-    .filter(|&amp;&amp;val| val == value)
-    .count()
-}
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span>
+</span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">count_collection_iterator</span><span>(</span><span style="color:#ffffff;">collection</span><span>: </span><span style="color:#db7c6d;">&amp;</span><span>[HashMap&lt;</span><span style="color:#e7e7e7;">String</span><span>, Progress&gt;], </span><span style="color:#ffffff;">value</span><span>: Progress) -&gt; </span><span style="color:#a3cbe3;">usize </span><span>{
+</span><span>    </span><span style="color:#707180;">// collection is a slice of hashmaps.
+</span><span>    </span><span style="color:#707180;">// collection = [{ &quot;variables1&quot;: Complete, &quot;from_str&quot;: None, ... },
+</span><span>    </span><span style="color:#707180;">//     { &quot;variables2&quot;: Complete, ... }, ... ]
+</span><span>    todo!();
+</span><span>}```
+</span><span>again a similar situation </span><span style="color:#db7c6d;">where</span><span> we have to complete our function with additional notes and instructions </span><span style="color:#db7c6d;">in</span><span> the comments.
+</span><span>
+</span><span>We can approach this function like so:
+</span><span style="color:#db7c6d;">-</span><span> We </span><span style="color:#db7c6d;">use</span><span> `collection.</span><span style="color:#db7c6d;">iter</span><span>()` to get an iterator over the slices of hashmaps.
+</span><span style="color:#db7c6d;">-</span><span> We </span><span style="color:#db7c6d;">use</span><span> `flat_map` to flatten each slice of hashmap values into a single iterator of values.
+</span><span style="color:#db7c6d;">-</span><span> Then, we apply the same `filter` and `count` operations </span><span style="color:#db7c6d;">as in</span><span> `count_iterator` to count the matching values across all hashmaps </span><span style="color:#db7c6d;">in</span><span> the collection.
+</span><span>
+</span><span>Our </span><span style="background-color:#cc1919;color:#ffffff;">final</span><span> code block looks like this:
+</span><span>```rust
+</span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">count_collection_iterator</span><span>(</span><span style="color:#ffffff;">collection</span><span>: </span><span style="color:#db7c6d;">&amp;</span><span>[HashMap&lt;</span><span style="color:#e7e7e7;">String</span><span>, Progress&gt;], </span><span style="color:#ffffff;">value</span><span>: Progress) -&gt; </span><span style="color:#a3cbe3;">usize </span><span>{
+</span><span>    collection.</span><span style="color:#db7c6d;">iter</span><span>()
+</span><span>    .</span><span style="color:#db7c6d;">flat_map</span><span>(|</span><span style="color:#ffffff;">map</span><span>| map.</span><span style="color:#db7c6d;">values</span><span>())
+</span><span>    .</span><span style="color:#db7c6d;">filter</span><span>(|</span><span style="color:#db7c6d;">&amp;&amp;</span><span style="color:#ffffff;">val</span><span>| val </span><span style="color:#db7c6d;">==</span><span> value)
+</span><span>    .</span><span style="color:#db7c6d;">count</span><span>()
+</span><span>}
+</span></code></pre>
 <p>And with this we are compiling and passing our tests!</p>
 <p>I apologize for the oversight. Let's wrap up your blog with a suitable conclusion.</p>
 <h2 id="conclusion">Conclusion</h2>
-<p>In these <code>rustlings</code> exercises, we've traversed the intriguing waters of Rust's iterators, pattern matching, and handling results. Rust, being a language that prioritizes safety and efficiency, provides tools like <code>match</code> and <code>Result</code> to handle various scenarios gracefully. The real power of Rust lies in its expressive type system and the way it allows us to catch errors at compile time. By practicing with iterators and learning to handle errors the &quot;Rusty&quot; way, we're not just writing more concise code; we're embracing a paradigm that avoids common pitfalls seen in other languages.</p>
+<p>In these <code>rustlings</code> exercises, we've traversed the intriguing waters of Rust's iterators, pattern matching, and handling results. Rust, being a language that prioritizes safety and efficiency, provides tools like <code>match</code> and <code>Result</code> to handle various scenarios gracefully. The real power of Rust lies in its expressive type system and the way it allows us to catch errors at compile time. By practicing with iterators and learning to handle errors the "Rusty" way, we're not just writing more concise code; we're embracing a paradigm that avoids common pitfalls seen in other languages.</p>
 <p>Through our journey of solving the provided exercises, we have reinforced the idea that Rust provides an elegant balance between performance and safety. Its functional capabilities, combined with its low-level control, make it a top choice for systems programming and beyond. If you're still new to Rust, I hope this exploration has provided clarity and fueled your interest to dig deeper. If you're already a seasoned Rustacean, I hope this was a refreshing recap and perhaps even offered a new perspective or two.</p>
 <p>In the world of programming, continuous learning is the key. As we've seen today, even seemingly simple exercises can offer valuable insights. Keep coding, keep exploring, and always strive to better your understanding. The Rust community is vast, welcoming, and ever-growing. With tools like <code>rustlings</code> and a plethora of online resources, your Rust journey is bound to be exciting and enlightening. Happy coding!</p>
 
@@ -881,7 +885,7 @@ fn count_collection_iterator(collection: &amp;[HashMap&lt;String, Progress&gt;],
 		
     </p>
     
-    <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>4383 Words</p>
+    <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>2426 Words</p>
     
     <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2023-10-27</p>
     
@@ -904,7 +908,7 @@ fn count_collection_iterator(collection: &amp;[HashMap&lt;String, Progress&gt;],
 
 
 <footer id="site-footer" class="section-inner thin animated fadeIn faster">
-  <p>&copy; 2024 <a href="https:&#x2F;&#x2F;desmodrone.github.io">erick</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
+  <p>&copy; 2026 <a href="https:&#x2F;&#x2F;desmodrone.github.io">erick</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
   <p>Made with <a href="https://www.getzola.org" target="_blank" rel="noopener">Zola</a> &#183; Theme <a href="https://github.com/VersBinarii/hermit_zola" target="_blank" rel="noopener">Hermit_Zola</a>
 	
 	&#183; <a href="https://desmodrone.github.io/rss.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>

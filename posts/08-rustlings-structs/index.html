@@ -27,6 +27,10 @@
   <link rel="alternate" type="application/rss+xml" title="RSS" href="https://desmodrone.github.io/rss.xml">
   
 
+  
+  <link rel="canonical" href="https://desmodrone.github.io/posts/08-rustlings-structs/">
+  
+
   <body id="page">
 
 	
@@ -120,7 +124,7 @@
 		<small> - 
 <span class="reading-time" title="Estimated read time">
   
-  15 min read
+  8 min read
   
 </span>
 </small>
@@ -157,670 +161,670 @@ Rust has three struct types: a classic C struct, a tuple struct, and a unit stru
 <p>With structs, you have the power to create custom data structures that suit your needs, enhancing code organization and efficiency. Explore the provided links to delve deeper into the world of structs in Rust and unlock their potential for your projects.</p>
 <p>Let's look at our first exercise.</p>
 <h2 id="structs1-rs"><code>Structs1.rs</code></h2>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">&#x2F;&#x2F; structs1.rs
-    &#x2F;&#x2F; Address all the TODOs to make the tests pass!
-    &#x2F;&#x2F; Execute `rustlings hint structs1` or use the `hint` watch subcommand for a hint.
-
-    &#x2F;&#x2F; I AM NOT DONE
-
-    struct ColorClassicStruct {
-        &#x2F;&#x2F; TODO: Something goes here
-    }
-
-    struct ColorTupleStruct(&#x2F;* TODO: Something goes here *&#x2F;);
-
-    #[derive(Debug)]
-    struct UnitLikeStruct;
-
-    #[cfg(test)]
-    mod tests {
-        use super::*;
-
-        #[test]
-        fn classic_c_structs() {
-            &#x2F;&#x2F; TODO: Instantiate a classic c struct!
-            &#x2F;&#x2F; let green =
-
-            assert_eq!(green.red, 0);
-            assert_eq!(green.green, 255);
-            assert_eq!(green.blue, 0);
-        }
-
-        #[test]
-        fn tuple_structs() {
-            &#x2F;&#x2F; TODO: Instantiate a tuple struct!
-            &#x2F;&#x2F; let green =
-
-            assert_eq!(green.0, 0);
-            assert_eq!(green.1, 255);
-            assert_eq!(green.2, 0);
-        }
-
-        #[test]
-        fn unit_structs() {
-            &#x2F;&#x2F; TODO: Instantiate a unit-like struct!
-            &#x2F;&#x2F; let unit_like_struct =
-            let message = format!(&quot;{:?}s are fun!&quot;, unit_like_struct);
-
-            assert_eq!(message, &quot;UnitLikeStructs are fun!&quot;);
-        }
-    }
-
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#707180;">// structs1.rs
+</span><span>    </span><span style="color:#707180;">// Address all the TODOs to make the tests pass!
+</span><span>    </span><span style="color:#707180;">// Execute `rustlings hint structs1` or use the `hint` watch subcommand for a hint.
+</span><span>
+</span><span>    </span><span style="color:#707180;">// I AM NOT DONE
+</span><span>
+</span><span>    </span><span style="color:#a3cbe3;">struct </span><span>ColorClassicStruct {
+</span><span>        </span><span style="color:#707180;">// TODO: Something goes here
+</span><span>    }
+</span><span>
+</span><span>    </span><span style="color:#a3cbe3;">struct </span><span>ColorTupleStruct(</span><span style="color:#707180;">/* TODO: Something goes here */</span><span>);
+</span><span>
+</span><span>    #[</span><span style="font-weight:bold;color:#a3cbe3;">derive</span><span>(Debug)]
+</span><span>    </span><span style="color:#a3cbe3;">struct </span><span>UnitLikeStruct;
+</span><span>
+</span><span>    #[</span><span style="font-weight:bold;color:#a3cbe3;">cfg</span><span>(test)]
+</span><span>    </span><span style="color:#a3cbe3;">mod </span><span>tests {
+</span><span>        </span><span style="color:#db7c6d;">use super</span><span>::</span><span style="color:#db7c6d;">*</span><span>;
+</span><span>
+</span><span>        #[</span><span style="font-weight:bold;color:#a3cbe3;">test</span><span>]
+</span><span>        </span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">classic_c_structs</span><span>() {
+</span><span>            </span><span style="color:#707180;">// TODO: Instantiate a classic c struct!
+</span><span>            </span><span style="color:#707180;">// let green =
+</span><span>
+</span><span>            assert_eq!(green.red, </span><span style="color:#db7c6d;">0</span><span>);
+</span><span>            assert_eq!(green.green, </span><span style="color:#db7c6d;">255</span><span>);
+</span><span>            assert_eq!(green.blue, </span><span style="color:#db7c6d;">0</span><span>);
+</span><span>        }
+</span><span>
+</span><span>        #[</span><span style="font-weight:bold;color:#a3cbe3;">test</span><span>]
+</span><span>        </span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">tuple_structs</span><span>() {
+</span><span>            </span><span style="color:#707180;">// TODO: Instantiate a tuple struct!
+</span><span>            </span><span style="color:#707180;">// let green =
+</span><span>
+</span><span>            assert_eq!(green.</span><span style="color:#db7c6d;">0</span><span>, </span><span style="color:#db7c6d;">0</span><span>);
+</span><span>            assert_eq!(green.</span><span style="color:#db7c6d;">1</span><span>, </span><span style="color:#db7c6d;">255</span><span>);
+</span><span>            assert_eq!(green.</span><span style="color:#db7c6d;">2</span><span>, </span><span style="color:#db7c6d;">0</span><span>);
+</span><span>        }
+</span><span>
+</span><span>        #[</span><span style="font-weight:bold;color:#a3cbe3;">test</span><span>]
+</span><span>        </span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">unit_structs</span><span>() {
+</span><span>            </span><span style="color:#707180;">// TODO: Instantiate a unit-like struct!
+</span><span>            </span><span style="color:#707180;">// let unit_like_struct =
+</span><span>            </span><span style="color:#a3cbe3;">let</span><span> message </span><span style="color:#db7c6d;">= </span><span>format!(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span style="font-weight:bold;color:#a2ba43;">{:?}</span><span>s are fun!</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>, unit_like_struct);
+</span><span>
+</span><span>            assert_eq!(message, </span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>UnitLikeStructs are fun!</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>);
+</span><span>        }
+</span><span>    }
+</span><span>
+</span></code></pre>
 <p>So here we're getting clear instructions on what to do. We need to implement different types of structs in each <code>//TODO</code> section. For completeness here are our errors.</p>
 <h2 id="structs1-rs-errors"><code>Structs1.rs</code> errors</h2>
-<pre data-lang="zsh" class="language-zsh "><code class="language-zsh" data-lang="zsh">⚠️  Compiling of exercises&#x2F;structs&#x2F;structs1.rs failed! Please try again. Here is the output:
-error[E0425]: cannot find value `green` in this scope
-  --&gt; exercises&#x2F;structs&#x2F;structs1.rs:25:20
-   |
-25 |         assert_eq!(green.red, 0);
-   |                    ^^^^^ not found in this scope
-
-error[E0425]: cannot find value `green` in this scope
-  --&gt; exercises&#x2F;structs&#x2F;structs1.rs:26:20
-   |
-26 |         assert_eq!(green.green, 255);
-   |                    ^^^^^ not found in this scope
-
-error[E0425]: cannot find value `green` in this scope
-  --&gt; exercises&#x2F;structs&#x2F;structs1.rs:27:20
-   |
-27 |         assert_eq!(green.blue, 0);
-   |                    ^^^^^ not found in this scope
-
-error[E0425]: cannot find value `green` in this scope
-  --&gt; exercises&#x2F;structs&#x2F;structs1.rs:35:20
-   |
-35 |         assert_eq!(green.0, 0);
-   |                    ^^^^^ not found in this scope
-
-error[E0425]: cannot find value `green` in this scope
-  --&gt; exercises&#x2F;structs&#x2F;structs1.rs:36:20
-   |
-36 |         assert_eq!(green.1, 255);
-   |                    ^^^^^ not found in this scope
-
-error[E0425]: cannot find value `green` in this scope
-  --&gt; exercises&#x2F;structs&#x2F;structs1.rs:37:20
-   |
-37 |         assert_eq!(green.2, 0);
-   |                    ^^^^^ not found in this scope
-
-error[E0425]: cannot find value `unit_like_struct` in this scope
-  --&gt; exercises&#x2F;structs&#x2F;structs1.rs:44:49
-   |
-14 | struct UnitLikeStruct;
-   | ---------------------- similarly named unit struct `UnitLikeStruct` defined here
-...
-44 |         let message = format!(&quot;{:?}s are fun!&quot;, unit_like_struct);
-   |                                                 ^^^^^^^^^^^^^^^^ help: a unit struct with a similar name exists: `UnitLikeStruct`
-
-warning: unused import: `super::*`
-  --&gt; exercises&#x2F;structs&#x2F;structs1.rs:18:9
-   |
-18 |     use super::*;
-   |         ^^^^^^^^
-   |
-   = note: `#[warn(unused_imports)]` on by default
-
-error: aborting due to 7 previous errors; 1 warning emitted
-</code></pre>
+<pre data-lang="zsh" style="background-color:#31333d;color:#ffffffc4;" class="language-zsh "><code class="language-zsh" data-lang="zsh"><span style="font-weight:bold;color:#a3cbe3;">⚠️</span><span>  Compiling of exercises/structs/structs1.rs failed! Please try again. Here is the output:
+</span><span style="font-weight:bold;color:#a3cbe3;">error[E0425]:</span><span> cannot find value `</span><span style="font-weight:bold;color:#a3cbe3;">green</span><span>` in this scope
+</span><span>  </span><span style="font-weight:bold;color:#a3cbe3;">--</span><span style="color:#db7c6d;">&gt;</span><span> exercises/structs/structs1.rs:25:20
+</span><span>   </span><span style="color:#db7c6d;">|
+</span><span style="font-weight:bold;color:#a3cbe3;">25 </span><span style="color:#db7c6d;">|         </span><span style="font-weight:bold;color:#a3cbe3;">assert_eq!</span><span>(green.red, 0)</span><span style="color:#db7c6d;">;
+</span><span>   </span><span style="color:#db7c6d;">|                    </span><span style="font-weight:bold;color:#a3cbe3;">^^^^^</span><span> not found in this scope
+</span><span>
+</span><span style="font-weight:bold;color:#a3cbe3;">error[E0425]:</span><span> cannot find value `</span><span style="font-weight:bold;color:#a3cbe3;">green</span><span>` in this scope
+</span><span>  </span><span style="font-weight:bold;color:#a3cbe3;">--</span><span style="color:#db7c6d;">&gt;</span><span> exercises/structs/structs1.rs:26:20
+</span><span>   </span><span style="color:#db7c6d;">|
+</span><span style="font-weight:bold;color:#a3cbe3;">26 </span><span style="color:#db7c6d;">|         </span><span style="font-weight:bold;color:#a3cbe3;">assert_eq!</span><span>(green.green, 255)</span><span style="color:#db7c6d;">;
+</span><span>   </span><span style="color:#db7c6d;">|                    </span><span style="font-weight:bold;color:#a3cbe3;">^^^^^</span><span> not found in this scope
+</span><span>
+</span><span style="font-weight:bold;color:#a3cbe3;">error[E0425]:</span><span> cannot find value `</span><span style="font-weight:bold;color:#a3cbe3;">green</span><span>` in this scope
+</span><span>  </span><span style="font-weight:bold;color:#a3cbe3;">--</span><span style="color:#db7c6d;">&gt;</span><span> exercises/structs/structs1.rs:27:20
+</span><span>   </span><span style="color:#db7c6d;">|
+</span><span style="font-weight:bold;color:#a3cbe3;">27 </span><span style="color:#db7c6d;">|         </span><span style="font-weight:bold;color:#a3cbe3;">assert_eq!</span><span>(green.blue, 0)</span><span style="color:#db7c6d;">;
+</span><span>   </span><span style="color:#db7c6d;">|                    </span><span style="font-weight:bold;color:#a3cbe3;">^^^^^</span><span> not found in this scope
+</span><span>
+</span><span style="font-weight:bold;color:#a3cbe3;">error[E0425]:</span><span> cannot find value `</span><span style="font-weight:bold;color:#a3cbe3;">green</span><span>` in this scope
+</span><span>  </span><span style="font-weight:bold;color:#a3cbe3;">--</span><span style="color:#db7c6d;">&gt;</span><span> exercises/structs/structs1.rs:35:20
+</span><span>   </span><span style="color:#db7c6d;">|
+</span><span style="font-weight:bold;color:#a3cbe3;">35 </span><span style="color:#db7c6d;">|         </span><span style="font-weight:bold;color:#a3cbe3;">assert_eq!</span><span>(green.0, 0)</span><span style="color:#db7c6d;">;
+</span><span>   </span><span style="color:#db7c6d;">|                    </span><span style="font-weight:bold;color:#a3cbe3;">^^^^^</span><span> not found in this scope
+</span><span>
+</span><span style="font-weight:bold;color:#a3cbe3;">error[E0425]:</span><span> cannot find value `</span><span style="font-weight:bold;color:#a3cbe3;">green</span><span>` in this scope
+</span><span>  </span><span style="font-weight:bold;color:#a3cbe3;">--</span><span style="color:#db7c6d;">&gt;</span><span> exercises/structs/structs1.rs:36:20
+</span><span>   </span><span style="color:#db7c6d;">|
+</span><span style="font-weight:bold;color:#a3cbe3;">36 </span><span style="color:#db7c6d;">|         </span><span style="font-weight:bold;color:#a3cbe3;">assert_eq!</span><span>(green.1, 255)</span><span style="color:#db7c6d;">;
+</span><span>   </span><span style="color:#db7c6d;">|                    </span><span style="font-weight:bold;color:#a3cbe3;">^^^^^</span><span> not found in this scope
+</span><span>
+</span><span style="font-weight:bold;color:#a3cbe3;">error[E0425]:</span><span> cannot find value `</span><span style="font-weight:bold;color:#a3cbe3;">green</span><span>` in this scope
+</span><span>  </span><span style="font-weight:bold;color:#a3cbe3;">--</span><span style="color:#db7c6d;">&gt;</span><span> exercises/structs/structs1.rs:37:20
+</span><span>   </span><span style="color:#db7c6d;">|
+</span><span style="font-weight:bold;color:#a3cbe3;">37 </span><span style="color:#db7c6d;">|         </span><span style="font-weight:bold;color:#a3cbe3;">assert_eq!</span><span>(green.2, 0)</span><span style="color:#db7c6d;">;
+</span><span>   </span><span style="color:#db7c6d;">|                    </span><span style="font-weight:bold;color:#a3cbe3;">^^^^^</span><span> not found in this scope
+</span><span>
+</span><span style="font-weight:bold;color:#a3cbe3;">error[E0425]:</span><span> cannot find value `</span><span style="font-weight:bold;color:#a3cbe3;">unit_like_struct</span><span>` in this scope
+</span><span>  </span><span style="font-weight:bold;color:#a3cbe3;">--</span><span style="color:#db7c6d;">&gt;</span><span> exercises/structs/structs1.rs:44:49
+</span><span>   </span><span style="color:#db7c6d;">|
+</span><span style="font-weight:bold;color:#a3cbe3;">14 </span><span style="color:#db7c6d;">| </span><span style="font-weight:bold;color:#a3cbe3;">struct</span><span> UnitLikeStruct</span><span style="color:#db7c6d;">;
+</span><span>   </span><span style="color:#db7c6d;">| </span><span style="font-weight:bold;color:#a3cbe3;">----------------------</span><span> similarly named unit struct `</span><span style="font-weight:bold;color:#a3cbe3;">UnitLikeStruct</span><span>` defined here
+</span><span style="font-weight:bold;color:#a3cbe3;">...
+</span><span style="font-weight:bold;color:#a3cbe3;">44 </span><span style="color:#db7c6d;">|         let</span><span> message </span><span style="color:#db7c6d;">=</span><span> format</span><span style="color:#db7c6d;">!</span><span>(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>{:?}s are fun!</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>, unit_like_struct);
+</span><span>   </span><span style="color:#db7c6d;">|                                                 </span><span style="font-weight:bold;color:#a3cbe3;">^^^^^^^^^^^^^^^^</span><span> help: a unit struct with a similar name exists: `</span><span style="font-weight:bold;color:#a3cbe3;">UnitLikeStruct</span><span>`
+</span><span>
+</span><span style="font-weight:bold;color:#a3cbe3;">warning:</span><span> unused import: `</span><span style="font-weight:bold;color:#a3cbe3;">super::*</span><span>`
+</span><span>  </span><span style="font-weight:bold;color:#a3cbe3;">--</span><span style="color:#db7c6d;">&gt;</span><span> exercises/structs/structs1.rs:18:9
+</span><span>   </span><span style="color:#db7c6d;">|
+</span><span style="font-weight:bold;color:#a3cbe3;">18 </span><span style="color:#db7c6d;">|     </span><span style="font-weight:bold;color:#a3cbe3;">use</span><span> super::</span><span style="color:#db7c6d;">*;
+</span><span>   </span><span style="color:#db7c6d;">|         </span><span style="font-weight:bold;color:#a3cbe3;">^^^^^^^^
+</span><span>   </span><span style="color:#db7c6d;">|
+</span><span>   </span><span style="color:#db7c6d;">= </span><span style="font-weight:bold;color:#a3cbe3;">note: </span><span>`</span><span style="font-weight:bold;color:#a3cbe3;">#[warn</span><span>(unused_imports)</span><span style="font-weight:bold;color:#a3cbe3;">]</span><span>` on by default
+</span><span>
+</span><span style="font-weight:bold;color:#a3cbe3;">error:</span><span> aborting due to 7 previous errors</span><span style="color:#db7c6d;">; </span><span style="font-weight:bold;color:#a3cbe3;">1</span><span> warning emitted
+</span></code></pre>
 <p>We're getting 7 different errors and it looks like most of them are related to the fact that we are missing our structs so they <code>assert_eq!</code> calls are failing. So let's try and solve this.</p>
 <p>Notice that the errors reported here are not solely due to missing structs but also due to missing variable declarations. For example, the variables <code>green</code> and <code>unit_like_struct</code> are used in the test assertions but haven't been defined yet in the tests. This will be addressed in the following sections as we instantiate these variables along with defining and instantiating the corresponding structs.</p>
 <h2 id="defining-our-structs">Defining our Structs</h2>
 <p>Starting from the top of our code we see our first <code>TODO's</code> in comments.</p>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">   struct ColorClassicStruct {
-        &#x2F;&#x2F; TODO: Something goes here
-    }
-
-    struct ColorTupleStruct(&#x2F;* TODO: Something goes here *&#x2F;);
-</code></pre>
-<p>We have 2 different styles of structs that we need to create a &quot;classic&quot; and &quot;tuple&quot; types struct. We fill out the structs using their usual structure and we get an indication of what is needed by looking at the <code>assert_eq!</code> listed in each section. We can see that in the <code>assert_eq!</code> we have values that could fit and <code>i32</code>'s since we see the max value is <code>255</code> we'll use <code>i32</code>s as it's the default value in Rust.</p>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">struct ColorClassicStruct {
-    red: i32,
-    green: i32,
-    blue: i32,
-}
-&#x2F;&#x2F; from the `assert_eq!` in `classic_c_structs` function
-    &#x2F;&#x2F; assert_eq!(green.red, 0);
-    &#x2F;&#x2F; assert_eq!(green.green, 255);
-    &#x2F;&#x2F; assert_eq!(green.blue, 0);
-
-
-struct ColorTupleStruct(i32, i32, i32);
-
-&#x2F;&#x2F; from the `assert_eq!` in the `tuple_structs` function
-    &#x2F;&#x2F; assert_eq!(green.0, 0);
-    &#x2F;&#x2F; assert_eq!(green.1, 255);
-    &#x2F;&#x2F; assert_eq!(green.2, 0);
-
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span>   </span><span style="color:#a3cbe3;">struct </span><span>ColorClassicStruct {
+</span><span>        </span><span style="color:#707180;">// TODO: Something goes here
+</span><span>    }
+</span><span>
+</span><span>    </span><span style="color:#a3cbe3;">struct </span><span>ColorTupleStruct(</span><span style="color:#707180;">/* TODO: Something goes here */</span><span>);
+</span></code></pre>
+<p>We have 2 different styles of structs that we need to create a "classic" and "tuple" types struct. We fill out the structs using their usual structure and we get an indication of what is needed by looking at the <code>assert_eq!</code> listed in each section. We can see that in the <code>assert_eq!</code> we have values that could fit and <code>i32</code>'s since we see the max value is <code>255</code> we'll use <code>i32</code>s as it's the default value in Rust.</p>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#a3cbe3;">struct </span><span>ColorClassicStruct {
+</span><span>    </span><span style="font-weight:bold;color:#a3cbe3;">red</span><span>: </span><span style="color:#a3cbe3;">i32</span><span>,
+</span><span>    </span><span style="font-weight:bold;color:#a3cbe3;">green</span><span>: </span><span style="color:#a3cbe3;">i32</span><span>,
+</span><span>    </span><span style="font-weight:bold;color:#a3cbe3;">blue</span><span>: </span><span style="color:#a3cbe3;">i32</span><span>,
+</span><span>}
+</span><span style="color:#707180;">// from the `assert_eq!` in `classic_c_structs` function
+</span><span>    </span><span style="color:#707180;">// assert_eq!(green.red, 0);
+</span><span>    </span><span style="color:#707180;">// assert_eq!(green.green, 255);
+</span><span>    </span><span style="color:#707180;">// assert_eq!(green.blue, 0);
+</span><span>
+</span><span>
+</span><span style="color:#a3cbe3;">struct </span><span>ColorTupleStruct(</span><span style="color:#a3cbe3;">i32</span><span>, </span><span style="color:#a3cbe3;">i32</span><span>, </span><span style="color:#a3cbe3;">i32</span><span>);
+</span><span>
+</span><span style="color:#707180;">// from the `assert_eq!` in the `tuple_structs` function
+</span><span>    </span><span style="color:#707180;">// assert_eq!(green.0, 0);
+</span><span>    </span><span style="color:#707180;">// assert_eq!(green.1, 255);
+</span><span>    </span><span style="color:#707180;">// assert_eq!(green.2, 0);
+</span><span>
+</span></code></pre>
 <p>We'll do the same for the <code>ColorTupleStruct</code> getting hints as to how we need to define the Tuple struct with <code>(i32, i32, i32)</code>.</p>
 <h2 id="instantiating-our-classic-struct">Instantiating our Classic Struct</h2>
 <p>Now that we've defined our structs we need to create an new instance of our structs where we specify concrete values for each of the fields. We create instances of our struct by stating the name of the struct we can see that in our example we have this so far.</p>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">   fn classic_c_structs() {
-            &#x2F;&#x2F; TODO: Instantiate a classic c struct!
-            &#x2F;&#x2F; let green =
-
-            assert_eq!(green.red, 0);
-            assert_eq!(green.green, 255);
-            assert_eq!(green.blue, 0);
-        }
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span>   </span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">classic_c_structs</span><span>() {
+</span><span>            </span><span style="color:#707180;">// TODO: Instantiate a classic c struct!
+</span><span>            </span><span style="color:#707180;">// let green =
+</span><span>
+</span><span>            assert_eq!(green.red, </span><span style="color:#db7c6d;">0</span><span>);
+</span><span>            assert_eq!(green.green, </span><span style="color:#db7c6d;">255</span><span>);
+</span><span>            assert_eq!(green.blue, </span><span style="color:#db7c6d;">0</span><span>);
+</span><span>        }
+</span></code></pre>
 <p>So we'll start by removing the comment slashes on <code>let green = </code> and fill out the rest with our values, again taking hints from the <code>assert_eq!</code> lines we see that we should have values of <code>0, 255, 0</code> so let's add that information into our <code>classic_c_structs()</code> function. It should like the code below:</p>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">    fn classic_c_structs() {
-        &#x2F;&#x2F; TODO: Instantiate a classic c struct!
-        let green = ColorClassicStruct {
-            red: 0,
-            green: 255,
-            blue: 0,
-        };
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span>    </span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">classic_c_structs</span><span>() {
+</span><span>        </span><span style="color:#707180;">// TODO: Instantiate a classic c struct!
+</span><span>        </span><span style="color:#a3cbe3;">let</span><span> green </span><span style="color:#db7c6d;">=</span><span> ColorClassicStruct {
+</span><span>            red: </span><span style="color:#db7c6d;">0</span><span>,
+</span><span>            green: </span><span style="color:#db7c6d;">255</span><span>,
+</span><span>            blue: </span><span style="color:#db7c6d;">0</span><span>,
+</span><span>        };
+</span></code></pre>
 <h2 id="instantiating-our-tuple-struct">Instantiating our Tuple Struct</h2>
 <p>We see a similar set up for our Tuple struct with the code below. We have our <code>let gree =</code> commented out with a hint as to what the values should be by looking at our <code>assert_eq!</code> macros</p>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">        fn tuple_structs() {
-            &#x2F;&#x2F; TODO: Instantiate a tuple struct!
-            &#x2F;&#x2F; let green =
-
-            assert_eq!(green.0, 0);
-            assert_eq!(green.1, 255);
-            assert_eq!(green.2, 0);
-        }
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span>        </span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">tuple_structs</span><span>() {
+</span><span>            </span><span style="color:#707180;">// TODO: Instantiate a tuple struct!
+</span><span>            </span><span style="color:#707180;">// let green =
+</span><span>
+</span><span>            assert_eq!(green.</span><span style="color:#db7c6d;">0</span><span>, </span><span style="color:#db7c6d;">0</span><span>);
+</span><span>            assert_eq!(green.</span><span style="color:#db7c6d;">1</span><span>, </span><span style="color:#db7c6d;">255</span><span>);
+</span><span>            assert_eq!(green.</span><span style="color:#db7c6d;">2</span><span>, </span><span style="color:#db7c6d;">0</span><span>);
+</span><span>        }
+</span></code></pre>
 <p>Remembering that Tuple structs have a different type of structure as we created <code>struct ColorTupleStruct(i32, i32, i32)</code>, we can instantiate our tuple struct in the following way:</p>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">fn tuple_structs() {
-        &#x2F;&#x2F; TODO: Instantiate a tuple struct!
-        let green = ColorTupleStruct(0, 255, 0);
-
-        assert_eq!(green.0, 0);
-        assert_eq!(green.1, 255);
-        assert_eq!(green.2, 0);
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">tuple_structs</span><span>() {
+</span><span>        </span><span style="color:#707180;">// TODO: Instantiate a tuple struct!
+</span><span>        </span><span style="color:#a3cbe3;">let</span><span> green </span><span style="color:#db7c6d;">=</span><span> ColorTupleStruct(</span><span style="color:#db7c6d;">0</span><span>, </span><span style="color:#db7c6d;">255</span><span>, </span><span style="color:#db7c6d;">0</span><span>);
+</span><span>
+</span><span>        assert_eq!(green.</span><span style="color:#db7c6d;">0</span><span>, </span><span style="color:#db7c6d;">0</span><span>);
+</span><span>        assert_eq!(green.</span><span style="color:#db7c6d;">1</span><span>, </span><span style="color:#db7c6d;">255</span><span>);
+</span><span>        assert_eq!(green.</span><span style="color:#db7c6d;">2</span><span>, </span><span style="color:#db7c6d;">0</span><span>);
+</span></code></pre>
 <p>Again taking hints from the values that we see in the <code>assert_eq!</code> macro's</p>
 <h2 id="instantiating-our-unit-like-structs">Instantiating our Unit-Like Structs</h2>
 <p>We have our final struct left to instantiate which if we recall from reading the The Rust Programming Language book, they are structs that have any fields. So looking at our unfinished code we see this:</p>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">        fn unit_structs() {
-            &#x2F;&#x2F; TODO: Instantiate a unit-like struct!
-            &#x2F;&#x2F; let unit_like_struct =
-            let message = format!(&quot;{:?}s are fun!&quot;, unit_like_struct);
-
-            assert_eq!(message, &quot;UnitLikeStructs are fun!&quot;);
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span>        </span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">unit_structs</span><span>() {
+</span><span>            </span><span style="color:#707180;">// TODO: Instantiate a unit-like struct!
+</span><span>            </span><span style="color:#707180;">// let unit_like_struct =
+</span><span>            </span><span style="color:#a3cbe3;">let</span><span> message </span><span style="color:#db7c6d;">= </span><span>format!(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span style="font-weight:bold;color:#a2ba43;">{:?}</span><span>s are fun!</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>, unit_like_struct);
+</span><span>
+</span><span>            assert_eq!(message, </span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>UnitLikeStructs are fun!</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>);
+</span></code></pre>
 <p>So, as we don't have any fields and hence no data stored in them we can simply finish our code like so:</p>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">fn unit_structs() {
-        &#x2F;&#x2F; TODO: Instantiate a unit-like struct!
-        let unit_like_struct = UnitLikeStruct;
-        let message = format!(&quot;{:?}s are fun!&quot;, unit_like_struct);
-
-        assert_eq!(message, &quot;UnitLikeStructs are fun!&quot;);
-    }
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">unit_structs</span><span>() {
+</span><span>        </span><span style="color:#707180;">// TODO: Instantiate a unit-like struct!
+</span><span>        </span><span style="color:#a3cbe3;">let</span><span> unit_like_struct </span><span style="color:#db7c6d;">=</span><span> UnitLikeStruct;
+</span><span>        </span><span style="color:#a3cbe3;">let</span><span> message </span><span style="color:#db7c6d;">= </span><span>format!(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span style="font-weight:bold;color:#a2ba43;">{:?}</span><span>s are fun!</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>, unit_like_struct);
+</span><span>
+</span><span>        assert_eq!(message, </span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>UnitLikeStructs are fun!</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>);
+</span><span>    }
+</span></code></pre>
 <p>That should do the trick, let's see if our code complies. It does!</p>
 <h2 id="structs1-rs-solution"><code>Structs1.rs</code> Solution</h2>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">
-struct ColorClassicStruct {
-    red: i32,
-    green: i32,
-    blue: i32,
-}
-
-struct ColorTupleStruct(i32, i32, i32);
-
-#[derive(Debug)]
-struct UnitLikeStruct;
-
-#[cfg(test)]
-mod tests {
-    use super::*;
-
-    #[test]
-    fn classic_c_structs() {
-        &#x2F;&#x2F; TODO: Instantiate a classic c struct!
-        let green = ColorClassicStruct {
-            red: 0,
-            green: 255,
-            blue: 0,
-        };
-
-        assert_eq!(green.red, 0);
-        assert_eq!(green.green, 255);
-        assert_eq!(green.blue, 0);
-    }
-
-    #[test]
-    fn tuple_structs() {
-        &#x2F;&#x2F; TODO: Instantiate a tuple struct!
-        let green = ColorTupleStruct(0, 255, 0);
-
-        assert_eq!(green.0, 0);
-        assert_eq!(green.1, 255);
-        assert_eq!(green.2, 0);
-    }
-
-    #[test]
-    fn unit_structs() {
-        &#x2F;&#x2F; TODO: Instantiate a unit-like struct!
-        let unit_like_struct = UnitLikeStruct;
-        let message = format!(&quot;{:?}s are fun!&quot;, unit_like_struct);
-
-        assert_eq!(message, &quot;UnitLikeStructs are fun!&quot;);
-    }
-}
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span>
+</span><span style="color:#a3cbe3;">struct </span><span>ColorClassicStruct {
+</span><span>    </span><span style="font-weight:bold;color:#a3cbe3;">red</span><span>: </span><span style="color:#a3cbe3;">i32</span><span>,
+</span><span>    </span><span style="font-weight:bold;color:#a3cbe3;">green</span><span>: </span><span style="color:#a3cbe3;">i32</span><span>,
+</span><span>    </span><span style="font-weight:bold;color:#a3cbe3;">blue</span><span>: </span><span style="color:#a3cbe3;">i32</span><span>,
+</span><span>}
+</span><span>
+</span><span style="color:#a3cbe3;">struct </span><span>ColorTupleStruct(</span><span style="color:#a3cbe3;">i32</span><span>, </span><span style="color:#a3cbe3;">i32</span><span>, </span><span style="color:#a3cbe3;">i32</span><span>);
+</span><span>
+</span><span>#[</span><span style="font-weight:bold;color:#a3cbe3;">derive</span><span>(Debug)]
+</span><span style="color:#a3cbe3;">struct </span><span>UnitLikeStruct;
+</span><span>
+</span><span>#[</span><span style="font-weight:bold;color:#a3cbe3;">cfg</span><span>(test)]
+</span><span style="color:#a3cbe3;">mod </span><span>tests {
+</span><span>    </span><span style="color:#db7c6d;">use super</span><span>::</span><span style="color:#db7c6d;">*</span><span>;
+</span><span>
+</span><span>    #[</span><span style="font-weight:bold;color:#a3cbe3;">test</span><span>]
+</span><span>    </span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">classic_c_structs</span><span>() {
+</span><span>        </span><span style="color:#707180;">// TODO: Instantiate a classic c struct!
+</span><span>        </span><span style="color:#a3cbe3;">let</span><span> green </span><span style="color:#db7c6d;">=</span><span> ColorClassicStruct {
+</span><span>            red: </span><span style="color:#db7c6d;">0</span><span>,
+</span><span>            green: </span><span style="color:#db7c6d;">255</span><span>,
+</span><span>            blue: </span><span style="color:#db7c6d;">0</span><span>,
+</span><span>        };
+</span><span>
+</span><span>        assert_eq!(green.red, </span><span style="color:#db7c6d;">0</span><span>);
+</span><span>        assert_eq!(green.green, </span><span style="color:#db7c6d;">255</span><span>);
+</span><span>        assert_eq!(green.blue, </span><span style="color:#db7c6d;">0</span><span>);
+</span><span>    }
+</span><span>
+</span><span>    #[</span><span style="font-weight:bold;color:#a3cbe3;">test</span><span>]
+</span><span>    </span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">tuple_structs</span><span>() {
+</span><span>        </span><span style="color:#707180;">// TODO: Instantiate a tuple struct!
+</span><span>        </span><span style="color:#a3cbe3;">let</span><span> green </span><span style="color:#db7c6d;">=</span><span> ColorTupleStruct(</span><span style="color:#db7c6d;">0</span><span>, </span><span style="color:#db7c6d;">255</span><span>, </span><span style="color:#db7c6d;">0</span><span>);
+</span><span>
+</span><span>        assert_eq!(green.</span><span style="color:#db7c6d;">0</span><span>, </span><span style="color:#db7c6d;">0</span><span>);
+</span><span>        assert_eq!(green.</span><span style="color:#db7c6d;">1</span><span>, </span><span style="color:#db7c6d;">255</span><span>);
+</span><span>        assert_eq!(green.</span><span style="color:#db7c6d;">2</span><span>, </span><span style="color:#db7c6d;">0</span><span>);
+</span><span>    }
+</span><span>
+</span><span>    #[</span><span style="font-weight:bold;color:#a3cbe3;">test</span><span>]
+</span><span>    </span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">unit_structs</span><span>() {
+</span><span>        </span><span style="color:#707180;">// TODO: Instantiate a unit-like struct!
+</span><span>        </span><span style="color:#a3cbe3;">let</span><span> unit_like_struct </span><span style="color:#db7c6d;">=</span><span> UnitLikeStruct;
+</span><span>        </span><span style="color:#a3cbe3;">let</span><span> message </span><span style="color:#db7c6d;">= </span><span>format!(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span style="font-weight:bold;color:#a2ba43;">{:?}</span><span>s are fun!</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>, unit_like_struct);
+</span><span>
+</span><span>        assert_eq!(message, </span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>UnitLikeStructs are fun!</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>);
+</span><span>    }
+</span><span>}
+</span></code></pre>
 <p>Our code compiles and we've finished and instantiated 3 different types of structs, our printout confirms this:</p>
-<pre data-lang="zsh" class="language-zsh "><code class="language-zsh" data-lang="zsh">✅ Successfully tested exercises&#x2F;structs&#x2F;structs1.rs!
-
-🎉 🎉  The code is compiling, and the tests pass! 🎉 🎉
-</code></pre>
+<pre data-lang="zsh" style="background-color:#31333d;color:#ffffffc4;" class="language-zsh "><code class="language-zsh" data-lang="zsh"><span style="font-weight:bold;color:#a3cbe3;">✅</span><span> Successfully tested exercises/structs/structs1.rs!
+</span><span>
+</span><span style="font-weight:bold;color:#a3cbe3;">🎉</span><span> 🎉  The code is compiling, and the tests pass! 🎉 🎉
+</span></code></pre>
 <p>On to the next one!</p>
 <h2 id="structs2-rs"><code>structs2.rs</code></h2>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">&#x2F;&#x2F; structs2.rs
-&#x2F;&#x2F; Address all the TODOs to make the tests pass!
-&#x2F;&#x2F; Execute `rustlings hint structs2` or use the `hint` watch subcommand for a hint.
-
-&#x2F;&#x2F; I AM NOT DONE
-
-#[derive(Debug)]
-struct Order {
-    name: String,
-    year: u32,
-    made_by_phone: bool,
-    made_by_mobile: bool,
-    made_by_email: bool,
-    item_number: u32,
-    count: u32,
-}
-
-fn create_order_template() -&gt; Order {
-    Order {
-        name: String::from(&quot;Bob&quot;),
-        year: 2019,
-        made_by_phone: false,
-        made_by_mobile: false,
-        made_by_email: true,
-        item_number: 123,
-        count: 0,
-    }
-}
-
-#[cfg(test)]
-mod tests {
-    use super::*;
-
-    #[test]
-    fn your_order() {
-        let order_template = create_order_template();
-        &#x2F;&#x2F; TODO: Create your own order using the update syntax and template above!
-        &#x2F;&#x2F; let your_order =
-        assert_eq!(your_order.name, &quot;Hacker in Rust&quot;);
-        assert_eq!(your_order.year, order_template.year);
-        assert_eq!(your_order.made_by_phone, order_template.made_by_phone);
-        assert_eq!(your_order.made_by_mobile, order_template.made_by_mobile);
-        assert_eq!(your_order.made_by_email, order_template.made_by_email);
-        assert_eq!(your_order.item_number, order_template.item_number);
-        assert_eq!(your_order.count, 1);
-    }
-}
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#707180;">// structs2.rs
+</span><span style="color:#707180;">// Address all the TODOs to make the tests pass!
+</span><span style="color:#707180;">// Execute `rustlings hint structs2` or use the `hint` watch subcommand for a hint.
+</span><span>
+</span><span style="color:#707180;">// I AM NOT DONE
+</span><span>
+</span><span>#[</span><span style="font-weight:bold;color:#a3cbe3;">derive</span><span>(Debug)]
+</span><span style="color:#a3cbe3;">struct </span><span>Order {
+</span><span>    </span><span style="font-weight:bold;color:#a3cbe3;">name</span><span>: String,
+</span><span>    </span><span style="font-weight:bold;color:#a3cbe3;">year</span><span>: </span><span style="color:#a3cbe3;">u32</span><span>,
+</span><span>    </span><span style="font-weight:bold;color:#a3cbe3;">made_by_phone</span><span>: </span><span style="color:#a3cbe3;">bool</span><span>,
+</span><span>    </span><span style="font-weight:bold;color:#a3cbe3;">made_by_mobile</span><span>: </span><span style="color:#a3cbe3;">bool</span><span>,
+</span><span>    </span><span style="font-weight:bold;color:#a3cbe3;">made_by_email</span><span>: </span><span style="color:#a3cbe3;">bool</span><span>,
+</span><span>    </span><span style="font-weight:bold;color:#a3cbe3;">item_number</span><span>: </span><span style="color:#a3cbe3;">u32</span><span>,
+</span><span>    </span><span style="font-weight:bold;color:#a3cbe3;">count</span><span>: </span><span style="color:#a3cbe3;">u32</span><span>,
+</span><span>}
+</span><span>
+</span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">create_order_template</span><span>() -&gt; Order {
+</span><span>    Order {
+</span><span>        name: </span><span style="color:#e7e7e7;">String</span><span>::from(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>Bob</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>),
+</span><span>        year: </span><span style="color:#db7c6d;">2019</span><span>,
+</span><span>        made_by_phone: </span><span style="color:#ffffff;">false</span><span>,
+</span><span>        made_by_mobile: </span><span style="color:#ffffff;">false</span><span>,
+</span><span>        made_by_email: </span><span style="color:#ffffff;">true</span><span>,
+</span><span>        item_number: </span><span style="color:#db7c6d;">123</span><span>,
+</span><span>        count: </span><span style="color:#db7c6d;">0</span><span>,
+</span><span>    }
+</span><span>}
+</span><span>
+</span><span>#[</span><span style="font-weight:bold;color:#a3cbe3;">cfg</span><span>(test)]
+</span><span style="color:#a3cbe3;">mod </span><span>tests {
+</span><span>    </span><span style="color:#db7c6d;">use super</span><span>::</span><span style="color:#db7c6d;">*</span><span>;
+</span><span>
+</span><span>    #[</span><span style="font-weight:bold;color:#a3cbe3;">test</span><span>]
+</span><span>    </span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">your_order</span><span>() {
+</span><span>        </span><span style="color:#a3cbe3;">let</span><span> order_template </span><span style="color:#db7c6d;">= create_order_template</span><span>();
+</span><span>        </span><span style="color:#707180;">// TODO: Create your own order using the update syntax and template above!
+</span><span>        </span><span style="color:#707180;">// let your_order =
+</span><span>        assert_eq!(your_order.name, </span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>Hacker in Rust</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>);
+</span><span>        assert_eq!(your_order.year, order_template.year);
+</span><span>        assert_eq!(your_order.made_by_phone, order_template.made_by_phone);
+</span><span>        assert_eq!(your_order.made_by_mobile, order_template.made_by_mobile);
+</span><span>        assert_eq!(your_order.made_by_email, order_template.made_by_email);
+</span><span>        assert_eq!(your_order.item_number, order_template.item_number);
+</span><span>        assert_eq!(your_order.count, </span><span style="color:#db7c6d;">1</span><span>);
+</span><span>    }
+</span><span>}
+</span></code></pre>
 <p>In this code example we have instructions to address all the <code>//TODO's</code> which we can see that we only have one at the bottom of our code in our <code>tests</code>.
 As always let's look at our errors.</p>
 <h2 id="structs2-rs-errors"><code>structs2.rs</code> errors</h2>
-<pre data-lang="zsh" class="language-zsh "><code class="language-zsh" data-lang="zsh">⚠️  Compiling of exercises&#x2F;structs&#x2F;structs2.rs failed! Please try again. Here is the output:
-error[E0609]: no field `name` on type `fn() {tests::your_order}`
-  --&gt; exercises&#x2F;structs&#x2F;structs2.rs:39:31
-   |
-39 |         assert_eq!(your_order.name, &quot;Hacker in Rust&quot;);
-   |                               ^^^^
-
-error[E0609]: no field `year` on type `fn() {tests::your_order}`
-  --&gt; exercises&#x2F;structs&#x2F;structs2.rs:40:31
-   |
-40 |         assert_eq!(your_order.year, order_template.year);
-   |                               ^^^^
-
-error[E0609]: no field `made_by_phone` on type `fn() {tests::your_order}`
-  --&gt; exercises&#x2F;structs&#x2F;structs2.rs:41:31
-   |
-41 |         assert_eq!(your_order.made_by_phone, order_template.made_by_phone);
-   |                               ^^^^^^^^^^^^^
-
-error[E0609]: no field `made_by_mobile` on type `fn() {tests::your_order}`
-  --&gt; exercises&#x2F;structs&#x2F;structs2.rs:42:31
-   |
-42 |         assert_eq!(your_order.made_by_mobile, order_template.made_by_mobile);
-   |                               ^^^^^^^^^^^^^^
-
-error[E0609]: no field `made_by_email` on type `fn() {tests::your_order}`
-  --&gt; exercises&#x2F;structs&#x2F;structs2.rs:43:31
-   |
-43 |         assert_eq!(your_order.made_by_email, order_template.made_by_email);
-   |                               ^^^^^^^^^^^^^
-
-error[E0609]: no field `item_number` on type `fn() {tests::your_order}`
-  --&gt; exercises&#x2F;structs&#x2F;structs2.rs:44:31
-   |
-44 |         assert_eq!(your_order.item_number, order_template.item_number);
-   |                               ^^^^^^^^^^^
-
-error[E0609]: no field `count` on type `fn() {tests::your_order}`
-  --&gt; exercises&#x2F;structs&#x2F;structs2.rs:45:31
-   |
-45 |         assert_eq!(your_order.count, 1);
-   |                               ^^^^^
-
-error: aborting due to 7 previous errors
-</code></pre>
+<pre data-lang="zsh" style="background-color:#31333d;color:#ffffffc4;" class="language-zsh "><code class="language-zsh" data-lang="zsh"><span style="font-weight:bold;color:#a3cbe3;">⚠️</span><span>  Compiling of exercises/structs/structs2.rs failed! Please try again. Here is the output:
+</span><span style="font-weight:bold;color:#a3cbe3;">error[E0609]:</span><span> no field `</span><span style="font-weight:bold;color:#a3cbe3;">name</span><span>` on type `</span><span style="color:#a2ba43;">fn</span><span>() {</span><span style="font-weight:bold;color:#a3cbe3;">tests::your_order</span><span>}`
+</span><span>  </span><span style="font-weight:bold;color:#a3cbe3;">--</span><span style="color:#db7c6d;">&gt;</span><span> exercises/structs/structs2.rs:39:31
+</span><span>   </span><span style="color:#db7c6d;">|
+</span><span style="font-weight:bold;color:#a3cbe3;">39 </span><span style="color:#db7c6d;">|         </span><span style="font-weight:bold;color:#a3cbe3;">assert_eq!</span><span>(your_order.name, </span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>Hacker in Rust</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>)</span><span style="color:#db7c6d;">;
+</span><span>   </span><span style="color:#db7c6d;">|                               </span><span style="font-weight:bold;color:#a3cbe3;">^^^^
+</span><span>
+</span><span style="font-weight:bold;color:#a3cbe3;">error[E0609]:</span><span> no field `</span><span style="font-weight:bold;color:#a3cbe3;">year</span><span>` on type `</span><span style="color:#a2ba43;">fn</span><span>() {</span><span style="font-weight:bold;color:#a3cbe3;">tests::your_order</span><span>}`
+</span><span>  </span><span style="font-weight:bold;color:#a3cbe3;">--</span><span style="color:#db7c6d;">&gt;</span><span> exercises/structs/structs2.rs:40:31
+</span><span>   </span><span style="color:#db7c6d;">|
+</span><span style="font-weight:bold;color:#a3cbe3;">40 </span><span style="color:#db7c6d;">|         </span><span style="font-weight:bold;color:#a3cbe3;">assert_eq!</span><span>(your_order.year, order_template.year)</span><span style="color:#db7c6d;">;
+</span><span>   </span><span style="color:#db7c6d;">|                               </span><span style="font-weight:bold;color:#a3cbe3;">^^^^
+</span><span>
+</span><span style="font-weight:bold;color:#a3cbe3;">error[E0609]:</span><span> no field `</span><span style="font-weight:bold;color:#a3cbe3;">made_by_phone</span><span>` on type `</span><span style="color:#a2ba43;">fn</span><span>() {</span><span style="font-weight:bold;color:#a3cbe3;">tests::your_order</span><span>}`
+</span><span>  </span><span style="font-weight:bold;color:#a3cbe3;">--</span><span style="color:#db7c6d;">&gt;</span><span> exercises/structs/structs2.rs:41:31
+</span><span>   </span><span style="color:#db7c6d;">|
+</span><span style="font-weight:bold;color:#a3cbe3;">41 </span><span style="color:#db7c6d;">|         </span><span style="font-weight:bold;color:#a3cbe3;">assert_eq!</span><span>(your_order.made_by_phone, order_template.made_by_phone)</span><span style="color:#db7c6d;">;
+</span><span>   </span><span style="color:#db7c6d;">|                               </span><span style="font-weight:bold;color:#a3cbe3;">^^^^^^^^^^^^^
+</span><span>
+</span><span style="font-weight:bold;color:#a3cbe3;">error[E0609]:</span><span> no field `</span><span style="font-weight:bold;color:#a3cbe3;">made_by_mobile</span><span>` on type `</span><span style="color:#a2ba43;">fn</span><span>() {</span><span style="font-weight:bold;color:#a3cbe3;">tests::your_order</span><span>}`
+</span><span>  </span><span style="font-weight:bold;color:#a3cbe3;">--</span><span style="color:#db7c6d;">&gt;</span><span> exercises/structs/structs2.rs:42:31
+</span><span>   </span><span style="color:#db7c6d;">|
+</span><span style="font-weight:bold;color:#a3cbe3;">42 </span><span style="color:#db7c6d;">|         </span><span style="font-weight:bold;color:#a3cbe3;">assert_eq!</span><span>(your_order.made_by_mobile, order_template.made_by_mobile)</span><span style="color:#db7c6d;">;
+</span><span>   </span><span style="color:#db7c6d;">|                               </span><span style="font-weight:bold;color:#a3cbe3;">^^^^^^^^^^^^^^
+</span><span>
+</span><span style="font-weight:bold;color:#a3cbe3;">error[E0609]:</span><span> no field `</span><span style="font-weight:bold;color:#a3cbe3;">made_by_email</span><span>` on type `</span><span style="color:#a2ba43;">fn</span><span>() {</span><span style="font-weight:bold;color:#a3cbe3;">tests::your_order</span><span>}`
+</span><span>  </span><span style="font-weight:bold;color:#a3cbe3;">--</span><span style="color:#db7c6d;">&gt;</span><span> exercises/structs/structs2.rs:43:31
+</span><span>   </span><span style="color:#db7c6d;">|
+</span><span style="font-weight:bold;color:#a3cbe3;">43 </span><span style="color:#db7c6d;">|         </span><span style="font-weight:bold;color:#a3cbe3;">assert_eq!</span><span>(your_order.made_by_email, order_template.made_by_email)</span><span style="color:#db7c6d;">;
+</span><span>   </span><span style="color:#db7c6d;">|                               </span><span style="font-weight:bold;color:#a3cbe3;">^^^^^^^^^^^^^
+</span><span>
+</span><span style="font-weight:bold;color:#a3cbe3;">error[E0609]:</span><span> no field `</span><span style="font-weight:bold;color:#a3cbe3;">item_number</span><span>` on type `</span><span style="color:#a2ba43;">fn</span><span>() {</span><span style="font-weight:bold;color:#a3cbe3;">tests::your_order</span><span>}`
+</span><span>  </span><span style="font-weight:bold;color:#a3cbe3;">--</span><span style="color:#db7c6d;">&gt;</span><span> exercises/structs/structs2.rs:44:31
+</span><span>   </span><span style="color:#db7c6d;">|
+</span><span style="font-weight:bold;color:#a3cbe3;">44 </span><span style="color:#db7c6d;">|         </span><span style="font-weight:bold;color:#a3cbe3;">assert_eq!</span><span>(your_order.item_number, order_template.item_number)</span><span style="color:#db7c6d;">;
+</span><span>   </span><span style="color:#db7c6d;">|                               </span><span style="font-weight:bold;color:#a3cbe3;">^^^^^^^^^^^
+</span><span>
+</span><span style="font-weight:bold;color:#a3cbe3;">error[E0609]:</span><span> no field `</span><span style="font-weight:bold;color:#a3cbe3;">count</span><span>` on type `</span><span style="color:#a2ba43;">fn</span><span>() {</span><span style="font-weight:bold;color:#a3cbe3;">tests::your_order</span><span>}`
+</span><span>  </span><span style="font-weight:bold;color:#a3cbe3;">--</span><span style="color:#db7c6d;">&gt;</span><span> exercises/structs/structs2.rs:45:31
+</span><span>   </span><span style="color:#db7c6d;">|
+</span><span style="font-weight:bold;color:#a3cbe3;">45 </span><span style="color:#db7c6d;">|         </span><span style="font-weight:bold;color:#a3cbe3;">assert_eq!</span><span>(your_order.count, 1)</span><span style="color:#db7c6d;">;
+</span><span>   </span><span style="color:#db7c6d;">|                               </span><span style="font-weight:bold;color:#a3cbe3;">^^^^^
+</span><span>
+</span><span style="font-weight:bold;color:#a3cbe3;">error:</span><span> aborting due to 7 previous errors
+</span></code></pre>
 <p>We have a total of 7 errors all created by our missing struct instantiation. So, let's get it to it, we'll start from the top.</p>
 <h2 id="instantiating-your-order">Instantiating <code>your_order</code></h2>
-<p>If we look at our first error we get a major hint as to what the compiler expects to see: <code> assert_eq!(your_order.name, &quot;Hacker in Rust&quot;)</code> so if we take a look at our sample code and build our <code>Order</code> in the same way as in the <code>create_order_template</code> function we should have a great start for what we need to do.</p>
+<p>If we look at our first error we get a major hint as to what the compiler expects to see: <code> assert_eq!(your_order.name, "Hacker in Rust")</code> so if we take a look at our sample code and build our <code>Order</code> in the same way as in the <code>create_order_template</code> function we should have a great start for what we need to do.</p>
 <p>If we use our <code>Order</code> struct as a guide we can start entering the values for each field.</p>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">struct Order {
-    name: String,
-    year: u32,
-    made_by_phone: bool,
-    made_by_mobile: bool,
-    made_by_email: bool,
-    item_number: u32,
-    count: u32,
-}
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#a3cbe3;">struct </span><span>Order {
+</span><span>    </span><span style="font-weight:bold;color:#a3cbe3;">name</span><span>: String,
+</span><span>    </span><span style="font-weight:bold;color:#a3cbe3;">year</span><span>: </span><span style="color:#a3cbe3;">u32</span><span>,
+</span><span>    </span><span style="font-weight:bold;color:#a3cbe3;">made_by_phone</span><span>: </span><span style="color:#a3cbe3;">bool</span><span>,
+</span><span>    </span><span style="font-weight:bold;color:#a3cbe3;">made_by_mobile</span><span>: </span><span style="color:#a3cbe3;">bool</span><span>,
+</span><span>    </span><span style="font-weight:bold;color:#a3cbe3;">made_by_email</span><span>: </span><span style="color:#a3cbe3;">bool</span><span>,
+</span><span>    </span><span style="font-weight:bold;color:#a3cbe3;">item_number</span><span>: </span><span style="color:#a3cbe3;">u32</span><span>,
+</span><span>    </span><span style="font-weight:bold;color:#a3cbe3;">count</span><span>: </span><span style="color:#a3cbe3;">u32</span><span>,
+</span><span>}
+</span></code></pre>
 <p>for example:</p>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">fn your_order() {
-        let order_template = create_order_template();
-        &#x2F;&#x2F; TODO: Create your own order using the update syntax and template above!
-        let your_order = Order {
-            name: String::from(&quot;Hacker in Rust&quot;),
-            year: u32,
-            made_by_phone: bool,
-            made_by_mobile: bool,
-            made_by_email: bool,
-            item_number: u32,
-            count: u32,
-        };
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">your_order</span><span>() {
+</span><span>        </span><span style="color:#a3cbe3;">let</span><span> order_template </span><span style="color:#db7c6d;">= create_order_template</span><span>();
+</span><span>        </span><span style="color:#707180;">// TODO: Create your own order using the update syntax and template above!
+</span><span>        </span><span style="color:#a3cbe3;">let</span><span> your_order </span><span style="color:#db7c6d;">=</span><span> Order {
+</span><span>            name: </span><span style="color:#e7e7e7;">String</span><span>::from(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>Hacker in Rust</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>),
+</span><span>            year: </span><span style="color:#a3cbe3;">u32</span><span>,
+</span><span>            made_by_phone: </span><span style="color:#a3cbe3;">bool</span><span>,
+</span><span>            made_by_mobile: </span><span style="color:#a3cbe3;">bool</span><span>,
+</span><span>            made_by_email: </span><span style="color:#a3cbe3;">bool</span><span>,
+</span><span>            item_number: </span><span style="color:#a3cbe3;">u32</span><span>,
+</span><span>            count: </span><span style="color:#a3cbe3;">u32</span><span>,
+</span><span>        };
+</span></code></pre>
 <p>Again we see what is expected by looking at our <code>assert_eq!</code> macro, so following this format it should be pretty easy to understand what each field should be.</p>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">        assert_eq!(your_order.name, &quot;Hacker in Rust&quot;); &#x2F;&#x2F; String
-        assert_eq!(your_order.year, order_template.year); &#x2F;&#x2F; u32 from the `oder_template.year`
-        assert_eq!(your_order.made_by_phone, order_template.made_by_phone); &#x2F;&#x2F; bool
-        assert_eq!(your_order.made_by_mobile, order_template.made_by_mobile); &#x2F;&#x2F; bool
-        assert_eq!(your_order.made_by_email, order_template.made_by_email); &#x2F;&#x2F; bool
-        assert_eq!(your_order.item_number, order_template.item_number); &#x2F;&#x2F; u32 from `item_number`
-        assert_eq!(your_order.count, 1); &#x2F;&#x2F; u32 defined here as `1`
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span>        assert_eq!(your_order.name, </span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>Hacker in Rust</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>); </span><span style="color:#707180;">// String
+</span><span>        assert_eq!(your_order.year, order_template.year); </span><span style="color:#707180;">// u32 from the `oder_template.year`
+</span><span>        assert_eq!(your_order.made_by_phone, order_template.made_by_phone); </span><span style="color:#707180;">// bool
+</span><span>        assert_eq!(your_order.made_by_mobile, order_template.made_by_mobile); </span><span style="color:#707180;">// bool
+</span><span>        assert_eq!(your_order.made_by_email, order_template.made_by_email); </span><span style="color:#707180;">// bool
+</span><span>        assert_eq!(your_order.item_number, order_template.item_number); </span><span style="color:#707180;">// u32 from `item_number`
+</span><span>        assert_eq!(your_order.count, </span><span style="color:#db7c6d;">1</span><span>); </span><span style="color:#707180;">// u32 defined here as `1`
+</span></code></pre>
 <p>So there we go now all we need to is fill out the rest of the values and it should look like this:</p>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">let your_order = Order {
-            name: String::from(&quot;Hacker in Rust&quot;),
-            year: 2019,
-            made_by_phone: false,
-            made_by_mobile: false,
-            made_by_email: true,
-            item_number: 123,
-            count: 1,
-        };
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#a3cbe3;">let</span><span> your_order </span><span style="color:#db7c6d;">=</span><span> Order {
+</span><span>            name: </span><span style="color:#e7e7e7;">String</span><span>::from(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>Hacker in Rust</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>),
+</span><span>            year: </span><span style="color:#db7c6d;">2019</span><span>,
+</span><span>            made_by_phone: </span><span style="color:#ffffff;">false</span><span>,
+</span><span>            made_by_mobile: </span><span style="color:#ffffff;">false</span><span>,
+</span><span>            made_by_email: </span><span style="color:#ffffff;">true</span><span>,
+</span><span>            item_number: </span><span style="color:#db7c6d;">123</span><span>,
+</span><span>            count: </span><span style="color:#db7c6d;">1</span><span>,
+</span><span>        };
+</span></code></pre>
 <h2 id="structs2-rs-solution"><code>structs2.rs</code> Solution</h2>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">#[derive(Debug)]
-struct Order {
-    name: String,
-    year: u32,
-    made_by_phone: bool,
-    made_by_mobile: bool,
-    made_by_email: bool,
-    item_number: u32,
-    count: u32,
-}
-
-fn create_order_template() -&gt; Order {
-    Order {
-        name: String::from(&quot;Bob&quot;),
-        year: 2019,
-        made_by_phone: false,
-        made_by_mobile: false,
-        made_by_email: true,
-        item_number: 123,
-        count: 0,
-    }
-}
-
-#[cfg(test)]
-mod tests {
-    use super::*;
-
-    #[test]
-    fn your_order() {
-        let order_template = create_order_template();
-        &#x2F;&#x2F; TODO: Create your own order using the update syntax and template above!
-        let your_order = Order {
-            name: String::from(&quot;Hacker in Rust&quot;),
-            year: 2019,
-            made_by_phone: false,
-            made_by_mobile: false,
-            made_by_email: true,
-            item_number: 123,
-            count: 1,
-        };
-        assert_eq!(your_order.name, &quot;Hacker in Rust&quot;);
-        assert_eq!(your_order.year, order_template.year);
-        assert_eq!(your_order.made_by_phone, order_template.made_by_phone);
-        assert_eq!(your_order.made_by_mobile, order_template.made_by_mobile);
-        assert_eq!(your_order.made_by_email, order_template.made_by_email);
-        assert_eq!(your_order.item_number, order_template.item_number);
-        assert_eq!(your_order.count, 1);
-    }
-}
-</code></pre>
-<pre data-lang="zsh" class="language-zsh "><code class="language-zsh" data-lang="zsh">✅ Successfully tested exercises&#x2F;structs&#x2F;structs2.rs!
-
-🎉 🎉  The code is compiling, and the tests pass! 🎉 🎉
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span>#[</span><span style="font-weight:bold;color:#a3cbe3;">derive</span><span>(Debug)]
+</span><span style="color:#a3cbe3;">struct </span><span>Order {
+</span><span>    </span><span style="font-weight:bold;color:#a3cbe3;">name</span><span>: String,
+</span><span>    </span><span style="font-weight:bold;color:#a3cbe3;">year</span><span>: </span><span style="color:#a3cbe3;">u32</span><span>,
+</span><span>    </span><span style="font-weight:bold;color:#a3cbe3;">made_by_phone</span><span>: </span><span style="color:#a3cbe3;">bool</span><span>,
+</span><span>    </span><span style="font-weight:bold;color:#a3cbe3;">made_by_mobile</span><span>: </span><span style="color:#a3cbe3;">bool</span><span>,
+</span><span>    </span><span style="font-weight:bold;color:#a3cbe3;">made_by_email</span><span>: </span><span style="color:#a3cbe3;">bool</span><span>,
+</span><span>    </span><span style="font-weight:bold;color:#a3cbe3;">item_number</span><span>: </span><span style="color:#a3cbe3;">u32</span><span>,
+</span><span>    </span><span style="font-weight:bold;color:#a3cbe3;">count</span><span>: </span><span style="color:#a3cbe3;">u32</span><span>,
+</span><span>}
+</span><span>
+</span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">create_order_template</span><span>() -&gt; Order {
+</span><span>    Order {
+</span><span>        name: </span><span style="color:#e7e7e7;">String</span><span>::from(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>Bob</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>),
+</span><span>        year: </span><span style="color:#db7c6d;">2019</span><span>,
+</span><span>        made_by_phone: </span><span style="color:#ffffff;">false</span><span>,
+</span><span>        made_by_mobile: </span><span style="color:#ffffff;">false</span><span>,
+</span><span>        made_by_email: </span><span style="color:#ffffff;">true</span><span>,
+</span><span>        item_number: </span><span style="color:#db7c6d;">123</span><span>,
+</span><span>        count: </span><span style="color:#db7c6d;">0</span><span>,
+</span><span>    }
+</span><span>}
+</span><span>
+</span><span>#[</span><span style="font-weight:bold;color:#a3cbe3;">cfg</span><span>(test)]
+</span><span style="color:#a3cbe3;">mod </span><span>tests {
+</span><span>    </span><span style="color:#db7c6d;">use super</span><span>::</span><span style="color:#db7c6d;">*</span><span>;
+</span><span>
+</span><span>    #[</span><span style="font-weight:bold;color:#a3cbe3;">test</span><span>]
+</span><span>    </span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">your_order</span><span>() {
+</span><span>        </span><span style="color:#a3cbe3;">let</span><span> order_template </span><span style="color:#db7c6d;">= create_order_template</span><span>();
+</span><span>        </span><span style="color:#707180;">// TODO: Create your own order using the update syntax and template above!
+</span><span>        </span><span style="color:#a3cbe3;">let</span><span> your_order </span><span style="color:#db7c6d;">=</span><span> Order {
+</span><span>            name: </span><span style="color:#e7e7e7;">String</span><span>::from(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>Hacker in Rust</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>),
+</span><span>            year: </span><span style="color:#db7c6d;">2019</span><span>,
+</span><span>            made_by_phone: </span><span style="color:#ffffff;">false</span><span>,
+</span><span>            made_by_mobile: </span><span style="color:#ffffff;">false</span><span>,
+</span><span>            made_by_email: </span><span style="color:#ffffff;">true</span><span>,
+</span><span>            item_number: </span><span style="color:#db7c6d;">123</span><span>,
+</span><span>            count: </span><span style="color:#db7c6d;">1</span><span>,
+</span><span>        };
+</span><span>        assert_eq!(your_order.name, </span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>Hacker in Rust</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>);
+</span><span>        assert_eq!(your_order.year, order_template.year);
+</span><span>        assert_eq!(your_order.made_by_phone, order_template.made_by_phone);
+</span><span>        assert_eq!(your_order.made_by_mobile, order_template.made_by_mobile);
+</span><span>        assert_eq!(your_order.made_by_email, order_template.made_by_email);
+</span><span>        assert_eq!(your_order.item_number, order_template.item_number);
+</span><span>        assert_eq!(your_order.count, </span><span style="color:#db7c6d;">1</span><span>);
+</span><span>    }
+</span><span>}
+</span></code></pre>
+<pre data-lang="zsh" style="background-color:#31333d;color:#ffffffc4;" class="language-zsh "><code class="language-zsh" data-lang="zsh"><span style="font-weight:bold;color:#a3cbe3;">✅</span><span> Successfully tested exercises/structs/structs2.rs!
+</span><span>
+</span><span style="font-weight:bold;color:#a3cbe3;">🎉</span><span> 🎉  The code is compiling, and the tests pass! 🎉 🎉
+</span></code></pre>
 <h2 id="understanding-rust-struct-update-syntax">Understanding Rust Struct Update Syntax</h2>
 <p>Before we move on to the next exercise, it's worth mentioning a Rust feature that could be beneficial here - the struct update syntax. It allows you to create a new instance of a struct, and selectively update some or all fields. This is especially useful when you have a template or default struct that you want to use as a base for your new struct.</p>
 <p>To do so, you use <code>..</code> followed by the instance name. It should look like this:</p>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">let your_order = Order {
-    name: String::from(&quot;Hacker in Rust&quot;),
-    count: 1,
-    ..order_template
-};
-</code></pre>
-<p>This code creates a new <code>Order</code> that is the same as <code>order_template</code>, except <code>name</code> is &quot;Hacker in Rust&quot; and <code>count</code> is 1.</p>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#a3cbe3;">let</span><span> your_order </span><span style="color:#db7c6d;">=</span><span> Order {
+</span><span>    name: </span><span style="color:#e7e7e7;">String</span><span>::from(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>Hacker in Rust</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>),
+</span><span>    count: </span><span style="color:#db7c6d;">1</span><span>,
+</span><span>    </span><span style="color:#db7c6d;">..</span><span>order_template
+</span><span>};
+</span></code></pre>
+<p>This code creates a new <code>Order</code> that is the same as <code>order_template</code>, except <code>name</code> is "Hacker in Rust" and <code>count</code> is 1.</p>
 <p>We can use this syntax to make our code more efficient and maintain the logic of using a template.</p>
 <h2 id="structs2-rs-solution-with-update-syntax"><code>structs2.rs</code> Solution with Update Syntax</h2>
 <p>So, with struct update syntax, the solution becomes:</p>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">#[cfg(test)]
-mod tests {
-    use super::*;
-
-    #[test]
-    fn your_order() {
-        let order_template = create_order_template();
-        let your_order = Order {
-            name: String::from(&quot;Hacker in Rust&quot;),
-            count: 1,
-            ..order_template
-        };
-        assert_eq!(your_order.name, &quot;Hacker in Rust&quot;);
-        assert_eq!(your_order.year, order_template.year);
-        assert_eq!(your_order.made_by_phone, order_template.made_by_phone);
-        assert_eq!(your_order.made_by_mobile, order_template.made_by_mobile);
-        assert_eq!(your_order.made_by_email, order_template.made_by_email);
-        assert_eq!(your_order.item_number, order_template.item_number);
-        assert_eq!(your_order.count, 1);
-    }
-}
-
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span>#[</span><span style="font-weight:bold;color:#a3cbe3;">cfg</span><span>(test)]
+</span><span style="color:#a3cbe3;">mod </span><span>tests {
+</span><span>    </span><span style="color:#db7c6d;">use super</span><span>::</span><span style="color:#db7c6d;">*</span><span>;
+</span><span>
+</span><span>    #[</span><span style="font-weight:bold;color:#a3cbe3;">test</span><span>]
+</span><span>    </span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">your_order</span><span>() {
+</span><span>        </span><span style="color:#a3cbe3;">let</span><span> order_template </span><span style="color:#db7c6d;">= create_order_template</span><span>();
+</span><span>        </span><span style="color:#a3cbe3;">let</span><span> your_order </span><span style="color:#db7c6d;">=</span><span> Order {
+</span><span>            name: </span><span style="color:#e7e7e7;">String</span><span>::from(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>Hacker in Rust</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>),
+</span><span>            count: </span><span style="color:#db7c6d;">1</span><span>,
+</span><span>            </span><span style="color:#db7c6d;">..</span><span>order_template
+</span><span>        };
+</span><span>        assert_eq!(your_order.name, </span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>Hacker in Rust</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>);
+</span><span>        assert_eq!(your_order.year, order_template.year);
+</span><span>        assert_eq!(your_order.made_by_phone, order_template.made_by_phone);
+</span><span>        assert_eq!(your_order.made_by_mobile, order_template.made_by_mobile);
+</span><span>        assert_eq!(your_order.made_by_email, order_template.made_by_email);
+</span><span>        assert_eq!(your_order.item_number, order_template.item_number);
+</span><span>        assert_eq!(your_order.count, </span><span style="color:#db7c6d;">1</span><span>);
+</span><span>    }
+</span><span>}
+</span><span>
+</span></code></pre>
 <p>The test function <code>your_order()</code> now uses the update syntax to create <code>your_order</code> from <code>order_template</code>, changing only the <code>name</code> and <code>count</code> fields, and leaving the rest as in <code>order_template</code>.</p>
 <p>This is just an alternate way of solving the problem and could be particularly useful if <code>Order</code> had many more fields that remained the same between <code>order_template</code> and <code>your_order</code>.</p>
 <p>On to <code>structs3.rs</code>!</p>
 <h2 id="structs3-rs"><code>structs3.rs</code></h2>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">&#x2F;&#x2F; structs3.rs
-&#x2F;&#x2F; Structs contain data, but can also have logic. In this exercise we have
-&#x2F;&#x2F; defined the Package struct and we want to test some logic attached to it.
-&#x2F;&#x2F; Make the code compile and the tests pass!
-&#x2F;&#x2F; Execute `rustlings hint structs3` or use the `hint` watch subcommand for a hint.
-
-&#x2F;&#x2F; I AM NOT DONE
-
-#[derive(Debug)]
-struct Package {
-    sender_country: String,
-    recipient_country: String,
-    weight_in_grams: i32,
-}
-
-impl Package {
-    fn new(sender_country: String, recipient_country: String, weight_in_grams: i32) -&gt; Package {
-        if weight_in_grams &lt;= 0 {
-            panic!(&quot;Can not ship a weightless package.&quot;)
-        } else {
-            Package {
-                sender_country,
-                recipient_country,
-                weight_in_grams,
-            }
-        }
-    }
-
-    fn is_international(&amp;self) -&gt; ??? {
-        &#x2F;&#x2F; Something goes here...
-    }
-
-    fn get_fees(&amp;self, cents_per_gram: i32) -&gt; ??? {
-        &#x2F;&#x2F; Something goes here...
-    }
-}
-
-#[cfg(test)]
-mod tests {
-    use super::*;
-
-    #[test]
-    #[should_panic]
-    fn fail_creating_weightless_package() {
-        let sender_country = String::from(&quot;Spain&quot;);
-        let recipient_country = String::from(&quot;Austria&quot;);
-
-        Package::new(sender_country, recipient_country, -2210);
-    }
-
-    #[test]
-    fn create_international_package() {
-        let sender_country = String::from(&quot;Spain&quot;);
-        let recipient_country = String::from(&quot;Russia&quot;);
-
-        let package = Package::new(sender_country, recipient_country, 1200);
-
-        assert!(package.is_international());
-    }
-
-    #[test]
-    fn create_local_package() {
-        let sender_country = String::from(&quot;Canada&quot;);
-        let recipient_country = sender_country.clone();
-
-        let package = Package::new(sender_country, recipient_country, 1200);
-
-        assert!(!package.is_international());
-    }
-
-    #[test]
-    fn calculate_transport_fees() {
-        let sender_country = String::from(&quot;Spain&quot;);
-        let recipient_country = String::from(&quot;Spain&quot;);
-
-        let cents_per_gram = 3;
-
-        let package = Package::new(sender_country, recipient_country, 1500);
-
-        assert_eq!(package.get_fees(cents_per_gram), 4500);
-        assert_eq!(package.get_fees(cents_per_gram * 2), 9000);
-    }
-}
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#707180;">// structs3.rs
+</span><span style="color:#707180;">// Structs contain data, but can also have logic. In this exercise we have
+</span><span style="color:#707180;">// defined the Package struct and we want to test some logic attached to it.
+</span><span style="color:#707180;">// Make the code compile and the tests pass!
+</span><span style="color:#707180;">// Execute `rustlings hint structs3` or use the `hint` watch subcommand for a hint.
+</span><span>
+</span><span style="color:#707180;">// I AM NOT DONE
+</span><span>
+</span><span>#[</span><span style="font-weight:bold;color:#a3cbe3;">derive</span><span>(Debug)]
+</span><span style="color:#a3cbe3;">struct </span><span>Package {
+</span><span>    </span><span style="font-weight:bold;color:#a3cbe3;">sender_country</span><span>: String,
+</span><span>    </span><span style="font-weight:bold;color:#a3cbe3;">recipient_country</span><span>: String,
+</span><span>    </span><span style="font-weight:bold;color:#a3cbe3;">weight_in_grams</span><span>: </span><span style="color:#a3cbe3;">i32</span><span>,
+</span><span>}
+</span><span>
+</span><span style="color:#a3cbe3;">impl </span><span>Package {
+</span><span>    </span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">new</span><span>(</span><span style="color:#ffffff;">sender_country</span><span>: String, </span><span style="color:#ffffff;">recipient_country</span><span>: String, </span><span style="color:#ffffff;">weight_in_grams</span><span>: </span><span style="color:#a3cbe3;">i32</span><span>) -&gt; Package {
+</span><span>        </span><span style="color:#db7c6d;">if</span><span> weight_in_grams </span><span style="color:#db7c6d;">&lt;= 0 </span><span>{
+</span><span>            panic!(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>Can not ship a weightless package.</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>)
+</span><span>        } </span><span style="color:#db7c6d;">else </span><span>{
+</span><span>            Package {
+</span><span>                sender_country,
+</span><span>                recipient_country,
+</span><span>                weight_in_grams,
+</span><span>            }
+</span><span>        }
+</span><span>    }
+</span><span>
+</span><span>    </span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">is_international</span><span>(</span><span style="color:#db7c6d;">&amp;</span><span style="color:#ffffff;">self</span><span>) -&gt; </span><span style="color:#db7c6d;">??? </span><span>{
+</span><span>        </span><span style="color:#707180;">// Something goes here...
+</span><span>    }
+</span><span>
+</span><span>    </span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">get_fees</span><span>(</span><span style="color:#db7c6d;">&amp;</span><span style="color:#ffffff;">self</span><span>, </span><span style="color:#ffffff;">cents_per_gram</span><span>: </span><span style="color:#a3cbe3;">i32</span><span>) -&gt; </span><span style="color:#db7c6d;">??? </span><span>{
+</span><span>        </span><span style="color:#707180;">// Something goes here...
+</span><span>    }
+</span><span>}
+</span><span>
+</span><span>#[</span><span style="font-weight:bold;color:#a3cbe3;">cfg</span><span>(test)]
+</span><span style="color:#a3cbe3;">mod </span><span>tests {
+</span><span>    </span><span style="color:#db7c6d;">use super</span><span>::</span><span style="color:#db7c6d;">*</span><span>;
+</span><span>
+</span><span>    #[</span><span style="font-weight:bold;color:#a3cbe3;">test</span><span>]
+</span><span>    #[</span><span style="font-weight:bold;color:#a3cbe3;">should_panic</span><span>]
+</span><span>    </span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">fail_creating_weightless_package</span><span>() {
+</span><span>        </span><span style="color:#a3cbe3;">let</span><span> sender_country </span><span style="color:#db7c6d;">= </span><span style="color:#e7e7e7;">String</span><span>::from(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>Spain</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>);
+</span><span>        </span><span style="color:#a3cbe3;">let</span><span> recipient_country </span><span style="color:#db7c6d;">= </span><span style="color:#e7e7e7;">String</span><span>::from(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>Austria</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>);
+</span><span>
+</span><span>        Package::new(sender_country, recipient_country, </span><span style="color:#db7c6d;">-2210</span><span>);
+</span><span>    }
+</span><span>
+</span><span>    #[</span><span style="font-weight:bold;color:#a3cbe3;">test</span><span>]
+</span><span>    </span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">create_international_package</span><span>() {
+</span><span>        </span><span style="color:#a3cbe3;">let</span><span> sender_country </span><span style="color:#db7c6d;">= </span><span style="color:#e7e7e7;">String</span><span>::from(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>Spain</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>);
+</span><span>        </span><span style="color:#a3cbe3;">let</span><span> recipient_country </span><span style="color:#db7c6d;">= </span><span style="color:#e7e7e7;">String</span><span>::from(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>Russia</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>);
+</span><span>
+</span><span>        </span><span style="color:#a3cbe3;">let</span><span> package </span><span style="color:#db7c6d;">= </span><span>Package::new(sender_country, recipient_country, </span><span style="color:#db7c6d;">1200</span><span>);
+</span><span>
+</span><span>        assert!(package.</span><span style="color:#db7c6d;">is_international</span><span>());
+</span><span>    }
+</span><span>
+</span><span>    #[</span><span style="font-weight:bold;color:#a3cbe3;">test</span><span>]
+</span><span>    </span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">create_local_package</span><span>() {
+</span><span>        </span><span style="color:#a3cbe3;">let</span><span> sender_country </span><span style="color:#db7c6d;">= </span><span style="color:#e7e7e7;">String</span><span>::from(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>Canada</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>);
+</span><span>        </span><span style="color:#a3cbe3;">let</span><span> recipient_country </span><span style="color:#db7c6d;">=</span><span> sender_country.</span><span style="color:#db7c6d;">clone</span><span>();
+</span><span>
+</span><span>        </span><span style="color:#a3cbe3;">let</span><span> package </span><span style="color:#db7c6d;">= </span><span>Package::new(sender_country, recipient_country, </span><span style="color:#db7c6d;">1200</span><span>);
+</span><span>
+</span><span>        assert!(</span><span style="color:#db7c6d;">!</span><span>package.</span><span style="color:#db7c6d;">is_international</span><span>());
+</span><span>    }
+</span><span>
+</span><span>    #[</span><span style="font-weight:bold;color:#a3cbe3;">test</span><span>]
+</span><span>    </span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">calculate_transport_fees</span><span>() {
+</span><span>        </span><span style="color:#a3cbe3;">let</span><span> sender_country </span><span style="color:#db7c6d;">= </span><span style="color:#e7e7e7;">String</span><span>::from(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>Spain</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>);
+</span><span>        </span><span style="color:#a3cbe3;">let</span><span> recipient_country </span><span style="color:#db7c6d;">= </span><span style="color:#e7e7e7;">String</span><span>::from(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>Spain</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>);
+</span><span>
+</span><span>        </span><span style="color:#a3cbe3;">let</span><span> cents_per_gram </span><span style="color:#db7c6d;">= 3</span><span>;
+</span><span>
+</span><span>        </span><span style="color:#a3cbe3;">let</span><span> package </span><span style="color:#db7c6d;">= </span><span>Package::new(sender_country, recipient_country, </span><span style="color:#db7c6d;">1500</span><span>);
+</span><span>
+</span><span>        assert_eq!(package.</span><span style="color:#db7c6d;">get_fees</span><span>(cents_per_gram), </span><span style="color:#db7c6d;">4500</span><span>);
+</span><span>        assert_eq!(package.</span><span style="color:#db7c6d;">get_fees</span><span>(cents_per_gram </span><span style="color:#db7c6d;">* 2</span><span>), </span><span style="color:#db7c6d;">9000</span><span>);
+</span><span>    }
+</span><span>}
+</span></code></pre>
 <p>Alright this is a longer piece of code to go through but we see that there is essentially 2 areas that we need to fill out, before we look at that let's look at the errors.</p>
-<pre data-lang="zsh" class="language-zsh "><code class="language-zsh" data-lang="zsh">⚠️  Compiling of exercises&#x2F;structs&#x2F;structs3.rs failed! Please try again. Here is the output:
-error: expected identifier, found `{`
-  --&gt; exercises&#x2F;structs&#x2F;structs3.rs:29:39
-   |
-16 | impl Package {
-   |              - while parsing this item list starting here
-...
-29 |     fn is_international(&amp;self) -&gt; ??? {
-   |                                       ^ expected identifier
-...
-36 | }
-   | - the item list ends here
-
-error[E0599]: no method named `is_international` found for struct `Package` in the current scope
-  --&gt; exercises&#x2F;structs&#x2F;structs3.rs:58:25
-   |
-10 | struct Package {
-   | -------------- method `is_international` not found for this struct
-...
-58 |         assert!(package.is_international());
-   |                         ^^^^^^^^^^^^^^^^ method not found in `Package`
-
-error[E0599]: no method named `is_international` found for struct `Package` in the current scope
-  --&gt; exercises&#x2F;structs&#x2F;structs3.rs:68:26
-   |
-10 | struct Package {
-   | -------------- method `is_international` not found for this struct
-...
-68 |         assert!(!package.is_international());
-   |                          ^^^^^^^^^^^^^^^^ method not found in `Package`
-
-error[E0599]: no method named `get_fees` found for struct `Package` in the current scope
-  --&gt; exercises&#x2F;structs&#x2F;structs3.rs:80:28
-   |
-10 | struct Package {
-   | -------------- method `get_fees` not found for this struct
-...
-80 |         assert_eq!(package.get_fees(cents_per_gram), 4500);
-   |                            ^^^^^^^^ method not found in `Package`
-
-error[E0599]: no method named `get_fees` found for struct `Package` in the current scope
-  --&gt; exercises&#x2F;structs&#x2F;structs3.rs:81:28
-   |
-10 | struct Package {
-   | -------------- method `get_fees` not found for this struct
-...
-81 |         assert_eq!(package.get_fees(cents_per_gram * 2), 9000);
-   |                            ^^^^^^^^ method not found in `Package`
-
-error: aborting due to 5 previous errors
-</code></pre>
+<pre data-lang="zsh" style="background-color:#31333d;color:#ffffffc4;" class="language-zsh "><code class="language-zsh" data-lang="zsh"><span style="font-weight:bold;color:#a3cbe3;">⚠️</span><span>  Compiling of exercises/structs/structs3.rs failed! Please try again. Here is the output:
+</span><span style="font-weight:bold;color:#a3cbe3;">error:</span><span> expected identifier, found `</span><span style="font-weight:bold;color:#a3cbe3;">{</span><span>`
+</span><span>  </span><span style="font-weight:bold;color:#a3cbe3;">--</span><span style="color:#db7c6d;">&gt;</span><span> exercises/structs/structs3.rs:29:39
+</span><span>   </span><span style="color:#db7c6d;">|
+</span><span style="font-weight:bold;color:#a3cbe3;">16 </span><span style="color:#db7c6d;">| </span><span style="font-weight:bold;color:#a3cbe3;">impl</span><span> Package {
+</span><span>   |              - while parsing this item list starting here
+</span><span>...
+</span><span>29 |     fn is_international(&amp;self) -&gt; </span><span style="color:#db7c6d;">??? </span><span>{
+</span><span>   |                                       ^ expected identifier
+</span><span>...
+</span><span>36 | }
+</span><span>   | - the item list ends here
+</span><span>
+</span><span>error</span><span style="color:#db7c6d;">[</span><span>E0599</span><span style="color:#db7c6d;">]</span><span>: no method named `</span><span style="font-weight:bold;color:#a3cbe3;">is_international</span><span>` found for struct `</span><span style="font-weight:bold;color:#a3cbe3;">Package</span><span>` in the current scope
+</span><span>  --&gt; exercises/structs/structs3.rs:58:25
+</span><span>   |
+</span><span>10 | struct Package {
+</span><span>   | -------------- method `</span><span style="font-weight:bold;color:#a3cbe3;">is_international</span><span>` not found for this struct
+</span><span>...
+</span><span>58 |         assert</span><span style="color:#db7c6d;">!</span><span>(package.is_international());
+</span><span>   |                         ^^^^^^^^^^^^^^^^ method not found in `</span><span style="font-weight:bold;color:#a3cbe3;">Package</span><span>`
+</span><span>
+</span><span>error</span><span style="color:#db7c6d;">[</span><span>E0599</span><span style="color:#db7c6d;">]</span><span>: no method named `</span><span style="font-weight:bold;color:#a3cbe3;">is_international</span><span>` found for struct `</span><span style="font-weight:bold;color:#a3cbe3;">Package</span><span>` in the current scope
+</span><span>  --&gt; exercises/structs/structs3.rs:68:26
+</span><span>   |
+</span><span>10 | struct Package {
+</span><span>   | -------------- method `</span><span style="font-weight:bold;color:#a3cbe3;">is_international</span><span>` not found for this struct
+</span><span>...
+</span><span>68 |         assert</span><span style="color:#db7c6d;">!</span><span>(!package.is_international());
+</span><span>   |                          ^^^^^^^^^^^^^^^^ method not found in `</span><span style="font-weight:bold;color:#a3cbe3;">Package</span><span>`
+</span><span>
+</span><span>error</span><span style="color:#db7c6d;">[</span><span>E0599</span><span style="color:#db7c6d;">]</span><span>: no method named `</span><span style="font-weight:bold;color:#a3cbe3;">get_fees</span><span>` found for struct `</span><span style="font-weight:bold;color:#a3cbe3;">Package</span><span>` in the current scope
+</span><span>  --&gt; exercises/structs/structs3.rs:80:28
+</span><span>   |
+</span><span>10 | struct Package {
+</span><span>   | -------------- method `</span><span style="font-weight:bold;color:#a3cbe3;">get_fees</span><span>` not found for this struct
+</span><span>...
+</span><span>80 |         assert_eq</span><span style="color:#db7c6d;">!</span><span>(package.get_fees(cents_per_gram), 4500);
+</span><span>   |                            ^^^^^^^^ method not found in `</span><span style="font-weight:bold;color:#a3cbe3;">Package</span><span>`
+</span><span>
+</span><span>error</span><span style="color:#db7c6d;">[</span><span>E0599</span><span style="color:#db7c6d;">]</span><span>: no method named `</span><span style="font-weight:bold;color:#a3cbe3;">get_fees</span><span>` found for struct `</span><span style="font-weight:bold;color:#a3cbe3;">Package</span><span>` in the current scope
+</span><span>  --&gt; exercises/structs/structs3.rs:81:28
+</span><span>   |
+</span><span>10 | struct Package {
+</span><span>   | -------------- method `</span><span style="font-weight:bold;color:#a3cbe3;">get_fees</span><span>` not found for this struct
+</span><span>...
+</span><span>81 |         assert_eq</span><span style="color:#db7c6d;">!</span><span>(package.get_fees(cents_per_gram </span><span style="color:#db7c6d;">*</span><span> 2), 9000);
+</span><span>   |                            ^^^^^^^^ method not found in `</span><span style="font-weight:bold;color:#a3cbe3;">Package</span><span>`
+</span><span>
+</span><span>error: aborting due to 5 previous errors
+</span></code></pre>
 <p>Alright we're seeing errors due to the missing code blocks and also the usual <code>assert_eq!</code> macros that are expecting something that is not there. So let's get to work!</p>
 <h2 id="defining-return-values">Defining Return Values</h2>
 <p>First we define the return values <code>String</code> and an <code>i32</code>, instead of the <code>???</code> we previously had.</p>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">    fn is_international(&amp;self) -&gt; String {
-        &#x2F;&#x2F; Something goes here...
-    }
-
-    fn get_fees(&amp;self, cents_per_gram: i32) -&gt; i32 {
-        &#x2F;&#x2F; Something goes here...
-    }
-}
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span>    </span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">is_international</span><span>(</span><span style="color:#db7c6d;">&amp;</span><span style="color:#ffffff;">self</span><span>) -&gt; String {
+</span><span>        </span><span style="color:#707180;">// Something goes here...
+</span><span>    }
+</span><span>
+</span><span>    </span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">get_fees</span><span>(</span><span style="color:#db7c6d;">&amp;</span><span style="color:#ffffff;">self</span><span>, </span><span style="color:#ffffff;">cents_per_gram</span><span>: </span><span style="color:#a3cbe3;">i32</span><span>) -&gt; </span><span style="color:#a3cbe3;">i32 </span><span>{
+</span><span>        </span><span style="color:#707180;">// Something goes here...
+</span><span>    }
+</span><span>}
+</span></code></pre>
 <p>We still get error's here when we save but they're different essentially telling us that this function <code>has no tail</code> or essentially isn't returning anything as we have defined it in the signature so of course we have to fix that. Here are the new errors:</p>
-<pre data-lang="zsh" class="language-zsh "><code class="language-zsh" data-lang="zsh">⚠️  Compiling of exercises&#x2F;structs&#x2F;structs3.rs failed! Please try again. Here is the output:
-error[E0308]: mismatched types
-  --&gt; exercises&#x2F;structs&#x2F;structs3.rs:29:35
-   |
-29 |     fn is_international(&amp;self) -&gt; String {
-   |        ----------------           ^^^^^^ expected struct `String`, found `()`
-   |        |
-   |        implicitly returns `()` as its body has no tail or `return` expression
-
-error[E0308]: mismatched types
-  --&gt; exercises&#x2F;structs&#x2F;structs3.rs:33:48
-   |
-33 |     fn get_fees(&amp;self, cents_per_gram: i32) -&gt; i32 {
-   |        --------                                ^^^ expected `i32`, found `()`
-   |        |
-   |        implicitly returns `()` as its body has no tail or `return` expression
-   |
-help: consider returning the local binding `cents_per_gram`
-</code></pre>
+<pre data-lang="zsh" style="background-color:#31333d;color:#ffffffc4;" class="language-zsh "><code class="language-zsh" data-lang="zsh"><span style="font-weight:bold;color:#a3cbe3;">⚠️</span><span>  Compiling of exercises/structs/structs3.rs failed! Please try again. Here is the output:
+</span><span style="font-weight:bold;color:#a3cbe3;">error[E0308]:</span><span> mismatched types
+</span><span>  </span><span style="font-weight:bold;color:#a3cbe3;">--</span><span style="color:#db7c6d;">&gt;</span><span> exercises/structs/structs3.rs:29:35
+</span><span>   </span><span style="color:#db7c6d;">|
+</span><span style="font-weight:bold;color:#a3cbe3;">29 </span><span style="color:#db7c6d;">|     </span><span style="font-weight:bold;color:#a3cbe3;">fn</span><span> is_international(</span><span style="color:#db7c6d;">&amp;</span><span style="font-weight:bold;color:#a3cbe3;">self</span><span>) </span><span style="font-weight:bold;color:#a3cbe3;">-</span><span style="color:#db7c6d;">&gt;</span><span> String {
+</span><span>   |        ----------------           ^^^^^^ expected struct `</span><span style="font-weight:bold;color:#a3cbe3;">String</span><span>`, found `()`
+</span><span>   |        |
+</span><span>   |        implicitly returns `()` as its body has no tail or `</span><span style="font-weight:bold;color:#a3cbe3;">return</span><span>` expression
+</span><span>
+</span><span>error</span><span style="color:#db7c6d;">[</span><span>E0308</span><span style="color:#db7c6d;">]</span><span>: mismatched types
+</span><span>  --&gt; exercises/structs/structs3.rs:33:48
+</span><span>   |
+</span><span>33 |     fn get_fees(&amp;self, cents_per_gram: i32) -&gt; i32 {
+</span><span>   |        --------                                ^^^ expected `</span><span style="font-weight:bold;color:#a3cbe3;">i32</span><span>`, found `()`
+</span><span>   |        |
+</span><span>   |        implicitly returns `()` as its body has no tail or `</span><span style="font-weight:bold;color:#a3cbe3;">return</span><span>` expression
+</span><span>   |
+</span><span>help: consider returning the local binding `</span><span style="font-weight:bold;color:#a3cbe3;">cents_per_gram</span><span>`
+</span></code></pre>
 <h2 id="is-international-function"><code>is_international</code> function</h2>
 <p>So let's take breakdown the <code>is_interational</code> function and see what it is that we need to do inside of here.</p>
 <h3 id="function-declaration">Function declaration:</h3>
@@ -849,10 +853,10 @@ The <code>-&gt; i32</code> means this function will return an integer (<code>i32
 This integer value is what the function returns. As in the <code>is_international</code> function, the last expression in the function is implicitly returned in Rust.</p>
 <p>In summary, <code>get_fees</code> is a method that calculates and returns the shipping fee for a package based on the cost per gram and the weight of the package.</p>
 <h2 id="summary-of-methods">Summary of methods</h2>
-<p>Rust is a language that uses something called &quot;methods&quot; to perform actions on data. In our example, <code>Package</code> is a collection of data (the sender and recipient countries, and the weight), and the functions <code>is_international</code> and <code>get_fees</code> are methods that do something with this data.</p>
+<p>Rust is a language that uses something called "methods" to perform actions on data. In our example, <code>Package</code> is a collection of data (the sender and recipient countries, and the weight), and the functions <code>is_international</code> and <code>get_fees</code> are methods that do something with this data.</p>
 <ol>
 <li>
-<p><code>&amp;self</code> is a reference to the current object - the &quot;package&quot; we're working with at the moment. It's like saying &quot;this package&quot; or &quot;the package I'm currently handling&quot;. It's used because the method is working on the data inside the current <code>Package</code> object.</p>
+<p><code>&amp;self</code> is a reference to the current object - the "package" we're working with at the moment. It's like saying "this package" or "the package I'm currently handling". It's used because the method is working on the data inside the current <code>Package</code> object.</p>
 </li>
 <li>
 <p><code>is_international(&amp;self) -&gt; bool</code> is a method that checks if the package is international. It does this by comparing the sender and recipient countries: if they're different, it means the package is international, and the method returns <code>true</code>. If they're the same, the package is not international, and the method returns <code>false</code>.</p>
@@ -861,7 +865,7 @@ This integer value is what the function returns. As in the <code>is_internationa
 <p><code>get_fees(&amp;self, cents_per_gram: i32) -&gt; i32</code> is a method that calculates the fees to ship the package. It does this by multiplying the weight of the package (<code>self.weight_in_grams</code>) by the cost per gram (<code>cents_per_gram</code>). The result is the total fee, which is returned by the method.</p>
 </li>
 </ol>
-<p>So, in short: <code>&amp;self</code> means &quot;this package&quot;, <code>is_international</code> checks if the sender and recipient countries are different, and <code>get_fees</code> calculates the shipping fees based on the weight of the package and the cost per gram.</p>
+<p>So, in short: <code>&amp;self</code> means "this package", <code>is_international</code> checks if the sender and recipient countries are different, and <code>get_fees</code> calculates the shipping fees based on the weight of the package and the cost per gram.</p>
 <h2 id="conclusion">Conclusion</h2>
 <p>Okay, this was a long one, we dove into the basics of Structs in Rust and how they can carry both data and logic.
 Through this exploration, we gained a better understanding of Rust's data structures, method definitions and syntax. Moreover, we tackled a practical example with tests, giving us a real world scenario to apply our knowledge.</p>
@@ -892,7 +896,7 @@ Through this exploration, we gained a better understanding of Rust's data struct
 		
     </p>
     
-    <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>3918 Words</p>
+    <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>2162 Words</p>
     
     <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2023-06-01</p>
     
@@ -915,7 +919,7 @@ Through this exploration, we gained a better understanding of Rust's data struct
 
 
 <footer id="site-footer" class="section-inner thin animated fadeIn faster">
-  <p>&copy; 2024 <a href="https:&#x2F;&#x2F;desmodrone.github.io">erick</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
+  <p>&copy; 2026 <a href="https:&#x2F;&#x2F;desmodrone.github.io">erick</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
   <p>Made with <a href="https://www.getzola.org" target="_blank" rel="noopener">Zola</a> &#183; Theme <a href="https://github.com/VersBinarii/hermit_zola" target="_blank" rel="noopener">Hermit_Zola</a>
 	
 	&#183; <a href="https://desmodrone.github.io/rss.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>

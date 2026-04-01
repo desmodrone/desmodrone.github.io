@@ -27,6 +27,10 @@
   <link rel="alternate" type="application/rss+xml" title="RSS" href="https://desmodrone.github.io/rss.xml">
   
 
+  
+  <link rel="canonical" href="https://desmodrone.github.io/posts/13-rustlings-quiz2/">
+  
+
   <body id="page">
 
 	
@@ -120,7 +124,7 @@
 		<small> - 
 <span class="reading-time" title="Estimated read time">
   
-  6 min read
+  4 min read
   
 </span>
 </small>
@@ -135,70 +139,70 @@
 	  <h2 id="quiz-2">Quiz 2</h2>
 <p>It's quiz time again! We've been through a bunch of different exercises and now we'll be putting in action what we've learned.</p>
 <h2 id="quiz2-rs">quiz2.rs</h2>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">&#x2F;&#x2F; quiz2.rs
-&#x2F;&#x2F; This is a quiz for the following sections:
-&#x2F;&#x2F; - Strings
-&#x2F;&#x2F; - Vecs
-&#x2F;&#x2F; - Move semantics
-&#x2F;&#x2F; - Modules
-&#x2F;&#x2F; - Enums
-
-&#x2F;&#x2F; Let&#x27;s build a little machine in the form of a function.
-&#x2F;&#x2F; As input, we&#x27;re going to give a list of strings and commands. These commands
-&#x2F;&#x2F; determine what action is going to be applied to the string. It can either be:
-&#x2F;&#x2F; - Uppercase the string
-&#x2F;&#x2F; - Trim the string
-&#x2F;&#x2F; - Append &quot;bar&quot; to the string a specified amount of times
-&#x2F;&#x2F; The exact form of this will be:
-&#x2F;&#x2F; - The input is going to be a Vector of a 2-length tuple,
-&#x2F;&#x2F;   the first element is the string, the second one is the command.
-&#x2F;&#x2F; - The output element is going to be a Vector of strings.
-&#x2F;&#x2F; No hints this time!
-
-&#x2F;&#x2F; I AM NOT DONE
-
-pub enum Command {
-    Uppercase,
-    Trim,
-    Append(usize),
-}
-
-mod my_module {
-    use super::Command;
-
-    &#x2F;&#x2F; TODO: Complete the function signature!
-    pub fn transformer(input: ???) -&gt; ??? {
-        &#x2F;&#x2F; TODO: Complete the output declaration!
-        let mut output: ??? = vec![];
-        for (string, command) in input.iter() {
-            &#x2F;&#x2F; TODO: Complete the function body. You can do it!
-        }
-        output
-    }
-}
-
-#[cfg(test)]
-mod tests {
-    &#x2F;&#x2F; TODO: What do we need to import to have `transformer` in scope?
-    use ???;
-    use super::Command;
-
-    #[test]
-    fn it_works() {
-        let output = transformer(vec![
-            (&quot;hello&quot;.into(), Command::Uppercase),
-            (&quot; all roads lead to rome! &quot;.into(), Command::Trim),
-            (&quot;foo&quot;.into(), Command::Append(1)),
-            (&quot;bar&quot;.into(), Command::Append(5)),
-        ]);
-        assert_eq!(output[0], &quot;HELLO&quot;);
-        assert_eq!(output[1], &quot;all roads lead to rome!&quot;);
-        assert_eq!(output[2], &quot;foobar&quot;);
-        assert_eq!(output[3], &quot;barbarbarbarbarbar&quot;);
-    }
-}
-
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#707180;">// quiz2.rs
+</span><span style="color:#707180;">// This is a quiz for the following sections:
+</span><span style="color:#707180;">// - Strings
+</span><span style="color:#707180;">// - Vecs
+</span><span style="color:#707180;">// - Move semantics
+</span><span style="color:#707180;">// - Modules
+</span><span style="color:#707180;">// - Enums
+</span><span>
+</span><span style="color:#707180;">// Let&#39;s build a little machine in the form of a function.
+</span><span style="color:#707180;">// As input, we&#39;re going to give a list of strings and commands. These commands
+</span><span style="color:#707180;">// determine what action is going to be applied to the string. It can either be:
+</span><span style="color:#707180;">// - Uppercase the string
+</span><span style="color:#707180;">// - Trim the string
+</span><span style="color:#707180;">// - Append &quot;bar&quot; to the string a specified amount of times
+</span><span style="color:#707180;">// The exact form of this will be:
+</span><span style="color:#707180;">// - The input is going to be a Vector of a 2-length tuple,
+</span><span style="color:#707180;">//   the first element is the string, the second one is the command.
+</span><span style="color:#707180;">// - The output element is going to be a Vector of strings.
+</span><span style="color:#707180;">// No hints this time!
+</span><span>
+</span><span style="color:#707180;">// I AM NOT DONE
+</span><span>
+</span><span style="color:#dbbb3d;">pub </span><span style="color:#a3cbe3;">enum </span><span>Command {
+</span><span>    Uppercase,
+</span><span>    Trim,
+</span><span>    Append(</span><span style="color:#a3cbe3;">usize</span><span>),
+</span><span>}
+</span><span>
+</span><span style="color:#a3cbe3;">mod </span><span>my_module {
+</span><span>    </span><span style="color:#db7c6d;">use super</span><span>::Command;
+</span><span>
+</span><span>    </span><span style="color:#707180;">// TODO: Complete the function signature!
+</span><span>    </span><span style="color:#dbbb3d;">pub </span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">transformer</span><span>(</span><span style="color:#ffffff;">input</span><span>: ???) -&gt; </span><span style="color:#db7c6d;">??? </span><span>{
+</span><span>        </span><span style="color:#707180;">// TODO: Complete the output declaration!
+</span><span>        </span><span style="color:#a3cbe3;">let </span><span style="color:#dbbb3d;">mut</span><span> output: </span><span style="color:#db7c6d;">??? = </span><span>vec![];
+</span><span>        </span><span style="color:#db7c6d;">for </span><span>(string, command) </span><span style="color:#db7c6d;">in</span><span> input.</span><span style="color:#db7c6d;">iter</span><span>() {
+</span><span>            </span><span style="color:#707180;">// TODO: Complete the function body. You can do it!
+</span><span>        }
+</span><span>        output
+</span><span>    }
+</span><span>}
+</span><span>
+</span><span>#[</span><span style="font-weight:bold;color:#a3cbe3;">cfg</span><span>(test)]
+</span><span style="color:#a3cbe3;">mod </span><span>tests {
+</span><span>    </span><span style="color:#707180;">// TODO: What do we need to import to have `transformer` in scope?
+</span><span>    </span><span style="color:#db7c6d;">use ???</span><span>;
+</span><span>    </span><span style="color:#db7c6d;">use super</span><span>::Command;
+</span><span>
+</span><span>    #[</span><span style="font-weight:bold;color:#a3cbe3;">test</span><span>]
+</span><span>    </span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">it_works</span><span>() {
+</span><span>        </span><span style="color:#a3cbe3;">let</span><span> output </span><span style="color:#db7c6d;">= transformer</span><span>(vec![
+</span><span>            (</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>hello</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>.</span><span style="color:#db7c6d;">into</span><span>(), Command::Uppercase),
+</span><span>            (</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span> all roads lead to rome! </span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>.</span><span style="color:#db7c6d;">into</span><span>(), Command::Trim),
+</span><span>            (</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>foo</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>.</span><span style="color:#db7c6d;">into</span><span>(), Command::Append(</span><span style="color:#db7c6d;">1</span><span>)),
+</span><span>            (</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>bar</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>.</span><span style="color:#db7c6d;">into</span><span>(), Command::Append(</span><span style="color:#db7c6d;">5</span><span>)),
+</span><span>        ]);
+</span><span>        assert_eq!(output[</span><span style="color:#db7c6d;">0</span><span>], </span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>HELLO</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>);
+</span><span>        assert_eq!(output[</span><span style="color:#db7c6d;">1</span><span>], </span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>all roads lead to rome!</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>);
+</span><span>        assert_eq!(output[</span><span style="color:#db7c6d;">2</span><span>], </span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>foobar</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>);
+</span><span>        assert_eq!(output[</span><span style="color:#db7c6d;">3</span><span>], </span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>barbarbarbarbarbar</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>);
+</span><span>    }
+</span><span>}
+</span><span>
+</span></code></pre>
 <p>We have instructions in the comments and four <code>TODOs</code> annotated in the code. Let's first take a look at the instructions and make sure we understand what is being asked of us.</p>
 <h3 id="general-instructions">General Instructions</h3>
 <ol>
@@ -208,7 +212,7 @@ mod tests {
 <ol>
 <li>Uppercase the string</li>
 <li>Trim the string</li>
-<li>Append &quot;bar&quot; to the string a specified amount of times</li>
+<li>Append "bar" to the string a specified amount of times</li>
 </ol>
 </li>
 </ol>
@@ -219,38 +223,38 @@ mod tests {
 <li>Output is going to be a Vector of strings.</li>
 </ol>
 <h2 id="quiz2-rs-errors">quiz2.rs errors</h2>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">⚠️  Compiling of exercises&#x2F;quiz2.rs failed! Please try again. Here&#x27;s the output:
-error: expected identifier, found `)`
-  --&gt; exercises&#x2F;quiz2.rs:33:34
-   |
-33 |     pub fn transformer(input: ???) -&gt; ??? {
-   |                                  ^ expected identifier
-
-error: expected identifier, found `{`
-  --&gt; exercises&#x2F;quiz2.rs:33:43
-   |
-33 |     pub fn transformer(input: ???) -&gt; ??? {
-   |                                           ^ expected identifier
-
-error: aborting due to 2 previous errors
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span>⚠️  Compiling of exercises</span><span style="color:#db7c6d;">/</span><span>quiz2.rs failed</span><span style="color:#db7c6d;">!</span><span> Please try again. Here</span><span style="color:#dbbb3d;">&#39;s</span><span> the output:
+</span><span>error: expected identifier, found `)`
+</span><span>  </span><span style="color:#db7c6d;">-</span><span>-&gt; exercises</span><span style="color:#db7c6d;">/</span><span>quiz2.rs:</span><span style="color:#db7c6d;">33</span><span>:</span><span style="color:#db7c6d;">34
+</span><span>   </span><span style="color:#db7c6d;">|
+</span><span style="color:#db7c6d;">33 |     </span><span style="color:#dbbb3d;">pub </span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">transformer</span><span>(</span><span style="color:#ffffff;">input</span><span>: ???) -&gt; </span><span style="color:#db7c6d;">??? </span><span>{
+</span><span>   |                                  ^ expected identifier
+</span><span>
+</span><span>error: expected identifier, found `{`
+</span><span>  </span><span style="color:#db7c6d;">-</span><span>-&gt; exercises</span><span style="color:#db7c6d;">/</span><span>quiz2.rs:</span><span style="color:#db7c6d;">33</span><span>:</span><span style="color:#db7c6d;">43
+</span><span>   </span><span style="color:#db7c6d;">|
+</span><span style="color:#db7c6d;">33 |     </span><span style="color:#dbbb3d;">pub </span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">transformer</span><span>(</span><span style="color:#ffffff;">input</span><span>: ???) -&gt; </span><span style="color:#db7c6d;">??? </span><span>{
+</span><span>   |                                           ^ expected identifier
+</span><span>
+</span><span>error: aborting due to </span><span style="color:#db7c6d;">2</span><span> previous errors
+</span></code></pre>
 <p>Our errors are pretty self explanatory we're missing code, so no surprises there.</p>
 <p>Let's take a look at the specific areas that need to be completed.</p>
 <h3 id="todo-in-transformer-function">Todo in <code>transformer</code> function</h3>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">mod my_module {
-    use super::Command;
-
-    &#x2F;&#x2F; TODO: Complete the function signature!
-    pub fn transformer(input: ???) -&gt; ??? {
-        &#x2F;&#x2F; TODO: Complete the output declaration!
-        let mut output: ??? = vec![];
-        for (string, command) in input.iter() {
-            &#x2F;&#x2F; TODO: Complete the function body. You can do it!
-        }
-        output
-    }
-}
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#a3cbe3;">mod </span><span>my_module {
+</span><span>    </span><span style="color:#db7c6d;">use super</span><span>::Command;
+</span><span>
+</span><span>    </span><span style="color:#707180;">// TODO: Complete the function signature!
+</span><span>    </span><span style="color:#dbbb3d;">pub </span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">transformer</span><span>(</span><span style="color:#ffffff;">input</span><span>: ???) -&gt; </span><span style="color:#db7c6d;">??? </span><span>{
+</span><span>        </span><span style="color:#707180;">// TODO: Complete the output declaration!
+</span><span>        </span><span style="color:#a3cbe3;">let </span><span style="color:#dbbb3d;">mut</span><span> output: </span><span style="color:#db7c6d;">??? = </span><span>vec![];
+</span><span>        </span><span style="color:#db7c6d;">for </span><span>(string, command) </span><span style="color:#db7c6d;">in</span><span> input.</span><span style="color:#db7c6d;">iter</span><span>() {
+</span><span>            </span><span style="color:#707180;">// TODO: Complete the function body. You can do it!
+</span><span>        }
+</span><span>        output
+</span><span>    }
+</span><span>}
+</span></code></pre>
 <p>A quick look at our todo's here show us that we have to:</p>
 <ol>
 <li>Complete the signature</li>
@@ -258,115 +262,115 @@ error: aborting due to 2 previous errors
 <li>Complete the function body.</li>
 </ol>
 <h3 id="test-todo">Test Todo</h3>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">#[cfg(test)]
-mod tests {
-    &#x2F;&#x2F; TODO: What do we need to import to have `transformer` in scope?
-    use ???;
-    use super::Command;
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span>#[</span><span style="font-weight:bold;color:#a3cbe3;">cfg</span><span>(test)]
+</span><span style="color:#a3cbe3;">mod </span><span>tests {
+</span><span>    </span><span style="color:#707180;">// TODO: What do we need to import to have `transformer` in scope?
+</span><span>    </span><span style="color:#db7c6d;">use ???</span><span>;
+</span><span>    </span><span style="color:#db7c6d;">use super</span><span>::Command;
+</span></code></pre>
 <ol start="4">
 <li>Our fourth todo is to make sure we have <code>transformer</code> in scope.</li>
 </ol>
 <h2 id="quiz2-rs-solution">quiz2.rs solution</h2>
 <h3 id="completing-the-function-signature">Completing the Function Signature</h3>
 <p>Let's go through these in order, let's look at the function signature, and our instructions which tell us that: <em>input will be a Vector of a 2-length tuple</em></p>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">    pub fn transformer(input: ???) -&gt; ??? {
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span>    </span><span style="color:#dbbb3d;">pub </span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">transformer</span><span>(</span><span style="color:#ffffff;">input</span><span>: ???) -&gt; </span><span style="color:#db7c6d;">??? </span><span>{
+</span></code></pre>
 <p>So a vector is declared as <code>Vec&lt;&gt;</code> but in this particular case we need a tuple stored inside of the vector which would make it look something like this <code>Vec&lt;(,)&gt;</code> when empty, but we know that we need to pass in 2 items as we're told in our instructions: <em>first element is a string, second one is a command</em>
 so to complete it, it should look something like this: <code>Vec&lt;(String, command)&gt;</code>.</p>
 <p>Now, let's look at the return value which we were told is: <em>output is going to be a Vector of strings</em> with that we can complete our function signature to look like this:</p>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">    pub fn transformer(input: Vec&lt;(String, Command)&gt;) -&gt; Vec&lt;String&gt; {
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span>    </span><span style="color:#dbbb3d;">pub </span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">transformer</span><span>(</span><span style="color:#ffffff;">input</span><span>: </span><span style="color:#e7e7e7;">Vec</span><span>&lt;(String, Command)&gt;) -&gt; </span><span style="color:#e7e7e7;">Vec</span><span>&lt;</span><span style="color:#e7e7e7;">String</span><span>&gt; {
+</span></code></pre>
 <p>This should complete our function signature for <code>transformer</code>.</p>
 <h3 id="completing-the-output-declaration">Completing the <code>output</code> declaration</h3>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">        let mut output: ??? = vec![]
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span>        </span><span style="color:#a3cbe3;">let </span><span style="color:#dbbb3d;">mut</span><span> output: </span><span style="color:#db7c6d;">??? = </span><span>vec![]
+</span></code></pre>
 <p>Here we have an incomplete variable declaration, we need to provide the type to complete it. If we reference our notes, we've been told that we should be expecting a <em>Vector of strings</em>, so we should be able to add that to our declaration to complete the line.</p>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">        let mut output: Vec&lt;String&gt; = vec![]
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span>        </span><span style="color:#a3cbe3;">let </span><span style="color:#dbbb3d;">mut</span><span> output: </span><span style="color:#e7e7e7;">Vec</span><span>&lt;</span><span style="color:#e7e7e7;">String</span><span>&gt; </span><span style="color:#db7c6d;">= </span><span>vec![]
+</span></code></pre>
 <h3 id="completing-the-function-body">Completing the Function Body</h3>
 <p>Now, let's consider what needs to be completed in the function body and the actions that need to be performed on the strings based on the commands. Remember, the available commands are <code>Uppercase</code>, <code>Trim</code>, and <code>Append</code>, that are defined in our <code>Command</code> enum.</p>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">pub fn transformer(input: Vec&lt;(String, Command)&gt;) -&gt; Vec&lt;String&gt; {
-    let mut output: Vec&lt;String&gt; = vec![];
-    for (string, command) in input.iter() {
-    &#x2F;&#x2F; we use a match statement to match to the correct command
-        let modified_string = match command {
-        &#x2F;&#x2F; taking each case and using the appropriate method
-            Command::Uppercase =&gt; string.to_uppercase(), &#x2F;&#x2F; uppercase the string
-            Command::Trim =&gt; string.trim().to_string(), &#x2F;&#x2F; trim the string
-            Command::Append(count) =&gt; { &#x2F;&#x2F; appending
-                let appended_string = format!(&quot;{}{}&quot;, string, &quot;bar&quot;.repeat(*count));
-                appended_string
-            }
-        };
-        output.push(modified_string); &#x2F;&#x2F; Add the modified string to the output vector
-    }
-    output &#x2F;&#x2F; Return the output vector
-}
-
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#dbbb3d;">pub </span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">transformer</span><span>(</span><span style="color:#ffffff;">input</span><span>: </span><span style="color:#e7e7e7;">Vec</span><span>&lt;(String, Command)&gt;) -&gt; </span><span style="color:#e7e7e7;">Vec</span><span>&lt;</span><span style="color:#e7e7e7;">String</span><span>&gt; {
+</span><span>    </span><span style="color:#a3cbe3;">let </span><span style="color:#dbbb3d;">mut</span><span> output: </span><span style="color:#e7e7e7;">Vec</span><span>&lt;</span><span style="color:#e7e7e7;">String</span><span>&gt; </span><span style="color:#db7c6d;">= </span><span>vec![];
+</span><span>    </span><span style="color:#db7c6d;">for </span><span>(string, command) </span><span style="color:#db7c6d;">in</span><span> input.</span><span style="color:#db7c6d;">iter</span><span>() {
+</span><span>    </span><span style="color:#707180;">// we use a match statement to match to the correct command
+</span><span>        </span><span style="color:#a3cbe3;">let</span><span> modified_string </span><span style="color:#db7c6d;">= match</span><span> command {
+</span><span>        </span><span style="color:#707180;">// taking each case and using the appropriate method
+</span><span>            Command::Uppercase </span><span style="color:#db7c6d;">=&gt;</span><span> string.</span><span style="color:#db7c6d;">to_uppercase</span><span>(), </span><span style="color:#707180;">// uppercase the string
+</span><span>            Command::Trim </span><span style="color:#db7c6d;">=&gt;</span><span> string.</span><span style="color:#db7c6d;">trim</span><span>().</span><span style="color:#db7c6d;">to_string</span><span>(), </span><span style="color:#707180;">// trim the string
+</span><span>            Command::Append(count) </span><span style="color:#db7c6d;">=&gt; </span><span>{ </span><span style="color:#707180;">// appending
+</span><span>                </span><span style="color:#a3cbe3;">let</span><span> appended_string </span><span style="color:#db7c6d;">= </span><span>format!(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span style="font-weight:bold;color:#a2ba43;">{}{}</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>, string, </span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>bar</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>.</span><span style="color:#db7c6d;">repeat</span><span>(</span><span style="color:#db7c6d;">*</span><span>count));
+</span><span>                appended_string
+</span><span>            }
+</span><span>        };
+</span><span>        output.</span><span style="color:#db7c6d;">push</span><span>(modified_string); </span><span style="color:#707180;">// Add the modified string to the output vector
+</span><span>    }
+</span><span>    output </span><span style="color:#707180;">// Return the output vector
+</span><span>}
+</span><span>
+</span></code></pre>
 <p>So one of the ways that we know we can use enums is with match statements, we know that if something matches a certain criteria we can perform certain actions and return a value. So matching each <code>Command</code> in the <code>enum</code> using the <code>Command::Uppercase =&gt;</code> style matching we can perform an action for each match.
 In the first two cases, it's pretty simple all we have to do is call the appropriate method like <code>.to_upercase()</code> in the first match and <code>.trim()</code> (along with the <code>.to_string()</code> method on in <code>Trim</code>) but when we get to <code>Append</code> we have to perform an additional manipulation.</p>
 <h3 id="appending">Appending</h3>
-<p>If we look back to our instructions we have to <em>Append &quot;bar&quot; to a string a specified amount of times</em>. So we can simply call a method or two and be done with our string. We have to add the logic to be able to do this. First let's create a new variable called <code>appended_string</code> and let's use the <code>format!</code> macro to put it into the format we want to use. In this case we use:</p>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">format!(&quot;{}{}&quot;, string, &quot;bar&quot;.repeat(*count));
-</code></pre>
-<p>This takes the original string, and concatenates &quot;bar&quot; to it by using <code>.repeat</code> we repeat it by the <code>count</code> we define in the <code>Command::Append(count)</code> branch. Finally, we return the <code>appended_string</code>, reminder this only happens if the <code>Append</code> arm matches.</p>
+<p>If we look back to our instructions we have to <em>Append "bar" to a string a specified amount of times</em>. So we can simply call a method or two and be done with our string. We have to add the logic to be able to do this. First let's create a new variable called <code>appended_string</code> and let's use the <code>format!</code> macro to put it into the format we want to use. In this case we use:</p>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span>format!(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span style="font-weight:bold;color:#a2ba43;">{}{}</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>, string, </span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>bar</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>.</span><span style="color:#db7c6d;">repeat</span><span>(</span><span style="color:#db7c6d;">*</span><span>count));
+</span></code></pre>
+<p>This takes the original string, and concatenates "bar" to it by using <code>.repeat</code> we repeat it by the <code>count</code> we define in the <code>Command::Append(count)</code> branch. Finally, we return the <code>appended_string</code>, reminder this only happens if the <code>Append</code> arm matches.</p>
 <p>So at this point we have one of the three arms of the match inside of <code>modified_string</code> at this point we need to push this modified string to our <code>mut output</code>
 Vec. Once that is completed we can then return our <code>output</code> variable with the correctly modified string.</p>
 <h3 id="importing-transformer">Importing <code>transformer</code></h3>
 <p>Our last <code>TODO</code> is in our tests and it should be fairly simple to fix. We just have to use the full path of our function and remember to use the <code>crate</code> keyword that looks at the crate root, which is where our file is. After crate we must use the <code>::</code> double colon symbols which are equivalent to using <code>/</code> in traditional file path systems. So for our purposes we need: <code>use crate::my_module::transformer;</code> to be able to use the function in our tests.</p>
 <p>Here's the full updated code:</p>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">pub enum Command {
-    Uppercase,
-    Trim,
-    Append(usize),
-}
-
-mod my_module {
-    use super::Command;
-
-    pub fn transformer(input: Vec&lt;(String, Command)&gt;) -&gt; Vec&lt;String&gt; {
-        let mut output: Vec&lt;String&gt; = vec![];
-        for (string, command) in input.iter() {
-            let modified_string = match command {
-                Command::Uppercase =&gt; string.to_uppercase(),
-                Command::Trim =&gt; string.trim().to_string(),
-                Command::Append(count) =&gt; {
-                    let appended_string = format!(&quot;{}{}&quot;, string, &quot;bar&quot;.repeat(*count));
-                    appended_string
-                }
-            };
-            output.push(modified_string);
-        }
-        output
-    }
-}
-#[cfg(test)]
-mod tests {
-    use super::Command;
-    use crate::my_module::transformer;
-
-    #[test]
-    fn it_works() {
-        let output = transformer(vec![
-            (&quot;hello&quot;.into(), Command::Uppercase),
-            (&quot; all roads lead to rome! &quot;.into(), Command::Trim),
-            (&quot;foo&quot;.into(), Command::Append(1)),
-            (&quot;bar&quot;.into(), Command::Append(5)),
-        ]);
-        assert_eq!(output[0], &quot;HELLO&quot;);
-        assert_eq!(output[1], &quot;all roads lead to rome!&quot;);
-        assert_eq!(output[2], &quot;foobar&quot;);
-        assert_eq!(output[3], &quot;barbarbarbarbarbar&quot;);
-    }
-}
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#dbbb3d;">pub </span><span style="color:#a3cbe3;">enum </span><span>Command {
+</span><span>    Uppercase,
+</span><span>    Trim,
+</span><span>    Append(</span><span style="color:#a3cbe3;">usize</span><span>),
+</span><span>}
+</span><span>
+</span><span style="color:#a3cbe3;">mod </span><span>my_module {
+</span><span>    </span><span style="color:#db7c6d;">use super</span><span>::Command;
+</span><span>
+</span><span>    </span><span style="color:#dbbb3d;">pub </span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">transformer</span><span>(</span><span style="color:#ffffff;">input</span><span>: </span><span style="color:#e7e7e7;">Vec</span><span>&lt;(String, Command)&gt;) -&gt; </span><span style="color:#e7e7e7;">Vec</span><span>&lt;</span><span style="color:#e7e7e7;">String</span><span>&gt; {
+</span><span>        </span><span style="color:#a3cbe3;">let </span><span style="color:#dbbb3d;">mut</span><span> output: </span><span style="color:#e7e7e7;">Vec</span><span>&lt;</span><span style="color:#e7e7e7;">String</span><span>&gt; </span><span style="color:#db7c6d;">= </span><span>vec![];
+</span><span>        </span><span style="color:#db7c6d;">for </span><span>(string, command) </span><span style="color:#db7c6d;">in</span><span> input.</span><span style="color:#db7c6d;">iter</span><span>() {
+</span><span>            </span><span style="color:#a3cbe3;">let</span><span> modified_string </span><span style="color:#db7c6d;">= match</span><span> command {
+</span><span>                Command::Uppercase </span><span style="color:#db7c6d;">=&gt;</span><span> string.</span><span style="color:#db7c6d;">to_uppercase</span><span>(),
+</span><span>                Command::Trim </span><span style="color:#db7c6d;">=&gt;</span><span> string.</span><span style="color:#db7c6d;">trim</span><span>().</span><span style="color:#db7c6d;">to_string</span><span>(),
+</span><span>                Command::Append(count) </span><span style="color:#db7c6d;">=&gt; </span><span>{
+</span><span>                    </span><span style="color:#a3cbe3;">let</span><span> appended_string </span><span style="color:#db7c6d;">= </span><span>format!(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span style="font-weight:bold;color:#a2ba43;">{}{}</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>, string, </span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>bar</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>.</span><span style="color:#db7c6d;">repeat</span><span>(</span><span style="color:#db7c6d;">*</span><span>count));
+</span><span>                    appended_string
+</span><span>                }
+</span><span>            };
+</span><span>            output.</span><span style="color:#db7c6d;">push</span><span>(modified_string);
+</span><span>        }
+</span><span>        output
+</span><span>    }
+</span><span>}
+</span><span>#[</span><span style="font-weight:bold;color:#a3cbe3;">cfg</span><span>(test)]
+</span><span style="color:#a3cbe3;">mod </span><span>tests {
+</span><span>    </span><span style="color:#db7c6d;">use super</span><span>::Command;
+</span><span>    </span><span style="color:#db7c6d;">use crate</span><span>::my_module::transformer;
+</span><span>
+</span><span>    #[</span><span style="font-weight:bold;color:#a3cbe3;">test</span><span>]
+</span><span>    </span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">it_works</span><span>() {
+</span><span>        </span><span style="color:#a3cbe3;">let</span><span> output </span><span style="color:#db7c6d;">= transformer</span><span>(vec![
+</span><span>            (</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>hello</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>.</span><span style="color:#db7c6d;">into</span><span>(), Command::Uppercase),
+</span><span>            (</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span> all roads lead to rome! </span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>.</span><span style="color:#db7c6d;">into</span><span>(), Command::Trim),
+</span><span>            (</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>foo</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>.</span><span style="color:#db7c6d;">into</span><span>(), Command::Append(</span><span style="color:#db7c6d;">1</span><span>)),
+</span><span>            (</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>bar</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>.</span><span style="color:#db7c6d;">into</span><span>(), Command::Append(</span><span style="color:#db7c6d;">5</span><span>)),
+</span><span>        ]);
+</span><span>        assert_eq!(output[</span><span style="color:#db7c6d;">0</span><span>], </span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>HELLO</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>);
+</span><span>        assert_eq!(output[</span><span style="color:#db7c6d;">1</span><span>], </span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>all roads lead to rome!</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>);
+</span><span>        assert_eq!(output[</span><span style="color:#db7c6d;">2</span><span>], </span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>foobar</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>);
+</span><span>        assert_eq!(output[</span><span style="color:#db7c6d;">3</span><span>], </span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>barbarbarbarbarbar</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>);
+</span><span>    }
+</span><span>}
+</span></code></pre>
 <h2 id="conclusion">Conclusion</h2>
-<p>In this post, we tackled Quiz 2, which required us to build a function that performs different actions on a list of strings based on given commands. We were instructed to uppercase a string, trim it, or append &quot;bar&quot; to it a specified number of times.</p>
+<p>In this post, we tackled Quiz 2, which required us to build a function that performs different actions on a list of strings based on given commands. We were instructed to uppercase a string, trim it, or append "bar" to it a specified number of times.</p>
 <p>We began by analyzing the provided instructions and understanding the requirements. The input was expected to be a vector of tuples, where each tuple consisted of a string and a command. The output was to be a vector of strings.</p>
 <p>Next, we addressed the incomplete parts of the code. We completed the function signature by specifying the input and output types as <code>Vec&lt;(String, Command)&gt;</code> and <code>Vec&lt;String&gt;</code> respectively.</p>
-<p>In the function body, we utilized a <code>match</code> statement to match the command type and performed the corresponding action on the string. For the <code>Append</code> command, we used the <code>format!</code> macro to concatenate &quot;bar&quot; to the string a specified number of times.</p>
+<p>In the function body, we utilized a <code>match</code> statement to match the command type and performed the corresponding action on the string. For the <code>Append</code> command, we used the <code>format!</code> macro to concatenate "bar" to the string a specified number of times.</p>
 <p>We then added the modified strings to the <code>output</code> vector and returned it at the end of the function.</p>
 <p>Lastly, we resolved the test-related task by importing the <code>transformer</code> function into the test module using the full path: <code>use crate::my_module::transformer;</code>.</p>
 <p>With these modifications, the code was successfully compiled and passed the provided tests.</p>
@@ -399,7 +403,7 @@ mod tests {
 		
     </p>
     
-    <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>1656 Words</p>
+    <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>1071 Words</p>
     
     <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2023-07-28</p>
     
@@ -422,7 +426,7 @@ mod tests {
 
 
 <footer id="site-footer" class="section-inner thin animated fadeIn faster">
-  <p>&copy; 2024 <a href="https:&#x2F;&#x2F;desmodrone.github.io">erick</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
+  <p>&copy; 2026 <a href="https:&#x2F;&#x2F;desmodrone.github.io">erick</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
   <p>Made with <a href="https://www.getzola.org" target="_blank" rel="noopener">Zola</a> &#183; Theme <a href="https://github.com/VersBinarii/hermit_zola" target="_blank" rel="noopener">Hermit_Zola</a>
 	
 	&#183; <a href="https://desmodrone.github.io/rss.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>

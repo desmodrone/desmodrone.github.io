@@ -27,6 +27,10 @@
   <link rel="alternate" type="application/rss+xml" title="RSS" href="https://desmodrone.github.io/rss.xml">
   
 
+  
+  <link rel="canonical" href="https://desmodrone.github.io/posts/02-starklings-cairo-primitive-types/">
+  
+
   <body id="page">
 
 	
@@ -120,7 +124,7 @@
 		<small> - 
 <span class="reading-time" title="Estimated read time">
   
-  14 min read
+  8 min read
   
 </span>
 </small>
@@ -158,89 +162,89 @@
 <h2 id="intro">Intro</h2>
 <p>So let’s dive into the first exercise: <code>primitive_types1.cairo</code>. Let's walk through these exercises so you get a better understanding of how Cairo works.</p>
 <h2 id="primitive-types1-cairo"><code>primitive_types1.cairo</code></h2>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">&#x2F;&#x2F; primitive_types1.cairo
-&#x2F;&#x2F; Fill in the rest of the line that has code missing!
-&#x2F;&#x2F; No hints, there&#x27;s no tricks, just get used to typing these :)
-
-&#x2F;&#x2F; I AM NOT DONE
-
-fn main() {
-    &#x2F;&#x2F; Booleans (`bool`)
-
-    let is_morning = true;
-    if is_morning {
-        println!(&quot;Good morning!&quot;);
-    }
-
-    let &#x2F;&#x2F; Finish the rest of this line like the example! Or make it be false!
-    if is_evening {
-        println!(&quot;Good evening!&quot;);
-    }
-}
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#707180;">// primitive_types1.cairo
+</span><span style="color:#707180;">// Fill in the rest of the line that has code missing!
+</span><span style="color:#707180;">// No hints, there&#39;s no tricks, just get used to typing these :)
+</span><span>
+</span><span style="color:#707180;">// I AM NOT DONE
+</span><span>
+</span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">main</span><span>() {
+</span><span>    </span><span style="color:#707180;">// Booleans (`bool`)
+</span><span>
+</span><span>    </span><span style="color:#a3cbe3;">let</span><span> is_morning </span><span style="color:#db7c6d;">= </span><span style="color:#ffffff;">true</span><span>;
+</span><span>    </span><span style="color:#db7c6d;">if</span><span> is_morning {
+</span><span>        println!(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>Good morning!</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>);
+</span><span>    }
+</span><span>
+</span><span>    </span><span style="color:#a3cbe3;">let </span><span style="color:#707180;">// Finish the rest of this line like the example! Or make it be false!
+</span><span>    </span><span style="color:#db7c6d;">if</span><span> is_evening {
+</span><span>        println!(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>Good evening!</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>);
+</span><span>    }
+</span><span>}
+</span></code></pre>
 <p>Our instructions tell us to complete the bit of code above. Let's take a look at the error output for more context.</p>
 <h2 id="primitive-types1-cairo-errors"><code>primitive_types1.cairo</code> Errors</h2>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">🟡 Running exercises&#x2F;primitive_types&#x2F;primitive_types1.cairo exercise...
-
-   Compiling exercise_crate v0.1.0 (&#x2F;Users&#x2F;desmo&#x2F;repos&#x2F;starklings-cairo1&#x2F;runner-crate&#x2F;Scarb.toml)
-error: Missing token TerminalUnderscore.
- --&gt; &#x2F;Users&#x2F;desmo&#x2F;repos&#x2F;starklings-cairo1&#x2F;runner-crate&#x2F;src&#x2F;lib.cairo:15:8
-    let &#x2F;&#x2F; Finish the rest of this line like the example! Or make it be false!
-       ^
-
-error: Missing token TerminalEq.
- --&gt; &#x2F;Users&#x2F;desmo&#x2F;repos&#x2F;starklings-cairo1&#x2F;runner-crate&#x2F;src&#x2F;lib.cairo:15:8
-    let &#x2F;&#x2F; Finish the rest of this line like the example! Or make it be false!
-       ^
-
-error: Missing token TerminalSemicolon.
- --&gt; &#x2F;Users&#x2F;desmo&#x2F;repos&#x2F;starklings-cairo1&#x2F;runner-crate&#x2F;src&#x2F;lib.cairo:18:6
-    }
-     ^
-
-error: Identifier not found.
- --&gt; &#x2F;Users&#x2F;desmo&#x2F;repos&#x2F;starklings-cairo1&#x2F;runner-crate&#x2F;src&#x2F;lib.cairo:16:8
-    if is_evening {
-       ^********^
-
-could not compile `exercise_crate` due to previous error
-
-⚠️  Failed to run exercises&#x2F;primitive_types&#x2F;primitive_types1.cairo! Please try again.
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span>🟡 Running exercises</span><span style="color:#db7c6d;">/</span><span>primitive_types</span><span style="color:#db7c6d;">/</span><span>primitive_types1.cairo exercise</span><span style="color:#db7c6d;">...
+</span><span>
+</span><span>   Compiling exercise_crate v0.</span><span style="color:#db7c6d;">1.0 </span><span>(</span><span style="color:#db7c6d;">/</span><span>Users</span><span style="color:#db7c6d;">/</span><span>desmo</span><span style="color:#db7c6d;">/</span><span>repos</span><span style="color:#db7c6d;">/</span><span>starklings</span><span style="color:#db7c6d;">-</span><span>cairo1</span><span style="color:#db7c6d;">/</span><span>runner</span><span style="color:#db7c6d;">-crate/</span><span>Scarb.toml)
+</span><span>error: Missing token TerminalUnderscore.
+</span><span> </span><span style="color:#db7c6d;">-</span><span>-&gt; </span><span style="color:#db7c6d;">/</span><span>Users</span><span style="color:#db7c6d;">/</span><span>desmo</span><span style="color:#db7c6d;">/</span><span>repos</span><span style="color:#db7c6d;">/</span><span>starklings</span><span style="color:#db7c6d;">-</span><span>cairo1</span><span style="color:#db7c6d;">/</span><span>runner</span><span style="color:#db7c6d;">-crate/</span><span>src</span><span style="color:#db7c6d;">/</span><span>lib.cairo:</span><span style="color:#db7c6d;">15</span><span>:</span><span style="color:#db7c6d;">8
+</span><span>    </span><span style="color:#a3cbe3;">let </span><span style="color:#707180;">// Finish the rest of this line like the example! Or make it be false!
+</span><span>       </span><span style="color:#db7c6d;">^
+</span><span>
+</span><span>error: Missing token TerminalEq.
+</span><span> </span><span style="color:#db7c6d;">-</span><span>-&gt; </span><span style="color:#db7c6d;">/</span><span>Users</span><span style="color:#db7c6d;">/</span><span>desmo</span><span style="color:#db7c6d;">/</span><span>repos</span><span style="color:#db7c6d;">/</span><span>starklings</span><span style="color:#db7c6d;">-</span><span>cairo1</span><span style="color:#db7c6d;">/</span><span>runner</span><span style="color:#db7c6d;">-crate/</span><span>src</span><span style="color:#db7c6d;">/</span><span>lib.cairo:</span><span style="color:#db7c6d;">15</span><span>:</span><span style="color:#db7c6d;">8
+</span><span>    </span><span style="color:#a3cbe3;">let </span><span style="color:#707180;">// Finish the rest of this line like the example! Or make it be false!
+</span><span>       </span><span style="color:#db7c6d;">^
+</span><span>
+</span><span>error: Missing token TerminalSemicolon.
+</span><span> </span><span style="color:#db7c6d;">-</span><span>-&gt; </span><span style="color:#db7c6d;">/</span><span>Users</span><span style="color:#db7c6d;">/</span><span>desmo</span><span style="color:#db7c6d;">/</span><span>repos</span><span style="color:#db7c6d;">/</span><span>starklings</span><span style="color:#db7c6d;">-</span><span>cairo1</span><span style="color:#db7c6d;">/</span><span>runner</span><span style="color:#db7c6d;">-crate/</span><span>src</span><span style="color:#db7c6d;">/</span><span>lib.cairo:</span><span style="color:#db7c6d;">18</span><span>:</span><span style="color:#db7c6d;">6
+</span><span>    }
+</span><span>     </span><span style="color:#db7c6d;">^
+</span><span>
+</span><span>error: Identifier not found.
+</span><span> </span><span style="color:#db7c6d;">-</span><span>-&gt; </span><span style="color:#db7c6d;">/</span><span>Users</span><span style="color:#db7c6d;">/</span><span>desmo</span><span style="color:#db7c6d;">/</span><span>repos</span><span style="color:#db7c6d;">/</span><span>starklings</span><span style="color:#db7c6d;">-</span><span>cairo1</span><span style="color:#db7c6d;">/</span><span>runner</span><span style="color:#db7c6d;">-crate/</span><span>src</span><span style="color:#db7c6d;">/</span><span>lib.cairo:</span><span style="color:#db7c6d;">16</span><span>:</span><span style="color:#db7c6d;">8
+</span><span>    </span><span style="color:#db7c6d;">if</span><span> is_evening {
+</span><span>       </span><span style="color:#db7c6d;">^********^
+</span><span>
+</span><span>could not compile `exercise_crate` due to previous error
+</span><span>
+</span><span>⚠️  Failed to run exercises</span><span style="color:#db7c6d;">/</span><span>primitive_types</span><span style="color:#db7c6d;">/</span><span>primitive_types1.cairo</span><span style="color:#db7c6d;">!</span><span> Please try again.
+</span></code></pre>
 <p>The compiler provides useful hints such as <code>error: Missing token TerminalSemicolon.</code> and <code>error: Identifier not found.</code>. These indicate that we haven't completed the line of code, making it an incomplete statement. Let's fix this.</p>
 <h2 id="primitive-types1-cairo-solution"><code>primitive_types1.cairo</code> Solution</h2>
 <p>As mentioned, we're not done with the line of code on line 15. Observing the code above, we see that <code>is_morning</code> is assigned a <code>bool</code> value of <code>true</code>:</p>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">    let is_morning = true;
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span>    </span><span style="color:#a3cbe3;">let</span><span> is_morning </span><span style="color:#db7c6d;">= </span><span style="color:#ffffff;">true</span><span>;
+</span></code></pre>
 <p>Let's do the same for <code>is_evening</code>. We can assign a <code>bool</code> value to it, either <code>true</code> or <code>false</code>. We'll start with <code>true</code>.</p>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">let is_evening = true;
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#a3cbe3;">let</span><span> is_evening </span><span style="color:#db7c6d;">= </span><span style="color:#ffffff;">true</span><span>;
+</span></code></pre>
 <p>With this change, the code compiles successfully! The output is:</p>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">Good morning!
-Good evening!
-
-✅ Successfully ran exercises&#x2F;primitive_types&#x2F;primitive_types1.cairo!
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span>Good morning</span><span style="color:#db7c6d;">!
+</span><span>Good evening</span><span style="color:#db7c6d;">!
+</span><span>
+</span><span>✅ Successfully ran exercises</span><span style="color:#db7c6d;">/</span><span>primitive_types</span><span style="color:#db7c6d;">/</span><span>primitive_types1.cairo</span><span style="color:#db7c6d;">!
+</span></code></pre>
 <p>If we change the <code>bool</code> value to <code>false</code>, the output changes accordingly:</p>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">Good morning!
-
-✅ Successfully ran exercises&#x2F;primitive_types&#x2F;primitive_types1.cairo!
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span>Good morning</span><span style="color:#db7c6d;">!
+</span><span>
+</span><span>✅ Successfully ran exercises</span><span style="color:#db7c6d;">/</span><span>primitive_types</span><span style="color:#db7c6d;">/</span><span>primitive_types1.cairo</span><span style="color:#db7c6d;">!
+</span></code></pre>
 <p>Here's the full corrected code:</p>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">fn main() {
-    &#x2F;&#x2F; Booleans (`bool`)
-
-    let is_morning = true;
-    if is_morning {
-        println!(&quot;Good morning!&quot;);
-    }
-
-    let is_evening = true;
-    if is_evening {
-        println!(&quot;Good evening!&quot;);
-    }
-}
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">main</span><span>() {
+</span><span>    </span><span style="color:#707180;">// Booleans (`bool`)
+</span><span>
+</span><span>    </span><span style="color:#a3cbe3;">let</span><span> is_morning </span><span style="color:#db7c6d;">= </span><span style="color:#ffffff;">true</span><span>;
+</span><span>    </span><span style="color:#db7c6d;">if</span><span> is_morning {
+</span><span>        println!(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>Good morning!</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>);
+</span><span>    }
+</span><span>
+</span><span>    </span><span style="color:#a3cbe3;">let</span><span> is_evening </span><span style="color:#db7c6d;">= </span><span style="color:#ffffff;">true</span><span>;
+</span><span>    </span><span style="color:#db7c6d;">if</span><span> is_evening {
+</span><span>        println!(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>Good evening!</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>);
+</span><span>    }
+</span><span>}
+</span></code></pre>
 <h3 id="explanation">Explanation</h3>
 <ol>
 <li>
@@ -254,7 +258,7 @@ Good evening!
 <p><strong>Conditional Statement</strong>:</p>
 <ul>
 <li>The <code>if</code> statement checks whether <code>is_morning</code> and <code>is_evening</code> are <code>true</code> or <code>false</code>.</li>
-<li>If either is <code>true</code>, it prints the appropriate message: <code>&quot;Good morning!&quot;</code> or <code>&quot;Good evening!&quot;</code> or even both.</li>
+<li>If either is <code>true</code>, it prints the appropriate message: <code>"Good morning!"</code> or <code>"Good evening!"</code> or even both.</li>
 <li>If both are <code>false</code>, it prints nothing but still compiles correctly.</li>
 </ul>
 </li>
@@ -267,165 +271,165 @@ Good evening!
 </ol>
 <p>Great let's move on to the next exercise!</p>
 <h2 id="primitive-types2-cairo"><code>primitive_types2.cairo</code></h2>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">&#x2F;&#x2F; primitive_types2.cairo
-&#x2F;&#x2F; Fill in the rest of the line that has code missing!
-&#x2F;&#x2F; No hints, there&#x27;s no tricks, just get used to typing these :)
-
-&#x2F;&#x2F; I AM NOT DONE
-
-fn main() {
-    &#x2F;&#x2F; A short string is a string whose length is at most 31 characters, and therefore can fit into a single field element.
-    &#x2F;&#x2F; Short strings are actually felts, they are not a real string.
-    &#x2F;&#x2F; Note the _single_ quotes that are used with short strings.
-
-    let mut my_first_initial = &#x27;C&#x27;;
-    if is_alphabetic(
-        ref my_first_initial
-    ) {
-        println!(&quot; Alphabetical !&quot;);
-    } else if is_numeric(
-        ref my_first_initial
-    ) {
-        println!(&quot; Numerical !&quot;);
-    } else {
-        println!(&quot; Neither alphabetic nor numeric!&quot;);
-    }
-
-    let  &#x2F;&#x2F; Finish this line like the example! What&#x27;s your favorite short string?
-    &#x2F;&#x2F; Try a letter, try a number, try a special character, try a short string!
-    if is_alphabetic(
-        ref your_character
-    ) {
-        println!(&quot; Alphabetical !&quot;);
-    } else if is_numeric(
-        ref your_character
-    ) {
-        println!(&quot; Numerical!&quot;);
-    } else {
-        println!(&quot; Neither alphabetic nor numeric!&quot;);
-    }
-}
-
-fn is_alphabetic(ref char: felt252) -&gt; bool {
-    if char &gt;= &#x27;a&#x27; {
-        if char &lt;= &#x27;z&#x27; {
-            return true;
-        }
-    }
-    if char &gt;= &#x27;A&#x27; {
-        if char &lt;= &#x27;Z&#x27; {
-            return true;
-        }
-    }
-    false
-}
-
-fn is_numeric(ref char: felt252) -&gt; bool {
-    if char &gt;= &#x27;0&#x27; {
-        if char &lt;= &#x27;9&#x27; {
-            return true;
-        }
-    }
-    false
-}
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#707180;">// primitive_types2.cairo
+</span><span style="color:#707180;">// Fill in the rest of the line that has code missing!
+</span><span style="color:#707180;">// No hints, there&#39;s no tricks, just get used to typing these :)
+</span><span>
+</span><span style="color:#707180;">// I AM NOT DONE
+</span><span>
+</span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">main</span><span>() {
+</span><span>    </span><span style="color:#707180;">// A short string is a string whose length is at most 31 characters, and therefore can fit into a single field element.
+</span><span>    </span><span style="color:#707180;">// Short strings are actually felts, they are not a real string.
+</span><span>    </span><span style="color:#707180;">// Note the _single_ quotes that are used with short strings.
+</span><span>
+</span><span>    </span><span style="color:#a3cbe3;">let </span><span style="color:#dbbb3d;">mut</span><span> my_first_initial </span><span style="color:#db7c6d;">= </span><span style="font-weight:bold;color:#dbbb3d;">&#39;</span><span>C</span><span style="font-weight:bold;color:#dbbb3d;">&#39;</span><span>;
+</span><span>    </span><span style="color:#db7c6d;">if is_alphabetic</span><span>(
+</span><span>        </span><span style="color:#dbbb3d;">ref</span><span> my_first_initial
+</span><span>    ) {
+</span><span>        println!(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span> Alphabetical !</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>);
+</span><span>    } </span><span style="color:#db7c6d;">else if is_numeric</span><span>(
+</span><span>        </span><span style="color:#dbbb3d;">ref</span><span> my_first_initial
+</span><span>    ) {
+</span><span>        println!(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span> Numerical !</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>);
+</span><span>    } </span><span style="color:#db7c6d;">else </span><span>{
+</span><span>        println!(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span> Neither alphabetic nor numeric!</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>);
+</span><span>    }
+</span><span>
+</span><span>    </span><span style="color:#a3cbe3;">let  </span><span style="color:#707180;">// Finish this line like the example! What&#39;s your favorite short string?
+</span><span>    </span><span style="color:#707180;">// Try a letter, try a number, try a special character, try a short string!
+</span><span>    </span><span style="color:#db7c6d;">if is_alphabetic</span><span>(
+</span><span>        </span><span style="color:#dbbb3d;">ref</span><span> your_character
+</span><span>    ) {
+</span><span>        println!(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span> Alphabetical !</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>);
+</span><span>    } </span><span style="color:#db7c6d;">else if is_numeric</span><span>(
+</span><span>        </span><span style="color:#dbbb3d;">ref</span><span> your_character
+</span><span>    ) {
+</span><span>        println!(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span> Numerical!</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>);
+</span><span>    } </span><span style="color:#db7c6d;">else </span><span>{
+</span><span>        println!(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span> Neither alphabetic nor numeric!</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>);
+</span><span>    }
+</span><span>}
+</span><span>
+</span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">is_alphabetic</span><span>(</span><span style="color:#dbbb3d;">ref </span><span style="color:#ffffff;">char</span><span>: felt252) -&gt; </span><span style="color:#a3cbe3;">bool </span><span>{
+</span><span>    </span><span style="color:#db7c6d;">if </span><span style="color:#a3cbe3;">char </span><span style="color:#db7c6d;">&gt;= </span><span style="font-weight:bold;color:#dbbb3d;">&#39;</span><span>a</span><span style="font-weight:bold;color:#dbbb3d;">&#39; </span><span>{
+</span><span>        </span><span style="color:#db7c6d;">if </span><span style="color:#a3cbe3;">char </span><span style="color:#db7c6d;">&lt;= </span><span style="font-weight:bold;color:#dbbb3d;">&#39;</span><span>z</span><span style="font-weight:bold;color:#dbbb3d;">&#39; </span><span>{
+</span><span>            </span><span style="color:#db7c6d;">return </span><span style="color:#ffffff;">true</span><span>;
+</span><span>        }
+</span><span>    }
+</span><span>    </span><span style="color:#db7c6d;">if </span><span style="color:#a3cbe3;">char </span><span style="color:#db7c6d;">&gt;= </span><span style="font-weight:bold;color:#dbbb3d;">&#39;</span><span>A</span><span style="font-weight:bold;color:#dbbb3d;">&#39; </span><span>{
+</span><span>        </span><span style="color:#db7c6d;">if </span><span style="color:#a3cbe3;">char </span><span style="color:#db7c6d;">&lt;= </span><span style="font-weight:bold;color:#dbbb3d;">&#39;</span><span>Z</span><span style="font-weight:bold;color:#dbbb3d;">&#39; </span><span>{
+</span><span>            </span><span style="color:#db7c6d;">return </span><span style="color:#ffffff;">true</span><span>;
+</span><span>        }
+</span><span>    }
+</span><span>    </span><span style="color:#ffffff;">false
+</span><span>}
+</span><span>
+</span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">is_numeric</span><span>(</span><span style="color:#dbbb3d;">ref </span><span style="color:#ffffff;">char</span><span>: felt252) -&gt; </span><span style="color:#a3cbe3;">bool </span><span>{
+</span><span>    </span><span style="color:#db7c6d;">if </span><span style="color:#a3cbe3;">char </span><span style="color:#db7c6d;">&gt;= </span><span style="font-weight:bold;color:#dbbb3d;">&#39;</span><span>0</span><span style="font-weight:bold;color:#dbbb3d;">&#39; </span><span>{
+</span><span>        </span><span style="color:#db7c6d;">if </span><span style="color:#a3cbe3;">char </span><span style="color:#db7c6d;">&lt;= </span><span style="font-weight:bold;color:#dbbb3d;">&#39;</span><span>9</span><span style="font-weight:bold;color:#dbbb3d;">&#39; </span><span>{
+</span><span>            </span><span style="color:#db7c6d;">return </span><span style="color:#ffffff;">true</span><span>;
+</span><span>        }
+</span><span>    }
+</span><span>    </span><span style="color:#ffffff;">false
+</span><span>}
+</span></code></pre>
 <p>In this exercise, we are dealing with short strings in Cairo. A short string is a string whose length is at most 31 characters, and it can fit into a single field element (felt). Short strings are actually felts and not real strings. We need to use use single quotes for short strings.</p>
 <h2 id="primitive-types2-cairo-errors"><code>primitive_types2.cairo</code> Errors</h2>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">🟡 Running exercises&#x2F;primitive_types&#x2F;primitive_types2.cairo exercise...
-
-   Compiling exercise_crate v0.1.0 (&#x2F;Users&#x2F;desmo&#x2F;repos&#x2F;starklings-cairo1&#x2F;runner-crate&#x2F;Scarb.toml)
-error: Missing token TerminalUnderscore.
- --&gt; &#x2F;Users&#x2F;desmo&#x2F;repos&#x2F;starklings-cairo1&#x2F;runner-crate&#x2F;src&#x2F;lib.cairo:25:8
-    let  &#x2F;&#x2F; Finish this line like the example! What&#x27;s your favorite short string?
-       ^
-
-error: Missing token TerminalEq.
- --&gt; &#x2F;Users&#x2F;desmo&#x2F;repos&#x2F;starklings-cairo1&#x2F;runner-crate&#x2F;src&#x2F;lib.cairo:25:8
-    let  &#x2F;&#x2F; Finish this line like the example! What&#x27;s your favorite short string?
-       ^
-
-error: Missing token TerminalSemicolon.
- --&gt; &#x2F;Users&#x2F;desmo&#x2F;repos&#x2F;starklings-cairo1&#x2F;runner-crate&#x2F;src&#x2F;lib.cairo:37:6
-    }
-     ^
-
-error: Identifier not found.
- --&gt; &#x2F;Users&#x2F;desmo&#x2F;repos&#x2F;starklings-cairo1&#x2F;runner-crate&#x2F;src&#x2F;lib.cairo:28:13
-        ref your_character
-            ^************^
-
-error: ref argument must be a variable.
- --&gt; &#x2F;Users&#x2F;desmo&#x2F;repos&#x2F;starklings-cairo1&#x2F;runner-crate&#x2F;src&#x2F;lib.cairo:28:13
-        ref your_character
-            ^************^
-
-error: Identifier not found.
- --&gt; &#x2F;Users&#x2F;desmo&#x2F;repos&#x2F;starklings-cairo1&#x2F;runner-crate&#x2F;src&#x2F;lib.cairo:32:13
-        ref your_character
-            ^************^
-
-error: ref argument must be a variable.
- --&gt; &#x2F;Users&#x2F;desmo&#x2F;repos&#x2F;starklings-cairo1&#x2F;runner-crate&#x2F;src&#x2F;lib.cairo:32:13
-        ref your_character
-            ^************^
-
-could not compile `exercise_crate` due to previous error
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span>🟡 Running exercises</span><span style="color:#db7c6d;">/</span><span>primitive_types</span><span style="color:#db7c6d;">/</span><span>primitive_types2.cairo exercise</span><span style="color:#db7c6d;">...
+</span><span>
+</span><span>   Compiling exercise_crate v0.</span><span style="color:#db7c6d;">1.0 </span><span>(</span><span style="color:#db7c6d;">/</span><span>Users</span><span style="color:#db7c6d;">/</span><span>desmo</span><span style="color:#db7c6d;">/</span><span>repos</span><span style="color:#db7c6d;">/</span><span>starklings</span><span style="color:#db7c6d;">-</span><span>cairo1</span><span style="color:#db7c6d;">/</span><span>runner</span><span style="color:#db7c6d;">-crate/</span><span>Scarb.toml)
+</span><span>error: Missing token TerminalUnderscore.
+</span><span> </span><span style="color:#db7c6d;">-</span><span>-&gt; </span><span style="color:#db7c6d;">/</span><span>Users</span><span style="color:#db7c6d;">/</span><span>desmo</span><span style="color:#db7c6d;">/</span><span>repos</span><span style="color:#db7c6d;">/</span><span>starklings</span><span style="color:#db7c6d;">-</span><span>cairo1</span><span style="color:#db7c6d;">/</span><span>runner</span><span style="color:#db7c6d;">-crate/</span><span>src</span><span style="color:#db7c6d;">/</span><span>lib.cairo:</span><span style="color:#db7c6d;">25</span><span>:</span><span style="color:#db7c6d;">8
+</span><span>    </span><span style="color:#a3cbe3;">let  </span><span style="color:#707180;">// Finish this line like the example! What&#39;s your favorite short string?
+</span><span>       </span><span style="color:#db7c6d;">^
+</span><span>
+</span><span>error: Missing token TerminalEq.
+</span><span> </span><span style="color:#db7c6d;">-</span><span>-&gt; </span><span style="color:#db7c6d;">/</span><span>Users</span><span style="color:#db7c6d;">/</span><span>desmo</span><span style="color:#db7c6d;">/</span><span>repos</span><span style="color:#db7c6d;">/</span><span>starklings</span><span style="color:#db7c6d;">-</span><span>cairo1</span><span style="color:#db7c6d;">/</span><span>runner</span><span style="color:#db7c6d;">-crate/</span><span>src</span><span style="color:#db7c6d;">/</span><span>lib.cairo:</span><span style="color:#db7c6d;">25</span><span>:</span><span style="color:#db7c6d;">8
+</span><span>    </span><span style="color:#a3cbe3;">let  </span><span style="color:#707180;">// Finish this line like the example! What&#39;s your favorite short string?
+</span><span>       </span><span style="color:#db7c6d;">^
+</span><span>
+</span><span>error: Missing token TerminalSemicolon.
+</span><span> </span><span style="color:#db7c6d;">-</span><span>-&gt; </span><span style="color:#db7c6d;">/</span><span>Users</span><span style="color:#db7c6d;">/</span><span>desmo</span><span style="color:#db7c6d;">/</span><span>repos</span><span style="color:#db7c6d;">/</span><span>starklings</span><span style="color:#db7c6d;">-</span><span>cairo1</span><span style="color:#db7c6d;">/</span><span>runner</span><span style="color:#db7c6d;">-crate/</span><span>src</span><span style="color:#db7c6d;">/</span><span>lib.cairo:</span><span style="color:#db7c6d;">37</span><span>:</span><span style="color:#db7c6d;">6
+</span><span>    }
+</span><span>     </span><span style="color:#db7c6d;">^
+</span><span>
+</span><span>error: Identifier not found.
+</span><span> </span><span style="color:#db7c6d;">-</span><span>-&gt; </span><span style="color:#db7c6d;">/</span><span>Users</span><span style="color:#db7c6d;">/</span><span>desmo</span><span style="color:#db7c6d;">/</span><span>repos</span><span style="color:#db7c6d;">/</span><span>starklings</span><span style="color:#db7c6d;">-</span><span>cairo1</span><span style="color:#db7c6d;">/</span><span>runner</span><span style="color:#db7c6d;">-crate/</span><span>src</span><span style="color:#db7c6d;">/</span><span>lib.cairo:</span><span style="color:#db7c6d;">28</span><span>:</span><span style="color:#db7c6d;">13
+</span><span>        </span><span style="color:#dbbb3d;">ref</span><span> your_character
+</span><span>            </span><span style="color:#db7c6d;">^************^
+</span><span>
+</span><span>error: </span><span style="color:#dbbb3d;">ref</span><span> argument must be a variable.
+</span><span> </span><span style="color:#db7c6d;">-</span><span>-&gt; </span><span style="color:#db7c6d;">/</span><span>Users</span><span style="color:#db7c6d;">/</span><span>desmo</span><span style="color:#db7c6d;">/</span><span>repos</span><span style="color:#db7c6d;">/</span><span>starklings</span><span style="color:#db7c6d;">-</span><span>cairo1</span><span style="color:#db7c6d;">/</span><span>runner</span><span style="color:#db7c6d;">-crate/</span><span>src</span><span style="color:#db7c6d;">/</span><span>lib.cairo:</span><span style="color:#db7c6d;">28</span><span>:</span><span style="color:#db7c6d;">13
+</span><span>        </span><span style="color:#dbbb3d;">ref</span><span> your_character
+</span><span>            </span><span style="color:#db7c6d;">^************^
+</span><span>
+</span><span>error: Identifier not found.
+</span><span> </span><span style="color:#db7c6d;">-</span><span>-&gt; </span><span style="color:#db7c6d;">/</span><span>Users</span><span style="color:#db7c6d;">/</span><span>desmo</span><span style="color:#db7c6d;">/</span><span>repos</span><span style="color:#db7c6d;">/</span><span>starklings</span><span style="color:#db7c6d;">-</span><span>cairo1</span><span style="color:#db7c6d;">/</span><span>runner</span><span style="color:#db7c6d;">-crate/</span><span>src</span><span style="color:#db7c6d;">/</span><span>lib.cairo:</span><span style="color:#db7c6d;">32</span><span>:</span><span style="color:#db7c6d;">13
+</span><span>        </span><span style="color:#dbbb3d;">ref</span><span> your_character
+</span><span>            </span><span style="color:#db7c6d;">^************^
+</span><span>
+</span><span>error: </span><span style="color:#dbbb3d;">ref</span><span> argument must be a variable.
+</span><span> </span><span style="color:#db7c6d;">-</span><span>-&gt; </span><span style="color:#db7c6d;">/</span><span>Users</span><span style="color:#db7c6d;">/</span><span>desmo</span><span style="color:#db7c6d;">/</span><span>repos</span><span style="color:#db7c6d;">/</span><span>starklings</span><span style="color:#db7c6d;">-</span><span>cairo1</span><span style="color:#db7c6d;">/</span><span>runner</span><span style="color:#db7c6d;">-crate/</span><span>src</span><span style="color:#db7c6d;">/</span><span>lib.cairo:</span><span style="color:#db7c6d;">32</span><span>:</span><span style="color:#db7c6d;">13
+</span><span>        </span><span style="color:#dbbb3d;">ref</span><span> your_character
+</span><span>            </span><span style="color:#db7c6d;">^************^
+</span><span>
+</span><span>could not compile `exercise_crate` due to previous error
+</span></code></pre>
 <p>The compiler errors indicate missing tokens such as <code>TerminalUnderscore</code> and <code>TerminalEq</code> and <code>TerminalSemicolon</code>. Additionally, a the key errors of<code>Identifier not found</code> and <code>ref arguement must be a variable </code> suggest that <code>your_character</code> is not correctly defined and referenced.</p>
 <h2 id="primitive-types2-cairo-solution"><code>primitive_types2.cairo</code> Solution</h2>
 <p>To solve this, let's complete the line that define's <code>your_character</code>. Here's the solution:</p>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">fn main() {
-
-    let mut my_first_initial = &#x27;C&#x27;;
-    if is_alphabetic(
-        ref my_first_initial
-    ) {
-        println!(&quot; Alphabetical !&quot;);
-    } else if is_numeric(
-        ref my_first_initial
-    ) {
-        println!(&quot; Numerical !&quot;);
-    } else {
-        println!(&quot; Neither alphabetic nor numeric!&quot;);
-    }
-
-    let mut your_character = &#x27;E&#x27;; &#x2F;&#x2F; Finishing the line here
-    if is_alphabetic(
-        ref your_character
-    ) {
-        println!(&quot; Alphabetical !&quot;);
-    } else if is_numeric(
-        ref your_character
-    ) {
-        println!(&quot; Numerical!&quot;);
-    } else {
-        println!(&quot; Neither alphabetic nor numeric!&quot;);
-    }
-}
-
-fn is_alphabetic(ref char: felt252) -&gt; bool {
-    if char &gt;= &#x27;a&#x27; {
-        if char &lt;= &#x27;z&#x27; {
-            return true;
-        }
-    }
-    if char &gt;= &#x27;A&#x27; {
-        if char &lt;= &#x27;Z&#x27; {
-            return true;
-        }
-    }
-    false
-}
-
-fn is_numeric(ref char: felt252) -&gt; bool {
-    if char &gt;= &#x27;0&#x27; {
-        if char &lt;= &#x27;9&#x27; {
-            return true;
-        }
-    }
-    false
-}
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">main</span><span>() {
+</span><span>
+</span><span>    </span><span style="color:#a3cbe3;">let </span><span style="color:#dbbb3d;">mut</span><span> my_first_initial </span><span style="color:#db7c6d;">= </span><span style="font-weight:bold;color:#dbbb3d;">&#39;</span><span>C</span><span style="font-weight:bold;color:#dbbb3d;">&#39;</span><span>;
+</span><span>    </span><span style="color:#db7c6d;">if is_alphabetic</span><span>(
+</span><span>        </span><span style="color:#dbbb3d;">ref</span><span> my_first_initial
+</span><span>    ) {
+</span><span>        println!(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span> Alphabetical !</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>);
+</span><span>    } </span><span style="color:#db7c6d;">else if is_numeric</span><span>(
+</span><span>        </span><span style="color:#dbbb3d;">ref</span><span> my_first_initial
+</span><span>    ) {
+</span><span>        println!(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span> Numerical !</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>);
+</span><span>    } </span><span style="color:#db7c6d;">else </span><span>{
+</span><span>        println!(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span> Neither alphabetic nor numeric!</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>);
+</span><span>    }
+</span><span>
+</span><span>    </span><span style="color:#a3cbe3;">let </span><span style="color:#dbbb3d;">mut</span><span> your_character </span><span style="color:#db7c6d;">= </span><span style="font-weight:bold;color:#dbbb3d;">&#39;</span><span>E</span><span style="font-weight:bold;color:#dbbb3d;">&#39;</span><span>; </span><span style="color:#707180;">// Finishing the line here
+</span><span>    </span><span style="color:#db7c6d;">if is_alphabetic</span><span>(
+</span><span>        </span><span style="color:#dbbb3d;">ref</span><span> your_character
+</span><span>    ) {
+</span><span>        println!(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span> Alphabetical !</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>);
+</span><span>    } </span><span style="color:#db7c6d;">else if is_numeric</span><span>(
+</span><span>        </span><span style="color:#dbbb3d;">ref</span><span> your_character
+</span><span>    ) {
+</span><span>        println!(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span> Numerical!</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>);
+</span><span>    } </span><span style="color:#db7c6d;">else </span><span>{
+</span><span>        println!(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span> Neither alphabetic nor numeric!</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>);
+</span><span>    }
+</span><span>}
+</span><span>
+</span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">is_alphabetic</span><span>(</span><span style="color:#dbbb3d;">ref </span><span style="color:#ffffff;">char</span><span>: felt252) -&gt; </span><span style="color:#a3cbe3;">bool </span><span>{
+</span><span>    </span><span style="color:#db7c6d;">if </span><span style="color:#a3cbe3;">char </span><span style="color:#db7c6d;">&gt;= </span><span style="font-weight:bold;color:#dbbb3d;">&#39;</span><span>a</span><span style="font-weight:bold;color:#dbbb3d;">&#39; </span><span>{
+</span><span>        </span><span style="color:#db7c6d;">if </span><span style="color:#a3cbe3;">char </span><span style="color:#db7c6d;">&lt;= </span><span style="font-weight:bold;color:#dbbb3d;">&#39;</span><span>z</span><span style="font-weight:bold;color:#dbbb3d;">&#39; </span><span>{
+</span><span>            </span><span style="color:#db7c6d;">return </span><span style="color:#ffffff;">true</span><span>;
+</span><span>        }
+</span><span>    }
+</span><span>    </span><span style="color:#db7c6d;">if </span><span style="color:#a3cbe3;">char </span><span style="color:#db7c6d;">&gt;= </span><span style="font-weight:bold;color:#dbbb3d;">&#39;</span><span>A</span><span style="font-weight:bold;color:#dbbb3d;">&#39; </span><span>{
+</span><span>        </span><span style="color:#db7c6d;">if </span><span style="color:#a3cbe3;">char </span><span style="color:#db7c6d;">&lt;= </span><span style="font-weight:bold;color:#dbbb3d;">&#39;</span><span>Z</span><span style="font-weight:bold;color:#dbbb3d;">&#39; </span><span>{
+</span><span>            </span><span style="color:#db7c6d;">return </span><span style="color:#ffffff;">true</span><span>;
+</span><span>        }
+</span><span>    }
+</span><span>    </span><span style="color:#ffffff;">false
+</span><span>}
+</span><span>
+</span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">is_numeric</span><span>(</span><span style="color:#dbbb3d;">ref </span><span style="color:#ffffff;">char</span><span>: felt252) -&gt; </span><span style="color:#a3cbe3;">bool </span><span>{
+</span><span>    </span><span style="color:#db7c6d;">if </span><span style="color:#a3cbe3;">char </span><span style="color:#db7c6d;">&gt;= </span><span style="font-weight:bold;color:#dbbb3d;">&#39;</span><span>0</span><span style="font-weight:bold;color:#dbbb3d;">&#39; </span><span>{
+</span><span>        </span><span style="color:#db7c6d;">if </span><span style="color:#a3cbe3;">char </span><span style="color:#db7c6d;">&lt;= </span><span style="font-weight:bold;color:#dbbb3d;">&#39;</span><span>9</span><span style="font-weight:bold;color:#dbbb3d;">&#39; </span><span>{
+</span><span>            </span><span style="color:#db7c6d;">return </span><span style="color:#ffffff;">true</span><span>;
+</span><span>        }
+</span><span>    }
+</span><span>    </span><span style="color:#ffffff;">false
+</span><span>}
+</span></code></pre>
 <h3 id="explanation-1">Explanation</h3>
 <ol>
 <li>
@@ -436,9 +440,9 @@ fn is_numeric(ref char: felt252) -&gt; bool {
 <li>
 <p><strong>Conditional Statement</strong>:
 • The <code>if</code> statement checks whether <code>my_first_initial</code> and <code>your_character</code> are alphabetic or numeric.
-• If either is alphabetic, it prints <code>&quot;Alphabetical!&quot;</code>.
-• If either is numeric, it prints <code>&quot;Numerical!&quot;</code>.
-• Otherwise, it prints<code> &quot;Neither alphabetic nor numeric!&quot;</code>.</p>
+• If either is alphabetic, it prints <code>"Alphabetical!"</code>.
+• If either is numeric, it prints <code>"Numerical!"</code>.
+• Otherwise, it prints<code> "Neither alphabetic nor numeric!"</code>.</p>
 </li>
 <li>
 <p><strong>Ref Keyword</strong>:
@@ -464,75 +468,75 @@ fn is_numeric(ref char: felt252) -&gt; bool {
 </ol>
 <p>By marking <code>your_character</code> as <code>mut</code>, you signal to the compiler and future readers of the code that <code>your_character</code> may be modified or requires exclusive access, aligning with the expected semantics of using<code> ref</code>.</p>
 <h2 id="primitive-types3-cairo"><code>primitive_types3.cairo</code></h2>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">&#x2F;&#x2F; primitive_types3.cairo
-&#x2F;&#x2F; Destructure the `cat` tuple to call print on each member.
-&#x2F;&#x2F; Execute `starklings hint primitive_types3` or use the `hint` watch subcommand for a hint.
-
-&#x2F;&#x2F; I AM NOT DONE
-
-fn main() {
-    let cat = (&#x27;Furry McFurson&#x27;, 3);
-    let &#x2F;&#x2F; your pattern here = cat;
-    println!(&quot;name is {}&quot;, name);
-    println!(&quot;age is {}&quot;, age);
-}
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#707180;">// primitive_types3.cairo
+</span><span style="color:#707180;">// Destructure the `cat` tuple to call print on each member.
+</span><span style="color:#707180;">// Execute `starklings hint primitive_types3` or use the `hint` watch subcommand for a hint.
+</span><span>
+</span><span style="color:#707180;">// I AM NOT DONE
+</span><span>
+</span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">main</span><span>() {
+</span><span>    </span><span style="color:#a3cbe3;">let</span><span> cat </span><span style="color:#db7c6d;">= </span><span>(</span><span style="color:#dbbb3d;">&#39;Furry</span><span> McFurson</span><span style="color:#db7c6d;">&#39;</span><span>, </span><span style="color:#db7c6d;">3</span><span>);
+</span><span>    </span><span style="color:#a3cbe3;">let </span><span style="color:#707180;">// your pattern here = cat;
+</span><span>    println!(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>name is </span><span style="font-weight:bold;color:#a2ba43;">{}</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>, name);
+</span><span>    println!(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>age is </span><span style="font-weight:bold;color:#a2ba43;">{}</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>, age);
+</span><span>}
+</span></code></pre>
 <p>here we have a very simple piece of code and our instructions are to destructure the <code>cat</code> tuple to allow us to call print on each of the members of the tuple. We already know the problem, but just so we are consistent, let's look at the errors.</p>
 <h2 id="primitive-types3-cairo-errors"><code>primitive_types3.cairo</code> Errors</h2>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">🟡 Running exercises&#x2F;primitive_types&#x2F;primitive_types3.cairo exercise...
-
-   Compiling exercise_crate v0.1.0 (&#x2F;Users&#x2F;desmo&#x2F;repos&#x2F;starklings-cairo1&#x2F;runner-crate&#x2F;Scarb.toml)
-error: Missing token TerminalEq.
- --&gt; &#x2F;Users&#x2F;desmo&#x2F;repos&#x2F;starklings-cairo1&#x2F;runner-crate&#x2F;src&#x2F;lib.cairo:10:12
-    println!(&quot;name is {}&quot;, name);
-           ^
-
-error: Identifier not found.
- --&gt; &#x2F;Users&#x2F;desmo&#x2F;repos&#x2F;starklings-cairo1&#x2F;runner-crate&#x2F;src&#x2F;lib.cairo:10:28
-    println!(&quot;name is {}&quot;, name);
-                           ^**^
-
-error: Identifier not found.
- --&gt; &#x2F;Users&#x2F;desmo&#x2F;repos&#x2F;starklings-cairo1&#x2F;runner-crate&#x2F;src&#x2F;lib.cairo:11:27
-    println!(&quot;age is {}&quot;, age);
-                          ^*^
-
-warn: Unused variable. Consider ignoring by prefixing with `_`.
- --&gt; &#x2F;Users&#x2F;desmo&#x2F;repos&#x2F;starklings-cairo1&#x2F;runner-crate&#x2F;src&#x2F;lib.cairo:8:9
-    let cat = (&#x27;Furry McFurson&#x27;, 3);
-        ^*^
-
-warn: Unused variable. Consider ignoring by prefixing with `_`.
- --&gt; &#x2F;Users&#x2F;desmo&#x2F;repos&#x2F;starklings-cairo1&#x2F;runner-crate&#x2F;src&#x2F;lib.cairo:10:5
-    println!(&quot;name is {}&quot;, name);
-    ^*****^
-
-error: Type annotations needed. Failed to infer ?2
- --&gt; &#x2F;Users&#x2F;desmo&#x2F;repos&#x2F;starklings-cairo1&#x2F;runner-crate&#x2F;src&#x2F;lib.cairo:10:14
-    println!(&quot;name is {}&quot;, name);
-             ^**********^
-
-could not compile `exercise_crate` due to previous error
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span>🟡 Running exercises</span><span style="color:#db7c6d;">/</span><span>primitive_types</span><span style="color:#db7c6d;">/</span><span>primitive_types3.cairo exercise</span><span style="color:#db7c6d;">...
+</span><span>
+</span><span>   Compiling exercise_crate v0.</span><span style="color:#db7c6d;">1.0 </span><span>(</span><span style="color:#db7c6d;">/</span><span>Users</span><span style="color:#db7c6d;">/</span><span>desmo</span><span style="color:#db7c6d;">/</span><span>repos</span><span style="color:#db7c6d;">/</span><span>starklings</span><span style="color:#db7c6d;">-</span><span>cairo1</span><span style="color:#db7c6d;">/</span><span>runner</span><span style="color:#db7c6d;">-crate/</span><span>Scarb.toml)
+</span><span>error: Missing token TerminalEq.
+</span><span> </span><span style="color:#db7c6d;">-</span><span>-&gt; </span><span style="color:#db7c6d;">/</span><span>Users</span><span style="color:#db7c6d;">/</span><span>desmo</span><span style="color:#db7c6d;">/</span><span>repos</span><span style="color:#db7c6d;">/</span><span>starklings</span><span style="color:#db7c6d;">-</span><span>cairo1</span><span style="color:#db7c6d;">/</span><span>runner</span><span style="color:#db7c6d;">-crate/</span><span>src</span><span style="color:#db7c6d;">/</span><span>lib.cairo:</span><span style="color:#db7c6d;">10</span><span>:</span><span style="color:#db7c6d;">12
+</span><span>    println!(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>name is </span><span style="font-weight:bold;color:#a2ba43;">{}</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>, name);
+</span><span>           </span><span style="color:#db7c6d;">^
+</span><span>
+</span><span>error: Identifier not found.
+</span><span> </span><span style="color:#db7c6d;">-</span><span>-&gt; </span><span style="color:#db7c6d;">/</span><span>Users</span><span style="color:#db7c6d;">/</span><span>desmo</span><span style="color:#db7c6d;">/</span><span>repos</span><span style="color:#db7c6d;">/</span><span>starklings</span><span style="color:#db7c6d;">-</span><span>cairo1</span><span style="color:#db7c6d;">/</span><span>runner</span><span style="color:#db7c6d;">-crate/</span><span>src</span><span style="color:#db7c6d;">/</span><span>lib.cairo:</span><span style="color:#db7c6d;">10</span><span>:</span><span style="color:#db7c6d;">28
+</span><span>    println!(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>name is </span><span style="font-weight:bold;color:#a2ba43;">{}</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>, name);
+</span><span>                           </span><span style="color:#db7c6d;">^**^
+</span><span>
+</span><span>error: Identifier not found.
+</span><span> </span><span style="color:#db7c6d;">-</span><span>-&gt; </span><span style="color:#db7c6d;">/</span><span>Users</span><span style="color:#db7c6d;">/</span><span>desmo</span><span style="color:#db7c6d;">/</span><span>repos</span><span style="color:#db7c6d;">/</span><span>starklings</span><span style="color:#db7c6d;">-</span><span>cairo1</span><span style="color:#db7c6d;">/</span><span>runner</span><span style="color:#db7c6d;">-crate/</span><span>src</span><span style="color:#db7c6d;">/</span><span>lib.cairo:</span><span style="color:#db7c6d;">11</span><span>:</span><span style="color:#db7c6d;">27
+</span><span>    println!(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>age is </span><span style="font-weight:bold;color:#a2ba43;">{}</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>, age);
+</span><span>                          </span><span style="color:#db7c6d;">^*^
+</span><span>
+</span><span>warn: Unused variable. Consider ignoring by prefixing with `</span><span style="color:#db7c6d;">_</span><span>`.
+</span><span> </span><span style="color:#db7c6d;">-</span><span>-&gt; </span><span style="color:#db7c6d;">/</span><span>Users</span><span style="color:#db7c6d;">/</span><span>desmo</span><span style="color:#db7c6d;">/</span><span>repos</span><span style="color:#db7c6d;">/</span><span>starklings</span><span style="color:#db7c6d;">-</span><span>cairo1</span><span style="color:#db7c6d;">/</span><span>runner</span><span style="color:#db7c6d;">-crate/</span><span>src</span><span style="color:#db7c6d;">/</span><span>lib.cairo:</span><span style="color:#db7c6d;">8</span><span>:</span><span style="color:#db7c6d;">9
+</span><span>    </span><span style="color:#a3cbe3;">let</span><span> cat </span><span style="color:#db7c6d;">= </span><span>(</span><span style="color:#dbbb3d;">&#39;Furry</span><span> McFurson</span><span style="color:#db7c6d;">&#39;</span><span>, </span><span style="color:#db7c6d;">3</span><span>);
+</span><span>        </span><span style="color:#db7c6d;">^*^
+</span><span>
+</span><span>warn: Unused variable. Consider ignoring by prefixing with `</span><span style="color:#db7c6d;">_</span><span>`.
+</span><span> </span><span style="color:#db7c6d;">-</span><span>-&gt; </span><span style="color:#db7c6d;">/</span><span>Users</span><span style="color:#db7c6d;">/</span><span>desmo</span><span style="color:#db7c6d;">/</span><span>repos</span><span style="color:#db7c6d;">/</span><span>starklings</span><span style="color:#db7c6d;">-</span><span>cairo1</span><span style="color:#db7c6d;">/</span><span>runner</span><span style="color:#db7c6d;">-crate/</span><span>src</span><span style="color:#db7c6d;">/</span><span>lib.cairo:</span><span style="color:#db7c6d;">10</span><span>:</span><span style="color:#db7c6d;">5
+</span><span>    println!(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>name is </span><span style="font-weight:bold;color:#a2ba43;">{}</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>, name);
+</span><span>    </span><span style="color:#db7c6d;">^*****^
+</span><span>
+</span><span>error: Type annotations needed. Failed to infer </span><span style="color:#db7c6d;">?2
+</span><span> </span><span style="color:#db7c6d;">-</span><span>-&gt; </span><span style="color:#db7c6d;">/</span><span>Users</span><span style="color:#db7c6d;">/</span><span>desmo</span><span style="color:#db7c6d;">/</span><span>repos</span><span style="color:#db7c6d;">/</span><span>starklings</span><span style="color:#db7c6d;">-</span><span>cairo1</span><span style="color:#db7c6d;">/</span><span>runner</span><span style="color:#db7c6d;">-crate/</span><span>src</span><span style="color:#db7c6d;">/</span><span>lib.cairo:</span><span style="color:#db7c6d;">10</span><span>:</span><span style="color:#db7c6d;">14
+</span><span>    println!(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>name is </span><span style="font-weight:bold;color:#a2ba43;">{}</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>, name);
+</span><span>             </span><span style="color:#db7c6d;">^**********^
+</span><span>
+</span><span>could not compile `exercise_crate` due to previous error
+</span></code></pre>
 <p>We get a bunch of errors, but we know the cause we don't have our tuple destructured to allow us to print <code>name</code> and <code>age</code>. So let's fix it!</p>
 <h2 id="primitive-types3-cairo-solution"><code>primitive_types3.cairo</code> Solution</h2>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">fn main() {
-    let cat = (&#x27;Furry McFurson&#x27;, 3);
-    let (name, age) = cat;
-    println!(&quot;name is {}&quot;, name);
-    println!(&quot;age is {}&quot;, age);
-}
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">main</span><span>() {
+</span><span>    </span><span style="color:#a3cbe3;">let</span><span> cat </span><span style="color:#db7c6d;">= </span><span>(</span><span style="color:#dbbb3d;">&#39;Furry</span><span> McFurson</span><span style="color:#db7c6d;">&#39;</span><span>, </span><span style="color:#db7c6d;">3</span><span>);
+</span><span>    </span><span style="color:#a3cbe3;">let </span><span>(name, age) </span><span style="color:#db7c6d;">=</span><span> cat;
+</span><span>    println!(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>name is </span><span style="font-weight:bold;color:#a2ba43;">{}</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>, name);
+</span><span>    println!(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>age is </span><span style="font-weight:bold;color:#a2ba43;">{}</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>, age);
+</span><span>}
+</span></code></pre>
 <p>Using the <code>(name, age)</code> syntax we can destructure the <code>('Furry McFurson', 3)</code> tuple into something that we can use later on in our print statements. This seems simple enough and our code compiles with these changes, so let's move on -- but wait, what do we see on the print out!?</p>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">Running exercises&#x2F;primitive_types&#x2F;primitive_types3.cairo
-
-name is 1429073786950451143196132410355566
-age is 3
-
-✅ Successfully ran exercises&#x2F;primitive_types&#x2F;primitive_types3.cairo!
-
-🎉 🎉  The code is compiling! 🎉 🎉
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span>Running exercises</span><span style="color:#db7c6d;">/</span><span>primitive_types</span><span style="color:#db7c6d;">/</span><span>primitive_types3.cairo
+</span><span>
+</span><span>name is </span><span style="color:#db7c6d;">1429073786950451143196132410355566
+</span><span>age is </span><span style="color:#db7c6d;">3
+</span><span>
+</span><span>✅ Successfully ran exercises</span><span style="color:#db7c6d;">/</span><span>primitive_types</span><span style="color:#db7c6d;">/</span><span>primitive_types3.cairo</span><span style="color:#db7c6d;">!
+</span><span>
+</span><span>🎉 🎉  The code is compiling</span><span style="color:#db7c6d;">!</span><span> 🎉 🎉
+</span></code></pre>
 <p>The name we have in our program is <code>'Furry McFurson'</code> but we get a print out that says: <code>1429073786950451143196132410355566</code>, so what's going on here?</p>
 <h3 id="why-does-the-output-show-numbers-instead-of-strings">Why Does the Output Show Numbers Instead of Strings?</h3>
 <p>In Cairo, short strings are represented as <code>felt252</code> (field elements), which are large numerical values. This is why printing a short string directly might show a long number instead of the expected text.</p>
@@ -545,12 +549,12 @@ For a string like “Furry”, we need to consider how each character is convert
 <ol>
 <li>Convert each character to its ASCII value:</li>
 </ol>
-<pre><code>• ‘F’ -&gt; 70
-• ‘u’ -&gt; 117
-• ‘r’ -&gt; 114
-• ‘r’ -&gt; 114
-• ‘y’ -&gt; 121
-</code></pre>
+<pre style="background-color:#31333d;color:#ffffffc4;"><code><span>• ‘F’ -&gt; 70
+</span><span>• ‘u’ -&gt; 117
+</span><span>• ‘r’ -&gt; 114
+</span><span>• ‘r’ -&gt; 114
+</span><span>• ‘y’ -&gt; 121
+</span></code></pre>
 <ol start="2">
 <li>Pack these ASCII values together into a single large integer. This packing depends on the specific encoding scheme used. A simple scheme would be to treat the ASCII values as bytes in a large number.</li>
 </ol>
@@ -570,76 +574,76 @@ For a string like “Furry”, we need to consider how each character is convert
 </ol>
 <p>Let's move on to our final exercise!</p>
 <h2 id="primitive-types4-cairo"><code>primitive_types4.cairo</code></h2>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">&#x2F;&#x2F; primitive_types4.cairo
-&#x2F;&#x2F; Modify the integer types to make the tests pass.
-&#x2F;&#x2F; Learn how to convert between integer types, and felts.
-&#x2F;&#x2F; Execute `starklings hint primitive_types4` or use the `hint` watch subcommand for a hint.
-
-&#x2F;&#x2F; I AM NOT DONE
-
-use traits::Into;
-use traits::TryInto;
-use option::OptionTrait;
-
-fn sum_u8s(x: u8, y: u8) -&gt; u8 {
-    x + y
-}
-
-&#x2F;&#x2F;TODO modify the types of this function to prevent an overflow when summing big values
-fn sum_big_numbers(x: u8, y: u8) -&gt; u8 {
-    x + y
-}
-
-fn convert_to_felt(x: u8) -&gt; felt252 { &#x2F;&#x2F;TODO return x as a felt252.
-}
-
-fn convert_felt_to_u8(x: felt252) -&gt; u8 { &#x2F;&#x2F;TODO return x as a u8.
-}
-
-#[test]
-fn test_sum_u8s() {
-    assert(sum_u8s(1, 2_u8) == 3_u8, &#x27;Something went wrong&#x27;);
-}
-
-#[test]
-fn test_sum_big_numbers() {
-    &#x2F;&#x2F;TODO modify this test to use the correct integer types.
-    &#x2F;&#x2F; Don&#x27;t modify the values, just the types.
-    &#x2F;&#x2F; See how using the _u8 suffix on the numbers lets us specify the type?
-    &#x2F;&#x2F; Try to do the same thing with other integer types.
-    assert(sum_big_numbers(255_u8, 255_u8) == 510_u8, &#x27;Something went wrong&#x27;);
-}
-
-#[test]
-fn test_convert_to_felt() {
-    assert(convert_to_felt(1_u8) == 1, &#x27;Type conversion went wrong&#x27;);
-}
-
-#[test]
-fn test_convert_to_u8() {
-    assert(convert_felt_to_u8(1) == 1_u8, &#x27;Type conversion went wrong&#x27;);
-}
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#707180;">// primitive_types4.cairo
+</span><span style="color:#707180;">// Modify the integer types to make the tests pass.
+</span><span style="color:#707180;">// Learn how to convert between integer types, and felts.
+</span><span style="color:#707180;">// Execute `starklings hint primitive_types4` or use the `hint` watch subcommand for a hint.
+</span><span>
+</span><span style="color:#707180;">// I AM NOT DONE
+</span><span>
+</span><span style="color:#db7c6d;">use </span><span>traits::Into;
+</span><span style="color:#db7c6d;">use </span><span>traits::TryInto;
+</span><span style="color:#db7c6d;">use </span><span>option::OptionTrait;
+</span><span>
+</span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">sum_u8s</span><span>(</span><span style="color:#ffffff;">x</span><span>: </span><span style="color:#a3cbe3;">u8</span><span>, </span><span style="color:#ffffff;">y</span><span>: </span><span style="color:#a3cbe3;">u8</span><span>) -&gt; </span><span style="color:#a3cbe3;">u8 </span><span>{
+</span><span>    x </span><span style="color:#db7c6d;">+</span><span> y
+</span><span>}
+</span><span>
+</span><span style="color:#707180;">//TODO modify the types of this function to prevent an overflow when summing big values
+</span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">sum_big_numbers</span><span>(</span><span style="color:#ffffff;">x</span><span>: </span><span style="color:#a3cbe3;">u8</span><span>, </span><span style="color:#ffffff;">y</span><span>: </span><span style="color:#a3cbe3;">u8</span><span>) -&gt; </span><span style="color:#a3cbe3;">u8 </span><span>{
+</span><span>    x </span><span style="color:#db7c6d;">+</span><span> y
+</span><span>}
+</span><span>
+</span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">convert_to_felt</span><span>(</span><span style="color:#ffffff;">x</span><span>: </span><span style="color:#a3cbe3;">u8</span><span>) -&gt; felt252 { </span><span style="color:#707180;">//TODO return x as a felt252.
+</span><span>}
+</span><span>
+</span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">convert_felt_to_u8</span><span>(</span><span style="color:#ffffff;">x</span><span>: felt252) -&gt; </span><span style="color:#a3cbe3;">u8 </span><span>{ </span><span style="color:#707180;">//TODO return x as a u8.
+</span><span>}
+</span><span>
+</span><span>#[</span><span style="font-weight:bold;color:#a3cbe3;">test</span><span>]
+</span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">test_sum_u8s</span><span>() {
+</span><span>    </span><span style="color:#db7c6d;">assert</span><span>(</span><span style="color:#db7c6d;">sum_u8s</span><span>(</span><span style="color:#db7c6d;">1</span><span>, </span><span style="color:#db7c6d;">2_</span><span style="color:#a3cbe3;">u8</span><span>) </span><span style="color:#db7c6d;">== 3_</span><span style="color:#a3cbe3;">u8</span><span>, </span><span style="color:#dbbb3d;">&#39;Something</span><span> went wrong</span><span style="color:#db7c6d;">&#39;</span><span>);
+</span><span>}
+</span><span>
+</span><span>#[</span><span style="font-weight:bold;color:#a3cbe3;">test</span><span>]
+</span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">test_sum_big_numbers</span><span>() {
+</span><span>    </span><span style="color:#707180;">//TODO modify this test to use the correct integer types.
+</span><span>    </span><span style="color:#707180;">// Don&#39;t modify the values, just the types.
+</span><span>    </span><span style="color:#707180;">// See how using the _u8 suffix on the numbers lets us specify the type?
+</span><span>    </span><span style="color:#707180;">// Try to do the same thing with other integer types.
+</span><span>    </span><span style="color:#db7c6d;">assert</span><span>(</span><span style="color:#db7c6d;">sum_big_numbers</span><span>(</span><span style="color:#db7c6d;">255_</span><span style="color:#a3cbe3;">u8</span><span>, </span><span style="color:#db7c6d;">255_</span><span style="color:#a3cbe3;">u8</span><span>) </span><span style="color:#db7c6d;">== 510_</span><span style="color:#a3cbe3;">u8</span><span>, </span><span style="color:#dbbb3d;">&#39;Something</span><span> went wrong</span><span style="color:#db7c6d;">&#39;</span><span>);
+</span><span>}
+</span><span>
+</span><span>#[</span><span style="font-weight:bold;color:#a3cbe3;">test</span><span>]
+</span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">test_convert_to_felt</span><span>() {
+</span><span>    </span><span style="color:#db7c6d;">assert</span><span>(</span><span style="color:#db7c6d;">convert_to_felt</span><span>(</span><span style="color:#db7c6d;">1_</span><span style="color:#a3cbe3;">u8</span><span>) </span><span style="color:#db7c6d;">== 1</span><span>, </span><span style="color:#dbbb3d;">&#39;Type</span><span> conversion went wrong</span><span style="color:#db7c6d;">&#39;</span><span>);
+</span><span>}
+</span><span>
+</span><span>#[</span><span style="font-weight:bold;color:#a3cbe3;">test</span><span>]
+</span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">test_convert_to_u8</span><span>() {
+</span><span>    </span><span style="color:#db7c6d;">assert</span><span>(</span><span style="color:#db7c6d;">convert_felt_to_u8</span><span>(</span><span style="color:#db7c6d;">1</span><span>) </span><span style="color:#db7c6d;">== 1_</span><span style="color:#a3cbe3;">u8</span><span>, </span><span style="color:#dbbb3d;">&#39;Type</span><span> conversion went wrong</span><span style="color:#db7c6d;">&#39;</span><span>);
+</span><span>}
+</span></code></pre>
 <p>In this exercise we are tasked with modifying the integer types  and felt252 to make the tests pass, seems simple enough let's take a look at the errors for any hints on how to fix this problem.</p>
 <h2 id="primitive-types4-cairo-errors"><code>primitive_types4.cairo</code> Errors</h2>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">🟡 Testing exercises&#x2F;primitive_types&#x2F;primitive_types4.cairo exercise...
-
-   Compiling test(exercise_crate_unittest) exercise_crate v0.1.0 (&#x2F;Users&#x2F;desmo&#x2F;repos&#x2F;starklings-cairo1&#x2F;runner-crate&#x2F;Scarb.toml)
-error: Unexpected return type. Expected: &quot;core::felt252&quot;, found: &quot;()&quot;.
- --&gt; &#x2F;Users&#x2F;desmo&#x2F;repos&#x2F;starklings-cairo1&#x2F;runner-crate&#x2F;src&#x2F;lib.cairo:21:38
-fn convert_to_felt(x: u8) -&gt; felt252 { &#x2F;&#x2F;TODO return x as a felt252.
-                                     ^*****************************^
-
-error: Unexpected return type. Expected: &quot;core::integer::u8&quot;, found: &quot;()&quot;.
- --&gt; &#x2F;Users&#x2F;desmo&#x2F;repos&#x2F;starklings-cairo1&#x2F;runner-crate&#x2F;src&#x2F;lib.cairo:24:41
-fn convert_felt_to_u8(x: felt252) -&gt; u8 { &#x2F;&#x2F;TODO return x as a u8.
-                                        ^************************^
-
-error: The value does not fit within the range of type core::integer::u8.
- --&gt; &#x2F;Users&#x2F;desmo&#x2F;repos&#x2F;starklings-cairo1&#x2F;runner-crate&#x2F;src&#x2F;lib.cairo:38:47
-    assert(sum_big_numbers(255_u8, 255_u8) == 510_u8, &#x27;Something went wrong&#x27;);
-                                              ^****^
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span>🟡 Testing exercises</span><span style="color:#db7c6d;">/</span><span>primitive_types</span><span style="color:#db7c6d;">/</span><span>primitive_types4.cairo exercise</span><span style="color:#db7c6d;">...
+</span><span>
+</span><span>   Compiling </span><span style="color:#db7c6d;">test</span><span>(exercise_crate_unittest) exercise_crate v0.</span><span style="color:#db7c6d;">1.0 </span><span>(</span><span style="color:#db7c6d;">/</span><span>Users</span><span style="color:#db7c6d;">/</span><span>desmo</span><span style="color:#db7c6d;">/</span><span>repos</span><span style="color:#db7c6d;">/</span><span>starklings</span><span style="color:#db7c6d;">-</span><span>cairo1</span><span style="color:#db7c6d;">/</span><span>runner</span><span style="color:#db7c6d;">-crate/</span><span>Scarb.toml)
+</span><span>error: Unexpected </span><span style="color:#db7c6d;">return </span><span style="color:#a3cbe3;">type</span><span>. Expected: </span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>core::felt252</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>, found: </span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>()</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>.
+</span><span> </span><span style="color:#db7c6d;">-</span><span>-&gt; </span><span style="color:#db7c6d;">/</span><span>Users</span><span style="color:#db7c6d;">/</span><span>desmo</span><span style="color:#db7c6d;">/</span><span>repos</span><span style="color:#db7c6d;">/</span><span>starklings</span><span style="color:#db7c6d;">-</span><span>cairo1</span><span style="color:#db7c6d;">/</span><span>runner</span><span style="color:#db7c6d;">-crate/</span><span>src</span><span style="color:#db7c6d;">/</span><span>lib.cairo:</span><span style="color:#db7c6d;">21</span><span>:</span><span style="color:#db7c6d;">38
+</span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">convert_to_felt</span><span>(</span><span style="color:#ffffff;">x</span><span>: </span><span style="color:#a3cbe3;">u8</span><span>) -&gt; felt252 { </span><span style="color:#707180;">//TODO return x as a felt252.
+</span><span>                                     </span><span style="color:#db7c6d;">^*****************************^
+</span><span>
+</span><span>error: Unexpected </span><span style="color:#db7c6d;">return </span><span style="color:#a3cbe3;">type</span><span>. Expected: </span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>core::integer::u8</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>, found: </span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>()</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>.
+</span><span> </span><span style="color:#db7c6d;">-</span><span>-&gt; </span><span style="color:#db7c6d;">/</span><span>Users</span><span style="color:#db7c6d;">/</span><span>desmo</span><span style="color:#db7c6d;">/</span><span>repos</span><span style="color:#db7c6d;">/</span><span>starklings</span><span style="color:#db7c6d;">-</span><span>cairo1</span><span style="color:#db7c6d;">/</span><span>runner</span><span style="color:#db7c6d;">-crate/</span><span>src</span><span style="color:#db7c6d;">/</span><span>lib.cairo:</span><span style="color:#db7c6d;">24</span><span>:</span><span style="color:#db7c6d;">41
+</span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">convert_felt_to_u8</span><span>(</span><span style="color:#ffffff;">x</span><span>: felt252) -&gt; </span><span style="color:#a3cbe3;">u8 </span><span>{ </span><span style="color:#707180;">//TODO return x as a u8.
+</span><span>                                        </span><span style="color:#db7c6d;">^************************^
+</span><span>
+</span><span>error: The value does not fit within the range of </span><span style="color:#a3cbe3;">type </span><span>core::integer::u8.
+</span><span> </span><span style="color:#db7c6d;">-</span><span>-&gt; </span><span style="color:#db7c6d;">/</span><span>Users</span><span style="color:#db7c6d;">/</span><span>desmo</span><span style="color:#db7c6d;">/</span><span>repos</span><span style="color:#db7c6d;">/</span><span>starklings</span><span style="color:#db7c6d;">-</span><span>cairo1</span><span style="color:#db7c6d;">/</span><span>runner</span><span style="color:#db7c6d;">-crate/</span><span>src</span><span style="color:#db7c6d;">/</span><span>lib.cairo:</span><span style="color:#db7c6d;">38</span><span>:</span><span style="color:#db7c6d;">47
+</span><span>    </span><span style="color:#db7c6d;">assert</span><span>(</span><span style="color:#db7c6d;">sum_big_numbers</span><span>(</span><span style="color:#db7c6d;">255_</span><span style="color:#a3cbe3;">u8</span><span>, </span><span style="color:#db7c6d;">255_</span><span style="color:#a3cbe3;">u8</span><span>) </span><span style="color:#db7c6d;">== 510_</span><span style="color:#a3cbe3;">u8</span><span>, </span><span style="color:#dbbb3d;">&#39;Something</span><span> went wrong</span><span style="color:#db7c6d;">&#39;</span><span>);
+</span><span>                                              </span><span style="color:#db7c6d;">^****^
+</span></code></pre>
 <p>Here we see that we have 3 main errors <code>Unexpected return type</code> which is for our unfinished functions, and  <code>error: The value does not fit within the range of type core::integer::u8</code> which is telling us that the value doesn't fit in a <code>u8</code>. So let's fix this.</p>
 <h2 id="primitive-types4-cairo-solution"><code>primitive_types4.cairo</code> Solution</h2>
 <p>Since this one is a little more involved let’s work through the solution step-by-step. As we know the tasks involve modifying types to prevent overflow and converting between integer types and felt252.</p>
@@ -650,61 +654,61 @@ For converting between <code>u8</code> and <code>felt252</code>, we’ll use the
 <p><strong>Step 3: Modify Tests</strong>
 Update the types in the test <code>test_sum_big_numbers</code> to reflect the changes made in the <code>sum_big_numbers</code> function.</p>
 <p>Here’s the modified code:</p>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">use traits::Into;
-use traits::TryInto;
-use option::OptionTrait;
-
-fn sum_u8s(x: u8, y: u8) -&gt; u8 {
-    x + y
-}
-
-&#x2F;&#x2F; Modified the types of this function to prevent an overflow when summing big values
-&#x2F;&#x2F; from u8 to u16
-fn sum_big_numbers(x: u16, y: u16) -&gt; u16 {
-    x + y
-}
-
-&#x2F;&#x2F; Return x as a felt252
-fn convert_to_felt(x: u8) -&gt; felt252 {
-    x.into() &#x2F;&#x2F; use .into() method on x
-}
-
-&#x2F;&#x2F; Return x as a u8
-fn convert_felt_to_u8(x: felt252) -&gt; u8 {
-    x.try_into().unwrap() &#x2F;&#x2F; use .try_into() with .unwrap() methods on x
-}
-
-#[test]
-fn test_sum_u8s() {
-    assert(sum_u8s(1, 2_u8) == 3_u8, &#x27;Something went wrong&#x27;);
-}
-
-#[test]
-fn test_sum_big_numbers() {
-    &#x2F;&#x2F; Modified this test to use the correct integer types from u8 to u16
-    assert(sum_big_numbers(255_u16, 255_u16) == 510_u16, &#x27;Something went wrong&#x27;);
-}
-
-#[test]
-fn test_convert_to_felt() {
-    assert(convert_to_felt(1_u8) == 1, &#x27;Type conversion went wrong&#x27;);
-}
-
-#[test]
-fn test_convert_to_u8() {
-    assert(convert_felt_to_u8(1) == 1_u8, &#x27;Type conversion went wrong&#x27;);
-}
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#db7c6d;">use </span><span>traits::Into;
+</span><span style="color:#db7c6d;">use </span><span>traits::TryInto;
+</span><span style="color:#db7c6d;">use </span><span>option::OptionTrait;
+</span><span>
+</span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">sum_u8s</span><span>(</span><span style="color:#ffffff;">x</span><span>: </span><span style="color:#a3cbe3;">u8</span><span>, </span><span style="color:#ffffff;">y</span><span>: </span><span style="color:#a3cbe3;">u8</span><span>) -&gt; </span><span style="color:#a3cbe3;">u8 </span><span>{
+</span><span>    x </span><span style="color:#db7c6d;">+</span><span> y
+</span><span>}
+</span><span>
+</span><span style="color:#707180;">// Modified the types of this function to prevent an overflow when summing big values
+</span><span style="color:#707180;">// from u8 to u16
+</span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">sum_big_numbers</span><span>(</span><span style="color:#ffffff;">x</span><span>: </span><span style="color:#a3cbe3;">u16</span><span>, </span><span style="color:#ffffff;">y</span><span>: </span><span style="color:#a3cbe3;">u16</span><span>) -&gt; </span><span style="color:#a3cbe3;">u16 </span><span>{
+</span><span>    x </span><span style="color:#db7c6d;">+</span><span> y
+</span><span>}
+</span><span>
+</span><span style="color:#707180;">// Return x as a felt252
+</span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">convert_to_felt</span><span>(</span><span style="color:#ffffff;">x</span><span>: </span><span style="color:#a3cbe3;">u8</span><span>) -&gt; felt252 {
+</span><span>    x.</span><span style="color:#db7c6d;">into</span><span>() </span><span style="color:#707180;">// use .into() method on x
+</span><span>}
+</span><span>
+</span><span style="color:#707180;">// Return x as a u8
+</span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">convert_felt_to_u8</span><span>(</span><span style="color:#ffffff;">x</span><span>: felt252) -&gt; </span><span style="color:#a3cbe3;">u8 </span><span>{
+</span><span>    x.</span><span style="color:#db7c6d;">try_into</span><span>().</span><span style="color:#db7c6d;">unwrap</span><span>() </span><span style="color:#707180;">// use .try_into() with .unwrap() methods on x
+</span><span>}
+</span><span>
+</span><span>#[</span><span style="font-weight:bold;color:#a3cbe3;">test</span><span>]
+</span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">test_sum_u8s</span><span>() {
+</span><span>    </span><span style="color:#db7c6d;">assert</span><span>(</span><span style="color:#db7c6d;">sum_u8s</span><span>(</span><span style="color:#db7c6d;">1</span><span>, </span><span style="color:#db7c6d;">2_</span><span style="color:#a3cbe3;">u8</span><span>) </span><span style="color:#db7c6d;">== 3_</span><span style="color:#a3cbe3;">u8</span><span>, </span><span style="color:#dbbb3d;">&#39;Something</span><span> went wrong</span><span style="color:#db7c6d;">&#39;</span><span>);
+</span><span>}
+</span><span>
+</span><span>#[</span><span style="font-weight:bold;color:#a3cbe3;">test</span><span>]
+</span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">test_sum_big_numbers</span><span>() {
+</span><span>    </span><span style="color:#707180;">// Modified this test to use the correct integer types from u8 to u16
+</span><span>    </span><span style="color:#db7c6d;">assert</span><span>(</span><span style="color:#db7c6d;">sum_big_numbers</span><span>(</span><span style="color:#db7c6d;">255_</span><span style="color:#a3cbe3;">u16</span><span>, </span><span style="color:#db7c6d;">255_</span><span style="color:#a3cbe3;">u16</span><span>) </span><span style="color:#db7c6d;">== 510_</span><span style="color:#a3cbe3;">u16</span><span>, </span><span style="color:#dbbb3d;">&#39;Something</span><span> went wrong</span><span style="color:#db7c6d;">&#39;</span><span>);
+</span><span>}
+</span><span>
+</span><span>#[</span><span style="font-weight:bold;color:#a3cbe3;">test</span><span>]
+</span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">test_convert_to_felt</span><span>() {
+</span><span>    </span><span style="color:#db7c6d;">assert</span><span>(</span><span style="color:#db7c6d;">convert_to_felt</span><span>(</span><span style="color:#db7c6d;">1_</span><span style="color:#a3cbe3;">u8</span><span>) </span><span style="color:#db7c6d;">== 1</span><span>, </span><span style="color:#dbbb3d;">&#39;Type</span><span> conversion went wrong</span><span style="color:#db7c6d;">&#39;</span><span>);
+</span><span>}
+</span><span>
+</span><span>#[</span><span style="font-weight:bold;color:#a3cbe3;">test</span><span>]
+</span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">test_convert_to_u8</span><span>() {
+</span><span>    </span><span style="color:#db7c6d;">assert</span><span>(</span><span style="color:#db7c6d;">convert_felt_to_u8</span><span>(</span><span style="color:#db7c6d;">1</span><span>) </span><span style="color:#db7c6d;">== 1_</span><span style="color:#a3cbe3;">u8</span><span>, </span><span style="color:#dbbb3d;">&#39;Type</span><span> conversion went wrong</span><span style="color:#db7c6d;">&#39;</span><span>);
+</span><span>}
+</span></code></pre>
 <p>with these these changes our code compiles and tests pass!</p>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">   Compiling test(exercise_crate_unittest) exercise_crate v0.1.0 (&#x2F;starklings-cairo1&#x2F;runner-crate&#x2F;Scarb.toml)
-    Finished release target(s) in 1 second
-running 4 tests
-test exercise_crate::test_convert_to_felt ... ok (gas usage est.: 900)
-test exercise_crate::test_sum_big_numbers ... ok (gas usage est.: 1670)
-test exercise_crate::test_convert_to_u8 ... ok (gas usage est.: 2010)
-test exercise_crate::test_sum_u8s ... ok (gas usage est.: 1670)
-test result: ok. 4 passed; 0 failed; 0 ignored; 0 filtered out;
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span>   Compiling </span><span style="color:#db7c6d;">test</span><span>(exercise_crate_unittest) exercise_crate v0.</span><span style="color:#db7c6d;">1.0 </span><span>(</span><span style="color:#db7c6d;">/</span><span>starklings</span><span style="color:#db7c6d;">-</span><span>cairo1</span><span style="color:#db7c6d;">/</span><span>runner</span><span style="color:#db7c6d;">-crate/</span><span>Scarb.toml)
+</span><span>    Finished release </span><span style="color:#db7c6d;">target</span><span>(s) </span><span style="color:#db7c6d;">in 1</span><span> second
+</span><span>running </span><span style="color:#db7c6d;">4</span><span> tests
+</span><span>test exercise_crate::test_convert_to_felt </span><span style="color:#db7c6d;">...</span><span> ok (gas usage est.: </span><span style="color:#db7c6d;">900</span><span>)
+</span><span>test exercise_crate::test_sum_big_numbers </span><span style="color:#db7c6d;">...</span><span> ok (gas usage est.: </span><span style="color:#db7c6d;">1670</span><span>)
+</span><span>test exercise_crate::test_convert_to_u8 </span><span style="color:#db7c6d;">...</span><span> ok (gas usage est.: </span><span style="color:#db7c6d;">2010</span><span>)
+</span><span>test exercise_crate::test_sum_u8s </span><span style="color:#db7c6d;">...</span><span> ok (gas usage est.: </span><span style="color:#db7c6d;">1670</span><span>)
+</span><span>test result: ok. </span><span style="color:#db7c6d;">4</span><span> passed; </span><span style="color:#db7c6d;">0</span><span> failed; </span><span style="color:#db7c6d;">0</span><span> ignored; </span><span style="color:#db7c6d;">0</span><span> filtered out;
+</span></code></pre>
 <h3 id="explanation-3">Explanation</h3>
 <ol>
 <li>
@@ -781,7 +785,7 @@ test result: ok. 4 passed; 0 failed; 0 ignored; 0 filtered out;
 		
     </p>
     
-    <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>3642 Words</p>
+    <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>2215 Words</p>
     
     <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2024-06-12</p>
     
@@ -804,7 +808,7 @@ test result: ok. 4 passed; 0 failed; 0 ignored; 0 filtered out;
 
 
 <footer id="site-footer" class="section-inner thin animated fadeIn faster">
-  <p>&copy; 2024 <a href="https:&#x2F;&#x2F;desmodrone.github.io">erick</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
+  <p>&copy; 2026 <a href="https:&#x2F;&#x2F;desmodrone.github.io">erick</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
   <p>Made with <a href="https://www.getzola.org" target="_blank" rel="noopener">Zola</a> &#183; Theme <a href="https://github.com/VersBinarii/hermit_zola" target="_blank" rel="noopener">Hermit_Zola</a>
 	
 	&#183; <a href="https://desmodrone.github.io/rss.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>

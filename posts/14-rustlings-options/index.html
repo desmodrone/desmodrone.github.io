@@ -27,6 +27,10 @@
   <link rel="alternate" type="application/rss+xml" title="RSS" href="https://desmodrone.github.io/rss.xml">
   
 
+  
+  <link rel="canonical" href="https://desmodrone.github.io/posts/14-rustlings-options/">
+  
+
   <body id="page">
 
 	
@@ -120,7 +124,7 @@
 		<small> - 
 <span class="reading-time" title="Estimated read time">
   
-  11 min read
+  7 min read
   
 </span>
 </small>
@@ -141,7 +145,7 @@ Option types are very common in Rust code, as they have a number of uses:</p>
 <li>Return values for functions that are not defined over their entire input range (partial functions)</li>
 <li>Return value for otherwise reporting simple errors, where None is returned on error</li>
 <li>Optional struct fields</li>
-<li>Struct fields that can be loaned or &quot;taken&quot;</li>
+<li>Struct fields that can be loaned or "taken"</li>
 <li>Optional function arguments</li>
 <li>Nullable pointers</li>
 <li>Swapping things out of difficult situations</li>
@@ -155,90 +159,90 @@ Option types are very common in Rust code, as they have a number of uses:</p>
 <li><a href="https://doc.rust-lang.org/rust-by-example/flow_control/while_let.html">while let</a></li>
 </ul>
 <h2 id="options1-rs">Options1.rs</h2>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">&#x2F;&#x2F; options1.rs
-&#x2F;&#x2F; Execute `rustlings hint options1` or use the `hint` watch subcommand for a hint.
-
-&#x2F;&#x2F; I AM NOT DONE
-
-&#x2F;&#x2F; This function returns how much icecream there is left in the fridge.
-&#x2F;&#x2F; If it&#x27;s before 10PM, there&#x27;s 5 pieces left. At 10PM, someone eats them
-&#x2F;&#x2F; all, so there&#x27;ll be no more left :(
-fn maybe_icecream(time_of_day: u16) -&gt; Option&lt;u16&gt; {
-    &#x2F;&#x2F; We use the 24-hour system here, so 10PM is a value of 22 and 12AM is a value of 0
-    &#x2F;&#x2F; The Option output should gracefully handle cases where time_of_day &gt; 23.
-    &#x2F;&#x2F; TODO: Complete the function body - remember to return an Option!
-    ???
-}
-
-#[cfg(test)]
-mod tests {
-    use super::*;
-
-    #[test]
-    fn check_icecream() {
-        assert_eq!(maybe_icecream(9), Some(5));
-        assert_eq!(maybe_icecream(10), Some(5));
-        assert_eq!(maybe_icecream(23), Some(0));
-        assert_eq!(maybe_icecream(22), Some(0));
-        assert_eq!(maybe_icecream(25), None);
-    }
-
-    #[test]
-    fn raw_value() {
-        &#x2F;&#x2F; TODO: Fix this test. How do you get at the value contained in the Option?
-        let icecreams = maybe_icecream(12);
-        assert_eq!(icecreams, 5);
-    }
-}
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#707180;">// options1.rs
+</span><span style="color:#707180;">// Execute `rustlings hint options1` or use the `hint` watch subcommand for a hint.
+</span><span>
+</span><span style="color:#707180;">// I AM NOT DONE
+</span><span>
+</span><span style="color:#707180;">// This function returns how much icecream there is left in the fridge.
+</span><span style="color:#707180;">// If it&#39;s before 10PM, there&#39;s 5 pieces left. At 10PM, someone eats them
+</span><span style="color:#707180;">// all, so there&#39;ll be no more left :(
+</span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">maybe_icecream</span><span>(</span><span style="color:#ffffff;">time_of_day</span><span>: </span><span style="color:#a3cbe3;">u16</span><span>) -&gt; </span><span style="color:#e7e7e7;">Option</span><span>&lt;</span><span style="color:#a3cbe3;">u16</span><span>&gt; {
+</span><span>    </span><span style="color:#707180;">// We use the 24-hour system here, so 10PM is a value of 22 and 12AM is a value of 0
+</span><span>    </span><span style="color:#707180;">// The Option output should gracefully handle cases where time_of_day &gt; 23.
+</span><span>    </span><span style="color:#707180;">// TODO: Complete the function body - remember to return an Option!
+</span><span>    </span><span style="color:#db7c6d;">???
+</span><span>}
+</span><span>
+</span><span>#[</span><span style="font-weight:bold;color:#a3cbe3;">cfg</span><span>(test)]
+</span><span style="color:#a3cbe3;">mod </span><span>tests {
+</span><span>    </span><span style="color:#db7c6d;">use super</span><span>::</span><span style="color:#db7c6d;">*</span><span>;
+</span><span>
+</span><span>    #[</span><span style="font-weight:bold;color:#a3cbe3;">test</span><span>]
+</span><span>    </span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">check_icecream</span><span>() {
+</span><span>        assert_eq!(</span><span style="color:#db7c6d;">maybe_icecream</span><span>(</span><span style="color:#db7c6d;">9</span><span>), </span><span style="color:#e7e7e7;">Some</span><span>(</span><span style="color:#db7c6d;">5</span><span>));
+</span><span>        assert_eq!(</span><span style="color:#db7c6d;">maybe_icecream</span><span>(</span><span style="color:#db7c6d;">10</span><span>), </span><span style="color:#e7e7e7;">Some</span><span>(</span><span style="color:#db7c6d;">5</span><span>));
+</span><span>        assert_eq!(</span><span style="color:#db7c6d;">maybe_icecream</span><span>(</span><span style="color:#db7c6d;">23</span><span>), </span><span style="color:#e7e7e7;">Some</span><span>(</span><span style="color:#db7c6d;">0</span><span>));
+</span><span>        assert_eq!(</span><span style="color:#db7c6d;">maybe_icecream</span><span>(</span><span style="color:#db7c6d;">22</span><span>), </span><span style="color:#e7e7e7;">Some</span><span>(</span><span style="color:#db7c6d;">0</span><span>));
+</span><span>        assert_eq!(</span><span style="color:#db7c6d;">maybe_icecream</span><span>(</span><span style="color:#db7c6d;">25</span><span>), </span><span style="color:#e7e7e7;">None</span><span>);
+</span><span>    }
+</span><span>
+</span><span>    #[</span><span style="font-weight:bold;color:#a3cbe3;">test</span><span>]
+</span><span>    </span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">raw_value</span><span>() {
+</span><span>        </span><span style="color:#707180;">// TODO: Fix this test. How do you get at the value contained in the Option?
+</span><span>        </span><span style="color:#a3cbe3;">let</span><span> icecreams </span><span style="color:#db7c6d;">= maybe_icecream</span><span>(</span><span style="color:#db7c6d;">12</span><span>);
+</span><span>        assert_eq!(icecreams, </span><span style="color:#db7c6d;">5</span><span>);
+</span><span>    }
+</span><span>}
+</span></code></pre>
 <p>Our instructions in this exercise are to create the logic in the <code>maybe_icecream</code> body which should tell us how much ice cream is left depending on the time of day -- for example if it's 9pm there should be some ice cream but if it's 11pm there should be no ice-cream. Next, we have to fix the text so we get the value that is contained inside of the Option.</p>
 <h2 id="options1-rs-errors">Options1.rs Errors</h2>
-<pre><code>⚠️  Compiling of exercises&#x2F;options&#x2F;options1.rs failed! Please try again. Here&#x27;s the output:
-error: expected expression, found `?`
-  --&gt; exercises&#x2F;options&#x2F;options1.rs:13:5
-   |
-13 |     ???
-   |     ^ expected expression
-
-error[E0308]: mismatched types
-  --&gt; exercises&#x2F;options&#x2F;options1.rs:33:9
-   |
-33 |         assert_eq!(icecreams, 5);
-   |         ^^^^^^^^^^^^^^^^^^^^^^^^
-   |         |
-   |         expected enum `Option`, found integer
-   |         expected because this is `Option&lt;u16&gt;`
-   |
-   = note: expected enum `Option&lt;u16&gt;`
-              found type `{integer}`
-   = note: this error originates in the macro `assert_eq` (in Nightly builds, run with -Z macro-backtrace for more info)
-help: try wrapping the expression in `Some`
-  --&gt; &#x2F;Users&#x2F;desmo&#x2F;.rustup&#x2F;toolchains&#x2F;stable-aarch64-apple-darwin&#x2F;lib&#x2F;rustlib&#x2F;src&#x2F;rust&#x2F;library&#x2F;core&#x2F;src&#x2F;macros&#x2F;mod.rs:40:35
-   |
-40 |                 if !(*left_val == Some(*right_val)) {
-   |                                   +++++          +
-
-error: aborting due to 2 previous errors
-</code></pre>
+<pre style="background-color:#31333d;color:#ffffffc4;"><code><span>⚠️  Compiling of exercises/options/options1.rs failed! Please try again. Here&#39;s the output:
+</span><span>error: expected expression, found `?`
+</span><span>  --&gt; exercises/options/options1.rs:13:5
+</span><span>   |
+</span><span>13 |     ???
+</span><span>   |     ^ expected expression
+</span><span>
+</span><span>error[E0308]: mismatched types
+</span><span>  --&gt; exercises/options/options1.rs:33:9
+</span><span>   |
+</span><span>33 |         assert_eq!(icecreams, 5);
+</span><span>   |         ^^^^^^^^^^^^^^^^^^^^^^^^
+</span><span>   |         |
+</span><span>   |         expected enum `Option`, found integer
+</span><span>   |         expected because this is `Option&lt;u16&gt;`
+</span><span>   |
+</span><span>   = note: expected enum `Option&lt;u16&gt;`
+</span><span>              found type `{integer}`
+</span><span>   = note: this error originates in the macro `assert_eq` (in Nightly builds, run with -Z macro-backtrace for more info)
+</span><span>help: try wrapping the expression in `Some`
+</span><span>  --&gt; /Users/desmo/.rustup/toolchains/stable-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/macros/mod.rs:40:35
+</span><span>   |
+</span><span>40 |                 if !(*left_val == Some(*right_val)) {
+</span><span>   |                                   +++++          +
+</span><span>
+</span><span>error: aborting due to 2 previous errors
+</span></code></pre>
 <p>There are some clear hints on how to fix this issues in the errors</p>
 <h2 id="options1-rs-solution">Options1.rs solution</h2>
 <p>Looking at the errors the Rust compiler offers a direct hint for how to solve the test. Let's tackle that one first since it looks super easy the compiler we fix it by wrapping our value in <code>Some()</code> as suggested like this:</p>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">  #[test]
-    fn raw_value() {
-        &#x2F;&#x2F; TODO: Fix this test. How do you get at the value contained in the Option?
-        let icecreams = maybe_icecream(12);
-        assert_eq!(icecreams, Some(5));
-    }
-}
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span>  #[</span><span style="font-weight:bold;color:#a3cbe3;">test</span><span>]
+</span><span>    </span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">raw_value</span><span>() {
+</span><span>        </span><span style="color:#707180;">// TODO: Fix this test. How do you get at the value contained in the Option?
+</span><span>        </span><span style="color:#a3cbe3;">let</span><span> icecreams </span><span style="color:#db7c6d;">= maybe_icecream</span><span>(</span><span style="color:#db7c6d;">12</span><span>);
+</span><span>        assert_eq!(icecreams, </span><span style="color:#e7e7e7;">Some</span><span>(</span><span style="color:#db7c6d;">5</span><span>));
+</span><span>    }
+</span><span>}
+</span></code></pre>
 <p>This fixes the issue in our test, now on to the <code>maybe_icecream</code> function.</p>
 <h3 id="maybe-ice-cream">Maybe Ice Cream</h3>
-<p>So our instructions are to return the amount of ice cream left in the fridge. So from this we understand that we have to return a value as an <code>Option&lt;u16&gt;</code> by looking at the function signature. So, in the next sentence we get a big hint as to the type of function body we have to write because the instructions start with an &quot;If&quot; meaning we should be able to use a <code>If</code> statement in our function body. Let's see what that could look like. In pseudo code:</p>
-<pre><code>if time of day is &lt; 10pm
-	then 5
-if time of day &gt; 10pm
-	then 0
-</code></pre>
+<p>So our instructions are to return the amount of ice cream left in the fridge. So from this we understand that we have to return a value as an <code>Option&lt;u16&gt;</code> by looking at the function signature. So, in the next sentence we get a big hint as to the type of function body we have to write because the instructions start with an "If" meaning we should be able to use a <code>If</code> statement in our function body. Let's see what that could look like. In pseudo code:</p>
+<pre style="background-color:#31333d;color:#ffffffc4;"><code><span>if time of day is &lt; 10pm
+</span><span>	then 5
+</span><span>if time of day &gt; 10pm
+</span><span>	then 0
+</span></code></pre>
 <p>Now, I started implementing this pseudo code but then realized that we actually have to pass 3 different test cases. Let's write this in the 24 hour clock system because it's easier.</p>
 <ol>
 <li>Before 22</li>
@@ -246,242 +250,242 @@ if time of day &gt; 10pm
 <li>Something else: 25</li>
 </ol>
 <p>For item 3, we can see it explicitly stated in our test code:</p>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">    fn check_icecream() {
-        assert_eq!(maybe_icecream(9), Some(5));
-        assert_eq!(maybe_icecream(10), Some(5));
-        assert_eq!(maybe_icecream(23), Some(0));
-        assert_eq!(maybe_icecream(22), Some(0));
-        assert_eq!(maybe_icecream(25), None);
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span>    </span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">check_icecream</span><span>() {
+</span><span>        assert_eq!(</span><span style="color:#db7c6d;">maybe_icecream</span><span>(</span><span style="color:#db7c6d;">9</span><span>), </span><span style="color:#e7e7e7;">Some</span><span>(</span><span style="color:#db7c6d;">5</span><span>));
+</span><span>        assert_eq!(</span><span style="color:#db7c6d;">maybe_icecream</span><span>(</span><span style="color:#db7c6d;">10</span><span>), </span><span style="color:#e7e7e7;">Some</span><span>(</span><span style="color:#db7c6d;">5</span><span>));
+</span><span>        assert_eq!(</span><span style="color:#db7c6d;">maybe_icecream</span><span>(</span><span style="color:#db7c6d;">23</span><span>), </span><span style="color:#e7e7e7;">Some</span><span>(</span><span style="color:#db7c6d;">0</span><span>));
+</span><span>        assert_eq!(</span><span style="color:#db7c6d;">maybe_icecream</span><span>(</span><span style="color:#db7c6d;">22</span><span>), </span><span style="color:#e7e7e7;">Some</span><span>(</span><span style="color:#db7c6d;">0</span><span>));
+</span><span>        assert_eq!(</span><span style="color:#db7c6d;">maybe_icecream</span><span>(</span><span style="color:#db7c6d;">25</span><span>), </span><span style="color:#e7e7e7;">None</span><span>);
+</span></code></pre>
 <p>So now, we know that we have to cover three different test cases <code>Some(5)</code>, <code>Some(0)</code> and <code>None</code>.  Let's implement this in Rust, keeping in mind the  instructions to use a 24 clock system.</p>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">fn maybe_icecream(time_of_day: u16) -&gt; Option&lt;u16&gt; {
-    if time_of_day &lt; 22 {
-        Some(5)
-    } else if time_of_day == 22 || time_of_day == 23 {
-        Some(0)
-    } else {
-        None
-    }
-}
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">maybe_icecream</span><span>(</span><span style="color:#ffffff;">time_of_day</span><span>: </span><span style="color:#a3cbe3;">u16</span><span>) -&gt; </span><span style="color:#e7e7e7;">Option</span><span>&lt;</span><span style="color:#a3cbe3;">u16</span><span>&gt; {
+</span><span>    </span><span style="color:#db7c6d;">if</span><span> time_of_day </span><span style="color:#db7c6d;">&lt; 22 </span><span>{
+</span><span>        </span><span style="color:#e7e7e7;">Some</span><span>(</span><span style="color:#db7c6d;">5</span><span>)
+</span><span>    } </span><span style="color:#db7c6d;">else if</span><span> time_of_day </span><span style="color:#db7c6d;">== 22 ||</span><span> time_of_day </span><span style="color:#db7c6d;">== 23 </span><span>{
+</span><span>        </span><span style="color:#e7e7e7;">Some</span><span>(</span><span style="color:#db7c6d;">0</span><span>)
+</span><span>    } </span><span style="color:#db7c6d;">else </span><span>{
+</span><span>        </span><span style="color:#e7e7e7;">None
+</span><span>    }
+</span><span>}
+</span></code></pre>
 <h3 id="using-match">Using <code>match</code></h3>
 <p>Another way to solve this problem in a more concise way would be to use a match statement and that could look something like this:</p>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">fn maybe_icecream(time_of_day: u16) -&gt; Option&lt;u16&gt; {
-    match time_of_day {
-        0..=21 =&gt; Some(5),
-        22..=23 =&gt; Some(0),
-        _ =&gt; None,
-    }
-}
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">maybe_icecream</span><span>(</span><span style="color:#ffffff;">time_of_day</span><span>: </span><span style="color:#a3cbe3;">u16</span><span>) -&gt; </span><span style="color:#e7e7e7;">Option</span><span>&lt;</span><span style="color:#a3cbe3;">u16</span><span>&gt; {
+</span><span>    </span><span style="color:#db7c6d;">match</span><span> time_of_day {
+</span><span>        </span><span style="color:#db7c6d;">0..=21 =&gt; </span><span style="color:#e7e7e7;">Some</span><span>(</span><span style="color:#db7c6d;">5</span><span>),
+</span><span>        </span><span style="color:#db7c6d;">22..=23 =&gt; </span><span style="color:#e7e7e7;">Some</span><span>(</span><span style="color:#db7c6d;">0</span><span>),
+</span><span>        </span><span style="color:#db7c6d;">_ =&gt; </span><span style="color:#e7e7e7;">None</span><span>,
+</span><span>    }
+</span><span>}
+</span></code></pre>
 <p>as you can see this is cleaner way of implementing a solution that handles all of our cases. Remember when using ranges you can use the <code>..=</code> to include the element in the range so in our case <code>0...=21</code> means from midnight to 9pm, and <code>22..=23</code> means from 10pm to 11pm.</p>
 <h2 id="options2-rs">Options2.rs</h2>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">&#x2F;&#x2F; options2.rs
-&#x2F;&#x2F; Execute `rustlings hint options2` or use the `hint` watch subcommand for a hint.
-
-&#x2F;&#x2F; I AM NOT DONE
-
-#[cfg(test)]
-mod tests {
-    #[test]
-    fn simple_option() {
-        let target = &quot;rustlings&quot;;
-        let optional_target = Some(target);
-
-        &#x2F;&#x2F; TODO: Make this an if let statement whose value is &quot;Some&quot; type
-        if let Some(word) = optional_target {
-            assert_eq!(word, target);
-        }
-    }
-
-    #[test]
-    fn layered_option() {
-        let mut range = 10;
-        let mut optional_integers: Vec&lt;Option&lt;i8&gt;&gt; = Vec::new();
-        for i in 0..(range + 1) {
-            optional_integers.push(Some(i));
-        }
-
-        &#x2F;&#x2F; TODO: make this a while let statement - remember that vector.pop also adds another layer of Option&lt;T&gt;
-        &#x2F;&#x2F; You can stack `Option&lt;T&gt;`&#x27;s into while let and if let
-        integer = optional_integers.pop() {
-            assert_eq!(integer, range);
-            range -= 1;
-        }
-    }
-}
-
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#707180;">// options2.rs
+</span><span style="color:#707180;">// Execute `rustlings hint options2` or use the `hint` watch subcommand for a hint.
+</span><span>
+</span><span style="color:#707180;">// I AM NOT DONE
+</span><span>
+</span><span>#[</span><span style="font-weight:bold;color:#a3cbe3;">cfg</span><span>(test)]
+</span><span style="color:#a3cbe3;">mod </span><span>tests {
+</span><span>    #[</span><span style="font-weight:bold;color:#a3cbe3;">test</span><span>]
+</span><span>    </span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">simple_option</span><span>() {
+</span><span>        </span><span style="color:#a3cbe3;">let</span><span> target </span><span style="color:#db7c6d;">= </span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>rustlings</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>;
+</span><span>        </span><span style="color:#a3cbe3;">let</span><span> optional_target </span><span style="color:#db7c6d;">= </span><span style="color:#e7e7e7;">Some</span><span>(target);
+</span><span>
+</span><span>        </span><span style="color:#707180;">// TODO: Make this an if let statement whose value is &quot;Some&quot; type
+</span><span>        </span><span style="color:#db7c6d;">if </span><span style="color:#a3cbe3;">let </span><span style="color:#e7e7e7;">Some</span><span>(word) </span><span style="color:#db7c6d;">=</span><span> optional_target {
+</span><span>            assert_eq!(word, target);
+</span><span>        }
+</span><span>    }
+</span><span>
+</span><span>    #[</span><span style="font-weight:bold;color:#a3cbe3;">test</span><span>]
+</span><span>    </span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">layered_option</span><span>() {
+</span><span>        </span><span style="color:#a3cbe3;">let </span><span style="color:#dbbb3d;">mut</span><span> range </span><span style="color:#db7c6d;">= 10</span><span>;
+</span><span>        </span><span style="color:#a3cbe3;">let </span><span style="color:#dbbb3d;">mut</span><span> optional_integers: </span><span style="color:#e7e7e7;">Vec</span><span>&lt;</span><span style="color:#e7e7e7;">Option</span><span>&lt;</span><span style="color:#a3cbe3;">i8</span><span>&gt;&gt; </span><span style="color:#db7c6d;">= </span><span style="color:#e7e7e7;">Vec</span><span>::new();
+</span><span>        </span><span style="color:#db7c6d;">for</span><span> i </span><span style="color:#db7c6d;">in 0..</span><span>(range </span><span style="color:#db7c6d;">+ 1</span><span>) {
+</span><span>            optional_integers.</span><span style="color:#db7c6d;">push</span><span>(</span><span style="color:#e7e7e7;">Some</span><span>(i));
+</span><span>        }
+</span><span>
+</span><span>        </span><span style="color:#707180;">// TODO: make this a while let statement - remember that vector.pop also adds another layer of Option&lt;T&gt;
+</span><span>        </span><span style="color:#707180;">// You can stack `Option&lt;T&gt;`&#39;s into while let and if let
+</span><span>        integer </span><span style="color:#db7c6d;">=</span><span> optional_integers.</span><span style="color:#db7c6d;">pop</span><span>() {
+</span><span>            assert_eq!(integer, range);
+</span><span>            range </span><span style="color:#db7c6d;">-= 1</span><span>;
+</span><span>        }
+</span><span>    }
+</span><span>}
+</span><span>
+</span></code></pre>
 <p>We have a couple of TODO's here one in the <code>simple_option</code> function that asks us to use a <code>if let</code> statement and then the next on the list asks for a <code>while let</code> statement with a reminder that using <code>vector.pop</code> also adds another layer of <code>Option&lt;T&gt;</code>, noting that we can 'stack' <code>Option&lt;T&gt;</code>'s when using <code>while let</code> and <code>if let</code>.</p>
 <h2 id="options2-rs-errors">Options2.rs errors</h2>
-<pre><code>⚠️  Compiling of exercises&#x2F;options&#x2F;options2.rs failed! Please try again. Here&#x27;s the output:
-error: expected one of `,`, `:`, or `}`, found `!`
-  --&gt; exercises&#x2F;options&#x2F;options2.rs:15:22
-   |
-14 |         word = optional_target {
-   |                --------------- while parsing this struct
-15 |             assert_eq!(word, target);
-   |                      ^ expected one of `,`, `:`, or `}`
-
-error: expected one of `,`, `:`, or `}`, found `)`
-  --&gt; exercises&#x2F;options&#x2F;options2.rs:15:36
-   |
-14 |         word = optional_target {
-   |                --------------- while parsing this struct
-15 |             assert_eq!(word, target);
-   |                                    ^ expected one of `,`, `:`, or `}`
-
-error: expected one of `.`, `;`, `?`, `}`, or an operator, found `{`
-  --&gt; exercises&#x2F;options&#x2F;options2.rs:29:43
-   |
-29 |         integer = optional_integers.pop() {
-   |                                           ^ expected one of `.`, `;`, `?`, `}`, or an operator
-
-error[E0425]: cannot find value `word` in this scope
-  --&gt; exercises&#x2F;options&#x2F;options2.rs:14:9
-   |
-14 |         word = optional_target {
-   |         ^^^^
-   |
-help: you might have meant to introduce a new binding
-   |
-14 |         let word = optional_target {
-   |         +++
-
-error[E0574]: expected struct, variant or union type, found local variable `optional_target`
-  --&gt; exercises&#x2F;options&#x2F;options2.rs:14:16
-   |
-14 |         word = optional_target {
-   |                ^^^^^^^^^^^^^^^ not a struct, variant or union type
-
-error: aborting due to 5 previous errors
-</code></pre>
+<pre style="background-color:#31333d;color:#ffffffc4;"><code><span>⚠️  Compiling of exercises/options/options2.rs failed! Please try again. Here&#39;s the output:
+</span><span>error: expected one of `,`, `:`, or `}`, found `!`
+</span><span>  --&gt; exercises/options/options2.rs:15:22
+</span><span>   |
+</span><span>14 |         word = optional_target {
+</span><span>   |                --------------- while parsing this struct
+</span><span>15 |             assert_eq!(word, target);
+</span><span>   |                      ^ expected one of `,`, `:`, or `}`
+</span><span>
+</span><span>error: expected one of `,`, `:`, or `}`, found `)`
+</span><span>  --&gt; exercises/options/options2.rs:15:36
+</span><span>   |
+</span><span>14 |         word = optional_target {
+</span><span>   |                --------------- while parsing this struct
+</span><span>15 |             assert_eq!(word, target);
+</span><span>   |                                    ^ expected one of `,`, `:`, or `}`
+</span><span>
+</span><span>error: expected one of `.`, `;`, `?`, `}`, or an operator, found `{`
+</span><span>  --&gt; exercises/options/options2.rs:29:43
+</span><span>   |
+</span><span>29 |         integer = optional_integers.pop() {
+</span><span>   |                                           ^ expected one of `.`, `;`, `?`, `}`, or an operator
+</span><span>
+</span><span>error[E0425]: cannot find value `word` in this scope
+</span><span>  --&gt; exercises/options/options2.rs:14:9
+</span><span>   |
+</span><span>14 |         word = optional_target {
+</span><span>   |         ^^^^
+</span><span>   |
+</span><span>help: you might have meant to introduce a new binding
+</span><span>   |
+</span><span>14 |         let word = optional_target {
+</span><span>   |         +++
+</span><span>
+</span><span>error[E0574]: expected struct, variant or union type, found local variable `optional_target`
+</span><span>  --&gt; exercises/options/options2.rs:14:16
+</span><span>   |
+</span><span>14 |         word = optional_target {
+</span><span>   |                ^^^^^^^^^^^^^^^ not a struct, variant or union type
+</span><span>
+</span><span>error: aborting due to 5 previous errors
+</span></code></pre>
 <p>The error's don't give us a lot of a lot of hints in this case other letting us know that we probably want to introduce a new binding at line 14. So let's start there.</p>
 <h2 id="options2-rs-solution">Options2.rs solution</h2>
 <p>Using <code>if let</code> bindings allow us to sort of use a match statement, that is less awkward in cases where there is only one correct outcome and we'd have to use <code>_</code> to be exhaustive. which would lead to some cluncky code like in this example from <a href="https://doc.rust-lang.org/rust-by-example/flow_control/if_let.html">Rust by Example</a></p>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">&#x2F;&#x2F; Make `optional` of type `Option&lt;i32&gt;`
-let optional = Some(7);
-
-match optional {
-    Some(i) =&gt; {
-        println!(&quot;This is a really long string and `{:?}`&quot;, i);
-        &#x2F;&#x2F; ^ Needed 2 indentations just so we could destructure
-        &#x2F;&#x2F; `i` from the option.
-    },
-    _ =&gt; {},
-    &#x2F;&#x2F; ^ Required because `match` is exhaustive. Doesn&#x27;t it seem
-    &#x2F;&#x2F; like wasted space?
-};
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#707180;">// Make `optional` of type `Option&lt;i32&gt;`
+</span><span style="color:#a3cbe3;">let</span><span> optional </span><span style="color:#db7c6d;">= </span><span style="color:#e7e7e7;">Some</span><span>(</span><span style="color:#db7c6d;">7</span><span>);
+</span><span>
+</span><span style="color:#db7c6d;">match</span><span> optional {
+</span><span>    </span><span style="color:#e7e7e7;">Some</span><span>(i) </span><span style="color:#db7c6d;">=&gt; </span><span>{
+</span><span>        println!(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>This is a really long string and `</span><span style="font-weight:bold;color:#a2ba43;">{:?}</span><span>`</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>, i);
+</span><span>        </span><span style="color:#707180;">// ^ Needed 2 indentations just so we could destructure
+</span><span>        </span><span style="color:#707180;">// `i` from the option.
+</span><span>    },
+</span><span>    </span><span style="color:#db7c6d;">_ =&gt; </span><span>{},
+</span><span>    </span><span style="color:#707180;">// ^ Required because `match` is exhaustive. Doesn&#39;t it seem
+</span><span>    </span><span style="color:#707180;">// like wasted space?
+</span><span>};
+</span></code></pre>
 <p>So let's try using <code>if let</code> on our first TODO.</p>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">if let Some(word) = optional_target { &#x2F;&#x2F; binding with `if let` wrapping `word` with Some
-	assert_eq!(word, target);
-}
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#db7c6d;">if </span><span style="color:#a3cbe3;">let </span><span style="color:#e7e7e7;">Some</span><span>(word) </span><span style="color:#db7c6d;">=</span><span> optional_target { </span><span style="color:#707180;">// binding with `if let` wrapping `word` with Some
+</span><span>	assert_eq!(word, target);
+</span><span>}
+</span></code></pre>
 <p>With this we can save and see how our error's look.</p>
-<pre><code>⚠️  Compiling of exercises&#x2F;options&#x2F;options2.rs failed! Please try again. Here&#x27;s the output:
-error: expected one of `.`, `;`, `?`, `}`, or an operator, found `{`
-  --&gt; exercises&#x2F;options&#x2F;options2.rs:29:43
-   |
-29 |         integer = optional_integers.pop() {
-   |                                           ^ expected one of `.`, `;`, `?`, `}`, or an operator
-
-error: aborting due to previous error
-</code></pre>
+<pre style="background-color:#31333d;color:#ffffffc4;"><code><span>⚠️  Compiling of exercises/options/options2.rs failed! Please try again. Here&#39;s the output:
+</span><span>error: expected one of `.`, `;`, `?`, `}`, or an operator, found `{`
+</span><span>  --&gt; exercises/options/options2.rs:29:43
+</span><span>   |
+</span><span>29 |         integer = optional_integers.pop() {
+</span><span>   |                                           ^ expected one of `.`, `;`, `?`, `}`, or an operator
+</span><span>
+</span><span>error: aborting due to previous error
+</span></code></pre>
 <p>Okay we went from 5 error's to 1, great let's work on that next part of the code with <code>while let</code>. Similar to <code>if let</code> using <code>while let</code> can make matching sequences easier to use in this case in a loop type setting. So let's try and implement the solution in the same way we did with the <code>if let</code> binding.</p>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">        &#x2F;&#x2F; TODO: make this a while let statement - remember that vector.pop also adds another layer of Option&lt;T&gt;
-        &#x2F;&#x2F; You can stack `Option&lt;T&gt;`&#x27;s into while let and if let
-        while let Some(integer) = optional_integers.pop() {
-            assert_eq!(integer, range);
-            range -= 1;
-        }
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span>        </span><span style="color:#707180;">// TODO: make this a while let statement - remember that vector.pop also adds another layer of Option&lt;T&gt;
+</span><span>        </span><span style="color:#707180;">// You can stack `Option&lt;T&gt;`&#39;s into while let and if let
+</span><span>        </span><span style="color:#db7c6d;">while </span><span style="color:#a3cbe3;">let </span><span style="color:#e7e7e7;">Some</span><span>(integer) </span><span style="color:#db7c6d;">=</span><span> optional_integers.</span><span style="color:#db7c6d;">pop</span><span>() {
+</span><span>            assert_eq!(integer, range);
+</span><span>            range </span><span style="color:#db7c6d;">-= 1</span><span>;
+</span><span>        }
+</span></code></pre>
 <p>Let's see what happens...wait there's an error</p>
-<pre><code>⚠️  Compiling of exercises&#x2F;options&#x2F;options2.rs failed! Please try again. Here&#x27;s the output:
-error[E0308]: mismatched types
-  --&gt; exercises&#x2F;options&#x2F;options2.rs:30:13
-   |
-30 |             assert_eq!(integer, range);
-   |             ^^^^^^^^^^^^^^^^^^^^^^^^^^
-   |             |
-   |             expected `Option&lt;i8&gt;`, found `i8`
-   |             expected because this is `Option&lt;i8&gt;`
-   |
-   = note: expected enum `Option&lt;i8&gt;`
-              found type `i8`
-   = note: this error originates in the macro `assert_eq` (in Nightly builds, run with -Z macro-backtrace for more info)
-help: try wrapping the expression in `Some`
-  --&gt; &#x2F;Users&#x2F;desmo&#x2F;.rustup&#x2F;toolchains&#x2F;stable-aarch64-apple-darwin&#x2F;lib&#x2F;rustlib&#x2F;src&#x2F;rust&#x2F;library&#x2F;core&#x2F;src&#x2F;macros&#x2F;mod.rs:40:35
-   |
-40 |                 if !(*left_val == Some(*right_val)) {
-   |                                   +++++          +
-
-error: aborting due to previous error
-</code></pre>
+<pre style="background-color:#31333d;color:#ffffffc4;"><code><span>⚠️  Compiling of exercises/options/options2.rs failed! Please try again. Here&#39;s the output:
+</span><span>error[E0308]: mismatched types
+</span><span>  --&gt; exercises/options/options2.rs:30:13
+</span><span>   |
+</span><span>30 |             assert_eq!(integer, range);
+</span><span>   |             ^^^^^^^^^^^^^^^^^^^^^^^^^^
+</span><span>   |             |
+</span><span>   |             expected `Option&lt;i8&gt;`, found `i8`
+</span><span>   |             expected because this is `Option&lt;i8&gt;`
+</span><span>   |
+</span><span>   = note: expected enum `Option&lt;i8&gt;`
+</span><span>              found type `i8`
+</span><span>   = note: this error originates in the macro `assert_eq` (in Nightly builds, run with -Z macro-backtrace for more info)
+</span><span>help: try wrapping the expression in `Some`
+</span><span>  --&gt; /Users/desmo/.rustup/toolchains/stable-aarch64-apple-darwin/lib/rustlib/src/rust/library/core/src/macros/mod.rs:40:35
+</span><span>   |
+</span><span>40 |                 if !(*left_val == Some(*right_val)) {
+</span><span>   |                                   +++++          +
+</span><span>
+</span><span>error: aborting due to previous error
+</span></code></pre>
 <p>The compiler is telling us that it expects an <code>Option&lt;i8&gt;</code> but it's finding an <code>i8</code>...interesting. But wait let's look at that TODO comment: <code>remember that vector.pop also adds another layer of Option&lt;T&gt;</code> there it is. There's another layer of <code>Option&lt;T&gt;</code> that's created with <code>vector.pop</code> so does that mean that we have to wrap our <code>Some()</code> with <code>Some()</code>? Let's try.</p>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">while let Some(Some(integer)) = optional_integers.pop() {
-            assert_eq!(integer, range);
-            range -= 1;
-        }
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#db7c6d;">while </span><span style="color:#a3cbe3;">let </span><span style="color:#e7e7e7;">Some</span><span>(</span><span style="color:#e7e7e7;">Some</span><span>(integer)) </span><span style="color:#db7c6d;">=</span><span> optional_integers.</span><span style="color:#db7c6d;">pop</span><span>() {
+</span><span>            assert_eq!(integer, range);
+</span><span>            range </span><span style="color:#db7c6d;">-= 1</span><span>;
+</span><span>        }
+</span></code></pre>
 <p>Success! This is our output</p>
-<pre><code>✅ Successfully tested exercises&#x2F;options&#x2F;options2.rs!
-
-🎉 🎉  The code is compiling, and the tests pass! 🎉 🎉
-</code></pre>
+<pre style="background-color:#31333d;color:#ffffffc4;"><code><span>✅ Successfully tested exercises/options/options2.rs!
+</span><span>
+</span><span>🎉 🎉  The code is compiling, and the tests pass! 🎉 🎉
+</span></code></pre>
 <p>Let's move on to our final Option exercise.</p>
 <h2 id="options3-rs">Options3.rs</h2>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">&#x2F;&#x2F; options3.rs
-&#x2F;&#x2F; Execute `rustlings hint options3` or use the `hint` watch subcommand for a hint.
-
-&#x2F;&#x2F; I AM NOT DONE
-
-struct Point {
-    x: i32,
-    y: i32,
-}
-
-fn main() {
-    let y: Option&lt;Point&gt; = Some(Point { x: 100, y: 200 });
-
-    match y {
-        Some(p) =&gt; println!(&quot;Co-ordinates are {},{} &quot;, p.x, p.y),
-        _ =&gt; println!(&quot;no match&quot;),
-    }
-    y; &#x2F;&#x2F; Fix without deleting this line.
-}
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#707180;">// options3.rs
+</span><span style="color:#707180;">// Execute `rustlings hint options3` or use the `hint` watch subcommand for a hint.
+</span><span>
+</span><span style="color:#707180;">// I AM NOT DONE
+</span><span>
+</span><span style="color:#a3cbe3;">struct </span><span>Point {
+</span><span>    </span><span style="font-weight:bold;color:#a3cbe3;">x</span><span>: </span><span style="color:#a3cbe3;">i32</span><span>,
+</span><span>    </span><span style="font-weight:bold;color:#a3cbe3;">y</span><span>: </span><span style="color:#a3cbe3;">i32</span><span>,
+</span><span>}
+</span><span>
+</span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">main</span><span>() {
+</span><span>    </span><span style="color:#a3cbe3;">let</span><span> y: </span><span style="color:#e7e7e7;">Option</span><span>&lt;Point&gt; </span><span style="color:#db7c6d;">= </span><span style="color:#e7e7e7;">Some</span><span>(Point { x: </span><span style="color:#db7c6d;">100</span><span>, y: </span><span style="color:#db7c6d;">200 </span><span>});
+</span><span>
+</span><span>    </span><span style="color:#db7c6d;">match</span><span> y {
+</span><span>        </span><span style="color:#e7e7e7;">Some</span><span>(p) </span><span style="color:#db7c6d;">=&gt; </span><span>println!(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>Co-ordinates are </span><span style="font-weight:bold;color:#a2ba43;">{}</span><span>,</span><span style="font-weight:bold;color:#a2ba43;">{} </span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>, p.x, p.y),
+</span><span>        </span><span style="color:#db7c6d;">_ =&gt; </span><span>println!(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>no match</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>),
+</span><span>    }
+</span><span>    y; </span><span style="color:#707180;">// Fix without deleting this line.
+</span><span>}
+</span></code></pre>
 <p>We're not getting a lot of instruction here but we're being told to fix this code without removing the <code>y;</code> on line 18. Let's take a look at the errors.</p>
 <h2 id="options3-rs-errors">Options3.rs errors</h2>
-<pre><code>⚠️  Compiling of exercises&#x2F;options&#x2F;options3.rs failed! Please try again. Here&#x27;s the output:
-error[E0382]: use of partially moved value: `y`
-  --&gt; exercises&#x2F;options&#x2F;options3.rs:18:5
-   |
-15 |         Some(p) =&gt; println!(&quot;Co-ordinates are {},{} &quot;, p.x, p.y),
-   |              - value partially moved here
-...
-18 |     y; &#x2F;&#x2F; Fix without deleting this line.
-   |     ^ value used here after partial move
-   |
-   = note: partial move occurs because value has type `Point`, which does not implement the `Copy` trait
-help: borrow this binding in the pattern to avoid moving the value
-   |
-15 |         Some(ref p) =&gt; println!(&quot;Co-ordinates are {},{} &quot;, p.x, p.y),
-   |              +++
-
-error: aborting due to previous error
-</code></pre>
+<pre style="background-color:#31333d;color:#ffffffc4;"><code><span>⚠️  Compiling of exercises/options/options3.rs failed! Please try again. Here&#39;s the output:
+</span><span>error[E0382]: use of partially moved value: `y`
+</span><span>  --&gt; exercises/options/options3.rs:18:5
+</span><span>   |
+</span><span>15 |         Some(p) =&gt; println!(&quot;Co-ordinates are {},{} &quot;, p.x, p.y),
+</span><span>   |              - value partially moved here
+</span><span>...
+</span><span>18 |     y; // Fix without deleting this line.
+</span><span>   |     ^ value used here after partial move
+</span><span>   |
+</span><span>   = note: partial move occurs because value has type `Point`, which does not implement the `Copy` trait
+</span><span>help: borrow this binding in the pattern to avoid moving the value
+</span><span>   |
+</span><span>15 |         Some(ref p) =&gt; println!(&quot;Co-ordinates are {},{} &quot;, p.x, p.y),
+</span><span>   |              +++
+</span><span>
+</span><span>error: aborting due to previous error
+</span></code></pre>
 <p>In this case we get a big hint as to what is going on with the code and a very direct suggestion as to how to fix it it, let's see what happens if we implement the compiler suggestion.</p>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">fn main() {
-    let y: Option&lt;Point&gt; = Some(Point { x: 100, y: 200 });
-
-    match y {
-        Some(ref p) =&gt; println!(&quot;Co-ordinates are {},{} &quot;, p.x, p.y), &#x2F;&#x2F; adding `ref`
-        _ =&gt; println!(&quot;no match&quot;),
-    }
-    y; &#x2F;&#x2F; Fix without deleting this line.
-}
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">main</span><span>() {
+</span><span>    </span><span style="color:#a3cbe3;">let</span><span> y: </span><span style="color:#e7e7e7;">Option</span><span>&lt;Point&gt; </span><span style="color:#db7c6d;">= </span><span style="color:#e7e7e7;">Some</span><span>(Point { x: </span><span style="color:#db7c6d;">100</span><span>, y: </span><span style="color:#db7c6d;">200 </span><span>});
+</span><span>
+</span><span>    </span><span style="color:#db7c6d;">match</span><span> y {
+</span><span>        </span><span style="color:#e7e7e7;">Some</span><span>(</span><span style="color:#dbbb3d;">ref</span><span> p) </span><span style="color:#db7c6d;">=&gt; </span><span>println!(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>Co-ordinates are </span><span style="font-weight:bold;color:#a2ba43;">{}</span><span>,</span><span style="font-weight:bold;color:#a2ba43;">{} </span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>, p.x, p.y), </span><span style="color:#707180;">// adding `ref`
+</span><span>        </span><span style="color:#db7c6d;">_ =&gt; </span><span>println!(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>no match</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>),
+</span><span>    }
+</span><span>    y; </span><span style="color:#707180;">// Fix without deleting this line.
+</span><span>}
+</span></code></pre>
 <p>...and it compiles! Easy enough but let's take a deeper look at this, what is this <code>ref</code> and is it the same as <code>&amp;</code>?</p>
 <p>So first let's understand a little bit more about what is happening in this code and when we should use <code>ref</code>.</p>
 <p>In Rust, the <code>ref</code> keyword is used in patterns to create a reference to a value instead of moving it. This is particularly useful when dealing with non-<code>Copy</code> types (types that don't implement the <code>Copy</code> trait) to avoid moving the value out of its original location, which would leave the original variable uninitialized or unusable.</p>
@@ -496,19 +500,19 @@ error: aborting due to previous error
 - It is particularly useful when dealing with non-<code>Copy</code> types, as it allows you to borrow the value instead of moving it, preserving the original variable's ownership.
 - <code>ref</code> can only be used in patterns, specifically in match arms or when destructuring tuples or structs.</p>
 <p>Our example code using <code>ref</code>:</p>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">struct Point {
-    x: i32,
-    y: i32,
-}
-
-fn print_coordinates(point: Option&lt;Point&gt;) {
-    match point {
-        Some(ref p) =&gt; println!(&quot;Co-ordinates are {},{} &quot;, p.x, p.y),
-        None =&gt; println!(&quot;No point found!&quot;),
-    }
-}
-
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#a3cbe3;">struct </span><span>Point {
+</span><span>    </span><span style="font-weight:bold;color:#a3cbe3;">x</span><span>: </span><span style="color:#a3cbe3;">i32</span><span>,
+</span><span>    </span><span style="font-weight:bold;color:#a3cbe3;">y</span><span>: </span><span style="color:#a3cbe3;">i32</span><span>,
+</span><span>}
+</span><span>
+</span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">print_coordinates</span><span>(</span><span style="color:#ffffff;">point</span><span>: </span><span style="color:#e7e7e7;">Option</span><span>&lt;Point&gt;) {
+</span><span>    </span><span style="color:#db7c6d;">match</span><span> point {
+</span><span>        </span><span style="color:#e7e7e7;">Some</span><span>(</span><span style="color:#dbbb3d;">ref</span><span> p) </span><span style="color:#db7c6d;">=&gt; </span><span>println!(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>Co-ordinates are </span><span style="font-weight:bold;color:#a2ba43;">{}</span><span>,</span><span style="font-weight:bold;color:#a2ba43;">{} </span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>, p.x, p.y),
+</span><span>        </span><span style="color:#e7e7e7;">None </span><span style="color:#db7c6d;">=&gt; </span><span>println!(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>No point found!</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>),
+</span><span>    }
+</span><span>}
+</span><span>
+</span></code></pre>
 <p>Using <code>&amp;</code> in a pattern:</p>
 <ul>
 <li>The <code>&amp;</code> symbol in a pattern is used to destructure a reference. It allows you to match on the value being referenced instead of matching on the reference itself.</li>
@@ -516,13 +520,13 @@ fn print_coordinates(point: Option&lt;Point&gt;) {
 <li><code>&amp;</code> can also be used in match arms and when destructuring tuples or structs, just like <code>ref</code>.</li>
 </ul>
 <p>Example using <code>&amp;</code>:</p>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">fn print_coordinates_ref(point: Option&lt;&amp;Point&gt;) {
-    match point {
-        Some(p) =&gt; println!(&quot;Co-ordinates are {},{} &quot;, p.x, p.y),
-        None =&gt; println!(&quot;No point found!&quot;),
-    }
-}
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">print_coordinates_ref</span><span>(</span><span style="color:#ffffff;">point</span><span>: </span><span style="color:#e7e7e7;">Option</span><span>&lt;</span><span style="color:#db7c6d;">&amp;</span><span>Point&gt;) {
+</span><span>    </span><span style="color:#db7c6d;">match</span><span> point {
+</span><span>        </span><span style="color:#e7e7e7;">Some</span><span>(p) </span><span style="color:#db7c6d;">=&gt; </span><span>println!(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>Co-ordinates are </span><span style="font-weight:bold;color:#a2ba43;">{}</span><span>,</span><span style="font-weight:bold;color:#a2ba43;">{} </span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>, p.x, p.y),
+</span><span>        </span><span style="color:#e7e7e7;">None </span><span style="color:#db7c6d;">=&gt; </span><span>println!(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>No point found!</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>),
+</span><span>    }
+</span><span>}
+</span></code></pre>
 <p>In the first example, we use <code>ref</code> to match on the <code>Point</code> value by creating a reference <code>&amp;Point</code> and avoid moving the original value out of the <code>Option</code>. In the second example, we take a reference as an argument to the function and use <code>&amp;</code> to destructure the reference and match on the underlying <code>Point</code> value.</p>
 <p>Both <code>ref</code> and <code>&amp;</code> in patterns are essential tools when working with pattern matching and references in Rust. They allow you to control ownership and borrowing behavior while pattern matching on non-<code>Copy</code> types.</p>
 <h2 id="conclusion">Conclusion</h2>
@@ -564,7 +568,7 @@ fn print_coordinates(point: Option&lt;Point&gt;) {
 		
     </p>
     
-    <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>2959 Words</p>
+    <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>1794 Words</p>
     
     <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2023-07-31</p>
     
@@ -587,7 +591,7 @@ fn print_coordinates(point: Option&lt;Point&gt;) {
 
 
 <footer id="site-footer" class="section-inner thin animated fadeIn faster">
-  <p>&copy; 2024 <a href="https:&#x2F;&#x2F;desmodrone.github.io">erick</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
+  <p>&copy; 2026 <a href="https:&#x2F;&#x2F;desmodrone.github.io">erick</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
   <p>Made with <a href="https://www.getzola.org" target="_blank" rel="noopener">Zola</a> &#183; Theme <a href="https://github.com/VersBinarii/hermit_zola" target="_blank" rel="noopener">Hermit_Zola</a>
 	
 	&#183; <a href="https://desmodrone.github.io/rss.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>

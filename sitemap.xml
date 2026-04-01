@@ -11,7 +11,11 @@
     </url>
     <url>
         <loc>https://desmodrone.github.io/posts/00-hello-leetcode/</loc>
-        <lastmod>2024-01-07</lastmod>
+        <lastmod>2024-01-04</lastmod>
+    </url>
+    <url>
+        <loc>https://desmodrone.github.io/posts/00-hello-wasm/</loc>
+        <lastmod>2026-04-01</lastmod>
     </url>
     <url>
         <loc>https://desmodrone.github.io/posts/00-zero-knowledge-proof-history/</loc>
@@ -322,6 +326,9 @@
         <loc>https://desmodrone.github.io/tags/lock/</loc>
     </url>
     <url>
+        <loc>https://desmodrone.github.io/tags/macroquad/</loc>
+    </url>
+    <url>
         <loc>https://desmodrone.github.io/tags/macros/</loc>
     </url>
     <url>
@@ -470,6 +477,9 @@
     </url>
     <url>
         <loc>https://desmodrone.github.io/tags/vectors/</loc>
+    </url>
+    <url>
+        <loc>https://desmodrone.github.io/tags/wasm/</loc>
     </url>
     <url>
         <loc>https://desmodrone.github.io/tags/while-let/</loc>

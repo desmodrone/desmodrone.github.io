@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <meta itemprop="name" content="desmo" />
+  <meta itemprop="description" content="Random Ideas" />
+
+  <link rel="apple-touch-icon" sizes="180x180" href="https://desmodrone.github.io/apple-touch-icon.png"/>
+  <link rel="icon" type="image/png" sizes="32x32" href="https://desmodrone.github.io/favicon-32x32.png" />
+  <link
+    rel="icon"
+    type="image/png"
+    sizes="16x16"
+    href="https://desmodrone.github.io/favicon-16x16.png"
+  />
+  <link
+    rel="shortcut icon"
+    href="https://desmodrone.github.io/favicon.ico"
+  />
+  <link rel="stylesheet" href="https://desmodrone.github.io/style.css"/>
+  
+  <title>A Rust-Powered Starfield in the Browser with Macroquad + WASM</title>
+  
+
+  
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="https://desmodrone.github.io/rss.xml">
+  
+
+  
+  <link rel="canonical" href="https:&#x2F;&#x2F;www.apexwins.com&#x2F;blog&#x2F;rust-wasm-starfield">
+  
+
+  <body id="page">
+
+	
+<header id="site-header" class="animated slideInUp faster">
+  <div class="hdr-wrapper section-inner">
+    <div class="hdr-left">
+      <div class="site-branding">
+        <a href="https:&#x2F;&#x2F;desmodrone.github.io">desmo</a>
+      </div>
+      <nav class="site-nav hide-in-mobile">
+            
+        
+        <a href="https://desmodrone.github.io/posts">posts</a>
+        
+        <a href="https://desmodrone.github.io/about">about</a>
+        
+        <a href="https://desmodrone.github.io/work">work</a>
+        
+      </nav>
+    </div>
+    <div class="hdr-right hdr-icons">
+      <span class="hdr-social hide-in-mobile">
+        
+
+<a href="https:&#x2F;&#x2F;twitter.com&#x2F;desmo_io" target="_blank" rel="noopener me"
+   title="twitter">
+  
+  <svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg>
+  
+</a>
+
+<a href="https:&#x2F;&#x2F;github.com&#x2F;desmodrone" target="_blank" rel="noopener me"
+   title="github">
+  
+  <svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+  
+</a>
+
+<a href="mailto:erick@apexwins.com" target="_blank" rel="noopener me"
+   title="email">
+  
+  <svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+  
+</a>
+
+
+      </span>
+      <button id="menu-btn" class="hdr-btn" title="Menu">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="feather feather-menu"
+        >
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+  </div>
+</header>
+<div id="mobile-menu" class="animated fast">
+  <ul>
+    
+    <li><a href="https://desmodrone.github.io/posts">posts</a></li>
+    
+    <li><a href="https://desmodrone.github.io/about">about</a></li>
+    
+    <li><a href="https://desmodrone.github.io/work">work</a></li>
+    
+  </ul>
+</div>
+
+	
+	
+
+		
+<main class="site-main section-inner animated fadeIn faster">
+  <article class="thin">
+	<header class="post-header">
+	  <div class="post-meta">
+		
+		<span>Apr 01, 2026</span>
+		<small> - 
+<span class="reading-time" title="Estimated read time">
+  
+  3 min read
+  
+</span>
+</small>
+		
+            
+	  </div>
+	  <h1>A Rust-Powered Starfield in the Browser with Macroquad + WASM</h1>
+	</header>
+
+	<div class="content">
+        
+	  <p>AI can get you to a working result quickly. What it doesn’t replace is the value of understanding why something looks right, breaks, or feels good to tune.</p>
+<p>I wanted a small Rust project where the mechanics stayed visible, and a browser-based starfield was a good fit: simple enough to build quickly, but visual enough to make the underlying math worth paying attention to.</p>
+<p>The nice part is that this effect is mostly a handful of small ideas wired together correctly. We are not building a full engine here. We are just using Rust, a rendering loop, and some basic projection math to create a convincing sense of forward motion.</p>
+<p>This walkthrough assumes you're comfortable reading basic Rust, but not necessarily familiar with Macroquad, WASM, or graphics code.</p>
+<h2 id="setting-up-the-machine">Setting Up the Machine</h2>
+<p>Before we get to the pixels, we need the right tools in the garage. For this project, we're using <strong>Macroquad's own web loader path</strong>, which keeps the setup simple: compile to <code>wasm32-unknown-unknown</code>, drop the output into a small <code>web/</code> folder, and serve it like static files.</p>
+<h3 id="1-create-the-project">1. Create the Project</h3>
+<p>If you do not already have Rust installed, start with <code>rustup</code> from <a href="https://rustup.rs/">rustup.rs</a>. Once that is in place, create a new Rust binary project and move into the directory:</p>
+<pre data-lang="bash" style="background-color:#31333d;color:#ffffffc4;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="font-weight:bold;color:#a3cbe3;">cargo</span><span> new starfield</span><span style="color:#ffffff;"> --bin
+</span><span style="color:#db7c6d;">cd</span><span> starfield
+</span><span>
+</span><span style="color:#707180;"># Install the WASM target
+</span><span style="font-weight:bold;color:#a3cbe3;">rustup</span><span> target add wasm32-unknown-unknown
+</span><span>
+</span><span style="color:#707180;"># Optional: install a simple static server for local testing
+</span><span style="font-weight:bold;color:#a3cbe3;">cargo</span><span> install basic-http-server
+</span></code></pre>
+<h3 id="2-the-blueprint-cargo-toml">2. The Blueprint (Cargo.toml)</h3>
+<p>We only need a few parts to get this engine running. Macroquad handles the graphics, and we’ll use the <code>rand</code> crate for our star distribution.</p>
+<p>I landed on this exact <code>rand</code> config after a failed browser build. The <code>small_rng</code> feature is enough for this project, and disabling <code>rand</code>'s default features avoids pulling in browser glue that does not match Macroquad's plain HTML5 loader path.</p>
+<pre data-lang="toml" style="background-color:#31333d;color:#ffffffc4;" class="language-toml "><code class="language-toml" data-lang="toml"><span>[dependencies]
+</span><span style="color:#db7c6d;">macroquad </span><span>= </span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>0.4</span><span style="font-weight:bold;color:#dbbb3d;">&quot;
+</span><span style="color:#db7c6d;">rand </span><span>= { </span><span style="color:#db7c6d;">version </span><span>= </span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>0.8</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>, </span><span style="color:#db7c6d;">default-features </span><span>= </span><span style="color:#ffffff;">false</span><span>, </span><span style="color:#db7c6d;">features </span><span>= </span><span style="font-weight:bold;color:#dbbb3d;">[&quot;</span><span>small_rng</span><span style="font-weight:bold;color:#dbbb3d;">&quot;] </span><span>}
+</span></code></pre>
+<h3 id="3-the-glue-web-index-html">3. The Glue (<code>web/index.html</code>)</h3>
+<p>Macroquad's browser path expects a canvas and a JavaScript loader. Create a <code>web/</code> directory, and inside it add an <code>index.html</code>:</p>
+<pre data-lang="html" style="background-color:#31333d;color:#ffffffc4;" class="language-html "><code class="language-html" data-lang="html"><span style="font-weight:bold;color:#dbbb3d;">&lt;!</span><span style="color:#db7c6d;">DOCTYPE </span><span style="color:#ffffff;">html</span><span style="font-weight:bold;color:#dbbb3d;">&gt;
+</span><span style="font-weight:bold;color:#dbbb3d;">&lt;</span><span style="color:#db7c6d;">html </span><span style="color:#e8a64b;">lang</span><span style="font-weight:bold;color:#db7c6d;">=</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>en</span><span style="font-weight:bold;color:#dbbb3d;">&quot;&gt;
+</span><span style="font-weight:bold;color:#dbbb3d;">&lt;</span><span style="color:#db7c6d;">head</span><span style="font-weight:bold;color:#dbbb3d;">&gt;
+</span><span>    </span><span style="font-weight:bold;color:#dbbb3d;">&lt;</span><span style="color:#ffffff;">meta </span><span style="color:#e8a64b;">charset</span><span style="font-weight:bold;color:#db7c6d;">=</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>utf-8</span><span style="font-weight:bold;color:#dbbb3d;">&quot;&gt;
+</span><span>    </span><span style="font-weight:bold;color:#dbbb3d;">&lt;</span><span style="color:#ffffff;">title</span><span style="font-weight:bold;color:#dbbb3d;">&gt;</span><span>Rust Starfield</span><span style="font-weight:bold;color:#dbbb3d;">&lt;/</span><span style="color:#ffffff;">title</span><span style="font-weight:bold;color:#dbbb3d;">&gt;
+</span><span>    </span><span style="font-weight:bold;color:#dbbb3d;">&lt;</span><span style="color:#db7c6d;">style</span><span style="font-weight:bold;color:#dbbb3d;">&gt;
+</span><span>        </span><span style="color:#db7c6d;">html</span><span>, </span><span style="color:#db7c6d;">body </span><span>{ </span><span style="color:#e7e7e7;">margin</span><span style="font-weight:bold;color:#db7c6d;">: </span><span style="color:#db7c6d;">0</span><span>; </span><span style="color:#e7e7e7;">padding</span><span style="font-weight:bold;color:#db7c6d;">: </span><span style="color:#db7c6d;">0</span><span>; </span><span style="color:#e7e7e7;">overflow</span><span style="font-weight:bold;color:#db7c6d;">: </span><span style="color:#a2ba43;">hidden</span><span>; </span><span style="color:#e7e7e7;">background</span><span style="font-weight:bold;color:#db7c6d;">: </span><span style="color:#db7c6d;">black</span><span>; </span><span style="color:#e7e7e7;">height</span><span style="font-weight:bold;color:#db7c6d;">: </span><span style="color:#db7c6d;">100</span><span style="color:#ffffff;">%</span><span>; </span><span style="color:#e7e7e7;">width</span><span style="font-weight:bold;color:#db7c6d;">: </span><span style="color:#db7c6d;">100</span><span style="color:#ffffff;">%</span><span>; }
+</span><span>        </span><span style="color:#db7c6d;">canvas </span><span>{ </span><span style="color:#e7e7e7;">display</span><span style="font-weight:bold;color:#db7c6d;">: </span><span style="color:#a2ba43;">block</span><span>; </span><span style="color:#e7e7e7;">width</span><span style="font-weight:bold;color:#db7c6d;">: </span><span style="color:#db7c6d;">100</span><span style="color:#ffffff;">vw</span><span>; </span><span style="color:#e7e7e7;">height</span><span style="font-weight:bold;color:#db7c6d;">: </span><span style="color:#db7c6d;">100</span><span style="color:#ffffff;">vh</span><span>; }
+</span><span>    </span><span style="font-weight:bold;color:#dbbb3d;">&lt;/</span><span style="color:#db7c6d;">style</span><span style="font-weight:bold;color:#dbbb3d;">&gt;
+</span><span style="font-weight:bold;color:#dbbb3d;">&lt;/</span><span style="color:#db7c6d;">head</span><span style="font-weight:bold;color:#dbbb3d;">&gt;
+</span><span style="font-weight:bold;color:#dbbb3d;">&lt;</span><span style="color:#db7c6d;">body</span><span style="font-weight:bold;color:#dbbb3d;">&gt;
+</span><span>    </span><span style="font-weight:bold;color:#dbbb3d;">&lt;</span><span style="color:#ffffff;">canvas </span><span style="color:#e8a64b;">id</span><span style="font-weight:bold;color:#db7c6d;">=</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>glcanvas</span><span style="font-weight:bold;color:#dbbb3d;">&quot; </span><span style="color:#e8a64b;">tabindex</span><span style="font-weight:bold;color:#db7c6d;">=</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>1</span><span style="font-weight:bold;color:#dbbb3d;">&quot;&gt;&lt;/</span><span style="color:#ffffff;">canvas</span><span style="font-weight:bold;color:#dbbb3d;">&gt;
+</span><span>    </span><span style="font-weight:bold;color:#dbbb3d;">&lt;</span><span style="color:#db7c6d;">script </span><span style="color:#e8a64b;">src</span><span style="font-weight:bold;color:#db7c6d;">=</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>mq_js_bundle.js</span><span style="font-weight:bold;color:#dbbb3d;">&quot;&gt;&lt;/</span><span style="color:#db7c6d;">script</span><span style="font-weight:bold;color:#dbbb3d;">&gt;
+</span><span>    </span><span style="font-weight:bold;color:#dbbb3d;">&lt;</span><span style="color:#db7c6d;">script</span><span style="font-weight:bold;color:#dbbb3d;">&gt;</span><span style="color:#a2ba43;">load</span><span>(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>starfield.wasm</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>);</span><span style="font-weight:bold;color:#dbbb3d;">&lt;/</span><span style="color:#db7c6d;">script</span><span style="font-weight:bold;color:#dbbb3d;">&gt;
+</span><span style="font-weight:bold;color:#dbbb3d;">&lt;/</span><span style="color:#db7c6d;">body</span><span style="font-weight:bold;color:#dbbb3d;">&gt;
+</span><span style="font-weight:bold;color:#dbbb3d;">&lt;/</span><span style="color:#db7c6d;">html</span><span style="font-weight:bold;color:#dbbb3d;">&gt;
+</span></code></pre>
+<p><strong>Note on <code>mq_js_bundle.js</code>:</strong> You need to place a copy of this loader in your <code>web/</code> directory. You can usually find it in your local Cargo registry:</p>
+<pre data-lang="bash" style="background-color:#31333d;color:#ffffffc4;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="font-weight:bold;color:#a3cbe3;">cp ~</span><span>/.cargo/registry/src/index.crates.io-</span><span style="color:#db7c6d;">*</span><span>/macroquad-</span><span style="color:#db7c6d;">*</span><span>/js/mq_js_bundle.js web/
+</span></code></pre>
+<p><em>Troubleshooting: If you cannot find it locally, you can download it directly from the <a href="https://github.com/not-fl3/macroquad/blob/master/js/mq_js_bundle.js">Macroquad GitHub repository</a>.</em></p>
+<h2 id="the-stack-macroquad-wasm">The Stack: Macroquad &amp; WASM</h2>
+<p>There are powerful graphics options in Rust like <strong>Bevy</strong>, but for this, I wanted something direct.</p>
+<p>I chose <strong>Macroquad</strong>. It’s a minimalist engine with a low-friction API. It doesn't hide the execution loop behind much abstraction; you write a <code>loop</code> and tell it exactly what to draw every frame. It feels less like building a factory and more like working directly on the engine block.</p>
+<p>When you compile to <strong>WASM</strong>, you ship a self-contained binary. You still need that small JS shim (<code>mq_js_bundle.js</code>) to bridge to WebGL, but the setup stays lean.</p>
+<h2 id="the-anatomy-of-a-star">The Anatomy of a Star</h2>
+<p>The "star" is our basic unit:</p>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#a3cbe3;">struct </span><span>Star {
+</span><span>    </span><span style="font-weight:bold;color:#a3cbe3;">x</span><span>: </span><span style="color:#a3cbe3;">f32</span><span>,
+</span><span>    </span><span style="font-weight:bold;color:#a3cbe3;">y</span><span>: </span><span style="color:#a3cbe3;">f32</span><span>,
+</span><span>    </span><span style="font-weight:bold;color:#a3cbe3;">z</span><span>: </span><span style="color:#a3cbe3;">f32</span><span>,
+</span><span>    </span><span style="font-weight:bold;color:#a3cbe3;">speed</span><span>: </span><span style="color:#a3cbe3;">f32</span><span>,
+</span><span>    </span><span style="font-weight:bold;color:#a3cbe3;">brightness</span><span>: </span><span style="color:#a3cbe3;">f32</span><span>,
+</span><span>}
+</span></code></pre>
+<ul>
+<li><strong>x, y:</strong> Coordinates in space.</li>
+<li><strong>z:</strong> Depth. As <code>z</code> decreases, the star moves closer.</li>
+<li><strong>speed:</strong> Allows for different layers of motion.</li>
+<li><strong>brightness:</strong> Adds visual depth.</li>
+</ul>
+<p>To get moving, we populate a <code>Vec</code> with randomized starting positions:</p>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">init_stars</span><span>(</span><span style="color:#ffffff;">count</span><span>: </span><span style="color:#a3cbe3;">usize</span><span>) -&gt; </span><span style="color:#e7e7e7;">Vec</span><span>&lt;Star&gt; {
+</span><span>    </span><span style="color:#a3cbe3;">let </span><span style="color:#dbbb3d;">mut</span><span> rng </span><span style="color:#db7c6d;">= </span><span>SmallRng::seed_from_u64(</span><span style="color:#db7c6d;">0</span><span>);
+</span><span>    
+</span><span>    (</span><span style="color:#db7c6d;">0..</span><span>count)
+</span><span>        .</span><span style="color:#db7c6d;">map</span><span>(|_| Star {
+</span><span>            x: rng.</span><span style="color:#db7c6d;">gen_range</span><span>(</span><span style="color:#db7c6d;">-1.0..1.0</span><span>),
+</span><span>            y: rng.</span><span style="color:#db7c6d;">gen_range</span><span>(</span><span style="color:#db7c6d;">-1.0..1.0</span><span>),
+</span><span>            z: rng.</span><span style="color:#db7c6d;">gen_range</span><span>(</span><span style="color:#db7c6d;">1.0..32.0</span><span>),
+</span><span>            speed: rng.</span><span style="color:#db7c6d;">gen_range</span><span>(</span><span style="color:#db7c6d;">0.008..0.025</span><span>),
+</span><span>            brightness: rng.</span><span style="color:#db7c6d;">gen_range</span><span>(</span><span style="color:#db7c6d;">0.6..1.0</span><span>),
+</span><span>        })
+</span><span>        .</span><span style="color:#db7c6d;">collect</span><span>()
+</span><span>}
+</span></code></pre>
+<p><strong>Two Rust details worth calling out here:</strong></p>
+<ul>
+<li><code>SmallRng::seed_from_u64(0)</code> creates a deterministic field, which is great for debugging.</li>
+<li><code>(0..count).map(|_| ...)</code> is the idiomatic way to say "repeat this <code>count</code> times." The <code>|_|</code> means we don't need the loop index.</li>
+</ul>
+<p><strong>One small visual tweak:</strong> If you keep <code>x</code> and <code>y</code> in too tight a range, stars bunch around the center. Widening the spawn volume (which we'll do in the "Polish" section) makes the field feel more believable.</p>
+<h2 id="the-infinite-loop-the-projection">The Infinite Loop (The Projection)</h2>
+<p>The "warp" effect relies on a simple 3D-to-2D projection: as <code>z</code> decreases, we scale coordinates to push stars further from the center.</p>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#db7c6d;">for</span><span> star </span><span style="color:#db7c6d;">in</span><span> stars.</span><span style="color:#db7c6d;">iter_mut</span><span>() {
+</span><span>    star.z </span><span style="color:#db7c6d;">-=</span><span> star.speed; </span><span style="color:#707180;">// Move forward
+</span><span>    
+</span><span>    </span><span style="color:#db7c6d;">if</span><span> star.z </span><span style="color:#db7c6d;">&lt; 0.2 </span><span>{ </span><span style="color:#707180;">// Recycle star
+</span><span>        star.z </span><span style="color:#db7c6d;">= 32.0</span><span>; 
+</span><span>        star.x </span><span style="color:#db7c6d;">=</span><span> rng.</span><span style="color:#db7c6d;">gen_range</span><span>(</span><span style="color:#db7c6d;">-1.0..1.0</span><span>);
+</span><span>        star.y </span><span style="color:#db7c6d;">=</span><span> rng.</span><span style="color:#db7c6d;">gen_range</span><span>(</span><span style="color:#db7c6d;">-1.0..1.0</span><span>);
+</span><span>    }
+</span><span>
+</span><span>    </span><span style="color:#707180;">// Projection: dividing by &#39;z&#39; is the key.
+</span><span>    </span><span style="color:#a3cbe3;">let</span><span> sx </span><span style="color:#db7c6d;">= </span><span>(star.x </span><span style="color:#db7c6d;">/</span><span> star.z) </span><span style="color:#db7c6d;">* screen_width</span><span>() </span><span style="color:#db7c6d;">* 0.5 +</span><span> center_x;
+</span><span>    </span><span style="color:#a3cbe3;">let</span><span> sy </span><span style="color:#db7c6d;">= </span><span>(star.y </span><span style="color:#db7c6d;">/</span><span> star.z) </span><span style="color:#db7c6d;">* screen_height</span><span>() </span><span style="color:#db7c6d;">* 0.5 +</span><span> center_y;
+</span><span>
+</span><span>    </span><span style="color:#db7c6d;">draw_circle</span><span>(sx, sy, size, color);
+</span><span>}
+</span></code></pre>
+<h2 id="the-full-engine-core-version">The Full Engine (Core Version)</h2>
+<p>Replace your <code>src/main.rs</code> with this. It sets up the window, initializes the field, and runs the loop.</p>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#db7c6d;">use </span><span>macroquad::prelude::</span><span style="color:#db7c6d;">*</span><span>;
+</span><span style="color:#db7c6d;">use </span><span>::rand::rngs::SmallRng;
+</span><span style="color:#db7c6d;">use </span><span>::rand::{Rng, SeedableRng};
+</span><span>
+</span><span style="color:#a3cbe3;">struct </span><span>Star {
+</span><span>    </span><span style="font-weight:bold;color:#a3cbe3;">x</span><span>: </span><span style="color:#a3cbe3;">f32</span><span>, </span><span style="font-weight:bold;color:#a3cbe3;">y</span><span>: </span><span style="color:#a3cbe3;">f32</span><span>, </span><span style="font-weight:bold;color:#a3cbe3;">z</span><span>: </span><span style="color:#a3cbe3;">f32</span><span>,
+</span><span>    </span><span style="font-weight:bold;color:#a3cbe3;">speed</span><span>: </span><span style="color:#a3cbe3;">f32</span><span>,
+</span><span>    </span><span style="font-weight:bold;color:#a3cbe3;">brightness</span><span>: </span><span style="color:#a3cbe3;">f32</span><span>,
+</span><span>}
+</span><span>
+</span><span style="color:#a3cbe3;">const </span><span style="font-weight:bold;color:#a2ba43;">STAR_DEPTH</span><span>: </span><span style="color:#a3cbe3;">f32 </span><span style="color:#db7c6d;">= 32.0</span><span>;
+</span><span style="color:#a3cbe3;">const </span><span style="font-weight:bold;color:#a2ba43;">TITLE_TEXT</span><span>: </span><span style="color:#db7c6d;">&amp;</span><span style="color:#a3cbe3;">str </span><span style="color:#db7c6d;">= </span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>RUST // WASM</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>;
+</span><span>
+</span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">init_stars</span><span>(</span><span style="color:#ffffff;">count</span><span>: </span><span style="color:#a3cbe3;">usize</span><span>) -&gt; </span><span style="color:#e7e7e7;">Vec</span><span>&lt;Star&gt; {
+</span><span>    </span><span style="color:#a3cbe3;">let </span><span style="color:#dbbb3d;">mut</span><span> rng </span><span style="color:#db7c6d;">= </span><span>SmallRng::seed_from_u64(</span><span style="color:#db7c6d;">0</span><span>);
+</span><span>    (</span><span style="color:#db7c6d;">0..</span><span>count).</span><span style="color:#db7c6d;">map</span><span>(|_| Star {
+</span><span>            x: rng.</span><span style="color:#db7c6d;">gen_range</span><span>(</span><span style="color:#db7c6d;">-1.0..1.0</span><span>),
+</span><span>            y: rng.</span><span style="color:#db7c6d;">gen_range</span><span>(</span><span style="color:#db7c6d;">-1.0..1.0</span><span>),
+</span><span>            z: rng.</span><span style="color:#db7c6d;">gen_range</span><span>(</span><span style="color:#db7c6d;">1.0..</span><span style="font-weight:bold;color:#a2ba43;">STAR_DEPTH</span><span>),
+</span><span>            speed: rng.</span><span style="color:#db7c6d;">gen_range</span><span>(</span><span style="color:#db7c6d;">0.008..0.025</span><span>),
+</span><span>            brightness: rng.</span><span style="color:#db7c6d;">gen_range</span><span>(</span><span style="color:#db7c6d;">0.6..1.0</span><span>),
+</span><span>    }).</span><span style="color:#db7c6d;">collect</span><span>()
+</span><span>}
+</span><span>
+</span><span>#[</span><span style="font-weight:bold;color:#a3cbe3;">macroquad</span><span>::</span><span style="font-weight:bold;color:#a3cbe3;">main</span><span>(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>Starfield</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>)]
+</span><span>async </span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">main</span><span>() {
+</span><span>    </span><span style="color:#a3cbe3;">let </span><span style="color:#dbbb3d;">mut</span><span> stars </span><span style="color:#db7c6d;">= init_stars</span><span>(</span><span style="color:#db7c6d;">400</span><span>);
+</span><span>    </span><span style="color:#a3cbe3;">let </span><span style="color:#dbbb3d;">mut</span><span> rng </span><span style="color:#db7c6d;">= </span><span>SmallRng::seed_from_u64(macroquad::miniquad::date::now() </span><span style="color:#db7c6d;">as </span><span style="color:#a3cbe3;">u64</span><span>);
+</span><span>
+</span><span>    </span><span style="color:#db7c6d;">loop </span><span>{
+</span><span>        </span><span style="color:#a3cbe3;">let</span><span> screen_w </span><span style="color:#db7c6d;">= screen_width</span><span>();
+</span><span>        </span><span style="color:#a3cbe3;">let</span><span> screen_h </span><span style="color:#db7c6d;">= screen_height</span><span>();
+</span><span>        </span><span style="color:#a3cbe3;">let</span><span> center_x </span><span style="color:#db7c6d;">=</span><span> screen_w </span><span style="color:#db7c6d;">* 0.5</span><span>;
+</span><span>        </span><span style="color:#a3cbe3;">let</span><span> center_y </span><span style="color:#db7c6d;">=</span><span> screen_h </span><span style="color:#db7c6d;">* 0.5</span><span>;
+</span><span>        </span><span style="color:#a3cbe3;">let</span><span> time </span><span style="color:#db7c6d;">= get_time</span><span>() </span><span style="color:#db7c6d;">as </span><span style="color:#a3cbe3;">f32</span><span>;
+</span><span>
+</span><span>        </span><span style="color:#db7c6d;">clear_background</span><span>(Color::from_rgba(</span><span style="color:#db7c6d;">3</span><span>, </span><span style="color:#db7c6d;">4</span><span>, </span><span style="color:#db7c6d;">10</span><span>, </span><span style="color:#db7c6d;">255</span><span>));
+</span><span>        
+</span><span>        </span><span style="color:#db7c6d;">for</span><span> star </span><span style="color:#db7c6d;">in</span><span> stars.</span><span style="color:#db7c6d;">iter_mut</span><span>() {
+</span><span>            star.z </span><span style="color:#db7c6d;">-=</span><span> star.speed;
+</span><span>            </span><span style="color:#db7c6d;">if</span><span> star.z </span><span style="color:#db7c6d;">&lt; 0.2 </span><span>{
+</span><span>                star.z </span><span style="color:#db7c6d;">= </span><span style="font-weight:bold;color:#a2ba43;">STAR_DEPTH</span><span>;
+</span><span>                star.x </span><span style="color:#db7c6d;">=</span><span> rng.</span><span style="color:#db7c6d;">gen_range</span><span>(</span><span style="color:#db7c6d;">-1.0..1.0</span><span>);
+</span><span>                star.y </span><span style="color:#db7c6d;">=</span><span> rng.</span><span style="color:#db7c6d;">gen_range</span><span>(</span><span style="color:#db7c6d;">-1.0..1.0</span><span>);
+</span><span>            }
+</span><span>
+</span><span>            </span><span style="color:#a3cbe3;">let</span><span> sx </span><span style="color:#db7c6d;">= </span><span>(star.x </span><span style="color:#db7c6d;">/</span><span> star.z) </span><span style="color:#db7c6d;">*</span><span> screen_w </span><span style="color:#db7c6d;">* 0.5 +</span><span> center_x;
+</span><span>            </span><span style="color:#a3cbe3;">let</span><span> sy </span><span style="color:#db7c6d;">= </span><span>(star.y </span><span style="color:#db7c6d;">/</span><span> star.z) </span><span style="color:#db7c6d;">*</span><span> screen_h </span><span style="color:#db7c6d;">* 0.5 +</span><span> center_y;
+</span><span>
+</span><span>            </span><span style="color:#a3cbe3;">let</span><span> depth_factor </span><span style="color:#db7c6d;">= 1.0 - </span><span>(star.z </span><span style="color:#db7c6d;">/ </span><span style="font-weight:bold;color:#a2ba43;">STAR_DEPTH</span><span>);
+</span><span>            </span><span style="color:#a3cbe3;">let</span><span> size </span><span style="color:#db7c6d;">= 1.0 + 2.0 *</span><span> depth_factor;
+</span><span>            </span><span style="color:#a3cbe3;">let</span><span> brightness </span><span style="color:#db7c6d;">=</span><span> star.brightness </span><span style="color:#db7c6d;">*</span><span> depth_factor;
+</span><span>
+</span><span>            </span><span style="color:#db7c6d;">draw_circle</span><span>(sx, sy, size, Color::new(brightness, brightness, brightness, </span><span style="color:#db7c6d;">1.0</span><span>));
+</span><span>        }
+</span><span>
+</span><span>        </span><span style="color:#a3cbe3;">let</span><span> pulse </span><span style="color:#db7c6d;">= 0.5 + 0.5 * </span><span>(time </span><span style="color:#db7c6d;">* 2.0</span><span>).</span><span style="color:#db7c6d;">sin</span><span>();
+</span><span>        </span><span style="color:#a3cbe3;">let</span><span> title_color </span><span style="color:#db7c6d;">= </span><span>Color::new(</span><span style="color:#db7c6d;">0.5 + 0.5 *</span><span> pulse, </span><span style="color:#db7c6d;">0.8</span><span>, </span><span style="color:#db7c6d;">1.0</span><span>, </span><span style="color:#db7c6d;">1.0</span><span>);
+</span><span>        </span><span style="color:#db7c6d;">draw_text</span><span>(</span><span style="font-weight:bold;color:#a2ba43;">TITLE_TEXT</span><span>, </span><span style="color:#db7c6d;">20.0</span><span>, </span><span style="color:#db7c6d;">40.0</span><span>, </span><span style="color:#db7c6d;">30.0</span><span>, title_color);
+</span><span>
+</span><span>        </span><span style="color:#db7c6d;">next_frame</span><span>().await;
+</span><span>    }
+</span><span>}
+</span></code></pre>
+<p><strong>What's happening in <code>main()</code>?</strong></p>
+<ul>
+<li><code>screen_width()</code> &amp; <code>center_x</code>: Recomputed every frame so it stays centered if you resize the browser.</li>
+<li><code>get_time()</code>: Used for the pulsing title.</li>
+<li><code>clear_background(...)</code>: Every frame is drawn from scratch; we must clear the last one.</li>
+<li><code>0.5 + 0.5 * (time).sin()</code>: Maps the sine wave (<code>-1.0..1.0</code>) to a usable color range (<code>0.0..1.0</code>).</li>
+</ul>
+<h2 id="running-the-engine">Running the Engine</h2>
+<p>Build the WASM target (use <code>--release</code> for performance):</p>
+<pre data-lang="bash" style="background-color:#31333d;color:#ffffffc4;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="font-weight:bold;color:#a3cbe3;">cargo</span><span> build</span><span style="color:#ffffff;"> --target</span><span> wasm32-unknown-unknown</span><span style="color:#ffffff;"> --release
+</span><span style="font-weight:bold;color:#a3cbe3;">cp</span><span> target/wasm32-unknown-unknown/release/starfield.wasm web/starfield.wasm
+</span></code></pre>
+<p>Serve the <code>web/</code> folder (Python, Node, or <code>basic-http-server</code> all work):</p>
+<pre data-lang="bash" style="background-color:#31333d;color:#ffffffc4;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="font-weight:bold;color:#a3cbe3;">basic-http-server</span><span> web
+</span><span style="color:#707180;"># OR: python3 -m http.server --directory web
+</span></code></pre>
+<h3 id="automation-build-sh">Automation (<code>build.sh</code>)</h3>
+<p>To make iteration faster, wrap this in a script:</p>
+<pre data-lang="bash" style="background-color:#31333d;color:#ffffffc4;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#707180;">#!/usr/bin/env bash
+</span><span style="color:#db7c6d;">set</span><span> -euo pipefail
+</span><span style="font-weight:bold;color:#a3cbe3;">PORT</span><span style="color:#db7c6d;">=</span><span>4000
+</span><span style="font-weight:bold;color:#a3cbe3;">cargo</span><span> build</span><span style="color:#ffffff;"> --target</span><span> wasm32-unknown-unknown</span><span style="color:#ffffff;"> --release
+</span><span style="font-weight:bold;color:#a3cbe3;">cp</span><span> target/wasm32-unknown-unknown/release/starfield.wasm web/starfield.wasm
+</span><span>
+</span><span style="color:#db7c6d;">if </span><span style="font-weight:bold;color:#a3cbe3;">lsof</span><span style="color:#ffffff;"> -i</span><span> :</span><span style="font-weight:bold;color:#dbbb3d;">&quot;$</span><span style="font-weight:bold;color:#a3cbe3;">PORT</span><span style="font-weight:bold;color:#dbbb3d;">&quot; </span><span style="color:#db7c6d;">&gt;</span><span>/dev/null </span><span style="color:#db7c6d;">2&gt;&amp;1; then
+</span><span>    </span><span style="color:#db7c6d;">echo </span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>Server running on </span><span style="font-weight:bold;color:#dbbb3d;">$</span><span style="font-weight:bold;color:#a3cbe3;">PORT</span><span>. Refresh browser.</span><span style="font-weight:bold;color:#dbbb3d;">&quot;
+</span><span>    </span><span style="color:#db7c6d;">exit</span><span> 0
+</span><span style="color:#db7c6d;">fi
+</span><span style="font-weight:bold;color:#a3cbe3;">basic-http-server</span><span> web</span><span style="color:#ffffff;"> -a</span><span> 127.0.0.1:</span><span style="font-weight:bold;color:#dbbb3d;">&quot;$</span><span style="font-weight:bold;color:#a3cbe3;">PORT</span><span style="font-weight:bold;color:#dbbb3d;">&quot;
+</span></code></pre>
+<h2 id="the-machine-in-motion-the-polish">The Machine in Motion (The Polish)</h2>
+<p>The "Core" version works, but it feels like a diagnostic test. Let's make it a finished visual.</p>
+<h3 id="1-tighten-the-spawn-volume">1. Tighten the Spawn Volume</h3>
+<p>Add <code>const STAR_SPREAD: f32 = 20.0;</code> at the top. Use this range in <code>init_stars</code> and the recycling block:
+<code>star.x = rng.gen_range(-STAR_SPREAD..STAR_SPREAD);</code>
+This makes the field feel deeper and less bunched.</p>
+<h3 id="2-increase-density-and-speed">2. Increase Density and Speed</h3>
+<p>In <code>main()</code>, bump the count to <code>650</code> and the speed range in <code>init_stars</code> to <code>0.012..0.032</code>.</p>
+<h3 id="3-center-the-title">3. Center the Title</h3>
+<p>Use <code>measure_text</code> to center the title perfectly:</p>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#a3cbe3;">let</span><span> title_size </span><span style="color:#db7c6d;">= 84.0</span><span>;
+</span><span style="color:#a3cbe3;">let</span><span> title_metrics </span><span style="color:#db7c6d;">= measure_text</span><span>(</span><span style="font-weight:bold;color:#a2ba43;">TITLE_TEXT</span><span>, </span><span style="color:#e7e7e7;">None</span><span>, title_size </span><span style="color:#db7c6d;">as </span><span style="color:#a3cbe3;">u16</span><span>, </span><span style="color:#db7c6d;">1.0</span><span>);
+</span><span style="color:#a3cbe3;">let</span><span> title_x </span><span style="color:#db7c6d;">=</span><span> center_x </span><span style="color:#db7c6d;">-</span><span> title_metrics.width </span><span style="color:#db7c6d;">* 0.5</span><span>;
+</span><span style="color:#a3cbe3;">let</span><span> title_y </span><span style="color:#db7c6d;">=</span><span> center_y </span><span style="color:#db7c6d;">-</span><span> title_metrics.height </span><span style="color:#db7c6d;">* 0.5</span><span>;
+</span><span style="color:#db7c6d;">draw_text</span><span>(</span><span style="font-weight:bold;color:#a2ba43;">TITLE_TEXT</span><span>, title_x, title_y, title_size, title_color);
+</span></code></pre>
+<h2 id="final-optimized-code">Final Optimized Code</h2>
+<p><a href="https://github.com/desmodrone/rust-wasm-starfield">rust-wasm-repo</a></p>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#db7c6d;">use </span><span>::rand::rngs::SmallRng;
+</span><span style="color:#db7c6d;">use </span><span>::rand::{Rng, SeedableRng};
+</span><span style="color:#db7c6d;">use </span><span>macroquad::prelude::</span><span style="color:#db7c6d;">*</span><span>;
+</span><span>
+</span><span style="color:#707180;">// One star in 3D space, plus a few values for motion and brightness.
+</span><span style="color:#a3cbe3;">struct </span><span>Star {
+</span><span>    </span><span style="font-weight:bold;color:#a3cbe3;">x</span><span>: </span><span style="color:#a3cbe3;">f32</span><span>,
+</span><span>    </span><span style="font-weight:bold;color:#a3cbe3;">y</span><span>: </span><span style="color:#a3cbe3;">f32</span><span>,
+</span><span>    </span><span style="font-weight:bold;color:#a3cbe3;">z</span><span>: </span><span style="color:#a3cbe3;">f32</span><span>,
+</span><span>    </span><span style="font-weight:bold;color:#a3cbe3;">speed</span><span>: </span><span style="color:#a3cbe3;">f32</span><span>,
+</span><span>    </span><span style="font-weight:bold;color:#a3cbe3;">brightness</span><span>: </span><span style="color:#a3cbe3;">f32</span><span>,
+</span><span>}
+</span><span>
+</span><span style="color:#a3cbe3;">const </span><span style="font-weight:bold;color:#a2ba43;">STAR_DEPTH</span><span>: </span><span style="color:#a3cbe3;">f32 </span><span style="color:#db7c6d;">= 32.0</span><span>;
+</span><span style="color:#a3cbe3;">const </span><span style="font-weight:bold;color:#a2ba43;">STAR_SPREAD</span><span>: </span><span style="color:#a3cbe3;">f32 </span><span style="color:#db7c6d;">= 20.0</span><span>;
+</span><span style="color:#a3cbe3;">const </span><span style="font-weight:bold;color:#a2ba43;">TITLE_TEXT</span><span>: </span><span style="color:#db7c6d;">&amp;</span><span style="color:#a3cbe3;">str </span><span style="color:#db7c6d;">= </span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>RUST // WASM</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>;
+</span><span>
+</span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">init_stars</span><span>(</span><span style="color:#ffffff;">count</span><span>: </span><span style="color:#a3cbe3;">usize</span><span>) -&gt; </span><span style="color:#e7e7e7;">Vec</span><span>&lt;Star&gt; {
+</span><span>    </span><span style="color:#707180;">// Fixed seed so the initial field is repeatable while developing.
+</span><span>    </span><span style="color:#a3cbe3;">let </span><span style="color:#dbbb3d;">mut</span><span> rng </span><span style="color:#db7c6d;">= </span><span>SmallRng::seed_from_u64(</span><span style="color:#db7c6d;">0</span><span>);
+</span><span>    (</span><span style="color:#db7c6d;">0..</span><span>count)
+</span><span>        .</span><span style="color:#db7c6d;">map</span><span>(|_| Star {
+</span><span>            </span><span style="color:#707180;">// Spread stars across a wider 3D volume so the field fills the screen.
+</span><span>            x: rng.</span><span style="color:#db7c6d;">gen_range</span><span>(</span><span style="color:#db7c6d;">-</span><span style="font-weight:bold;color:#a2ba43;">STAR_SPREAD</span><span style="color:#db7c6d;">..</span><span style="font-weight:bold;color:#a2ba43;">STAR_SPREAD</span><span>),
+</span><span>            y: rng.</span><span style="color:#db7c6d;">gen_range</span><span>(</span><span style="color:#db7c6d;">-</span><span style="font-weight:bold;color:#a2ba43;">STAR_SPREAD</span><span style="color:#db7c6d;">..</span><span style="font-weight:bold;color:#a2ba43;">STAR_SPREAD</span><span>),
+</span><span>            z: rng.</span><span style="color:#db7c6d;">gen_range</span><span>(</span><span style="color:#db7c6d;">1.0..</span><span style="font-weight:bold;color:#a2ba43;">STAR_DEPTH</span><span>),
+</span><span>            speed: rng.</span><span style="color:#db7c6d;">gen_range</span><span>(</span><span style="color:#db7c6d;">0.012..0.032</span><span>),
+</span><span>            brightness: rng.</span><span style="color:#db7c6d;">gen_range</span><span>(</span><span style="color:#db7c6d;">0.6..1.0</span><span>),
+</span><span>        })
+</span><span>        .</span><span style="color:#db7c6d;">collect</span><span>()
+</span><span>}
+</span><span>
+</span><span>#[</span><span style="font-weight:bold;color:#a3cbe3;">macroquad</span><span>::</span><span style="font-weight:bold;color:#a3cbe3;">main</span><span>(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>Starfield</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>)]
+</span><span>async </span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">main</span><span>() {
+</span><span>    </span><span style="color:#707180;">// Create the initial field once at startup.
+</span><span>    </span><span style="color:#a3cbe3;">let </span><span style="color:#dbbb3d;">mut</span><span> stars </span><span style="color:#db7c6d;">= init_stars</span><span>(</span><span style="color:#db7c6d;">650</span><span>);
+</span><span>    </span><span style="color:#707180;">// Time-based seed so recycled stars re-enter less predictably.
+</span><span>    </span><span style="color:#a3cbe3;">let </span><span style="color:#dbbb3d;">mut</span><span> rng </span><span style="color:#db7c6d;">= </span><span>SmallRng::seed_from_u64(macroquad::miniquad::date::now() </span><span style="color:#db7c6d;">as </span><span style="color:#a3cbe3;">u64</span><span>);
+</span><span>
+</span><span>    </span><span style="color:#db7c6d;">loop </span><span>{
+</span><span>        </span><span style="color:#707180;">// Recompute dimensions every frame so the effect stays centered.
+</span><span>        </span><span style="color:#a3cbe3;">let</span><span> screen_w </span><span style="color:#db7c6d;">= screen_width</span><span>();
+</span><span>        </span><span style="color:#a3cbe3;">let</span><span> screen_h </span><span style="color:#db7c6d;">= screen_height</span><span>();
+</span><span>        </span><span style="color:#a3cbe3;">let</span><span> center_x </span><span style="color:#db7c6d;">=</span><span> screen_w </span><span style="color:#db7c6d;">* 0.5</span><span>;
+</span><span>        </span><span style="color:#a3cbe3;">let</span><span> center_y </span><span style="color:#db7c6d;">=</span><span> screen_h </span><span style="color:#db7c6d;">* 0.5</span><span>;
+</span><span>        </span><span style="color:#a3cbe3;">let</span><span> time </span><span style="color:#db7c6d;">= get_time</span><span>() </span><span style="color:#db7c6d;">as </span><span style="color:#a3cbe3;">f32</span><span>;
+</span><span>
+</span><span>        </span><span style="color:#707180;">// Paint the background before drawing the stars on top.
+</span><span>        </span><span style="color:#db7c6d;">clear_background</span><span>(Color::from_rgba(</span><span style="color:#db7c6d;">3</span><span>, </span><span style="color:#db7c6d;">4</span><span>, </span><span style="color:#db7c6d;">10</span><span>, </span><span style="color:#db7c6d;">255</span><span>));
+</span><span>        </span><span style="color:#db7c6d;">draw_rectangle</span><span>(
+</span><span>            </span><span style="color:#db7c6d;">0.0</span><span>,
+</span><span>            </span><span style="color:#db7c6d;">0.0</span><span>,
+</span><span>            screen_w,
+</span><span>            screen_h,
+</span><span>            Color::from_rgba(</span><span style="color:#db7c6d;">18</span><span>, </span><span style="color:#db7c6d;">10</span><span>, </span><span style="color:#db7c6d;">36</span><span>, </span><span style="color:#db7c6d;">90</span><span>),
+</span><span>        );
+</span><span>
+</span><span>        </span><span style="color:#db7c6d;">for</span><span> star </span><span style="color:#db7c6d;">in</span><span> stars.</span><span style="color:#db7c6d;">iter_mut</span><span>() {
+</span><span>            </span><span style="color:#707180;">// 1. Move the star forward along the Z-axis
+</span><span>            star.z </span><span style="color:#db7c6d;">-=</span><span> star.speed;
+</span><span>
+</span><span>            </span><span style="color:#707180;">// 2. Recycle the star if it gets too close to the &quot;windshield&quot;
+</span><span>            </span><span style="color:#db7c6d;">if</span><span> star.z </span><span style="color:#db7c6d;">&lt; 0.2 </span><span>{
+</span><span>                star.z </span><span style="color:#db7c6d;">= </span><span style="font-weight:bold;color:#a2ba43;">STAR_DEPTH</span><span>;
+</span><span>                </span><span style="color:#707180;">// Respawn across the full width of the field, not just the center.
+</span><span>                star.x </span><span style="color:#db7c6d;">=</span><span> rng.</span><span style="color:#db7c6d;">gen_range</span><span>(</span><span style="color:#db7c6d;">-</span><span style="font-weight:bold;color:#a2ba43;">STAR_SPREAD</span><span style="color:#db7c6d;">..</span><span style="font-weight:bold;color:#a2ba43;">STAR_SPREAD</span><span>);
+</span><span>                star.y </span><span style="color:#db7c6d;">=</span><span> rng.</span><span style="color:#db7c6d;">gen_range</span><span>(</span><span style="color:#db7c6d;">-</span><span style="font-weight:bold;color:#a2ba43;">STAR_SPREAD</span><span style="color:#db7c6d;">..</span><span style="font-weight:bold;color:#a2ba43;">STAR_SPREAD</span><span>);
+</span><span>            }
+</span><span>
+</span><span>            </span><span style="color:#707180;">// 3. Project to 2D screen: dividing by &#39;z&#39; is the key.
+</span><span>            </span><span style="color:#a3cbe3;">let</span><span> sx </span><span style="color:#db7c6d;">= </span><span>(star.x </span><span style="color:#db7c6d;">/</span><span> star.z) </span><span style="color:#db7c6d;">*</span><span> screen_w </span><span style="color:#db7c6d;">* 0.5 +</span><span> center_x;
+</span><span>            </span><span style="color:#a3cbe3;">let</span><span> sy </span><span style="color:#db7c6d;">= </span><span>(star.y </span><span style="color:#db7c6d;">/</span><span> star.z) </span><span style="color:#db7c6d;">*</span><span> screen_h </span><span style="color:#db7c6d;">* 0.5 +</span><span> center_y;
+</span><span>
+</span><span>            </span><span style="color:#707180;">// 4. Scale size and brightness based on depth
+</span><span>            </span><span style="color:#a3cbe3;">let</span><span> depth_factor </span><span style="color:#db7c6d;">= 1.0 - </span><span>(star.z </span><span style="color:#db7c6d;">/ </span><span style="font-weight:bold;color:#a2ba43;">STAR_DEPTH</span><span>);
+</span><span>            </span><span style="color:#a3cbe3;">let</span><span> size </span><span style="color:#db7c6d;">= 1.0 + 2.0 *</span><span> depth_factor;
+</span><span>            </span><span style="color:#a3cbe3;">let</span><span> brightness </span><span style="color:#db7c6d;">=</span><span> star.brightness </span><span style="color:#db7c6d;">*</span><span> depth_factor;
+</span><span>
+</span><span>            </span><span style="color:#707180;">// Draw brighter, larger stars as they get closer to the camera.
+</span><span>            </span><span style="color:#db7c6d;">draw_circle</span><span>(
+</span><span>                sx,
+</span><span>                sy,
+</span><span>                size,
+</span><span>                Color::new(brightness, brightness, brightness, </span><span style="color:#db7c6d;">1.0</span><span>),
+</span><span>            );
+</span><span>        }
+</span><span>
+</span><span>        </span><span style="color:#707180;">// Smoothly oscillate between 0.0 and 1.0 for the title pulse
+</span><span>        </span><span style="color:#a3cbe3;">let</span><span> pulse </span><span style="color:#db7c6d;">= 0.5 + 0.5 * </span><span>(time </span><span style="color:#db7c6d;">* 2.0</span><span>).</span><span style="color:#db7c6d;">sin</span><span>();
+</span><span>        </span><span style="color:#a3cbe3;">let</span><span> title_color </span><span style="color:#db7c6d;">= </span><span>Color::new(</span><span style="color:#db7c6d;">0.5 + 0.5 *</span><span> pulse, </span><span style="color:#db7c6d;">0.8</span><span>, </span><span style="color:#db7c6d;">1.0</span><span>, </span><span style="color:#db7c6d;">1.0</span><span>);
+</span><span>        </span><span style="color:#a3cbe3;">let</span><span> title_size </span><span style="color:#db7c6d;">= 84.0</span><span>;
+</span><span>        </span><span style="color:#a3cbe3;">let</span><span> title_metrics </span><span style="color:#db7c6d;">= measure_text</span><span>(</span><span style="font-weight:bold;color:#a2ba43;">TITLE_TEXT</span><span>, </span><span style="color:#e7e7e7;">None</span><span>, title_size </span><span style="color:#db7c6d;">as </span><span style="color:#a3cbe3;">u16</span><span>, </span><span style="color:#db7c6d;">1.0</span><span>);
+</span><span>        </span><span style="color:#a3cbe3;">let</span><span> title_x </span><span style="color:#db7c6d;">=</span><span> center_x </span><span style="color:#db7c6d;">-</span><span> title_metrics.width </span><span style="color:#db7c6d;">* 0.5</span><span>;
+</span><span>        </span><span style="color:#a3cbe3;">let</span><span> title_y </span><span style="color:#db7c6d;">=</span><span> center_y </span><span style="color:#db7c6d;">-</span><span> title_metrics.height </span><span style="color:#db7c6d;">* 0.5</span><span>;
+</span><span>        </span><span style="color:#db7c6d;">draw_text</span><span>(</span><span style="font-weight:bold;color:#a2ba43;">TITLE_TEXT</span><span>, title_x, title_y, title_size, title_color);
+</span><span>
+</span><span>        </span><span style="color:#707180;">// Present the current frame, then continue the loop
+</span><span>        </span><span style="color:#db7c6d;">next_frame</span><span>().await;
+</span><span>    }
+</span><span>}
+</span></code></pre>
+<h2 id="what-s-next">What's Next?</h2>
+<p>We’ve built the universe; now we just need a way to pay for the fuel.</p>
+<p>The obvious next step is to make the effect more physical: star trails, camera drift, or mouse input. But even in this stripped-down form, the core lesson holds up: if you want a visual Rust project that feels rewarding quickly.</p>
+<h2 id="references">References</h2>
+<ul>
+<li><a href="https://macroquad.rs/">Macroquad Docs</a></li>
+<li><a href="https://rustwasm.github.io/docs/book/">Rust WASM Book</a></li>
+</ul>
+
+	</div>
+	<hr class="post-end">
+	<footer class="post-info">
+    
+	  <p>
+		<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg>
+		
+		
+		<span class="tag"><a href="https://desmodrone.github.io/tags/rust/">rust</a></span>
+		
+		<span class="tag"><a href="https://desmodrone.github.io/tags/wasm/">wasm</a></span>
+		
+		<span class="tag"><a href="https://desmodrone.github.io/tags/macroquad/">macroquad</a></span>
+		
+		
+    </p>
+    
+    <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>896 Words</p>
+    
+    <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2026-04-01</p>
+    
+	</footer>
+  </article>
+    
+  
+  <div class="post-nav thin">
+	
+	
+  </div>
+
+  
+</main>
+
+	  </div>
+	  
+	  
+
+
+
+<footer id="site-footer" class="section-inner thin animated fadeIn faster">
+  <p>&copy; 2026 <a href="https:&#x2F;&#x2F;desmodrone.github.io">erick</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
+  <p>Made with <a href="https://www.getzola.org" target="_blank" rel="noopener">Zola</a> &#183; Theme <a href="https://github.com/VersBinarii/hermit_zola" target="_blank" rel="noopener">Hermit_Zola</a>
+	
+	&#183; <a href="https://desmodrone.github.io/rss.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
+	
+  </p>
+</footer>
+
+
+
+
+	</div>
+	
+	<script src="https://desmodrone.github.io/js/main.js"></script>
+
+	<!-- Math rendering -->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css" integrity="sha384-zB1R0rpPzHqg7Kpt0Aljp8JPLqbXI3bhnPWROx27a9N0Ll6ZP/+DiW/UqRcLbRjq" crossorigin="anonymous">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js" integrity="sha384-y23I5Q6l+B6vatafAwxRu/0oK/79VlbSz7Q9aiSZUvyWYIYsd+qj+o24G5ZU2zJz" crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous"
+        onload="renderMathInElement(document.body, { delimiters: [ {left: '$$', right: '$$', display: true}, {left: '$', right: '$', display: false}, {left: '\\[', right: '\\]', display: true}, {left: '\\(', right: '\\)', display: false}]});"></script>
+
+    
+		<link href="https://unpkg.com/highlightjs-badge/highlightjs/styles/monokai.css" rel="stylesheet">
+		<!-- https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.1/build/styles/  for min version -->
+		<script src="https://unpkg.com/highlightjs-badge/highlightjs/highlight.pack.js"></script>
+		<script src="https://unpkg.com/highlightjs-badge/highlightjs-badge.min.js"></script>
+		<script>
+			var pres = document.querySelectorAll("pre>code");
+			for (var i = 0; i < pres.length; i++) {
+				hljs.highlightBlock(pres[i]);
+			}
+		</script>
+		
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js"></script>
+			<script>
+				var options = {
+					copyIconClass: "gg-clipboard",
+					checkIconClass: "gg-check"
+				};
+				window.highlightJsBadge(options);
+			</script>
+		
+
+	
+
+	
+	<script src="https://desmodrone.github.io/js/main.js"></script>
+
+    
+    
+
+	
+    <!-- Global Site Tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-9MNTYXYNHK"></script>
+    <script>
+     window.dataLayer = window.dataLayer || [];
+     function gtag(){dataLayer.push(arguments);}
+     gtag('js', new Date());
+     gtag('config', 'G-9MNTYXYNHK');
+    </script>
+    
+  </body>
+</html>

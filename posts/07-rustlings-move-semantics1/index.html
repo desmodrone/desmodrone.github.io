@@ -27,6 +27,10 @@
   <link rel="alternate" type="application/rss+xml" title="RSS" href="https://desmodrone.github.io/rss.xml">
   
 
+  
+  <link rel="canonical" href="https://desmodrone.github.io/posts/07-rustlings-move-semantics1/">
+  
+
   <body id="page">
 
 	
@@ -120,7 +124,7 @@
 		<small> - 
 <span class="reading-time" title="Estimated read time">
   
-  9 min read
+  6 min read
   
 </span>
 </small>
@@ -146,209 +150,209 @@ These exercises are adapted from <a href="https://github.com/pnkfelix">pnkfelix<
 <p>Ownership in Rust is a set of rules that dictate how a program manages memory. All programs require a memory management system during execution. While some languages rely on garbage collection to automatically locate and clean up unused memory, and others require the programmer to allocate and free memory manually, Rust takes a different approach. Rust's memory management is handled through ownership rules that are checked at compile time. If any of these rules are violated, the code will not compile. The advantage of this system is that it doesn't slow down our program during runtime.</p>
 <p>For many programmers, the ownership concept is a novel idea and may require some adjustment. However, once you have a firm grasp of ownership, you'll have a strong foundation on what sets Rust apart from other languages and makes it memory safe.</p>
 <h2 id="references-and-borrowing">References and Borrowing</h2>
-<p>Due to Rust's strict ownership rules, the language provides tools to reference or borrow different parts of your code as a means of accessing or using data without &quot;consuming&quot; it. These tools introduce another set of rules that must be learned to fully leverage Rust's features. With a thorough understanding of References and Borrowing, you can work efficiently within Rust's ownership system, allowing for more reliable and performant programs.</p>
+<p>Due to Rust's strict ownership rules, the language provides tools to reference or borrow different parts of your code as a means of accessing or using data without "consuming" it. These tools introduce another set of rules that must be learned to fully leverage Rust's features. With a thorough understanding of References and Borrowing, you can work efficiently within Rust's ownership system, allowing for more reliable and performant programs.</p>
 <h2 id="move-semantics1-rs"><code>move_semantics1.rs</code></h2>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">&#x2F;&#x2F; move_semantics1.rs
-&#x2F;&#x2F; Execute `rustlings hint move_semantics1` or use the `hint` watch subcommand for a hint.
-
-&#x2F;&#x2F; I AM NOT DONE
-
-fn main() {
-    let vec0 = Vec::new();
-
-    let vec1 = fill_vec(vec0);
-
-    println!(&quot;{} has length {} content `{:?}`&quot;, &quot;vec1&quot;, vec1.len(), vec1);
-
-    vec1.push(88);
-
-    println!(&quot;{} has length {} content `{:?}`&quot;, &quot;vec1&quot;, vec1.len(), vec1);
-}
-
-fn fill_vec(vec: Vec&lt;i32&gt;) -&gt; Vec&lt;i32&gt; {
-    let mut vec = vec;
-
-    vec.push(22);
-    vec.push(44);
-    vec.push(66);
-
-    vec
-}
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#707180;">// move_semantics1.rs
+</span><span style="color:#707180;">// Execute `rustlings hint move_semantics1` or use the `hint` watch subcommand for a hint.
+</span><span>
+</span><span style="color:#707180;">// I AM NOT DONE
+</span><span>
+</span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">main</span><span>() {
+</span><span>    </span><span style="color:#a3cbe3;">let</span><span> vec0 </span><span style="color:#db7c6d;">= </span><span style="color:#e7e7e7;">Vec</span><span>::new();
+</span><span>
+</span><span>    </span><span style="color:#a3cbe3;">let</span><span> vec1 </span><span style="color:#db7c6d;">= fill_vec</span><span>(vec0);
+</span><span>
+</span><span>    println!(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span style="font-weight:bold;color:#a2ba43;">{}</span><span> has length </span><span style="font-weight:bold;color:#a2ba43;">{}</span><span> content `</span><span style="font-weight:bold;color:#a2ba43;">{:?}</span><span>`</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>, </span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>vec1</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>, vec1.</span><span style="color:#db7c6d;">len</span><span>(), vec1);
+</span><span>
+</span><span>    vec1.</span><span style="color:#db7c6d;">push</span><span>(</span><span style="color:#db7c6d;">88</span><span>);
+</span><span>
+</span><span>    println!(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span style="font-weight:bold;color:#a2ba43;">{}</span><span> has length </span><span style="font-weight:bold;color:#a2ba43;">{}</span><span> content `</span><span style="font-weight:bold;color:#a2ba43;">{:?}</span><span>`</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>, </span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>vec1</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>, vec1.</span><span style="color:#db7c6d;">len</span><span>(), vec1);
+</span><span>}
+</span><span>
+</span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">fill_vec</span><span>(</span><span style="color:#ffffff;">vec</span><span>: </span><span style="color:#e7e7e7;">Vec</span><span>&lt;</span><span style="color:#a3cbe3;">i32</span><span>&gt;) -&gt; </span><span style="color:#e7e7e7;">Vec</span><span>&lt;</span><span style="color:#a3cbe3;">i32</span><span>&gt; {
+</span><span>    </span><span style="color:#a3cbe3;">let </span><span style="color:#dbbb3d;">mut</span><span> vec </span><span style="color:#db7c6d;">=</span><span> vec;
+</span><span>
+</span><span>    vec.</span><span style="color:#db7c6d;">push</span><span>(</span><span style="color:#db7c6d;">22</span><span>);
+</span><span>    vec.</span><span style="color:#db7c6d;">push</span><span>(</span><span style="color:#db7c6d;">44</span><span>);
+</span><span>    vec.</span><span style="color:#db7c6d;">push</span><span>(</span><span style="color:#db7c6d;">66</span><span>);
+</span><span>
+</span><span>    vec
+</span><span>}
+</span></code></pre>
 <p>Here's our first exercise, which not much in the sense of instructions on how to solve our problem. As always let's take a look at what the Rust compiler is telling us.</p>
 <h2 id="move-semantics1-rs-errors"><code>move_semantics1.rs</code> errors</h2>
-<pre data-lang="zsh" class="language-zsh "><code class="language-zsh" data-lang="zsh">⚠️  Compiling of exercises&#x2F;move_semantics&#x2F;move_semantics1.rs failed! Please try again. Here is the output:
-error[E0596]: cannot borrow `vec1` as mutable, as it is not declared as mutable
-  --&gt; exercises&#x2F;move_semantics&#x2F;move_semantics1.rs:13:5
-   |
-13 |     vec1.push(88);
-   |     ^^^^^^^^^^^^^ cannot borrow as mutable
-   |
-help: consider changing this to be mutable
-   |
-9  |     let mut vec1 = fill_vec(vec0);
-   |         +++
-
-error: aborting due to previous error
-
-For more information about this error, try `rustc --explain E0596`.
-</code></pre>
+<pre data-lang="zsh" style="background-color:#31333d;color:#ffffffc4;" class="language-zsh "><code class="language-zsh" data-lang="zsh"><span style="font-weight:bold;color:#a3cbe3;">⚠️</span><span>  Compiling of exercises/move_semantics/move_semantics1.rs failed! Please try again. Here is the output:
+</span><span style="font-weight:bold;color:#a3cbe3;">error[E0596]:</span><span> cannot borrow `</span><span style="font-weight:bold;color:#a3cbe3;">vec1</span><span>` as mutable, as it is not declared as mutable
+</span><span>  </span><span style="font-weight:bold;color:#a3cbe3;">--</span><span style="color:#db7c6d;">&gt;</span><span> exercises/move_semantics/move_semantics1.rs:13:5
+</span><span>   </span><span style="color:#db7c6d;">|
+</span><span style="font-weight:bold;color:#a3cbe3;">13 </span><span style="color:#db7c6d;">|     </span><span style="font-weight:bold;color:#a3cbe3;">vec1.push</span><span>(88)</span><span style="color:#db7c6d;">;
+</span><span>   </span><span style="color:#db7c6d;">|     </span><span style="font-weight:bold;color:#a3cbe3;">^^^^^^^^^^^^^</span><span> cannot borrow as mutable
+</span><span>   </span><span style="color:#db7c6d;">|
+</span><span style="font-weight:bold;color:#a3cbe3;">help:</span><span> consider changing this to be mutable
+</span><span>   </span><span style="color:#db7c6d;">|
+</span><span style="font-weight:bold;color:#a3cbe3;">9  </span><span style="color:#db7c6d;">|     let</span><span> mut vec1 </span><span style="color:#db7c6d;">=</span><span> fill_vec(vec0);
+</span><span>   </span><span style="color:#db7c6d;">|         </span><span style="font-weight:bold;color:#a3cbe3;">+++
+</span><span>
+</span><span style="font-weight:bold;color:#a3cbe3;">error:</span><span> aborting due to previous error
+</span><span>
+</span><span style="font-weight:bold;color:#a3cbe3;">For</span><span> more information about this error, try `</span><span style="font-weight:bold;color:#a3cbe3;">rustc</span><span style="color:#ffffff;"> --explain</span><span> E0596`.
+</span></code></pre>
 <p>We get a lot of help here from this output clearly telling us where and what the problem is.</p>
 <ul>
 <li>where <code>line 13</code>: <code>vec1.push(88)</code></li>
 <li>what <code>cannot borrow as mutable</code></li>
 </ul>
 <p>We even a very clear suggestion on what we should add on line <code>9</code>, so let's do this.</p>
-<pre data-lang="zsh" class="language-zsh "><code class="language-zsh" data-lang="zsh">9  |     let mut vec1 = fill_vec(vec0);
-   |         +++
-</code></pre>
+<pre data-lang="zsh" style="background-color:#31333d;color:#ffffffc4;" class="language-zsh "><code class="language-zsh" data-lang="zsh"><span style="font-weight:bold;color:#a3cbe3;">9  </span><span style="color:#db7c6d;">|     let</span><span> mut vec1 </span><span style="color:#db7c6d;">=</span><span> fill_vec(vec0);
+</span><span>   </span><span style="color:#db7c6d;">|         </span><span style="font-weight:bold;color:#a3cbe3;">+++
+</span></code></pre>
 <h2 id="move-semantics1-solution"><code>move_semantics1</code> solution</h2>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">fn main() {
-    let vec0 = Vec::new();
-
-    let mut vec1 = fill_vec(vec0); &#x2F;&#x2F; adding `mut`
-
-    println!(&quot;{} has length {} content `{:?}`&quot;, &quot;vec1&quot;, vec1.len(), vec1);
-
-    vec1.push(88);
-
-    println!(&quot;{} has length {} content `{:?}`&quot;, &quot;vec1&quot;, vec1.len(), vec1);
-}
-
-fn fill_vec(vec: Vec&lt;i32&gt;) -&gt; Vec&lt;i32&gt; {
-    let mut vec = vec;
-
-    vec.push(22);
-    vec.push(44);
-    vec.push(66);
-
-    vec
-}
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">main</span><span>() {
+</span><span>    </span><span style="color:#a3cbe3;">let</span><span> vec0 </span><span style="color:#db7c6d;">= </span><span style="color:#e7e7e7;">Vec</span><span>::new();
+</span><span>
+</span><span>    </span><span style="color:#a3cbe3;">let </span><span style="color:#dbbb3d;">mut</span><span> vec1 </span><span style="color:#db7c6d;">= fill_vec</span><span>(vec0); </span><span style="color:#707180;">// adding `mut`
+</span><span>
+</span><span>    println!(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span style="font-weight:bold;color:#a2ba43;">{}</span><span> has length </span><span style="font-weight:bold;color:#a2ba43;">{}</span><span> content `</span><span style="font-weight:bold;color:#a2ba43;">{:?}</span><span>`</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>, </span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>vec1</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>, vec1.</span><span style="color:#db7c6d;">len</span><span>(), vec1);
+</span><span>
+</span><span>    vec1.</span><span style="color:#db7c6d;">push</span><span>(</span><span style="color:#db7c6d;">88</span><span>);
+</span><span>
+</span><span>    println!(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span style="font-weight:bold;color:#a2ba43;">{}</span><span> has length </span><span style="font-weight:bold;color:#a2ba43;">{}</span><span> content `</span><span style="font-weight:bold;color:#a2ba43;">{:?}</span><span>`</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>, </span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>vec1</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>, vec1.</span><span style="color:#db7c6d;">len</span><span>(), vec1);
+</span><span>}
+</span><span>
+</span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">fill_vec</span><span>(</span><span style="color:#ffffff;">vec</span><span>: </span><span style="color:#e7e7e7;">Vec</span><span>&lt;</span><span style="color:#a3cbe3;">i32</span><span>&gt;) -&gt; </span><span style="color:#e7e7e7;">Vec</span><span>&lt;</span><span style="color:#a3cbe3;">i32</span><span>&gt; {
+</span><span>    </span><span style="color:#a3cbe3;">let </span><span style="color:#dbbb3d;">mut</span><span> vec </span><span style="color:#db7c6d;">=</span><span> vec;
+</span><span>
+</span><span>    vec.</span><span style="color:#db7c6d;">push</span><span>(</span><span style="color:#db7c6d;">22</span><span>);
+</span><span>    vec.</span><span style="color:#db7c6d;">push</span><span>(</span><span style="color:#db7c6d;">44</span><span>);
+</span><span>    vec.</span><span style="color:#db7c6d;">push</span><span>(</span><span style="color:#db7c6d;">66</span><span>);
+</span><span>
+</span><span>    vec
+</span><span>}
+</span></code></pre>
 <p>Doing exactly as the Rust compiler says gets us an easy win.</p>
-<pre data-lang="zsh" class="language-zsh "><code class="language-zsh" data-lang="zsh">Output:
-====================
-vec1 has length 3 content `[22, 44, 66]`
-vec1 has length 4 content `[22, 44, 66, 88]`
-
-====================
-</code></pre>
+<pre data-lang="zsh" style="background-color:#31333d;color:#ffffffc4;" class="language-zsh "><code class="language-zsh" data-lang="zsh"><span style="font-weight:bold;color:#a3cbe3;">Output:
+</span><span style="color:#db7c6d;">=</span><span>===================
+</span><span style="font-weight:bold;color:#a3cbe3;">vec1</span><span> has length 3 content `</span><span style="font-weight:bold;color:#a3cbe3;">[22,</span><span> 44, 66]`
+</span><span style="font-weight:bold;color:#a3cbe3;">vec1</span><span> has length 4 content `</span><span style="font-weight:bold;color:#a3cbe3;">[22,</span><span> 44, 66, 88]`
+</span><span>
+</span><span style="color:#db7c6d;">=</span><span>===================
+</span></code></pre>
 <p>Since this was such an easy exercise, let's play around with the code, if you look at the hint by typing <code>hint</code> in terminal, you'll see it gives you another little challenge.</p>
-<pre data-lang="zsh" class="language-zsh "><code class="language-zsh" data-lang="zsh">Also: Try accessing `vec0` after having called `fill_vec()`. See what happens!
-
-</code></pre>
+<pre data-lang="zsh" style="background-color:#31333d;color:#ffffffc4;" class="language-zsh "><code class="language-zsh" data-lang="zsh"><span style="font-weight:bold;color:#a3cbe3;">Also:</span><span> Try accessing `</span><span style="font-weight:bold;color:#a3cbe3;">vec0</span><span>` after having called `</span><span style="color:#a2ba43;">fill_vec</span><span>()`. See what happens!
+</span><span>
+</span></code></pre>
 <p>See if you can get this to work, it should be pretty straight forward if you follow the compiler hints, I was able to get this to print.</p>
-<pre data-lang="zsh" class="language-zsh "><code class="language-zsh" data-lang="zsh">Output:
-====================
-vec1 has length 3 content `[22, 44, 66]`
-vec1 has length 4 content `[22, 44, 66, 88]`
-vec0 has length 1 content `[1]`
-
-====================
-</code></pre>
+<pre data-lang="zsh" style="background-color:#31333d;color:#ffffffc4;" class="language-zsh "><code class="language-zsh" data-lang="zsh"><span style="font-weight:bold;color:#a3cbe3;">Output:
+</span><span style="color:#db7c6d;">=</span><span>===================
+</span><span style="font-weight:bold;color:#a3cbe3;">vec1</span><span> has length 3 content `</span><span style="font-weight:bold;color:#a3cbe3;">[22,</span><span> 44, 66]`
+</span><span style="font-weight:bold;color:#a3cbe3;">vec1</span><span> has length 4 content `</span><span style="font-weight:bold;color:#a3cbe3;">[22,</span><span> 44, 66, 88]`
+</span><span style="font-weight:bold;color:#a3cbe3;">vec0</span><span> has length 1 content `</span><span style="font-weight:bold;color:#a3cbe3;">[1]</span><span>`
+</span><span>
+</span><span style="color:#db7c6d;">=</span><span>===================
+</span></code></pre>
 <p>On to the next one!</p>
 <h2 id="move-semantics2-rs"><code>move_semantics2.rs</code></h2>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">&#x2F;&#x2F; move_semantics2.rs
-&#x2F;&#x2F; Make me compile without changing line 13 or moving line 10!
-&#x2F;&#x2F; Execute `rustlings hint move_semantics2` or use the `hint` watch subcommand for a hint.
-
-&#x2F;&#x2F; I AM NOT DONE
-
-fn main() {
-    let vec0 = Vec::new();
-
-    let mut vec1 = fill_vec(vec0);
-
-    &#x2F;&#x2F; Do not change the following line!
-    println!(&quot;{} has length {} content `{:?}`&quot;, &quot;vec0&quot;, vec0.len(), vec0);
-
-    vec1.push(88);
-
-    println!(&quot;{} has length {} content `{:?}`&quot;, &quot;vec1&quot;, vec1.len(), vec1);
-}
-
-fn fill_vec(vec: Vec&lt;i32&gt;) -&gt; Vec&lt;i32&gt; {
-    let mut vec = vec;
-
-    vec.push(22);
-    vec.push(44);
-    vec.push(66);
-
-    vec
-}
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#707180;">// move_semantics2.rs
+</span><span style="color:#707180;">// Make me compile without changing line 13 or moving line 10!
+</span><span style="color:#707180;">// Execute `rustlings hint move_semantics2` or use the `hint` watch subcommand for a hint.
+</span><span>
+</span><span style="color:#707180;">// I AM NOT DONE
+</span><span>
+</span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">main</span><span>() {
+</span><span>    </span><span style="color:#a3cbe3;">let</span><span> vec0 </span><span style="color:#db7c6d;">= </span><span style="color:#e7e7e7;">Vec</span><span>::new();
+</span><span>
+</span><span>    </span><span style="color:#a3cbe3;">let </span><span style="color:#dbbb3d;">mut</span><span> vec1 </span><span style="color:#db7c6d;">= fill_vec</span><span>(vec0);
+</span><span>
+</span><span>    </span><span style="color:#707180;">// Do not change the following line!
+</span><span>    println!(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span style="font-weight:bold;color:#a2ba43;">{}</span><span> has length </span><span style="font-weight:bold;color:#a2ba43;">{}</span><span> content `</span><span style="font-weight:bold;color:#a2ba43;">{:?}</span><span>`</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>, </span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>vec0</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>, vec0.</span><span style="color:#db7c6d;">len</span><span>(), vec0);
+</span><span>
+</span><span>    vec1.</span><span style="color:#db7c6d;">push</span><span>(</span><span style="color:#db7c6d;">88</span><span>);
+</span><span>
+</span><span>    println!(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span style="font-weight:bold;color:#a2ba43;">{}</span><span> has length </span><span style="font-weight:bold;color:#a2ba43;">{}</span><span> content `</span><span style="font-weight:bold;color:#a2ba43;">{:?}</span><span>`</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>, </span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>vec1</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>, vec1.</span><span style="color:#db7c6d;">len</span><span>(), vec1);
+</span><span>}
+</span><span>
+</span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">fill_vec</span><span>(</span><span style="color:#ffffff;">vec</span><span>: </span><span style="color:#e7e7e7;">Vec</span><span>&lt;</span><span style="color:#a3cbe3;">i32</span><span>&gt;) -&gt; </span><span style="color:#e7e7e7;">Vec</span><span>&lt;</span><span style="color:#a3cbe3;">i32</span><span>&gt; {
+</span><span>    </span><span style="color:#a3cbe3;">let </span><span style="color:#dbbb3d;">mut</span><span> vec </span><span style="color:#db7c6d;">=</span><span> vec;
+</span><span>
+</span><span>    vec.</span><span style="color:#db7c6d;">push</span><span>(</span><span style="color:#db7c6d;">22</span><span>);
+</span><span>    vec.</span><span style="color:#db7c6d;">push</span><span>(</span><span style="color:#db7c6d;">44</span><span>);
+</span><span>    vec.</span><span style="color:#db7c6d;">push</span><span>(</span><span style="color:#db7c6d;">66</span><span>);
+</span><span>
+</span><span>    vec
+</span><span>}
+</span></code></pre>
 <p>Here we get one line of instruction, make this code compile without changing line 13 or moving line 10. Now let's take a look at what the Rust compiler is telling us.</p>
 <h2 id="move-semantics2-rs-errors"><code>move_semantics2.rs</code> errors</h2>
-<pre data-lang="zsh" class="language-zsh "><code class="language-zsh" data-lang="zsh">⚠️  Compiling of exercises&#x2F;move_semantics&#x2F;move_semantics2.rs failed! Please try again. Here is the output:
-error[E0382]: borrow of moved value: `vec0`
-  --&gt; exercises&#x2F;move_semantics&#x2F;move_semantics2.rs:13:57
-   |
-8  |     let vec0 = Vec::new();
-   |         ---- move occurs because `vec0` has type `Vec&lt;i32&gt;`, which does not implement the `Copy` trait
-9  |
-10 |     let mut vec1 = fill_vec(vec0);
-   |                             ---- value moved here
-...
-13 |     println!(&quot;{} has length {} content `{:?}`&quot;, &quot;vec0&quot;, vec0.len(), vec0);
-   |                                                         ^^^^^^^^^^ value borrowed here after move
-   |
-note: consider changing this parameter type in function `fill_vec` to borrow instead if owning the value is not necessary
-  --&gt; exercises&#x2F;move_semantics&#x2F;move_semantics2.rs:20:18
-   |
-20 | fn fill_vec(vec: Vec&lt;i32&gt;) -&gt; Vec&lt;i32&gt; {
-   |    --------      ^^^^^^^^ this parameter takes ownership of the value
-   |    |
-   |    in this function
-help: consider cloning the value if the performance cost is acceptable
-   |
-10 |     let mut vec1 = fill_vec(vec0.clone());
-   |                                 ++++++++
-
-error: aborting due to previous error
-</code></pre>
+<pre data-lang="zsh" style="background-color:#31333d;color:#ffffffc4;" class="language-zsh "><code class="language-zsh" data-lang="zsh"><span style="font-weight:bold;color:#a3cbe3;">⚠️</span><span>  Compiling of exercises/move_semantics/move_semantics2.rs failed! Please try again. Here is the output:
+</span><span style="font-weight:bold;color:#a3cbe3;">error[E0382]:</span><span> borrow of moved value: `</span><span style="font-weight:bold;color:#a3cbe3;">vec0</span><span>`
+</span><span>  </span><span style="font-weight:bold;color:#a3cbe3;">--</span><span style="color:#db7c6d;">&gt;</span><span> exercises/move_semantics/move_semantics2.rs:13:57
+</span><span>   </span><span style="color:#db7c6d;">|
+</span><span style="font-weight:bold;color:#a3cbe3;">8  </span><span style="color:#db7c6d;">|     let</span><span> vec0 </span><span style="color:#db7c6d;">=</span><span> Vec</span><span style="color:#db7c6d;">::</span><span>new();
+</span><span>   </span><span style="color:#db7c6d;">|         </span><span style="font-weight:bold;color:#a3cbe3;">----</span><span> move occurs because `</span><span style="font-weight:bold;color:#a3cbe3;">vec0</span><span>` has type `</span><span style="font-weight:bold;color:#a3cbe3;">Vec</span><span style="color:#db7c6d;">&lt;</span><span>i32</span><span style="color:#db7c6d;">&gt;</span><span>`, which does not implement the `</span><span style="font-weight:bold;color:#a3cbe3;">Copy</span><span>` trait
+</span><span style="font-weight:bold;color:#a3cbe3;">9  </span><span style="color:#db7c6d;">|
+</span><span style="font-weight:bold;color:#a3cbe3;">10 </span><span style="color:#db7c6d;">|     let</span><span> mut vec1 </span><span style="color:#db7c6d;">=</span><span> fill_vec(vec0);
+</span><span>   </span><span style="color:#db7c6d;">|                             </span><span style="font-weight:bold;color:#a3cbe3;">----</span><span> value moved here
+</span><span style="font-weight:bold;color:#a3cbe3;">...
+</span><span style="font-weight:bold;color:#a3cbe3;">13 </span><span style="color:#db7c6d;">|     </span><span style="font-weight:bold;color:#a3cbe3;">println!</span><span>(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>{} has length {} content `</span><span style="font-weight:bold;color:#a3cbe3;">{:?</span><span>}`</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>, </span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>vec0</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>, vec0.len()</span><span style="font-weight:bold;color:#a3cbe3;">,</span><span> vec0)</span><span style="color:#db7c6d;">;
+</span><span>   </span><span style="color:#db7c6d;">|                                                         </span><span style="font-weight:bold;color:#a3cbe3;">^^^^^^^^^^</span><span> value borrowed here after move
+</span><span>   </span><span style="color:#db7c6d;">|
+</span><span style="font-weight:bold;color:#a3cbe3;">note:</span><span> consider changing this parameter type in function `</span><span style="font-weight:bold;color:#a3cbe3;">fill_vec</span><span>` to borrow instead if owning the value is not necessary
+</span><span>  </span><span style="font-weight:bold;color:#a3cbe3;">--</span><span style="color:#db7c6d;">&gt;</span><span> exercises/move_semantics/move_semantics2.rs:20:18
+</span><span>   </span><span style="color:#db7c6d;">|
+</span><span style="font-weight:bold;color:#a3cbe3;">20 </span><span style="color:#db7c6d;">| </span><span style="font-weight:bold;color:#a3cbe3;">fn</span><span> fill_vec(vec: Vec</span><span style="color:#db7c6d;">&lt;</span><span>i32</span><span style="color:#db7c6d;">&gt;</span><span>) </span><span style="font-weight:bold;color:#a3cbe3;">-</span><span style="color:#db7c6d;">&gt;</span><span> Vec</span><span style="color:#db7c6d;">&lt;</span><span>i32</span><span style="color:#db7c6d;">&gt; </span><span>{
+</span><span>   |    --------      ^^^^^^^^ this parameter takes ownership of the value
+</span><span>   |    |
+</span><span>   |    in this function
+</span><span>help: consider cloning the value if the performance cost is acceptable
+</span><span>   |
+</span><span>10 |     let mut vec1 = fill_vec(vec0.clone());
+</span><span>   |                                 ++++++++
+</span><span>
+</span><span>error: aborting due to previous error
+</span></code></pre>
 <p>Alright, we have a lot to see here, the first error on line 8 tells us that <code>vec0</code> is being moved to line 10 to the line <code>let mut vec1 = fill_vec(0);</code>
 The note tells us to consider changing the parameter type, but that shouldn't be where we should be looking because in this case we do want to return a <code>Vec&lt;i32&gt;</code>. If we continue reading our errors, we get the answer in the line <code>help: consider cloning the value if the performanc cost is acceptable</code>. This is very helpful and clear answer. If you played around with the code on [[#move_semantics1.rs]] you might have already encountered this solution. So let's try this <code>clone()</code> solution.</p>
 <h2 id="move-semantics2-solution"><code>move_semantics2</code> solution</h2>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">
-fn main() {
-    let vec0 = Vec::new();
-
-    let mut vec1 = fill_vec(vec0.clone()); &#x2F;&#x2F; adding clone() here
-
-    &#x2F;&#x2F; Do not change the following line!
-    println!(&quot;{} has length {} content `{:?}`&quot;, &quot;vec0&quot;, vec0.len(), vec0);
-
-    vec1.push(88);
-
-    println!(&quot;{} has length {} content `{:?}`&quot;, &quot;vec1&quot;, vec1.len(), vec1);
-}
-
-fn fill_vec(vec: Vec&lt;i32&gt;) -&gt; Vec&lt;i32&gt; {
-    let mut vec = vec;
-
-    vec.push(22);
-    vec.push(44);
-    vec.push(66);
-
-    vec
-}
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span>
+</span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">main</span><span>() {
+</span><span>    </span><span style="color:#a3cbe3;">let</span><span> vec0 </span><span style="color:#db7c6d;">= </span><span style="color:#e7e7e7;">Vec</span><span>::new();
+</span><span>
+</span><span>    </span><span style="color:#a3cbe3;">let </span><span style="color:#dbbb3d;">mut</span><span> vec1 </span><span style="color:#db7c6d;">= fill_vec</span><span>(vec0.</span><span style="color:#db7c6d;">clone</span><span>()); </span><span style="color:#707180;">// adding clone() here
+</span><span>
+</span><span>    </span><span style="color:#707180;">// Do not change the following line!
+</span><span>    println!(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span style="font-weight:bold;color:#a2ba43;">{}</span><span> has length </span><span style="font-weight:bold;color:#a2ba43;">{}</span><span> content `</span><span style="font-weight:bold;color:#a2ba43;">{:?}</span><span>`</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>, </span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>vec0</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>, vec0.</span><span style="color:#db7c6d;">len</span><span>(), vec0);
+</span><span>
+</span><span>    vec1.</span><span style="color:#db7c6d;">push</span><span>(</span><span style="color:#db7c6d;">88</span><span>);
+</span><span>
+</span><span>    println!(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span style="font-weight:bold;color:#a2ba43;">{}</span><span> has length </span><span style="font-weight:bold;color:#a2ba43;">{}</span><span> content `</span><span style="font-weight:bold;color:#a2ba43;">{:?}</span><span>`</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>, </span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>vec1</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>, vec1.</span><span style="color:#db7c6d;">len</span><span>(), vec1);
+</span><span>}
+</span><span>
+</span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">fill_vec</span><span>(</span><span style="color:#ffffff;">vec</span><span>: </span><span style="color:#e7e7e7;">Vec</span><span>&lt;</span><span style="color:#a3cbe3;">i32</span><span>&gt;) -&gt; </span><span style="color:#e7e7e7;">Vec</span><span>&lt;</span><span style="color:#a3cbe3;">i32</span><span>&gt; {
+</span><span>    </span><span style="color:#a3cbe3;">let </span><span style="color:#dbbb3d;">mut</span><span> vec </span><span style="color:#db7c6d;">=</span><span> vec;
+</span><span>
+</span><span>    vec.</span><span style="color:#db7c6d;">push</span><span>(</span><span style="color:#db7c6d;">22</span><span>);
+</span><span>    vec.</span><span style="color:#db7c6d;">push</span><span>(</span><span style="color:#db7c6d;">44</span><span>);
+</span><span>    vec.</span><span style="color:#db7c6d;">push</span><span>(</span><span style="color:#db7c6d;">66</span><span>);
+</span><span>
+</span><span>    vec
+</span><span>}
+</span></code></pre>
 <p>It works. Again, you shouldn't be too surprised if you played around with the previous code that we had since it's pretty much the same code.
 Our code compiles and this is our output.</p>
-<pre data-lang="zsh" class="language-zsh "><code class="language-zsh" data-lang="zsh">Output:
-====================
-vec0 has length 0 content `[]`
-vec1 has length 4 content `[22, 44, 66, 88]`
-
-====================
-</code></pre>
+<pre data-lang="zsh" style="background-color:#31333d;color:#ffffffc4;" class="language-zsh "><code class="language-zsh" data-lang="zsh"><span style="font-weight:bold;color:#a3cbe3;">Output:
+</span><span style="color:#db7c6d;">=</span><span>===================
+</span><span style="font-weight:bold;color:#a3cbe3;">vec0</span><span> has length 0 content `</span><span style="font-weight:bold;color:#a3cbe3;">[]</span><span>`
+</span><span style="font-weight:bold;color:#a3cbe3;">vec1</span><span> has length 4 content `</span><span style="font-weight:bold;color:#a3cbe3;">[22,</span><span> 44, 66, 88]`
+</span><span>
+</span><span style="color:#db7c6d;">=</span><span>===================
+</span></code></pre>
 <p>If we look at the hint, we actually have a few different options to make this code compile. The compiler told us one solution with cloning along with the warning that we should be aware that there could be a performance cost if our data is big. In our case it works because it's not, but using <code>clone()</code> is not always a good solution. So, let's look at alternate solutions from the Rustlings hint.</p>
 <p><strong>hint</strong>
 So, <code>vec0</code> is passed into the <code>fill_vec</code> function as an argument. In Rust,
 when an argument is passed to a function and it's not explicitly returned,
-you can't use the original variable anymore. We call this &quot;moving&quot; a variable.
+you can't use the original variable anymore. We call this "moving" a variable.
 Variables that are moved into a function (or block scope) and aren't explicitly
-returned get &quot;dropped&quot; at the end of that function. This is also what happens here.
+returned get "dropped" at the end of that function. This is also what happens here.
 There's a few ways to fix this, try them all if you want:</p>
 <ol>
 <li>
@@ -364,62 +368,62 @@ There's a few ways to fix this, try them all if you want:</p>
 <p>Option 1, is what we already did by cloning the data inside of <code>vec0</code> we created a separate version so let's look at the other 2 options.</p>
 <h2 id="solution-2">Solution 2</h2>
 <p>Tells us that we should make <code>fill_vec</code> borrow its arguments instead of owning them, then we copy the data within the function and return and owned <code>Vec&lt;i32&gt;</code>. Let's see how we can implement this.</p>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">fn main() {
-    let vec0 = Vec::new();
-
-    let mut vec1 = fill_vec(&amp;vec0); &#x2F;&#x2F; ad the `&amp;` to our `vec0`
-
-    &#x2F;&#x2F; Do not change the following line!
-    println!(&quot;{} has length {} content `{:?}`&quot;, &quot;vec0&quot;, vec0.len(), vec0);
-
-    vec1.push(88);
-
-    println!(&quot;{} has length {} content `{:?}`&quot;, &quot;vec1&quot;, vec1.len(), vec1);
-}
-&#x2F;&#x2F; change the paramter of our function here to be a reference with &amp;Vec&lt;i32&gt;
-fn fill_vec(vec: &amp;Vec&lt;i32&gt;) -&gt; Vec&lt;i32&gt; {
-    let mut vec = vec.clone(); &#x2F;&#x2F; we use clone() here to copy the data
-
-    vec.push(22);
-    vec.push(44);
-    vec.push(66);
-
-    vec
-}
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">main</span><span>() {
+</span><span>    </span><span style="color:#a3cbe3;">let</span><span> vec0 </span><span style="color:#db7c6d;">= </span><span style="color:#e7e7e7;">Vec</span><span>::new();
+</span><span>
+</span><span>    </span><span style="color:#a3cbe3;">let </span><span style="color:#dbbb3d;">mut</span><span> vec1 </span><span style="color:#db7c6d;">= fill_vec</span><span>(</span><span style="color:#db7c6d;">&amp;</span><span>vec0); </span><span style="color:#707180;">// ad the `&amp;` to our `vec0`
+</span><span>
+</span><span>    </span><span style="color:#707180;">// Do not change the following line!
+</span><span>    println!(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span style="font-weight:bold;color:#a2ba43;">{}</span><span> has length </span><span style="font-weight:bold;color:#a2ba43;">{}</span><span> content `</span><span style="font-weight:bold;color:#a2ba43;">{:?}</span><span>`</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>, </span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>vec0</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>, vec0.</span><span style="color:#db7c6d;">len</span><span>(), vec0);
+</span><span>
+</span><span>    vec1.</span><span style="color:#db7c6d;">push</span><span>(</span><span style="color:#db7c6d;">88</span><span>);
+</span><span>
+</span><span>    println!(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span style="font-weight:bold;color:#a2ba43;">{}</span><span> has length </span><span style="font-weight:bold;color:#a2ba43;">{}</span><span> content `</span><span style="font-weight:bold;color:#a2ba43;">{:?}</span><span>`</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>, </span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>vec1</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>, vec1.</span><span style="color:#db7c6d;">len</span><span>(), vec1);
+</span><span>}
+</span><span style="color:#707180;">// change the paramter of our function here to be a reference with &amp;Vec&lt;i32&gt;
+</span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">fill_vec</span><span>(</span><span style="color:#ffffff;">vec</span><span>: </span><span style="color:#db7c6d;">&amp;</span><span style="color:#e7e7e7;">Vec</span><span>&lt;</span><span style="color:#a3cbe3;">i32</span><span>&gt;) -&gt; </span><span style="color:#e7e7e7;">Vec</span><span>&lt;</span><span style="color:#a3cbe3;">i32</span><span>&gt; {
+</span><span>    </span><span style="color:#a3cbe3;">let </span><span style="color:#dbbb3d;">mut</span><span> vec </span><span style="color:#db7c6d;">=</span><span> vec.</span><span style="color:#db7c6d;">clone</span><span>(); </span><span style="color:#707180;">// we use clone() here to copy the data
+</span><span>
+</span><span>    vec.</span><span style="color:#db7c6d;">push</span><span>(</span><span style="color:#db7c6d;">22</span><span>);
+</span><span>    vec.</span><span style="color:#db7c6d;">push</span><span>(</span><span style="color:#db7c6d;">44</span><span>);
+</span><span>    vec.</span><span style="color:#db7c6d;">push</span><span>(</span><span style="color:#db7c6d;">66</span><span>);
+</span><span>
+</span><span>    vec
+</span><span>}
+</span></code></pre>
 <p>So here's the second solution and although it handles the problem a little differently it still has to copy the data using <code>clone()</code>. So it would still have similar performance hits if we had a huge vector of data. However, it's worth noting that the second solution is more idiomatic Rust. In Rust, it's common to use the clone method directly on the caller's side, making it clear that a clone is being created and ownership is being transferred.</p>
 <h2 id="solution-3">Solution 3</h2>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">fn main() {
-    let mut vec0 = Vec::new(); &#x2F;&#x2F; Make vec0 mutable
-
-    fill_vec(&amp;mut vec0); &#x2F;&#x2F; Pass a mutable reference to vec0
-
-    &#x2F;&#x2F; Do not change the following line!
-    println!(&quot;{} has length {} content `{:?}`&quot;, &quot;vec0&quot;, vec0.len(), vec0);
-
-    vec0.push(88);
-
-    println!(&quot;{} has length {} content `{:?}`&quot;, &quot;vec0&quot;, vec0.len(), vec0); &#x2F;&#x2F; Update the label to &quot;vec0&quot;
-}
-
-&#x2F;&#x2F; Change the function parameter to accept a mutable reference with &amp;mut Vec&lt;i32&gt;
-&#x2F;&#x2F; Remove the return type, as the function doesn&#x27;t need to return anything
-fn fill_vec(vec: &amp;mut Vec&lt;i32&gt;) {
-    vec.push(22);
-    vec.push(44);
-    vec.push(66);
-}
-
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">main</span><span>() {
+</span><span>    </span><span style="color:#a3cbe3;">let </span><span style="color:#dbbb3d;">mut</span><span> vec0 </span><span style="color:#db7c6d;">= </span><span style="color:#e7e7e7;">Vec</span><span>::new(); </span><span style="color:#707180;">// Make vec0 mutable
+</span><span>
+</span><span>    </span><span style="color:#db7c6d;">fill_vec</span><span>(</span><span style="color:#db7c6d;">&amp;</span><span style="color:#dbbb3d;">mut</span><span> vec0); </span><span style="color:#707180;">// Pass a mutable reference to vec0
+</span><span>
+</span><span>    </span><span style="color:#707180;">// Do not change the following line!
+</span><span>    println!(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span style="font-weight:bold;color:#a2ba43;">{}</span><span> has length </span><span style="font-weight:bold;color:#a2ba43;">{}</span><span> content `</span><span style="font-weight:bold;color:#a2ba43;">{:?}</span><span>`</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>, </span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>vec0</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>, vec0.</span><span style="color:#db7c6d;">len</span><span>(), vec0);
+</span><span>
+</span><span>    vec0.</span><span style="color:#db7c6d;">push</span><span>(</span><span style="color:#db7c6d;">88</span><span>);
+</span><span>
+</span><span>    println!(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span style="font-weight:bold;color:#a2ba43;">{}</span><span> has length </span><span style="font-weight:bold;color:#a2ba43;">{}</span><span> content `</span><span style="font-weight:bold;color:#a2ba43;">{:?}</span><span>`</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>, </span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>vec0</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>, vec0.</span><span style="color:#db7c6d;">len</span><span>(), vec0); </span><span style="color:#707180;">// Update the label to &quot;vec0&quot;
+</span><span>}
+</span><span>
+</span><span style="color:#707180;">// Change the function parameter to accept a mutable reference with &amp;mut Vec&lt;i32&gt;
+</span><span style="color:#707180;">// Remove the return type, as the function doesn&#39;t need to return anything
+</span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">fill_vec</span><span>(</span><span style="color:#ffffff;">vec</span><span>: </span><span style="color:#db7c6d;">&amp;</span><span style="color:#dbbb3d;">mut </span><span style="color:#e7e7e7;">Vec</span><span>&lt;</span><span style="color:#a3cbe3;">i32</span><span>&gt;) {
+</span><span>    vec.</span><span style="color:#db7c6d;">push</span><span>(</span><span style="color:#db7c6d;">22</span><span>);
+</span><span>    vec.</span><span style="color:#db7c6d;">push</span><span>(</span><span style="color:#db7c6d;">44</span><span>);
+</span><span>    vec.</span><span style="color:#db7c6d;">push</span><span>(</span><span style="color:#db7c6d;">66</span><span>);
+</span><span>}
+</span><span>
+</span></code></pre>
 <p>Now let's took at our final solution that changes a bit more how the code functions. In this modified version, <code>fill_vec</code> now takes a mutable reference to a <code>Vec&lt;i32&gt;</code> (indicated by <code>&amp;mut Vec&lt;i32&gt;</code>), allowing it to modify the input vector directly. Since the input vector is modified in place, the function doesn't need to return anything. As a result, there is no need for a separate <code>vec1</code>.</p>
 <p>We also see that our output changes</p>
-<pre data-lang="zsh" class="language-zsh "><code class="language-zsh" data-lang="zsh">Output:
-====================
-vec0 has length 3 content `[22, 44, 66]`
-vec0 has length 4 content `[22, 44, 66, 88]`
-
-====================
-</code></pre>
+<pre data-lang="zsh" style="background-color:#31333d;color:#ffffffc4;" class="language-zsh "><code class="language-zsh" data-lang="zsh"><span style="font-weight:bold;color:#a3cbe3;">Output:
+</span><span style="color:#db7c6d;">=</span><span>===================
+</span><span style="font-weight:bold;color:#a3cbe3;">vec0</span><span> has length 3 content `</span><span style="font-weight:bold;color:#a3cbe3;">[22,</span><span> 44, 66]`
+</span><span style="font-weight:bold;color:#a3cbe3;">vec0</span><span> has length 4 content `</span><span style="font-weight:bold;color:#a3cbe3;">[22,</span><span> 44, 66, 88]`
+</span><span>
+</span><span style="color:#db7c6d;">=</span><span>===================
+</span></code></pre>
 <h2 id="so-which-solution-is-best">So which Solution is Best?</h2>
 <p>The best solution depends on your specific requirements:</p>
 <ul>
@@ -428,85 +432,85 @@ vec0 has length 4 content `[22, 44, 66, 88]`
 </ul>
 <p>In general, solution 3 is the most efficient because it directly modifies the original vector without creating a new one. However, this may not be suitable for every use case, as it changes the original vector's content. Let's move on to the next exercise.</p>
 <h2 id="move-semantics3"><code>move_semantics3</code></h2>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">&#x2F;&#x2F; move_semantics3.rs
-&#x2F;&#x2F; Make me compile without adding new lines-- just changing existing lines!
-&#x2F;&#x2F; (no lines with multiple semicolons necessary!)
-&#x2F;&#x2F; Execute `rustlings hint move_semantics3` or use the `hint` watch subcommand for a hint.
-
-&#x2F;&#x2F; I AM NOT DONE
-
-fn main() {
-    let vec0 = Vec::new();
-
-    let mut vec1 = fill_vec(vec0);
-
-    println!(&quot;{} has length {} content `{:?}`&quot;, &quot;vec1&quot;, vec1.len(), vec1);
-
-    vec1.push(88);
-
-    println!(&quot;{} has length {} content `{:?}`&quot;, &quot;vec1&quot;, vec1.len(), vec1);
-}
-
-fn fill_vec(vec: Vec&lt;i32&gt;) -&gt; Vec&lt;i32&gt; {
-    vec.push(22);
-    vec.push(44);
-    vec.push(66);
-
-    vec
-}
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#707180;">// move_semantics3.rs
+</span><span style="color:#707180;">// Make me compile without adding new lines-- just changing existing lines!
+</span><span style="color:#707180;">// (no lines with multiple semicolons necessary!)
+</span><span style="color:#707180;">// Execute `rustlings hint move_semantics3` or use the `hint` watch subcommand for a hint.
+</span><span>
+</span><span style="color:#707180;">// I AM NOT DONE
+</span><span>
+</span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">main</span><span>() {
+</span><span>    </span><span style="color:#a3cbe3;">let</span><span> vec0 </span><span style="color:#db7c6d;">= </span><span style="color:#e7e7e7;">Vec</span><span>::new();
+</span><span>
+</span><span>    </span><span style="color:#a3cbe3;">let </span><span style="color:#dbbb3d;">mut</span><span> vec1 </span><span style="color:#db7c6d;">= fill_vec</span><span>(vec0);
+</span><span>
+</span><span>    println!(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span style="font-weight:bold;color:#a2ba43;">{}</span><span> has length </span><span style="font-weight:bold;color:#a2ba43;">{}</span><span> content `</span><span style="font-weight:bold;color:#a2ba43;">{:?}</span><span>`</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>, </span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>vec1</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>, vec1.</span><span style="color:#db7c6d;">len</span><span>(), vec1);
+</span><span>
+</span><span>    vec1.</span><span style="color:#db7c6d;">push</span><span>(</span><span style="color:#db7c6d;">88</span><span>);
+</span><span>
+</span><span>    println!(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span style="font-weight:bold;color:#a2ba43;">{}</span><span> has length </span><span style="font-weight:bold;color:#a2ba43;">{}</span><span> content `</span><span style="font-weight:bold;color:#a2ba43;">{:?}</span><span>`</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>, </span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>vec1</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>, vec1.</span><span style="color:#db7c6d;">len</span><span>(), vec1);
+</span><span>}
+</span><span>
+</span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">fill_vec</span><span>(</span><span style="color:#ffffff;">vec</span><span>: </span><span style="color:#e7e7e7;">Vec</span><span>&lt;</span><span style="color:#a3cbe3;">i32</span><span>&gt;) -&gt; </span><span style="color:#e7e7e7;">Vec</span><span>&lt;</span><span style="color:#a3cbe3;">i32</span><span>&gt; {
+</span><span>    vec.</span><span style="color:#db7c6d;">push</span><span>(</span><span style="color:#db7c6d;">22</span><span>);
+</span><span>    vec.</span><span style="color:#db7c6d;">push</span><span>(</span><span style="color:#db7c6d;">44</span><span>);
+</span><span>    vec.</span><span style="color:#db7c6d;">push</span><span>(</span><span style="color:#db7c6d;">66</span><span>);
+</span><span>
+</span><span>    vec
+</span><span>}
+</span></code></pre>
 <p>This exercise says we can't add any additional lines of code, but we can change the lines. Let's take a look at what the compiler is saying.</p>
 <h2 id="move-semantics3-errors"><code>move_semantics3</code> errors</h2>
-<pre data-lang="zsh" class="language-zsh "><code class="language-zsh" data-lang="zsh">⚠️  Compiling of exercises&#x2F;move_semantics&#x2F;move_semantics3.rs failed! Please try again. Here is the output:
-error[E0596]: cannot borrow `vec` as mutable, as it is not declared as mutable
-  --&gt; exercises&#x2F;move_semantics&#x2F;move_semantics3.rs:20:13
-   |
-20 | fn fill_vec(vec: Vec&lt;i32&gt;) -&gt; Vec&lt;i32&gt; {
-   |             ^^^ not mutable
-21 |     vec.push(22);
-   |     ------------ cannot borrow as mutable
-22 |     vec.push(44);
-   |     ------------ cannot borrow as mutable
-23 |     vec.push(66);
-   |     ------------ cannot borrow as mutable
-   |
-help: consider changing this to be mutable
-   |
-20 | fn fill_vec(mut vec: Vec&lt;i32&gt;) -&gt; Vec&lt;i32&gt; {
-   |             +++
-
-error: aborting due to previous error
-</code></pre>
+<pre data-lang="zsh" style="background-color:#31333d;color:#ffffffc4;" class="language-zsh "><code class="language-zsh" data-lang="zsh"><span style="font-weight:bold;color:#a3cbe3;">⚠️</span><span>  Compiling of exercises/move_semantics/move_semantics3.rs failed! Please try again. Here is the output:
+</span><span style="font-weight:bold;color:#a3cbe3;">error[E0596]:</span><span> cannot borrow `</span><span style="font-weight:bold;color:#a3cbe3;">vec</span><span>` as mutable, as it is not declared as mutable
+</span><span>  </span><span style="font-weight:bold;color:#a3cbe3;">--</span><span style="color:#db7c6d;">&gt;</span><span> exercises/move_semantics/move_semantics3.rs:20:13
+</span><span>   </span><span style="color:#db7c6d;">|
+</span><span style="font-weight:bold;color:#a3cbe3;">20 </span><span style="color:#db7c6d;">| </span><span style="font-weight:bold;color:#a3cbe3;">fn</span><span> fill_vec(vec: Vec</span><span style="color:#db7c6d;">&lt;</span><span>i32</span><span style="color:#db7c6d;">&gt;</span><span>) </span><span style="font-weight:bold;color:#a3cbe3;">-</span><span style="color:#db7c6d;">&gt;</span><span> Vec</span><span style="color:#db7c6d;">&lt;</span><span>i32</span><span style="color:#db7c6d;">&gt; </span><span>{
+</span><span>   |             ^^^ not mutable
+</span><span>21 |     vec.push(22);
+</span><span>   |     ------------ cannot borrow as mutable
+</span><span>22 |     vec.push(44);
+</span><span>   |     ------------ cannot borrow as mutable
+</span><span>23 |     vec.push(66);
+</span><span>   |     ------------ cannot borrow as mutable
+</span><span>   |
+</span><span>help: consider changing this to be mutable
+</span><span>   |
+</span><span>20 | fn fill_vec(mut vec: Vec&lt;i32&gt;) -&gt; Vec&lt;i32&gt; {
+</span><span>   |             +++
+</span><span>
+</span><span>error: aborting due to previous error
+</span></code></pre>
 <p>As always we get great help from the compiler. This seems pretty straight forward, let's do what the compiler suggests and see what happens.</p>
 <h2 id="move-semantics3-solution"><code>move_semantics3</code> solution</h2>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">fn main() {
-    let vec0 = Vec::new();
-
-    let mut vec1 = fill_vec(vec0);
-
-    println!(&quot;{} has length {} content `{:?}`&quot;, &quot;vec1&quot;, vec1.len(), vec1);
-
-    vec1.push(88);
-
-    println!(&quot;{} has length {} content `{:?}`&quot;, &quot;vec1&quot;, vec1.len(), vec1);
-}
-&#x2F;&#x2F; adding `mut` to the `vec` paramater
-fn fill_vec(mut vec: Vec&lt;i32&gt;) -&gt; Vec&lt;i32&gt; {
-    vec.push(22);
-    vec.push(44);
-    vec.push(66);
-
-    vec
-}
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">main</span><span>() {
+</span><span>    </span><span style="color:#a3cbe3;">let</span><span> vec0 </span><span style="color:#db7c6d;">= </span><span style="color:#e7e7e7;">Vec</span><span>::new();
+</span><span>
+</span><span>    </span><span style="color:#a3cbe3;">let </span><span style="color:#dbbb3d;">mut</span><span> vec1 </span><span style="color:#db7c6d;">= fill_vec</span><span>(vec0);
+</span><span>
+</span><span>    println!(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span style="font-weight:bold;color:#a2ba43;">{}</span><span> has length </span><span style="font-weight:bold;color:#a2ba43;">{}</span><span> content `</span><span style="font-weight:bold;color:#a2ba43;">{:?}</span><span>`</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>, </span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>vec1</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>, vec1.</span><span style="color:#db7c6d;">len</span><span>(), vec1);
+</span><span>
+</span><span>    vec1.</span><span style="color:#db7c6d;">push</span><span>(</span><span style="color:#db7c6d;">88</span><span>);
+</span><span>
+</span><span>    println!(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span style="font-weight:bold;color:#a2ba43;">{}</span><span> has length </span><span style="font-weight:bold;color:#a2ba43;">{}</span><span> content `</span><span style="font-weight:bold;color:#a2ba43;">{:?}</span><span>`</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>, </span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>vec1</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>, vec1.</span><span style="color:#db7c6d;">len</span><span>(), vec1);
+</span><span>}
+</span><span style="color:#707180;">// adding `mut` to the `vec` paramater
+</span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">fill_vec</span><span>(</span><span style="color:#dbbb3d;">mut </span><span style="color:#ffffff;">vec</span><span>: </span><span style="color:#e7e7e7;">Vec</span><span>&lt;</span><span style="color:#a3cbe3;">i32</span><span>&gt;) -&gt; </span><span style="color:#e7e7e7;">Vec</span><span>&lt;</span><span style="color:#a3cbe3;">i32</span><span>&gt; {
+</span><span>    vec.</span><span style="color:#db7c6d;">push</span><span>(</span><span style="color:#db7c6d;">22</span><span>);
+</span><span>    vec.</span><span style="color:#db7c6d;">push</span><span>(</span><span style="color:#db7c6d;">44</span><span>);
+</span><span>    vec.</span><span style="color:#db7c6d;">push</span><span>(</span><span style="color:#db7c6d;">66</span><span>);
+</span><span>
+</span><span>    vec
+</span><span>}
+</span></code></pre>
 <p>Success!</p>
-<pre data-lang="zsh" class="language-zsh "><code class="language-zsh" data-lang="zsh">Output:
-====================
-vec1 has length 3 content `[22, 44, 66]`
-vec1 has length 4 content `[22, 44, 66, 88]`
-
-====================
-</code></pre>
+<pre data-lang="zsh" style="background-color:#31333d;color:#ffffffc4;" class="language-zsh "><code class="language-zsh" data-lang="zsh"><span style="font-weight:bold;color:#a3cbe3;">Output:
+</span><span style="color:#db7c6d;">=</span><span>===================
+</span><span style="font-weight:bold;color:#a3cbe3;">vec1</span><span> has length 3 content `</span><span style="font-weight:bold;color:#a3cbe3;">[22,</span><span> 44, 66]`
+</span><span style="font-weight:bold;color:#a3cbe3;">vec1</span><span> has length 4 content `</span><span style="font-weight:bold;color:#a3cbe3;">[22,</span><span> 44, 66, 88]`
+</span><span>
+</span><span style="color:#db7c6d;">=</span><span>===================
+</span></code></pre>
 <p>Following the Rust compiler's help is very easy in this case, if we notice the code is very similar to the previous exercise but this code is missing the <code>let mut vec = vec;</code> line from the <code>fn fill_vec</code> function.</p>
 <h2 id="wrapping-up-the-rustlings-move-semantics-journey-continues">Wrapping Up: The Rustlings Move Semantics Journey Continues!</h2>
 <p>There you have it! We've explored the first three <code>move_semantics</code> exercises from the Rustlings course. To keep these blog posts digestible, we'll be diving into the next 3 <code>move_semantics</code> challenges in a separate post, so keep an eye out for that!</p>
@@ -538,7 +542,7 @@ vec1 has length 4 content `[22, 44, 66, 88]`
 		
     </p>
     
-    <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>2499 Words</p>
+    <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>1519 Words</p>
     
     <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2023-05-15</p>
     
@@ -561,7 +565,7 @@ vec1 has length 4 content `[22, 44, 66, 88]`
 
 
 <footer id="site-footer" class="section-inner thin animated fadeIn faster">
-  <p>&copy; 2024 <a href="https:&#x2F;&#x2F;desmodrone.github.io">erick</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
+  <p>&copy; 2026 <a href="https:&#x2F;&#x2F;desmodrone.github.io">erick</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
   <p>Made with <a href="https://www.getzola.org" target="_blank" rel="noopener">Zola</a> &#183; Theme <a href="https://github.com/VersBinarii/hermit_zola" target="_blank" rel="noopener">Hermit_Zola</a>
 	
 	&#183; <a href="https://desmodrone.github.io/rss.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>

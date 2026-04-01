@@ -27,6 +27,10 @@
   <link rel="alternate" type="application/rss+xml" title="RSS" href="https://desmodrone.github.io/rss.xml">
   
 
+  
+  <link rel="canonical" href="https://desmodrone.github.io/posts/rust-leetcode-most-frequent-even/">
+  
+
   <body id="page">
 
 	
@@ -120,7 +124,7 @@
 		<small> - 
 <span class="reading-time" title="Estimated read time">
   
-  4 min read
+  3 min read
   
 </span>
 </small>
@@ -137,22 +141,22 @@
 <p><a href="https://leetcode.com/problems/most-frequent-even-element/description/">2404. Most Frequent Even Element</a> presented as follows: Given an integer array <code>nums</code>, return the most frequent even element
 If there is a tie, return the <em>smallest one</em>. If there is no such element, return <code>-1</code>.</p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: nums = [0, 1, 2, 2, 4, 4, 1]
-Output: 2
-Explanation:
-The even elements are 0, 2, and 4. Of these, 2 and 4 appear the most.
-We return the smallest one, which is 2.
-</code></pre>
+<pre style="background-color:#31333d;color:#ffffffc4;"><code><span>Input: nums = [0, 1, 2, 2, 4, 4, 1]
+</span><span>Output: 2
+</span><span>Explanation:
+</span><span>The even elements are 0, 2, and 4. Of these, 2 and 4 appear the most.
+</span><span>We return the smallest one, which is 2.
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: nums = [4, 4, 4, 9, 2, 4]
-Output: 4
-Explanation: 4 is the even element that appears the most
-</code></pre>
+<pre style="background-color:#31333d;color:#ffffffc4;"><code><span>Input: nums = [4, 4, 4, 9, 2, 4]
+</span><span>Output: 4
+</span><span>Explanation: 4 is the even element that appears the most
+</span></code></pre>
 <p><strong>Example 3:</strong></p>
-<pre><code>Input: nums = [29, 47, 21, 41, 13, 37, 25, 7]
-Output: -1
-Explanation: There is no even element.
-</code></pre>
+<pre style="background-color:#31333d;color:#ffffffc4;"><code><span>Input: nums = [29, 47, 21, 41, 13, 37, 25, 7]
+</span><span>Output: -1
+</span><span>Explanation: There is no even element.
+</span></code></pre>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>1 &lt;= nums.length &lt;= 2000</code></li>
@@ -164,58 +168,58 @@ Explanation: There is no even element.
 <p>As usual we'll approach this in 2 different ways, although both use <code>HashMaps</code> we'll have a more straightforward imperative way, with a more functional approach that uses some of Rust's method's.</p>
 <h2 id="code">Code</h2>
 <h3 id="imperative-solution">Imperative Solution</h3>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">use std::collections::HashMap;
-
-fn most_freq_even(nums: Vec&lt;i32&gt;) -&gt; i32 {
-    let mut hm = HashMap::new();
-
-    for i in nums {
-        if i % 2 == 0 {
-            let count = hm.entry(i).or_insert(0);
-            *count += 1;
-        }
-    }
-
-    let mut freq = -1;
-    let mut max = 0;
-
-    for (k, v) in hm {
-        if v &gt; max || (v == v &amp;&amp; k &lt; freq){
-            freq = k;
-            max = v;
-        }
-    }
-    freq
-}
-fn main() {
-    println!(&quot;{}&quot;, most_freq_even(vec![2, 2, 2, 4, 4, 4]));
-}
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#db7c6d;">use </span><span>std::collections::HashMap;
+</span><span>
+</span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">most_freq_even</span><span>(</span><span style="color:#ffffff;">nums</span><span>: </span><span style="color:#e7e7e7;">Vec</span><span>&lt;</span><span style="color:#a3cbe3;">i32</span><span>&gt;) -&gt; </span><span style="color:#a3cbe3;">i32 </span><span>{
+</span><span>    </span><span style="color:#a3cbe3;">let </span><span style="color:#dbbb3d;">mut</span><span> hm </span><span style="color:#db7c6d;">= </span><span>HashMap::new();
+</span><span>
+</span><span>    </span><span style="color:#db7c6d;">for</span><span> i </span><span style="color:#db7c6d;">in</span><span> nums {
+</span><span>        </span><span style="color:#db7c6d;">if</span><span> i </span><span style="color:#db7c6d;">% 2 == 0 </span><span>{
+</span><span>            </span><span style="color:#a3cbe3;">let</span><span> count </span><span style="color:#db7c6d;">=</span><span> hm.</span><span style="color:#db7c6d;">entry</span><span>(i).</span><span style="color:#db7c6d;">or_insert</span><span>(</span><span style="color:#db7c6d;">0</span><span>);
+</span><span>            </span><span style="color:#db7c6d;">*</span><span>count </span><span style="color:#db7c6d;">+= 1</span><span>;
+</span><span>        }
+</span><span>    }
+</span><span>
+</span><span>    </span><span style="color:#a3cbe3;">let </span><span style="color:#dbbb3d;">mut</span><span> freq </span><span style="color:#db7c6d;">= -1</span><span>;
+</span><span>    </span><span style="color:#a3cbe3;">let </span><span style="color:#dbbb3d;">mut</span><span> max </span><span style="color:#db7c6d;">= 0</span><span>;
+</span><span>
+</span><span>    </span><span style="color:#db7c6d;">for </span><span>(k, v) </span><span style="color:#db7c6d;">in</span><span> hm {
+</span><span>        </span><span style="color:#db7c6d;">if</span><span> v </span><span style="color:#db7c6d;">&gt;</span><span> max </span><span style="color:#db7c6d;">|| </span><span>(v </span><span style="color:#db7c6d;">==</span><span> v </span><span style="color:#db7c6d;">&amp;&amp;</span><span> k </span><span style="color:#db7c6d;">&lt;</span><span> freq){
+</span><span>            freq </span><span style="color:#db7c6d;">=</span><span> k;
+</span><span>            max </span><span style="color:#db7c6d;">=</span><span> v;
+</span><span>        }
+</span><span>    }
+</span><span>    freq
+</span><span>}
+</span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">main</span><span>() {
+</span><span>    println!(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span style="font-weight:bold;color:#a2ba43;">{}</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>, </span><span style="color:#db7c6d;">most_freq_even</span><span>(vec![</span><span style="color:#db7c6d;">2</span><span>, </span><span style="color:#db7c6d;">2</span><span>, </span><span style="color:#db7c6d;">2</span><span>, </span><span style="color:#db7c6d;">4</span><span>, </span><span style="color:#db7c6d;">4</span><span>, </span><span style="color:#db7c6d;">4</span><span>]));
+</span><span>}
+</span></code></pre>
 <h3 id="functional">Functional</h3>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">use std::collections::HashMap;
-
-fn most_freq_even(nums: Vec&lt;i32&gt;) -&gt; i32 {
-
-    let hm = nums.into_iter()
-        .filter(|i| i % 2 == 0)
-        .fold(HashMap::new(), |mut acc, i|{
-            *acc.entry(i).or_insert(0) += 1;
-            acc
-        });
-
-    hm.into_iter()
-        .fold((-1, 0), |(freq, max), (k, v)|{
-            if v &gt; max || (v == max &amp;&amp; k &lt; freq){
-                (k,v)
-            } else {
-                (freq, max)
-            }
-        }).0
-}
-fn main() {
-    println!(&quot;{}&quot;, most_freq_even(vec![2, 2, 2, 4, 4, 4]));
-}
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#db7c6d;">use </span><span>std::collections::HashMap;
+</span><span>
+</span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">most_freq_even</span><span>(</span><span style="color:#ffffff;">nums</span><span>: </span><span style="color:#e7e7e7;">Vec</span><span>&lt;</span><span style="color:#a3cbe3;">i32</span><span>&gt;) -&gt; </span><span style="color:#a3cbe3;">i32 </span><span>{
+</span><span>
+</span><span>    </span><span style="color:#a3cbe3;">let</span><span> hm </span><span style="color:#db7c6d;">=</span><span> nums.</span><span style="color:#db7c6d;">into_iter</span><span>()
+</span><span>        .</span><span style="color:#db7c6d;">filter</span><span>(|</span><span style="color:#ffffff;">i</span><span>| i </span><span style="color:#db7c6d;">% 2 == 0</span><span>)
+</span><span>        .</span><span style="color:#db7c6d;">fold</span><span>(HashMap::new(), |</span><span style="color:#dbbb3d;">mut </span><span style="color:#ffffff;">acc</span><span>, </span><span style="color:#ffffff;">i</span><span>|{
+</span><span>            </span><span style="color:#db7c6d;">*</span><span>acc.</span><span style="color:#db7c6d;">entry</span><span>(i).</span><span style="color:#db7c6d;">or_insert</span><span>(</span><span style="color:#db7c6d;">0</span><span>) </span><span style="color:#db7c6d;">+= 1</span><span>;
+</span><span>            acc
+</span><span>        });
+</span><span>
+</span><span>    hm.</span><span style="color:#db7c6d;">into_iter</span><span>()
+</span><span>        .</span><span style="color:#db7c6d;">fold</span><span>((</span><span style="color:#db7c6d;">-1</span><span>, </span><span style="color:#db7c6d;">0</span><span>), |(</span><span style="color:#ffffff;">freq</span><span>, </span><span style="color:#ffffff;">max</span><span>), (</span><span style="color:#ffffff;">k</span><span>, </span><span style="color:#ffffff;">v</span><span>)|{
+</span><span>            </span><span style="color:#db7c6d;">if</span><span> v </span><span style="color:#db7c6d;">&gt;</span><span> max </span><span style="color:#db7c6d;">|| </span><span>(v </span><span style="color:#db7c6d;">==</span><span> max </span><span style="color:#db7c6d;">&amp;&amp;</span><span> k </span><span style="color:#db7c6d;">&lt;</span><span> freq){
+</span><span>                (k,v)
+</span><span>            } </span><span style="color:#db7c6d;">else </span><span>{
+</span><span>                (freq, max)
+</span><span>            }
+</span><span>        }).</span><span style="color:#db7c6d;">0
+</span><span>}
+</span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">main</span><span>() {
+</span><span>    println!(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span style="font-weight:bold;color:#a2ba43;">{}</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>, </span><span style="color:#db7c6d;">most_freq_even</span><span>(vec![</span><span style="color:#db7c6d;">2</span><span>, </span><span style="color:#db7c6d;">2</span><span>, </span><span style="color:#db7c6d;">2</span><span>, </span><span style="color:#db7c6d;">4</span><span>, </span><span style="color:#db7c6d;">4</span><span>, </span><span style="color:#db7c6d;">4</span><span>]));
+</span><span>}
+</span></code></pre>
 <h2 id="explanation">Explanation</h2>
 <p>As previously stated the solutions are implemented in Rust, using its powerful <code>HashMap</code> collection to track the counts of even numbers.</p>
 <ol>
@@ -285,7 +289,7 @@ fn main() {
 		
     </p>
     
-    <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>1035 Words</p>
+    <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>830 Words</p>
     
     <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2024-04-17</p>
     
@@ -308,7 +312,7 @@ fn main() {
 
 
 <footer id="site-footer" class="section-inner thin animated fadeIn faster">
-  <p>&copy; 2024 <a href="https:&#x2F;&#x2F;desmodrone.github.io">erick</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
+  <p>&copy; 2026 <a href="https:&#x2F;&#x2F;desmodrone.github.io">erick</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
   <p>Made with <a href="https://www.getzola.org" target="_blank" rel="noopener">Zola</a> &#183; Theme <a href="https://github.com/VersBinarii/hermit_zola" target="_blank" rel="noopener">Hermit_Zola</a>
 	
 	&#183; <a href="https://desmodrone.github.io/rss.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>

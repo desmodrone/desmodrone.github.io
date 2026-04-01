@@ -27,6 +27,10 @@
   <link rel="alternate" type="application/rss+xml" title="RSS" href="https://desmodrone.github.io/rss.xml">
   
 
+  
+  <link rel="canonical" href="https://desmodrone.github.io/posts/23-rustlings-smart-pointers/">
+  
+
   <body id="page">
 
 	
@@ -120,7 +124,7 @@
 		<small> - 
 <span class="reading-time" title="Estimated read time">
   
-  15 min read
+  5 min read
   
 </span>
 </small>
@@ -143,450 +147,450 @@ Smart pointers in Rust often own the data they point to, while references only b
 <li><a href="https://doc.rust-lang.org/std/borrow/enum.Cow.html">Cow Documentation</a></li>
 </ul>
 <h2 id="box1-rs">Box1.rs</h2>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">&#x2F;&#x2F; box1.rs
-&#x2F;&#x2F;
-&#x2F;&#x2F; At compile time, Rust needs to know how much space a type takes up. This becomes problematic
-&#x2F;&#x2F; for recursive types, where a value can have as part of itself another value of the same type.
-&#x2F;&#x2F; To get around the issue, we can use a `Box` - a smart pointer used to store data on the heap,
-&#x2F;&#x2F; which also allows us to wrap a recursive type.
-&#x2F;&#x2F;
-&#x2F;&#x2F; The recursive type we&#x27;re implementing in this exercise is the `cons list` - a data structure
-&#x2F;&#x2F; frequently found in functional programming languages. Each item in a cons list contains two
-&#x2F;&#x2F; elements: the value of the current item and the next item. The last item is a value called `Nil`.
-&#x2F;&#x2F;
-&#x2F;&#x2F; Step 1: use a `Box` in the enum definition to make the code compile
-&#x2F;&#x2F; Step 2: create both empty and non-empty cons lists by replacing `todo!()`
-&#x2F;&#x2F;
-&#x2F;&#x2F; Note: the tests should not be changed
-&#x2F;&#x2F;
-&#x2F;&#x2F; Execute `rustlings hint box1` or use the `hint` watch subcommand for a hint.
-
-&#x2F;&#x2F; I AM NOT DONE
-
-#[derive(PartialEq, Debug)]
-pub enum List {
-    Cons(i32, List),
-    Nil,
-}
-
-fn main() {
-    println!(&quot;This is an empty cons list: {:?}&quot;, create_empty_list());
-    println!(
-        &quot;This is a non-empty cons list: {:?}&quot;,
-        create_non_empty_list()
-    );
-}
-
-pub fn create_empty_list() -&gt; List {
-    todo!()
-}
-
-pub fn create_non_empty_list() -&gt; List {
-    todo!()
-}
-
-#[cfg(test)]
-mod tests {
-    use super::*;
-
-    #[test]
-    fn test_create_empty_list() {
-        assert_eq!(List::Nil, create_empty_list())
-    }
-
-    #[test]
-    fn test_create_non_empty_list() {
-        assert_ne!(create_empty_list(), create_non_empty_list())
-    }
-}
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#707180;">// box1.rs
+</span><span style="color:#707180;">//
+</span><span style="color:#707180;">// At compile time, Rust needs to know how much space a type takes up. This becomes problematic
+</span><span style="color:#707180;">// for recursive types, where a value can have as part of itself another value of the same type.
+</span><span style="color:#707180;">// To get around the issue, we can use a `Box` - a smart pointer used to store data on the heap,
+</span><span style="color:#707180;">// which also allows us to wrap a recursive type.
+</span><span style="color:#707180;">//
+</span><span style="color:#707180;">// The recursive type we&#39;re implementing in this exercise is the `cons list` - a data structure
+</span><span style="color:#707180;">// frequently found in functional programming languages. Each item in a cons list contains two
+</span><span style="color:#707180;">// elements: the value of the current item and the next item. The last item is a value called `Nil`.
+</span><span style="color:#707180;">//
+</span><span style="color:#707180;">// Step 1: use a `Box` in the enum definition to make the code compile
+</span><span style="color:#707180;">// Step 2: create both empty and non-empty cons lists by replacing `todo!()`
+</span><span style="color:#707180;">//
+</span><span style="color:#707180;">// Note: the tests should not be changed
+</span><span style="color:#707180;">//
+</span><span style="color:#707180;">// Execute `rustlings hint box1` or use the `hint` watch subcommand for a hint.
+</span><span>
+</span><span style="color:#707180;">// I AM NOT DONE
+</span><span>
+</span><span>#[</span><span style="font-weight:bold;color:#a3cbe3;">derive</span><span>(PartialEq, Debug)]
+</span><span style="color:#dbbb3d;">pub </span><span style="color:#a3cbe3;">enum </span><span>List {
+</span><span>    Cons(</span><span style="color:#a3cbe3;">i32</span><span>, List),
+</span><span>    Nil,
+</span><span>}
+</span><span>
+</span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">main</span><span>() {
+</span><span>    println!(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>This is an empty cons list: </span><span style="font-weight:bold;color:#a2ba43;">{:?}</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>, </span><span style="color:#db7c6d;">create_empty_list</span><span>());
+</span><span>    println!(
+</span><span>        </span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>This is a non-empty cons list: </span><span style="font-weight:bold;color:#a2ba43;">{:?}</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>,
+</span><span>        </span><span style="color:#db7c6d;">create_non_empty_list</span><span>()
+</span><span>    );
+</span><span>}
+</span><span>
+</span><span style="color:#dbbb3d;">pub </span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">create_empty_list</span><span>() -&gt; List {
+</span><span>    todo!()
+</span><span>}
+</span><span>
+</span><span style="color:#dbbb3d;">pub </span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">create_non_empty_list</span><span>() -&gt; List {
+</span><span>    todo!()
+</span><span>}
+</span><span>
+</span><span>#[</span><span style="font-weight:bold;color:#a3cbe3;">cfg</span><span>(test)]
+</span><span style="color:#a3cbe3;">mod </span><span>tests {
+</span><span>    </span><span style="color:#db7c6d;">use super</span><span>::</span><span style="color:#db7c6d;">*</span><span>;
+</span><span>
+</span><span>    #[</span><span style="font-weight:bold;color:#a3cbe3;">test</span><span>]
+</span><span>    </span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">test_create_empty_list</span><span>() {
+</span><span>        assert_eq!(List::Nil, </span><span style="color:#db7c6d;">create_empty_list</span><span>())
+</span><span>    }
+</span><span>
+</span><span>    #[</span><span style="font-weight:bold;color:#a3cbe3;">test</span><span>]
+</span><span>    </span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">test_create_non_empty_list</span><span>() {
+</span><span>        assert_ne!(</span><span style="color:#db7c6d;">create_empty_list</span><span>(), </span><span style="color:#db7c6d;">create_non_empty_list</span><span>())
+</span><span>    }
+</span><span>}
+</span></code></pre>
 <p>Our instructions are pretty clear, we have to first, make our code compile and then complete a couple of functions and make the program pass the tests.</p>
 <ul>
 <li>Step 1: use a <code>Box</code> in the enum definition to make the code compile</li>
 <li>Step 2: create both empty and non-empty cons lists by replacing <code>todo!()</code></li>
 </ul>
 <h2 id="box1-rs-errors">Box1.rs Errors</h2>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">⚠️  Compiling of exercises&#x2F;smart_pointers&#x2F;box1.rs failed! Please try again. Here&#x27;s the output:
-error[E0072]: recursive type `List` has infinite size
-  --&gt; exercises&#x2F;smart_pointers&#x2F;box1.rs:22:1
-   |
-22 | pub enum List {
-   | ^^^^^^^^^^^^^
-23 |     Cons(i32, List),
-   |               ---- recursive without indirection
-   |
-help: insert some indirection (e.g., a `Box`, `Rc`, or `&amp;`) to break the cycle
-   |
-23 |     Cons(i32, Box&lt;List&gt;),
-   |               ++++    +
-
-error: aborting due to previous error
-
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span>⚠️  Compiling of exercises</span><span style="color:#db7c6d;">/</span><span>smart_pointers</span><span style="color:#db7c6d;">/</span><span>box1.rs failed</span><span style="color:#db7c6d;">!</span><span> Please try again. Here</span><span style="color:#dbbb3d;">&#39;s</span><span> the output:
+</span><span>error[</span><span style="font-weight:bold;color:#a2ba43;">E0072</span><span>]: recursive </span><span style="color:#a3cbe3;">type</span><span> `List` has infinite size
+</span><span>  </span><span style="color:#db7c6d;">-</span><span>-&gt; exercises</span><span style="color:#db7c6d;">/</span><span>smart_pointers</span><span style="color:#db7c6d;">/</span><span>box1.rs:</span><span style="color:#db7c6d;">22</span><span>:</span><span style="color:#db7c6d;">1
+</span><span>   </span><span style="color:#db7c6d;">|
+</span><span style="color:#db7c6d;">22 | </span><span style="color:#dbbb3d;">pub </span><span style="color:#a3cbe3;">enum </span><span>List {
+</span><span>   | ^^^^^^^^^^^^^
+</span><span style="color:#db7c6d;">23 |</span><span>     Cons(</span><span style="color:#a3cbe3;">i32</span><span>, List),
+</span><span>   |               ---- recursive without indirection
+</span><span>   </span><span style="color:#db7c6d;">|
+</span><span>help: insert some indirection (e.g., a `</span><span style="color:#e7e7e7;">Box</span><span>`, `Rc`, or `</span><span style="color:#db7c6d;">&amp;</span><span>`) to </span><span style="color:#db7c6d;">break</span><span> the cycle
+</span><span>   </span><span style="color:#db7c6d;">|
+</span><span style="color:#db7c6d;">23 |</span><span>     Cons(</span><span style="color:#a3cbe3;">i32</span><span>, </span><span style="color:#e7e7e7;">Box</span><span>&lt;List&gt;),
+</span><span>   |               ++++    +
+</span><span>
+</span><span>error: aborting due to previous error
+</span><span>
+</span></code></pre>
 <p>Here we see the Rust compiler is suggesting to use a <code>Box&lt;&gt;</code> in our <code>enum</code> this seems like a reasonable suggestion and we should use that and see</p>
 <h2 id="box1-rs-solution">Box1.rs Solution</h2>
 <p>Let's take what the Rust compiler suggests and see what happens.</p>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">
-  #[derive(PartialEq, Debug)]
-pub enum List {
-    Cons(i32, Box&lt;List&gt;),  &#x2F;&#x2F; Adding `Box&lt;&gt;` here
-    Nil,
-}
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span>
+</span><span>  #[</span><span style="font-weight:bold;color:#a3cbe3;">derive</span><span>(PartialEq, Debug)]
+</span><span style="color:#dbbb3d;">pub </span><span style="color:#a3cbe3;">enum </span><span>List {
+</span><span>    Cons(</span><span style="color:#a3cbe3;">i32</span><span>, </span><span style="color:#e7e7e7;">Box</span><span>&lt;List&gt;),  </span><span style="color:#707180;">// Adding `Box&lt;&gt;` here
+</span><span>    Nil,
+</span><span>}
+</span></code></pre>
 <p>By adding the <code>Box&lt;List&gt;</code> to our <code>Cons</code> variant, our code now compiles but our tests are not passing, but that should be expected as we know we have <code>todo!</code> macros that we need to complete.</p>
 <h3 id="empty-list-todo">Empty List <code>todo!</code></h3>
 <p>Let's take a look at our first <code>todo!</code></p>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">pub fn create_empty_list() -&gt; List {
-    todo!()
-}
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#dbbb3d;">pub </span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">create_empty_list</span><span>() -&gt; List {
+</span><span>    todo!()
+</span><span>}
+</span></code></pre>
 <p>by also looking at the test we see that we should trying to get to pass</p>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">#[test]
-fn test_create_empty_list() {
-    assert_eq!(List::Nil, create_empty_list())
-}
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span>#[</span><span style="font-weight:bold;color:#a3cbe3;">test</span><span>]
+</span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">test_create_empty_list</span><span>() {
+</span><span>    assert_eq!(List::Nil, </span><span style="color:#db7c6d;">create_empty_list</span><span>())
+</span><span>}
+</span></code></pre>
 <p>Simply put, we need our function to return <code>List::Nil</code> so let's update our function to match:</p>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">pub fn create_empty_list() -&gt; List {
-    List::Nil
-}
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#dbbb3d;">pub </span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">create_empty_list</span><span>() -&gt; List {
+</span><span>    List::Nil
+</span><span>}
+</span></code></pre>
 <p>Now we are passing our first test:</p>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">running 2 tests
-test tests::test_create_empty_list ... ok
-test tests::test_create_non_empty_list ... FAILED
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span>running </span><span style="color:#db7c6d;">2</span><span> tests
+</span><span>test tests::test_create_empty_list </span><span style="color:#db7c6d;">...</span><span> ok
+</span><span>test tests::test_create_non_empty_list </span><span style="color:#db7c6d;">... </span><span style="font-weight:bold;color:#a2ba43;">FAILED
+</span></code></pre>
 <h3 id="non-empty-listtodo">Non-Empty List<code>todo!</code></h3>
 <p>Our instructions for our second <code>todo!</code> are <em>Step 2: create both empty and non-empty cons lists by replacing <code>todo!()</code></em></p>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">pub fn create_non_empty_list() -&gt; List {
-    todo!()
-}
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#dbbb3d;">pub </span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">create_non_empty_list</span><span>() -&gt; List {
+</span><span>    todo!()
+</span><span>}
+</span></code></pre>
 <p>So let's see how we can do that.</p>
 <p>If we look at our <code>List</code> enum we see that <code>Cons</code> variant has both an <code>i32</code> and the <code>Box&lt;List&gt;</code> that we just added to get the code to compile. So to make our function <code>create_non_empty_list()</code> compile we have to pass in both and <code>i32</code> and create a new <code>List</code> right? let's try.</p>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">pub fn create_non_empty_list() -&gt; List {
-    List::Cons(3, Box::new(List::Nil))
-}
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#dbbb3d;">pub </span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">create_non_empty_list</span><span>() -&gt; List {
+</span><span>    List::Cons(</span><span style="color:#db7c6d;">3</span><span>, </span><span style="color:#e7e7e7;">Box</span><span>::new(List::Nil))
+</span><span>}
+</span></code></pre>
 <p>And with this our code compiles, let's have a look at the full block for reference</p>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">
-  #[derive(PartialEq, Debug)]
-pub enum List {
-    Cons(i32, Box&lt;List&gt;),
-    Nil,
-}
-
-fn main() {
-    println!(&quot;This is an empty cons list: {:?}&quot;, create_empty_list());
-    println!(
-        &quot;This is a non-empty cons list: {:?}&quot;,
-        create_non_empty_list()
-    );
-}
-
-pub fn create_empty_list() -&gt; List {
-    List::Nil
-}
-
-pub fn create_non_empty_list() -&gt; List {
-
-    List::Cons(3,Box::new(List::Nil))
-}
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span>
+</span><span>  #[</span><span style="font-weight:bold;color:#a3cbe3;">derive</span><span>(PartialEq, Debug)]
+</span><span style="color:#dbbb3d;">pub </span><span style="color:#a3cbe3;">enum </span><span>List {
+</span><span>    Cons(</span><span style="color:#a3cbe3;">i32</span><span>, </span><span style="color:#e7e7e7;">Box</span><span>&lt;List&gt;),
+</span><span>    Nil,
+</span><span>}
+</span><span>
+</span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">main</span><span>() {
+</span><span>    println!(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>This is an empty cons list: </span><span style="font-weight:bold;color:#a2ba43;">{:?}</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>, </span><span style="color:#db7c6d;">create_empty_list</span><span>());
+</span><span>    println!(
+</span><span>        </span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>This is a non-empty cons list: </span><span style="font-weight:bold;color:#a2ba43;">{:?}</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>,
+</span><span>        </span><span style="color:#db7c6d;">create_non_empty_list</span><span>()
+</span><span>    );
+</span><span>}
+</span><span>
+</span><span style="color:#dbbb3d;">pub </span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">create_empty_list</span><span>() -&gt; List {
+</span><span>    List::Nil
+</span><span>}
+</span><span>
+</span><span style="color:#dbbb3d;">pub </span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">create_non_empty_list</span><span>() -&gt; List {
+</span><span>
+</span><span>    List::Cons(</span><span style="color:#db7c6d;">3</span><span>,</span><span style="color:#e7e7e7;">Box</span><span>::new(List::Nil))
+</span><span>}
+</span></code></pre>
 <p>Let's move on to the next exercise.</p>
 <h2 id="rc1-rs">Rc1.rs</h2>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">&#x2F;&#x2F; rc1.rs
-&#x2F;&#x2F; In this exercise, we want to express the concept of multiple owners via the Rc&lt;T&gt; type.
-&#x2F;&#x2F; This is a model of our solar system - there is a Sun type and multiple Planets.
-&#x2F;&#x2F; The Planets take ownership of the sun, indicating that they revolve around the sun.
-
-&#x2F;&#x2F; Make this code compile by using the proper Rc primitives to express that the sun has multiple owners.
-
-&#x2F;&#x2F; I AM NOT DONE
-
-use std::rc::Rc;
-
-#[derive(Debug)]
-struct Sun {}
-
-#[derive(Debug)]
-enum Planet {
-    Mercury(Rc&lt;Sun&gt;),
-    Venus(Rc&lt;Sun&gt;),
-    Earth(Rc&lt;Sun&gt;),
-    Mars(Rc&lt;Sun&gt;),
-    Jupiter(Rc&lt;Sun&gt;),
-    Saturn(Rc&lt;Sun&gt;),
-    Uranus(Rc&lt;Sun&gt;),
-    Neptune(Rc&lt;Sun&gt;),
-}
-
-impl Planet {
-    fn details(&amp;self) {
-        println!(&quot;Hi from {:?}!&quot;, self)
-    }
-}
-
-fn main() {
-    let sun = Rc::new(Sun {});
-    println!(&quot;reference count = {}&quot;, Rc::strong_count(&amp;sun)); &#x2F;&#x2F; 1 reference
-
-    let mercury = Planet::Mercury(Rc::clone(&amp;sun));
-    println!(&quot;reference count = {}&quot;, Rc::strong_count(&amp;sun)); &#x2F;&#x2F; 2 references
-    mercury.details();
-
-    let venus = Planet::Venus(Rc::clone(&amp;sun));
-    println!(&quot;reference count = {}&quot;, Rc::strong_count(&amp;sun)); &#x2F;&#x2F; 3 references
-    venus.details();
-
-    let earth = Planet::Earth(Rc::clone(&amp;sun));
-    println!(&quot;reference count = {}&quot;, Rc::strong_count(&amp;sun)); &#x2F;&#x2F; 4 references
-    earth.details();
-
-    let mars = Planet::Mars(Rc::clone(&amp;sun));
-    println!(&quot;reference count = {}&quot;, Rc::strong_count(&amp;sun)); &#x2F;&#x2F; 5 references
-    mars.details();
-
-    let jupiter = Planet::Jupiter(Rc::clone(&amp;sun));
-    println!(&quot;reference count = {}&quot;, Rc::strong_count(&amp;sun)); &#x2F;&#x2F; 6 references
-    jupiter.details();
-
-    &#x2F;&#x2F; TODO
-    let saturn = Planet::Saturn(Rc::new(Sun {}));
-    println!(&quot;reference count = {}&quot;, Rc::strong_count(&amp;sun)); &#x2F;&#x2F; 7 references
-    saturn.details();
-
-    &#x2F;&#x2F; TODO
-    let uranus = Planet::Uranus(Rc::new(Sun {}));
-    println!(&quot;reference count = {}&quot;, Rc::strong_count(&amp;sun)); &#x2F;&#x2F; 8 references
-    uranus.details();
-
-    &#x2F;&#x2F; TODO
-    let neptune = Planet::Neptune(Rc::new(Sun {}));
-    println!(&quot;reference count = {}&quot;, Rc::strong_count(&amp;sun)); &#x2F;&#x2F; 9 references
-    neptune.details();
-
-    assert_eq!(Rc::strong_count(&amp;sun), 9);
-
-    drop(neptune);
-    println!(&quot;reference count = {}&quot;, Rc::strong_count(&amp;sun)); &#x2F;&#x2F; 8 references
-
-    drop(uranus);
-    println!(&quot;reference count = {}&quot;, Rc::strong_count(&amp;sun)); &#x2F;&#x2F; 7 references
-
-    drop(saturn);
-    println!(&quot;reference count = {}&quot;, Rc::strong_count(&amp;sun)); &#x2F;&#x2F; 6 references
-
-    drop(jupiter);
-    println!(&quot;reference count = {}&quot;, Rc::strong_count(&amp;sun)); &#x2F;&#x2F; 5 references
-
-    drop(mars);
-    println!(&quot;reference count = {}&quot;, Rc::strong_count(&amp;sun)); &#x2F;&#x2F; 4 references
-
-    &#x2F;&#x2F; TODO
-    println!(&quot;reference count = {}&quot;, Rc::strong_count(&amp;sun)); &#x2F;&#x2F; 3 references
-
-    &#x2F;&#x2F; TODO
-    println!(&quot;reference count = {}&quot;, Rc::strong_count(&amp;sun)); &#x2F;&#x2F; 2 references
-
-    &#x2F;&#x2F; TODO
-    println!(&quot;reference count = {}&quot;, Rc::strong_count(&amp;sun)); &#x2F;&#x2F; 1 reference
-
-    assert_eq!(Rc::strong_count(&amp;sun), 1);
-}
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#707180;">// rc1.rs
+</span><span style="color:#707180;">// In this exercise, we want to express the concept of multiple owners via the Rc&lt;T&gt; type.
+</span><span style="color:#707180;">// This is a model of our solar system - there is a Sun type and multiple Planets.
+</span><span style="color:#707180;">// The Planets take ownership of the sun, indicating that they revolve around the sun.
+</span><span>
+</span><span style="color:#707180;">// Make this code compile by using the proper Rc primitives to express that the sun has multiple owners.
+</span><span>
+</span><span style="color:#707180;">// I AM NOT DONE
+</span><span>
+</span><span style="color:#db7c6d;">use </span><span>std::rc::Rc;
+</span><span>
+</span><span>#[</span><span style="font-weight:bold;color:#a3cbe3;">derive</span><span>(Debug)]
+</span><span style="color:#a3cbe3;">struct </span><span>Sun {}
+</span><span>
+</span><span>#[</span><span style="font-weight:bold;color:#a3cbe3;">derive</span><span>(Debug)]
+</span><span style="color:#a3cbe3;">enum </span><span>Planet {
+</span><span>    Mercury(Rc&lt;Sun&gt;),
+</span><span>    Venus(Rc&lt;Sun&gt;),
+</span><span>    Earth(Rc&lt;Sun&gt;),
+</span><span>    Mars(Rc&lt;Sun&gt;),
+</span><span>    Jupiter(Rc&lt;Sun&gt;),
+</span><span>    Saturn(Rc&lt;Sun&gt;),
+</span><span>    Uranus(Rc&lt;Sun&gt;),
+</span><span>    Neptune(Rc&lt;Sun&gt;),
+</span><span>}
+</span><span>
+</span><span style="color:#a3cbe3;">impl </span><span>Planet {
+</span><span>    </span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">details</span><span>(</span><span style="color:#db7c6d;">&amp;</span><span style="color:#ffffff;">self</span><span>) {
+</span><span>        println!(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>Hi from </span><span style="font-weight:bold;color:#a2ba43;">{:?}</span><span>!</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>, </span><span style="font-weight:bold;color:#a3cbe3;">self</span><span>)
+</span><span>    }
+</span><span>}
+</span><span>
+</span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">main</span><span>() {
+</span><span>    </span><span style="color:#a3cbe3;">let</span><span> sun </span><span style="color:#db7c6d;">= </span><span>Rc::new(Sun {});
+</span><span>    println!(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>reference count = </span><span style="font-weight:bold;color:#a2ba43;">{}</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>, Rc::strong_count(</span><span style="color:#db7c6d;">&amp;</span><span>sun)); </span><span style="color:#707180;">// 1 reference
+</span><span>
+</span><span>    </span><span style="color:#a3cbe3;">let</span><span> mercury </span><span style="color:#db7c6d;">= </span><span>Planet::Mercury(Rc::clone(</span><span style="color:#db7c6d;">&amp;</span><span>sun));
+</span><span>    println!(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>reference count = </span><span style="font-weight:bold;color:#a2ba43;">{}</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>, Rc::strong_count(</span><span style="color:#db7c6d;">&amp;</span><span>sun)); </span><span style="color:#707180;">// 2 references
+</span><span>    mercury.</span><span style="color:#db7c6d;">details</span><span>();
+</span><span>
+</span><span>    </span><span style="color:#a3cbe3;">let</span><span> venus </span><span style="color:#db7c6d;">= </span><span>Planet::Venus(Rc::clone(</span><span style="color:#db7c6d;">&amp;</span><span>sun));
+</span><span>    println!(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>reference count = </span><span style="font-weight:bold;color:#a2ba43;">{}</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>, Rc::strong_count(</span><span style="color:#db7c6d;">&amp;</span><span>sun)); </span><span style="color:#707180;">// 3 references
+</span><span>    venus.</span><span style="color:#db7c6d;">details</span><span>();
+</span><span>
+</span><span>    </span><span style="color:#a3cbe3;">let</span><span> earth </span><span style="color:#db7c6d;">= </span><span>Planet::Earth(Rc::clone(</span><span style="color:#db7c6d;">&amp;</span><span>sun));
+</span><span>    println!(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>reference count = </span><span style="font-weight:bold;color:#a2ba43;">{}</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>, Rc::strong_count(</span><span style="color:#db7c6d;">&amp;</span><span>sun)); </span><span style="color:#707180;">// 4 references
+</span><span>    earth.</span><span style="color:#db7c6d;">details</span><span>();
+</span><span>
+</span><span>    </span><span style="color:#a3cbe3;">let</span><span> mars </span><span style="color:#db7c6d;">= </span><span>Planet::Mars(Rc::clone(</span><span style="color:#db7c6d;">&amp;</span><span>sun));
+</span><span>    println!(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>reference count = </span><span style="font-weight:bold;color:#a2ba43;">{}</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>, Rc::strong_count(</span><span style="color:#db7c6d;">&amp;</span><span>sun)); </span><span style="color:#707180;">// 5 references
+</span><span>    mars.</span><span style="color:#db7c6d;">details</span><span>();
+</span><span>
+</span><span>    </span><span style="color:#a3cbe3;">let</span><span> jupiter </span><span style="color:#db7c6d;">= </span><span>Planet::Jupiter(Rc::clone(</span><span style="color:#db7c6d;">&amp;</span><span>sun));
+</span><span>    println!(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>reference count = </span><span style="font-weight:bold;color:#a2ba43;">{}</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>, Rc::strong_count(</span><span style="color:#db7c6d;">&amp;</span><span>sun)); </span><span style="color:#707180;">// 6 references
+</span><span>    jupiter.</span><span style="color:#db7c6d;">details</span><span>();
+</span><span>
+</span><span>    </span><span style="color:#707180;">// TODO
+</span><span>    </span><span style="color:#a3cbe3;">let</span><span> saturn </span><span style="color:#db7c6d;">= </span><span>Planet::Saturn(Rc::new(Sun {}));
+</span><span>    println!(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>reference count = </span><span style="font-weight:bold;color:#a2ba43;">{}</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>, Rc::strong_count(</span><span style="color:#db7c6d;">&amp;</span><span>sun)); </span><span style="color:#707180;">// 7 references
+</span><span>    saturn.</span><span style="color:#db7c6d;">details</span><span>();
+</span><span>
+</span><span>    </span><span style="color:#707180;">// TODO
+</span><span>    </span><span style="color:#a3cbe3;">let</span><span> uranus </span><span style="color:#db7c6d;">= </span><span>Planet::Uranus(Rc::new(Sun {}));
+</span><span>    println!(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>reference count = </span><span style="font-weight:bold;color:#a2ba43;">{}</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>, Rc::strong_count(</span><span style="color:#db7c6d;">&amp;</span><span>sun)); </span><span style="color:#707180;">// 8 references
+</span><span>    uranus.</span><span style="color:#db7c6d;">details</span><span>();
+</span><span>
+</span><span>    </span><span style="color:#707180;">// TODO
+</span><span>    </span><span style="color:#a3cbe3;">let</span><span> neptune </span><span style="color:#db7c6d;">= </span><span>Planet::Neptune(Rc::new(Sun {}));
+</span><span>    println!(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>reference count = </span><span style="font-weight:bold;color:#a2ba43;">{}</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>, Rc::strong_count(</span><span style="color:#db7c6d;">&amp;</span><span>sun)); </span><span style="color:#707180;">// 9 references
+</span><span>    neptune.</span><span style="color:#db7c6d;">details</span><span>();
+</span><span>
+</span><span>    assert_eq!(Rc::strong_count(</span><span style="color:#db7c6d;">&amp;</span><span>sun), </span><span style="color:#db7c6d;">9</span><span>);
+</span><span>
+</span><span>    </span><span style="color:#db7c6d;">drop</span><span>(neptune);
+</span><span>    println!(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>reference count = </span><span style="font-weight:bold;color:#a2ba43;">{}</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>, Rc::strong_count(</span><span style="color:#db7c6d;">&amp;</span><span>sun)); </span><span style="color:#707180;">// 8 references
+</span><span>
+</span><span>    </span><span style="color:#db7c6d;">drop</span><span>(uranus);
+</span><span>    println!(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>reference count = </span><span style="font-weight:bold;color:#a2ba43;">{}</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>, Rc::strong_count(</span><span style="color:#db7c6d;">&amp;</span><span>sun)); </span><span style="color:#707180;">// 7 references
+</span><span>
+</span><span>    </span><span style="color:#db7c6d;">drop</span><span>(saturn);
+</span><span>    println!(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>reference count = </span><span style="font-weight:bold;color:#a2ba43;">{}</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>, Rc::strong_count(</span><span style="color:#db7c6d;">&amp;</span><span>sun)); </span><span style="color:#707180;">// 6 references
+</span><span>
+</span><span>    </span><span style="color:#db7c6d;">drop</span><span>(jupiter);
+</span><span>    println!(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>reference count = </span><span style="font-weight:bold;color:#a2ba43;">{}</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>, Rc::strong_count(</span><span style="color:#db7c6d;">&amp;</span><span>sun)); </span><span style="color:#707180;">// 5 references
+</span><span>
+</span><span>    </span><span style="color:#db7c6d;">drop</span><span>(mars);
+</span><span>    println!(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>reference count = </span><span style="font-weight:bold;color:#a2ba43;">{}</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>, Rc::strong_count(</span><span style="color:#db7c6d;">&amp;</span><span>sun)); </span><span style="color:#707180;">// 4 references
+</span><span>
+</span><span>    </span><span style="color:#707180;">// TODO
+</span><span>    println!(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>reference count = </span><span style="font-weight:bold;color:#a2ba43;">{}</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>, Rc::strong_count(</span><span style="color:#db7c6d;">&amp;</span><span>sun)); </span><span style="color:#707180;">// 3 references
+</span><span>
+</span><span>    </span><span style="color:#707180;">// TODO
+</span><span>    println!(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>reference count = </span><span style="font-weight:bold;color:#a2ba43;">{}</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>, Rc::strong_count(</span><span style="color:#db7c6d;">&amp;</span><span>sun)); </span><span style="color:#707180;">// 2 references
+</span><span>
+</span><span>    </span><span style="color:#707180;">// TODO
+</span><span>    println!(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>reference count = </span><span style="font-weight:bold;color:#a2ba43;">{}</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>, Rc::strong_count(</span><span style="color:#db7c6d;">&amp;</span><span>sun)); </span><span style="color:#707180;">// 1 reference
+</span><span>
+</span><span>    assert_eq!(Rc::strong_count(</span><span style="color:#db7c6d;">&amp;</span><span>sun), </span><span style="color:#db7c6d;">1</span><span>);
+</span><span>}
+</span></code></pre>
 <p>okay, we have a lot of <code>TODO</code>'s here, with the instructions of making the code compile by using the proper <code>Rc</code> primitives. Let's take a look at what the Rust compiler says.</p>
 <h2 id="rc1-rs-errors">Rc1.rs Errors</h2>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">⚠️  Ran exercises&#x2F;smart_pointers&#x2F;rc1.rs with errors
-reference count = 1
-reference count = 2
-Hi from Mercury(Sun)!
-reference count = 3
-Hi from Venus(Sun)!
-reference count = 4
-Hi from Earth(Sun)!
-reference count = 5
-Hi from Mars(Sun)!
-reference count = 6
-Hi from Jupiter(Sun)!
-reference count = 6
-Hi from Saturn(Sun)!
-reference count = 6
-Hi from Uranus(Sun)!
-reference count = 6
-Hi from Neptune(Sun)!
-
-thread &#x27;main&#x27; panicked at exercises&#x2F;smart_pointers&#x2F;rc1.rs:72:5:
-assertion `left == right` failed
-  left: 6
- right: 9
-note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
-Welcome to watch mode! You can type &#x27;help&#x27; to get an overview of the commands you can use here.
-</code></pre>
-<p>We see that our code is panicking and that our asserting at line <code>72</code>:  <code>assert_eq!(Rc::strong_count(&amp;sun), 9);</code> because we're &quot;stuck&quot; on reference count 6. So let's go ahead and try and fix that</p>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span>⚠️  Ran exercises</span><span style="color:#db7c6d;">/</span><span>smart_pointers</span><span style="color:#db7c6d;">/</span><span>rc1.rs with errors
+</span><span>reference count </span><span style="color:#db7c6d;">= 1
+</span><span>reference count </span><span style="color:#db7c6d;">= 2
+</span><span>Hi from Mercury(Sun)</span><span style="color:#db7c6d;">!
+</span><span>reference count </span><span style="color:#db7c6d;">= 3
+</span><span>Hi from Venus(Sun)</span><span style="color:#db7c6d;">!
+</span><span>reference count </span><span style="color:#db7c6d;">= 4
+</span><span>Hi from Earth(Sun)</span><span style="color:#db7c6d;">!
+</span><span>reference count </span><span style="color:#db7c6d;">= 5
+</span><span>Hi from Mars(Sun)</span><span style="color:#db7c6d;">!
+</span><span>reference count </span><span style="color:#db7c6d;">= 6
+</span><span>Hi from Jupiter(Sun)</span><span style="color:#db7c6d;">!
+</span><span>reference count </span><span style="color:#db7c6d;">= 6
+</span><span>Hi from Saturn(Sun)</span><span style="color:#db7c6d;">!
+</span><span>reference count </span><span style="color:#db7c6d;">= 6
+</span><span>Hi from Uranus(Sun)</span><span style="color:#db7c6d;">!
+</span><span>reference count </span><span style="color:#db7c6d;">= 6
+</span><span>Hi from Neptune(Sun)</span><span style="color:#db7c6d;">!
+</span><span>
+</span><span>thread </span><span style="color:#db7c6d;">&#39;</span><span>main</span><span style="color:#db7c6d;">&#39;</span><span> panicked at exercises</span><span style="color:#db7c6d;">/</span><span>smart_pointers</span><span style="color:#db7c6d;">/</span><span>rc1.rs:</span><span style="color:#db7c6d;">72</span><span>:</span><span style="color:#db7c6d;">5</span><span>:
+</span><span>assertion `left </span><span style="color:#db7c6d;">==</span><span> right` failed
+</span><span>  left: </span><span style="color:#db7c6d;">6
+</span><span> right: </span><span style="color:#db7c6d;">9
+</span><span>note: run with `</span><span style="font-weight:bold;color:#a2ba43;">RUST_BACKTRACE</span><span style="color:#db7c6d;">=1</span><span>` environment variable to display a backtrace
+</span><span>Welcome to watch mode</span><span style="color:#db7c6d;">!</span><span> You can </span><span style="color:#a3cbe3;">type </span><span style="color:#db7c6d;">&#39;</span><span>help</span><span style="color:#db7c6d;">&#39;</span><span> to get an overview of the commands you can </span><span style="color:#db7c6d;">use</span><span> here.
+</span></code></pre>
+<p>We see that our code is panicking and that our asserting at line <code>72</code>:  <code>assert_eq!(Rc::strong_count(&amp;sun), 9);</code> because we're "stuck" on reference count 6. So let's go ahead and try and fix that</p>
 <h2 id="rc1-rs-solution">Rc1.rs Solution</h2>
 <p>Let's break this down into two different parts as there seems to be a thread (no pun intended 😄) between the different <code>TODOs</code></p>
 <h3 id="fixing-saturn-uranus-and-neptune">Fixing Saturn, Uranus and Neptune</h3>
 <p>First 3 <code>TODO</code>'s  are these:</p>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">    &#x2F;&#x2F; TODO
-    let saturn = Planet::Saturn(Rc::new(Sun {}));
-    println!(&quot;reference count = {}&quot;, Rc::strong_count(&amp;sun)); &#x2F;&#x2F; 7 references
-    saturn.details();
-
-    &#x2F;&#x2F; TODO
-    let uranus = Planet::Uranus(Rc::new(Sun {}));
-    println!(&quot;reference count = {}&quot;, Rc::strong_count(&amp;sun)); &#x2F;&#x2F; 8 references
-    uranus.details();
-
-    &#x2F;&#x2F; TODO
-    let neptune = Planet::Neptune(Rc::new(Sun {}));
-    println!(&quot;reference count = {}&quot;, Rc::strong_count(&amp;sun)); &#x2F;&#x2F; 9 references
-    neptune.details();
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span>    </span><span style="color:#707180;">// TODO
+</span><span>    </span><span style="color:#a3cbe3;">let</span><span> saturn </span><span style="color:#db7c6d;">= </span><span>Planet::Saturn(Rc::new(Sun {}));
+</span><span>    println!(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>reference count = </span><span style="font-weight:bold;color:#a2ba43;">{}</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>, Rc::strong_count(</span><span style="color:#db7c6d;">&amp;</span><span>sun)); </span><span style="color:#707180;">// 7 references
+</span><span>    saturn.</span><span style="color:#db7c6d;">details</span><span>();
+</span><span>
+</span><span>    </span><span style="color:#707180;">// TODO
+</span><span>    </span><span style="color:#a3cbe3;">let</span><span> uranus </span><span style="color:#db7c6d;">= </span><span>Planet::Uranus(Rc::new(Sun {}));
+</span><span>    println!(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>reference count = </span><span style="font-weight:bold;color:#a2ba43;">{}</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>, Rc::strong_count(</span><span style="color:#db7c6d;">&amp;</span><span>sun)); </span><span style="color:#707180;">// 8 references
+</span><span>    uranus.</span><span style="color:#db7c6d;">details</span><span>();
+</span><span>
+</span><span>    </span><span style="color:#707180;">// TODO
+</span><span>    </span><span style="color:#a3cbe3;">let</span><span> neptune </span><span style="color:#db7c6d;">= </span><span>Planet::Neptune(Rc::new(Sun {}));
+</span><span>    println!(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>reference count = </span><span style="font-weight:bold;color:#a2ba43;">{}</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>, Rc::strong_count(</span><span style="color:#db7c6d;">&amp;</span><span>sun)); </span><span style="color:#707180;">// 9 references
+</span><span>    neptune.</span><span style="color:#db7c6d;">details</span><span>();
+</span></code></pre>
 <p>and if you look at the variable assignment of each it differs from the first 3, instead of cloning our planet we use the <code>Rc::new()</code> syntax, here's what the <code>jupiter</code> variable looks like:</p>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">let jupiter = Planet::Jupiter(Rc::clone(&amp;sun));
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#a3cbe3;">let</span><span> jupiter </span><span style="color:#db7c6d;">= </span><span>Planet::Jupiter(Rc::clone(</span><span style="color:#db7c6d;">&amp;</span><span>sun));
+</span></code></pre>
 <p>Here we are taking our <code>Jupiter</code> planet and cloning it using <code>Rc::clone</code> which creates a new reference to <code>sun</code>. This working for our first 3 planets,   So let's fix <code>saturn</code>, <code>uranus</code> and <code>neptune</code> to match and see what happens.</p>
 <h3 id="reference-count-output">Reference Count Output</h3>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">⚠️  Ran exercises&#x2F;smart_pointers&#x2F;rc1.rs with errors
-reference count = 1
-reference count = 2
-Hi from Mercury(Sun)!
-reference count = 3
-Hi from Venus(Sun)!
-reference count = 4
-Hi from Earth(Sun)!
-reference count = 5
-Hi from Mars(Sun)!
-reference count = 6
-Hi from Jupiter(Sun)!
-reference count = 7
-Hi from Saturn(Sun)!
-reference count = 8
-Hi from Uranus(Sun)!
-reference count = 9
-Hi from Neptune(Sun)!
-reference count = 8
-reference count = 7
-reference count = 6
-reference count = 5
-reference count = 4
-reference count = 4
-reference count = 4
-reference count = 4
-
-thread &#x27;main&#x27; panicked at exercises&#x2F;smart_pointers&#x2F;rc1.rs:101:5:
-assertion `left == right` failed
-  left: 4
- right: 1
-note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
-
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span>⚠️  Ran exercises</span><span style="color:#db7c6d;">/</span><span>smart_pointers</span><span style="color:#db7c6d;">/</span><span>rc1.rs with errors
+</span><span>reference count </span><span style="color:#db7c6d;">= 1
+</span><span>reference count </span><span style="color:#db7c6d;">= 2
+</span><span>Hi from Mercury(Sun)</span><span style="color:#db7c6d;">!
+</span><span>reference count </span><span style="color:#db7c6d;">= 3
+</span><span>Hi from Venus(Sun)</span><span style="color:#db7c6d;">!
+</span><span>reference count </span><span style="color:#db7c6d;">= 4
+</span><span>Hi from Earth(Sun)</span><span style="color:#db7c6d;">!
+</span><span>reference count </span><span style="color:#db7c6d;">= 5
+</span><span>Hi from Mars(Sun)</span><span style="color:#db7c6d;">!
+</span><span>reference count </span><span style="color:#db7c6d;">= 6
+</span><span>Hi from Jupiter(Sun)</span><span style="color:#db7c6d;">!
+</span><span>reference count </span><span style="color:#db7c6d;">= 7
+</span><span>Hi from Saturn(Sun)</span><span style="color:#db7c6d;">!
+</span><span>reference count </span><span style="color:#db7c6d;">= 8
+</span><span>Hi from Uranus(Sun)</span><span style="color:#db7c6d;">!
+</span><span>reference count </span><span style="color:#db7c6d;">= 9
+</span><span>Hi from Neptune(Sun)</span><span style="color:#db7c6d;">!
+</span><span>reference count </span><span style="color:#db7c6d;">= 8
+</span><span>reference count </span><span style="color:#db7c6d;">= 7
+</span><span>reference count </span><span style="color:#db7c6d;">= 6
+</span><span>reference count </span><span style="color:#db7c6d;">= 5
+</span><span>reference count </span><span style="color:#db7c6d;">= 4
+</span><span>reference count </span><span style="color:#db7c6d;">= 4
+</span><span>reference count </span><span style="color:#db7c6d;">= 4
+</span><span>reference count </span><span style="color:#db7c6d;">= 4
+</span><span>
+</span><span>thread </span><span style="color:#db7c6d;">&#39;</span><span>main</span><span style="color:#db7c6d;">&#39;</span><span> panicked at exercises</span><span style="color:#db7c6d;">/</span><span>smart_pointers</span><span style="color:#db7c6d;">/</span><span>rc1.rs:</span><span style="color:#db7c6d;">101</span><span>:</span><span style="color:#db7c6d;">5</span><span>:
+</span><span>assertion `left </span><span style="color:#db7c6d;">==</span><span> right` failed
+</span><span>  left: </span><span style="color:#db7c6d;">4
+</span><span> right: </span><span style="color:#db7c6d;">1
+</span><span>note: run with `</span><span style="font-weight:bold;color:#a2ba43;">RUST_BACKTRACE</span><span style="color:#db7c6d;">=1</span><span>` environment variable to display a backtrace
+</span><span>
+</span></code></pre>
 <p>Okay, we are counting all the way to 9 now, BUT, we're still not fully working because as you can see, the second set of <code>TODO</code>'s are  still not updated, let's take a closer look:</p>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">    &#x2F;&#x2F; TODO
-    println!(&quot;reference count = {}&quot;, Rc::strong_count(&amp;sun)); &#x2F;&#x2F; 3 references
-
-    &#x2F;&#x2F; TODO
-    println!(&quot;reference count = {}&quot;, Rc::strong_count(&amp;sun)); &#x2F;&#x2F; 2 references
-
-    &#x2F;&#x2F; TODO
-    println!(&quot;reference count = {}&quot;, Rc::strong_count(&amp;sun)); &#x2F;&#x2F; 1 reference
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span>    </span><span style="color:#707180;">// TODO
+</span><span>    println!(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>reference count = </span><span style="font-weight:bold;color:#a2ba43;">{}</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>, Rc::strong_count(</span><span style="color:#db7c6d;">&amp;</span><span>sun)); </span><span style="color:#707180;">// 3 references
+</span><span>
+</span><span>    </span><span style="color:#707180;">// TODO
+</span><span>    println!(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>reference count = </span><span style="font-weight:bold;color:#a2ba43;">{}</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>, Rc::strong_count(</span><span style="color:#db7c6d;">&amp;</span><span>sun)); </span><span style="color:#707180;">// 2 references
+</span><span>
+</span><span>    </span><span style="color:#707180;">// TODO
+</span><span>    println!(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>reference count = </span><span style="font-weight:bold;color:#a2ba43;">{}</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>, Rc::strong_count(</span><span style="color:#db7c6d;">&amp;</span><span>sun)); </span><span style="color:#707180;">// 1 reference
+</span></code></pre>
 <p>Again, we seem to have a natural grouping of these three, and we see that we should be going down to <code>3</code>, <code>2</code>, and finally <code>1</code> reference. If we look at the previous reference output. We'll notice that there's a <code>drop(mars)</code> before the <code>println!</code> statement:</p>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">drop(mars);
-println!(&quot;reference count = {}&quot;, Rc::strong_count(&amp;sun)); &#x2F;&#x2F; 4 references
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#db7c6d;">drop</span><span>(mars);
+</span><span>println!(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>reference count = </span><span style="font-weight:bold;color:#a2ba43;">{}</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>, Rc::strong_count(</span><span style="color:#db7c6d;">&amp;</span><span>sun)); </span><span style="color:#707180;">// 4 references
+</span></code></pre>
 <p>Seems simple enough let's add a drop for each of the corresponding planets which would be <code>earth</code>, <code>venus</code>, and <code>mercury</code>.</p>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">&#x2F;&#x2F; TODO
-drop(earth);
-println!(&quot;reference count = {}&quot;, Rc::strong_count(&amp;sun)); &#x2F;&#x2F; 3 references
-
-&#x2F;&#x2F; TODO
-drop(venus);
-println!(&quot;reference count = {}&quot;, Rc::strong_count(&amp;sun)); &#x2F;&#x2F; 2 references
-
-&#x2F;&#x2F; TODO
-drop(mercury);
-println!(&quot;reference count = {}&quot;, Rc::strong_count(&amp;sun)); &#x2F;&#x2F; 1 reference
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#707180;">// TODO
+</span><span style="color:#db7c6d;">drop</span><span>(earth);
+</span><span>println!(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>reference count = </span><span style="font-weight:bold;color:#a2ba43;">{}</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>, Rc::strong_count(</span><span style="color:#db7c6d;">&amp;</span><span>sun)); </span><span style="color:#707180;">// 3 references
+</span><span>
+</span><span style="color:#707180;">// TODO
+</span><span style="color:#db7c6d;">drop</span><span>(venus);
+</span><span>println!(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>reference count = </span><span style="font-weight:bold;color:#a2ba43;">{}</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>, Rc::strong_count(</span><span style="color:#db7c6d;">&amp;</span><span>sun)); </span><span style="color:#707180;">// 2 references
+</span><span>
+</span><span style="color:#707180;">// TODO
+</span><span style="color:#db7c6d;">drop</span><span>(mercury);
+</span><span>println!(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>reference count = </span><span style="font-weight:bold;color:#a2ba43;">{}</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>, Rc::strong_count(</span><span style="color:#db7c6d;">&amp;</span><span>sun)); </span><span style="color:#707180;">// 1 reference
+</span></code></pre>
 <h3 id="final-output">Final Output</h3>
 <p>With those updates we are now compiling!</p>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">🎉 🎉  The code is compiling! 🎉 🎉
-
-Output:
-====================
-reference count = 1
-reference count = 2
-Hi from Mercury(Sun)!
-reference count = 3
-Hi from Venus(Sun)!
-reference count = 4
-Hi from Earth(Sun)!
-reference count = 5
-Hi from Mars(Sun)!
-reference count = 6
-Hi from Jupiter(Sun)!
-reference count = 7
-Hi from Saturn(Sun)!
-reference count = 8
-Hi from Uranus(Sun)!
-reference count = 9
-Hi from Neptune(Sun)!
-reference count = 8
-reference count = 7
-reference count = 6
-reference count = 5
-reference count = 4
-reference count = 3
-reference count = 2
-reference count = 1
-
-====================
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span>🎉 🎉  The code is compiling</span><span style="color:#db7c6d;">!</span><span> 🎉 🎉
+</span><span>
+</span><span>Output:
+</span><span style="color:#db7c6d;">====================
+</span><span>reference count </span><span style="color:#db7c6d;">= 1
+</span><span>reference count </span><span style="color:#db7c6d;">= 2
+</span><span>Hi from Mercury(Sun)</span><span style="color:#db7c6d;">!
+</span><span>reference count </span><span style="color:#db7c6d;">= 3
+</span><span>Hi from Venus(Sun)</span><span style="color:#db7c6d;">!
+</span><span>reference count </span><span style="color:#db7c6d;">= 4
+</span><span>Hi from Earth(Sun)</span><span style="color:#db7c6d;">!
+</span><span>reference count </span><span style="color:#db7c6d;">= 5
+</span><span>Hi from Mars(Sun)</span><span style="color:#db7c6d;">!
+</span><span>reference count </span><span style="color:#db7c6d;">= 6
+</span><span>Hi from Jupiter(Sun)</span><span style="color:#db7c6d;">!
+</span><span>reference count </span><span style="color:#db7c6d;">= 7
+</span><span>Hi from Saturn(Sun)</span><span style="color:#db7c6d;">!
+</span><span>reference count </span><span style="color:#db7c6d;">= 8
+</span><span>Hi from Uranus(Sun)</span><span style="color:#db7c6d;">!
+</span><span>reference count </span><span style="color:#db7c6d;">= 9
+</span><span>Hi from Neptune(Sun)</span><span style="color:#db7c6d;">!
+</span><span>reference count </span><span style="color:#db7c6d;">= 8
+</span><span>reference count </span><span style="color:#db7c6d;">= 7
+</span><span>reference count </span><span style="color:#db7c6d;">= 6
+</span><span>reference count </span><span style="color:#db7c6d;">= 5
+</span><span>reference count </span><span style="color:#db7c6d;">= 4
+</span><span>reference count </span><span style="color:#db7c6d;">= 3
+</span><span>reference count </span><span style="color:#db7c6d;">= 2
+</span><span>reference count </span><span style="color:#db7c6d;">= 1
+</span><span>
+</span><span style="color:#db7c6d;">====================
+</span></code></pre>
 <h2 id="arc1-rs">Arc1.rs</h2>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">&#x2F;&#x2F; arc1.rs
-&#x2F;&#x2F; In this exercise, we are given a Vec of u32 called &quot;numbers&quot; with values ranging
-&#x2F;&#x2F; from 0 to 99 -- [ 0, 1, 2, ..., 98, 99 ]
-&#x2F;&#x2F; We would like to use this set of numbers within 8 different threads simultaneously.
-&#x2F;&#x2F; Each thread is going to get the sum of every eighth value, with an offset.
-&#x2F;&#x2F; The first thread (offset 0), will sum 0, 8, 16, ...
-&#x2F;&#x2F; The second thread (offset 1), will sum 1, 9, 17, ...
-&#x2F;&#x2F; The third thread (offset 2), will sum 2, 10, 18, ...
-&#x2F;&#x2F; ...
-&#x2F;&#x2F; The eighth thread (offset 7), will sum 7, 15, 23, ...
-
-&#x2F;&#x2F; Because we are using threads, our values need to be thread-safe.  Therefore,
-&#x2F;&#x2F; we are using Arc.  We need to make a change in each of the two TODOs.
-
-
-&#x2F;&#x2F; Make this code compile by filling in a value for `shared_numbers` where the
-&#x2F;&#x2F; first TODO comment is, and create an initial binding for `child_numbers`
-&#x2F;&#x2F; where the second TODO comment is. Try not to create any copies of the `numbers` Vec!
-&#x2F;&#x2F; Execute `rustlings hint arc1` or use the `hint` watch subcommand for a hint.
-
-&#x2F;&#x2F; I AM NOT DONE
-
-#![forbid(unused_imports)] &#x2F;&#x2F; Do not change this, (or the next) line.
-use std::sync::Arc;
-use std::thread;
-
-fn main() {
-    let numbers: Vec&lt;_&gt; = (0..100u32).collect();
-    let shared_numbers = &#x2F;&#x2F; TODO
-    let mut joinhandles = Vec::new();
-
-    for offset in 0..8 {
-        let child_numbers = &#x2F;&#x2F; TODO
-        joinhandles.push(thread::spawn(move || {
-            let sum: u32 = child_numbers.iter().filter(|&amp;&amp;n| n % 8 == offset).sum();
-            println!(&quot;Sum of offset {} is {}&quot;, offset, sum);
-        }));
-    }
-    for handle in joinhandles.into_iter() {
-        handle.join().unwrap();
-    }
-}
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#707180;">// arc1.rs
+</span><span style="color:#707180;">// In this exercise, we are given a Vec of u32 called &quot;numbers&quot; with values ranging
+</span><span style="color:#707180;">// from 0 to 99 -- [ 0, 1, 2, ..., 98, 99 ]
+</span><span style="color:#707180;">// We would like to use this set of numbers within 8 different threads simultaneously.
+</span><span style="color:#707180;">// Each thread is going to get the sum of every eighth value, with an offset.
+</span><span style="color:#707180;">// The first thread (offset 0), will sum 0, 8, 16, ...
+</span><span style="color:#707180;">// The second thread (offset 1), will sum 1, 9, 17, ...
+</span><span style="color:#707180;">// The third thread (offset 2), will sum 2, 10, 18, ...
+</span><span style="color:#707180;">// ...
+</span><span style="color:#707180;">// The eighth thread (offset 7), will sum 7, 15, 23, ...
+</span><span>
+</span><span style="color:#707180;">// Because we are using threads, our values need to be thread-safe.  Therefore,
+</span><span style="color:#707180;">// we are using Arc.  We need to make a change in each of the two TODOs.
+</span><span>
+</span><span>
+</span><span style="color:#707180;">// Make this code compile by filling in a value for `shared_numbers` where the
+</span><span style="color:#707180;">// first TODO comment is, and create an initial binding for `child_numbers`
+</span><span style="color:#707180;">// where the second TODO comment is. Try not to create any copies of the `numbers` Vec!
+</span><span style="color:#707180;">// Execute `rustlings hint arc1` or use the `hint` watch subcommand for a hint.
+</span><span>
+</span><span style="color:#707180;">// I AM NOT DONE
+</span><span>
+</span><span>#![</span><span style="font-weight:bold;color:#a3cbe3;">forbid</span><span>(unused_imports)] </span><span style="color:#707180;">// Do not change this, (or the next) line.
+</span><span style="color:#db7c6d;">use </span><span>std::sync::Arc;
+</span><span style="color:#db7c6d;">use </span><span>std::thread;
+</span><span>
+</span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">main</span><span>() {
+</span><span>    </span><span style="color:#a3cbe3;">let</span><span> numbers: </span><span style="color:#e7e7e7;">Vec</span><span>&lt;</span><span style="color:#db7c6d;">_</span><span>&gt; </span><span style="color:#db7c6d;">= </span><span>(</span><span style="color:#db7c6d;">0..100</span><span style="color:#a3cbe3;">u32</span><span>).</span><span style="color:#db7c6d;">collect</span><span>();
+</span><span>    </span><span style="color:#a3cbe3;">let</span><span> shared_numbers </span><span style="color:#db7c6d;">= </span><span style="color:#707180;">// TODO
+</span><span>    </span><span style="color:#a3cbe3;">let </span><span style="color:#dbbb3d;">mut</span><span> joinhandles </span><span style="color:#db7c6d;">= </span><span style="color:#e7e7e7;">Vec</span><span>::new();
+</span><span>
+</span><span>    </span><span style="color:#db7c6d;">for</span><span> offset </span><span style="color:#db7c6d;">in 0..8 </span><span>{
+</span><span>        </span><span style="color:#a3cbe3;">let</span><span> child_numbers </span><span style="color:#db7c6d;">= </span><span style="color:#707180;">// TODO
+</span><span>        joinhandles.</span><span style="color:#db7c6d;">push</span><span>(thread::spawn(</span><span style="color:#dbbb3d;">move </span><span style="color:#db7c6d;">|| </span><span>{
+</span><span>            </span><span style="color:#a3cbe3;">let</span><span> sum: </span><span style="color:#a3cbe3;">u32 </span><span style="color:#db7c6d;">=</span><span> child_numbers.</span><span style="color:#db7c6d;">iter</span><span>().</span><span style="color:#db7c6d;">filter</span><span>(|</span><span style="color:#db7c6d;">&amp;&amp;</span><span style="color:#ffffff;">n</span><span>| n </span><span style="color:#db7c6d;">% 8 ==</span><span> offset).</span><span style="color:#db7c6d;">sum</span><span>();
+</span><span>            println!(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>Sum of offset </span><span style="font-weight:bold;color:#a2ba43;">{}</span><span> is </span><span style="font-weight:bold;color:#a2ba43;">{}</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>, offset, sum);
+</span><span>        }));
+</span><span>    }
+</span><span>    </span><span style="color:#db7c6d;">for</span><span> handle </span><span style="color:#db7c6d;">in</span><span> joinhandles.</span><span style="color:#db7c6d;">into_iter</span><span>() {
+</span><span>        handle.</span><span style="color:#db7c6d;">join</span><span>().</span><span style="color:#db7c6d;">unwrap</span><span>();
+</span><span>    }
+</span><span>}
+</span></code></pre>
 <p>We continue our exercises with threads this time our exercise focuses on the use of <code>Arc</code> we have 2 <code>TODO</code>'s to complete</p>
 <ul>
 <li><code>let shared_numbers = // TODO  </code></li>
@@ -594,273 +598,273 @@ fn main() {
 </ul>
 <p>Let's take a look at the Rust compiler errors and see if we can get some hints from there.</p>
 <h2 id="arc1-rs-errors">Arc1.rs Errors</h2>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">⚠️  Compiling of exercises&#x2F;smart_pointers&#x2F;arc1.rs failed! Please try again. Here&#x27;s the output:
-error: expected expression, found `let` statement
-  --&gt; exercises&#x2F;smart_pointers&#x2F;arc1.rs:30:5
-   |
-30 |     let mut joinhandles = Vec::new();
-   |     ^^^
-
-error: expected expression, found statement (`let`)
-  --&gt; exercises&#x2F;smart_pointers&#x2F;arc1.rs:30:5
-   |
-30 |     let mut joinhandles = Vec::new();
-   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-   |
-   = note: variable declaration using `let` is a statement
-
-error[E0425]: cannot find value `child_numbers` in this scope
-  --&gt; exercises&#x2F;smart_pointers&#x2F;arc1.rs:35:28
-   |
-35 |             let sum: u32 = child_numbers.iter().filter(|&amp;&amp;n| n % 8 == offset).sum();
-   |                            ^^^^^^^^^^^^^ help: a local variable with a similar name exists: `shared_numbers`
-
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span>⚠️  Compiling of exercises</span><span style="color:#db7c6d;">/</span><span>smart_pointers</span><span style="color:#db7c6d;">/</span><span>arc1.rs failed</span><span style="color:#db7c6d;">!</span><span> Please try again. Here</span><span style="color:#dbbb3d;">&#39;s</span><span> the output:
+</span><span>error: expected expression, found `</span><span style="color:#a3cbe3;">let</span><span>` statement
+</span><span>  </span><span style="color:#db7c6d;">-</span><span>-&gt; exercises</span><span style="color:#db7c6d;">/</span><span>smart_pointers</span><span style="color:#db7c6d;">/</span><span>arc1.rs:</span><span style="color:#db7c6d;">30</span><span>:</span><span style="color:#db7c6d;">5
+</span><span>   </span><span style="color:#db7c6d;">|
+</span><span style="color:#db7c6d;">30 |     </span><span style="color:#a3cbe3;">let </span><span style="color:#dbbb3d;">mut</span><span> joinhandles </span><span style="color:#db7c6d;">= </span><span style="color:#e7e7e7;">Vec</span><span>::new();
+</span><span>   |     ^^^
+</span><span>
+</span><span>error: expected expression, found statement (`</span><span style="color:#a3cbe3;">let</span><span>`)
+</span><span>  </span><span style="color:#db7c6d;">-</span><span>-&gt; exercises</span><span style="color:#db7c6d;">/</span><span>smart_pointers</span><span style="color:#db7c6d;">/</span><span>arc1.rs:</span><span style="color:#db7c6d;">30</span><span>:</span><span style="color:#db7c6d;">5
+</span><span>   </span><span style="color:#db7c6d;">|
+</span><span style="color:#db7c6d;">30 |     </span><span style="color:#a3cbe3;">let </span><span style="color:#dbbb3d;">mut</span><span> joinhandles </span><span style="color:#db7c6d;">= </span><span style="color:#e7e7e7;">Vec</span><span>::new();
+</span><span>   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+</span><span>   </span><span style="color:#db7c6d;">|
+</span><span>   </span><span style="color:#db7c6d;">=</span><span> note: variable declaration using `</span><span style="color:#a3cbe3;">let</span><span>` is a statement
+</span><span>
+</span><span>error[</span><span style="font-weight:bold;color:#a2ba43;">E0425</span><span>]: cannot find value `child_numbers` </span><span style="color:#db7c6d;">in</span><span> this scope
+</span><span>  </span><span style="color:#db7c6d;">-</span><span>-&gt; exercises</span><span style="color:#db7c6d;">/</span><span>smart_pointers</span><span style="color:#db7c6d;">/</span><span>arc1.rs:</span><span style="color:#db7c6d;">35</span><span>:</span><span style="color:#db7c6d;">28
+</span><span>   </span><span style="color:#db7c6d;">|
+</span><span style="color:#db7c6d;">35 |             </span><span style="color:#a3cbe3;">let</span><span> sum: </span><span style="color:#a3cbe3;">u32 </span><span style="color:#db7c6d;">=</span><span> child_numbers.</span><span style="color:#db7c6d;">iter</span><span>().</span><span style="color:#db7c6d;">filter</span><span>(|</span><span style="color:#db7c6d;">&amp;&amp;</span><span style="color:#ffffff;">n</span><span>| n </span><span style="color:#db7c6d;">% 8 ==</span><span> offset).</span><span style="color:#db7c6d;">sum</span><span>();
+</span><span>   |                            ^^^^^^^^^^^^^ </span><span style="color:#ffffff;">help</span><span>: a local variable with a similar name exists: `shared_numbers`
+</span><span>
+</span></code></pre>
 <p>Unfortunately it does't say much, just let's us know that we have missing information where our <code>TODO</code>'s are located so that's not a surprise.</p>
 <h2 id="arc1-rs-solution">Arc1.rs Solution</h2>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">
-  #![forbid(unused_imports)] &#x2F;&#x2F; Do not change this, (or the next) line.
-use std::sync::Arc;
-use std::thread;
-
-fn main() {
-    let numbers: Vec&lt;_&gt; = (0..100u32).collect();
-    let shared_numbers = &#x2F;&#x2F; TODO
-    let mut joinhandles = Vec::new();
-
-    for offset in 0..8 {
-        let child_numbers = &#x2F;&#x2F; TODO
-        joinhandles.push(thread::spawn(move || {
-            let sum: u32 = child_numbers.iter().filter(|&amp;&amp;n| n % 8 == offset).sum();
-            println!(&quot;Sum of offset {} is {}&quot;, offset, sum);
-        }));
-    }
-    for handle in joinhandles.into_iter() {
-        handle.join().unwrap();
-    }
-}
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span>
+</span><span>  #![</span><span style="font-weight:bold;color:#a3cbe3;">forbid</span><span>(unused_imports)] </span><span style="color:#707180;">// Do not change this, (or the next) line.
+</span><span style="color:#db7c6d;">use </span><span>std::sync::Arc;
+</span><span style="color:#db7c6d;">use </span><span>std::thread;
+</span><span>
+</span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">main</span><span>() {
+</span><span>    </span><span style="color:#a3cbe3;">let</span><span> numbers: </span><span style="color:#e7e7e7;">Vec</span><span>&lt;</span><span style="color:#db7c6d;">_</span><span>&gt; </span><span style="color:#db7c6d;">= </span><span>(</span><span style="color:#db7c6d;">0..100</span><span style="color:#a3cbe3;">u32</span><span>).</span><span style="color:#db7c6d;">collect</span><span>();
+</span><span>    </span><span style="color:#a3cbe3;">let</span><span> shared_numbers </span><span style="color:#db7c6d;">= </span><span style="color:#707180;">// TODO
+</span><span>    </span><span style="color:#a3cbe3;">let </span><span style="color:#dbbb3d;">mut</span><span> joinhandles </span><span style="color:#db7c6d;">= </span><span style="color:#e7e7e7;">Vec</span><span>::new();
+</span><span>
+</span><span>    </span><span style="color:#db7c6d;">for</span><span> offset </span><span style="color:#db7c6d;">in 0..8 </span><span>{
+</span><span>        </span><span style="color:#a3cbe3;">let</span><span> child_numbers </span><span style="color:#db7c6d;">= </span><span style="color:#707180;">// TODO
+</span><span>        joinhandles.</span><span style="color:#db7c6d;">push</span><span>(thread::spawn(</span><span style="color:#dbbb3d;">move </span><span style="color:#db7c6d;">|| </span><span>{
+</span><span>            </span><span style="color:#a3cbe3;">let</span><span> sum: </span><span style="color:#a3cbe3;">u32 </span><span style="color:#db7c6d;">=</span><span> child_numbers.</span><span style="color:#db7c6d;">iter</span><span>().</span><span style="color:#db7c6d;">filter</span><span>(|</span><span style="color:#db7c6d;">&amp;&amp;</span><span style="color:#ffffff;">n</span><span>| n </span><span style="color:#db7c6d;">% 8 ==</span><span> offset).</span><span style="color:#db7c6d;">sum</span><span>();
+</span><span>            println!(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>Sum of offset </span><span style="font-weight:bold;color:#a2ba43;">{}</span><span> is </span><span style="font-weight:bold;color:#a2ba43;">{}</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>, offset, sum);
+</span><span>        }));
+</span><span>    }
+</span><span>    </span><span style="color:#db7c6d;">for</span><span> handle </span><span style="color:#db7c6d;">in</span><span> joinhandles.</span><span style="color:#db7c6d;">into_iter</span><span>() {
+</span><span>        handle.</span><span style="color:#db7c6d;">join</span><span>().</span><span style="color:#db7c6d;">unwrap</span><span>();
+</span><span>    }
+</span><span>}
+</span></code></pre>
 <p>So we know that we need to use <code>Arc</code> in this exercise, so let's create a new <code>Arc</code> for shared number by completing the first <code>TODO</code> with:</p>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">let shared_numbers = Arc::new(numbers); &#x2F;&#x2F; TODO
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#a3cbe3;">let</span><span> shared_numbers </span><span style="color:#db7c6d;">= </span><span>Arc::new(numbers); </span><span style="color:#707180;">// TODO
+</span></code></pre>
 <p>This allows us to wrap the <code>numbers</code> vector in an <code>Arc</code> to share it safely among threads without making any copies.</p>
 <p>Our second <code>TODO</code> needs a reference to the shared numbers so we need to create a reference to the shared <code>Arc</code> data for each thread. Let's use <code>clone</code> as we have done before in previous exercises</p>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">let child_numbers = Arc::clone(&amp;shared_numbers); &#x2F;&#x2F; TODO
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#a3cbe3;">let</span><span> child_numbers </span><span style="color:#db7c6d;">= </span><span>Arc::clone(</span><span style="color:#db7c6d;">&amp;</span><span>shared_numbers); </span><span style="color:#707180;">// TODO
+</span></code></pre>
 <p>and with this our Rust code is compiling!</p>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">🎉 🎉  The code is compiling! 🎉 🎉
-
-Output:
-====================
-Sum of offset 0 is 624
-Sum of offset 1 is 637
-Sum of offset 2 is 650
-Sum of offset 5 is 588
-Sum of offset 3 is 663
-Sum of offset 4 is 576
-Sum of offset 6 is 600
-Sum of offset 7 is 612
-
-====================
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span>🎉 🎉  The code is compiling</span><span style="color:#db7c6d;">!</span><span> 🎉 🎉
+</span><span>
+</span><span>Output:
+</span><span style="color:#db7c6d;">====================
+</span><span>Sum of offset </span><span style="color:#db7c6d;">0</span><span> is </span><span style="color:#db7c6d;">624
+</span><span>Sum of offset </span><span style="color:#db7c6d;">1</span><span> is </span><span style="color:#db7c6d;">637
+</span><span>Sum of offset </span><span style="color:#db7c6d;">2</span><span> is </span><span style="color:#db7c6d;">650
+</span><span>Sum of offset </span><span style="color:#db7c6d;">5</span><span> is </span><span style="color:#db7c6d;">588
+</span><span>Sum of offset </span><span style="color:#db7c6d;">3</span><span> is </span><span style="color:#db7c6d;">663
+</span><span>Sum of offset </span><span style="color:#db7c6d;">4</span><span> is </span><span style="color:#db7c6d;">576
+</span><span>Sum of offset </span><span style="color:#db7c6d;">6</span><span> is </span><span style="color:#db7c6d;">600
+</span><span>Sum of offset </span><span style="color:#db7c6d;">7</span><span> is </span><span style="color:#db7c6d;">612
+</span><span>
+</span><span style="color:#db7c6d;">====================
+</span></code></pre>
 <p>Let's move on to our final exercise for this category.</p>
 <h2 id="cow1-rs">Cow1.rs</h2>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">&#x2F;&#x2F; cow1.rs
-
-&#x2F;&#x2F; This exercise explores the Cow, or Clone-On-Write type.
-&#x2F;&#x2F; Cow is a clone-on-write smart pointer.
-&#x2F;&#x2F; It can enclose and provide immutable access to borrowed data, and clone the data lazily when mutation or ownership is required.
-&#x2F;&#x2F; The type is designed to work with general borrowed data via the Borrow trait.
-&#x2F;&#x2F;
-&#x2F;&#x2F; This exercise is meant to show you what to expect when passing data to Cow.
-&#x2F;&#x2F; Fix the unit tests by checking for Cow::Owned(_) and Cow::Borrowed(_) at the TODO markers.
-
-&#x2F;&#x2F; I AM NOT DONE
-
-use std::borrow::Cow;
-
-fn abs_all&lt;&#x27;a, &#x27;b&gt;(input: &amp;&#x27;a mut Cow&lt;&#x27;b, [i32]&gt;) -&gt; &amp;&#x27;a mut Cow&lt;&#x27;b, [i32]&gt; {
-    for i in 0..input.len() {
-        let v = input[i];
-        if v &lt; 0 {
-            &#x2F;&#x2F; Clones into a vector if not already owned.
-            input.to_mut()[i] = -v;
-        }
-    }
-    input
-}
-
-#[cfg(test)]
-mod tests {
-    use super::*;
-
-    #[test]
-    fn reference_mutation() -&gt; Result&lt;(), &amp;&#x27;static str&gt; {
-        &#x2F;&#x2F; Clone occurs because `input` needs to be mutated.
-        let slice = [-1, 0, 1];
-        let mut input = Cow::from(&amp;slice[..]);
-        match abs_all(&amp;mut input) {
-            Cow::Owned(_) =&gt; Ok(()),
-            _ =&gt; Err(&quot;Expected owned value&quot;),
-        }
-    }
-
-    #[test]
-    fn reference_no_mutation() -&gt; Result&lt;(), &amp;&#x27;static str&gt; {
-        &#x2F;&#x2F; No clone occurs because `input` doesn&#x27;t need to be mutated.
-        let slice = [0, 1, 2];
-        let mut input = Cow::from(&amp;slice[..]);
-        match abs_all(&amp;mut input) {
-            &#x2F;&#x2F; TODO
-        }
-    }
-
-    #[test]
-    fn owned_no_mutation() -&gt; Result&lt;(), &amp;&#x27;static str&gt; {
-        &#x2F;&#x2F; We can also pass `slice` without `&amp;` so Cow owns it directly.
-        &#x2F;&#x2F; In this case no mutation occurs and thus also no clone,
-        &#x2F;&#x2F; but the result is still owned because it always was.
-        let slice = vec![0, 1, 2];
-        let mut input = Cow::from(slice);
-        match abs_all(&amp;mut input) {
-            &#x2F;&#x2F; TODO
-        }
-    }
-
-    #[test]
-    fn owned_mutation() -&gt; Result&lt;(), &amp;&#x27;static str&gt; {
-        &#x2F;&#x2F; Of course this is also the case if a mutation does occur.
-        &#x2F;&#x2F; In this case the call to `to_mut()` returns a reference to
-        &#x2F;&#x2F; the same data as before.
-        let slice = vec![-1, 0, 1];
-        let mut input = Cow::from(slice);
-        match abs_all(&amp;mut input) {
-            &#x2F;&#x2F; TODO
-        }
-    }
-}
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#707180;">// cow1.rs
+</span><span>
+</span><span style="color:#707180;">// This exercise explores the Cow, or Clone-On-Write type.
+</span><span style="color:#707180;">// Cow is a clone-on-write smart pointer.
+</span><span style="color:#707180;">// It can enclose and provide immutable access to borrowed data, and clone the data lazily when mutation or ownership is required.
+</span><span style="color:#707180;">// The type is designed to work with general borrowed data via the Borrow trait.
+</span><span style="color:#707180;">//
+</span><span style="color:#707180;">// This exercise is meant to show you what to expect when passing data to Cow.
+</span><span style="color:#707180;">// Fix the unit tests by checking for Cow::Owned(_) and Cow::Borrowed(_) at the TODO markers.
+</span><span>
+</span><span style="color:#707180;">// I AM NOT DONE
+</span><span>
+</span><span style="color:#db7c6d;">use </span><span>std::borrow::Cow;
+</span><span>
+</span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">abs_all</span><span>&lt;</span><span style="color:#dbbb3d;">&#39;a</span><span>, </span><span style="color:#dbbb3d;">&#39;b</span><span>&gt;(</span><span style="color:#ffffff;">input</span><span>: </span><span style="color:#db7c6d;">&amp;</span><span style="color:#dbbb3d;">&#39;a mut </span><span>Cow&lt;</span><span style="color:#dbbb3d;">&#39;b</span><span>, [</span><span style="color:#a3cbe3;">i32</span><span>]&gt;) -&gt; </span><span style="color:#db7c6d;">&amp;</span><span style="color:#dbbb3d;">&#39;a mut </span><span>Cow&lt;</span><span style="color:#dbbb3d;">&#39;b</span><span>, [</span><span style="color:#a3cbe3;">i32</span><span>]&gt; {
+</span><span>    </span><span style="color:#db7c6d;">for</span><span> i </span><span style="color:#db7c6d;">in 0..</span><span>input.</span><span style="color:#db7c6d;">len</span><span>() {
+</span><span>        </span><span style="color:#a3cbe3;">let</span><span> v </span><span style="color:#db7c6d;">=</span><span> input[i];
+</span><span>        </span><span style="color:#db7c6d;">if</span><span> v </span><span style="color:#db7c6d;">&lt; 0 </span><span>{
+</span><span>            </span><span style="color:#707180;">// Clones into a vector if not already owned.
+</span><span>            input.</span><span style="color:#db7c6d;">to_mut</span><span>()[i] </span><span style="color:#db7c6d;">= -</span><span>v;
+</span><span>        }
+</span><span>    }
+</span><span>    input
+</span><span>}
+</span><span>
+</span><span>#[</span><span style="font-weight:bold;color:#a3cbe3;">cfg</span><span>(test)]
+</span><span style="color:#a3cbe3;">mod </span><span>tests {
+</span><span>    </span><span style="color:#db7c6d;">use super</span><span>::</span><span style="color:#db7c6d;">*</span><span>;
+</span><span>
+</span><span>    #[</span><span style="font-weight:bold;color:#a3cbe3;">test</span><span>]
+</span><span>    </span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">reference_mutation</span><span>() -&gt; </span><span style="color:#e7e7e7;">Result</span><span>&lt;(), </span><span style="color:#db7c6d;">&amp;</span><span style="color:#dbbb3d;">&#39;static </span><span style="color:#a3cbe3;">str</span><span>&gt; {
+</span><span>        </span><span style="color:#707180;">// Clone occurs because `input` needs to be mutated.
+</span><span>        </span><span style="color:#a3cbe3;">let</span><span> slice </span><span style="color:#db7c6d;">= </span><span>[</span><span style="color:#db7c6d;">-1</span><span>, </span><span style="color:#db7c6d;">0</span><span>, </span><span style="color:#db7c6d;">1</span><span>];
+</span><span>        </span><span style="color:#a3cbe3;">let </span><span style="color:#dbbb3d;">mut</span><span> input </span><span style="color:#db7c6d;">= </span><span>Cow::from(</span><span style="color:#db7c6d;">&amp;</span><span>slice[</span><span style="color:#db7c6d;">..</span><span>]);
+</span><span>        </span><span style="color:#db7c6d;">match abs_all</span><span>(</span><span style="color:#db7c6d;">&amp;</span><span style="color:#dbbb3d;">mut</span><span> input) {
+</span><span>            Cow::Owned(</span><span style="color:#db7c6d;">_</span><span>) </span><span style="color:#db7c6d;">=&gt; </span><span style="color:#e7e7e7;">Ok</span><span>(()),
+</span><span>            </span><span style="color:#db7c6d;">_ =&gt; </span><span style="color:#e7e7e7;">Err</span><span>(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>Expected owned value</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>),
+</span><span>        }
+</span><span>    }
+</span><span>
+</span><span>    #[</span><span style="font-weight:bold;color:#a3cbe3;">test</span><span>]
+</span><span>    </span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">reference_no_mutation</span><span>() -&gt; </span><span style="color:#e7e7e7;">Result</span><span>&lt;(), </span><span style="color:#db7c6d;">&amp;</span><span style="color:#dbbb3d;">&#39;static </span><span style="color:#a3cbe3;">str</span><span>&gt; {
+</span><span>        </span><span style="color:#707180;">// No clone occurs because `input` doesn&#39;t need to be mutated.
+</span><span>        </span><span style="color:#a3cbe3;">let</span><span> slice </span><span style="color:#db7c6d;">= </span><span>[</span><span style="color:#db7c6d;">0</span><span>, </span><span style="color:#db7c6d;">1</span><span>, </span><span style="color:#db7c6d;">2</span><span>];
+</span><span>        </span><span style="color:#a3cbe3;">let </span><span style="color:#dbbb3d;">mut</span><span> input </span><span style="color:#db7c6d;">= </span><span>Cow::from(</span><span style="color:#db7c6d;">&amp;</span><span>slice[</span><span style="color:#db7c6d;">..</span><span>]);
+</span><span>        </span><span style="color:#db7c6d;">match abs_all</span><span>(</span><span style="color:#db7c6d;">&amp;</span><span style="color:#dbbb3d;">mut</span><span> input) {
+</span><span>            </span><span style="color:#707180;">// TODO
+</span><span>        }
+</span><span>    }
+</span><span>
+</span><span>    #[</span><span style="font-weight:bold;color:#a3cbe3;">test</span><span>]
+</span><span>    </span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">owned_no_mutation</span><span>() -&gt; </span><span style="color:#e7e7e7;">Result</span><span>&lt;(), </span><span style="color:#db7c6d;">&amp;</span><span style="color:#dbbb3d;">&#39;static </span><span style="color:#a3cbe3;">str</span><span>&gt; {
+</span><span>        </span><span style="color:#707180;">// We can also pass `slice` without `&amp;` so Cow owns it directly.
+</span><span>        </span><span style="color:#707180;">// In this case no mutation occurs and thus also no clone,
+</span><span>        </span><span style="color:#707180;">// but the result is still owned because it always was.
+</span><span>        </span><span style="color:#a3cbe3;">let</span><span> slice </span><span style="color:#db7c6d;">= </span><span>vec![</span><span style="color:#db7c6d;">0</span><span>, </span><span style="color:#db7c6d;">1</span><span>, </span><span style="color:#db7c6d;">2</span><span>];
+</span><span>        </span><span style="color:#a3cbe3;">let </span><span style="color:#dbbb3d;">mut</span><span> input </span><span style="color:#db7c6d;">= </span><span>Cow::from(slice);
+</span><span>        </span><span style="color:#db7c6d;">match abs_all</span><span>(</span><span style="color:#db7c6d;">&amp;</span><span style="color:#dbbb3d;">mut</span><span> input) {
+</span><span>            </span><span style="color:#707180;">// TODO
+</span><span>        }
+</span><span>    }
+</span><span>
+</span><span>    #[</span><span style="font-weight:bold;color:#a3cbe3;">test</span><span>]
+</span><span>    </span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">owned_mutation</span><span>() -&gt; </span><span style="color:#e7e7e7;">Result</span><span>&lt;(), </span><span style="color:#db7c6d;">&amp;</span><span style="color:#dbbb3d;">&#39;static </span><span style="color:#a3cbe3;">str</span><span>&gt; {
+</span><span>        </span><span style="color:#707180;">// Of course this is also the case if a mutation does occur.
+</span><span>        </span><span style="color:#707180;">// In this case the call to `to_mut()` returns a reference to
+</span><span>        </span><span style="color:#707180;">// the same data as before.
+</span><span>        </span><span style="color:#a3cbe3;">let</span><span> slice </span><span style="color:#db7c6d;">= </span><span>vec![</span><span style="color:#db7c6d;">-1</span><span>, </span><span style="color:#db7c6d;">0</span><span>, </span><span style="color:#db7c6d;">1</span><span>];
+</span><span>        </span><span style="color:#a3cbe3;">let </span><span style="color:#dbbb3d;">mut</span><span> input </span><span style="color:#db7c6d;">= </span><span>Cow::from(slice);
+</span><span>        </span><span style="color:#db7c6d;">match abs_all</span><span>(</span><span style="color:#db7c6d;">&amp;</span><span style="color:#dbbb3d;">mut</span><span> input) {
+</span><span>            </span><span style="color:#707180;">// TODO
+</span><span>        }
+</span><span>    }
+</span><span>}
+</span></code></pre>
 <p>Our instructions are to fix the unit tests to get them to pass by using <code>Cow::Owned(_) </code>and <code>Cow::Borrowed(_)</code>, let's take a look at what the compiler is saying.</p>
 <h2 id="cow1-rs-errors">Cow1.rs Errors</h2>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">⚠️  Compiling of exercises&#x2F;smart_pointers&#x2F;cow1.rs failed! Please try again. Here&#x27;s the output:
-error[E0004]: non-exhaustive patterns: type `&amp;mut std::borrow::Cow&lt;&#x27;_, [i32]&gt;` is non-empty
-   --&gt; exercises&#x2F;smart_pointers&#x2F;cow1.rs:46:15
-    |
-46  |         match abs_all(&amp;mut input) {
-    |               ^^^^^^^^^^^^^^^^^^^
-    |
-note: `std::borrow::Cow&lt;&#x27;_, [i32]&gt;` defined here
-   --&gt; &#x2F;Users&#x2F;desmo&#x2F;.rustup&#x2F;toolchains&#x2F;stable-aarch64-apple-darwin&#x2F;lib&#x2F;rustlib&#x2F;src&#x2F;rust&#x2F;library&#x2F;alloc&#x2F;src&#x2F;borrow.rs:179:1
-    |
-179 | pub enum Cow&lt;&#x27;a, B: ?Sized + &#x27;a&gt;
-    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-    = note: the matched value is of type `&amp;mut std::borrow::Cow&lt;&#x27;_, [i32]&gt;`
-help: ensure that all possible cases are being handled by adding a match arm with a wildcard pattern as shown
-    |
-46  ~         match abs_all(&amp;mut input) {
-47  +             _ =&gt; todo!(),
-48  +         }
-    |
-
-error[E0004]: non-exhaustive patterns: type `&amp;mut std::borrow::Cow&lt;&#x27;_, [i32]&gt;` is non-empty
-   --&gt; exercises&#x2F;smart_pointers&#x2F;cow1.rs:58:15
-    |
-58  |         match abs_all(&amp;mut input) {
-    |               ^^^^^^^^^^^^^^^^^^^
-    |
-note: `std::borrow::Cow&lt;&#x27;_, [i32]&gt;` defined here
-   --&gt; &#x2F;Users&#x2F;desmo&#x2F;.rustup&#x2F;toolchains&#x2F;stable-aarch64-apple-darwin&#x2F;lib&#x2F;rustlib&#x2F;src&#x2F;rust&#x2F;library&#x2F;alloc&#x2F;src&#x2F;borrow.rs:179:1
-    |
-179 | pub enum Cow&lt;&#x27;a, B: ?Sized + &#x27;a&gt;
-    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-    = note: the matched value is of type `&amp;mut std::borrow::Cow&lt;&#x27;_, [i32]&gt;`
-help: ensure that all possible cases are being handled by adding a match arm with a wildcard pattern as shown
-    |
-58  ~         match abs_all(&amp;mut input) {
-59  +             _ =&gt; todo!(),
-60  +         }
-    |
-
-error[E0004]: non-exhaustive patterns: type `&amp;mut std::borrow::Cow&lt;&#x27;_, [i32]&gt;` is non-empty
-   --&gt; exercises&#x2F;smart_pointers&#x2F;cow1.rs:70:15
-    |
-70  |         match abs_all(&amp;mut input) {
-    |               ^^^^^^^^^^^^^^^^^^^
-    |
-note: `std::borrow::Cow&lt;&#x27;_, [i32]&gt;` defined here
-   --&gt; &#x2F;Users&#x2F;desmo&#x2F;.rustup&#x2F;toolchains&#x2F;stable-aarch64-apple-darwin&#x2F;lib&#x2F;rustlib&#x2F;src&#x2F;rust&#x2F;library&#x2F;alloc&#x2F;src&#x2F;borrow.rs:179:1
-    |
-179 | pub enum Cow&lt;&#x27;a, B: ?Sized + &#x27;a&gt;
-    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-    = note: the matched value is of type `&amp;mut std::borrow::Cow&lt;&#x27;_, [i32]&gt;`
-help: ensure that all possible cases are being handled by adding a match arm with a wildcard pattern as shown
-    |
-70  ~         match abs_all(&amp;mut input) {
-71  +             _ =&gt; todo!(),
-72  +         }
-    |
-
-error: aborting due to 3 previous errors
-
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span>⚠️  Compiling of exercises</span><span style="color:#db7c6d;">/</span><span>smart_pointers</span><span style="color:#db7c6d;">/</span><span>cow1.rs failed</span><span style="color:#db7c6d;">!</span><span> Please try again. Here</span><span style="color:#dbbb3d;">&#39;s</span><span> the output:
+</span><span>error[</span><span style="font-weight:bold;color:#a2ba43;">E0004</span><span>]: non</span><span style="color:#db7c6d;">-</span><span>exhaustive patterns: </span><span style="color:#a3cbe3;">type</span><span> `</span><span style="color:#db7c6d;">&amp;</span><span style="color:#dbbb3d;">mut </span><span>std::borrow::Cow&lt;&#39;</span><span style="color:#db7c6d;">_</span><span>, [</span><span style="color:#a3cbe3;">i32</span><span>]&gt;` is non</span><span style="color:#db7c6d;">-</span><span>empty
+</span><span>   </span><span style="color:#db7c6d;">-</span><span>-&gt; exercises</span><span style="color:#db7c6d;">/</span><span>smart_pointers</span><span style="color:#db7c6d;">/</span><span>cow1.rs:</span><span style="color:#db7c6d;">46</span><span>:</span><span style="color:#db7c6d;">15
+</span><span>    </span><span style="color:#db7c6d;">|
+</span><span style="color:#db7c6d;">46  |         match abs_all</span><span>(</span><span style="color:#db7c6d;">&amp;</span><span style="color:#dbbb3d;">mut</span><span> input) {
+</span><span>    |               ^^^^^^^^^^^^^^^^^^^
+</span><span>    </span><span style="color:#db7c6d;">|
+</span><span>note: `std::borrow::Cow&lt;&#39;</span><span style="color:#db7c6d;">_</span><span>, [</span><span style="color:#a3cbe3;">i32</span><span>]&gt;` defined here
+</span><span>   </span><span style="color:#db7c6d;">-</span><span>-&gt; </span><span style="color:#db7c6d;">/</span><span>Users</span><span style="color:#db7c6d;">/</span><span>desmo</span><span style="color:#db7c6d;">/</span><span>.rustup</span><span style="color:#db7c6d;">/</span><span>toolchains</span><span style="color:#db7c6d;">/</span><span>stable</span><span style="color:#db7c6d;">-</span><span>aarch64</span><span style="color:#db7c6d;">-</span><span>apple</span><span style="color:#db7c6d;">-</span><span>darwin</span><span style="color:#db7c6d;">/</span><span>lib</span><span style="color:#db7c6d;">/</span><span>rustlib</span><span style="color:#db7c6d;">/</span><span>src</span><span style="color:#db7c6d;">/</span><span>rust</span><span style="color:#db7c6d;">/</span><span>library</span><span style="color:#db7c6d;">/</span><span>alloc</span><span style="color:#db7c6d;">/</span><span>src</span><span style="color:#db7c6d;">/</span><span>borrow.rs:</span><span style="color:#db7c6d;">179</span><span>:</span><span style="color:#db7c6d;">1
+</span><span>    </span><span style="color:#db7c6d;">|
+</span><span style="color:#db7c6d;">179 | </span><span style="color:#dbbb3d;">pub </span><span style="color:#a3cbe3;">enum </span><span>Cow&lt;&#39;a, B: ?Sized + &#39;a&gt;
+</span><span>    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+</span><span>    = note: the matched value is of type `&amp;mut std::borrow::Cow&lt;&#39;_, [i32]&gt;`
+</span><span>help: ensure that all possible cases are being handled by adding a match arm with a wildcard pattern as shown
+</span><span>    |
+</span><span>46  ~         match abs_all(&amp;mut input) {
+</span><span style="color:#db7c6d;">47  +             _ =&gt; </span><span>todo!(),
+</span><span style="color:#db7c6d;">48  +         </span><span>}
+</span><span>    </span><span style="color:#db7c6d;">|
+</span><span>
+</span><span>error[</span><span style="font-weight:bold;color:#a2ba43;">E0004</span><span>]: non</span><span style="color:#db7c6d;">-</span><span>exhaustive patterns: </span><span style="color:#a3cbe3;">type</span><span> `</span><span style="color:#db7c6d;">&amp;</span><span style="color:#dbbb3d;">mut </span><span>std::borrow::Cow&lt;&#39;</span><span style="color:#db7c6d;">_</span><span>, [</span><span style="color:#a3cbe3;">i32</span><span>]&gt;` is non</span><span style="color:#db7c6d;">-</span><span>empty
+</span><span>   </span><span style="color:#db7c6d;">-</span><span>-&gt; exercises</span><span style="color:#db7c6d;">/</span><span>smart_pointers</span><span style="color:#db7c6d;">/</span><span>cow1.rs:</span><span style="color:#db7c6d;">58</span><span>:</span><span style="color:#db7c6d;">15
+</span><span>    </span><span style="color:#db7c6d;">|
+</span><span style="color:#db7c6d;">58  |         match abs_all</span><span>(</span><span style="color:#db7c6d;">&amp;</span><span style="color:#dbbb3d;">mut</span><span> input) {
+</span><span>    |               ^^^^^^^^^^^^^^^^^^^
+</span><span>    </span><span style="color:#db7c6d;">|
+</span><span>note: `std::borrow::Cow&lt;&#39;</span><span style="color:#db7c6d;">_</span><span>, [</span><span style="color:#a3cbe3;">i32</span><span>]&gt;` defined here
+</span><span>   </span><span style="color:#db7c6d;">-</span><span>-&gt; </span><span style="color:#db7c6d;">/</span><span>Users</span><span style="color:#db7c6d;">/</span><span>desmo</span><span style="color:#db7c6d;">/</span><span>.rustup</span><span style="color:#db7c6d;">/</span><span>toolchains</span><span style="color:#db7c6d;">/</span><span>stable</span><span style="color:#db7c6d;">-</span><span>aarch64</span><span style="color:#db7c6d;">-</span><span>apple</span><span style="color:#db7c6d;">-</span><span>darwin</span><span style="color:#db7c6d;">/</span><span>lib</span><span style="color:#db7c6d;">/</span><span>rustlib</span><span style="color:#db7c6d;">/</span><span>src</span><span style="color:#db7c6d;">/</span><span>rust</span><span style="color:#db7c6d;">/</span><span>library</span><span style="color:#db7c6d;">/</span><span>alloc</span><span style="color:#db7c6d;">/</span><span>src</span><span style="color:#db7c6d;">/</span><span>borrow.rs:</span><span style="color:#db7c6d;">179</span><span>:</span><span style="color:#db7c6d;">1
+</span><span>    </span><span style="color:#db7c6d;">|
+</span><span style="color:#db7c6d;">179 | </span><span style="color:#dbbb3d;">pub </span><span style="color:#a3cbe3;">enum </span><span>Cow&lt;&#39;a, B: ?Sized + &#39;a&gt;
+</span><span>    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+</span><span>    = note: the matched value is of type `&amp;mut std::borrow::Cow&lt;&#39;_, [i32]&gt;`
+</span><span>help: ensure that all possible cases are being handled by adding a match arm with a wildcard pattern as shown
+</span><span>    |
+</span><span>58  ~         match abs_all(&amp;mut input) {
+</span><span style="color:#db7c6d;">59  +             _ =&gt; </span><span>todo!(),
+</span><span style="color:#db7c6d;">60  +         </span><span>}
+</span><span>    </span><span style="color:#db7c6d;">|
+</span><span>
+</span><span>error[</span><span style="font-weight:bold;color:#a2ba43;">E0004</span><span>]: non</span><span style="color:#db7c6d;">-</span><span>exhaustive patterns: </span><span style="color:#a3cbe3;">type</span><span> `</span><span style="color:#db7c6d;">&amp;</span><span style="color:#dbbb3d;">mut </span><span>std::borrow::Cow&lt;&#39;</span><span style="color:#db7c6d;">_</span><span>, [</span><span style="color:#a3cbe3;">i32</span><span>]&gt;` is non</span><span style="color:#db7c6d;">-</span><span>empty
+</span><span>   </span><span style="color:#db7c6d;">-</span><span>-&gt; exercises</span><span style="color:#db7c6d;">/</span><span>smart_pointers</span><span style="color:#db7c6d;">/</span><span>cow1.rs:</span><span style="color:#db7c6d;">70</span><span>:</span><span style="color:#db7c6d;">15
+</span><span>    </span><span style="color:#db7c6d;">|
+</span><span style="color:#db7c6d;">70  |         match abs_all</span><span>(</span><span style="color:#db7c6d;">&amp;</span><span style="color:#dbbb3d;">mut</span><span> input) {
+</span><span>    |               ^^^^^^^^^^^^^^^^^^^
+</span><span>    </span><span style="color:#db7c6d;">|
+</span><span>note: `std::borrow::Cow&lt;&#39;</span><span style="color:#db7c6d;">_</span><span>, [</span><span style="color:#a3cbe3;">i32</span><span>]&gt;` defined here
+</span><span>   </span><span style="color:#db7c6d;">-</span><span>-&gt; </span><span style="color:#db7c6d;">/</span><span>Users</span><span style="color:#db7c6d;">/</span><span>desmo</span><span style="color:#db7c6d;">/</span><span>.rustup</span><span style="color:#db7c6d;">/</span><span>toolchains</span><span style="color:#db7c6d;">/</span><span>stable</span><span style="color:#db7c6d;">-</span><span>aarch64</span><span style="color:#db7c6d;">-</span><span>apple</span><span style="color:#db7c6d;">-</span><span>darwin</span><span style="color:#db7c6d;">/</span><span>lib</span><span style="color:#db7c6d;">/</span><span>rustlib</span><span style="color:#db7c6d;">/</span><span>src</span><span style="color:#db7c6d;">/</span><span>rust</span><span style="color:#db7c6d;">/</span><span>library</span><span style="color:#db7c6d;">/</span><span>alloc</span><span style="color:#db7c6d;">/</span><span>src</span><span style="color:#db7c6d;">/</span><span>borrow.rs:</span><span style="color:#db7c6d;">179</span><span>:</span><span style="color:#db7c6d;">1
+</span><span>    </span><span style="color:#db7c6d;">|
+</span><span style="color:#db7c6d;">179 | </span><span style="color:#dbbb3d;">pub </span><span style="color:#a3cbe3;">enum </span><span>Cow&lt;&#39;a, B: ?Sized + &#39;a&gt;
+</span><span>    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+</span><span>    = note: the matched value is of type `&amp;mut std::borrow::Cow&lt;&#39;_, [i32]&gt;`
+</span><span>help: ensure that all possible cases are being handled by adding a match arm with a wildcard pattern as shown
+</span><span>    |
+</span><span>70  ~         match abs_all(&amp;mut input) {
+</span><span style="color:#db7c6d;">71  +             _ =&gt; </span><span>todo!(),
+</span><span style="color:#db7c6d;">72  +         </span><span>}
+</span><span>    </span><span style="color:#db7c6d;">|
+</span><span>
+</span><span>error: aborting due to </span><span style="color:#db7c6d;">3</span><span> previous errors
+</span><span>
+</span></code></pre>
 <p>Okay, our messages are essentially telling us we have some code missing in our <code>TODO</code>'s fair enough. Let's try and work on a solution.</p>
 <h2 id="cow1-rs-solution">Cow1.rs Solution</h2>
 <p>If we look at the first test <code>reference_mutation</code> we can get and idea of what is missing in our other tests:</p>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">    fn reference_mutation() -&gt; Result&lt;(), &amp;&#x27;static str&gt; {
-        &#x2F;&#x2F; Clone occurs because `input` needs to be mutated.
-        let slice = [-1, 0, 1];
-        let mut input = Cow::from(&amp;slice[..]);
-        match abs_all(&amp;mut input) {
-            Cow::Owned(_) =&gt; Ok(()),
-            _ =&gt; Err(&quot;Expected owned value&quot;),
-        }
-    }
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span>    </span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">reference_mutation</span><span>() -&gt; </span><span style="color:#e7e7e7;">Result</span><span>&lt;(), </span><span style="color:#db7c6d;">&amp;</span><span style="color:#dbbb3d;">&#39;static </span><span style="color:#a3cbe3;">str</span><span>&gt; {
+</span><span>        </span><span style="color:#707180;">// Clone occurs because `input` needs to be mutated.
+</span><span>        </span><span style="color:#a3cbe3;">let</span><span> slice </span><span style="color:#db7c6d;">= </span><span>[</span><span style="color:#db7c6d;">-1</span><span>, </span><span style="color:#db7c6d;">0</span><span>, </span><span style="color:#db7c6d;">1</span><span>];
+</span><span>        </span><span style="color:#a3cbe3;">let </span><span style="color:#dbbb3d;">mut</span><span> input </span><span style="color:#db7c6d;">= </span><span>Cow::from(</span><span style="color:#db7c6d;">&amp;</span><span>slice[</span><span style="color:#db7c6d;">..</span><span>]);
+</span><span>        </span><span style="color:#db7c6d;">match abs_all</span><span>(</span><span style="color:#db7c6d;">&amp;</span><span style="color:#dbbb3d;">mut</span><span> input) {
+</span><span>            Cow::Owned(</span><span style="color:#db7c6d;">_</span><span>) </span><span style="color:#db7c6d;">=&gt; </span><span style="color:#e7e7e7;">Ok</span><span>(()),
+</span><span>            </span><span style="color:#db7c6d;">_ =&gt; </span><span style="color:#e7e7e7;">Err</span><span>(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>Expected owned value</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>),
+</span><span>        }
+</span><span>    }
+</span></code></pre>
 <p>In the other tests, we are missing the <code>match abs_all</code> match arms. So I would expect to fill those match arms with either <code>Cow::Owned(_) </code> or <code>Cow::Borrowed(_)</code> we get additional comment notes at each function. Looking at the comment in <code>reference_mutation</code>, it tells us that a clone occurs because <code>input</code> needs to be mutated, so it makes sense that they use the <code>Cow::Owned()</code> smart pointer.</p>
 <p>In our next function <code>reference_no_mutation</code> we see the comment: <em>No clone occurs because <code>input</code> doesn't need to be mutated</em>. So naturally, since it doesn't need to be owned we should use the <code>Cow::Borrowed</code> smart pointer, right?</p>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">#[test]
-fn reference_no_mutation() -&gt; Result&lt;(), &amp;&#x27;static str&gt; {
-    &#x2F;&#x2F; No clone occurs because `input` doesn&#x27;t need to be mutated.
-    let slice = [0, 1, 2];
-    let mut input = Cow::from(&amp;slice[..]);
-    match abs_all(&amp;mut input) {
-        Cow::Borrowed(_) =&gt; Ok(()),
-        _ =&gt; Err(&quot;Expected owned value&quot;),
-    }
-}
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span>#[</span><span style="font-weight:bold;color:#a3cbe3;">test</span><span>]
+</span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">reference_no_mutation</span><span>() -&gt; </span><span style="color:#e7e7e7;">Result</span><span>&lt;(), </span><span style="color:#db7c6d;">&amp;</span><span style="color:#dbbb3d;">&#39;static </span><span style="color:#a3cbe3;">str</span><span>&gt; {
+</span><span>    </span><span style="color:#707180;">// No clone occurs because `input` doesn&#39;t need to be mutated.
+</span><span>    </span><span style="color:#a3cbe3;">let</span><span> slice </span><span style="color:#db7c6d;">= </span><span>[</span><span style="color:#db7c6d;">0</span><span>, </span><span style="color:#db7c6d;">1</span><span>, </span><span style="color:#db7c6d;">2</span><span>];
+</span><span>    </span><span style="color:#a3cbe3;">let </span><span style="color:#dbbb3d;">mut</span><span> input </span><span style="color:#db7c6d;">= </span><span>Cow::from(</span><span style="color:#db7c6d;">&amp;</span><span>slice[</span><span style="color:#db7c6d;">..</span><span>]);
+</span><span>    </span><span style="color:#db7c6d;">match abs_all</span><span>(</span><span style="color:#db7c6d;">&amp;</span><span style="color:#dbbb3d;">mut</span><span> input) {
+</span><span>        Cow::Borrowed(</span><span style="color:#db7c6d;">_</span><span>) </span><span style="color:#db7c6d;">=&gt; </span><span style="color:#e7e7e7;">Ok</span><span>(()),
+</span><span>        </span><span style="color:#db7c6d;">_ =&gt; </span><span style="color:#e7e7e7;">Err</span><span>(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>Expected owned value</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>),
+</span><span>    }
+</span><span>}
+</span></code></pre>
 <p>Our third function tells us we don't need to mutate and no clone is created but the result is still <em>owned</em> so that makes it clear to use <code>Cow::Owned</code></p>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">    #[test]
-    fn owned_no_mutation() -&gt; Result&lt;(), &amp;&#x27;static str&gt; {
-        &#x2F;&#x2F; We can also pass `slice` without `&amp;` so Cow owns it directly.
-        &#x2F;&#x2F; In this case no mutation occurs and thus also no clone,
-        &#x2F;&#x2F; but the result is still owned because it always was.
-        let slice = vec![0, 1, 2];
-        let mut input = Cow::from(slice);
-        match abs_all(&amp;mut input) {
-            Cow::Owned(_) =&gt; Ok(()),
-            _ =&gt; Err(&quot;Expected owned value&quot;),
-        }
-    }
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span>    #[</span><span style="font-weight:bold;color:#a3cbe3;">test</span><span>]
+</span><span>    </span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">owned_no_mutation</span><span>() -&gt; </span><span style="color:#e7e7e7;">Result</span><span>&lt;(), </span><span style="color:#db7c6d;">&amp;</span><span style="color:#dbbb3d;">&#39;static </span><span style="color:#a3cbe3;">str</span><span>&gt; {
+</span><span>        </span><span style="color:#707180;">// We can also pass `slice` without `&amp;` so Cow owns it directly.
+</span><span>        </span><span style="color:#707180;">// In this case no mutation occurs and thus also no clone,
+</span><span>        </span><span style="color:#707180;">// but the result is still owned because it always was.
+</span><span>        </span><span style="color:#a3cbe3;">let</span><span> slice </span><span style="color:#db7c6d;">= </span><span>vec![</span><span style="color:#db7c6d;">0</span><span>, </span><span style="color:#db7c6d;">1</span><span>, </span><span style="color:#db7c6d;">2</span><span>];
+</span><span>        </span><span style="color:#a3cbe3;">let </span><span style="color:#dbbb3d;">mut</span><span> input </span><span style="color:#db7c6d;">= </span><span>Cow::from(slice);
+</span><span>        </span><span style="color:#db7c6d;">match abs_all</span><span>(</span><span style="color:#db7c6d;">&amp;</span><span style="color:#dbbb3d;">mut</span><span> input) {
+</span><span>            Cow::Owned(</span><span style="color:#db7c6d;">_</span><span>) </span><span style="color:#db7c6d;">=&gt; </span><span style="color:#e7e7e7;">Ok</span><span>(()),
+</span><span>            </span><span style="color:#db7c6d;">_ =&gt; </span><span style="color:#e7e7e7;">Err</span><span>(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>Expected owned value</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>),
+</span><span>        }
+</span><span>    }
+</span></code></pre>
 <p>Our final test tells us that that calling <code>input.to_mut()</code> in our <code>abs_all</code> function, in case we need to mutate the data we need to make sure it's owned.</p>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">    fn owned_mutation() -&gt; Result&lt;(), &amp;&#x27;static str&gt; {
-        &#x2F;&#x2F; Of course this is also the case if a mutation does occur.
-        &#x2F;&#x2F; In this case the call to `to_mut()` returns a reference to
-        &#x2F;&#x2F; the same data as before.
-        let slice = vec![-1, 0, 1];
-        let mut input = Cow::from(slice);
-        match abs_all(&amp;mut input) {
-            Cow::Owned(_) =&gt; Ok(()),
-            _ =&gt; Err(&quot;Expected owned value&quot;),
-        }
-    }
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span>    </span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">owned_mutation</span><span>() -&gt; </span><span style="color:#e7e7e7;">Result</span><span>&lt;(), </span><span style="color:#db7c6d;">&amp;</span><span style="color:#dbbb3d;">&#39;static </span><span style="color:#a3cbe3;">str</span><span>&gt; {
+</span><span>        </span><span style="color:#707180;">// Of course this is also the case if a mutation does occur.
+</span><span>        </span><span style="color:#707180;">// In this case the call to `to_mut()` returns a reference to
+</span><span>        </span><span style="color:#707180;">// the same data as before.
+</span><span>        </span><span style="color:#a3cbe3;">let</span><span> slice </span><span style="color:#db7c6d;">= </span><span>vec![</span><span style="color:#db7c6d;">-1</span><span>, </span><span style="color:#db7c6d;">0</span><span>, </span><span style="color:#db7c6d;">1</span><span>];
+</span><span>        </span><span style="color:#a3cbe3;">let </span><span style="color:#dbbb3d;">mut</span><span> input </span><span style="color:#db7c6d;">= </span><span>Cow::from(slice);
+</span><span>        </span><span style="color:#db7c6d;">match abs_all</span><span>(</span><span style="color:#db7c6d;">&amp;</span><span style="color:#dbbb3d;">mut</span><span> input) {
+</span><span>            Cow::Owned(</span><span style="color:#db7c6d;">_</span><span>) </span><span style="color:#db7c6d;">=&gt; </span><span style="color:#e7e7e7;">Ok</span><span>(()),
+</span><span>            </span><span style="color:#db7c6d;">_ =&gt; </span><span style="color:#e7e7e7;">Err</span><span>(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>Expected owned value</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>),
+</span><span>        }
+</span><span>    }
+</span></code></pre>
 <p>and with that we are compiling and our tests have all passed!</p>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">✅ Successfully tested exercises&#x2F;smart_pointers&#x2F;cow1.rs!
-
-🎉 🎉  The code is compiling, and the tests pass! 🎉 🎉
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span>✅ Successfully tested exercises</span><span style="color:#db7c6d;">/</span><span>smart_pointers</span><span style="color:#db7c6d;">/</span><span>cow1.rs</span><span style="color:#db7c6d;">!
+</span><span>
+</span><span>🎉 🎉  The code is compiling, and the tests pass</span><span style="color:#db7c6d;">!</span><span> 🎉 🎉
+</span></code></pre>
 <h2 id="conclusion">Conclusion</h2>
 <p>Exploring Rust's smart pointers - <code>Box</code>, <code>Rc</code>, <code>Arc</code>, and <code>Cow</code> - has taken us through a variety of scenarios, each illustrating the unique strengths and use cases of these powerful tools in the Rust ecosystem. From handling recursive data structures with <code>Box</code> to managing shared ownership with <code>Rc</code> and <code>Arc</code>, and leveraging the efficiency of <code>Cow</code> for clone-on-write scenarios, we've seen how Rust smart pointers enable more complex data management while maintaining the language's strict guarantees on safety and concurrency.</p>
 <p>What stands out is how Rust's design encourages developers to think critically about ownership, lifetime, and memory usage. These smart pointers are not just tools but also guidelines that shape the way we structure our programs for optimal performance and safety. They embody Rust's philosophy of making systems programming both accessible and reliable, preventing common pitfalls such as data races and memory leaks.</p>
@@ -896,7 +900,7 @@ fn reference_no_mutation() -&gt; Result&lt;(), &amp;&#x27;static str&gt; {
 		
     </p>
     
-    <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>3907 Words</p>
+    <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>1380 Words</p>
     
     <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2023-11-17</p>
     
@@ -919,7 +923,7 @@ fn reference_no_mutation() -&gt; Result&lt;(), &amp;&#x27;static str&gt; {
 
 
 <footer id="site-footer" class="section-inner thin animated fadeIn faster">
-  <p>&copy; 2024 <a href="https:&#x2F;&#x2F;desmodrone.github.io">erick</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
+  <p>&copy; 2026 <a href="https:&#x2F;&#x2F;desmodrone.github.io">erick</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
   <p>Made with <a href="https://www.getzola.org" target="_blank" rel="noopener">Zola</a> &#183; Theme <a href="https://github.com/VersBinarii/hermit_zola" target="_blank" rel="noopener">Hermit_Zola</a>
 	
 	&#183; <a href="https://desmodrone.github.io/rss.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>

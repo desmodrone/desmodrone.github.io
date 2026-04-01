@@ -1,0 +1,17 @@
+body {
+  font-family: sans-serif;
+  background: url('../shared/bg.jpg') no-repeat center center fixed;
+  background-size: cover;
+  color: white;
+  text-align: center;
+  padding: 2em;
+}
+.card {
+  background: rgba(0, 0, 0, 0.6);
+  border-radius: 12px;
+  padding: 2em;
+  max-width: 400px;
+  margin: auto;
+}
+a { color: #00ffff; }
+.logo { width: 80px; margin-bottom: 1em; }

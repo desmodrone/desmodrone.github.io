@@ -27,6 +27,10 @@
   <link rel="alternate" type="application/rss+xml" title="RSS" href="https://desmodrone.github.io/rss.xml">
   
 
+  
+  <link rel="canonical" href="https://desmodrone.github.io/posts/15-rustlings-errors2/">
+  
+
   <body id="page">
 
 	
@@ -120,7 +124,7 @@
 		<small> - 
 <span class="reading-time" title="Estimated read time">
   
-  11 min read
+  5 min read
   
 </span>
 </small>
@@ -146,63 +150,63 @@ For example, if you try to open a file and that operation fails because the file
 <li><a href="https://doc.rust-lang.org/rust-by-example/error/multiple_error_types/boxing_errors.html">Boxing errors</a></li>
 </ul>
 <h2 id="errors4-rs">Errors4.rs</h2>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">&#x2F;&#x2F; errors4.rs
-&#x2F;&#x2F; Execute `rustlings hint errors4` or use the `hint` watch subcommand for a hint.
-
-&#x2F;&#x2F; I AM NOT DONE
-
-#[derive(PartialEq, Debug)]
-struct PositiveNonzeroInteger(u64);
-
-#[derive(PartialEq, Debug)]
-enum CreationError {
-    Negative,
-    Zero,
-}
-
-impl PositiveNonzeroInteger {
-    fn new(value: i64) -&gt; Result&lt;PositiveNonzeroInteger, CreationError&gt; {
-        &#x2F;&#x2F; Hmm...? Why is this only returning an Ok value?
-        Ok(PositiveNonzeroInteger(value as u64))
-    }
-}
-
-#[test]
-fn test_creation() {
-    assert!(PositiveNonzeroInteger::new(10).is_ok());
-    assert_eq!(
-        Err(CreationError::Negative),
-        PositiveNonzeroInteger::new(-10)
-    );
-    assert_eq!(Err(CreationError::Zero), PositiveNonzeroInteger::new(0));
-}
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#707180;">// errors4.rs
+</span><span style="color:#707180;">// Execute `rustlings hint errors4` or use the `hint` watch subcommand for a hint.
+</span><span>
+</span><span style="color:#707180;">// I AM NOT DONE
+</span><span>
+</span><span>#[</span><span style="font-weight:bold;color:#a3cbe3;">derive</span><span>(PartialEq, Debug)]
+</span><span style="color:#a3cbe3;">struct </span><span>PositiveNonzeroInteger(</span><span style="color:#a3cbe3;">u64</span><span>);
+</span><span>
+</span><span>#[</span><span style="font-weight:bold;color:#a3cbe3;">derive</span><span>(PartialEq, Debug)]
+</span><span style="color:#a3cbe3;">enum </span><span>CreationError {
+</span><span>    Negative,
+</span><span>    Zero,
+</span><span>}
+</span><span>
+</span><span style="color:#a3cbe3;">impl </span><span>PositiveNonzeroInteger {
+</span><span>    </span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">new</span><span>(</span><span style="color:#ffffff;">value</span><span>: </span><span style="color:#a3cbe3;">i64</span><span>) -&gt; </span><span style="color:#e7e7e7;">Result</span><span>&lt;PositiveNonzeroInteger, CreationError&gt; {
+</span><span>        </span><span style="color:#707180;">// Hmm...? Why is this only returning an Ok value?
+</span><span>        </span><span style="color:#e7e7e7;">Ok</span><span>(PositiveNonzeroInteger(value </span><span style="color:#db7c6d;">as </span><span style="color:#a3cbe3;">u64</span><span>))
+</span><span>    }
+</span><span>}
+</span><span>
+</span><span>#[</span><span style="font-weight:bold;color:#a3cbe3;">test</span><span>]
+</span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">test_creation</span><span>() {
+</span><span>    assert!(PositiveNonzeroInteger::new(</span><span style="color:#db7c6d;">10</span><span>).</span><span style="color:#db7c6d;">is_ok</span><span>());
+</span><span>    assert_eq!(
+</span><span>        </span><span style="color:#e7e7e7;">Err</span><span>(CreationError::Negative),
+</span><span>        PositiveNonzeroInteger::new(</span><span style="color:#db7c6d;">-10</span><span>)
+</span><span>    );
+</span><span>    assert_eq!(</span><span style="color:#e7e7e7;">Err</span><span>(CreationError::Zero), PositiveNonzeroInteger::new(</span><span style="color:#db7c6d;">0</span><span>));
+</span><span>}
+</span></code></pre>
 <p>We don't get much for hints and description, other than a comment that asks <code>Hmm...? Why is this only reguring an Ok value?</code></p>
 <p>Let's look at our Rust compiler errors and see if we get any additional hints on how to fix this.</p>
 <h2 id="errors4-rs-errors">Errors4.rs errors</h2>
-<pre><code>⚠️  Testing of exercises&#x2F;error_handling&#x2F;errors4.rs failed! Please try again. Here&#x27;s the output:
-
-running 1 test
-test test_creation ... FAILED
-
-successes:
-
-successes:
-
-failures:
-
----- test_creation stdout ----
-thread &#x27;test_creation&#x27; panicked at &#x27;assertion failed: `(left == right)`
-  left: `Err(Negative)`,
- right: `Ok(PositiveNonzeroInteger(18446744073709551606))`&#x27;, exercises&#x2F;error_handling&#x2F;errors4.rs:25:5
-note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
-
-
-failures:
-    test_creation
-
-test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
-</code></pre>
+<pre style="background-color:#31333d;color:#ffffffc4;"><code><span>⚠️  Testing of exercises/error_handling/errors4.rs failed! Please try again. Here&#39;s the output:
+</span><span>
+</span><span>running 1 test
+</span><span>test test_creation ... FAILED
+</span><span>
+</span><span>successes:
+</span><span>
+</span><span>successes:
+</span><span>
+</span><span>failures:
+</span><span>
+</span><span>---- test_creation stdout ----
+</span><span>thread &#39;test_creation&#39; panicked at &#39;assertion failed: `(left == right)`
+</span><span>  left: `Err(Negative)`,
+</span><span> right: `Ok(PositiveNonzeroInteger(18446744073709551606))`&#39;, exercises/error_handling/errors4.rs:25:5
+</span><span>note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+</span><span>
+</span><span>
+</span><span>failures:
+</span><span>    test_creation
+</span><span>
+</span><span>test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+</span></code></pre>
 <p>It looks like our code is compiling but panicking and we see that our test is failing. If we look at the actual test we see that <code>(left == right)</code> failed we're getting different values. The test is expecting <code>Err(Negative)</code> but instead it's seeing <code>Ok(PositiveNonzero...))</code></p>
 <h2 id="errors4-rs-solution">Errors4.rs solution</h2>
 <p>It looks like we have to handle our error's, as nothing is being done to take care of them in our code right now. Maybe an <code>if</code> or maybe a <code>match</code> statement will do the trick. Let's try.
@@ -218,42 +222,42 @@ Let's use a match statement first. If we look at the code and tests, we know tha
 <li>For <code>Zero</code> we simply have to match an actual <code>0</code></li>
 <li>For positive, it can be anything positive meaning we can use the <code>_</code> wildcard underscore character</li>
 </ol>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">match value {
-	v if v &lt; 0 =&gt; Err(CreationError::Negative), &#x2F;&#x2F; v represents `value` here
-	0 =&gt; Err(CreationError::Zero),
-	_ =&gt; Ok(PositiveNonzeroInteger(value as u64)),
-}
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#db7c6d;">match</span><span> value {
+</span><span>	v </span><span style="color:#db7c6d;">if</span><span> v </span><span style="color:#db7c6d;">&lt; 0 =&gt; </span><span style="color:#e7e7e7;">Err</span><span>(CreationError::Negative), </span><span style="color:#707180;">// v represents `value` here
+</span><span>	</span><span style="color:#db7c6d;">0 =&gt; </span><span style="color:#e7e7e7;">Err</span><span>(CreationError::Zero),
+</span><span>	</span><span style="color:#db7c6d;">_ =&gt; </span><span style="color:#e7e7e7;">Ok</span><span>(PositiveNonzeroInteger(value </span><span style="color:#db7c6d;">as </span><span style="color:#a3cbe3;">u64</span><span>)),
+</span><span>}
+</span></code></pre>
 <p>It would look like this in the context of our code.</p>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">#[derive(PartialEq, Debug)]
-struct PositiveNonzeroInteger(u64);
-
-#[derive(PartialEq, Debug)]
-enum CreationError {
-    Negative,
-    Zero,
-}
-
-impl PositiveNonzeroInteger {
-    fn new(value: i64) -&gt; Result&lt;PositiveNonzeroInteger, CreationError&gt; {
-        match value {
-            v if v &lt; 0 =&gt; Err(CreationError::Negative),
-            0 =&gt; Err(CreationError::Zero),
-            _ =&gt; Ok(PositiveNonzeroInteger(value as u64)),
-        }
-    }
-}
-
-#[test]
-fn test_creation() {
-    assert!(PositiveNonzeroInteger::new(10).is_ok());
-    assert_eq!(
-        Err(CreationError::Negative),
-        PositiveNonzeroInteger::new(-10)
-    );
-    assert_eq!(Err(CreationError::Zero), PositiveNonzeroInteger::new(0));
-}
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span>#[</span><span style="font-weight:bold;color:#a3cbe3;">derive</span><span>(PartialEq, Debug)]
+</span><span style="color:#a3cbe3;">struct </span><span>PositiveNonzeroInteger(</span><span style="color:#a3cbe3;">u64</span><span>);
+</span><span>
+</span><span>#[</span><span style="font-weight:bold;color:#a3cbe3;">derive</span><span>(PartialEq, Debug)]
+</span><span style="color:#a3cbe3;">enum </span><span>CreationError {
+</span><span>    Negative,
+</span><span>    Zero,
+</span><span>}
+</span><span>
+</span><span style="color:#a3cbe3;">impl </span><span>PositiveNonzeroInteger {
+</span><span>    </span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">new</span><span>(</span><span style="color:#ffffff;">value</span><span>: </span><span style="color:#a3cbe3;">i64</span><span>) -&gt; </span><span style="color:#e7e7e7;">Result</span><span>&lt;PositiveNonzeroInteger, CreationError&gt; {
+</span><span>        </span><span style="color:#db7c6d;">match</span><span> value {
+</span><span>            v </span><span style="color:#db7c6d;">if</span><span> v </span><span style="color:#db7c6d;">&lt; 0 =&gt; </span><span style="color:#e7e7e7;">Err</span><span>(CreationError::Negative),
+</span><span>            </span><span style="color:#db7c6d;">0 =&gt; </span><span style="color:#e7e7e7;">Err</span><span>(CreationError::Zero),
+</span><span>            </span><span style="color:#db7c6d;">_ =&gt; </span><span style="color:#e7e7e7;">Ok</span><span>(PositiveNonzeroInteger(value </span><span style="color:#db7c6d;">as </span><span style="color:#a3cbe3;">u64</span><span>)),
+</span><span>        }
+</span><span>    }
+</span><span>}
+</span><span>
+</span><span>#[</span><span style="font-weight:bold;color:#a3cbe3;">test</span><span>]
+</span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">test_creation</span><span>() {
+</span><span>    assert!(PositiveNonzeroInteger::new(</span><span style="color:#db7c6d;">10</span><span>).</span><span style="color:#db7c6d;">is_ok</span><span>());
+</span><span>    assert_eq!(
+</span><span>        </span><span style="color:#e7e7e7;">Err</span><span>(CreationError::Negative),
+</span><span>        PositiveNonzeroInteger::new(</span><span style="color:#db7c6d;">-10</span><span>)
+</span><span>    );
+</span><span>    assert_eq!(</span><span style="color:#e7e7e7;">Err</span><span>(CreationError::Zero), PositiveNonzeroInteger::new(</span><span style="color:#db7c6d;">0</span><span>));
+</span><span>}
+</span></code></pre>
 <p>And this compiles 🎉 but can we use <code>if</code> in this as well?</p>
 <h3 id="what-about-if">What about <code>if</code></h3>
 <p>Let's take a stab at it.
@@ -264,273 +268,273 @@ So, again we have to deal with the 3 different scenarios here</p>
 <li>if it's positive</li>
 </ol>
 <p>So writing that looks  like this:</p>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust"> if value &lt; 0 {
-            Err(CreationError::Negative)
-        } else if value == 0 {
-            Err(CreationError::Zero)
-        } else {
-            Ok(PositiveNonzeroInteger(value as u64))
-        }
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span> </span><span style="color:#db7c6d;">if</span><span> value </span><span style="color:#db7c6d;">&lt; 0 </span><span>{
+</span><span>            </span><span style="color:#e7e7e7;">Err</span><span>(CreationError::Negative)
+</span><span>        } </span><span style="color:#db7c6d;">else if</span><span> value </span><span style="color:#db7c6d;">== 0 </span><span>{
+</span><span>            </span><span style="color:#e7e7e7;">Err</span><span>(CreationError::Zero)
+</span><span>        } </span><span style="color:#db7c6d;">else </span><span>{
+</span><span>            </span><span style="color:#e7e7e7;">Ok</span><span>(PositiveNonzeroInteger(value </span><span style="color:#db7c6d;">as </span><span style="color:#a3cbe3;">u64</span><span>))
+</span><span>        }
+</span></code></pre>
 <p>Here's what it looks like in context of the full problem:</p>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">#[derive(PartialEq, Debug)]
-struct PositiveNonzeroInteger(u64);
-
-#[derive(PartialEq, Debug)]
-enum CreationError {
-    Negative,
-    Zero,
-}
-
-impl PositiveNonzeroInteger {
-    fn new(value: i64) -&gt; Result&lt;PositiveNonzeroInteger, CreationError&gt; {
-        if value &lt; 0 {
-            Err(CreationError::Negative)
-        } else if value == 0 {
-            Err(CreationError::Zero)
-        } else {
-            Ok(PositiveNonzeroInteger(value as u64))
-        }
-    }
-}
-
-#[test]
-fn test_creation() {
-    assert!(PositiveNonzeroInteger::new(10).is_ok());
-    assert_eq!(
-        Err(CreationError::Negative),
-        PositiveNonzeroInteger::new(-10)
-    );
-    assert_eq!(Err(CreationError::Zero), PositiveNonzeroInteger::new(0));
-}
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span>#[</span><span style="font-weight:bold;color:#a3cbe3;">derive</span><span>(PartialEq, Debug)]
+</span><span style="color:#a3cbe3;">struct </span><span>PositiveNonzeroInteger(</span><span style="color:#a3cbe3;">u64</span><span>);
+</span><span>
+</span><span>#[</span><span style="font-weight:bold;color:#a3cbe3;">derive</span><span>(PartialEq, Debug)]
+</span><span style="color:#a3cbe3;">enum </span><span>CreationError {
+</span><span>    Negative,
+</span><span>    Zero,
+</span><span>}
+</span><span>
+</span><span style="color:#a3cbe3;">impl </span><span>PositiveNonzeroInteger {
+</span><span>    </span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">new</span><span>(</span><span style="color:#ffffff;">value</span><span>: </span><span style="color:#a3cbe3;">i64</span><span>) -&gt; </span><span style="color:#e7e7e7;">Result</span><span>&lt;PositiveNonzeroInteger, CreationError&gt; {
+</span><span>        </span><span style="color:#db7c6d;">if</span><span> value </span><span style="color:#db7c6d;">&lt; 0 </span><span>{
+</span><span>            </span><span style="color:#e7e7e7;">Err</span><span>(CreationError::Negative)
+</span><span>        } </span><span style="color:#db7c6d;">else if</span><span> value </span><span style="color:#db7c6d;">== 0 </span><span>{
+</span><span>            </span><span style="color:#e7e7e7;">Err</span><span>(CreationError::Zero)
+</span><span>        } </span><span style="color:#db7c6d;">else </span><span>{
+</span><span>            </span><span style="color:#e7e7e7;">Ok</span><span>(PositiveNonzeroInteger(value </span><span style="color:#db7c6d;">as </span><span style="color:#a3cbe3;">u64</span><span>))
+</span><span>        }
+</span><span>    }
+</span><span>}
+</span><span>
+</span><span>#[</span><span style="font-weight:bold;color:#a3cbe3;">test</span><span>]
+</span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">test_creation</span><span>() {
+</span><span>    assert!(PositiveNonzeroInteger::new(</span><span style="color:#db7c6d;">10</span><span>).</span><span style="color:#db7c6d;">is_ok</span><span>());
+</span><span>    assert_eq!(
+</span><span>        </span><span style="color:#e7e7e7;">Err</span><span>(CreationError::Negative),
+</span><span>        PositiveNonzeroInteger::new(</span><span style="color:#db7c6d;">-10</span><span>)
+</span><span>    );
+</span><span>    assert_eq!(</span><span style="color:#e7e7e7;">Err</span><span>(CreationError::Zero), PositiveNonzeroInteger::new(</span><span style="color:#db7c6d;">0</span><span>));
+</span><span>}
+</span></code></pre>
 <p>and with that we have solved <code>errors4.rs</code> we have our code compiling:</p>
-<pre><code>✅ Successfully tested exercises&#x2F;error_handling&#x2F;errors4.rs!
-
-🎉 🎉  The code is compiling, and the tests pass! 🎉 🎉
-</code></pre>
+<pre style="background-color:#31333d;color:#ffffffc4;"><code><span>✅ Successfully tested exercises/error_handling/errors4.rs!
+</span><span>
+</span><span>🎉 🎉  The code is compiling, and the tests pass! 🎉 🎉
+</span></code></pre>
 <p>Alright. On to <code>Errors5.rs</code></p>
 <h2 id="errors5-rs">Errors5.rs</h2>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">&#x2F;&#x2F; errors5.rs
-
-&#x2F;&#x2F; This program uses an altered version of the code from errors4.
-
-&#x2F;&#x2F; This exercise uses some concepts that we won&#x27;t get to until later in the course, like `Box` and the
-&#x2F;&#x2F; `From` trait. It&#x27;s not important to understand them in detail right now, but you can read ahead if you like.
-&#x2F;&#x2F; For now, think of the `Box&lt;dyn ???&gt;` type as an &quot;I want anything that does ???&quot; type, which, given
-&#x2F;&#x2F; Rust&#x27;s usual standards for runtime safety, should strike you as somewhat lenient!
-
-&#x2F;&#x2F; In short, this particular use case for boxes is for when you want to own a value and you care only that it is a
-&#x2F;&#x2F; type which implements a particular trait. To do so, The Box is declared as of type Box&lt;dyn Trait&gt; where Trait is the trait
-&#x2F;&#x2F; the compiler looks for on any value used in that context. For this exercise, that context is the potential errors
-&#x2F;&#x2F; which can be returned in a Result.
-
-&#x2F;&#x2F; What can we use to describe both errors? In other words, is there a trait which both errors implement?
-
-&#x2F;&#x2F; Execute `rustlings hint errors5` or use the `hint` watch subcommand for a hint.
-
-&#x2F;&#x2F; I AM NOT DONE
-
-use std::error;
-use std::fmt;
-use std::num::ParseIntError;
-
-&#x2F;&#x2F; TODO: update the return type of `main()` to make this compile.
-fn main() -&gt; Result&lt;(), Box&lt;dyn ???&gt;&gt; {
-    let pretend_user_input = &quot;42&quot;;
-    let x: i64 = pretend_user_input.parse()?;
-    println!(&quot;output={:?}&quot;, PositiveNonzeroInteger::new(x)?);
-    Ok(())
-}
-
-&#x2F;&#x2F; Don&#x27;t change anything below this line.
-
-#[derive(PartialEq, Debug)]
-struct PositiveNonzeroInteger(u64);
-
-#[derive(PartialEq, Debug)]
-enum CreationError {
-    Negative,
-    Zero,
-}
-
-impl PositiveNonzeroInteger {
-    fn new(value: i64) -&gt; Result&lt;PositiveNonzeroInteger, CreationError&gt; {
-        match value {
-            x if x &lt; 0 =&gt; Err(CreationError::Negative),
-            x if x == 0 =&gt; Err(CreationError::Zero),
-            x =&gt; Ok(PositiveNonzeroInteger(x as u64)),
-        }
-    }
-}
-
-&#x2F;&#x2F; This is required so that `CreationError` can implement `error::Error`.
-impl fmt::Display for CreationError {
-    fn fmt(&amp;self, f: &amp;mut fmt::Formatter) -&gt; fmt::Result {
-        let description = match *self {
-            CreationError::Negative =&gt; &quot;number is negative&quot;,
-            CreationError::Zero =&gt; &quot;number is zero&quot;,
-        };
-        f.write_str(description)
-    }
-}
-
-impl error::Error for CreationError {}
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#707180;">// errors5.rs
+</span><span>
+</span><span style="color:#707180;">// This program uses an altered version of the code from errors4.
+</span><span>
+</span><span style="color:#707180;">// This exercise uses some concepts that we won&#39;t get to until later in the course, like `Box` and the
+</span><span style="color:#707180;">// `From` trait. It&#39;s not important to understand them in detail right now, but you can read ahead if you like.
+</span><span style="color:#707180;">// For now, think of the `Box&lt;dyn ???&gt;` type as an &quot;I want anything that does ???&quot; type, which, given
+</span><span style="color:#707180;">// Rust&#39;s usual standards for runtime safety, should strike you as somewhat lenient!
+</span><span>
+</span><span style="color:#707180;">// In short, this particular use case for boxes is for when you want to own a value and you care only that it is a
+</span><span style="color:#707180;">// type which implements a particular trait. To do so, The Box is declared as of type Box&lt;dyn Trait&gt; where Trait is the trait
+</span><span style="color:#707180;">// the compiler looks for on any value used in that context. For this exercise, that context is the potential errors
+</span><span style="color:#707180;">// which can be returned in a Result.
+</span><span>
+</span><span style="color:#707180;">// What can we use to describe both errors? In other words, is there a trait which both errors implement?
+</span><span>
+</span><span style="color:#707180;">// Execute `rustlings hint errors5` or use the `hint` watch subcommand for a hint.
+</span><span>
+</span><span style="color:#707180;">// I AM NOT DONE
+</span><span>
+</span><span style="color:#db7c6d;">use </span><span>std::error;
+</span><span style="color:#db7c6d;">use </span><span>std::fmt;
+</span><span style="color:#db7c6d;">use </span><span>std::num::ParseIntError;
+</span><span>
+</span><span style="color:#707180;">// TODO: update the return type of `main()` to make this compile.
+</span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">main</span><span>() -&gt; </span><span style="color:#e7e7e7;">Result</span><span>&lt;(), </span><span style="color:#e7e7e7;">Box</span><span>&lt;dyn </span><span style="background-color:#cc1919;color:#ffffff;">??</span><span style="color:#db7c6d;">?&gt;&gt; </span><span>{
+</span><span>    </span><span style="color:#a3cbe3;">let</span><span> pretend_user_input </span><span style="color:#db7c6d;">= </span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>42</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>;
+</span><span>    </span><span style="color:#a3cbe3;">let</span><span> x: </span><span style="color:#a3cbe3;">i64 </span><span style="color:#db7c6d;">=</span><span> pretend_user_input.</span><span style="color:#db7c6d;">parse</span><span>()</span><span style="color:#db7c6d;">?</span><span>;
+</span><span>    println!(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>output=</span><span style="font-weight:bold;color:#a2ba43;">{:?}</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>, PositiveNonzeroInteger::new(x)</span><span style="color:#db7c6d;">?</span><span>);
+</span><span>    </span><span style="color:#e7e7e7;">Ok</span><span>(())
+</span><span>}
+</span><span>
+</span><span style="color:#707180;">// Don&#39;t change anything below this line.
+</span><span>
+</span><span>#[</span><span style="font-weight:bold;color:#a3cbe3;">derive</span><span>(PartialEq, Debug)]
+</span><span style="color:#a3cbe3;">struct </span><span>PositiveNonzeroInteger(</span><span style="color:#a3cbe3;">u64</span><span>);
+</span><span>
+</span><span>#[</span><span style="font-weight:bold;color:#a3cbe3;">derive</span><span>(PartialEq, Debug)]
+</span><span style="color:#a3cbe3;">enum </span><span>CreationError {
+</span><span>    Negative,
+</span><span>    Zero,
+</span><span>}
+</span><span>
+</span><span style="color:#a3cbe3;">impl </span><span>PositiveNonzeroInteger {
+</span><span>    </span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">new</span><span>(</span><span style="color:#ffffff;">value</span><span>: </span><span style="color:#a3cbe3;">i64</span><span>) -&gt; </span><span style="color:#e7e7e7;">Result</span><span>&lt;PositiveNonzeroInteger, CreationError&gt; {
+</span><span>        </span><span style="color:#db7c6d;">match</span><span> value {
+</span><span>            x </span><span style="color:#db7c6d;">if</span><span> x </span><span style="color:#db7c6d;">&lt; 0 =&gt; </span><span style="color:#e7e7e7;">Err</span><span>(CreationError::Negative),
+</span><span>            x </span><span style="color:#db7c6d;">if</span><span> x </span><span style="color:#db7c6d;">== 0 =&gt; </span><span style="color:#e7e7e7;">Err</span><span>(CreationError::Zero),
+</span><span>            x </span><span style="color:#db7c6d;">=&gt; </span><span style="color:#e7e7e7;">Ok</span><span>(PositiveNonzeroInteger(x </span><span style="color:#db7c6d;">as </span><span style="color:#a3cbe3;">u64</span><span>)),
+</span><span>        }
+</span><span>    }
+</span><span>}
+</span><span>
+</span><span style="color:#707180;">// This is required so that `CreationError` can implement `error::Error`.
+</span><span style="color:#a3cbe3;">impl </span><span>fmt::Display </span><span style="color:#db7c6d;">for </span><span>CreationError {
+</span><span>    </span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">fmt</span><span>(</span><span style="color:#db7c6d;">&amp;</span><span style="color:#ffffff;">self</span><span>, </span><span style="color:#ffffff;">f</span><span>: </span><span style="color:#db7c6d;">&amp;</span><span style="color:#dbbb3d;">mut </span><span>fmt::Formatter) -&gt; fmt::Result {
+</span><span>        </span><span style="color:#a3cbe3;">let</span><span> description </span><span style="color:#db7c6d;">= match *</span><span style="font-weight:bold;color:#a3cbe3;">self </span><span>{
+</span><span>            CreationError::Negative </span><span style="color:#db7c6d;">=&gt; </span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>number is negative</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>,
+</span><span>            CreationError::Zero </span><span style="color:#db7c6d;">=&gt; </span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>number is zero</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>,
+</span><span>        };
+</span><span>        f.</span><span style="color:#db7c6d;">write_str</span><span>(description)
+</span><span>    }
+</span><span>}
+</span><span>
+</span><span style="color:#a3cbe3;">impl </span><span>error::Error </span><span style="color:#db7c6d;">for </span><span>CreationError {}
+</span></code></pre>
 <p>This is an interesting one as it has a lot of comments above the code but it mainly provides hints about what <code>Box</code> can do. Our task is to determine the correct return type in the <code>Rusult&lt;(), Box&lt;dyn ???&gt;&gt;</code> part of the code. The easy thought is that it has to return an <code>Error</code> but is it that simple? Let's try, but first let's take a look at the errors.</p>
 <h2 id="errors5-rs-errors">Errors5.rs errors</h2>
-<pre><code>⚠️  Compiling of exercises&#x2F;error_handling&#x2F;errors5.rs failed! Please try again. Here&#x27;s the output:
-error: expected identifier, found `&gt;&gt;`
-  --&gt; exercises&#x2F;error_handling&#x2F;errors5.rs:26:36
-   |
-26 | fn main() -&gt; Result&lt;(), Box&lt;dyn ???&gt;&gt; {
-   |                                    ^^ expected identifier
-
-error: aborting due to previous error
-</code></pre>
+<pre style="background-color:#31333d;color:#ffffffc4;"><code><span>⚠️  Compiling of exercises/error_handling/errors5.rs failed! Please try again. Here&#39;s the output:
+</span><span>error: expected identifier, found `&gt;&gt;`
+</span><span>  --&gt; exercises/error_handling/errors5.rs:26:36
+</span><span>   |
+</span><span>26 | fn main() -&gt; Result&lt;(), Box&lt;dyn ???&gt;&gt; {
+</span><span>   |                                    ^^ expected identifier
+</span><span>
+</span><span>error: aborting due to previous error
+</span></code></pre>
 <p>Nothing to specific here but we see where we are missing our code and it's expecting an identifier.</p>
 <h2 id="errors5-rs-solution">Errors5.rs solution</h2>
 <p>So let's try simply entering <code>Error</code> because that's what we should be expecting to see correct?</p>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">&#x2F;&#x2F; TODO: update the return type of `main()` to make this compile.
-fn main() -&gt; Result&lt;(), Box&lt;dyn ???&gt;&gt; {
-    let pretend_user_input = &quot;42&quot;;
-    let x: i64 = pretend_user_input.parse()?;
-    println!(&quot;output={:?}&quot;, PositiveNonzeroInteger::new(x)?);
-    Ok(())
-}
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#707180;">// TODO: update the return type of `main()` to make this compile.
+</span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">main</span><span>() -&gt; </span><span style="color:#e7e7e7;">Result</span><span>&lt;(), </span><span style="color:#e7e7e7;">Box</span><span>&lt;dyn </span><span style="background-color:#cc1919;color:#ffffff;">??</span><span style="color:#db7c6d;">?&gt;&gt; </span><span>{
+</span><span>    </span><span style="color:#a3cbe3;">let</span><span> pretend_user_input </span><span style="color:#db7c6d;">= </span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>42</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>;
+</span><span>    </span><span style="color:#a3cbe3;">let</span><span> x: </span><span style="color:#a3cbe3;">i64 </span><span style="color:#db7c6d;">=</span><span> pretend_user_input.</span><span style="color:#db7c6d;">parse</span><span>()</span><span style="color:#db7c6d;">?</span><span>;
+</span><span>    println!(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>output=</span><span style="font-weight:bold;color:#a2ba43;">{:?}</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>, PositiveNonzeroInteger::new(x)</span><span style="color:#db7c6d;">?</span><span>);
+</span><span>    </span><span style="color:#e7e7e7;">Ok</span><span>(())
+</span><span>}
+</span></code></pre>
 <p>Well, we still get some errors but we have some help.</p>
-<pre><code>⚠️  Compiling of exercises&#x2F;error_handling&#x2F;errors5.rs failed! Please try again. Here&#x27;s the output:
-error[E0405]: cannot find trait `Error` in this scope
-  --&gt; exercises&#x2F;error_handling&#x2F;errors5.rs:26:33
-   |
-26 | fn main() -&gt; Result&lt;(), Box&lt;dyn Error&gt;&gt; {
-   |                                 ^^^^^ not found in this scope
-   |
-help: consider importing one of these items
-   |
-21 + use core::error::Error;
-   |
-21 + use crate::error::Error;
-   |
-21 + use std::error::Error;
-</code></pre>
+<pre style="background-color:#31333d;color:#ffffffc4;"><code><span>⚠️  Compiling of exercises/error_handling/errors5.rs failed! Please try again. Here&#39;s the output:
+</span><span>error[E0405]: cannot find trait `Error` in this scope
+</span><span>  --&gt; exercises/error_handling/errors5.rs:26:33
+</span><span>   |
+</span><span>26 | fn main() -&gt; Result&lt;(), Box&lt;dyn Error&gt;&gt; {
+</span><span>   |                                 ^^^^^ not found in this scope
+</span><span>   |
+</span><span>help: consider importing one of these items
+</span><span>   |
+</span><span>21 + use core::error::Error;
+</span><span>   |
+</span><span>21 + use crate::error::Error;
+</span><span>   |
+</span><span>21 + use std::error::Error;
+</span></code></pre>
 <p>So the compiler is telling us that that <code>Error</code> is not found in scope and gives us a bunch of different options to use in our <code>Box&lt;dyn &gt;</code>. But before we implement one of these let's continue looking at our code. I had missed this comment earlier:<code>// This is required so that `CreationError` can implement `error::Error`</code>. It looks like we might have a hint here too. This comment is telling us that this function is being created to allow us to use <code>error::Error</code> for <code>CreationError</code> which means that we could use <code>error::Error</code> as our error handler in the return type right? Let's try.</p>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">&#x2F;&#x2F; TODO: update the return type of `main()` to make this compile.
-fn main() -&gt; Result&lt;(), Box&lt;dyn error::Error&gt;&gt; {
-    let pretend_user_input = &quot;42&quot;;
-    let x: i64 = pretend_user_input.parse()?;
-    println!(&quot;output={:?}&quot;, PositiveNonzeroInteger::new(x)?);
-    Ok(())
-}
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#707180;">// TODO: update the return type of `main()` to make this compile.
+</span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">main</span><span>() -&gt; </span><span style="color:#e7e7e7;">Result</span><span>&lt;(), </span><span style="color:#e7e7e7;">Box</span><span>&lt;dyn error::Error&gt;&gt; {
+</span><span>    </span><span style="color:#a3cbe3;">let</span><span> pretend_user_input </span><span style="color:#db7c6d;">= </span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>42</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>;
+</span><span>    </span><span style="color:#a3cbe3;">let</span><span> x: </span><span style="color:#a3cbe3;">i64 </span><span style="color:#db7c6d;">=</span><span> pretend_user_input.</span><span style="color:#db7c6d;">parse</span><span>()</span><span style="color:#db7c6d;">?</span><span>;
+</span><span>    println!(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>output=</span><span style="font-weight:bold;color:#a2ba43;">{:?}</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>, PositiveNonzeroInteger::new(x)</span><span style="color:#db7c6d;">?</span><span>);
+</span><span>    </span><span style="color:#e7e7e7;">Ok</span><span>(())
+</span><span>}
+</span></code></pre>
 <p>It compiles! This is our output:</p>
-<pre><code>✅ Successfully ran exercises&#x2F;error_handling&#x2F;errors5.rs!
-
-🎉 🎉  The code is compiling! 🎉 🎉
-
-Output:
-====================
-output=PositiveNonzeroInteger(42)
-
-====================
-</code></pre>
+<pre style="background-color:#31333d;color:#ffffffc4;"><code><span>✅ Successfully ran exercises/error_handling/errors5.rs!
+</span><span>
+</span><span>🎉 🎉  The code is compiling! 🎉 🎉
+</span><span>
+</span><span>Output:
+</span><span>====================
+</span><span>output=PositiveNonzeroInteger(42)
+</span><span>
+</span><span>====================
+</span></code></pre>
 <h2 id="errors6-rs">Errors6.rs</h2>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">&#x2F;&#x2F; errors6.rs
-
-&#x2F;&#x2F; Using catch-all error types like `Box&lt;dyn error::Error&gt;` isn&#x27;t recommended
-&#x2F;&#x2F; for library code, where callers might want to make decisions based on the
-&#x2F;&#x2F; error content, instead of printing it out or propagating it further. Here,
-&#x2F;&#x2F; we define a custom error type to make it possible for callers to decide
-&#x2F;&#x2F; what to do next when our function returns an error.
-
-&#x2F;&#x2F; Execute `rustlings hint errors6` or use the `hint` watch subcommand for a hint.
-
-&#x2F;&#x2F; I AM NOT DONE
-
-use std::num::ParseIntError;
-
-&#x2F;&#x2F; This is a custom error type that we will be using in `parse_pos_nonzero()`.
-#[derive(PartialEq, Debug)]
-enum ParsePosNonzeroError {
-    Creation(CreationError),
-    ParseInt(ParseIntError),
-}
-
-impl ParsePosNonzeroError {
-    fn from_creation(err: CreationError) -&gt; ParsePosNonzeroError {
-        ParsePosNonzeroError::Creation(err)
-    }
-    &#x2F;&#x2F; TODO: add another error conversion function here.
-    &#x2F;&#x2F; fn from_parseint...
-
-}
-
-fn parse_pos_nonzero(s: &amp;str) -&gt; Result&lt;PositiveNonzeroInteger, ParsePosNonzeroError&gt; {
-    &#x2F;&#x2F; TODO: change this to return an appropriate error instead of panicking
-    &#x2F;&#x2F; when `parse()` returns an error.
-    let x: i64 = s.parse().unwrap();
-    PositiveNonzeroInteger::new(x).map_err(ParsePosNonzeroError::from_creation)
-}
-
-&#x2F;&#x2F; Don&#x27;t change anything below this line.
-
-#[derive(PartialEq, Debug)]
-struct PositiveNonzeroInteger(u64);
-
-#[derive(PartialEq, Debug)]
-enum CreationError {
-    Negative,
-    Zero,
-}
-
-impl PositiveNonzeroInteger {
-    fn new(value: i64) -&gt; Result&lt;PositiveNonzeroInteger, CreationError&gt; {
-        match value {
-            x if x &lt; 0 =&gt; Err(CreationError::Negative),
-            x if x == 0 =&gt; Err(CreationError::Zero),
-            x =&gt; Ok(PositiveNonzeroInteger(x as u64)),
-        }
-    }
-}
-
-#[cfg(test)]
-mod test {
-    use super::*;
-
-    #[test]
-    fn test_parse_error() {
-        &#x2F;&#x2F; We can&#x27;t construct a ParseIntError, so we have to pattern match.
-        assert!(matches!(
-            parse_pos_nonzero(&quot;not a number&quot;),
-            Err(ParsePosNonzeroError::ParseInt(_))
-        ));
-    }
-
-    #[test]
-    fn test_negative() {
-        assert_eq!(
-            parse_pos_nonzero(&quot;-555&quot;),
-            Err(ParsePosNonzeroError::Creation(CreationError::Negative))
-        );
-    }
-
-    #[test]
-    fn test_zero() {
-        assert_eq!(
-            parse_pos_nonzero(&quot;0&quot;),
-            Err(ParsePosNonzeroError::Creation(CreationError::Zero))
-        );
-    }
-
-    #[test]
-    fn test_positive() {
-        let x = PositiveNonzeroInteger::new(42);
-        assert!(x.is_ok());
-        assert_eq!(parse_pos_nonzero(&quot;42&quot;), Ok(x.unwrap()));
-    }
-}
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#707180;">// errors6.rs
+</span><span>
+</span><span style="color:#707180;">// Using catch-all error types like `Box&lt;dyn error::Error&gt;` isn&#39;t recommended
+</span><span style="color:#707180;">// for library code, where callers might want to make decisions based on the
+</span><span style="color:#707180;">// error content, instead of printing it out or propagating it further. Here,
+</span><span style="color:#707180;">// we define a custom error type to make it possible for callers to decide
+</span><span style="color:#707180;">// what to do next when our function returns an error.
+</span><span>
+</span><span style="color:#707180;">// Execute `rustlings hint errors6` or use the `hint` watch subcommand for a hint.
+</span><span>
+</span><span style="color:#707180;">// I AM NOT DONE
+</span><span>
+</span><span style="color:#db7c6d;">use </span><span>std::num::ParseIntError;
+</span><span>
+</span><span style="color:#707180;">// This is a custom error type that we will be using in `parse_pos_nonzero()`.
+</span><span>#[</span><span style="font-weight:bold;color:#a3cbe3;">derive</span><span>(PartialEq, Debug)]
+</span><span style="color:#a3cbe3;">enum </span><span>ParsePosNonzeroError {
+</span><span>    Creation(CreationError),
+</span><span>    ParseInt(ParseIntError),
+</span><span>}
+</span><span>
+</span><span style="color:#a3cbe3;">impl </span><span>ParsePosNonzeroError {
+</span><span>    </span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">from_creation</span><span>(</span><span style="color:#ffffff;">err</span><span>: CreationError) -&gt; ParsePosNonzeroError {
+</span><span>        ParsePosNonzeroError::Creation(err)
+</span><span>    }
+</span><span>    </span><span style="color:#707180;">// TODO: add another error conversion function here.
+</span><span>    </span><span style="color:#707180;">// fn from_parseint...
+</span><span>
+</span><span>}
+</span><span>
+</span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">parse_pos_nonzero</span><span>(</span><span style="color:#ffffff;">s</span><span>: </span><span style="color:#db7c6d;">&amp;</span><span style="color:#a3cbe3;">str</span><span>) -&gt; </span><span style="color:#e7e7e7;">Result</span><span>&lt;PositiveNonzeroInteger, ParsePosNonzeroError&gt; {
+</span><span>    </span><span style="color:#707180;">// TODO: change this to return an appropriate error instead of panicking
+</span><span>    </span><span style="color:#707180;">// when `parse()` returns an error.
+</span><span>    </span><span style="color:#a3cbe3;">let</span><span> x: </span><span style="color:#a3cbe3;">i64 </span><span style="color:#db7c6d;">=</span><span> s.</span><span style="color:#db7c6d;">parse</span><span>().</span><span style="color:#db7c6d;">unwrap</span><span>();
+</span><span>    PositiveNonzeroInteger::new(x).</span><span style="color:#db7c6d;">map_err</span><span>(ParsePosNonzeroError::from_creation)
+</span><span>}
+</span><span>
+</span><span style="color:#707180;">// Don&#39;t change anything below this line.
+</span><span>
+</span><span>#[</span><span style="font-weight:bold;color:#a3cbe3;">derive</span><span>(PartialEq, Debug)]
+</span><span style="color:#a3cbe3;">struct </span><span>PositiveNonzeroInteger(</span><span style="color:#a3cbe3;">u64</span><span>);
+</span><span>
+</span><span>#[</span><span style="font-weight:bold;color:#a3cbe3;">derive</span><span>(PartialEq, Debug)]
+</span><span style="color:#a3cbe3;">enum </span><span>CreationError {
+</span><span>    Negative,
+</span><span>    Zero,
+</span><span>}
+</span><span>
+</span><span style="color:#a3cbe3;">impl </span><span>PositiveNonzeroInteger {
+</span><span>    </span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">new</span><span>(</span><span style="color:#ffffff;">value</span><span>: </span><span style="color:#a3cbe3;">i64</span><span>) -&gt; </span><span style="color:#e7e7e7;">Result</span><span>&lt;PositiveNonzeroInteger, CreationError&gt; {
+</span><span>        </span><span style="color:#db7c6d;">match</span><span> value {
+</span><span>            x </span><span style="color:#db7c6d;">if</span><span> x </span><span style="color:#db7c6d;">&lt; 0 =&gt; </span><span style="color:#e7e7e7;">Err</span><span>(CreationError::Negative),
+</span><span>            x </span><span style="color:#db7c6d;">if</span><span> x </span><span style="color:#db7c6d;">== 0 =&gt; </span><span style="color:#e7e7e7;">Err</span><span>(CreationError::Zero),
+</span><span>            x </span><span style="color:#db7c6d;">=&gt; </span><span style="color:#e7e7e7;">Ok</span><span>(PositiveNonzeroInteger(x </span><span style="color:#db7c6d;">as </span><span style="color:#a3cbe3;">u64</span><span>)),
+</span><span>        }
+</span><span>    }
+</span><span>}
+</span><span>
+</span><span>#[</span><span style="font-weight:bold;color:#a3cbe3;">cfg</span><span>(test)]
+</span><span style="color:#a3cbe3;">mod </span><span>test {
+</span><span>    </span><span style="color:#db7c6d;">use super</span><span>::</span><span style="color:#db7c6d;">*</span><span>;
+</span><span>
+</span><span>    #[</span><span style="font-weight:bold;color:#a3cbe3;">test</span><span>]
+</span><span>    </span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">test_parse_error</span><span>() {
+</span><span>        </span><span style="color:#707180;">// We can&#39;t construct a ParseIntError, so we have to pattern match.
+</span><span>        assert!(matches!(
+</span><span>            </span><span style="color:#db7c6d;">parse_pos_nonzero</span><span>(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>not a number</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>),
+</span><span>            </span><span style="color:#e7e7e7;">Err</span><span>(ParsePosNonzeroError::ParseInt(</span><span style="color:#db7c6d;">_</span><span>))
+</span><span>        ));
+</span><span>    }
+</span><span>
+</span><span>    #[</span><span style="font-weight:bold;color:#a3cbe3;">test</span><span>]
+</span><span>    </span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">test_negative</span><span>() {
+</span><span>        assert_eq!(
+</span><span>            </span><span style="color:#db7c6d;">parse_pos_nonzero</span><span>(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>-555</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>),
+</span><span>            </span><span style="color:#e7e7e7;">Err</span><span>(ParsePosNonzeroError::Creation(CreationError::Negative))
+</span><span>        );
+</span><span>    }
+</span><span>
+</span><span>    #[</span><span style="font-weight:bold;color:#a3cbe3;">test</span><span>]
+</span><span>    </span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">test_zero</span><span>() {
+</span><span>        assert_eq!(
+</span><span>            </span><span style="color:#db7c6d;">parse_pos_nonzero</span><span>(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>0</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>),
+</span><span>            </span><span style="color:#e7e7e7;">Err</span><span>(ParsePosNonzeroError::Creation(CreationError::Zero))
+</span><span>        );
+</span><span>    }
+</span><span>
+</span><span>    #[</span><span style="font-weight:bold;color:#a3cbe3;">test</span><span>]
+</span><span>    </span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">test_positive</span><span>() {
+</span><span>        </span><span style="color:#a3cbe3;">let</span><span> x </span><span style="color:#db7c6d;">= </span><span>PositiveNonzeroInteger::new(</span><span style="color:#db7c6d;">42</span><span>);
+</span><span>        assert!(x.</span><span style="color:#db7c6d;">is_ok</span><span>());
+</span><span>        assert_eq!(</span><span style="color:#db7c6d;">parse_pos_nonzero</span><span>(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>42</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>), </span><span style="color:#e7e7e7;">Ok</span><span>(x.</span><span style="color:#db7c6d;">unwrap</span><span>()));
+</span><span>    }
+</span><span>}
+</span></code></pre>
 <p>In this exercise we are defining a custom error type and we have 3 clear instructions.</p>
 <ol>
 <li>We have to add an error conversion function</li>
@@ -538,65 +542,65 @@ mod test {
 <li>Don't change anything below code line 38 or after the <code>parse_pos_nonzero</code> function ends.</li>
 </ol>
 <h2 id="errors6-rs-errors">Errors6.rs errors</h2>
-<pre><code>⚠️  Testing of exercises&#x2F;error_handling&#x2F;errors6.rs failed! Please try again. Here&#x27;s the output:
-
-running 4 tests
-test test::test_negative ... ok
-test test::test_positive ... ok
-test test::test_zero ... ok
-test test::test_parse_error ... FAILED
-
-successes:
-
-successes:
-    test::test_negative
-    test::test_positive
-    test::test_zero
-
-failures:
-
----- test::test_parse_error stdout ----
-thread &#x27;test::test_parse_error&#x27; panicked at &#x27;called `Result::unwrap()` on an `Err` value: ParseIntError { kind: InvalidDigit }&#x27;, exercises&#x2F;error_handling&#x2F;errors6.rs:33:28
-note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
-
-
-failures:
-    test::test_parse_error
-
-test result: FAILED. 3 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
-</code></pre>
+<pre style="background-color:#31333d;color:#ffffffc4;"><code><span>⚠️  Testing of exercises/error_handling/errors6.rs failed! Please try again. Here&#39;s the output:
+</span><span>
+</span><span>running 4 tests
+</span><span>test test::test_negative ... ok
+</span><span>test test::test_positive ... ok
+</span><span>test test::test_zero ... ok
+</span><span>test test::test_parse_error ... FAILED
+</span><span>
+</span><span>successes:
+</span><span>
+</span><span>successes:
+</span><span>    test::test_negative
+</span><span>    test::test_positive
+</span><span>    test::test_zero
+</span><span>
+</span><span>failures:
+</span><span>
+</span><span>---- test::test_parse_error stdout ----
+</span><span>thread &#39;test::test_parse_error&#39; panicked at &#39;called `Result::unwrap()` on an `Err` value: ParseIntError { kind: InvalidDigit }&#39;, exercises/error_handling/errors6.rs:33:28
+</span><span>note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+</span><span>
+</span><span>
+</span><span>failures:
+</span><span>    test::test_parse_error
+</span><span>
+</span><span>test result: FAILED. 3 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+</span></code></pre>
 <p>Our errors show us we have 3 passing test but the <code>test_parse_error</code> test is failing.</p>
 <h2 id="errors6-rs-solution">Errors6.rs solution</h2>
 <p>Let's first start by creating that 2nd function.</p>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">
-use std::num::ParseIntError;
-
-&#x2F;&#x2F; This is a custom error type that we will be using in `parse_pos_nonzero()`.
-#[derive(PartialEq, Debug)]
-enum ParsePosNonzeroError {
-    Creation(CreationError),
-    ParseInt(ParseIntError),
-}
-
-impl ParsePosNonzeroError {
-    fn from_creation(err: CreationError) -&gt; ParsePosNonzeroError {
-        ParsePosNonzeroError::Creation(err)
-    }
-    fn from_parseint(err: ParseIntError) -&gt; ParsePosNonzeroError {
-        ParsePosNonzeroError::ParseInt(err)
-    }
-
-}
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span>
+</span><span style="color:#db7c6d;">use </span><span>std::num::ParseIntError;
+</span><span>
+</span><span style="color:#707180;">// This is a custom error type that we will be using in `parse_pos_nonzero()`.
+</span><span>#[</span><span style="font-weight:bold;color:#a3cbe3;">derive</span><span>(PartialEq, Debug)]
+</span><span style="color:#a3cbe3;">enum </span><span>ParsePosNonzeroError {
+</span><span>    Creation(CreationError),
+</span><span>    ParseInt(ParseIntError),
+</span><span>}
+</span><span>
+</span><span style="color:#a3cbe3;">impl </span><span>ParsePosNonzeroError {
+</span><span>    </span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">from_creation</span><span>(</span><span style="color:#ffffff;">err</span><span>: CreationError) -&gt; ParsePosNonzeroError {
+</span><span>        ParsePosNonzeroError::Creation(err)
+</span><span>    }
+</span><span>    </span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">from_parseint</span><span>(</span><span style="color:#ffffff;">err</span><span>: ParseIntError) -&gt; ParsePosNonzeroError {
+</span><span>        ParsePosNonzeroError::ParseInt(err)
+</span><span>    }
+</span><span>
+</span><span>}
+</span></code></pre>
 <p>Here i'm creating a new function using the same structure as the <code>from_creation</code> and this should help us finish our custom error types. When we save though, nothing changes, we still get 3 passing tests, and one fail.</p>
 <p>So let's move on to the next <code>todo</code> on our list.</p>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">fn parse_pos_nonzero(s: &amp;str) -&gt; Result&lt;PositiveNonzeroInteger, ParsePosNonzeroError&gt; {
-    &#x2F;&#x2F; TODO: change this to return an appropriate error instead of panicking
-    &#x2F;&#x2F; when `parse()` returns an error.
-    let x: i64 = s.parse().unwrap();
-    PositiveNonzeroInteger::new(x).map_err(ParsePosNonzeroError::from_creation)
-}
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">parse_pos_nonzero</span><span>(</span><span style="color:#ffffff;">s</span><span>: </span><span style="color:#db7c6d;">&amp;</span><span style="color:#a3cbe3;">str</span><span>) -&gt; </span><span style="color:#e7e7e7;">Result</span><span>&lt;PositiveNonzeroInteger, ParsePosNonzeroError&gt; {
+</span><span>    </span><span style="color:#707180;">// TODO: change this to return an appropriate error instead of panicking
+</span><span>    </span><span style="color:#707180;">// when `parse()` returns an error.
+</span><span>    </span><span style="color:#a3cbe3;">let</span><span> x: </span><span style="color:#a3cbe3;">i64 </span><span style="color:#db7c6d;">=</span><span> s.</span><span style="color:#db7c6d;">parse</span><span>().</span><span style="color:#db7c6d;">unwrap</span><span>();
+</span><span>    PositiveNonzeroInteger::new(x).</span><span style="color:#db7c6d;">map_err</span><span>(ParsePosNonzeroError::from_creation)
+</span><span>}
+</span></code></pre>
 <h3 id="parse-error-approach">Parse Error Approach</h3>
 <p>So we know that we have to remove the <code>.unwrap()</code> method because this is what makes the code panic, and if we look at the hints we get this:</p>
 <blockquote>
@@ -611,27 +615,27 @@ impl ParsePosNonzeroError {
 <p>If parsing succeeds, we then attempt to create a <code>PositiveNonzeroInteger</code>. If this fails, we convert the error using <code>map_err()</code>, but since there's no <code>?</code> operator here, we don't return early (because this is the last line of the function and the resulting <code>Result</code> is directly returned).</p>
 </li>
 </ol>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">fn parse_pos_nonzero(s: &amp;str) -&gt; Result&lt;PositiveNonzeroInteger, ParsePosNonzeroError&gt; {
-    &#x2F;&#x2F; Try parsing the string into an i64.
-    let x = s.parse::&lt;i64&gt;().map_err(ParsePosNonzeroError::from_parseint)?;
-
-    &#x2F;&#x2F; Create a PositiveNonzeroInteger, and if this fails, transform the error.
-    PositiveNonzeroInteger::new(x).map_err(ParsePosNonzeroError::from_creation)
-}
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">parse_pos_nonzero</span><span>(</span><span style="color:#ffffff;">s</span><span>: </span><span style="color:#db7c6d;">&amp;</span><span style="color:#a3cbe3;">str</span><span>) -&gt; </span><span style="color:#e7e7e7;">Result</span><span>&lt;PositiveNonzeroInteger, ParsePosNonzeroError&gt; {
+</span><span>    </span><span style="color:#707180;">// Try parsing the string into an i64.
+</span><span>    </span><span style="color:#a3cbe3;">let</span><span> x </span><span style="color:#db7c6d;">=</span><span> s.parse::&lt;</span><span style="color:#a3cbe3;">i64</span><span>&gt;().</span><span style="color:#db7c6d;">map_err</span><span>(ParsePosNonzeroError::from_parseint)</span><span style="color:#db7c6d;">?</span><span>;
+</span><span>
+</span><span>    </span><span style="color:#707180;">// Create a PositiveNonzeroInteger, and if this fails, transform the error.
+</span><span>    PositiveNonzeroInteger::new(x).</span><span style="color:#db7c6d;">map_err</span><span>(ParsePosNonzeroError::from_creation)
+</span><span>}
+</span></code></pre>
 <h3 id="using-match">Using Match</h3>
 <p>We can also use matching to get our result, using something called a <code>turbofish</code> (unofficially) the full scoop on this this should be later, but for now let's say this <code>::&lt;&gt;</code> or <code>turbofish</code> (see it kinda looks like a fish) is used to help the compiler understand the exact type you intend when type inference might be insufficient or ambiguous.</p>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">fn parse_pos_nonzero(s: &amp;str) -&gt; Result&lt;PositiveNonzeroInteger, ParsePosNonzeroError&gt; {
-    &#x2F;&#x2F; TODO: change this to return an appropriate error instead of panicking
-    &#x2F;&#x2F; when `parse()` returns an error.
-    let x = s.parse::&lt;i64&gt;();
-
-    match x {
-        Ok(val) =&gt; PositiveNonzeroInteger::new(val).map_err(ParsePosNonzeroError::from_creation),
-        Err(e) =&gt; Err(ParsePosNonzeroError::from_parseint(e)),
-    }
-}
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">parse_pos_nonzero</span><span>(</span><span style="color:#ffffff;">s</span><span>: </span><span style="color:#db7c6d;">&amp;</span><span style="color:#a3cbe3;">str</span><span>) -&gt; </span><span style="color:#e7e7e7;">Result</span><span>&lt;PositiveNonzeroInteger, ParsePosNonzeroError&gt; {
+</span><span>    </span><span style="color:#707180;">// TODO: change this to return an appropriate error instead of panicking
+</span><span>    </span><span style="color:#707180;">// when `parse()` returns an error.
+</span><span>    </span><span style="color:#a3cbe3;">let</span><span> x </span><span style="color:#db7c6d;">=</span><span> s.parse::&lt;</span><span style="color:#a3cbe3;">i64</span><span>&gt;();
+</span><span>
+</span><span>    </span><span style="color:#db7c6d;">match</span><span> x {
+</span><span>        </span><span style="color:#e7e7e7;">Ok</span><span>(val) </span><span style="color:#db7c6d;">=&gt; </span><span>PositiveNonzeroInteger::new(val).</span><span style="color:#db7c6d;">map_err</span><span>(ParsePosNonzeroError::from_creation),
+</span><span>        </span><span style="color:#e7e7e7;">Err</span><span>(e) </span><span style="color:#db7c6d;">=&gt; </span><span style="color:#e7e7e7;">Err</span><span>(ParsePosNonzeroError::from_parseint(e)),
+</span><span>    }
+</span><span>}
+</span></code></pre>
 <h2 id="conclusion">Conclusion</h2>
 <p>In this second part of our exploration into Rust error handling, we delved into exercises 3 to 6 to understand and tackle various aspects of working with errors in Rust programming. We built upon the concepts introduced in the first part and extended our knowledge to handle more intricate scenarios.</p>
 <p>We began with <strong>Errors4.rs</strong>, where we encountered a situation involving custom error types. By using the <code>match</code> expression, we effectively handled different error cases and returned appropriate results based on the input. This exercise illuminated the power of pattern matching in Rust's error handling mechanism.</p>
@@ -666,7 +670,7 @@ impl ParsePosNonzeroError {
 		
     </p>
     
-    <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>2825 Words</p>
+    <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>1450 Words</p>
     
     <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2023-08-11</p>
     
@@ -689,7 +693,7 @@ impl ParsePosNonzeroError {
 
 
 <footer id="site-footer" class="section-inner thin animated fadeIn faster">
-  <p>&copy; 2024 <a href="https:&#x2F;&#x2F;desmodrone.github.io">erick</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
+  <p>&copy; 2026 <a href="https:&#x2F;&#x2F;desmodrone.github.io">erick</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
   <p>Made with <a href="https://www.getzola.org" target="_blank" rel="noopener">Zola</a> &#183; Theme <a href="https://github.com/VersBinarii/hermit_zola" target="_blank" rel="noopener">Hermit_Zola</a>
 	
 	&#183; <a href="https://desmodrone.github.io/rss.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>

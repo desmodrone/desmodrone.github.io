@@ -27,6 +27,10 @@
   <link rel="alternate" type="application/rss+xml" title="RSS" href="https://desmodrone.github.io/rss.xml">
   
 
+  
+  <link rel="canonical" href="https://desmodrone.github.io/posts/26-rustlings-conversions/">
+  
+
   <body id="page">
 
 	
@@ -120,7 +124,7 @@
 		<small> - 
 <span class="reading-time" title="Estimated read time">
   
-  20 min read
+  9 min read
   
 </span>
 </small>
@@ -134,7 +138,7 @@
         
 	  <h1 id="type-conversions">Type conversions</h1>
 <p>Rust offers a multitude of ways to convert a value of a given type into another type.</p>
-<p>The simplest form of type conversion is a type cast expression. It is denoted with the binary operator <code>as</code>. For instance, <code>println!(&quot;{}&quot;, 1 + 1.0);</code> would not compile, since <code>1</code> is an integer while <code>1.0</code> is a float. However, <code>println!(&quot;{}&quot;, 1 as f32 + 1.0)</code> should compile. The exercise <a href="https://desmodrone.github.io/posts/26-rustlings-conversions/using_as.rs"><code>using_as</code></a> tries to cover this.</p>
+<p>The simplest form of type conversion is a type cast expression. It is denoted with the binary operator <code>as</code>. For instance, <code>println!("{}", 1 + 1.0);</code> would not compile, since <code>1</code> is an integer while <code>1.0</code> is a float. However, <code>println!("{}", 1 as f32 + 1.0)</code> should compile. The exercise <a href="https://desmodrone.github.io/posts/26-rustlings-conversions/using_as.rs"><code>using_as</code></a> tries to cover this.</p>
 <p>Rust also offers traits that facilitate type conversions upon implementation. These traits can be found under the <a href="https://doc.rust-lang.org/std/convert/index.html"><code>convert</code></a> module.
 The traits are the following:</p>
 <ul>
@@ -142,7 +146,7 @@ The traits are the following:</p>
 <li><code>TryFrom</code> and <code>TryInto</code> covered in <a href="https://desmodrone.github.io/posts/26-rustlings-conversions/try_from_into.rs"><code>try_from_into</code></a></li>
 <li><code>AsRef</code> and <code>AsMut</code> covered in <a href="https://desmodrone.github.io/posts/26-rustlings-conversions/as_ref_mut.rs"><code>as_ref_mut</code></a></li>
 </ul>
-<p>Furthermore, the <code>std::str</code> module offers a trait called <a href="https://doc.rust-lang.org/std/str/trait.FromStr.html"><code>FromStr</code></a> which helps with converting strings into target types via the <code>parse</code> method on strings. If properly implemented for a given type <code>Person</code>, then <code>let p: Person = &quot;Mark,20&quot;.parse().unwrap()</code> should both compile and run without panicking.</p>
+<p>Furthermore, the <code>std::str</code> module offers a trait called <a href="https://doc.rust-lang.org/std/str/trait.FromStr.html"><code>FromStr</code></a> which helps with converting strings into target types via the <code>parse</code> method on strings. If properly implemented for a given type <code>Person</code>, then <code>let p: Person = "Mark,20".parse().unwrap()</code> should both compile and run without panicking.</p>
 <p>These should be the main ways <em><strong>within the standard library</strong></em> to convert data into your desired types.</p>
 <h2 id="further-information">Further information</h2>
 <p>These are not directly covered in the book, but the standard library has a great documentation for it.</p>
@@ -152,55 +156,55 @@ The traits are the following:</p>
 </ul>
 <p>Let's get started!</p>
 <h2 id="using-as-rs">Using_as.rs</h2>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">&#x2F;&#x2F; Type casting in Rust is done via the usage of the `as` operator.
-&#x2F;&#x2F; Please note that the `as` operator is not only used when type casting.
-&#x2F;&#x2F; It also helps with renaming imports.
-&#x2F;&#x2F;
-&#x2F;&#x2F; The goal is to make sure that the division does not fail to compile
-&#x2F;&#x2F; and returns the proper type.
-&#x2F;&#x2F; Execute `rustlings hint using_as` or use the `hint` watch subcommand for a hint.
-
-&#x2F;&#x2F; I AM NOT DONE
-
-fn average(values: &amp;[f64]) -&gt; f64 {
-    let total = values.iter().sum::&lt;f64&gt;();
-    total &#x2F; values.len()
-}
-
-fn main() {
-    let values = [3.5, 0.3, 13.0, 11.7];
-    println!(&quot;{}&quot;, average(&amp;values));
-}
-
-#[cfg(test)]
-mod tests {
-    use super::*;
-
-    #[test]
-    fn returns_proper_type_and_value() {
-        assert_eq!(average(&amp;[3.5, 0.3, 13.0, 11.7]), 7.125);
-    }
-}
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#707180;">// Type casting in Rust is done via the usage of the `as` operator.
+</span><span style="color:#707180;">// Please note that the `as` operator is not only used when type casting.
+</span><span style="color:#707180;">// It also helps with renaming imports.
+</span><span style="color:#707180;">//
+</span><span style="color:#707180;">// The goal is to make sure that the division does not fail to compile
+</span><span style="color:#707180;">// and returns the proper type.
+</span><span style="color:#707180;">// Execute `rustlings hint using_as` or use the `hint` watch subcommand for a hint.
+</span><span>
+</span><span style="color:#707180;">// I AM NOT DONE
+</span><span>
+</span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">average</span><span>(</span><span style="color:#ffffff;">values</span><span>: </span><span style="color:#db7c6d;">&amp;</span><span>[</span><span style="color:#a3cbe3;">f64</span><span>]) -&gt; </span><span style="color:#a3cbe3;">f64 </span><span>{
+</span><span>    </span><span style="color:#a3cbe3;">let</span><span> total </span><span style="color:#db7c6d;">=</span><span> values.</span><span style="color:#db7c6d;">iter</span><span>().sum::&lt;</span><span style="color:#a3cbe3;">f64</span><span>&gt;();
+</span><span>    total </span><span style="color:#db7c6d;">/</span><span> values.</span><span style="color:#db7c6d;">len</span><span>()
+</span><span>}
+</span><span>
+</span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">main</span><span>() {
+</span><span>    </span><span style="color:#a3cbe3;">let</span><span> values </span><span style="color:#db7c6d;">= </span><span>[</span><span style="color:#db7c6d;">3.5</span><span>, </span><span style="color:#db7c6d;">0.3</span><span>, </span><span style="color:#db7c6d;">13.0</span><span>, </span><span style="color:#db7c6d;">11.7</span><span>];
+</span><span>    println!(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span style="font-weight:bold;color:#a2ba43;">{}</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>, </span><span style="color:#db7c6d;">average</span><span>(</span><span style="color:#db7c6d;">&amp;</span><span>values));
+</span><span>}
+</span><span>
+</span><span>#[</span><span style="font-weight:bold;color:#a3cbe3;">cfg</span><span>(test)]
+</span><span style="color:#a3cbe3;">mod </span><span>tests {
+</span><span>    </span><span style="color:#db7c6d;">use super</span><span>::</span><span style="color:#db7c6d;">*</span><span>;
+</span><span>
+</span><span>    #[</span><span style="font-weight:bold;color:#a3cbe3;">test</span><span>]
+</span><span>    </span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">returns_proper_type_and_value</span><span>() {
+</span><span>        assert_eq!(</span><span style="color:#db7c6d;">average</span><span>(</span><span style="color:#db7c6d;">&amp;</span><span>[</span><span style="color:#db7c6d;">3.5</span><span>, </span><span style="color:#db7c6d;">0.3</span><span>, </span><span style="color:#db7c6d;">13.0</span><span>, </span><span style="color:#db7c6d;">11.7</span><span>]), </span><span style="color:#db7c6d;">7.125</span><span>);
+</span><span>    }
+</span><span>}
+</span></code></pre>
 <p>our instructions tell us we can use <code>as</code> in a couple of different ways but in this case we're trying to make sure that the division doesn't fail to compile. Let's look at the errors.</p>
 <h2 id="using-as-rs-errors">Using_as.rs Errors</h2>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">error[E0277]: cannot divide `f64` by `usize`
-  --&gt; exercises&#x2F;conversions&#x2F;using_as.rs:13:11
-   |
-13 |     total &#x2F; values.len()
-   |           ^ no implementation for `f64 &#x2F; usize`
-   |
-   = help: the trait `Div&lt;usize&gt;` is not implemented for `f64`
-   = help: the following other types implement trait `Div&lt;Rhs&gt;`:
-             &lt;f64 as Div&gt;
-             &lt;f64 as Div&lt;&amp;f64&gt;&gt;
-             &lt;&amp;&#x27;a f64 as Div&lt;f64&gt;&gt;
-             &lt;&amp;f64 as Div&lt;&amp;f64&gt;&gt;
-
-error: aborting due to previous error
-
-For more information about this error, try `rustc --explain E0277`.
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span>error[</span><span style="font-weight:bold;color:#a2ba43;">E0277</span><span>]: cannot divide `</span><span style="color:#a3cbe3;">f64</span><span>` by `</span><span style="color:#a3cbe3;">usize</span><span>`
+</span><span>  </span><span style="color:#db7c6d;">-</span><span>-&gt; exercises</span><span style="color:#db7c6d;">/</span><span>conversions</span><span style="color:#db7c6d;">/</span><span>using_as.rs:</span><span style="color:#db7c6d;">13</span><span>:</span><span style="color:#db7c6d;">11
+</span><span>   </span><span style="color:#db7c6d;">|
+</span><span style="color:#db7c6d;">13 |</span><span>     total </span><span style="color:#db7c6d;">/</span><span> values.</span><span style="color:#db7c6d;">len</span><span>()
+</span><span>   </span><span style="color:#db7c6d;">|           ^</span><span> no implementation </span><span style="color:#db7c6d;">for</span><span> `</span><span style="color:#a3cbe3;">f64 </span><span style="color:#db7c6d;">/ </span><span style="color:#a3cbe3;">usize</span><span>`
+</span><span>   </span><span style="color:#db7c6d;">|
+</span><span>   </span><span style="color:#db7c6d;">=</span><span> help: the </span><span style="color:#a3cbe3;">trait</span><span> `Div&lt;</span><span style="color:#a3cbe3;">usize</span><span>&gt;` is not implemented </span><span style="color:#db7c6d;">for</span><span> `</span><span style="color:#a3cbe3;">f64</span><span>`
+</span><span>   </span><span style="color:#db7c6d;">=</span><span> help: the following other types implement </span><span style="color:#a3cbe3;">trait</span><span> `Div&lt;Rhs&gt;`:
+</span><span>             &lt;</span><span style="color:#a3cbe3;">f64 </span><span style="color:#db7c6d;">as</span><span> Div&gt;
+</span><span>             </span><span style="color:#db7c6d;">&lt;</span><span style="color:#a3cbe3;">f64 </span><span style="color:#db7c6d;">as </span><span>Div&lt;</span><span style="color:#db7c6d;">&amp;</span><span style="color:#a3cbe3;">f64</span><span>&gt;</span><span style="color:#db7c6d;">&gt;
+</span><span>             </span><span style="color:#db7c6d;">&lt;&amp;</span><span style="color:#dbbb3d;">&#39;a </span><span style="color:#a3cbe3;">f64 </span><span style="color:#db7c6d;">as </span><span>Div&lt;</span><span style="color:#a3cbe3;">f64</span><span>&gt;</span><span style="color:#db7c6d;">&gt;
+</span><span>             </span><span style="color:#db7c6d;">&lt;&amp;</span><span style="color:#a3cbe3;">f64 </span><span style="color:#db7c6d;">as </span><span>Div&lt;</span><span style="color:#db7c6d;">&amp;</span><span style="color:#a3cbe3;">f64</span><span>&gt;</span><span style="color:#db7c6d;">&gt;
+</span><span>
+</span><span>error: aborting due to previous error
+</span><span>
+</span><span>For more information about this error, try `rustc </span><span style="color:#db7c6d;">--</span><span>explain </span><span style="font-weight:bold;color:#a2ba43;">E0277</span><span>`.
+</span></code></pre>
 <p>Here we're told that the trait<code>Div&lt;usize&gt;</code> is not implemented for <code>f64</code>, so I think I understand why this is happening and what the solution is but let's break it down a bit further.</p>
 <h2 id="using-as-rs-solution">Using_as.rs Solution</h2>
 <p>Rust is a strongly typed language, which means that it is very strict about how different types interact with each other. In this specific case, we have <code>total</code>, which is a <code>f64</code>, and <code>values.len()</code>, which is a <code>usize</code>. Rust does not implicitly convert between these types, as doing so can sometimes lead to unexpected behavior or loss of precision. Therefore, we need to explicitly convert types when they are not the same.</p>
@@ -222,170 +226,170 @@ For more information about this error, try `rustc --explain E0277`.
 </li>
 </ol>
 <p>So, the solution is simple we simply add <code>as f64</code> to <code>values.len()</code> to convert the <code>usize</code> as <code>f64</code> and code should compile.</p>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">fn average(values: &amp;[f64]) -&gt; f64 {
-    let total = values.iter().sum::&lt;f64&gt;();
-    total &#x2F; values.len() as f64 &#x2F;&#x2F; add `as f64`
-}
-
-fn main() {
-    let values = [3.5, 0.3, 13.0, 11.7];
-    println!(&quot;{}&quot;, average(&amp;values));
-}
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">average</span><span>(</span><span style="color:#ffffff;">values</span><span>: </span><span style="color:#db7c6d;">&amp;</span><span>[</span><span style="color:#a3cbe3;">f64</span><span>]) -&gt; </span><span style="color:#a3cbe3;">f64 </span><span>{
+</span><span>    </span><span style="color:#a3cbe3;">let</span><span> total </span><span style="color:#db7c6d;">=</span><span> values.</span><span style="color:#db7c6d;">iter</span><span>().sum::&lt;</span><span style="color:#a3cbe3;">f64</span><span>&gt;();
+</span><span>    total </span><span style="color:#db7c6d;">/</span><span> values.</span><span style="color:#db7c6d;">len</span><span>() </span><span style="color:#db7c6d;">as </span><span style="color:#a3cbe3;">f64 </span><span style="color:#707180;">// add `as f64`
+</span><span>}
+</span><span>
+</span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">main</span><span>() {
+</span><span>    </span><span style="color:#a3cbe3;">let</span><span> values </span><span style="color:#db7c6d;">= </span><span>[</span><span style="color:#db7c6d;">3.5</span><span>, </span><span style="color:#db7c6d;">0.3</span><span>, </span><span style="color:#db7c6d;">13.0</span><span>, </span><span style="color:#db7c6d;">11.7</span><span>];
+</span><span>    println!(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span style="font-weight:bold;color:#a2ba43;">{}</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>, </span><span style="color:#db7c6d;">average</span><span>(</span><span style="color:#db7c6d;">&amp;</span><span>values));
+</span><span>}
+</span></code></pre>
 <h2 id="from-into-rs">From_into.rs</h2>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">&#x2F;&#x2F; The From trait is used for value-to-value conversions.
-&#x2F;&#x2F; If From is implemented correctly for a type, the Into trait should work conversely.
-&#x2F;&#x2F; You can read more about it at https:&#x2F;&#x2F;doc.rust-lang.org&#x2F;std&#x2F;convert&#x2F;trait.From.html
-&#x2F;&#x2F; Execute `rustlings hint from_into` or use the `hint` watch subcommand for a hint.
-
-#[derive(Debug)]
-struct Person {
-    name: String,
-    age: usize,
-}
-
-&#x2F;&#x2F; We implement the Default trait to use it as a fallback
-&#x2F;&#x2F; when the provided string is not convertible into a Person object
-impl Default for Person {
-    fn default() -&gt; Person {
-        Person {
-            name: String::from(&quot;John&quot;),
-            age: 30,
-        }
-    }
-}
-
-&#x2F;&#x2F; Your task is to complete this implementation
-&#x2F;&#x2F; in order for the line `let p = Person::from(&quot;Mark,20&quot;)` to compile
-&#x2F;&#x2F; Please note that you&#x27;ll need to parse the age component into a `usize`
-&#x2F;&#x2F; with something like `&quot;4&quot;.parse::&lt;usize&gt;()`. The outcome of this needs to
-&#x2F;&#x2F; be handled appropriately.
-&#x2F;&#x2F;
-&#x2F;&#x2F; Steps:
-&#x2F;&#x2F; 1. If the length of the provided string is 0, then return the default of Person
-&#x2F;&#x2F; 2. Split the given string on the commas present in it
-&#x2F;&#x2F; 3. Extract the first element from the split operation and use it as the name
-&#x2F;&#x2F; 4. If the name is empty, then return the default of Person
-&#x2F;&#x2F; 5. Extract the other element from the split operation and parse it into a `usize` as the age
-&#x2F;&#x2F; If while parsing the age, something goes wrong, then return the default of Person
-&#x2F;&#x2F; Otherwise, then return an instantiated Person object with the results
-
-&#x2F;&#x2F; I AM NOT DONE
-
-impl From&lt;&amp;str&gt; for Person {
-    fn from(s: &amp;str) -&gt; Person {
-    }
-}
-
-fn main() {
-    &#x2F;&#x2F; Use the `from` function
-    let p1 = Person::from(&quot;Mark,20&quot;);
-    &#x2F;&#x2F; Since From is implemented for Person, we should be able to use Into
-    let p2: Person = &quot;Gerald,70&quot;.into();
-    println!(&quot;{:?}&quot;, p1);
-    println!(&quot;{:?}&quot;, p2);
-}
-
-#[cfg(test)]
-mod tests {
-    use super::*;
-    #[test]
-    fn test_default() {
-        &#x2F;&#x2F; Test that the default person is 30 year old John
-        let dp = Person::default();
-        assert_eq!(dp.name, &quot;John&quot;);
-        assert_eq!(dp.age, 30);
-    }
-    #[test]
-    fn test_bad_convert() {
-        &#x2F;&#x2F; Test that John is returned when bad string is provided
-        let p = Person::from(&quot;&quot;);
-        assert_eq!(p.name, &quot;John&quot;);
-        assert_eq!(p.age, 30);
-    }
-    #[test]
-    fn test_good_convert() {
-        &#x2F;&#x2F; Test that &quot;Mark,20&quot; works
-        let p = Person::from(&quot;Mark,20&quot;);
-        assert_eq!(p.name, &quot;Mark&quot;);
-        assert_eq!(p.age, 20);
-    }
-    #[test]
-    fn test_bad_age() {
-        &#x2F;&#x2F; Test that &quot;Mark,twenty&quot; will return the default person due to an error in parsing age
-        let p = Person::from(&quot;Mark,twenty&quot;);
-        assert_eq!(p.name, &quot;John&quot;);
-        assert_eq!(p.age, 30);
-    }
-
-    #[test]
-    fn test_missing_comma_and_age() {
-        let p: Person = Person::from(&quot;Mark&quot;);
-        assert_eq!(p.name, &quot;John&quot;);
-        assert_eq!(p.age, 30);
-    }
-
-    #[test]
-    fn test_missing_age() {
-        let p: Person = Person::from(&quot;Mark,&quot;);
-        assert_eq!(p.name, &quot;John&quot;);
-        assert_eq!(p.age, 30);
-    }
-
-    #[test]
-    fn test_missing_name() {
-        let p: Person = Person::from(&quot;,1&quot;);
-        assert_eq!(p.name, &quot;John&quot;);
-        assert_eq!(p.age, 30);
-    }
-
-    #[test]
-    fn test_missing_name_and_age() {
-        let p: Person = Person::from(&quot;,&quot;);
-        assert_eq!(p.name, &quot;John&quot;);
-        assert_eq!(p.age, 30);
-    }
-
-    #[test]
-    fn test_missing_name_and_invalid_age() {
-        let p: Person = Person::from(&quot;,one&quot;);
-        assert_eq!(p.name, &quot;John&quot;);
-        assert_eq!(p.age, 30);
-    }
-
-    #[test]
-    fn test_trailing_comma() {
-        let p: Person = Person::from(&quot;Mike,32,&quot;);
-        assert_eq!(p.name, &quot;John&quot;);
-        assert_eq!(p.age, 30);
-    }
-
-    #[test]
-    fn test_trailing_comma_and_some_string() {
-        let p: Person = Person::from(&quot;Mike,32,man&quot;);
-        assert_eq!(p.name, &quot;John&quot;);
-        assert_eq!(p.age, 30);
-    }
-}
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#707180;">// The From trait is used for value-to-value conversions.
+</span><span style="color:#707180;">// If From is implemented correctly for a type, the Into trait should work conversely.
+</span><span style="color:#707180;">// You can read more about it at https://doc.rust-lang.org/std/convert/trait.From.html
+</span><span style="color:#707180;">// Execute `rustlings hint from_into` or use the `hint` watch subcommand for a hint.
+</span><span>
+</span><span>#[</span><span style="font-weight:bold;color:#a3cbe3;">derive</span><span>(Debug)]
+</span><span style="color:#a3cbe3;">struct </span><span>Person {
+</span><span>    </span><span style="font-weight:bold;color:#a3cbe3;">name</span><span>: String,
+</span><span>    </span><span style="font-weight:bold;color:#a3cbe3;">age</span><span>: </span><span style="color:#a3cbe3;">usize</span><span>,
+</span><span>}
+</span><span>
+</span><span style="color:#707180;">// We implement the Default trait to use it as a fallback
+</span><span style="color:#707180;">// when the provided string is not convertible into a Person object
+</span><span style="color:#a3cbe3;">impl </span><span>Default </span><span style="color:#db7c6d;">for </span><span>Person {
+</span><span>    </span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">default</span><span>() -&gt; Person {
+</span><span>        Person {
+</span><span>            name: </span><span style="color:#e7e7e7;">String</span><span>::from(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>John</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>),
+</span><span>            age: </span><span style="color:#db7c6d;">30</span><span>,
+</span><span>        }
+</span><span>    }
+</span><span>}
+</span><span>
+</span><span style="color:#707180;">// Your task is to complete this implementation
+</span><span style="color:#707180;">// in order for the line `let p = Person::from(&quot;Mark,20&quot;)` to compile
+</span><span style="color:#707180;">// Please note that you&#39;ll need to parse the age component into a `usize`
+</span><span style="color:#707180;">// with something like `&quot;4&quot;.parse::&lt;usize&gt;()`. The outcome of this needs to
+</span><span style="color:#707180;">// be handled appropriately.
+</span><span style="color:#707180;">//
+</span><span style="color:#707180;">// Steps:
+</span><span style="color:#707180;">// 1. If the length of the provided string is 0, then return the default of Person
+</span><span style="color:#707180;">// 2. Split the given string on the commas present in it
+</span><span style="color:#707180;">// 3. Extract the first element from the split operation and use it as the name
+</span><span style="color:#707180;">// 4. If the name is empty, then return the default of Person
+</span><span style="color:#707180;">// 5. Extract the other element from the split operation and parse it into a `usize` as the age
+</span><span style="color:#707180;">// If while parsing the age, something goes wrong, then return the default of Person
+</span><span style="color:#707180;">// Otherwise, then return an instantiated Person object with the results
+</span><span>
+</span><span style="color:#707180;">// I AM NOT DONE
+</span><span>
+</span><span style="color:#a3cbe3;">impl </span><span style="color:#e7e7e7;">From</span><span>&lt;</span><span style="color:#db7c6d;">&amp;</span><span style="color:#a3cbe3;">str</span><span>&gt; </span><span style="color:#db7c6d;">for </span><span>Person {
+</span><span>    </span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">from</span><span>(</span><span style="color:#ffffff;">s</span><span>: </span><span style="color:#db7c6d;">&amp;</span><span style="color:#a3cbe3;">str</span><span>) -&gt; Person {
+</span><span>    }
+</span><span>}
+</span><span>
+</span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">main</span><span>() {
+</span><span>    </span><span style="color:#707180;">// Use the `from` function
+</span><span>    </span><span style="color:#a3cbe3;">let</span><span> p1 </span><span style="color:#db7c6d;">= </span><span>Person::from(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>Mark,20</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>);
+</span><span>    </span><span style="color:#707180;">// Since From is implemented for Person, we should be able to use Into
+</span><span>    </span><span style="color:#a3cbe3;">let</span><span> p2: Person </span><span style="color:#db7c6d;">= </span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>Gerald,70</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>.</span><span style="color:#db7c6d;">into</span><span>();
+</span><span>    println!(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span style="font-weight:bold;color:#a2ba43;">{:?}</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>, p1);
+</span><span>    println!(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span style="font-weight:bold;color:#a2ba43;">{:?}</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>, p2);
+</span><span>}
+</span><span>
+</span><span>#[</span><span style="font-weight:bold;color:#a3cbe3;">cfg</span><span>(test)]
+</span><span style="color:#a3cbe3;">mod </span><span>tests {
+</span><span>    </span><span style="color:#db7c6d;">use super</span><span>::</span><span style="color:#db7c6d;">*</span><span>;
+</span><span>    #[</span><span style="font-weight:bold;color:#a3cbe3;">test</span><span>]
+</span><span>    </span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">test_default</span><span>() {
+</span><span>        </span><span style="color:#707180;">// Test that the default person is 30 year old John
+</span><span>        </span><span style="color:#a3cbe3;">let</span><span> dp </span><span style="color:#db7c6d;">= </span><span>Person::default();
+</span><span>        assert_eq!(dp.name, </span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>John</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>);
+</span><span>        assert_eq!(dp.age, </span><span style="color:#db7c6d;">30</span><span>);
+</span><span>    }
+</span><span>    #[</span><span style="font-weight:bold;color:#a3cbe3;">test</span><span>]
+</span><span>    </span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">test_bad_convert</span><span>() {
+</span><span>        </span><span style="color:#707180;">// Test that John is returned when bad string is provided
+</span><span>        </span><span style="color:#a3cbe3;">let</span><span> p </span><span style="color:#db7c6d;">= </span><span>Person::from(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;&quot;</span><span>);
+</span><span>        assert_eq!(p.name, </span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>John</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>);
+</span><span>        assert_eq!(p.age, </span><span style="color:#db7c6d;">30</span><span>);
+</span><span>    }
+</span><span>    #[</span><span style="font-weight:bold;color:#a3cbe3;">test</span><span>]
+</span><span>    </span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">test_good_convert</span><span>() {
+</span><span>        </span><span style="color:#707180;">// Test that &quot;Mark,20&quot; works
+</span><span>        </span><span style="color:#a3cbe3;">let</span><span> p </span><span style="color:#db7c6d;">= </span><span>Person::from(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>Mark,20</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>);
+</span><span>        assert_eq!(p.name, </span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>Mark</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>);
+</span><span>        assert_eq!(p.age, </span><span style="color:#db7c6d;">20</span><span>);
+</span><span>    }
+</span><span>    #[</span><span style="font-weight:bold;color:#a3cbe3;">test</span><span>]
+</span><span>    </span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">test_bad_age</span><span>() {
+</span><span>        </span><span style="color:#707180;">// Test that &quot;Mark,twenty&quot; will return the default person due to an error in parsing age
+</span><span>        </span><span style="color:#a3cbe3;">let</span><span> p </span><span style="color:#db7c6d;">= </span><span>Person::from(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>Mark,twenty</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>);
+</span><span>        assert_eq!(p.name, </span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>John</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>);
+</span><span>        assert_eq!(p.age, </span><span style="color:#db7c6d;">30</span><span>);
+</span><span>    }
+</span><span>
+</span><span>    #[</span><span style="font-weight:bold;color:#a3cbe3;">test</span><span>]
+</span><span>    </span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">test_missing_comma_and_age</span><span>() {
+</span><span>        </span><span style="color:#a3cbe3;">let</span><span> p: Person </span><span style="color:#db7c6d;">= </span><span>Person::from(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>Mark</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>);
+</span><span>        assert_eq!(p.name, </span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>John</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>);
+</span><span>        assert_eq!(p.age, </span><span style="color:#db7c6d;">30</span><span>);
+</span><span>    }
+</span><span>
+</span><span>    #[</span><span style="font-weight:bold;color:#a3cbe3;">test</span><span>]
+</span><span>    </span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">test_missing_age</span><span>() {
+</span><span>        </span><span style="color:#a3cbe3;">let</span><span> p: Person </span><span style="color:#db7c6d;">= </span><span>Person::from(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>Mark,</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>);
+</span><span>        assert_eq!(p.name, </span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>John</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>);
+</span><span>        assert_eq!(p.age, </span><span style="color:#db7c6d;">30</span><span>);
+</span><span>    }
+</span><span>
+</span><span>    #[</span><span style="font-weight:bold;color:#a3cbe3;">test</span><span>]
+</span><span>    </span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">test_missing_name</span><span>() {
+</span><span>        </span><span style="color:#a3cbe3;">let</span><span> p: Person </span><span style="color:#db7c6d;">= </span><span>Person::from(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>,1</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>);
+</span><span>        assert_eq!(p.name, </span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>John</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>);
+</span><span>        assert_eq!(p.age, </span><span style="color:#db7c6d;">30</span><span>);
+</span><span>    }
+</span><span>
+</span><span>    #[</span><span style="font-weight:bold;color:#a3cbe3;">test</span><span>]
+</span><span>    </span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">test_missing_name_and_age</span><span>() {
+</span><span>        </span><span style="color:#a3cbe3;">let</span><span> p: Person </span><span style="color:#db7c6d;">= </span><span>Person::from(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>,</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>);
+</span><span>        assert_eq!(p.name, </span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>John</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>);
+</span><span>        assert_eq!(p.age, </span><span style="color:#db7c6d;">30</span><span>);
+</span><span>    }
+</span><span>
+</span><span>    #[</span><span style="font-weight:bold;color:#a3cbe3;">test</span><span>]
+</span><span>    </span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">test_missing_name_and_invalid_age</span><span>() {
+</span><span>        </span><span style="color:#a3cbe3;">let</span><span> p: Person </span><span style="color:#db7c6d;">= </span><span>Person::from(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>,one</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>);
+</span><span>        assert_eq!(p.name, </span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>John</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>);
+</span><span>        assert_eq!(p.age, </span><span style="color:#db7c6d;">30</span><span>);
+</span><span>    }
+</span><span>
+</span><span>    #[</span><span style="font-weight:bold;color:#a3cbe3;">test</span><span>]
+</span><span>    </span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">test_trailing_comma</span><span>() {
+</span><span>        </span><span style="color:#a3cbe3;">let</span><span> p: Person </span><span style="color:#db7c6d;">= </span><span>Person::from(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>Mike,32,</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>);
+</span><span>        assert_eq!(p.name, </span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>John</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>);
+</span><span>        assert_eq!(p.age, </span><span style="color:#db7c6d;">30</span><span>);
+</span><span>    }
+</span><span>
+</span><span>    #[</span><span style="font-weight:bold;color:#a3cbe3;">test</span><span>]
+</span><span>    </span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">test_trailing_comma_and_some_string</span><span>() {
+</span><span>        </span><span style="color:#a3cbe3;">let</span><span> p: Person </span><span style="color:#db7c6d;">= </span><span>Person::from(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>Mike,32,man</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>);
+</span><span>        assert_eq!(p.name, </span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>John</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>);
+</span><span>        assert_eq!(p.age, </span><span style="color:#db7c6d;">30</span><span>);
+</span><span>    }
+</span><span>}
+</span></code></pre>
 <p>We have clear instructions in the comments that tell us to complete the implementation and we even have specific steps, we'll review those later, for now let's look at the errors, to make sure we're not missing anything.</p>
 <h2 id="from-into-rs-errors">From_into.rs Errors</h2>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">⚠️  Compiling of exercises&#x2F;conversions&#x2F;from_into.rs failed! Please try again. Here&#x27;s the output:
-error[E0308]: mismatched types
-  --&gt; exercises&#x2F;conversions&#x2F;from_into.rs:41:25
-   |
-41 |     fn from(s: &amp;str) -&gt; Person {
-   |        ----             ^^^^^^ expected `Person`, found `()`
-   |        |
-   |        implicitly returns `()` as its body has no tail or `return` expression
-
-error: aborting due to previous error
-
-For more information about this error, try `rustc --explain E0308`.
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span>⚠️  Compiling of exercises</span><span style="color:#db7c6d;">/</span><span>conversions</span><span style="color:#db7c6d;">/</span><span>from_into.rs failed</span><span style="color:#db7c6d;">!</span><span> Please try again. Here</span><span style="color:#dbbb3d;">&#39;s</span><span> the output:
+</span><span>error[</span><span style="font-weight:bold;color:#a2ba43;">E0308</span><span>]: mismatched types
+</span><span>  </span><span style="color:#db7c6d;">-</span><span>-&gt; exercises</span><span style="color:#db7c6d;">/</span><span>conversions</span><span style="color:#db7c6d;">/</span><span>from_into.rs:</span><span style="color:#db7c6d;">41</span><span>:</span><span style="color:#db7c6d;">25
+</span><span>   </span><span style="color:#db7c6d;">|
+</span><span style="color:#db7c6d;">41 |     </span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">from</span><span>(</span><span style="color:#ffffff;">s</span><span>: </span><span style="color:#db7c6d;">&amp;</span><span style="color:#a3cbe3;">str</span><span>) -&gt; Person {
+</span><span>   </span><span style="color:#db7c6d;">|        ----             ^^^^^^</span><span> expected `Person`, found `()`
+</span><span>   </span><span style="color:#db7c6d;">|        |
+</span><span>   </span><span style="color:#db7c6d;">|</span><span>        implicitly returns `()` </span><span style="color:#db7c6d;">as</span><span> its body has no tail or `</span><span style="color:#db7c6d;">return</span><span>` expression
+</span><span>
+</span><span>error: aborting due to previous error
+</span><span>
+</span><span>For more information about this error, try `rustc </span><span style="color:#db7c6d;">--</span><span>explain </span><span style="font-weight:bold;color:#a2ba43;">E0308</span><span>`.
+</span></code></pre>
 <p>These errors are not providing much insight as we have a missing implementation</p>
 <h2 id="from-into-rs-solution">From_into.rs Solution</h2>
-<p>To solve this exercise, we need to implement the <code>From&lt;&amp;str&gt;</code> trait for the <code>Person</code> struct. The trait implementation should convert a string in the format <code>&quot;Name,Age&quot;</code> into a <code>Person</code> object. Let's go through the steps required:</p>
+<p>To solve this exercise, we need to implement the <code>From&lt;&amp;str&gt;</code> trait for the <code>Person</code> struct. The trait implementation should convert a string in the format <code>"Name,Age"</code> into a <code>Person</code> object. Let's go through the steps required:</p>
 <ol>
 <li>Check if the provided string is empty. If it is, return the default <code>Person</code>.</li>
 <li>Split the string on commas.</li>
@@ -393,44 +397,44 @@ For more information about this error, try `rustc --explain E0308`.
 <li>Handle any parsing errors for the age.</li>
 </ol>
 <p>Here's the complete implementation:</p>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">impl From&lt;&amp;str&gt; for Person {
-    fn from(s: &amp;str) -&gt; Person {
-        &#x2F;&#x2F; Step 1: Check if the string is empty
-        if s.is_empty() {
-            return Person::default();
-        }
-
-        &#x2F;&#x2F; Step 2: Split the string on the comma
-        let parts: Vec&lt;&amp;str&gt; = s.split(&#x27;,&#x27;).collect();
-
-        &#x2F;&#x2F; Check for the correct number of parts (name and age)
-        if parts.len() != 2 {
-            return Person::default();
-        }
-
-        &#x2F;&#x2F; Step 3: Extract name and age
-        let name = parts[0].to_string();
-        let age_str = parts[1];
-
-        &#x2F;&#x2F; Step 4: Handle parsing errors for age
-        if name.is_empty() || age_str.is_empty() {
-            return Person::default();
-        }
-
-        match age_str.parse::&lt;usize&gt;() {
-            Ok(age) =&gt; Person { name, age },
-            Err(_) =&gt; Person::default(),
-        }
-    }
-}
-
-fn main() {
-    let p1 = Person::from(&quot;Mark,20&quot;);
-    let p2: Person = &quot;Gerald,70&quot;.into();
-    println!(&quot;{:?}&quot;, p1);
-    println!(&quot;{:?}&quot;, p2);
-}
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#a3cbe3;">impl </span><span style="color:#e7e7e7;">From</span><span>&lt;</span><span style="color:#db7c6d;">&amp;</span><span style="color:#a3cbe3;">str</span><span>&gt; </span><span style="color:#db7c6d;">for </span><span>Person {
+</span><span>    </span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">from</span><span>(</span><span style="color:#ffffff;">s</span><span>: </span><span style="color:#db7c6d;">&amp;</span><span style="color:#a3cbe3;">str</span><span>) -&gt; Person {
+</span><span>        </span><span style="color:#707180;">// Step 1: Check if the string is empty
+</span><span>        </span><span style="color:#db7c6d;">if</span><span> s.</span><span style="color:#db7c6d;">is_empty</span><span>() {
+</span><span>            </span><span style="color:#db7c6d;">return </span><span>Person::default();
+</span><span>        }
+</span><span>
+</span><span>        </span><span style="color:#707180;">// Step 2: Split the string on the comma
+</span><span>        </span><span style="color:#a3cbe3;">let</span><span> parts: </span><span style="color:#e7e7e7;">Vec</span><span>&lt;</span><span style="color:#db7c6d;">&amp;</span><span style="color:#a3cbe3;">str</span><span>&gt; </span><span style="color:#db7c6d;">=</span><span> s.</span><span style="color:#db7c6d;">split</span><span>(</span><span style="font-weight:bold;color:#dbbb3d;">&#39;</span><span>,</span><span style="font-weight:bold;color:#dbbb3d;">&#39;</span><span>).</span><span style="color:#db7c6d;">collect</span><span>();
+</span><span>
+</span><span>        </span><span style="color:#707180;">// Check for the correct number of parts (name and age)
+</span><span>        </span><span style="color:#db7c6d;">if</span><span> parts.</span><span style="color:#db7c6d;">len</span><span>() </span><span style="color:#db7c6d;">!= 2 </span><span>{
+</span><span>            </span><span style="color:#db7c6d;">return </span><span>Person::default();
+</span><span>        }
+</span><span>
+</span><span>        </span><span style="color:#707180;">// Step 3: Extract name and age
+</span><span>        </span><span style="color:#a3cbe3;">let</span><span> name </span><span style="color:#db7c6d;">=</span><span> parts[</span><span style="color:#db7c6d;">0</span><span>].</span><span style="color:#db7c6d;">to_string</span><span>();
+</span><span>        </span><span style="color:#a3cbe3;">let</span><span> age_str </span><span style="color:#db7c6d;">=</span><span> parts[</span><span style="color:#db7c6d;">1</span><span>];
+</span><span>
+</span><span>        </span><span style="color:#707180;">// Step 4: Handle parsing errors for age
+</span><span>        </span><span style="color:#db7c6d;">if</span><span> name.</span><span style="color:#db7c6d;">is_empty</span><span>() </span><span style="color:#db7c6d;">||</span><span> age_str.</span><span style="color:#db7c6d;">is_empty</span><span>() {
+</span><span>            </span><span style="color:#db7c6d;">return </span><span>Person::default();
+</span><span>        }
+</span><span>
+</span><span>        </span><span style="color:#db7c6d;">match</span><span> age_str.parse::&lt;</span><span style="color:#a3cbe3;">usize</span><span>&gt;() {
+</span><span>            </span><span style="color:#e7e7e7;">Ok</span><span>(age) </span><span style="color:#db7c6d;">=&gt;</span><span> Person { name, age },
+</span><span>            </span><span style="color:#e7e7e7;">Err</span><span>(</span><span style="color:#db7c6d;">_</span><span>) </span><span style="color:#db7c6d;">=&gt; </span><span>Person::default(),
+</span><span>        }
+</span><span>    }
+</span><span>}
+</span><span>
+</span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">main</span><span>() {
+</span><span>    </span><span style="color:#a3cbe3;">let</span><span> p1 </span><span style="color:#db7c6d;">= </span><span>Person::from(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>Mark,20</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>);
+</span><span>    </span><span style="color:#a3cbe3;">let</span><span> p2: Person </span><span style="color:#db7c6d;">= </span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>Gerald,70</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>.</span><span style="color:#db7c6d;">into</span><span>();
+</span><span>    println!(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span style="font-weight:bold;color:#a2ba43;">{:?}</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>, p1);
+</span><span>    println!(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span style="font-weight:bold;color:#a2ba43;">{:?}</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>, p2);
+</span><span>}
+</span></code></pre>
 <p>In this implementation:</p>
 <ul>
 <li>The string is split into two parts based on the comma.</li>
@@ -440,150 +444,150 @@ fn main() {
 </ul>
 <p>With these changes our code compiles! On to the next one.</p>
 <h2 id="from-str-rs">From_str.rs</h2>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">&#x2F;&#x2F; from_str.rs
-&#x2F;&#x2F; This is similar to from_into.rs, but this time we&#x27;ll implement `FromStr`
-&#x2F;&#x2F; and return errors instead of falling back to a default value.
-&#x2F;&#x2F; Additionally, upon implementing FromStr, you can use the `parse` method
-&#x2F;&#x2F; on strings to generate an object of the implementor type.
-&#x2F;&#x2F; You can read more about it at https:&#x2F;&#x2F;doc.rust-lang.org&#x2F;std&#x2F;str&#x2F;trait.FromStr.html
-&#x2F;&#x2F; Execute `rustlings hint from_str` or use the `hint` watch subcommand for a hint.
-
-use std::num::ParseIntError;
-use std::str::FromStr;
-
-#[derive(Debug, PartialEq)]
-struct Person {
-    name: String,
-    age: usize,
-}
-
-&#x2F;&#x2F; We will use this error type for the `FromStr` implementation.
-#[derive(Debug, PartialEq)]
-enum ParsePersonError {
-    &#x2F;&#x2F; Empty input string
-    Empty,
-    &#x2F;&#x2F; Incorrect number of fields
-    BadLen,
-    &#x2F;&#x2F; Empty name field
-    NoName,
-    &#x2F;&#x2F; Wrapped error from parse::&lt;usize&gt;()
-    ParseInt(ParseIntError),
-}
-
-&#x2F;&#x2F; I AM NOT DONE
-
-&#x2F;&#x2F; Steps:
-&#x2F;&#x2F; 1. If the length of the provided string is 0, an error should be returned
-&#x2F;&#x2F; 2. Split the given string on the commas present in it
-&#x2F;&#x2F; 3. Only 2 elements should be returned from the split, otherwise return an error
-&#x2F;&#x2F; 4. Extract the first element from the split operation and use it as the name
-&#x2F;&#x2F; 5. Extract the other element from the split operation and parse it into a `usize` as the age
-&#x2F;&#x2F;    with something like `&quot;4&quot;.parse::&lt;usize&gt;()`
-&#x2F;&#x2F; 6. If while extracting the name and the age something goes wrong, an error should be returned
-&#x2F;&#x2F; If everything goes well, then return a Result of a Person object
-&#x2F;&#x2F;
-&#x2F;&#x2F; As an aside: `Box&lt;dyn Error&gt;` implements `From&lt;&amp;&#x27;_ str&gt;`. This means that if you want to return a
-&#x2F;&#x2F; string error message, you can do so via just using return `Err(&quot;my error message&quot;.into())`.
-
-impl FromStr for Person {
-    type Err = ParsePersonError;
-    fn from_str(s: &amp;str) -&gt; Result&lt;Person, Self::Err&gt; {
-    }
-}
-
-fn main() {
-    let p = &quot;Mark,20&quot;.parse::&lt;Person&gt;().unwrap();
-    println!(&quot;{:?}&quot;, p);
-}
-
-#[cfg(test)]
-mod tests {
-    use super::*;
-
-    #[test]
-    fn empty_input() {
-        assert_eq!(&quot;&quot;.parse::&lt;Person&gt;(), Err(ParsePersonError::Empty));
-    }
-    #[test]
-    fn good_input() {
-        let p = &quot;John,32&quot;.parse::&lt;Person&gt;();
-        assert!(p.is_ok());
-        let p = p.unwrap();
-        assert_eq!(p.name, &quot;John&quot;);
-        assert_eq!(p.age, 32);
-    }
-    #[test]
-    fn missing_age() {
-        assert!(matches!(
-            &quot;John,&quot;.parse::&lt;Person&gt;(),
-            Err(ParsePersonError::ParseInt(_))
-        ));
-    }
-
-    #[test]
-    fn invalid_age() {
-        assert!(matches!(
-            &quot;John,twenty&quot;.parse::&lt;Person&gt;(),
-            Err(ParsePersonError::ParseInt(_))
-        ));
-    }
-
-    #[test]
-    fn missing_comma_and_age() {
-        assert_eq!(&quot;John&quot;.parse::&lt;Person&gt;(), Err(ParsePersonError::BadLen));
-    }
-
-    #[test]
-    fn missing_name() {
-        assert_eq!(&quot;,1&quot;.parse::&lt;Person&gt;(), Err(ParsePersonError::NoName));
-    }
-
-    #[test]
-    fn missing_name_and_age() {
-        assert!(matches!(
-            &quot;,&quot;.parse::&lt;Person&gt;(),
-            Err(ParsePersonError::NoName | ParsePersonError::ParseInt(_))
-        ));
-    }
-
-    #[test]
-    fn missing_name_and_invalid_age() {
-        assert!(matches!(
-            &quot;,one&quot;.parse::&lt;Person&gt;(),
-            Err(ParsePersonError::NoName | ParsePersonError::ParseInt(_))
-        ));
-    }
-
-    #[test]
-    fn trailing_comma() {
-        assert_eq!(&quot;John,32,&quot;.parse::&lt;Person&gt;(), Err(ParsePersonError::BadLen));
-    }
-
-    #[test]
-    fn trailing_comma_and_some_string() {
-        assert_eq!(
-            &quot;John,32,man&quot;.parse::&lt;Person&gt;(),
-            Err(ParsePersonError::BadLen)
-        );
-    }
-}
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#707180;">// from_str.rs
+</span><span style="color:#707180;">// This is similar to from_into.rs, but this time we&#39;ll implement `FromStr`
+</span><span style="color:#707180;">// and return errors instead of falling back to a default value.
+</span><span style="color:#707180;">// Additionally, upon implementing FromStr, you can use the `parse` method
+</span><span style="color:#707180;">// on strings to generate an object of the implementor type.
+</span><span style="color:#707180;">// You can read more about it at https://doc.rust-lang.org/std/str/trait.FromStr.html
+</span><span style="color:#707180;">// Execute `rustlings hint from_str` or use the `hint` watch subcommand for a hint.
+</span><span>
+</span><span style="color:#db7c6d;">use </span><span>std::num::ParseIntError;
+</span><span style="color:#db7c6d;">use </span><span>std::str::FromStr;
+</span><span>
+</span><span>#[</span><span style="font-weight:bold;color:#a3cbe3;">derive</span><span>(Debug, PartialEq)]
+</span><span style="color:#a3cbe3;">struct </span><span>Person {
+</span><span>    </span><span style="font-weight:bold;color:#a3cbe3;">name</span><span>: String,
+</span><span>    </span><span style="font-weight:bold;color:#a3cbe3;">age</span><span>: </span><span style="color:#a3cbe3;">usize</span><span>,
+</span><span>}
+</span><span>
+</span><span style="color:#707180;">// We will use this error type for the `FromStr` implementation.
+</span><span>#[</span><span style="font-weight:bold;color:#a3cbe3;">derive</span><span>(Debug, PartialEq)]
+</span><span style="color:#a3cbe3;">enum </span><span>ParsePersonError {
+</span><span>    </span><span style="color:#707180;">// Empty input string
+</span><span>    Empty,
+</span><span>    </span><span style="color:#707180;">// Incorrect number of fields
+</span><span>    BadLen,
+</span><span>    </span><span style="color:#707180;">// Empty name field
+</span><span>    NoName,
+</span><span>    </span><span style="color:#707180;">// Wrapped error from parse::&lt;usize&gt;()
+</span><span>    ParseInt(ParseIntError),
+</span><span>}
+</span><span>
+</span><span style="color:#707180;">// I AM NOT DONE
+</span><span>
+</span><span style="color:#707180;">// Steps:
+</span><span style="color:#707180;">// 1. If the length of the provided string is 0, an error should be returned
+</span><span style="color:#707180;">// 2. Split the given string on the commas present in it
+</span><span style="color:#707180;">// 3. Only 2 elements should be returned from the split, otherwise return an error
+</span><span style="color:#707180;">// 4. Extract the first element from the split operation and use it as the name
+</span><span style="color:#707180;">// 5. Extract the other element from the split operation and parse it into a `usize` as the age
+</span><span style="color:#707180;">//    with something like `&quot;4&quot;.parse::&lt;usize&gt;()`
+</span><span style="color:#707180;">// 6. If while extracting the name and the age something goes wrong, an error should be returned
+</span><span style="color:#707180;">// If everything goes well, then return a Result of a Person object
+</span><span style="color:#707180;">//
+</span><span style="color:#707180;">// As an aside: `Box&lt;dyn Error&gt;` implements `From&lt;&amp;&#39;_ str&gt;`. This means that if you want to return a
+</span><span style="color:#707180;">// string error message, you can do so via just using return `Err(&quot;my error message&quot;.into())`.
+</span><span>
+</span><span style="color:#a3cbe3;">impl </span><span>FromStr </span><span style="color:#db7c6d;">for </span><span>Person {
+</span><span>    </span><span style="color:#a3cbe3;">type </span><span>Err </span><span style="color:#db7c6d;">=</span><span> ParsePersonError;
+</span><span>    </span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">from_str</span><span>(</span><span style="color:#ffffff;">s</span><span>: </span><span style="color:#db7c6d;">&amp;</span><span style="color:#a3cbe3;">str</span><span>) -&gt; </span><span style="color:#e7e7e7;">Result</span><span>&lt;Person, </span><span style="color:#a3cbe3;">Self::</span><span style="color:#e7e7e7;">Err</span><span>&gt; {
+</span><span>    }
+</span><span>}
+</span><span>
+</span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">main</span><span>() {
+</span><span>    </span><span style="color:#a3cbe3;">let</span><span> p </span><span style="color:#db7c6d;">= </span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>Mark,20</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>.parse::&lt;Person&gt;().</span><span style="color:#db7c6d;">unwrap</span><span>();
+</span><span>    println!(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span style="font-weight:bold;color:#a2ba43;">{:?}</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>, p);
+</span><span>}
+</span><span>
+</span><span>#[</span><span style="font-weight:bold;color:#a3cbe3;">cfg</span><span>(test)]
+</span><span style="color:#a3cbe3;">mod </span><span>tests {
+</span><span>    </span><span style="color:#db7c6d;">use super</span><span>::</span><span style="color:#db7c6d;">*</span><span>;
+</span><span>
+</span><span>    #[</span><span style="font-weight:bold;color:#a3cbe3;">test</span><span>]
+</span><span>    </span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">empty_input</span><span>() {
+</span><span>        assert_eq!(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;&quot;</span><span>.parse::&lt;Person&gt;(), </span><span style="color:#e7e7e7;">Err</span><span>(ParsePersonError::Empty));
+</span><span>    }
+</span><span>    #[</span><span style="font-weight:bold;color:#a3cbe3;">test</span><span>]
+</span><span>    </span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">good_input</span><span>() {
+</span><span>        </span><span style="color:#a3cbe3;">let</span><span> p </span><span style="color:#db7c6d;">= </span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>John,32</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>.parse::&lt;Person&gt;();
+</span><span>        assert!(p.</span><span style="color:#db7c6d;">is_ok</span><span>());
+</span><span>        </span><span style="color:#a3cbe3;">let</span><span> p </span><span style="color:#db7c6d;">=</span><span> p.</span><span style="color:#db7c6d;">unwrap</span><span>();
+</span><span>        assert_eq!(p.name, </span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>John</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>);
+</span><span>        assert_eq!(p.age, </span><span style="color:#db7c6d;">32</span><span>);
+</span><span>    }
+</span><span>    #[</span><span style="font-weight:bold;color:#a3cbe3;">test</span><span>]
+</span><span>    </span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">missing_age</span><span>() {
+</span><span>        assert!(matches!(
+</span><span>            </span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>John,</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>.parse::&lt;Person&gt;(),
+</span><span>            </span><span style="color:#e7e7e7;">Err</span><span>(ParsePersonError::ParseInt(</span><span style="color:#db7c6d;">_</span><span>))
+</span><span>        ));
+</span><span>    }
+</span><span>
+</span><span>    #[</span><span style="font-weight:bold;color:#a3cbe3;">test</span><span>]
+</span><span>    </span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">invalid_age</span><span>() {
+</span><span>        assert!(matches!(
+</span><span>            </span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>John,twenty</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>.parse::&lt;Person&gt;(),
+</span><span>            </span><span style="color:#e7e7e7;">Err</span><span>(ParsePersonError::ParseInt(</span><span style="color:#db7c6d;">_</span><span>))
+</span><span>        ));
+</span><span>    }
+</span><span>
+</span><span>    #[</span><span style="font-weight:bold;color:#a3cbe3;">test</span><span>]
+</span><span>    </span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">missing_comma_and_age</span><span>() {
+</span><span>        assert_eq!(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>John</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>.parse::&lt;Person&gt;(), </span><span style="color:#e7e7e7;">Err</span><span>(ParsePersonError::BadLen));
+</span><span>    }
+</span><span>
+</span><span>    #[</span><span style="font-weight:bold;color:#a3cbe3;">test</span><span>]
+</span><span>    </span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">missing_name</span><span>() {
+</span><span>        assert_eq!(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>,1</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>.parse::&lt;Person&gt;(), </span><span style="color:#e7e7e7;">Err</span><span>(ParsePersonError::NoName));
+</span><span>    }
+</span><span>
+</span><span>    #[</span><span style="font-weight:bold;color:#a3cbe3;">test</span><span>]
+</span><span>    </span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">missing_name_and_age</span><span>() {
+</span><span>        assert!(matches!(
+</span><span>            </span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>,</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>.parse::&lt;Person&gt;(),
+</span><span>            </span><span style="color:#e7e7e7;">Err</span><span>(ParsePersonError::NoName </span><span style="color:#db7c6d;">| </span><span>ParsePersonError::ParseInt(</span><span style="color:#db7c6d;">_</span><span>))
+</span><span>        ));
+</span><span>    }
+</span><span>
+</span><span>    #[</span><span style="font-weight:bold;color:#a3cbe3;">test</span><span>]
+</span><span>    </span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">missing_name_and_invalid_age</span><span>() {
+</span><span>        assert!(matches!(
+</span><span>            </span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>,one</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>.parse::&lt;Person&gt;(),
+</span><span>            </span><span style="color:#e7e7e7;">Err</span><span>(ParsePersonError::NoName </span><span style="color:#db7c6d;">| </span><span>ParsePersonError::ParseInt(</span><span style="color:#db7c6d;">_</span><span>))
+</span><span>        ));
+</span><span>    }
+</span><span>
+</span><span>    #[</span><span style="font-weight:bold;color:#a3cbe3;">test</span><span>]
+</span><span>    </span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">trailing_comma</span><span>() {
+</span><span>        assert_eq!(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>John,32,</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>.parse::&lt;Person&gt;(), </span><span style="color:#e7e7e7;">Err</span><span>(ParsePersonError::BadLen));
+</span><span>    }
+</span><span>
+</span><span>    #[</span><span style="font-weight:bold;color:#a3cbe3;">test</span><span>]
+</span><span>    </span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">trailing_comma_and_some_string</span><span>() {
+</span><span>        assert_eq!(
+</span><span>            </span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>John,32,man</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>.parse::&lt;Person&gt;(),
+</span><span>            </span><span style="color:#e7e7e7;">Err</span><span>(ParsePersonError::BadLen)
+</span><span>        );
+</span><span>    }
+</span><span>}
+</span></code></pre>
 <p>We have a similar exercise as before except that instead of using <code>from_into</code> we'll be we'll be using <code>FromStr</code>, similarly we have the instructions in the comments that tell us exactly what we need to be doing, and again we'll look at those in detail after we look at the errors.</p>
 <h2 id="from-str-rs-errors">From_str.rs Errors</h2>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">error[E0308]: mismatched types
-  --&gt; exercises&#x2F;conversions&#x2F;from_str.rs:48:29
-   |
-48 |     fn from_str(s: &amp;str) -&gt; Result&lt;Person, Self::Err&gt; {
-   |        --------             ^^^^^^^^^^^^^^^^^^^^^^^^^ expected `Result&lt;Person, ParsePersonError&gt;`, found `()`
-   |        |
-   |        implicitly returns `()` as its body has no tail or `return` expression
-   |
-   = note:   expected enum `Result&lt;Person, ParsePersonError&gt;`
-           found unit type `()`
-
-error: aborting due to previous error
-
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span>error[</span><span style="font-weight:bold;color:#a2ba43;">E0308</span><span>]: mismatched types
+</span><span>  </span><span style="color:#db7c6d;">-</span><span>-&gt; exercises</span><span style="color:#db7c6d;">/</span><span>conversions</span><span style="color:#db7c6d;">/</span><span>from_str.rs:</span><span style="color:#db7c6d;">48</span><span>:</span><span style="color:#db7c6d;">29
+</span><span>   </span><span style="color:#db7c6d;">|
+</span><span style="color:#db7c6d;">48 |     </span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">from_str</span><span>(</span><span style="color:#ffffff;">s</span><span>: </span><span style="color:#db7c6d;">&amp;</span><span style="color:#a3cbe3;">str</span><span>) -&gt; </span><span style="color:#e7e7e7;">Result</span><span>&lt;Person, </span><span style="color:#a3cbe3;">Self::</span><span style="color:#e7e7e7;">Err</span><span>&gt; {
+</span><span>   </span><span style="color:#db7c6d;">|        --------             ^^^^^^^^^^^^^^^^^^^^^^^^^</span><span> expected `</span><span style="color:#e7e7e7;">Result</span><span>&lt;Person, ParsePersonError&gt;`, found `()`
+</span><span>   </span><span style="color:#db7c6d;">|        |
+</span><span>   </span><span style="color:#db7c6d;">|</span><span>        implicitly returns `()` </span><span style="color:#db7c6d;">as</span><span> its body has no tail or `</span><span style="color:#db7c6d;">return</span><span>` expression
+</span><span>   </span><span style="color:#db7c6d;">|
+</span><span>   </span><span style="color:#db7c6d;">=</span><span> note:   expected </span><span style="color:#a3cbe3;">enum</span><span> `</span><span style="color:#e7e7e7;">Result</span><span>&lt;Person, ParsePersonError&gt;`
+</span><span>           found unit </span><span style="color:#a3cbe3;">type</span><span> `()`
+</span><span>
+</span><span>error: aborting due to previous error
+</span><span>
+</span></code></pre>
 <p>Here we see that the error is related to the compiler wanting an <code>enum</code> type or essentially a <code>Result</code> type but it found a <code>()</code> type because our solution isn't implemented yet.  So, let's fix that.</p>
 <h2 id="from-str-rs-solution">From_str.rs Solution</h2>
 <p>Before we implement a solution let's make sure we're all on the same page here with the <code>FromStr</code> trait.</p>
@@ -601,42 +605,42 @@ The parse method is used to convert the age from a string to a <code>usize</code
 <p><strong>Creating the Person Object:</strong>
 If all validations pass, a new Person object is created with the parsed name and age.
 This object is then returned as a Result&lt;Person, ParsePersonError&gt;, indicating a successful parsing or an error.</p>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">impl FromStr for Person {
-    type Err = ParsePersonError;
-
-    fn from_str(s: &amp;str) -&gt; Result&lt;Person, Self::Err&gt; {
-        &#x2F;&#x2F; Check if the input string is empty
-        if s.is_empty() {
-            return Err(ParsePersonError::Empty);
-        }
-
-        &#x2F;&#x2F; Split the input string on the comma
-        let parts: Vec&lt;&amp;str&gt; = s.split(&#x27;,&#x27;).collect();
-        &#x2F;&#x2F; Ensure that there are exactly two parts (name and age)
-        if parts.len() != 2 {
-            return Err(ParsePersonError::BadLen);
-        }
-
-        &#x2F;&#x2F; Extract the first part as the name
-        let name = parts[0].to_string();
-        &#x2F;&#x2F; Ensure that the name is not empty
-        if name.is_empty() {
-            return Err(ParsePersonError::NoName);
-        }
-
-        &#x2F;&#x2F; Parse the second part as age and handle any parsing errors
-        let age = parts[1].parse::&lt;usize&gt;().map_err(ParsePersonError::ParseInt)?;
-
-        &#x2F;&#x2F; Return a Person object if all is well
-        Ok(Person { name, age })
-    }
-}
-
-fn main() {
-    let p = &quot;Mark,20&quot;.parse::&lt;Person&gt;().unwrap();
-    println!(&quot;{:?}&quot;, p);
-}
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#a3cbe3;">impl </span><span>FromStr </span><span style="color:#db7c6d;">for </span><span>Person {
+</span><span>    </span><span style="color:#a3cbe3;">type </span><span>Err </span><span style="color:#db7c6d;">=</span><span> ParsePersonError;
+</span><span>
+</span><span>    </span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">from_str</span><span>(</span><span style="color:#ffffff;">s</span><span>: </span><span style="color:#db7c6d;">&amp;</span><span style="color:#a3cbe3;">str</span><span>) -&gt; </span><span style="color:#e7e7e7;">Result</span><span>&lt;Person, </span><span style="color:#a3cbe3;">Self::</span><span style="color:#e7e7e7;">Err</span><span>&gt; {
+</span><span>        </span><span style="color:#707180;">// Check if the input string is empty
+</span><span>        </span><span style="color:#db7c6d;">if</span><span> s.</span><span style="color:#db7c6d;">is_empty</span><span>() {
+</span><span>            </span><span style="color:#db7c6d;">return </span><span style="color:#e7e7e7;">Err</span><span>(ParsePersonError::Empty);
+</span><span>        }
+</span><span>
+</span><span>        </span><span style="color:#707180;">// Split the input string on the comma
+</span><span>        </span><span style="color:#a3cbe3;">let</span><span> parts: </span><span style="color:#e7e7e7;">Vec</span><span>&lt;</span><span style="color:#db7c6d;">&amp;</span><span style="color:#a3cbe3;">str</span><span>&gt; </span><span style="color:#db7c6d;">=</span><span> s.</span><span style="color:#db7c6d;">split</span><span>(</span><span style="font-weight:bold;color:#dbbb3d;">&#39;</span><span>,</span><span style="font-weight:bold;color:#dbbb3d;">&#39;</span><span>).</span><span style="color:#db7c6d;">collect</span><span>();
+</span><span>        </span><span style="color:#707180;">// Ensure that there are exactly two parts (name and age)
+</span><span>        </span><span style="color:#db7c6d;">if</span><span> parts.</span><span style="color:#db7c6d;">len</span><span>() </span><span style="color:#db7c6d;">!= 2 </span><span>{
+</span><span>            </span><span style="color:#db7c6d;">return </span><span style="color:#e7e7e7;">Err</span><span>(ParsePersonError::BadLen);
+</span><span>        }
+</span><span>
+</span><span>        </span><span style="color:#707180;">// Extract the first part as the name
+</span><span>        </span><span style="color:#a3cbe3;">let</span><span> name </span><span style="color:#db7c6d;">=</span><span> parts[</span><span style="color:#db7c6d;">0</span><span>].</span><span style="color:#db7c6d;">to_string</span><span>();
+</span><span>        </span><span style="color:#707180;">// Ensure that the name is not empty
+</span><span>        </span><span style="color:#db7c6d;">if</span><span> name.</span><span style="color:#db7c6d;">is_empty</span><span>() {
+</span><span>            </span><span style="color:#db7c6d;">return </span><span style="color:#e7e7e7;">Err</span><span>(ParsePersonError::NoName);
+</span><span>        }
+</span><span>
+</span><span>        </span><span style="color:#707180;">// Parse the second part as age and handle any parsing errors
+</span><span>        </span><span style="color:#a3cbe3;">let</span><span> age </span><span style="color:#db7c6d;">=</span><span> parts[</span><span style="color:#db7c6d;">1</span><span>].parse::&lt;</span><span style="color:#a3cbe3;">usize</span><span>&gt;().</span><span style="color:#db7c6d;">map_err</span><span>(ParsePersonError::ParseInt)</span><span style="color:#db7c6d;">?</span><span>;
+</span><span>
+</span><span>        </span><span style="color:#707180;">// Return a Person object if all is well
+</span><span>        </span><span style="color:#e7e7e7;">Ok</span><span>(Person { name, age })
+</span><span>    }
+</span><span>}
+</span><span>
+</span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">main</span><span>() {
+</span><span>    </span><span style="color:#a3cbe3;">let</span><span> p </span><span style="color:#db7c6d;">= </span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>Mark,20</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>.parse::&lt;Person&gt;().</span><span style="color:#db7c6d;">unwrap</span><span>();
+</span><span>    println!(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span style="font-weight:bold;color:#a2ba43;">{:?}</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>, p);
+</span><span>}
+</span></code></pre>
 <p>This code does the following:</p>
 <ol>
 <li><strong>Error Checking</strong>: It checks for empty input, an incorrect number of fields, and parsing errors for the age field.</li>
@@ -653,235 +657,235 @@ fn main() {
 </ol>
 <p>With the changes above our code is compiling and we can move on to our next exercise!</p>
 <h2 id="try-from-into-rs">Try_from_into.rs</h2>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">&#x2F;&#x2F; try_from_into.rs
-&#x2F;&#x2F; TryFrom is a simple and safe type conversion that may fail in a controlled way under some circumstances.
-&#x2F;&#x2F; Basically, this is the same as From. The main difference is that this should return a Result type
-&#x2F;&#x2F; instead of the target type itself.
-&#x2F;&#x2F; You can read more about it at https:&#x2F;&#x2F;doc.rust-lang.org&#x2F;std&#x2F;convert&#x2F;trait.TryFrom.html
-&#x2F;&#x2F; Execute `rustlings hint try_from_into` or use the `hint` watch subcommand for a hint.
-
-use std::convert::{TryFrom, TryInto};
-
-#[derive(Debug, PartialEq)]
-struct Color {
-    red: u8,
-    green: u8,
-    blue: u8,
-}
-
-&#x2F;&#x2F; We will use this error type for these `TryFrom` conversions.
-#[derive(Debug, PartialEq)]
-enum IntoColorError {
-    &#x2F;&#x2F; Incorrect length of slice
-    BadLen,
-    &#x2F;&#x2F; Integer conversion error
-    IntConversion,
-}
-
-&#x2F;&#x2F; I AM NOT DONE
-
-&#x2F;&#x2F; Your task is to complete this implementation
-&#x2F;&#x2F; and return an Ok result of inner type Color.
-&#x2F;&#x2F; You need to create an implementation for a tuple of three integers,
-&#x2F;&#x2F; an array of three integers, and a slice of integers.
-&#x2F;&#x2F;
-&#x2F;&#x2F; Note that the implementation for tuple and array will be checked at compile time,
-&#x2F;&#x2F; but the slice implementation needs to check the slice length!
-&#x2F;&#x2F; Also note that correct RGB color values must be integers in the 0..=255 range.
-
-&#x2F;&#x2F; Tuple implementation
-impl TryFrom&lt;(i16, i16, i16)&gt; for Color {
-    type Error = IntoColorError;
-    fn try_from(tuple: (i16, i16, i16)) -&gt; Result&lt;Self, Self::Error&gt; {
-    }
-}
-
-&#x2F;&#x2F; Array implementation
-impl TryFrom&lt;[i16; 3]&gt; for Color {
-    type Error = IntoColorError;
-    fn try_from(arr: [i16; 3]) -&gt; Result&lt;Self, Self::Error&gt; {
-    }
-}
-
-&#x2F;&#x2F; Slice implementation
-impl TryFrom&lt;&amp;[i16]&gt; for Color {
-    type Error = IntoColorError;
-    fn try_from(slice: &amp;[i16]) -&gt; Result&lt;Self, Self::Error&gt; {
-    }
-}
-
-fn main() {
-    &#x2F;&#x2F; Use the `try_from` function
-    let c1 = Color::try_from((183, 65, 14));
-    println!(&quot;{:?}&quot;, c1);
-
-    &#x2F;&#x2F; Since TryFrom is implemented for Color, we should be able to use TryInto
-    let c2: Result&lt;Color, _&gt; = [183, 65, 14].try_into();
-    println!(&quot;{:?}&quot;, c2);
-
-    let v = vec![183, 65, 14];
-    &#x2F;&#x2F; With slice we should use `try_from` function
-    let c3 = Color::try_from(&amp;v[..]);
-    println!(&quot;{:?}&quot;, c3);
-    &#x2F;&#x2F; or take slice within round brackets and use TryInto
-    let c4: Result&lt;Color, _&gt; = (&amp;v[..]).try_into();
-    println!(&quot;{:?}&quot;, c4);
-}
-
-#[cfg(test)]
-mod tests {
-    use super::*;
-
-    #[test]
-    fn test_tuple_out_of_range_positive() {
-        assert_eq!(
-            Color::try_from((256, 1000, 10000)),
-            Err(IntoColorError::IntConversion)
-        );
-    }
-    #[test]
-    fn test_tuple_out_of_range_negative() {
-        assert_eq!(
-            Color::try_from((-1, -10, -256)),
-            Err(IntoColorError::IntConversion)
-        );
-    }
-    #[test]
-    fn test_tuple_sum() {
-        assert_eq!(
-            Color::try_from((-1, 255, 255)),
-            Err(IntoColorError::IntConversion)
-        );
-    }
-    #[test]
-    fn test_tuple_correct() {
-        let c: Result&lt;Color, _&gt; = (183, 65, 14).try_into();
-        assert!(c.is_ok());
-        assert_eq!(
-            c.unwrap(),
-            Color {
-                red: 183,
-                green: 65,
-                blue: 14
-            }
-        );
-    }
-    #[test]
-    fn test_array_out_of_range_positive() {
-        let c: Result&lt;Color, _&gt; = [1000, 10000, 256].try_into();
-        assert_eq!(c, Err(IntoColorError::IntConversion));
-    }
-    #[test]
-    fn test_array_out_of_range_negative() {
-        let c: Result&lt;Color, _&gt; = [-10, -256, -1].try_into();
-        assert_eq!(c, Err(IntoColorError::IntConversion));
-    }
-    #[test]
-    fn test_array_sum() {
-        let c: Result&lt;Color, _&gt; = [-1, 255, 255].try_into();
-        assert_eq!(c, Err(IntoColorError::IntConversion));
-    }
-    #[test]
-    fn test_array_correct() {
-        let c: Result&lt;Color, _&gt; = [183, 65, 14].try_into();
-        assert!(c.is_ok());
-        assert_eq!(
-            c.unwrap(),
-            Color {
-                red: 183,
-                green: 65,
-                blue: 14
-            }
-        );
-    }
-    #[test]
-    fn test_slice_out_of_range_positive() {
-        let arr = [10000, 256, 1000];
-        assert_eq!(
-            Color::try_from(&amp;arr[..]),
-            Err(IntoColorError::IntConversion)
-        );
-    }
-    #[test]
-    fn test_slice_out_of_range_negative() {
-        let arr = [-256, -1, -10];
-        assert_eq!(
-            Color::try_from(&amp;arr[..]),
-            Err(IntoColorError::IntConversion)
-        );
-    }
-    #[test]
-    fn test_slice_sum() {
-        let arr = [-1, 255, 255];
-        assert_eq!(
-            Color::try_from(&amp;arr[..]),
-            Err(IntoColorError::IntConversion)
-        );
-    }
-    #[test]
-    fn test_slice_correct() {
-        let v = vec![183, 65, 14];
-        let c: Result&lt;Color, _&gt; = Color::try_from(&amp;v[..]);
-        assert!(c.is_ok());
-        assert_eq!(
-            c.unwrap(),
-            Color {
-                red: 183,
-                green: 65,
-                blue: 14
-            }
-        );
-    }
-    #[test]
-    fn test_slice_excess_length() {
-        let v = vec![0, 0, 0, 0];
-        assert_eq!(Color::try_from(&amp;v[..]), Err(IntoColorError::BadLen));
-    }
-    #[test]
-    fn test_slice_insufficient_length() {
-        let v = vec![0, 0];
-        assert_eq!(Color::try_from(&amp;v[..]), Err(IntoColorError::BadLen));
-    }
-}
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#707180;">// try_from_into.rs
+</span><span style="color:#707180;">// TryFrom is a simple and safe type conversion that may fail in a controlled way under some circumstances.
+</span><span style="color:#707180;">// Basically, this is the same as From. The main difference is that this should return a Result type
+</span><span style="color:#707180;">// instead of the target type itself.
+</span><span style="color:#707180;">// You can read more about it at https://doc.rust-lang.org/std/convert/trait.TryFrom.html
+</span><span style="color:#707180;">// Execute `rustlings hint try_from_into` or use the `hint` watch subcommand for a hint.
+</span><span>
+</span><span style="color:#db7c6d;">use </span><span>std::convert::{TryFrom, TryInto};
+</span><span>
+</span><span>#[</span><span style="font-weight:bold;color:#a3cbe3;">derive</span><span>(Debug, PartialEq)]
+</span><span style="color:#a3cbe3;">struct </span><span>Color {
+</span><span>    </span><span style="font-weight:bold;color:#a3cbe3;">red</span><span>: </span><span style="color:#a3cbe3;">u8</span><span>,
+</span><span>    </span><span style="font-weight:bold;color:#a3cbe3;">green</span><span>: </span><span style="color:#a3cbe3;">u8</span><span>,
+</span><span>    </span><span style="font-weight:bold;color:#a3cbe3;">blue</span><span>: </span><span style="color:#a3cbe3;">u8</span><span>,
+</span><span>}
+</span><span>
+</span><span style="color:#707180;">// We will use this error type for these `TryFrom` conversions.
+</span><span>#[</span><span style="font-weight:bold;color:#a3cbe3;">derive</span><span>(Debug, PartialEq)]
+</span><span style="color:#a3cbe3;">enum </span><span>IntoColorError {
+</span><span>    </span><span style="color:#707180;">// Incorrect length of slice
+</span><span>    BadLen,
+</span><span>    </span><span style="color:#707180;">// Integer conversion error
+</span><span>    IntConversion,
+</span><span>}
+</span><span>
+</span><span style="color:#707180;">// I AM NOT DONE
+</span><span>
+</span><span style="color:#707180;">// Your task is to complete this implementation
+</span><span style="color:#707180;">// and return an Ok result of inner type Color.
+</span><span style="color:#707180;">// You need to create an implementation for a tuple of three integers,
+</span><span style="color:#707180;">// an array of three integers, and a slice of integers.
+</span><span style="color:#707180;">//
+</span><span style="color:#707180;">// Note that the implementation for tuple and array will be checked at compile time,
+</span><span style="color:#707180;">// but the slice implementation needs to check the slice length!
+</span><span style="color:#707180;">// Also note that correct RGB color values must be integers in the 0..=255 range.
+</span><span>
+</span><span style="color:#707180;">// Tuple implementation
+</span><span style="color:#a3cbe3;">impl </span><span>TryFrom&lt;(</span><span style="color:#a3cbe3;">i16</span><span>, </span><span style="color:#a3cbe3;">i16</span><span>, </span><span style="color:#a3cbe3;">i16</span><span>)&gt; </span><span style="color:#db7c6d;">for </span><span>Color {
+</span><span>    </span><span style="color:#a3cbe3;">type </span><span>Error </span><span style="color:#db7c6d;">=</span><span> IntoColorError;
+</span><span>    </span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">try_from</span><span>(</span><span style="color:#ffffff;">tuple</span><span>: (</span><span style="color:#ffffff;">i16</span><span>, </span><span style="color:#ffffff;">i16</span><span>, </span><span style="color:#ffffff;">i16</span><span>)) -&gt; </span><span style="color:#e7e7e7;">Result</span><span>&lt;</span><span style="color:#a3cbe3;">Self</span><span>, </span><span style="color:#a3cbe3;">Self::</span><span>Error&gt; {
+</span><span>    }
+</span><span>}
+</span><span>
+</span><span style="color:#707180;">// Array implementation
+</span><span style="color:#a3cbe3;">impl </span><span>TryFrom&lt;[</span><span style="color:#a3cbe3;">i16</span><span>; </span><span style="color:#db7c6d;">3</span><span>]&gt; </span><span style="color:#db7c6d;">for </span><span>Color {
+</span><span>    </span><span style="color:#a3cbe3;">type </span><span>Error </span><span style="color:#db7c6d;">=</span><span> IntoColorError;
+</span><span>    </span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">try_from</span><span>(</span><span style="color:#ffffff;">arr</span><span>: [</span><span style="color:#a3cbe3;">i16</span><span>; 3]) -&gt; </span><span style="color:#e7e7e7;">Result</span><span>&lt;</span><span style="color:#a3cbe3;">Self</span><span>, </span><span style="color:#a3cbe3;">Self::</span><span>Error&gt; {
+</span><span>    }
+</span><span>}
+</span><span>
+</span><span style="color:#707180;">// Slice implementation
+</span><span style="color:#a3cbe3;">impl </span><span>TryFrom&lt;</span><span style="color:#db7c6d;">&amp;</span><span>[</span><span style="color:#a3cbe3;">i16</span><span>]&gt; </span><span style="color:#db7c6d;">for </span><span>Color {
+</span><span>    </span><span style="color:#a3cbe3;">type </span><span>Error </span><span style="color:#db7c6d;">=</span><span> IntoColorError;
+</span><span>    </span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">try_from</span><span>(</span><span style="color:#ffffff;">slice</span><span>: </span><span style="color:#db7c6d;">&amp;</span><span>[</span><span style="color:#a3cbe3;">i16</span><span>]) -&gt; </span><span style="color:#e7e7e7;">Result</span><span>&lt;</span><span style="color:#a3cbe3;">Self</span><span>, </span><span style="color:#a3cbe3;">Self::</span><span>Error&gt; {
+</span><span>    }
+</span><span>}
+</span><span>
+</span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">main</span><span>() {
+</span><span>    </span><span style="color:#707180;">// Use the `try_from` function
+</span><span>    </span><span style="color:#a3cbe3;">let</span><span> c1 </span><span style="color:#db7c6d;">= </span><span>Color::try_from((</span><span style="color:#db7c6d;">183</span><span>, </span><span style="color:#db7c6d;">65</span><span>, </span><span style="color:#db7c6d;">14</span><span>));
+</span><span>    println!(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span style="font-weight:bold;color:#a2ba43;">{:?}</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>, c1);
+</span><span>
+</span><span>    </span><span style="color:#707180;">// Since TryFrom is implemented for Color, we should be able to use TryInto
+</span><span>    </span><span style="color:#a3cbe3;">let</span><span> c2: </span><span style="color:#e7e7e7;">Result</span><span>&lt;Color, </span><span style="color:#db7c6d;">_</span><span>&gt; </span><span style="color:#db7c6d;">= </span><span>[</span><span style="color:#db7c6d;">183</span><span>, </span><span style="color:#db7c6d;">65</span><span>, </span><span style="color:#db7c6d;">14</span><span>].</span><span style="color:#db7c6d;">try_into</span><span>();
+</span><span>    println!(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span style="font-weight:bold;color:#a2ba43;">{:?}</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>, c2);
+</span><span>
+</span><span>    </span><span style="color:#a3cbe3;">let</span><span> v </span><span style="color:#db7c6d;">= </span><span>vec![</span><span style="color:#db7c6d;">183</span><span>, </span><span style="color:#db7c6d;">65</span><span>, </span><span style="color:#db7c6d;">14</span><span>];
+</span><span>    </span><span style="color:#707180;">// With slice we should use `try_from` function
+</span><span>    </span><span style="color:#a3cbe3;">let</span><span> c3 </span><span style="color:#db7c6d;">= </span><span>Color::try_from(</span><span style="color:#db7c6d;">&amp;</span><span>v[</span><span style="color:#db7c6d;">..</span><span>]);
+</span><span>    println!(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span style="font-weight:bold;color:#a2ba43;">{:?}</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>, c3);
+</span><span>    </span><span style="color:#707180;">// or take slice within round brackets and use TryInto
+</span><span>    </span><span style="color:#a3cbe3;">let</span><span> c4: </span><span style="color:#e7e7e7;">Result</span><span>&lt;Color, </span><span style="color:#db7c6d;">_</span><span>&gt; </span><span style="color:#db7c6d;">= </span><span>(</span><span style="color:#db7c6d;">&amp;</span><span>v[</span><span style="color:#db7c6d;">..</span><span>]).</span><span style="color:#db7c6d;">try_into</span><span>();
+</span><span>    println!(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span style="font-weight:bold;color:#a2ba43;">{:?}</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>, c4);
+</span><span>}
+</span><span>
+</span><span>#[</span><span style="font-weight:bold;color:#a3cbe3;">cfg</span><span>(test)]
+</span><span style="color:#a3cbe3;">mod </span><span>tests {
+</span><span>    </span><span style="color:#db7c6d;">use super</span><span>::</span><span style="color:#db7c6d;">*</span><span>;
+</span><span>
+</span><span>    #[</span><span style="font-weight:bold;color:#a3cbe3;">test</span><span>]
+</span><span>    </span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">test_tuple_out_of_range_positive</span><span>() {
+</span><span>        assert_eq!(
+</span><span>            Color::try_from((</span><span style="color:#db7c6d;">256</span><span>, </span><span style="color:#db7c6d;">1000</span><span>, </span><span style="color:#db7c6d;">10000</span><span>)),
+</span><span>            </span><span style="color:#e7e7e7;">Err</span><span>(IntoColorError::IntConversion)
+</span><span>        );
+</span><span>    }
+</span><span>    #[</span><span style="font-weight:bold;color:#a3cbe3;">test</span><span>]
+</span><span>    </span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">test_tuple_out_of_range_negative</span><span>() {
+</span><span>        assert_eq!(
+</span><span>            Color::try_from((</span><span style="color:#db7c6d;">-1</span><span>, </span><span style="color:#db7c6d;">-10</span><span>, </span><span style="color:#db7c6d;">-256</span><span>)),
+</span><span>            </span><span style="color:#e7e7e7;">Err</span><span>(IntoColorError::IntConversion)
+</span><span>        );
+</span><span>    }
+</span><span>    #[</span><span style="font-weight:bold;color:#a3cbe3;">test</span><span>]
+</span><span>    </span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">test_tuple_sum</span><span>() {
+</span><span>        assert_eq!(
+</span><span>            Color::try_from((</span><span style="color:#db7c6d;">-1</span><span>, </span><span style="color:#db7c6d;">255</span><span>, </span><span style="color:#db7c6d;">255</span><span>)),
+</span><span>            </span><span style="color:#e7e7e7;">Err</span><span>(IntoColorError::IntConversion)
+</span><span>        );
+</span><span>    }
+</span><span>    #[</span><span style="font-weight:bold;color:#a3cbe3;">test</span><span>]
+</span><span>    </span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">test_tuple_correct</span><span>() {
+</span><span>        </span><span style="color:#a3cbe3;">let</span><span> c: </span><span style="color:#e7e7e7;">Result</span><span>&lt;Color, </span><span style="color:#db7c6d;">_</span><span>&gt; </span><span style="color:#db7c6d;">= </span><span>(</span><span style="color:#db7c6d;">183</span><span>, </span><span style="color:#db7c6d;">65</span><span>, </span><span style="color:#db7c6d;">14</span><span>).</span><span style="color:#db7c6d;">try_into</span><span>();
+</span><span>        assert!(c.</span><span style="color:#db7c6d;">is_ok</span><span>());
+</span><span>        assert_eq!(
+</span><span>            c.</span><span style="color:#db7c6d;">unwrap</span><span>(),
+</span><span>            Color {
+</span><span>                red: </span><span style="color:#db7c6d;">183</span><span>,
+</span><span>                green: </span><span style="color:#db7c6d;">65</span><span>,
+</span><span>                blue: </span><span style="color:#db7c6d;">14
+</span><span>            }
+</span><span>        );
+</span><span>    }
+</span><span>    #[</span><span style="font-weight:bold;color:#a3cbe3;">test</span><span>]
+</span><span>    </span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">test_array_out_of_range_positive</span><span>() {
+</span><span>        </span><span style="color:#a3cbe3;">let</span><span> c: </span><span style="color:#e7e7e7;">Result</span><span>&lt;Color, </span><span style="color:#db7c6d;">_</span><span>&gt; </span><span style="color:#db7c6d;">= </span><span>[</span><span style="color:#db7c6d;">1000</span><span>, </span><span style="color:#db7c6d;">10000</span><span>, </span><span style="color:#db7c6d;">256</span><span>].</span><span style="color:#db7c6d;">try_into</span><span>();
+</span><span>        assert_eq!(c, </span><span style="color:#e7e7e7;">Err</span><span>(IntoColorError::IntConversion));
+</span><span>    }
+</span><span>    #[</span><span style="font-weight:bold;color:#a3cbe3;">test</span><span>]
+</span><span>    </span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">test_array_out_of_range_negative</span><span>() {
+</span><span>        </span><span style="color:#a3cbe3;">let</span><span> c: </span><span style="color:#e7e7e7;">Result</span><span>&lt;Color, </span><span style="color:#db7c6d;">_</span><span>&gt; </span><span style="color:#db7c6d;">= </span><span>[</span><span style="color:#db7c6d;">-10</span><span>, </span><span style="color:#db7c6d;">-256</span><span>, </span><span style="color:#db7c6d;">-1</span><span>].</span><span style="color:#db7c6d;">try_into</span><span>();
+</span><span>        assert_eq!(c, </span><span style="color:#e7e7e7;">Err</span><span>(IntoColorError::IntConversion));
+</span><span>    }
+</span><span>    #[</span><span style="font-weight:bold;color:#a3cbe3;">test</span><span>]
+</span><span>    </span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">test_array_sum</span><span>() {
+</span><span>        </span><span style="color:#a3cbe3;">let</span><span> c: </span><span style="color:#e7e7e7;">Result</span><span>&lt;Color, </span><span style="color:#db7c6d;">_</span><span>&gt; </span><span style="color:#db7c6d;">= </span><span>[</span><span style="color:#db7c6d;">-1</span><span>, </span><span style="color:#db7c6d;">255</span><span>, </span><span style="color:#db7c6d;">255</span><span>].</span><span style="color:#db7c6d;">try_into</span><span>();
+</span><span>        assert_eq!(c, </span><span style="color:#e7e7e7;">Err</span><span>(IntoColorError::IntConversion));
+</span><span>    }
+</span><span>    #[</span><span style="font-weight:bold;color:#a3cbe3;">test</span><span>]
+</span><span>    </span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">test_array_correct</span><span>() {
+</span><span>        </span><span style="color:#a3cbe3;">let</span><span> c: </span><span style="color:#e7e7e7;">Result</span><span>&lt;Color, </span><span style="color:#db7c6d;">_</span><span>&gt; </span><span style="color:#db7c6d;">= </span><span>[</span><span style="color:#db7c6d;">183</span><span>, </span><span style="color:#db7c6d;">65</span><span>, </span><span style="color:#db7c6d;">14</span><span>].</span><span style="color:#db7c6d;">try_into</span><span>();
+</span><span>        assert!(c.</span><span style="color:#db7c6d;">is_ok</span><span>());
+</span><span>        assert_eq!(
+</span><span>            c.</span><span style="color:#db7c6d;">unwrap</span><span>(),
+</span><span>            Color {
+</span><span>                red: </span><span style="color:#db7c6d;">183</span><span>,
+</span><span>                green: </span><span style="color:#db7c6d;">65</span><span>,
+</span><span>                blue: </span><span style="color:#db7c6d;">14
+</span><span>            }
+</span><span>        );
+</span><span>    }
+</span><span>    #[</span><span style="font-weight:bold;color:#a3cbe3;">test</span><span>]
+</span><span>    </span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">test_slice_out_of_range_positive</span><span>() {
+</span><span>        </span><span style="color:#a3cbe3;">let</span><span> arr </span><span style="color:#db7c6d;">= </span><span>[</span><span style="color:#db7c6d;">10000</span><span>, </span><span style="color:#db7c6d;">256</span><span>, </span><span style="color:#db7c6d;">1000</span><span>];
+</span><span>        assert_eq!(
+</span><span>            Color::try_from(</span><span style="color:#db7c6d;">&amp;</span><span>arr[</span><span style="color:#db7c6d;">..</span><span>]),
+</span><span>            </span><span style="color:#e7e7e7;">Err</span><span>(IntoColorError::IntConversion)
+</span><span>        );
+</span><span>    }
+</span><span>    #[</span><span style="font-weight:bold;color:#a3cbe3;">test</span><span>]
+</span><span>    </span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">test_slice_out_of_range_negative</span><span>() {
+</span><span>        </span><span style="color:#a3cbe3;">let</span><span> arr </span><span style="color:#db7c6d;">= </span><span>[</span><span style="color:#db7c6d;">-256</span><span>, </span><span style="color:#db7c6d;">-1</span><span>, </span><span style="color:#db7c6d;">-10</span><span>];
+</span><span>        assert_eq!(
+</span><span>            Color::try_from(</span><span style="color:#db7c6d;">&amp;</span><span>arr[</span><span style="color:#db7c6d;">..</span><span>]),
+</span><span>            </span><span style="color:#e7e7e7;">Err</span><span>(IntoColorError::IntConversion)
+</span><span>        );
+</span><span>    }
+</span><span>    #[</span><span style="font-weight:bold;color:#a3cbe3;">test</span><span>]
+</span><span>    </span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">test_slice_sum</span><span>() {
+</span><span>        </span><span style="color:#a3cbe3;">let</span><span> arr </span><span style="color:#db7c6d;">= </span><span>[</span><span style="color:#db7c6d;">-1</span><span>, </span><span style="color:#db7c6d;">255</span><span>, </span><span style="color:#db7c6d;">255</span><span>];
+</span><span>        assert_eq!(
+</span><span>            Color::try_from(</span><span style="color:#db7c6d;">&amp;</span><span>arr[</span><span style="color:#db7c6d;">..</span><span>]),
+</span><span>            </span><span style="color:#e7e7e7;">Err</span><span>(IntoColorError::IntConversion)
+</span><span>        );
+</span><span>    }
+</span><span>    #[</span><span style="font-weight:bold;color:#a3cbe3;">test</span><span>]
+</span><span>    </span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">test_slice_correct</span><span>() {
+</span><span>        </span><span style="color:#a3cbe3;">let</span><span> v </span><span style="color:#db7c6d;">= </span><span>vec![</span><span style="color:#db7c6d;">183</span><span>, </span><span style="color:#db7c6d;">65</span><span>, </span><span style="color:#db7c6d;">14</span><span>];
+</span><span>        </span><span style="color:#a3cbe3;">let</span><span> c: </span><span style="color:#e7e7e7;">Result</span><span>&lt;Color, </span><span style="color:#db7c6d;">_</span><span>&gt; </span><span style="color:#db7c6d;">= </span><span>Color::try_from(</span><span style="color:#db7c6d;">&amp;</span><span>v[</span><span style="color:#db7c6d;">..</span><span>]);
+</span><span>        assert!(c.</span><span style="color:#db7c6d;">is_ok</span><span>());
+</span><span>        assert_eq!(
+</span><span>            c.</span><span style="color:#db7c6d;">unwrap</span><span>(),
+</span><span>            Color {
+</span><span>                red: </span><span style="color:#db7c6d;">183</span><span>,
+</span><span>                green: </span><span style="color:#db7c6d;">65</span><span>,
+</span><span>                blue: </span><span style="color:#db7c6d;">14
+</span><span>            }
+</span><span>        );
+</span><span>    }
+</span><span>    #[</span><span style="font-weight:bold;color:#a3cbe3;">test</span><span>]
+</span><span>    </span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">test_slice_excess_length</span><span>() {
+</span><span>        </span><span style="color:#a3cbe3;">let</span><span> v </span><span style="color:#db7c6d;">= </span><span>vec![</span><span style="color:#db7c6d;">0</span><span>, </span><span style="color:#db7c6d;">0</span><span>, </span><span style="color:#db7c6d;">0</span><span>, </span><span style="color:#db7c6d;">0</span><span>];
+</span><span>        assert_eq!(Color::try_from(</span><span style="color:#db7c6d;">&amp;</span><span>v[</span><span style="color:#db7c6d;">..</span><span>]), </span><span style="color:#e7e7e7;">Err</span><span>(IntoColorError::BadLen));
+</span><span>    }
+</span><span>    #[</span><span style="font-weight:bold;color:#a3cbe3;">test</span><span>]
+</span><span>    </span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">test_slice_insufficient_length</span><span>() {
+</span><span>        </span><span style="color:#a3cbe3;">let</span><span> v </span><span style="color:#db7c6d;">= </span><span>vec![</span><span style="color:#db7c6d;">0</span><span>, </span><span style="color:#db7c6d;">0</span><span>];
+</span><span>        assert_eq!(Color::try_from(</span><span style="color:#db7c6d;">&amp;</span><span>v[</span><span style="color:#db7c6d;">..</span><span>]), </span><span style="color:#e7e7e7;">Err</span><span>(IntoColorError::BadLen));
+</span><span>    }
+</span><span>}
+</span></code></pre>
 <p>In this exercise, our specific task is to implement the TryFrom trait for a Color struct, catering to different types of inputs: tuples, arrays, and slices of i16. Each of these inputs represents potential RGB color values. The challenge involves not only facilitating these conversions but also meticulously handling potential errors. This includes managing out-of-range color values and ensuring that inputs, especially slices, are of appropriate lengths. By doing so, we aim to leverage Rust's robust type conversion capabilities while adhering to its strict safety and error-handling principles.</p>
 <h2 id="try-from-into-errors-rs">Try_from_into Errors.rs</h2>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">⚠️  Compiling of exercises&#x2F;conversions&#x2F;try_from_into.rs failed! Please try again. Here&#x27;s the output:
-error[E0308]: mismatched types
-  --&gt; exercises&#x2F;conversions&#x2F;try_from_into.rs:40:44
-   |
-40 |     fn try_from(tuple: (i16, i16, i16)) -&gt; Result&lt;Self, Self::Error&gt; {
-   |        --------                            ^^^^^^^^^^^^^^^^^^^^^^^^^ expected `Result&lt;Color, IntoColorError&gt;`, found `()`
-   |        |
-   |        implicitly returns `()` as its body has no tail or `return` expression
-   |
-   = note:   expected enum `Result&lt;Color, IntoColorError&gt;`
-           found unit type `()`
-
-error[E0308]: mismatched types
-  --&gt; exercises&#x2F;conversions&#x2F;try_from_into.rs:47:35
-   |
-47 |     fn try_from(arr: [i16; 3]) -&gt; Result&lt;Self, Self::Error&gt; {
-   |        --------                   ^^^^^^^^^^^^^^^^^^^^^^^^^ expected `Result&lt;Color, IntoColorError&gt;`, found `()`
-   |        |
-   |        implicitly returns `()` as its body has no tail or `return` expression
-   |
-   = note:   expected enum `Result&lt;Color, IntoColorError&gt;`
-           found unit type `()`
-
-error[E0308]: mismatched types
-  --&gt; exercises&#x2F;conversions&#x2F;try_from_into.rs:54:35
-   |
-54 |     fn try_from(slice: &amp;[i16]) -&gt; Result&lt;Self, Self::Error&gt; {
-   |        --------                   ^^^^^^^^^^^^^^^^^^^^^^^^^ expected `Result&lt;Color, IntoColorError&gt;`, found `()`
-   |        |
-   |        implicitly returns `()` as its body has no tail or `return` expression
-   |
-   = note:   expected enum `Result&lt;Color, IntoColorError&gt;`
-           found unit type `()`
-
-error: aborting due to 3 previous errors
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span>⚠️  Compiling of exercises</span><span style="color:#db7c6d;">/</span><span>conversions</span><span style="color:#db7c6d;">/</span><span>try_from_into.rs failed</span><span style="color:#db7c6d;">!</span><span> Please try again. Here</span><span style="color:#dbbb3d;">&#39;s</span><span> the output:
+</span><span>error[</span><span style="font-weight:bold;color:#a2ba43;">E0308</span><span>]: mismatched types
+</span><span>  </span><span style="color:#db7c6d;">-</span><span>-&gt; exercises</span><span style="color:#db7c6d;">/</span><span>conversions</span><span style="color:#db7c6d;">/</span><span>try_from_into.rs:</span><span style="color:#db7c6d;">40</span><span>:</span><span style="color:#db7c6d;">44
+</span><span>   </span><span style="color:#db7c6d;">|
+</span><span style="color:#db7c6d;">40 |     </span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">try_from</span><span>(</span><span style="color:#ffffff;">tuple</span><span>: (</span><span style="color:#ffffff;">i16</span><span>, </span><span style="color:#ffffff;">i16</span><span>, </span><span style="color:#ffffff;">i16</span><span>)) -&gt; </span><span style="color:#e7e7e7;">Result</span><span>&lt;</span><span style="color:#a3cbe3;">Self</span><span>, </span><span style="color:#a3cbe3;">Self::</span><span>Error&gt; {
+</span><span>   </span><span style="color:#db7c6d;">|        --------                            ^^^^^^^^^^^^^^^^^^^^^^^^^</span><span> expected `</span><span style="color:#e7e7e7;">Result</span><span>&lt;Color, IntoColorError&gt;`, found `()`
+</span><span>   </span><span style="color:#db7c6d;">|        |
+</span><span>   </span><span style="color:#db7c6d;">|</span><span>        implicitly returns `()` </span><span style="color:#db7c6d;">as</span><span> its body has no tail or `</span><span style="color:#db7c6d;">return</span><span>` expression
+</span><span>   </span><span style="color:#db7c6d;">|
+</span><span>   </span><span style="color:#db7c6d;">=</span><span> note:   expected </span><span style="color:#a3cbe3;">enum</span><span> `</span><span style="color:#e7e7e7;">Result</span><span>&lt;Color, IntoColorError&gt;`
+</span><span>           found unit </span><span style="color:#a3cbe3;">type</span><span> `()`
+</span><span>
+</span><span>error[</span><span style="font-weight:bold;color:#a2ba43;">E0308</span><span>]: mismatched types
+</span><span>  </span><span style="color:#db7c6d;">-</span><span>-&gt; exercises</span><span style="color:#db7c6d;">/</span><span>conversions</span><span style="color:#db7c6d;">/</span><span>try_from_into.rs:</span><span style="color:#db7c6d;">47</span><span>:</span><span style="color:#db7c6d;">35
+</span><span>   </span><span style="color:#db7c6d;">|
+</span><span style="color:#db7c6d;">47 |     </span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">try_from</span><span>(</span><span style="color:#ffffff;">arr</span><span>: [</span><span style="color:#a3cbe3;">i16</span><span>; 3]) -&gt; </span><span style="color:#e7e7e7;">Result</span><span>&lt;</span><span style="color:#a3cbe3;">Self</span><span>, </span><span style="color:#a3cbe3;">Self::</span><span>Error&gt; {
+</span><span>   </span><span style="color:#db7c6d;">|        --------                   ^^^^^^^^^^^^^^^^^^^^^^^^^</span><span> expected `</span><span style="color:#e7e7e7;">Result</span><span>&lt;Color, IntoColorError&gt;`, found `()`
+</span><span>   </span><span style="color:#db7c6d;">|        |
+</span><span>   </span><span style="color:#db7c6d;">|</span><span>        implicitly returns `()` </span><span style="color:#db7c6d;">as</span><span> its body has no tail or `</span><span style="color:#db7c6d;">return</span><span>` expression
+</span><span>   </span><span style="color:#db7c6d;">|
+</span><span>   </span><span style="color:#db7c6d;">=</span><span> note:   expected </span><span style="color:#a3cbe3;">enum</span><span> `</span><span style="color:#e7e7e7;">Result</span><span>&lt;Color, IntoColorError&gt;`
+</span><span>           found unit </span><span style="color:#a3cbe3;">type</span><span> `()`
+</span><span>
+</span><span>error[</span><span style="font-weight:bold;color:#a2ba43;">E0308</span><span>]: mismatched types
+</span><span>  </span><span style="color:#db7c6d;">-</span><span>-&gt; exercises</span><span style="color:#db7c6d;">/</span><span>conversions</span><span style="color:#db7c6d;">/</span><span>try_from_into.rs:</span><span style="color:#db7c6d;">54</span><span>:</span><span style="color:#db7c6d;">35
+</span><span>   </span><span style="color:#db7c6d;">|
+</span><span style="color:#db7c6d;">54 |     </span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">try_from</span><span>(</span><span style="color:#ffffff;">slice</span><span>: </span><span style="color:#db7c6d;">&amp;</span><span>[</span><span style="color:#a3cbe3;">i16</span><span>]) -&gt; </span><span style="color:#e7e7e7;">Result</span><span>&lt;</span><span style="color:#a3cbe3;">Self</span><span>, </span><span style="color:#a3cbe3;">Self::</span><span>Error&gt; {
+</span><span>   </span><span style="color:#db7c6d;">|        --------                   ^^^^^^^^^^^^^^^^^^^^^^^^^</span><span> expected `</span><span style="color:#e7e7e7;">Result</span><span>&lt;Color, IntoColorError&gt;`, found `()`
+</span><span>   </span><span style="color:#db7c6d;">|        |
+</span><span>   </span><span style="color:#db7c6d;">|</span><span>        implicitly returns `()` </span><span style="color:#db7c6d;">as</span><span> its body has no tail or `</span><span style="color:#db7c6d;">return</span><span>` expression
+</span><span>   </span><span style="color:#db7c6d;">|
+</span><span>   </span><span style="color:#db7c6d;">=</span><span> note:   expected </span><span style="color:#a3cbe3;">enum</span><span> `</span><span style="color:#e7e7e7;">Result</span><span>&lt;Color, IntoColorError&gt;`
+</span><span>           found unit </span><span style="color:#a3cbe3;">type</span><span> `()`
+</span><span>
+</span><span>error: aborting due to </span><span style="color:#db7c6d;">3</span><span> previous errors
+</span></code></pre>
 <p>The compiler errors we're encountering are due to mismatched types in our <code>try_from</code> function implementations. These functions currently return the unit type <code>()</code>, but they are expected to return a <code>Result&lt;Color, IntoColorError&gt;</code>. The errors indicate that the body of each implementation is empty and lacks the necessary logic to perform the conversion and return the correct type.</p>
 <h2 id="try-from-into-solution">Try_from_into Solution</h2>
 <p>To resolve these errors and fulfill the exercise's requirements, we'll need to implement the <code>TryFrom</code> trait for tuples <code>(i16, i16, i16)</code>, arrays <code>[i16; 3]</code>, and slices <code>&amp;[i16]</code> with the following considerations:</p>
@@ -891,68 +895,68 @@ error: aborting due to 3 previous errors
 <li><strong>Type Conversion</strong>: Convert the valid <code>i16</code> values to <code>u8</code> for constructing the <code>Color</code> struct, and return <code>Ok(Color)</code>.</li>
 </ul>
 <p>Here's an overview of how the implementations should look:</p>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">&#x2F;&#x2F; Tuple, array, and slice implementations for TryFrom
-impl TryFrom&lt;(i16, i16, i16)&gt; for Color { &#x2F;* ... *&#x2F; }
-impl TryFrom&lt;[i16; 3]&gt; for Color { &#x2F;* ... *&#x2F; }
-impl TryFrom&lt;&amp;[i16]&gt; for Color { &#x2F;* ... *&#x2F; }
-
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#707180;">// Tuple, array, and slice implementations for TryFrom
+</span><span style="color:#a3cbe3;">impl </span><span>TryFrom&lt;(</span><span style="color:#a3cbe3;">i16</span><span>, </span><span style="color:#a3cbe3;">i16</span><span>, </span><span style="color:#a3cbe3;">i16</span><span>)&gt; </span><span style="color:#db7c6d;">for </span><span>Color { </span><span style="color:#707180;">/* ... */ </span><span>}
+</span><span style="color:#a3cbe3;">impl </span><span>TryFrom&lt;[</span><span style="color:#a3cbe3;">i16</span><span>; </span><span style="color:#db7c6d;">3</span><span>]&gt; </span><span style="color:#db7c6d;">for </span><span>Color { </span><span style="color:#707180;">/* ... */ </span><span>}
+</span><span style="color:#a3cbe3;">impl </span><span>TryFrom&lt;</span><span style="color:#db7c6d;">&amp;</span><span>[</span><span style="color:#a3cbe3;">i16</span><span>]&gt; </span><span style="color:#db7c6d;">for </span><span>Color { </span><span style="color:#707180;">/* ... */ </span><span>}
+</span><span>
+</span></code></pre>
 <p>In each case, we ensure proper error handling and validation, adhering to the <code>TryFrom</code> trait's requirements.</p>
 <h2 id="complete-code">Complete Code</h2>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">impl TryFrom&lt;(i16, i16, i16)&gt; for Color {
-    type Error = IntoColorError;
-
-    fn try_from(tuple: (i16, i16, i16)) -&gt; Result&lt;Self, Self::Error&gt; {
-        let (red, green, blue) = tuple;
-        if red &lt; 0 || red &gt; 255 || green &lt; 0 || green &gt; 255 || blue &lt; 0 || blue &gt; 255 {
-            return Err(IntoColorError::IntConversion);
-        }
-        Ok(Color {
-            red: red as u8,
-            green: green as u8,
-            blue: blue as u8,
-        })
-    }
-}
-
-impl TryFrom&lt;[i16; 3]&gt; for Color {
-    type Error = IntoColorError;
-
-    fn try_from(arr: [i16; 3]) -&gt; Result&lt;Self, Self::Error&gt; {
-        let [red, green, blue] = arr;
-        if red &lt; 0 || red &gt; 255 || green &lt; 0 || green &gt; 255 || blue &lt; 0 || blue &gt; 255 {
-            return Err(IntoColorError::IntConversion);
-        }
-        Ok(Color {
-            red: red as u8,
-            green: green as u8,
-            blue: blue as u8,
-        })
-    }
-}
-
-impl TryFrom&lt;&amp;[i16]&gt; for Color {
-    type Error = IntoColorError;
-
-    fn try_from(slice: &amp;[i16]) -&gt; Result&lt;Self, Self::Error&gt; {
-        if slice.len() != 3 {
-            return Err(IntoColorError::BadLen);
-        }
-        let [red, green, blue] = match slice.try_into() {
-            Ok(arr) =&gt; arr,
-            Err(_) =&gt; return Err(IntoColorError::IntConversion),
-        };
-        if red &lt; 0 || red &gt; 255 || green &lt; 0 || green &gt; 255 || blue &lt; 0 || blue &gt; 255 {
-            return Err(IntoColorError::IntConversion);
-        }
-        Ok(Color {
-            red: red as u8,
-            green: green as u8,
-            blue: blue as u8,
-        })
-    }
-}
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#a3cbe3;">impl </span><span>TryFrom&lt;(</span><span style="color:#a3cbe3;">i16</span><span>, </span><span style="color:#a3cbe3;">i16</span><span>, </span><span style="color:#a3cbe3;">i16</span><span>)&gt; </span><span style="color:#db7c6d;">for </span><span>Color {
+</span><span>    </span><span style="color:#a3cbe3;">type </span><span>Error </span><span style="color:#db7c6d;">=</span><span> IntoColorError;
+</span><span>
+</span><span>    </span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">try_from</span><span>(</span><span style="color:#ffffff;">tuple</span><span>: (</span><span style="color:#ffffff;">i16</span><span>, </span><span style="color:#ffffff;">i16</span><span>, </span><span style="color:#ffffff;">i16</span><span>)) -&gt; </span><span style="color:#e7e7e7;">Result</span><span>&lt;</span><span style="color:#a3cbe3;">Self</span><span>, </span><span style="color:#a3cbe3;">Self::</span><span>Error&gt; {
+</span><span>        </span><span style="color:#a3cbe3;">let </span><span>(red, green, blue) </span><span style="color:#db7c6d;">=</span><span> tuple;
+</span><span>        </span><span style="color:#db7c6d;">if</span><span> red </span><span style="color:#db7c6d;">&lt; 0 ||</span><span> red </span><span style="color:#db7c6d;">&gt; 255 ||</span><span> green </span><span style="color:#db7c6d;">&lt; 0 ||</span><span> green </span><span style="color:#db7c6d;">&gt; 255 ||</span><span> blue </span><span style="color:#db7c6d;">&lt; 0 ||</span><span> blue </span><span style="color:#db7c6d;">&gt; 255 </span><span>{
+</span><span>            </span><span style="color:#db7c6d;">return </span><span style="color:#e7e7e7;">Err</span><span>(IntoColorError::IntConversion);
+</span><span>        }
+</span><span>        </span><span style="color:#e7e7e7;">Ok</span><span>(Color {
+</span><span>            red: red </span><span style="color:#db7c6d;">as </span><span style="color:#a3cbe3;">u8</span><span>,
+</span><span>            green: green </span><span style="color:#db7c6d;">as </span><span style="color:#a3cbe3;">u8</span><span>,
+</span><span>            blue: blue </span><span style="color:#db7c6d;">as </span><span style="color:#a3cbe3;">u8</span><span>,
+</span><span>        })
+</span><span>    }
+</span><span>}
+</span><span>
+</span><span style="color:#a3cbe3;">impl </span><span>TryFrom&lt;[</span><span style="color:#a3cbe3;">i16</span><span>; </span><span style="color:#db7c6d;">3</span><span>]&gt; </span><span style="color:#db7c6d;">for </span><span>Color {
+</span><span>    </span><span style="color:#a3cbe3;">type </span><span>Error </span><span style="color:#db7c6d;">=</span><span> IntoColorError;
+</span><span>
+</span><span>    </span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">try_from</span><span>(</span><span style="color:#ffffff;">arr</span><span>: [</span><span style="color:#a3cbe3;">i16</span><span>; 3]) -&gt; </span><span style="color:#e7e7e7;">Result</span><span>&lt;</span><span style="color:#a3cbe3;">Self</span><span>, </span><span style="color:#a3cbe3;">Self::</span><span>Error&gt; {
+</span><span>        </span><span style="color:#a3cbe3;">let </span><span>[red, green, blue] </span><span style="color:#db7c6d;">=</span><span> arr;
+</span><span>        </span><span style="color:#db7c6d;">if</span><span> red </span><span style="color:#db7c6d;">&lt; 0 ||</span><span> red </span><span style="color:#db7c6d;">&gt; 255 ||</span><span> green </span><span style="color:#db7c6d;">&lt; 0 ||</span><span> green </span><span style="color:#db7c6d;">&gt; 255 ||</span><span> blue </span><span style="color:#db7c6d;">&lt; 0 ||</span><span> blue </span><span style="color:#db7c6d;">&gt; 255 </span><span>{
+</span><span>            </span><span style="color:#db7c6d;">return </span><span style="color:#e7e7e7;">Err</span><span>(IntoColorError::IntConversion);
+</span><span>        }
+</span><span>        </span><span style="color:#e7e7e7;">Ok</span><span>(Color {
+</span><span>            red: red </span><span style="color:#db7c6d;">as </span><span style="color:#a3cbe3;">u8</span><span>,
+</span><span>            green: green </span><span style="color:#db7c6d;">as </span><span style="color:#a3cbe3;">u8</span><span>,
+</span><span>            blue: blue </span><span style="color:#db7c6d;">as </span><span style="color:#a3cbe3;">u8</span><span>,
+</span><span>        })
+</span><span>    }
+</span><span>}
+</span><span>
+</span><span style="color:#a3cbe3;">impl </span><span>TryFrom&lt;</span><span style="color:#db7c6d;">&amp;</span><span>[</span><span style="color:#a3cbe3;">i16</span><span>]&gt; </span><span style="color:#db7c6d;">for </span><span>Color {
+</span><span>    </span><span style="color:#a3cbe3;">type </span><span>Error </span><span style="color:#db7c6d;">=</span><span> IntoColorError;
+</span><span>
+</span><span>    </span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">try_from</span><span>(</span><span style="color:#ffffff;">slice</span><span>: </span><span style="color:#db7c6d;">&amp;</span><span>[</span><span style="color:#a3cbe3;">i16</span><span>]) -&gt; </span><span style="color:#e7e7e7;">Result</span><span>&lt;</span><span style="color:#a3cbe3;">Self</span><span>, </span><span style="color:#a3cbe3;">Self::</span><span>Error&gt; {
+</span><span>        </span><span style="color:#db7c6d;">if</span><span> slice.</span><span style="color:#db7c6d;">len</span><span>() </span><span style="color:#db7c6d;">!= 3 </span><span>{
+</span><span>            </span><span style="color:#db7c6d;">return </span><span style="color:#e7e7e7;">Err</span><span>(IntoColorError::BadLen);
+</span><span>        }
+</span><span>        </span><span style="color:#a3cbe3;">let </span><span>[red, green, blue] </span><span style="color:#db7c6d;">= match</span><span> slice.</span><span style="color:#db7c6d;">try_into</span><span>() {
+</span><span>            </span><span style="color:#e7e7e7;">Ok</span><span>(arr) </span><span style="color:#db7c6d;">=&gt;</span><span> arr,
+</span><span>            </span><span style="color:#e7e7e7;">Err</span><span>(</span><span style="color:#db7c6d;">_</span><span>) </span><span style="color:#db7c6d;">=&gt; return </span><span style="color:#e7e7e7;">Err</span><span>(IntoColorError::IntConversion),
+</span><span>        };
+</span><span>        </span><span style="color:#db7c6d;">if</span><span> red </span><span style="color:#db7c6d;">&lt; 0 ||</span><span> red </span><span style="color:#db7c6d;">&gt; 255 ||</span><span> green </span><span style="color:#db7c6d;">&lt; 0 ||</span><span> green </span><span style="color:#db7c6d;">&gt; 255 ||</span><span> blue </span><span style="color:#db7c6d;">&lt; 0 ||</span><span> blue </span><span style="color:#db7c6d;">&gt; 255 </span><span>{
+</span><span>            </span><span style="color:#db7c6d;">return </span><span style="color:#e7e7e7;">Err</span><span>(IntoColorError::IntConversion);
+</span><span>        }
+</span><span>        </span><span style="color:#e7e7e7;">Ok</span><span>(Color {
+</span><span>            red: red </span><span style="color:#db7c6d;">as </span><span style="color:#a3cbe3;">u8</span><span>,
+</span><span>            green: green </span><span style="color:#db7c6d;">as </span><span style="color:#a3cbe3;">u8</span><span>,
+</span><span>            blue: blue </span><span style="color:#db7c6d;">as </span><span style="color:#a3cbe3;">u8</span><span>,
+</span><span>        })
+</span><span>    }
+</span><span>}
+</span></code></pre>
 <p>This implementation includes:</p>
 <ul>
 <li><strong>Tuple, Array, and Slice Implementations</strong>: It implements <code>TryFrom</code> for a tuple of three <code>i16</code>s, an array of three <code>i16</code>s, and a slice of <code>i16</code>s.</li>
@@ -963,68 +967,68 @@ impl TryFrom&lt;&amp;[i16]&gt; for Color {
 <p>This exercise demonstrates the importance and utility of the <code>TryFrom</code> trait in Rust for handling fallible conversions. By carefully implementing <code>TryFrom</code>, we can create robust and error-resilient code, especially when working with data that requires validation or has specific constraints, like our <code>Color</code> struct in this case.</p>
 <p>With these updates our code is now compiling.</p>
 <h2 id="as-ref-mut-rs">As_ref_mut.rs</h2>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">&#x2F;&#x2F; AsRef and AsMut allow for cheap reference-to-reference conversions.
-&#x2F;&#x2F; Read more about them at https:&#x2F;&#x2F;doc.rust-lang.org&#x2F;std&#x2F;convert&#x2F;trait.AsRef.html
-&#x2F;&#x2F; and https:&#x2F;&#x2F;doc.rust-lang.org&#x2F;std&#x2F;convert&#x2F;trait.AsMut.html, respectively.
-&#x2F;&#x2F; Execute `rustlings hint as_ref_mut` or use the `hint` watch subcommand for a hint.
-
-&#x2F;&#x2F; I AM NOT DONE
-
-&#x2F;&#x2F; Obtain the number of bytes (not characters) in the given argument.
-&#x2F;&#x2F; TODO: Add the AsRef trait appropriately as a trait bound.
-fn byte_counter&lt;T&gt;(arg: T) -&gt; usize {
-    arg.as_ref().as_bytes().len()
-}
-
-&#x2F;&#x2F; Obtain the number of characters (not bytes) in the given argument.
-&#x2F;&#x2F; TODO: Add the AsRef trait appropriately as a trait bound.
-fn char_counter&lt;T&gt;(arg: T) -&gt; usize {
-    arg.as_ref().chars().count()
-}
-
-&#x2F;&#x2F; Squares a number using as_mut().
-&#x2F;&#x2F; TODO: Add the appropriate trait bound.
-fn num_sq&lt;T&gt;(arg: &amp;mut T) {
-    &#x2F;&#x2F; TODO: Implement the function body.
-    ???
-}
-
-#[cfg(test)]
-mod tests {
-    use super::*;
-
-    #[test]
-    fn different_counts() {
-        let s = &quot;Café au lait&quot;;
-        assert_ne!(char_counter(s), byte_counter(s));
-    }
-
-    #[test]
-    fn same_counts() {
-        let s = &quot;Cafe au lait&quot;;
-        assert_eq!(char_counter(s), byte_counter(s));
-    }
-
-    #[test]
-    fn different_counts_using_string() {
-        let s = String::from(&quot;Café au lait&quot;);
-        assert_ne!(char_counter(s.clone()), byte_counter(s));
-    }
-
-    #[test]
-    fn same_counts_using_string() {
-        let s = String::from(&quot;Cafe au lait&quot;);
-        assert_eq!(char_counter(s.clone()), byte_counter(s));
-    }
-
-    #[test]
-    fn mult_box() {
-        let mut num: Box&lt;u32&gt; = Box::new(3);
-        num_sq(&amp;mut num);
-        assert_eq!(*num, 9);
-    }
-}
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#707180;">// AsRef and AsMut allow for cheap reference-to-reference conversions.
+</span><span style="color:#707180;">// Read more about them at https://doc.rust-lang.org/std/convert/trait.AsRef.html
+</span><span style="color:#707180;">// and https://doc.rust-lang.org/std/convert/trait.AsMut.html, respectively.
+</span><span style="color:#707180;">// Execute `rustlings hint as_ref_mut` or use the `hint` watch subcommand for a hint.
+</span><span>
+</span><span style="color:#707180;">// I AM NOT DONE
+</span><span>
+</span><span style="color:#707180;">// Obtain the number of bytes (not characters) in the given argument.
+</span><span style="color:#707180;">// TODO: Add the AsRef trait appropriately as a trait bound.
+</span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">byte_counter</span><span>&lt;T&gt;(</span><span style="color:#ffffff;">arg</span><span>: T) -&gt; </span><span style="color:#a3cbe3;">usize </span><span>{
+</span><span>    arg.</span><span style="color:#db7c6d;">as_ref</span><span>().</span><span style="color:#db7c6d;">as_bytes</span><span>().</span><span style="color:#db7c6d;">len</span><span>()
+</span><span>}
+</span><span>
+</span><span style="color:#707180;">// Obtain the number of characters (not bytes) in the given argument.
+</span><span style="color:#707180;">// TODO: Add the AsRef trait appropriately as a trait bound.
+</span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">char_counter</span><span>&lt;T&gt;(</span><span style="color:#ffffff;">arg</span><span>: T) -&gt; </span><span style="color:#a3cbe3;">usize </span><span>{
+</span><span>    arg.</span><span style="color:#db7c6d;">as_ref</span><span>().</span><span style="color:#db7c6d;">chars</span><span>().</span><span style="color:#db7c6d;">count</span><span>()
+</span><span>}
+</span><span>
+</span><span style="color:#707180;">// Squares a number using as_mut().
+</span><span style="color:#707180;">// TODO: Add the appropriate trait bound.
+</span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">num_sq</span><span>&lt;T&gt;(</span><span style="color:#ffffff;">arg</span><span>: </span><span style="color:#db7c6d;">&amp;</span><span style="color:#dbbb3d;">mut</span><span> T) {
+</span><span>    </span><span style="color:#707180;">// TODO: Implement the function body.
+</span><span>    </span><span style="color:#db7c6d;">???
+</span><span>}
+</span><span>
+</span><span>#[</span><span style="font-weight:bold;color:#a3cbe3;">cfg</span><span>(test)]
+</span><span style="color:#a3cbe3;">mod </span><span>tests {
+</span><span>    </span><span style="color:#db7c6d;">use super</span><span>::</span><span style="color:#db7c6d;">*</span><span>;
+</span><span>
+</span><span>    #[</span><span style="font-weight:bold;color:#a3cbe3;">test</span><span>]
+</span><span>    </span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">different_counts</span><span>() {
+</span><span>        </span><span style="color:#a3cbe3;">let</span><span> s </span><span style="color:#db7c6d;">= </span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>Café au lait</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>;
+</span><span>        assert_ne!(</span><span style="color:#db7c6d;">char_counter</span><span>(s), </span><span style="color:#db7c6d;">byte_counter</span><span>(s));
+</span><span>    }
+</span><span>
+</span><span>    #[</span><span style="font-weight:bold;color:#a3cbe3;">test</span><span>]
+</span><span>    </span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">same_counts</span><span>() {
+</span><span>        </span><span style="color:#a3cbe3;">let</span><span> s </span><span style="color:#db7c6d;">= </span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>Cafe au lait</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>;
+</span><span>        assert_eq!(</span><span style="color:#db7c6d;">char_counter</span><span>(s), </span><span style="color:#db7c6d;">byte_counter</span><span>(s));
+</span><span>    }
+</span><span>
+</span><span>    #[</span><span style="font-weight:bold;color:#a3cbe3;">test</span><span>]
+</span><span>    </span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">different_counts_using_string</span><span>() {
+</span><span>        </span><span style="color:#a3cbe3;">let</span><span> s </span><span style="color:#db7c6d;">= </span><span style="color:#e7e7e7;">String</span><span>::from(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>Café au lait</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>);
+</span><span>        assert_ne!(</span><span style="color:#db7c6d;">char_counter</span><span>(s.</span><span style="color:#db7c6d;">clone</span><span>()), </span><span style="color:#db7c6d;">byte_counter</span><span>(s));
+</span><span>    }
+</span><span>
+</span><span>    #[</span><span style="font-weight:bold;color:#a3cbe3;">test</span><span>]
+</span><span>    </span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">same_counts_using_string</span><span>() {
+</span><span>        </span><span style="color:#a3cbe3;">let</span><span> s </span><span style="color:#db7c6d;">= </span><span style="color:#e7e7e7;">String</span><span>::from(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>Cafe au lait</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>);
+</span><span>        assert_eq!(</span><span style="color:#db7c6d;">char_counter</span><span>(s.</span><span style="color:#db7c6d;">clone</span><span>()), </span><span style="color:#db7c6d;">byte_counter</span><span>(s));
+</span><span>    }
+</span><span>
+</span><span>    #[</span><span style="font-weight:bold;color:#a3cbe3;">test</span><span>]
+</span><span>    </span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">mult_box</span><span>() {
+</span><span>        </span><span style="color:#a3cbe3;">let </span><span style="color:#dbbb3d;">mut</span><span> num: </span><span style="color:#e7e7e7;">Box</span><span>&lt;</span><span style="color:#a3cbe3;">u32</span><span>&gt; </span><span style="color:#db7c6d;">= </span><span style="color:#e7e7e7;">Box</span><span>::new(</span><span style="color:#db7c6d;">3</span><span>);
+</span><span>        </span><span style="color:#db7c6d;">num_sq</span><span>(</span><span style="color:#db7c6d;">&amp;</span><span style="color:#dbbb3d;">mut</span><span> num);
+</span><span>        assert_eq!(</span><span style="color:#db7c6d;">*</span><span>num, </span><span style="color:#db7c6d;">9</span><span>);
+</span><span>    }
+</span><span>}
+</span></code></pre>
 <p>In this exercise, the objective is to correctly implement the <code>AsRef</code> and <code>AsMut</code> traits. These traits are crucial for type conversion in Rust, allowing for flexible yet safe conversions between different types.</p>
 <h3 id="exercise-tasks">Exercise Tasks</h3>
 <ol>
@@ -1036,43 +1040,43 @@ mod tests {
 </li>
 </ol>
 <h2 id="as-ref-mut-rs-errors">As_ref_mut.rs Errors</h2>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">⚠️  Compiling of exercises&#x2F;conversions&#x2F;as_ref_mut.rs failed! Please try again. Here&#x27;s the output:
-error: expected expression, found `?`
-  --&gt; exercises&#x2F;conversions&#x2F;as_ref_mut.rs:24:5
-   |
-24 |     ???
-   |     ^ expected expression
-
-error[E0599]: no method named `as_ref` found for type parameter `T` in the current scope
-  --&gt; exercises&#x2F;conversions&#x2F;as_ref_mut.rs:11:9
-   |
-10 | fn byte_counter&lt;T&gt;(arg: T) -&gt; usize {
-   |                 - method `as_ref` not found for this type parameter
-11 |     arg.as_ref().as_bytes().len()
-   |         ^^^^^^ method not found in `T`
-   |
-   = help: items from traits can only be used if the type parameter is bounded by the trait
-help: the following trait defines an item `as_ref`, perhaps you need to restrict type parameter `T` with it:
-   |
-10 | fn byte_counter&lt;T: AsRef&gt;(arg: T) -&gt; usize {
-   |                  +++++++
-
-error[E0599]: no method named `as_ref` found for type parameter `T` in the current scope
-  --&gt; exercises&#x2F;conversions&#x2F;as_ref_mut.rs:17:9
-   |
-16 | fn char_counter&lt;T&gt;(arg: T) -&gt; usize {
-   |                 - method `as_ref` not found for this type parameter
-17 |     arg.as_ref().chars().count()
-   |         ^^^^^^ method not found in `T`
-   |
-   = help: items from traits can only be used if the type parameter is bounded by the trait
-help: the following trait defines an item `as_ref`, perhaps you need to restrict type parameter `T` with it:
-   |
-16 | fn char_counter&lt;T: AsRef&gt;(arg: T) -&gt; usize {
-   |                  +++++++
-
-error: aborting due to 3 previous errors
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span>⚠️  Compiling of exercises</span><span style="color:#db7c6d;">/</span><span>conversions</span><span style="color:#db7c6d;">/</span><span>as_ref_mut.rs failed</span><span style="color:#db7c6d;">!</span><span> Please try again. Here</span><span style="color:#dbbb3d;">&#39;s</span><span> the output:
+</span><span>error: expected expression, found `</span><span style="color:#db7c6d;">?</span><span>`
+</span><span>  </span><span style="color:#db7c6d;">-</span><span>-&gt; exercises</span><span style="color:#db7c6d;">/</span><span>conversions</span><span style="color:#db7c6d;">/</span><span>as_ref_mut.rs:</span><span style="color:#db7c6d;">24</span><span>:</span><span style="color:#db7c6d;">5
+</span><span>   </span><span style="color:#db7c6d;">|
+</span><span style="color:#db7c6d;">24 |     ???
+</span><span>   </span><span style="color:#db7c6d;">|     ^</span><span> expected expression
+</span><span>
+</span><span>error[</span><span style="font-weight:bold;color:#a2ba43;">E0599</span><span>]: no method named `as_ref` found </span><span style="color:#db7c6d;">for </span><span style="color:#a3cbe3;">type </span><span>parameter `T` </span><span style="color:#db7c6d;">in</span><span> the current scope
+</span><span>  </span><span style="color:#db7c6d;">-</span><span>-&gt; exercises</span><span style="color:#db7c6d;">/</span><span>conversions</span><span style="color:#db7c6d;">/</span><span>as_ref_mut.rs:</span><span style="color:#db7c6d;">11</span><span>:</span><span style="color:#db7c6d;">9
+</span><span>   </span><span style="color:#db7c6d;">|
+</span><span style="color:#db7c6d;">10 | </span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">byte_counter</span><span>&lt;T&gt;(</span><span style="color:#ffffff;">arg</span><span>: T) -&gt; </span><span style="color:#a3cbe3;">usize </span><span>{
+</span><span>   </span><span style="color:#db7c6d;">|                 -</span><span> method `as_ref` not found </span><span style="color:#db7c6d;">for</span><span> this </span><span style="color:#a3cbe3;">type </span><span>parameter
+</span><span style="color:#db7c6d;">11 |</span><span>     arg.</span><span style="color:#db7c6d;">as_ref</span><span>().</span><span style="color:#db7c6d;">as_bytes</span><span>().</span><span style="color:#db7c6d;">len</span><span>()
+</span><span>   </span><span style="color:#db7c6d;">|         ^^^^^^</span><span> method not found </span><span style="color:#db7c6d;">in</span><span> `T`
+</span><span>   </span><span style="color:#db7c6d;">|
+</span><span>   </span><span style="color:#db7c6d;">=</span><span> help: items from traits can only be used </span><span style="color:#db7c6d;">if</span><span> the </span><span style="color:#a3cbe3;">type </span><span>parameter is bounded by the </span><span style="color:#a3cbe3;">trait
+</span><span>help: the following </span><span style="color:#a3cbe3;">trait </span><span>defines an item `as_ref`, perhaps you need to restrict type parameter `T` with it:
+</span><span>   |
+</span><span>10 | fn byte_counter&lt;T: AsRef&gt;(arg: T) -&gt; usize {
+</span><span>   |                  +++++++
+</span><span>
+</span><span>error[</span><span style="font-weight:bold;color:#a2ba43;">E0599</span><span>]: no method named `as_ref` found </span><span style="color:#db7c6d;">for </span><span style="color:#a3cbe3;">type </span><span>parameter `T` </span><span style="color:#db7c6d;">in</span><span> the current scope
+</span><span>  </span><span style="color:#db7c6d;">-</span><span>-&gt; exercises</span><span style="color:#db7c6d;">/</span><span>conversions</span><span style="color:#db7c6d;">/</span><span>as_ref_mut.rs:</span><span style="color:#db7c6d;">17</span><span>:</span><span style="color:#db7c6d;">9
+</span><span>   </span><span style="color:#db7c6d;">|
+</span><span style="color:#db7c6d;">16 | </span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">char_counter</span><span>&lt;T&gt;(</span><span style="color:#ffffff;">arg</span><span>: T) -&gt; </span><span style="color:#a3cbe3;">usize </span><span>{
+</span><span>   </span><span style="color:#db7c6d;">|                 -</span><span> method `as_ref` not found </span><span style="color:#db7c6d;">for</span><span> this </span><span style="color:#a3cbe3;">type </span><span>parameter
+</span><span style="color:#db7c6d;">17 |</span><span>     arg.</span><span style="color:#db7c6d;">as_ref</span><span>().</span><span style="color:#db7c6d;">chars</span><span>().</span><span style="color:#db7c6d;">count</span><span>()
+</span><span>   </span><span style="color:#db7c6d;">|         ^^^^^^</span><span> method not found </span><span style="color:#db7c6d;">in</span><span> `T`
+</span><span>   </span><span style="color:#db7c6d;">|
+</span><span>   </span><span style="color:#db7c6d;">=</span><span> help: items from traits can only be used </span><span style="color:#db7c6d;">if</span><span> the </span><span style="color:#a3cbe3;">type </span><span>parameter is bounded by the </span><span style="color:#a3cbe3;">trait
+</span><span>help: the following </span><span style="color:#a3cbe3;">trait </span><span>defines an item `as_ref`, perhaps you need to restrict type parameter `T` with it:
+</span><span>   |
+</span><span>16 | fn char_counter&lt;T: AsRef&gt;(arg: T) -&gt; usize {
+</span><span>   |                  +++++++
+</span><span>
+</span><span>error: aborting due to </span><span style="color:#db7c6d;">3</span><span> previous errors
+</span></code></pre>
 <p>The errors encountered during compilation are primarily due to:</p>
 <ol>
 <li>
@@ -1100,22 +1104,22 @@ error: aborting due to 3 previous errors
 </ul>
 </li>
 </ol>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">use std::convert::AsRef;
-use std::convert::AsMut;
-
-fn byte_counter&lt;T: AsRef&lt;str&gt;&gt;(arg: T) -&gt; usize {
-    arg.as_ref().as_bytes().len()
-}
-
-fn char_counter&lt;T: AsRef&lt;str&gt;&gt;(arg: T) -&gt; usize {
-    arg.as_ref().chars().count()
-}
-
-fn num_sq&lt;T: AsMut&lt;u32&gt;&gt;(arg: &amp;mut T) {
-    let value = arg.as_mut();
-    *value *= *value;
-}
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#db7c6d;">use </span><span>std::convert::AsRef;
+</span><span style="color:#db7c6d;">use </span><span>std::convert::AsMut;
+</span><span>
+</span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">byte_counter</span><span>&lt;T: </span><span style="color:#e7e7e7;">AsRef</span><span>&lt;</span><span style="color:#a3cbe3;">str</span><span>&gt;&gt;(</span><span style="color:#ffffff;">arg</span><span>: T) -&gt; </span><span style="color:#a3cbe3;">usize </span><span>{
+</span><span>    arg.</span><span style="color:#db7c6d;">as_ref</span><span>().</span><span style="color:#db7c6d;">as_bytes</span><span>().</span><span style="color:#db7c6d;">len</span><span>()
+</span><span>}
+</span><span>
+</span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">char_counter</span><span>&lt;T: </span><span style="color:#e7e7e7;">AsRef</span><span>&lt;</span><span style="color:#a3cbe3;">str</span><span>&gt;&gt;(</span><span style="color:#ffffff;">arg</span><span>: T) -&gt; </span><span style="color:#a3cbe3;">usize </span><span>{
+</span><span>    arg.</span><span style="color:#db7c6d;">as_ref</span><span>().</span><span style="color:#db7c6d;">chars</span><span>().</span><span style="color:#db7c6d;">count</span><span>()
+</span><span>}
+</span><span>
+</span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">num_sq</span><span>&lt;T: </span><span style="color:#e7e7e7;">AsMut</span><span>&lt;</span><span style="color:#a3cbe3;">u32</span><span>&gt;&gt;(</span><span style="color:#ffffff;">arg</span><span>: </span><span style="color:#db7c6d;">&amp;</span><span style="color:#dbbb3d;">mut</span><span> T) {
+</span><span>    </span><span style="color:#a3cbe3;">let</span><span> value </span><span style="color:#db7c6d;">=</span><span> arg.</span><span style="color:#db7c6d;">as_mut</span><span>();
+</span><span>    </span><span style="color:#db7c6d;">*</span><span>value </span><span style="color:#db7c6d;">*= *</span><span>value;
+</span><span>}
+</span></code></pre>
 <p>And with that we are done we are compiling!</p>
 <h2 id="conclusion">Conclusion</h2>
 <p>In conclusion, Rust's comprehensive type conversion system, including <code>as</code>, <code>From</code>/<code>Into</code>, <code>TryFrom</code>/<code>TryInto</code>, <code>FromStr</code>, <code>AsRef</code>, and <code>AsMut</code>, provides programmers with a versatile toolkit to handle various scenarios of type conversions safely and efficiently.</p>
@@ -1138,32 +1142,32 @@ fn num_sq&lt;T: AsMut&lt;u32&gt;&gt;(arg: &amp;mut T) {
 </ul>
 <p>Together, these mechanisms contribute to Rust's robust type system, ensuring that type conversions are handled explicitly and safely, reducing the risk of errors and increasing the overall reliability of the code. By understanding and utilizing these tools effectively, you can write Rust code that is both efficient and elegant.</p>
 <p>And with that we are DONE! I hope you've enjoyed going through these exercises with me.</p>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">🎉 All exercises completed! 🎉
-
-+----------------------------------------------------+
-|          You made it to the Fe-nish line!          |
-+--------------------------  ------------------------+
-                          \\&#x2F;
-     ▒▒          ▒▒▒▒▒▒▒▒      ▒▒▒▒▒▒▒▒          ▒▒
-   ▒▒▒▒  ▒▒    ▒▒        ▒▒  ▒▒        ▒▒    ▒▒  ▒▒▒▒
-   ▒▒▒▒  ▒▒  ▒▒            ▒▒            ▒▒  ▒▒  ▒▒▒▒
- ░░▒▒▒▒░░▒▒  ▒▒            ▒▒            ▒▒  ▒▒░░▒▒▒▒
-   ▓▓▓▓▓▓▓▓  ▓▓      ▓▓██  ▓▓  ▓▓██      ▓▓  ▓▓▓▓▓▓▓▓
-     ▒▒▒▒    ▒▒      ████  ▒▒  ████      ▒▒░░  ▒▒▒▒
-       ▒▒  ▒▒▒▒▒▒        ▒▒▒▒▒▒        ▒▒▒▒▒▒  ▒▒
-         ▒▒▒▒▒▒▒▒▒▒▓▓▓▓▓▓▒▒▒▒▒▒▒▒▓▓▒▒▓▓▒▒▒▒▒▒▒▒
-           ▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒
-             ▒▒▒▒▒▒▒▒▒▒██▒▒▒▒▒▒██▒▒▒▒▒▒▒▒▒▒
-           ▒▒  ▒▒▒▒▒▒▒▒▒▒██████▒▒▒▒▒▒▒▒▒▒  ▒▒
-         ▒▒    ▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒    ▒▒
-       ▒▒    ▒▒    ▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒    ▒▒    ▒▒
-       ▒▒  ▒▒    ▒▒                  ▒▒    ▒▒  ▒▒
-           ▒▒  ▒▒                      ▒▒  ▒▒
-
-We hope you enjoyed learning about the various aspects of Rust!
-If you noticed any issues, please don&#x27;t hesitate to report them to our repo.
-You can also contribute your own exercises to help the greater community!
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span>🎉 All exercises completed</span><span style="color:#db7c6d;">!</span><span> 🎉
+</span><span>
+</span><span style="color:#db7c6d;">+----------------------------------------------------+
+</span><span style="color:#db7c6d;">|</span><span>          You made it to the Fe</span><span style="color:#db7c6d;">-</span><span>nish line</span><span style="color:#db7c6d;">!          |
+</span><span style="color:#db7c6d;">+--------------------------  ------------------------+
+</span><span>                          \\</span><span style="color:#db7c6d;">/
+</span><span>     ▒▒          ▒▒▒▒▒▒▒▒      ▒▒▒▒▒▒▒▒          ▒▒
+</span><span>   ▒▒▒▒  ▒▒    ▒▒        ▒▒  ▒▒        ▒▒    ▒▒  ▒▒▒▒
+</span><span>   ▒▒▒▒  ▒▒  ▒▒            ▒▒            ▒▒  ▒▒  ▒▒▒▒
+</span><span> ░░▒▒▒▒░░▒▒  ▒▒            ▒▒            ▒▒  ▒▒░░▒▒▒▒
+</span><span>   ▓▓▓▓▓▓▓▓  ▓▓      ▓▓██  ▓▓  ▓▓██      ▓▓  ▓▓▓▓▓▓▓▓
+</span><span>     ▒▒▒▒    ▒▒      ████  ▒▒  ████      ▒▒░░  ▒▒▒▒
+</span><span>       ▒▒  ▒▒▒▒▒▒        ▒▒▒▒▒▒        ▒▒▒▒▒▒  ▒▒
+</span><span>         ▒▒▒▒▒▒▒▒▒▒▓▓▓▓▓▓▒▒▒▒▒▒▒▒▓▓▒▒▓▓▒▒▒▒▒▒▒▒
+</span><span>           ▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒
+</span><span>             ▒▒▒▒▒▒▒▒▒▒██▒▒▒▒▒▒██▒▒▒▒▒▒▒▒▒▒
+</span><span>           ▒▒  ▒▒▒▒▒▒▒▒▒▒██████▒▒▒▒▒▒▒▒▒▒  ▒▒
+</span><span>         ▒▒    ▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒    ▒▒
+</span><span>       ▒▒    ▒▒    ▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒    ▒▒    ▒▒
+</span><span>       ▒▒  ▒▒    ▒▒                  ▒▒    ▒▒  ▒▒
+</span><span>           ▒▒  ▒▒                      ▒▒  ▒▒
+</span><span>
+</span><span>We hope you enjoyed learning about the various aspects of Rust</span><span style="color:#db7c6d;">!
+</span><span>If you noticed any issues, please don</span><span style="color:#dbbb3d;">&#39;t</span><span> hesitate to report them to our repo.
+</span><span>You can also contribute your own exercises to help the greater community</span><span style="color:#db7c6d;">!
+</span></code></pre>
 
 	</div>
 	<hr class="post-end">
@@ -1196,7 +1200,7 @@ You can also contribute your own exercises to help the greater community!
 		
     </p>
     
-    <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>5265 Words</p>
+    <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>2362 Words</p>
     
     <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2023-12-13</p>
     
@@ -1219,7 +1223,7 @@ You can also contribute your own exercises to help the greater community!
 
 
 <footer id="site-footer" class="section-inner thin animated fadeIn faster">
-  <p>&copy; 2024 <a href="https:&#x2F;&#x2F;desmodrone.github.io">erick</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
+  <p>&copy; 2026 <a href="https:&#x2F;&#x2F;desmodrone.github.io">erick</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
   <p>Made with <a href="https://www.getzola.org" target="_blank" rel="noopener">Zola</a> &#183; Theme <a href="https://github.com/VersBinarii/hermit_zola" target="_blank" rel="noopener">Hermit_Zola</a>
 	
 	&#183; <a href="https://desmodrone.github.io/rss.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>

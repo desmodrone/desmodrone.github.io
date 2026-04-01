@@ -27,6 +27,10 @@
   <link rel="alternate" type="application/rss+xml" title="RSS" href="https://desmodrone.github.io/rss.xml">
   
 
+  
+  <link rel="canonical" href="https://desmodrone.github.io/posts/09-rustlings-enums/">
+  
+
   <body id="page">
 
 	
@@ -120,7 +124,7 @@
 		<small> - 
 <span class="reading-time" title="Estimated read time">
   
-  9 min read
+  4 min read
   
 </span>
 </small>
@@ -132,373 +136,373 @@
 
 	<div class="content">
         
-	  <p>Rust allows you to define types called &quot;enums&quot; which enumerate possible values.
+	  <p>Rust allows you to define types called "enums" which enumerate possible values.
 Enums are a feature in many languages, but their capabilities differ in each language. Rust’s enums are most similar to algebraic data types in functional languages, such as F#, OCaml, and Haskell.
-Useful in combination with enums is Rust's &quot;pattern matching&quot; facility, which makes it easy to run different code for different values of an enumeration.</p>
+Useful in combination with enums is Rust's "pattern matching" facility, which makes it easy to run different code for different values of an enumeration.</p>
 <h2 id="further-information">Further information</h2>
 <ul>
 <li><a href="https://doc.rust-lang.org/book/ch06-00-enums.html">Enums</a></li>
 <li><a href="https://doc.rust-lang.org/book/ch18-03-pattern-syntax.html">Pattern syntax</a></li>
 </ul>
 <h2 id="enums1-rs"><code>enums1.rs</code></h2>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">&#x2F;&#x2F; enums1.rs
-&#x2F;&#x2F; No hints this time! ;)
-
-&#x2F;&#x2F; I AM NOT DONE
-
-#[derive(Debug)]
-enum Message {
-    &#x2F;&#x2F; TODO: define a few types of messages as used below
-}
-
-fn main() {
-    println!(&quot;{:?}&quot;, Message::Quit);
-    println!(&quot;{:?}&quot;, Message::Echo);
-    println!(&quot;{:?}&quot;, Message::Move);
-    println!(&quot;{:?}&quot;, Message::ChangeColor);
-}
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#707180;">// enums1.rs
+</span><span style="color:#707180;">// No hints this time! ;)
+</span><span>
+</span><span style="color:#707180;">// I AM NOT DONE
+</span><span>
+</span><span>#[</span><span style="font-weight:bold;color:#a3cbe3;">derive</span><span>(Debug)]
+</span><span style="color:#a3cbe3;">enum </span><span>Message {
+</span><span>    </span><span style="color:#707180;">// TODO: define a few types of messages as used below
+</span><span>}
+</span><span>
+</span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">main</span><span>() {
+</span><span>    println!(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span style="font-weight:bold;color:#a2ba43;">{:?}</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>, Message::Quit);
+</span><span>    println!(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span style="font-weight:bold;color:#a2ba43;">{:?}</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>, Message::Echo);
+</span><span>    println!(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span style="font-weight:bold;color:#a2ba43;">{:?}</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>, Message::Move);
+</span><span>    println!(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span style="font-weight:bold;color:#a2ba43;">{:?}</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>, Message::ChangeColor);
+</span><span>}
+</span></code></pre>
 <p>Here we have our code, with not much instruction and no hint this time! But we do have a message in the comments: <code>TODO: define a few types of messages as used below</code>. Let's take a look at the errors as well.</p>
 <h2 id="enums1-rs-errors"><code>enums1.rs</code> errors</h2>
-<pre data-lang="zsh" class="language-zsh "><code class="language-zsh" data-lang="zsh">⚠️  Compiling of exercises&#x2F;enums&#x2F;enums1.rs failed! Please try again. Here is the output:
-
-error[E0599]: no variant or associated item named `Quit` found for enum `Message` in the current scope
-  --&gt; exercises&#x2F;enums&#x2F;enums1.rs:12:31
-   |
-7  | enum Message {
-   | ------------ variant or associated item `Quit` not found for this enum
-...
-12 |     println!(&quot;{:?}&quot;, Message::Quit);
-   |                               ^^^^ variant or associated item not found in `Message`
-
-error[E0599]: no variant or associated item named `Echo` found for enum `Message` in the current scope
-  --&gt; exercises&#x2F;enums&#x2F;enums1.rs:13:31
-   |
-7  | enum Message {
-   | ------------ variant or associated item `Echo` not found for this enum
-...
-13 |     println!(&quot;{:?}&quot;, Message::Echo);
-   |                               ^^^^ variant or associated item not found in `Message`
-
-error[E0599]: no variant or associated item named `Move` found for enum `Message` in the current scope
-  --&gt; exercises&#x2F;enums&#x2F;enums1.rs:14:31
-   |
-7  | enum Message {
-   | ------------ variant or associated item `Move` not found for this enum
-...
-14 |     println!(&quot;{:?}&quot;, Message::Move);
-   |                               ^^^^ variant or associated item not found in `Message`
-
-error[E0599]: no variant or associated item named `ChangeColor` found for enum `Message` in the current scope
-  --&gt; exercises&#x2F;enums&#x2F;enums1.rs:15:31
-   |
-7  | enum Message {
-   | ------------ variant or associated item `ChangeColor` not found for this enum
-...
-15 |     println!(&quot;{:?}&quot;, Message::ChangeColor);
-   |                               ^^^^^^^^^^^ variant or associated item not found in `Message`
-
-error: aborting due to 4 previous errors
-</code></pre>
+<pre data-lang="zsh" style="background-color:#31333d;color:#ffffffc4;" class="language-zsh "><code class="language-zsh" data-lang="zsh"><span style="font-weight:bold;color:#a3cbe3;">⚠️</span><span>  Compiling of exercises/enums/enums1.rs failed! Please try again. Here is the output:
+</span><span>
+</span><span style="font-weight:bold;color:#a3cbe3;">error[E0599]:</span><span> no variant or associated item named `</span><span style="font-weight:bold;color:#a3cbe3;">Quit</span><span>` found for enum `</span><span style="font-weight:bold;color:#a3cbe3;">Message</span><span>` in the current scope
+</span><span>  </span><span style="font-weight:bold;color:#a3cbe3;">--</span><span style="color:#db7c6d;">&gt;</span><span> exercises/enums/enums1.rs:12:31
+</span><span>   </span><span style="color:#db7c6d;">|
+</span><span style="font-weight:bold;color:#a3cbe3;">7  </span><span style="color:#db7c6d;">| </span><span style="font-weight:bold;color:#a3cbe3;">enum</span><span> Message {
+</span><span>   | ------------ variant or associated item `</span><span style="font-weight:bold;color:#a3cbe3;">Quit</span><span>` not found for this enum
+</span><span>...
+</span><span>12 |     println</span><span style="color:#db7c6d;">!</span><span>(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>{:?}</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>, Message::Quit);
+</span><span>   |                               ^^^^ variant or associated item not found in `</span><span style="font-weight:bold;color:#a3cbe3;">Message</span><span>`
+</span><span>
+</span><span>error</span><span style="color:#db7c6d;">[</span><span>E0599</span><span style="color:#db7c6d;">]</span><span>: no variant or associated item named `</span><span style="font-weight:bold;color:#a3cbe3;">Echo</span><span>` found for enum `</span><span style="font-weight:bold;color:#a3cbe3;">Message</span><span>` in the current scope
+</span><span>  --&gt; exercises/enums/enums1.rs:13:31
+</span><span>   |
+</span><span>7  | enum Message {
+</span><span>   | ------------ variant or associated item `</span><span style="font-weight:bold;color:#a3cbe3;">Echo</span><span>` not found for this enum
+</span><span>...
+</span><span>13 |     println</span><span style="color:#db7c6d;">!</span><span>(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>{:?}</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>, Message::Echo);
+</span><span>   |                               ^^^^ variant or associated item not found in `</span><span style="font-weight:bold;color:#a3cbe3;">Message</span><span>`
+</span><span>
+</span><span>error</span><span style="color:#db7c6d;">[</span><span>E0599</span><span style="color:#db7c6d;">]</span><span>: no variant or associated item named `</span><span style="font-weight:bold;color:#a3cbe3;">Move</span><span>` found for enum `</span><span style="font-weight:bold;color:#a3cbe3;">Message</span><span>` in the current scope
+</span><span>  --&gt; exercises/enums/enums1.rs:14:31
+</span><span>   |
+</span><span>7  | enum Message {
+</span><span>   | ------------ variant or associated item `</span><span style="font-weight:bold;color:#a3cbe3;">Move</span><span>` not found for this enum
+</span><span>...
+</span><span>14 |     println</span><span style="color:#db7c6d;">!</span><span>(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>{:?}</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>, Message::Move);
+</span><span>   |                               ^^^^ variant or associated item not found in `</span><span style="font-weight:bold;color:#a3cbe3;">Message</span><span>`
+</span><span>
+</span><span>error</span><span style="color:#db7c6d;">[</span><span>E0599</span><span style="color:#db7c6d;">]</span><span>: no variant or associated item named `</span><span style="font-weight:bold;color:#a3cbe3;">ChangeColor</span><span>` found for enum `</span><span style="font-weight:bold;color:#a3cbe3;">Message</span><span>` in the current scope
+</span><span>  --&gt; exercises/enums/enums1.rs:15:31
+</span><span>   |
+</span><span>7  | enum Message {
+</span><span>   | ------------ variant or associated item `</span><span style="font-weight:bold;color:#a3cbe3;">ChangeColor</span><span>` not found for this enum
+</span><span>...
+</span><span>15 |     println</span><span style="color:#db7c6d;">!</span><span>(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>{:?}</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>, Message::ChangeColor);
+</span><span>   |                               ^^^^^^^^^^^ variant or associated item not found in `</span><span style="font-weight:bold;color:#a3cbe3;">Message</span><span>`
+</span><span>
+</span><span>error: aborting due to 4 previous errors
+</span></code></pre>
 <p>Our errors are pretty straight forward here, we essentially have a repeating messages for each of these errors</p>
-<pre data-lang="zsh" class="language-zsh "><code class="language-zsh" data-lang="zsh">no variant or associated item named `Quit` found for enum `Message` in the current scope
-  --&gt; exercises&#x2F;enums&#x2F;enums1.rs:12:31
-   |
-7  | enum Message {
-   | ------------ variant or associated item `Quit` not found for this enum
-</code></pre>
+<pre data-lang="zsh" style="background-color:#31333d;color:#ffffffc4;" class="language-zsh "><code class="language-zsh" data-lang="zsh"><span style="font-weight:bold;color:#a3cbe3;">no</span><span> variant or associated item named `</span><span style="font-weight:bold;color:#a3cbe3;">Quit</span><span>` found for enum `</span><span style="font-weight:bold;color:#a3cbe3;">Message</span><span>` in the current scope
+</span><span>  </span><span style="font-weight:bold;color:#a3cbe3;">--</span><span style="color:#db7c6d;">&gt;</span><span> exercises/enums/enums1.rs:12:31
+</span><span>   </span><span style="color:#db7c6d;">|
+</span><span style="font-weight:bold;color:#a3cbe3;">7  </span><span style="color:#db7c6d;">| </span><span style="font-weight:bold;color:#a3cbe3;">enum</span><span> Message {
+</span><span>   | ------------ variant or associated item `</span><span style="font-weight:bold;color:#a3cbe3;">Quit</span><span>` not found for this enum
+</span></code></pre>
 <p>Which is telling us that we're missing items in the <code>enum</code> which of course makes sense since we know that we have to fill out the rest of the <code>enum</code>. What's nice is that the message is very clear and show's us where our item are missing which is clearly the <code>enum Message</code>. So let's get to it and fill out that <code>enum</code> and see what happens.</p>
 <h2 id="enums1-rs-solution"><code>enums1.rs</code> solution</h2>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">#[derive(Debug)]
-enum Message {
-    Quit,
-    Echo,
-    Move,
-    ChangeColor,
-}
-
-fn main() {
-    println!(&quot;{:?}&quot;, Message::Quit);
-    println!(&quot;{:?}&quot;, Message::Echo);
-    println!(&quot;{:?}&quot;, Message::Move);
-    println!(&quot;{:?}&quot;, Message::ChangeColor);
-}
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span>#[</span><span style="font-weight:bold;color:#a3cbe3;">derive</span><span>(Debug)]
+</span><span style="color:#a3cbe3;">enum </span><span>Message {
+</span><span>    Quit,
+</span><span>    Echo,
+</span><span>    Move,
+</span><span>    ChangeColor,
+</span><span>}
+</span><span>
+</span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">main</span><span>() {
+</span><span>    println!(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span style="font-weight:bold;color:#a2ba43;">{:?}</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>, Message::Quit);
+</span><span>    println!(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span style="font-weight:bold;color:#a2ba43;">{:?}</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>, Message::Echo);
+</span><span>    println!(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span style="font-weight:bold;color:#a2ba43;">{:?}</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>, Message::Move);
+</span><span>    println!(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span style="font-weight:bold;color:#a2ba43;">{:?}</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>, Message::ChangeColor);
+</span><span>}
+</span></code></pre>
 <p>...and this compiles, this is relatively simple as all we had to do is look at the <code>main()</code> confirmed with the <code>errors</code> and we've got our complete <code>enum Message</code>, we didn't need any hints now did we? Here's our output:</p>
-<pre data-lang="zsh" class="language-zsh "><code class="language-zsh" data-lang="zsh">Output:
-====================
-Quit
-Echo
-Move
-ChangeColor
-
-====================
-</code></pre>
+<pre data-lang="zsh" style="background-color:#31333d;color:#ffffffc4;" class="language-zsh "><code class="language-zsh" data-lang="zsh"><span style="font-weight:bold;color:#a3cbe3;">Output:
+</span><span style="color:#db7c6d;">=</span><span>===================
+</span><span style="font-weight:bold;color:#a3cbe3;">Quit
+</span><span style="font-weight:bold;color:#a3cbe3;">Echo
+</span><span style="font-weight:bold;color:#a3cbe3;">Move
+</span><span style="font-weight:bold;color:#a3cbe3;">ChangeColor
+</span><span>
+</span><span style="color:#db7c6d;">=</span><span>===================
+</span></code></pre>
 <h2 id="enums2-rs"><code>enums2.rs</code></h2>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">&#x2F;&#x2F; enums2.rs
-&#x2F;&#x2F; Execute `rustlings hint enums2` or use the `hint` watch subcommand for a hint.
-
-&#x2F;&#x2F; I AM NOT DONE
-
-#[derive(Debug)]
-enum Message {
-    &#x2F;&#x2F; TODO: define the different variants used below
-}
-
-impl Message {
-    fn call(&amp;self) {
-        println!(&quot;{:?}&quot;, self);
-    }
-}
-
-fn main() {
-    let messages = [
-        Message::Move { x: 10, y: 30 },
-        Message::Echo(String::from(&quot;hello world&quot;)),
-        Message::ChangeColor(200, 255, 255),
-        Message::Quit,
-    ];
-
-    for message in &amp;messages {
-        message.call();
-    }
-}
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#707180;">// enums2.rs
+</span><span style="color:#707180;">// Execute `rustlings hint enums2` or use the `hint` watch subcommand for a hint.
+</span><span>
+</span><span style="color:#707180;">// I AM NOT DONE
+</span><span>
+</span><span>#[</span><span style="font-weight:bold;color:#a3cbe3;">derive</span><span>(Debug)]
+</span><span style="color:#a3cbe3;">enum </span><span>Message {
+</span><span>    </span><span style="color:#707180;">// TODO: define the different variants used below
+</span><span>}
+</span><span>
+</span><span style="color:#a3cbe3;">impl </span><span>Message {
+</span><span>    </span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">call</span><span>(</span><span style="color:#db7c6d;">&amp;</span><span style="color:#ffffff;">self</span><span>) {
+</span><span>        println!(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span style="font-weight:bold;color:#a2ba43;">{:?}</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>, </span><span style="font-weight:bold;color:#a3cbe3;">self</span><span>);
+</span><span>    }
+</span><span>}
+</span><span>
+</span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">main</span><span>() {
+</span><span>    </span><span style="color:#a3cbe3;">let</span><span> messages </span><span style="color:#db7c6d;">= </span><span>[
+</span><span>        Message::Move { x: </span><span style="color:#db7c6d;">10</span><span>, y: </span><span style="color:#db7c6d;">30 </span><span>},
+</span><span>        Message::Echo(</span><span style="color:#e7e7e7;">String</span><span>::from(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>hello world</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>)),
+</span><span>        Message::ChangeColor(</span><span style="color:#db7c6d;">200</span><span>, </span><span style="color:#db7c6d;">255</span><span>, </span><span style="color:#db7c6d;">255</span><span>),
+</span><span>        Message::Quit,
+</span><span>    ];
+</span><span>
+</span><span>    </span><span style="color:#db7c6d;">for</span><span> message </span><span style="color:#db7c6d;">in &amp;</span><span>messages {
+</span><span>        message.</span><span style="color:#db7c6d;">call</span><span>();
+</span><span>    }
+</span><span>}
+</span></code></pre>
 <p>We have a similar set-up here with what we saw in the previous exercise in which we have to define the different variants that are used in the rest of the code, in this case in our <code>main()</code> function. Let's take a look at the errors like we always do.</p>
 <h2 id="enums2-rs-errors"><code>enums2.rs</code> errors</h2>
-<pre data-lang="zsh" class="language-zsh "><code class="language-zsh" data-lang="zsh">⚠️  Compiling of exercises&#x2F;enums&#x2F;enums2.rs failed! Please try again. Here is the output:
-error[E0599]: no variant named `Move` found for enum `Message`
-  --&gt; exercises&#x2F;enums&#x2F;enums2.rs:19:18
-   |
-7  | enum Message {
-   | ------------ variant `Move` not found here
-...
-19 |         Message::Move { x: 10, y: 30 },
-   |                  ^^^^ variant not found in `Message`
-
-error[E0599]: no variant or associated item named `Echo` found for enum `Message` in the current scope
-  --&gt; exercises&#x2F;enums&#x2F;enums2.rs:20:18
-   |
-7  | enum Message {
-   | ------------ variant or associated item `Echo` not found for this enum
-...
-20 |         Message::Echo(String::from(&quot;hello world&quot;)),
-   |                  ^^^^ variant or associated item not found in `Message`
-
-error[E0599]: no variant or associated item named `ChangeColor` found for enum `Message` in the current scope
-  --&gt; exercises&#x2F;enums&#x2F;enums2.rs:21:18
-   |
-7  | enum Message {
-   | ------------ variant or associated item `ChangeColor` not found for this enum
-...
-21 |         Message::ChangeColor(200, 255, 255),
-   |                  ^^^^^^^^^^^ variant or associated item not found in `Message`
-
-error[E0599]: no variant or associated item named `Quit` found for enum `Message` in the current scope
-  --&gt; exercises&#x2F;enums&#x2F;enums2.rs:22:18
-   |
-7  | enum Message {
-   | ------------ variant or associated item `Quit` not found for this enum
-...
-22 |         Message::Quit,
-   |                  ^^^^ variant or associated item not found in `Message`
-
-error: aborting due to 4 previous errors
-</code></pre>
+<pre data-lang="zsh" style="background-color:#31333d;color:#ffffffc4;" class="language-zsh "><code class="language-zsh" data-lang="zsh"><span style="font-weight:bold;color:#a3cbe3;">⚠️</span><span>  Compiling of exercises/enums/enums2.rs failed! Please try again. Here is the output:
+</span><span style="font-weight:bold;color:#a3cbe3;">error[E0599]:</span><span> no variant named `</span><span style="font-weight:bold;color:#a3cbe3;">Move</span><span>` found for enum `</span><span style="font-weight:bold;color:#a3cbe3;">Message</span><span>`
+</span><span>  </span><span style="font-weight:bold;color:#a3cbe3;">--</span><span style="color:#db7c6d;">&gt;</span><span> exercises/enums/enums2.rs:19:18
+</span><span>   </span><span style="color:#db7c6d;">|
+</span><span style="font-weight:bold;color:#a3cbe3;">7  </span><span style="color:#db7c6d;">| </span><span style="font-weight:bold;color:#a3cbe3;">enum</span><span> Message {
+</span><span>   | ------------ variant `</span><span style="font-weight:bold;color:#a3cbe3;">Move</span><span>` not found here
+</span><span>...
+</span><span>19 |         Message::Move { x: 10, y: 30 },
+</span><span>   |                  ^^^^ variant not found in `</span><span style="font-weight:bold;color:#a3cbe3;">Message</span><span>`
+</span><span>
+</span><span>error</span><span style="color:#db7c6d;">[</span><span>E0599</span><span style="color:#db7c6d;">]</span><span>: no variant or associated item named `</span><span style="font-weight:bold;color:#a3cbe3;">Echo</span><span>` found for enum `</span><span style="font-weight:bold;color:#a3cbe3;">Message</span><span>` in the current scope
+</span><span>  --&gt; exercises/enums/enums2.rs:20:18
+</span><span>   |
+</span><span>7  | enum Message {
+</span><span>   | ------------ variant or associated item `</span><span style="font-weight:bold;color:#a3cbe3;">Echo</span><span>` not found for this enum
+</span><span>...
+</span><span>20 |         Message::Echo(String::from(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>hello world</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>)),
+</span><span>   |                  ^^^^ variant or associated item not found in `</span><span style="font-weight:bold;color:#a3cbe3;">Message</span><span>`
+</span><span>
+</span><span>error</span><span style="color:#db7c6d;">[</span><span>E0599</span><span style="color:#db7c6d;">]</span><span>: no variant or associated item named `</span><span style="font-weight:bold;color:#a3cbe3;">ChangeColor</span><span>` found for enum `</span><span style="font-weight:bold;color:#a3cbe3;">Message</span><span>` in the current scope
+</span><span>  --&gt; exercises/enums/enums2.rs:21:18
+</span><span>   |
+</span><span>7  | enum Message {
+</span><span>   | ------------ variant or associated item `</span><span style="font-weight:bold;color:#a3cbe3;">ChangeColor</span><span>` not found for this enum
+</span><span>...
+</span><span>21 |         Message::ChangeColor(200, 255, 255),
+</span><span>   |                  ^^^^^^^^^^^ variant or associated item not found in `</span><span style="font-weight:bold;color:#a3cbe3;">Message</span><span>`
+</span><span>
+</span><span>error</span><span style="color:#db7c6d;">[</span><span>E0599</span><span style="color:#db7c6d;">]</span><span>: no variant or associated item named `</span><span style="font-weight:bold;color:#a3cbe3;">Quit</span><span>` found for enum `</span><span style="font-weight:bold;color:#a3cbe3;">Message</span><span>` in the current scope
+</span><span>  --&gt; exercises/enums/enums2.rs:22:18
+</span><span>   |
+</span><span>7  | enum Message {
+</span><span>   | ------------ variant or associated item `</span><span style="font-weight:bold;color:#a3cbe3;">Quit</span><span>` not found for this enum
+</span><span>...
+</span><span>22 |         Message::Quit,
+</span><span>   |                  ^^^^ variant or associated item not found in `</span><span style="font-weight:bold;color:#a3cbe3;">Message</span><span>`
+</span><span>
+</span><span>error: aborting due to 4 previous errors
+</span></code></pre>
 <p>Errors are similar to last time as well, but we can see that there's something different so let's take a look at how to solve this problem.</p>
 <h2 id="enums2-rs-solution"><code>enums2.rs</code> Solution</h2>
 <p>We can see that in the <code>main()</code> there isn't simply a name of a enum variant like <code>Move</code> or <code>Echo</code> but there's data attached to it. This is because unlike in other languages, <code>enums</code> in Rust can have data like structs, strings, integers, in fact you can even include another <code>enum</code>. So in this case we solve this problem by adding the variant with the data that is expected. If we look at <code>Move</code> we add the <code>{ x: i32, y: i32}</code> struct information. Let's do the same for the rest of the variants.</p>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">#[derive(Debug)]
-enum Message {
-    Move { x: i32, y: i32 },
-    Echo(String),
-    ChangeColor(i32, i32, i32),
-    Quit,
-}
-impl Message {
-    fn call(&amp;self) {
-        println!(&quot;{:?}&quot;, self);
-    }
-}
-
-fn main() {
-    let messages = [
-        Message::Move { x: 10, y: 30 },
-        Message::Echo(String::from(&quot;hello world&quot;)),
-        Message::ChangeColor(200, 255, 255),
-        Message::Quit,
-    ];
-
-    for message in &amp;messages {
-        message.call();
-    }
-}
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span>#[</span><span style="font-weight:bold;color:#a3cbe3;">derive</span><span>(Debug)]
+</span><span style="color:#a3cbe3;">enum </span><span>Message {
+</span><span>    Move { x: </span><span style="color:#a3cbe3;">i32</span><span>, y: </span><span style="color:#a3cbe3;">i32 </span><span>},
+</span><span>    Echo(</span><span style="color:#e7e7e7;">String</span><span>),
+</span><span>    ChangeColor(</span><span style="color:#a3cbe3;">i32</span><span>, </span><span style="color:#a3cbe3;">i32</span><span>, </span><span style="color:#a3cbe3;">i32</span><span>),
+</span><span>    Quit,
+</span><span>}
+</span><span style="color:#a3cbe3;">impl </span><span>Message {
+</span><span>    </span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">call</span><span>(</span><span style="color:#db7c6d;">&amp;</span><span style="color:#ffffff;">self</span><span>) {
+</span><span>        println!(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span style="font-weight:bold;color:#a2ba43;">{:?}</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>, </span><span style="font-weight:bold;color:#a3cbe3;">self</span><span>);
+</span><span>    }
+</span><span>}
+</span><span>
+</span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">main</span><span>() {
+</span><span>    </span><span style="color:#a3cbe3;">let</span><span> messages </span><span style="color:#db7c6d;">= </span><span>[
+</span><span>        Message::Move { x: </span><span style="color:#db7c6d;">10</span><span>, y: </span><span style="color:#db7c6d;">30 </span><span>},
+</span><span>        Message::Echo(</span><span style="color:#e7e7e7;">String</span><span>::from(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>hello world</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>)),
+</span><span>        Message::ChangeColor(</span><span style="color:#db7c6d;">200</span><span>, </span><span style="color:#db7c6d;">255</span><span>, </span><span style="color:#db7c6d;">255</span><span>),
+</span><span>        Message::Quit,
+</span><span>    ];
+</span><span>
+</span><span>    </span><span style="color:#db7c6d;">for</span><span> message </span><span style="color:#db7c6d;">in &amp;</span><span>messages {
+</span><span>        message.</span><span style="color:#db7c6d;">call</span><span>();
+</span><span>    }
+</span><span>}
+</span></code></pre>
 <p>With that our code compiles, we get our expected output with the different types of data attached. On to our final <code>enum</code> exercise.</p>
-<pre data-lang="zsh" class="language-zsh "><code class="language-zsh" data-lang="zsh">Output:
-====================
-Move { x: 10, y: 30 }
-Echo(&quot;hello world&quot;)
-ChangeColor(200, 255, 255)
-Quit
-
-====================
-</code></pre>
+<pre data-lang="zsh" style="background-color:#31333d;color:#ffffffc4;" class="language-zsh "><code class="language-zsh" data-lang="zsh"><span style="font-weight:bold;color:#a3cbe3;">Output:
+</span><span style="color:#db7c6d;">=</span><span>===================
+</span><span style="font-weight:bold;color:#a3cbe3;">Move </span><span>{ x: 10, y: 30 }
+</span><span style="font-weight:bold;color:#a3cbe3;">Echo</span><span>(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>hello world</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>)
+</span><span style="font-weight:bold;color:#a3cbe3;">ChangeColor</span><span>(200, 255, 255)
+</span><span style="font-weight:bold;color:#a3cbe3;">Quit
+</span><span>
+</span><span style="color:#db7c6d;">=</span><span>===================
+</span></code></pre>
 <h2 id="enums3-rs"><code>enums3.rs</code></h2>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">&#x2F;&#x2F; enums3.rs
-&#x2F;&#x2F; Address all the TODOs to make the tests pass!
-&#x2F;&#x2F; Execute `rustlings hint enums3` or use the `hint` watch subcommand for a hint.
-
-&#x2F;&#x2F; I AM NOT DONE
-
-enum Message {
-    &#x2F;&#x2F; TODO: implement the message variant types based on their usage below
-}
-
-struct Point {
-    x: u8,
-    y: u8,
-}
-
-struct State {
-    color: (u8, u8, u8),
-    position: Point,
-    quit: bool,
-}
-
-impl State {
-    fn change_color(&amp;mut self, color: (u8, u8, u8)) {
-        self.color = color;
-    }
-
-    fn quit(&amp;mut self) {
-        self.quit = true;
-    }
-
-    fn echo(&amp;self, s: String) {
-        println!(&quot;{}&quot;, s);
-    }
-
-    fn move_position(&amp;mut self, p: Point) {
-        self.position = p;
-    }
-
-    fn process(&amp;mut self, message: Message) {
-        &#x2F;&#x2F; TODO: create a match expression to process the different message variants
-        &#x2F;&#x2F; Remember: When passing a tuple as a function argument, you&#x27;ll need extra parentheses: fn function((t, u, p, l, e))
-    }
-}
-
-#[cfg(test)]
-mod tests {
-    use super::*;
-
-    #[test]
-    fn test_match_message_call() {
-        let mut state = State {
-            quit: false,
-            position: Point { x: 0, y: 0 },
-            color: (0, 0, 0),
-        };
-        state.process(Message::ChangeColor(255, 0, 255));
-        state.process(Message::Echo(String::from(&quot;hello world&quot;)));
-        state.process(Message::Move(Point { x: 10, y: 15 }));
-        state.process(Message::Quit);
-
-        assert_eq!(state.color, (255, 0, 255));
-        assert_eq!(state.position.x, 10);
-        assert_eq!(state.position.y, 15);
-        assert_eq!(state.quit, true);
-    }
-}
-
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#707180;">// enums3.rs
+</span><span style="color:#707180;">// Address all the TODOs to make the tests pass!
+</span><span style="color:#707180;">// Execute `rustlings hint enums3` or use the `hint` watch subcommand for a hint.
+</span><span>
+</span><span style="color:#707180;">// I AM NOT DONE
+</span><span>
+</span><span style="color:#a3cbe3;">enum </span><span>Message {
+</span><span>    </span><span style="color:#707180;">// TODO: implement the message variant types based on their usage below
+</span><span>}
+</span><span>
+</span><span style="color:#a3cbe3;">struct </span><span>Point {
+</span><span>    </span><span style="font-weight:bold;color:#a3cbe3;">x</span><span>: </span><span style="color:#a3cbe3;">u8</span><span>,
+</span><span>    </span><span style="font-weight:bold;color:#a3cbe3;">y</span><span>: </span><span style="color:#a3cbe3;">u8</span><span>,
+</span><span>}
+</span><span>
+</span><span style="color:#a3cbe3;">struct </span><span>State {
+</span><span>    </span><span style="font-weight:bold;color:#a3cbe3;">color</span><span>: (</span><span style="color:#a3cbe3;">u8</span><span>, </span><span style="color:#a3cbe3;">u8</span><span>, </span><span style="color:#a3cbe3;">u8</span><span>),
+</span><span>    </span><span style="font-weight:bold;color:#a3cbe3;">position</span><span>: Point,
+</span><span>    </span><span style="font-weight:bold;color:#a3cbe3;">quit</span><span>: </span><span style="color:#a3cbe3;">bool</span><span>,
+</span><span>}
+</span><span>
+</span><span style="color:#a3cbe3;">impl </span><span>State {
+</span><span>    </span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">change_color</span><span>(</span><span style="color:#db7c6d;">&amp;</span><span style="color:#dbbb3d;">mut </span><span style="color:#ffffff;">self</span><span>, </span><span style="color:#ffffff;">color</span><span>: (</span><span style="color:#ffffff;">u8</span><span>, </span><span style="color:#ffffff;">u8</span><span>, </span><span style="color:#ffffff;">u8</span><span>)) {
+</span><span>        </span><span style="font-weight:bold;color:#a3cbe3;">self</span><span>.color </span><span style="color:#db7c6d;">=</span><span> color;
+</span><span>    }
+</span><span>
+</span><span>    </span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">quit</span><span>(</span><span style="color:#db7c6d;">&amp;</span><span style="color:#dbbb3d;">mut </span><span style="color:#ffffff;">self</span><span>) {
+</span><span>        </span><span style="font-weight:bold;color:#a3cbe3;">self</span><span>.quit </span><span style="color:#db7c6d;">= </span><span style="color:#ffffff;">true</span><span>;
+</span><span>    }
+</span><span>
+</span><span>    </span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">echo</span><span>(</span><span style="color:#db7c6d;">&amp;</span><span style="color:#ffffff;">self</span><span>, </span><span style="color:#ffffff;">s</span><span>: String) {
+</span><span>        println!(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span style="font-weight:bold;color:#a2ba43;">{}</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>, s);
+</span><span>    }
+</span><span>
+</span><span>    </span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">move_position</span><span>(</span><span style="color:#db7c6d;">&amp;</span><span style="color:#dbbb3d;">mut </span><span style="color:#ffffff;">self</span><span>, </span><span style="color:#ffffff;">p</span><span>: Point) {
+</span><span>        </span><span style="font-weight:bold;color:#a3cbe3;">self</span><span>.position </span><span style="color:#db7c6d;">=</span><span> p;
+</span><span>    }
+</span><span>
+</span><span>    </span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">process</span><span>(</span><span style="color:#db7c6d;">&amp;</span><span style="color:#dbbb3d;">mut </span><span style="color:#ffffff;">self</span><span>, </span><span style="color:#ffffff;">message</span><span>: Message) {
+</span><span>        </span><span style="color:#707180;">// TODO: create a match expression to process the different message variants
+</span><span>        </span><span style="color:#707180;">// Remember: When passing a tuple as a function argument, you&#39;ll need extra parentheses: fn function((t, u, p, l, e))
+</span><span>    }
+</span><span>}
+</span><span>
+</span><span>#[</span><span style="font-weight:bold;color:#a3cbe3;">cfg</span><span>(test)]
+</span><span style="color:#a3cbe3;">mod </span><span>tests {
+</span><span>    </span><span style="color:#db7c6d;">use super</span><span>::</span><span style="color:#db7c6d;">*</span><span>;
+</span><span>
+</span><span>    #[</span><span style="font-weight:bold;color:#a3cbe3;">test</span><span>]
+</span><span>    </span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">test_match_message_call</span><span>() {
+</span><span>        </span><span style="color:#a3cbe3;">let </span><span style="color:#dbbb3d;">mut</span><span> state </span><span style="color:#db7c6d;">=</span><span> State {
+</span><span>            quit: </span><span style="color:#ffffff;">false</span><span>,
+</span><span>            position: Point { x: </span><span style="color:#db7c6d;">0</span><span>, y: </span><span style="color:#db7c6d;">0 </span><span>},
+</span><span>            color: (</span><span style="color:#db7c6d;">0</span><span>, </span><span style="color:#db7c6d;">0</span><span>, </span><span style="color:#db7c6d;">0</span><span>),
+</span><span>        };
+</span><span>        state.</span><span style="color:#db7c6d;">process</span><span>(Message::ChangeColor(</span><span style="color:#db7c6d;">255</span><span>, </span><span style="color:#db7c6d;">0</span><span>, </span><span style="color:#db7c6d;">255</span><span>));
+</span><span>        state.</span><span style="color:#db7c6d;">process</span><span>(Message::Echo(</span><span style="color:#e7e7e7;">String</span><span>::from(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>hello world</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>)));
+</span><span>        state.</span><span style="color:#db7c6d;">process</span><span>(Message::Move(Point { x: </span><span style="color:#db7c6d;">10</span><span>, y: </span><span style="color:#db7c6d;">15 </span><span>}));
+</span><span>        state.</span><span style="color:#db7c6d;">process</span><span>(Message::Quit);
+</span><span>
+</span><span>        assert_eq!(state.color, (</span><span style="color:#db7c6d;">255</span><span>, </span><span style="color:#db7c6d;">0</span><span>, </span><span style="color:#db7c6d;">255</span><span>));
+</span><span>        assert_eq!(state.position.x, </span><span style="color:#db7c6d;">10</span><span>);
+</span><span>        assert_eq!(state.position.y, </span><span style="color:#db7c6d;">15</span><span>);
+</span><span>        assert_eq!(state.quit, </span><span style="color:#ffffff;">true</span><span>);
+</span><span>    }
+</span><span>}
+</span><span>
+</span></code></pre>
 <p>In this exercise we see 2 different locations in which we have to complete the code.</p>
 <ol>
 <li>Is the <code>enum Message</code> which is completely empty, we've done this a few times so it shouldn't be too difficult.</li>
 </ol>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">enum Message {
-    &#x2F;&#x2F; TODO: implement the message variant types based on their usage below
-}
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#a3cbe3;">enum </span><span>Message {
+</span><span>    </span><span style="color:#707180;">// TODO: implement the message variant types based on their usage below
+</span><span>}
+</span></code></pre>
 <ol start="2">
 <li>The next area is the <code>process()</code> function, inside of our <code>impl State</code> in which we get instructions on how to complete by using a <code>match</code> expression.</li>
 </ol>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">    fn process(&amp;mut self, message: Message) {
-        &#x2F;&#x2F; TODO: create a match expression to process the different message variants
-        &#x2F;&#x2F; Remember: When passing a tuple as a function argument, you&#x27;ll need extra parentheses: fn function((t, u, p, l, e))
-    }
-}
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span>    </span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">process</span><span>(</span><span style="color:#db7c6d;">&amp;</span><span style="color:#dbbb3d;">mut </span><span style="color:#ffffff;">self</span><span>, </span><span style="color:#ffffff;">message</span><span>: Message) {
+</span><span>        </span><span style="color:#707180;">// TODO: create a match expression to process the different message variants
+</span><span>        </span><span style="color:#707180;">// Remember: When passing a tuple as a function argument, you&#39;ll need extra parentheses: fn function((t, u, p, l, e))
+</span><span>    }
+</span><span>}
+</span></code></pre>
 <p>Now, we take a look at the errors to see if there are any additional hints for completing our task</p>
 <h2 id="enums3-rs-errors"><code>enums3.rs</code> errors</h2>
-<pre data-lang="zsh" class="language-zsh "><code class="language-zsh" data-lang="zsh">⚠️  Compiling of exercises&#x2F;enums&#x2F;enums3.rs failed! Please try again. Here is the output:
-error[E0599]: no variant or associated item named `ChangeColor` found for enum `Message` in the current scope
-  --&gt; exercises&#x2F;enums&#x2F;enums3.rs:56:32
-   |
-7  | enum Message {
-   | ------------ variant or associated item `ChangeColor` not found for this enum
-...
-56 |         state.process(Message::ChangeColor(255, 0, 255));
-   |                                ^^^^^^^^^^^ variant or associated item not found in `Message`
-
-error[E0599]: no variant or associated item named `Echo` found for enum `Message` in the current scope
-  --&gt; exercises&#x2F;enums&#x2F;enums3.rs:57:32
-   |
-7  | enum Message {
-   | ------------ variant or associated item `Echo` not found for this enum
-...
-57 |         state.process(Message::Echo(String::from(&quot;hello world&quot;)));
-   |                                ^^^^ variant or associated item not found in `Message`
-
-error[E0599]: no variant or associated item named `Move` found for enum `Message` in the current scope
-  --&gt; exercises&#x2F;enums&#x2F;enums3.rs:58:32
-   |
-7  | enum Message {
-   | ------------ variant or associated item `Move` not found for this enum
-...
-58 |         state.process(Message::Move(Point { x: 10, y: 15 }));
-   |                                ^^^^ variant or associated item not found in `Message`
-
-error[E0599]: no variant or associated item named `Quit` found for enum `Message` in the current scope
-  --&gt; exercises&#x2F;enums&#x2F;enums3.rs:59:32
-   |
-7  | enum Message {
-   | ------------ variant or associated item `Quit` not found for this enum
-...
-59 |         state.process(Message::Quit);
-   |                                ^^^^ variant or associated item not found in `Message`
-
-error: aborting due to 4 previous errors
-</code></pre>
+<pre data-lang="zsh" style="background-color:#31333d;color:#ffffffc4;" class="language-zsh "><code class="language-zsh" data-lang="zsh"><span style="font-weight:bold;color:#a3cbe3;">⚠️</span><span>  Compiling of exercises/enums/enums3.rs failed! Please try again. Here is the output:
+</span><span style="font-weight:bold;color:#a3cbe3;">error[E0599]:</span><span> no variant or associated item named `</span><span style="font-weight:bold;color:#a3cbe3;">ChangeColor</span><span>` found for enum `</span><span style="font-weight:bold;color:#a3cbe3;">Message</span><span>` in the current scope
+</span><span>  </span><span style="font-weight:bold;color:#a3cbe3;">--</span><span style="color:#db7c6d;">&gt;</span><span> exercises/enums/enums3.rs:56:32
+</span><span>   </span><span style="color:#db7c6d;">|
+</span><span style="font-weight:bold;color:#a3cbe3;">7  </span><span style="color:#db7c6d;">| </span><span style="font-weight:bold;color:#a3cbe3;">enum</span><span> Message {
+</span><span>   | ------------ variant or associated item `</span><span style="font-weight:bold;color:#a3cbe3;">ChangeColor</span><span>` not found for this enum
+</span><span>...
+</span><span>56 |         state.process(Message::ChangeColor(255, 0, 255));
+</span><span>   |                                ^^^^^^^^^^^ variant or associated item not found in `</span><span style="font-weight:bold;color:#a3cbe3;">Message</span><span>`
+</span><span>
+</span><span>error</span><span style="color:#db7c6d;">[</span><span>E0599</span><span style="color:#db7c6d;">]</span><span>: no variant or associated item named `</span><span style="font-weight:bold;color:#a3cbe3;">Echo</span><span>` found for enum `</span><span style="font-weight:bold;color:#a3cbe3;">Message</span><span>` in the current scope
+</span><span>  --&gt; exercises/enums/enums3.rs:57:32
+</span><span>   |
+</span><span>7  | enum Message {
+</span><span>   | ------------ variant or associated item `</span><span style="font-weight:bold;color:#a3cbe3;">Echo</span><span>` not found for this enum
+</span><span>...
+</span><span>57 |         state.process(Message::Echo(String::from(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>hello world</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>)));
+</span><span>   |                                ^^^^ variant or associated item not found in `</span><span style="font-weight:bold;color:#a3cbe3;">Message</span><span>`
+</span><span>
+</span><span>error</span><span style="color:#db7c6d;">[</span><span>E0599</span><span style="color:#db7c6d;">]</span><span>: no variant or associated item named `</span><span style="font-weight:bold;color:#a3cbe3;">Move</span><span>` found for enum `</span><span style="font-weight:bold;color:#a3cbe3;">Message</span><span>` in the current scope
+</span><span>  --&gt; exercises/enums/enums3.rs:58:32
+</span><span>   |
+</span><span>7  | enum Message {
+</span><span>   | ------------ variant or associated item `</span><span style="font-weight:bold;color:#a3cbe3;">Move</span><span>` not found for this enum
+</span><span>...
+</span><span>58 |         state.process(Message::Move(Point { x: 10, y: 15 }));
+</span><span>   |                                ^^^^ variant or associated item not found in `</span><span style="font-weight:bold;color:#a3cbe3;">Message</span><span>`
+</span><span>
+</span><span>error</span><span style="color:#db7c6d;">[</span><span>E0599</span><span style="color:#db7c6d;">]</span><span>: no variant or associated item named `</span><span style="font-weight:bold;color:#a3cbe3;">Quit</span><span>` found for enum `</span><span style="font-weight:bold;color:#a3cbe3;">Message</span><span>` in the current scope
+</span><span>  --&gt; exercises/enums/enums3.rs:59:32
+</span><span>   |
+</span><span>7  | enum Message {
+</span><span>   | ------------ variant or associated item `</span><span style="font-weight:bold;color:#a3cbe3;">Quit</span><span>` not found for this enum
+</span><span>...
+</span><span>59 |         state.process(Message::Quit);
+</span><span>   |                                ^^^^ variant or associated item not found in `</span><span style="font-weight:bold;color:#a3cbe3;">Message</span><span>`
+</span><span>
+</span><span>error: aborting due to 4 previous errors
+</span></code></pre>
 <p>So far, it looks pretty straight forward once again, the compiler is just telling us about the missing variants, so let's start filling out some code.</p>
 <p>If we fill out our <code>Message enum</code> in a similar way we have been in the previous exercises, but instead of passing in the coordinates directly to <code>Move</code> we pass in <code>Point</code> because we see that's what we need to match in tests below.</p>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">enum Message {
-    Move (Point),
-    Echo(String),
-    ChangeColor((u8, u8, u8)),
-    Quit,
-}
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#a3cbe3;">enum </span><span>Message {
+</span><span>    Move (Point),
+</span><span>    Echo(</span><span style="color:#e7e7e7;">String</span><span>),
+</span><span>    ChangeColor((</span><span style="color:#a3cbe3;">u8</span><span>, </span><span style="color:#a3cbe3;">u8</span><span>, </span><span style="color:#a3cbe3;">u8</span><span>)),
+</span><span>    Quit,
+</span><span>}
+</span></code></pre>
 <p>Let's take a look at our next code block that we need to fill in and the instructions.
 We're told to use a match expression and to remember that when passing a tuple as a function argument we need to add extra parentheses. Alright, noted.</p>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">    fn process(&amp;mut self, message: Message) {
-        &#x2F;&#x2F; TODO: create a match expression to process the different message variants
-        &#x2F;&#x2F; Remember: When passing a tuple as a function argument, you&#x27;ll need extra parentheses: fn function((t, u, p, l, e))
-    }
-}
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span>    </span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">process</span><span>(</span><span style="color:#db7c6d;">&amp;</span><span style="color:#dbbb3d;">mut </span><span style="color:#ffffff;">self</span><span>, </span><span style="color:#ffffff;">message</span><span>: Message) {
+</span><span>        </span><span style="color:#707180;">// TODO: create a match expression to process the different message variants
+</span><span>        </span><span style="color:#707180;">// Remember: When passing a tuple as a function argument, you&#39;ll need extra parentheses: fn function((t, u, p, l, e))
+</span><span>    }
+</span><span>}
+</span></code></pre>
 <p>So here we're going to go through the solution step-by-step since it's something that's a little more than we've had with any of the previous <code>enum</code> exercises.</p>
 <h2 id="process-function"><code>process ()</code> function</h2>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">fn process(&amp;mut self, message: Message) {
-        match message {
-            Message::ChangeColor((r, g, b)) =&gt; self.change_color((r, g, b)),
-            Message::Echo(s) =&gt; self.echo(s),
-            Message::Move(p) =&gt; self.move_position(p),
-            Message::Quit =&gt; self.quit(),
-        }
-    }
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">process</span><span>(</span><span style="color:#db7c6d;">&amp;</span><span style="color:#dbbb3d;">mut </span><span style="color:#ffffff;">self</span><span>, </span><span style="color:#ffffff;">message</span><span>: Message) {
+</span><span>        </span><span style="color:#db7c6d;">match</span><span> message {
+</span><span>            Message::ChangeColor((r, g, b)) </span><span style="color:#db7c6d;">=&gt; </span><span style="font-weight:bold;color:#a3cbe3;">self</span><span>.</span><span style="color:#db7c6d;">change_color</span><span>((r, g, b)),
+</span><span>            Message::Echo(s) </span><span style="color:#db7c6d;">=&gt; </span><span style="font-weight:bold;color:#a3cbe3;">self</span><span>.</span><span style="color:#db7c6d;">echo</span><span>(s),
+</span><span>            Message::Move(p) </span><span style="color:#db7c6d;">=&gt; </span><span style="font-weight:bold;color:#a3cbe3;">self</span><span>.</span><span style="color:#db7c6d;">move_position</span><span>(p),
+</span><span>            Message::Quit </span><span style="color:#db7c6d;">=&gt; </span><span style="font-weight:bold;color:#a3cbe3;">self</span><span>.</span><span style="color:#db7c6d;">quit</span><span>(),
+</span><span>        }
+</span><span>    }
+</span></code></pre>
 <ol>
 <li>We see that the <code>process</code> function that takes a mutable reference to <code>self</code> (an instance of the <code>State</code> struct) and a <code>message</code> of type <code>Message</code>.</li>
 <li>We use the <code>match</code> keyword to pattern match the <code>message</code> against different variants of the <code>Message</code> enum.</li>
@@ -510,80 +514,80 @@ We're told to use a match expression and to remember that when passing a tuple a
 <p>By using the <code>match</code> expression, we are able to handle different variants of the <code>Message</code> enum and perform the appropriate actions based on each variant.</p>
 <h2 id="enums3-rs-solution"><code>enums3.rs</code> solution</h2>
 <p>Here's the full block of code for reference</p>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">&#x2F;&#x2F; enums3.rs
-&#x2F;&#x2F; Address all the TODOs to make the tests pass!
-&#x2F;&#x2F; Execute `rustlings hint enums3` or use the `hint` watch subcommand for a hint.
-
-&#x2F;&#x2F; I AM NOT DONE
-
-enum Message {
-    Move(Point),
-    Echo(String),
-    ChangeColor((u8, u8, u8)), &#x2F;&#x2F; remeber the double parentheses
-    Quit,
-}
-
-struct Point {
-    x: u8,
-    y: u8,
-}
-
-struct State {
-    color: (u8, u8, u8),
-    position: Point,
-    quit: bool,
-}
-
-impl State {
-    fn change_color(&amp;mut self, color: (u8, u8, u8)) {
-        self.color = color;
-    }
-
-    fn quit(&amp;mut self) {
-        self.quit = true;
-    }
-
-    fn echo(&amp;self, s: String) {
-        println!(&quot;{}&quot;, s);
-    }
-
-    fn move_position(&amp;mut self, p: Point) {
-        self.position = p;
-    }
-
-    fn process(&amp;mut self, message: Message) {
-        match message {&#x2F;&#x2F; remeber the double parentheses in ((r, g, b))
-            Message::ChangeColor((r, g, b)) =&gt; self.change_color((r, g, b)),
-            Message::Echo(s) =&gt; self.echo(s),
-            Message::Move(p) =&gt; self.move_position(p),
-            Message::Quit =&gt; self.quit(),
-        }
-    }
-}
-
-#[cfg(test)]
-mod tests {
-    use super::*;
-
-    #[test]
-    fn test_match_message_call() {
-        let mut state = State {
-            quit: false,
-            position: Point { x: 0, y: 0 },
-            color: (0, 0, 0),
-        };
-        state.process(Message::ChangeColor(255, 0, 255));
-        state.process(Message::Echo(String::from(&quot;hello world&quot;)));
-        state.process(Message::Move(Point { x: 10, y: 15 }));
-        state.process(Message::Quit);
-
-        assert_eq!(state.color, (255, 0, 255));
-        assert_eq!(state.position.x, 10);
-        assert_eq!(state.position.y, 15);
-        assert_eq!(state.quit, true);
-    }
-}
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#707180;">// enums3.rs
+</span><span style="color:#707180;">// Address all the TODOs to make the tests pass!
+</span><span style="color:#707180;">// Execute `rustlings hint enums3` or use the `hint` watch subcommand for a hint.
+</span><span>
+</span><span style="color:#707180;">// I AM NOT DONE
+</span><span>
+</span><span style="color:#a3cbe3;">enum </span><span>Message {
+</span><span>    Move(Point),
+</span><span>    Echo(</span><span style="color:#e7e7e7;">String</span><span>),
+</span><span>    ChangeColor((</span><span style="color:#a3cbe3;">u8</span><span>, </span><span style="color:#a3cbe3;">u8</span><span>, </span><span style="color:#a3cbe3;">u8</span><span>)), </span><span style="color:#707180;">// remeber the double parentheses
+</span><span>    Quit,
+</span><span>}
+</span><span>
+</span><span style="color:#a3cbe3;">struct </span><span>Point {
+</span><span>    </span><span style="font-weight:bold;color:#a3cbe3;">x</span><span>: </span><span style="color:#a3cbe3;">u8</span><span>,
+</span><span>    </span><span style="font-weight:bold;color:#a3cbe3;">y</span><span>: </span><span style="color:#a3cbe3;">u8</span><span>,
+</span><span>}
+</span><span>
+</span><span style="color:#a3cbe3;">struct </span><span>State {
+</span><span>    </span><span style="font-weight:bold;color:#a3cbe3;">color</span><span>: (</span><span style="color:#a3cbe3;">u8</span><span>, </span><span style="color:#a3cbe3;">u8</span><span>, </span><span style="color:#a3cbe3;">u8</span><span>),
+</span><span>    </span><span style="font-weight:bold;color:#a3cbe3;">position</span><span>: Point,
+</span><span>    </span><span style="font-weight:bold;color:#a3cbe3;">quit</span><span>: </span><span style="color:#a3cbe3;">bool</span><span>,
+</span><span>}
+</span><span>
+</span><span style="color:#a3cbe3;">impl </span><span>State {
+</span><span>    </span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">change_color</span><span>(</span><span style="color:#db7c6d;">&amp;</span><span style="color:#dbbb3d;">mut </span><span style="color:#ffffff;">self</span><span>, </span><span style="color:#ffffff;">color</span><span>: (</span><span style="color:#ffffff;">u8</span><span>, </span><span style="color:#ffffff;">u8</span><span>, </span><span style="color:#ffffff;">u8</span><span>)) {
+</span><span>        </span><span style="font-weight:bold;color:#a3cbe3;">self</span><span>.color </span><span style="color:#db7c6d;">=</span><span> color;
+</span><span>    }
+</span><span>
+</span><span>    </span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">quit</span><span>(</span><span style="color:#db7c6d;">&amp;</span><span style="color:#dbbb3d;">mut </span><span style="color:#ffffff;">self</span><span>) {
+</span><span>        </span><span style="font-weight:bold;color:#a3cbe3;">self</span><span>.quit </span><span style="color:#db7c6d;">= </span><span style="color:#ffffff;">true</span><span>;
+</span><span>    }
+</span><span>
+</span><span>    </span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">echo</span><span>(</span><span style="color:#db7c6d;">&amp;</span><span style="color:#ffffff;">self</span><span>, </span><span style="color:#ffffff;">s</span><span>: String) {
+</span><span>        println!(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span style="font-weight:bold;color:#a2ba43;">{}</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>, s);
+</span><span>    }
+</span><span>
+</span><span>    </span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">move_position</span><span>(</span><span style="color:#db7c6d;">&amp;</span><span style="color:#dbbb3d;">mut </span><span style="color:#ffffff;">self</span><span>, </span><span style="color:#ffffff;">p</span><span>: Point) {
+</span><span>        </span><span style="font-weight:bold;color:#a3cbe3;">self</span><span>.position </span><span style="color:#db7c6d;">=</span><span> p;
+</span><span>    }
+</span><span>
+</span><span>    </span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">process</span><span>(</span><span style="color:#db7c6d;">&amp;</span><span style="color:#dbbb3d;">mut </span><span style="color:#ffffff;">self</span><span>, </span><span style="color:#ffffff;">message</span><span>: Message) {
+</span><span>        </span><span style="color:#db7c6d;">match</span><span> message {</span><span style="color:#707180;">// remeber the double parentheses in ((r, g, b))
+</span><span>            Message::ChangeColor((r, g, b)) </span><span style="color:#db7c6d;">=&gt; </span><span style="font-weight:bold;color:#a3cbe3;">self</span><span>.</span><span style="color:#db7c6d;">change_color</span><span>((r, g, b)),
+</span><span>            Message::Echo(s) </span><span style="color:#db7c6d;">=&gt; </span><span style="font-weight:bold;color:#a3cbe3;">self</span><span>.</span><span style="color:#db7c6d;">echo</span><span>(s),
+</span><span>            Message::Move(p) </span><span style="color:#db7c6d;">=&gt; </span><span style="font-weight:bold;color:#a3cbe3;">self</span><span>.</span><span style="color:#db7c6d;">move_position</span><span>(p),
+</span><span>            Message::Quit </span><span style="color:#db7c6d;">=&gt; </span><span style="font-weight:bold;color:#a3cbe3;">self</span><span>.</span><span style="color:#db7c6d;">quit</span><span>(),
+</span><span>        }
+</span><span>    }
+</span><span>}
+</span><span>
+</span><span>#[</span><span style="font-weight:bold;color:#a3cbe3;">cfg</span><span>(test)]
+</span><span style="color:#a3cbe3;">mod </span><span>tests {
+</span><span>    </span><span style="color:#db7c6d;">use super</span><span>::</span><span style="color:#db7c6d;">*</span><span>;
+</span><span>
+</span><span>    #[</span><span style="font-weight:bold;color:#a3cbe3;">test</span><span>]
+</span><span>    </span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">test_match_message_call</span><span>() {
+</span><span>        </span><span style="color:#a3cbe3;">let </span><span style="color:#dbbb3d;">mut</span><span> state </span><span style="color:#db7c6d;">=</span><span> State {
+</span><span>            quit: </span><span style="color:#ffffff;">false</span><span>,
+</span><span>            position: Point { x: </span><span style="color:#db7c6d;">0</span><span>, y: </span><span style="color:#db7c6d;">0 </span><span>},
+</span><span>            color: (</span><span style="color:#db7c6d;">0</span><span>, </span><span style="color:#db7c6d;">0</span><span>, </span><span style="color:#db7c6d;">0</span><span>),
+</span><span>        };
+</span><span>        state.</span><span style="color:#db7c6d;">process</span><span>(Message::ChangeColor(</span><span style="color:#db7c6d;">255</span><span>, </span><span style="color:#db7c6d;">0</span><span>, </span><span style="color:#db7c6d;">255</span><span>));
+</span><span>        state.</span><span style="color:#db7c6d;">process</span><span>(Message::Echo(</span><span style="color:#e7e7e7;">String</span><span>::from(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>hello world</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>)));
+</span><span>        state.</span><span style="color:#db7c6d;">process</span><span>(Message::Move(Point { x: </span><span style="color:#db7c6d;">10</span><span>, y: </span><span style="color:#db7c6d;">15 </span><span>}));
+</span><span>        state.</span><span style="color:#db7c6d;">process</span><span>(Message::Quit);
+</span><span>
+</span><span>        assert_eq!(state.color, (</span><span style="color:#db7c6d;">255</span><span>, </span><span style="color:#db7c6d;">0</span><span>, </span><span style="color:#db7c6d;">255</span><span>));
+</span><span>        assert_eq!(state.position.x, </span><span style="color:#db7c6d;">10</span><span>);
+</span><span>        assert_eq!(state.position.y, </span><span style="color:#db7c6d;">15</span><span>);
+</span><span>        assert_eq!(state.quit, </span><span style="color:#ffffff;">true</span><span>);
+</span><span>    }
+</span><span>}
+</span></code></pre>
 <h2 id="conclusion">Conclusion</h2>
 <p>In this post, we gained insights into the usage of enums. We discovered how enums can be used to define different types of messages and handle them effectively. By exploring code examples, we learned how to:</p>
 <ul>
@@ -618,7 +622,7 @@ mod tests {
 		
     </p>
     
-    <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>2467 Words</p>
+    <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>1067 Words</p>
     
     <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2023-06-07</p>
     
@@ -641,7 +645,7 @@ mod tests {
 
 
 <footer id="site-footer" class="section-inner thin animated fadeIn faster">
-  <p>&copy; 2024 <a href="https:&#x2F;&#x2F;desmodrone.github.io">erick</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
+  <p>&copy; 2026 <a href="https:&#x2F;&#x2F;desmodrone.github.io">erick</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
   <p>Made with <a href="https://www.getzola.org" target="_blank" rel="noopener">Zola</a> &#183; Theme <a href="https://github.com/VersBinarii/hermit_zola" target="_blank" rel="noopener">Hermit_Zola</a>
 	
 	&#183; <a href="https://desmodrone.github.io/rss.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>

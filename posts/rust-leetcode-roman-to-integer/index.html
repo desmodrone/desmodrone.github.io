@@ -27,6 +27,10 @@
   <link rel="alternate" type="application/rss+xml" title="RSS" href="https://desmodrone.github.io/rss.xml">
   
 
+  
+  <link rel="canonical" href="https://desmodrone.github.io/posts/rust-leetcode-roman-to-integer/">
+  
+
   <body id="page">
 
 	
@@ -120,7 +124,7 @@
 		<small> - 
 <span class="reading-time" title="Estimated read time">
   
-  5 min read
+  4 min read
   
 </span>
 </small>
@@ -136,14 +140,14 @@
 <p><a href="https://leetcode.com/problems/roman-to-integer/description/">13. Roman to Integer on LeetCode</a>
 Roman numerals are represented by seven different symbols: <code>I</code>, <code>V</code>, <code>X</code>, <code>L</code>, <code>C</code>, <code>D</code> and <code>M</code>.
 <strong>Symbol</strong> <strong>Value</strong></p>
-<pre><code>I             1
-V             5
-X             10
-L             50
-C             100
-D             500
-M             1000
-</code></pre>
+<pre style="background-color:#31333d;color:#ffffffc4;"><code><span>I             1
+</span><span>V             5
+</span><span>X             10
+</span><span>L             50
+</span><span>C             100
+</span><span>D             500
+</span><span>M             1000
+</span></code></pre>
 <p>For example, <code>2</code> is written as <code>II</code> in Roman numeral, just two ones added together. <code>12</code> is written as <code>XII</code>, which is simply <code>X + II</code>. The number <code>27</code> is written as <code>XXVII</code>, which is <code>XX + V + II</code>.</p>
 <p>Roman numerals are usually written largest to smallest from left to right. However, the numeral for four is not <code>IIII</code>. Instead, the number four is written as <code>IV</code>. Because the one is before the five we subtract it making four. The same principle applies to the number nine, which is written as <code>IX</code>. There are six instances where subtraction is used:</p>
 <ul>
@@ -153,20 +157,20 @@ M             1000
 </ul>
 <p>Given a roman numeral, convert it to an integer.</p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: s = &quot;III&quot;
-Output: 3
-Explanation: III = 3.
-</code></pre>
+<pre style="background-color:#31333d;color:#ffffffc4;"><code><span>Input: s = &quot;III&quot;
+</span><span>Output: 3
+</span><span>Explanation: III = 3.
+</span></code></pre>
 <p><strong>Example 2:</strong></p>
-<pre><code>Input: s = &quot;LVIII&quot;
-Output: 58
-Explanation: L = 50, V= 5, III = 3.
-</code></pre>
+<pre style="background-color:#31333d;color:#ffffffc4;"><code><span>Input: s = &quot;LVIII&quot;
+</span><span>Output: 58
+</span><span>Explanation: L = 50, V= 5, III = 3.
+</span></code></pre>
 <p><strong>Example 3:</strong></p>
-<pre><code>Input: s = &quot;MCMXCIV&quot;
-Output: 1994
-Explanation: M = 1000, CM = 900, XC = 90 and IV = 4.
-</code></pre>
+<pre style="background-color:#31333d;color:#ffffffc4;"><code><span>Input: s = &quot;MCMXCIV&quot;
+</span><span>Output: 1994
+</span><span>Explanation: M = 1000, CM = 900, XC = 90 and IV = 4.
+</span></code></pre>
 <h2 id="intro">Intro</h2>
 <p>Roman numerals, the numerical system of ancient Rome, have been used for centuries, from monumental Roman architecture to the pages of classical literature. Today, while our modern digital world primarily operates on the decimal system, the echoes of Roman numerals still resound in various areas, such as clock faces, book chapter titles, and annual events like the Super Bowl. Understanding and converting these numerals to integers is not just an exercise in historical linguistics but also finds its relevance in modern computing, where translating different numeral systems forms a foundational aspect of data processing and software development.</p>
 <h2 id="intuition">Intuition</h2>
@@ -175,69 +179,69 @@ Explanation: M = 1000, CM = 900, XC = 90 and IV = 4.
 <p>In exploring the conversion of Roman numerals to integers, two distinct approaches in Rust offer insights into the language's capabilities and the trade-offs in programming styles. The imperative approach, utilizing a <code>match</code> statement, aligns with a straightforward, step-by-step process of decision making, echoing traditional procedural programming. It's generally easier to understand, especially for those new to Rust or programming in general. On the other hand, the functional approach, employing a <code>HashMap</code>, embraces Rust's powerful features in functional programming. This method shines in code readability and maintainability, especially in scenarios where the mapping might evolve or expand, offering a more scalable solution. However, it might introduce a slight overhead due to the creation and management of the <code>HashMap</code>.</p>
 <h2 id="code">Code</h2>
 <h3 id="imperative-approach-with-match">Imperative Approach with <code>match</code></h3>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">fn roman_to_int(s: String) -&gt; i32 {
-
-    let mut result = 0;
-    let mut prev = 0;
-
-    for c in s.chars() {
-        let current = match c {
-            &#x27;I&#x27; =&gt; 1,
-            &#x27;V&#x27; =&gt; 5,
-            &#x27;X&#x27; =&gt; 10,
-            &#x27;L&#x27; =&gt; 50,
-            &#x27;C&#x27; =&gt; 100,
-            &#x27;D&#x27; =&gt; 500,
-            &#x27;M&#x27; =&gt; 1000,
-            _ =&gt; 0,
-        };
-
-        result += current;
-        if current &gt; prev {
-            result -= 2 * prev
-        }
-        prev = current
-    }
-    result
-}
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">roman_to_int</span><span>(</span><span style="color:#ffffff;">s</span><span>: String) -&gt; </span><span style="color:#a3cbe3;">i32 </span><span>{
+</span><span>
+</span><span>    </span><span style="color:#a3cbe3;">let </span><span style="color:#dbbb3d;">mut</span><span> result </span><span style="color:#db7c6d;">= 0</span><span>;
+</span><span>    </span><span style="color:#a3cbe3;">let </span><span style="color:#dbbb3d;">mut</span><span> prev </span><span style="color:#db7c6d;">= 0</span><span>;
+</span><span>
+</span><span>    </span><span style="color:#db7c6d;">for</span><span> c </span><span style="color:#db7c6d;">in</span><span> s.</span><span style="color:#db7c6d;">chars</span><span>() {
+</span><span>        </span><span style="color:#a3cbe3;">let</span><span> current </span><span style="color:#db7c6d;">= match</span><span> c {
+</span><span>            </span><span style="font-weight:bold;color:#dbbb3d;">&#39;</span><span>I</span><span style="font-weight:bold;color:#dbbb3d;">&#39; </span><span style="color:#db7c6d;">=&gt; 1</span><span>,
+</span><span>            </span><span style="font-weight:bold;color:#dbbb3d;">&#39;</span><span>V</span><span style="font-weight:bold;color:#dbbb3d;">&#39; </span><span style="color:#db7c6d;">=&gt; 5</span><span>,
+</span><span>            </span><span style="font-weight:bold;color:#dbbb3d;">&#39;</span><span>X</span><span style="font-weight:bold;color:#dbbb3d;">&#39; </span><span style="color:#db7c6d;">=&gt; 10</span><span>,
+</span><span>            </span><span style="font-weight:bold;color:#dbbb3d;">&#39;</span><span>L</span><span style="font-weight:bold;color:#dbbb3d;">&#39; </span><span style="color:#db7c6d;">=&gt; 50</span><span>,
+</span><span>            </span><span style="font-weight:bold;color:#dbbb3d;">&#39;</span><span>C</span><span style="font-weight:bold;color:#dbbb3d;">&#39; </span><span style="color:#db7c6d;">=&gt; 100</span><span>,
+</span><span>            </span><span style="font-weight:bold;color:#dbbb3d;">&#39;</span><span>D</span><span style="font-weight:bold;color:#dbbb3d;">&#39; </span><span style="color:#db7c6d;">=&gt; 500</span><span>,
+</span><span>            </span><span style="font-weight:bold;color:#dbbb3d;">&#39;</span><span>M</span><span style="font-weight:bold;color:#dbbb3d;">&#39; </span><span style="color:#db7c6d;">=&gt; 1000</span><span>,
+</span><span>            </span><span style="color:#db7c6d;">_ =&gt; 0</span><span>,
+</span><span>        };
+</span><span>
+</span><span>        result </span><span style="color:#db7c6d;">+=</span><span> current;
+</span><span>        </span><span style="color:#db7c6d;">if</span><span> current </span><span style="color:#db7c6d;">&gt;</span><span> prev {
+</span><span>            result </span><span style="color:#db7c6d;">-= 2 *</span><span> prev
+</span><span>        }
+</span><span>        prev </span><span style="color:#db7c6d;">=</span><span> current
+</span><span>    }
+</span><span>    result
+</span><span>}
+</span></code></pre>
 <h3 id="functional-approach-using-hashmap">Functional Approach using <code>HashMap</code></h3>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">use std::collections::HashMap;
-
-fn roman_to_int(s: String) -&gt; i32 {
-
-    let translation: HashMap&lt;char, i32&gt; = [
-        (&#x27;I&#x27;, 1),
-        (&#x27;V&#x27;, 5),
-        (&#x27;X&#x27;, 10),
-        (&#x27;L&#x27;, 50),
-        (&#x27;C&#x27;, 100),
-        (&#x27;D&#x27;, 500),
-        (&#x27;M&#x27;, 1000),
-    ].iter().cloned().collect();
-
-    s.chars().enumerate().fold(0, |acc, (i, c)| {
-
-
-        let current_value = translation[&amp;c];
-
-        if let Some(next_char) = s.chars().nth(i+1) {
-
-            let next_value = translation[&amp;next_char];
-
-            if next_value &gt; current_value {
-                acc - current_value
-            } else {
-                acc + current_value
-            }
-        } else {
-            acc + current_value
-        }
-    })
-}
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#db7c6d;">use </span><span>std::collections::HashMap;
+</span><span>
+</span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">roman_to_int</span><span>(</span><span style="color:#ffffff;">s</span><span>: String) -&gt; </span><span style="color:#a3cbe3;">i32 </span><span>{
+</span><span>
+</span><span>    </span><span style="color:#a3cbe3;">let</span><span> translation: HashMap&lt;</span><span style="color:#a3cbe3;">char</span><span>, </span><span style="color:#a3cbe3;">i32</span><span>&gt; </span><span style="color:#db7c6d;">= </span><span>[
+</span><span>        (</span><span style="font-weight:bold;color:#dbbb3d;">&#39;</span><span>I</span><span style="font-weight:bold;color:#dbbb3d;">&#39;</span><span>, </span><span style="color:#db7c6d;">1</span><span>),
+</span><span>        (</span><span style="font-weight:bold;color:#dbbb3d;">&#39;</span><span>V</span><span style="font-weight:bold;color:#dbbb3d;">&#39;</span><span>, </span><span style="color:#db7c6d;">5</span><span>),
+</span><span>        (</span><span style="font-weight:bold;color:#dbbb3d;">&#39;</span><span>X</span><span style="font-weight:bold;color:#dbbb3d;">&#39;</span><span>, </span><span style="color:#db7c6d;">10</span><span>),
+</span><span>        (</span><span style="font-weight:bold;color:#dbbb3d;">&#39;</span><span>L</span><span style="font-weight:bold;color:#dbbb3d;">&#39;</span><span>, </span><span style="color:#db7c6d;">50</span><span>),
+</span><span>        (</span><span style="font-weight:bold;color:#dbbb3d;">&#39;</span><span>C</span><span style="font-weight:bold;color:#dbbb3d;">&#39;</span><span>, </span><span style="color:#db7c6d;">100</span><span>),
+</span><span>        (</span><span style="font-weight:bold;color:#dbbb3d;">&#39;</span><span>D</span><span style="font-weight:bold;color:#dbbb3d;">&#39;</span><span>, </span><span style="color:#db7c6d;">500</span><span>),
+</span><span>        (</span><span style="font-weight:bold;color:#dbbb3d;">&#39;</span><span>M</span><span style="font-weight:bold;color:#dbbb3d;">&#39;</span><span>, </span><span style="color:#db7c6d;">1000</span><span>),
+</span><span>    ].</span><span style="color:#db7c6d;">iter</span><span>().</span><span style="color:#db7c6d;">cloned</span><span>().</span><span style="color:#db7c6d;">collect</span><span>();
+</span><span>
+</span><span>    s.</span><span style="color:#db7c6d;">chars</span><span>().</span><span style="color:#db7c6d;">enumerate</span><span>().</span><span style="color:#db7c6d;">fold</span><span>(</span><span style="color:#db7c6d;">0</span><span>, |</span><span style="color:#ffffff;">acc</span><span>, (</span><span style="color:#ffffff;">i</span><span>, </span><span style="color:#ffffff;">c</span><span>)| {
+</span><span>
+</span><span>
+</span><span>        </span><span style="color:#a3cbe3;">let</span><span> current_value </span><span style="color:#db7c6d;">=</span><span> translation[</span><span style="color:#db7c6d;">&amp;</span><span>c];
+</span><span>
+</span><span>        </span><span style="color:#db7c6d;">if </span><span style="color:#a3cbe3;">let </span><span style="color:#e7e7e7;">Some</span><span>(next_char) </span><span style="color:#db7c6d;">=</span><span> s.</span><span style="color:#db7c6d;">chars</span><span>().</span><span style="color:#db7c6d;">nth</span><span>(i</span><span style="color:#db7c6d;">+1</span><span>) {
+</span><span>
+</span><span>            </span><span style="color:#a3cbe3;">let</span><span> next_value </span><span style="color:#db7c6d;">=</span><span> translation[</span><span style="color:#db7c6d;">&amp;</span><span>next_char];
+</span><span>
+</span><span>            </span><span style="color:#db7c6d;">if</span><span> next_value </span><span style="color:#db7c6d;">&gt;</span><span> current_value {
+</span><span>                acc </span><span style="color:#db7c6d;">-</span><span> current_value
+</span><span>            } </span><span style="color:#db7c6d;">else </span><span>{
+</span><span>                acc </span><span style="color:#db7c6d;">+</span><span> current_value
+</span><span>            }
+</span><span>        } </span><span style="color:#db7c6d;">else </span><span>{
+</span><span>            acc </span><span style="color:#db7c6d;">+</span><span> current_value
+</span><span>        }
+</span><span>    })
+</span><span>}
+</span></code></pre>
 <h2 id="explanation">Explanation</h2>
-<p>To illustrate these approaches, let's consider converting &quot;IX&quot; to 9. In the imperative method, as we iterate through the string, we first encounter 'I' (1), followed by 'X' (10). Recognizing that 'I' is less than 'X', the algorithm adapts by subtracting twice the value of 'I' (once to negate the initial addition and once more for the actual subtraction). In the functional approach, the <code>HashMap</code> provides a quick lookup for each numeral's value. When processing 'I' and then 'X', the algorithm checks if the value of the next numeral ('X') is greater than the current ('I'), leading to a subtraction of 'I'. Both methods effectively capture the essence of Roman numeral logic but through different computational lenses.</p>
+<p>To illustrate these approaches, let's consider converting "IX" to 9. In the imperative method, as we iterate through the string, we first encounter 'I' (1), followed by 'X' (10). Recognizing that 'I' is less than 'X', the algorithm adapts by subtracting twice the value of 'I' (once to negate the initial addition and once more for the actual subtraction). In the functional approach, the <code>HashMap</code> provides a quick lookup for each numeral's value. When processing 'I' and then 'X', the algorithm checks if the value of the next numeral ('X') is greater than the current ('I'), leading to a subtraction of 'I'. Both methods effectively capture the essence of Roman numeral logic but through different computational lenses.</p>
 <h3 id="imperative-approach-with-match-1">Imperative Approach with <code>match</code></h3>
 <p>In this approach, each Roman numeral character is converted to its integer value using a <code>match</code> statement. The function iterates over each character of the input string, and for each character, it checks its value and adds it to the cumulative result. If the current value is greater than the previous value (indicating a subtractive notation like IV or IX), the function subtracts twice the previous value from the result. This adjustment is necessary because the previous value was added before knowing that a subtractive notation was in use.</p>
 <h3 id="functional-approach-using-hashmap-1">Functional Approach using <code>HashMap</code></h3>
@@ -277,7 +281,7 @@ fn roman_to_int(s: String) -&gt; i32 {
 		
     </p>
     
-    <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>1223 Words</p>
+    <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>1060 Words</p>
     
     <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2024-01-16</p>
     
@@ -300,7 +304,7 @@ fn roman_to_int(s: String) -&gt; i32 {
 
 
 <footer id="site-footer" class="section-inner thin animated fadeIn faster">
-  <p>&copy; 2024 <a href="https:&#x2F;&#x2F;desmodrone.github.io">erick</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
+  <p>&copy; 2026 <a href="https:&#x2F;&#x2F;desmodrone.github.io">erick</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
   <p>Made with <a href="https://www.getzola.org" target="_blank" rel="noopener">Zola</a> &#183; Theme <a href="https://github.com/VersBinarii/hermit_zola" target="_blank" rel="noopener">Hermit_Zola</a>
 	
 	&#183; <a href="https://desmodrone.github.io/rss.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>

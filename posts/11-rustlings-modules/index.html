@@ -27,6 +27,10 @@
   <link rel="alternate" type="application/rss+xml" title="RSS" href="https://desmodrone.github.io/rss.xml">
   
 
+  
+  <link rel="canonical" href="https://desmodrone.github.io/posts/11-rustlings-modules/">
+  
+
   <body id="page">
 
 	
@@ -120,7 +124,7 @@
 		<small> - 
 <span class="reading-time" title="Estimated read time">
   
-  5 min read
+  3 min read
   
 </span>
 </small>
@@ -140,163 +144,163 @@
 </ul>
 <h2 id="modules1-rs">modules1.rs</h2>
 <p>The first exercise focuses on controlling the visibility of functions within a module. The goal is to restrict access to the <code>get_secret_recipe</code> function outside the <code>sausage_factory</code> module. Let's take a look at the initial code:</p>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">&#x2F;&#x2F; modules1.rs
-&#x2F;&#x2F; Execute `rustlings hint modules1` or use the `hint` watch subcommand for a hint.
-
-&#x2F;&#x2F; I AM NOT DONE
-
-mod sausage_factory {
-    &#x2F;&#x2F; Don&#x27;t let anybody outside of this module see this!
-    fn get_secret_recipe() -&gt; String {
-        String::from(&quot;Ginger&quot;)
-    }
-
-    fn make_sausage() {
-        get_secret_recipe();
-        println!(&quot;sausage!&quot;);
-    }
-}
-
-fn main() {
-    sausage_factory::make_sausage();
-}
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#707180;">// modules1.rs
+</span><span style="color:#707180;">// Execute `rustlings hint modules1` or use the `hint` watch subcommand for a hint.
+</span><span>
+</span><span style="color:#707180;">// I AM NOT DONE
+</span><span>
+</span><span style="color:#a3cbe3;">mod </span><span>sausage_factory {
+</span><span>    </span><span style="color:#707180;">// Don&#39;t let anybody outside of this module see this!
+</span><span>    </span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">get_secret_recipe</span><span>() -&gt; String {
+</span><span>        </span><span style="color:#e7e7e7;">String</span><span>::from(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>Ginger</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>)
+</span><span>    }
+</span><span>
+</span><span>    </span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">make_sausage</span><span>() {
+</span><span>        </span><span style="color:#db7c6d;">get_secret_recipe</span><span>();
+</span><span>        println!(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>sausage!</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>);
+</span><span>    }
+</span><span>}
+</span><span>
+</span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">main</span><span>() {
+</span><span>    sausage_factory::make_sausage();
+</span><span>}
+</span></code></pre>
 <p>Our instructions in this first exercise are to not let anyone outside of the <code>sausage_factory</code> module see the <code>get_secret_recipe</code> function.</p>
 <h2 id="modules1-rs-errors">modules1.rs errors</h2>
-<pre data-lang="zsh" class="language-zsh "><code class="language-zsh" data-lang="zsh">⚠️  Compiling of exercises&#x2F;modules&#x2F;modules1.rs failed! Please try again. Here is the output:
-error[E0603]: function `make_sausage` is private
-  --&gt; exercises&#x2F;modules&#x2F;modules1.rs:19:22
-   |
-19 |     sausage_factory::make_sausage();
-   |                      ^^^^^^^^^^^^ private function
-   |
-note: the function `make_sausage` is defined here
-  --&gt; exercises&#x2F;modules&#x2F;modules1.rs:12:5
-   |
-12 |     fn make_sausage() {
-   |     ^^^^^^^^^^^^^^^^^
-
-error: aborting due to previous error
-</code></pre>
+<pre data-lang="zsh" style="background-color:#31333d;color:#ffffffc4;" class="language-zsh "><code class="language-zsh" data-lang="zsh"><span style="font-weight:bold;color:#a3cbe3;">⚠️</span><span>  Compiling of exercises/modules/modules1.rs failed! Please try again. Here is the output:
+</span><span style="font-weight:bold;color:#a3cbe3;">error[E0603]:</span><span> function `</span><span style="font-weight:bold;color:#a3cbe3;">make_sausage</span><span>` is private
+</span><span>  </span><span style="font-weight:bold;color:#a3cbe3;">--</span><span style="color:#db7c6d;">&gt;</span><span> exercises/modules/modules1.rs:19:22
+</span><span>   </span><span style="color:#db7c6d;">|
+</span><span style="font-weight:bold;color:#a3cbe3;">19 </span><span style="color:#db7c6d;">|     </span><span style="color:#a2ba43;">sausage_factory::make_sausage</span><span>();
+</span><span>   |                      ^^^^^^^^^^^^ private function
+</span><span>   |
+</span><span>note: the function `make_sausage` is defined here
+</span><span>  --&gt; exercises/modules/modules1.rs:12:5
+</span><span>   |
+</span><span>12 |     fn make_sausage() {
+</span><span>   </span><span style="color:#db7c6d;">|     </span><span style="font-weight:bold;color:#a3cbe3;">^^^^^^^^^^^^^^^^^
+</span><span>
+</span><span style="font-weight:bold;color:#a3cbe3;">error:</span><span> aborting due to previous error
+</span></code></pre>
 <p>We see that our errors tell us that our <code>make_sausage()</code> function is private and we can see that we are trying to access it in our <code>fn main()</code> so, our fix is simple, make the function that we need to see outside of the <code>sausage_factory</code> module accessible by adding a <code>pub</code> keyword. Let's try this.</p>
 <h2 id="modules1-rs-solution">modules1.rs solution</h2>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">mod sausage_factory {
-    &#x2F;&#x2F; Don&#x27;t let anybody outside of this module see this!
-    fn get_secret_recipe() -&gt; String {
-        String::from(&quot;Ginger&quot;)
-    }
-
-    pub fn make_sausage() { &#x2F;&#x2F; adding `pub` here fixes our issue
-        get_secret_recipe();
-        println!(&quot;sausage!&quot;);
-    }
-}
-
-fn main() {
-    sausage_factory::make_sausage();
-}
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#a3cbe3;">mod </span><span>sausage_factory {
+</span><span>    </span><span style="color:#707180;">// Don&#39;t let anybody outside of this module see this!
+</span><span>    </span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">get_secret_recipe</span><span>() -&gt; String {
+</span><span>        </span><span style="color:#e7e7e7;">String</span><span>::from(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>Ginger</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>)
+</span><span>    }
+</span><span>
+</span><span>    </span><span style="color:#dbbb3d;">pub </span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">make_sausage</span><span>() { </span><span style="color:#707180;">// adding `pub` here fixes our issue
+</span><span>        </span><span style="color:#db7c6d;">get_secret_recipe</span><span>();
+</span><span>        println!(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>sausage!</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>);
+</span><span>    }
+</span><span>}
+</span><span>
+</span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">main</span><span>() {
+</span><span>    sausage_factory::make_sausage();
+</span><span>}
+</span></code></pre>
 <p>Simple solution by adding the <code>pub</code> keyword to our <code>make_sausage()</code> function we get access to it from our <code>main()</code> function and our code compiles and prints:</p>
-<pre><code>sausage!
-</code></pre>
+<pre style="background-color:#31333d;color:#ffffffc4;"><code><span>sausage!
+</span></code></pre>
 <h2 id="modules2-rs">modules2.rs</h2>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">&#x2F;&#x2F; modules2.rs
-&#x2F;&#x2F; You can bring module paths into scopes and provide new names for them with the
-&#x2F;&#x2F; &#x27;use&#x27; and &#x27;as&#x27; keywords. Fix these &#x27;use&#x27; statements to make the code compile.
-&#x2F;&#x2F; Execute `rustlings hint modules2` or use the `hint` watch subcommand for a hint.
-
-&#x2F;&#x2F; I AM NOT DONE
-
-mod delicious_snacks {
-    &#x2F;&#x2F; TODO: Fix these use statements
-	use self::fruits::{PEAR as fruit};
-    use self::veggies::CUCUMBER as ???
-
-    mod fruits {
-        pub const PEAR: &amp;&#x27;static str = &quot;Pear&quot;;
-        pub const APPLE: &amp;&#x27;static str = &quot;Apple&quot;;
-    }
-
-    mod veggies {
-        pub const CUCUMBER: &amp;&#x27;static str = &quot;Cucumber&quot;;
-        pub const CARROT: &amp;&#x27;static str = &quot;Carrot&quot;;
-    }
-}
-
-fn main() {
-    println!(
-        &quot;favorite snacks: {} and {}&quot;,
-        delicious_snacks::fruit,
-        delicious_snacks::veggie
-    );
-}
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#707180;">// modules2.rs
+</span><span style="color:#707180;">// You can bring module paths into scopes and provide new names for them with the
+</span><span style="color:#707180;">// &#39;use&#39; and &#39;as&#39; keywords. Fix these &#39;use&#39; statements to make the code compile.
+</span><span style="color:#707180;">// Execute `rustlings hint modules2` or use the `hint` watch subcommand for a hint.
+</span><span>
+</span><span style="color:#707180;">// I AM NOT DONE
+</span><span>
+</span><span style="color:#a3cbe3;">mod </span><span>delicious_snacks {
+</span><span>    </span><span style="color:#707180;">// TODO: Fix these use statements
+</span><span>	</span><span style="color:#db7c6d;">use </span><span style="font-weight:bold;color:#a3cbe3;">self</span><span>::fruits::{</span><span style="font-weight:bold;color:#a2ba43;">PEAR </span><span style="color:#db7c6d;">as</span><span> fruit};
+</span><span>    </span><span style="color:#db7c6d;">use </span><span style="font-weight:bold;color:#a3cbe3;">self</span><span>::veggies::</span><span style="font-weight:bold;color:#a2ba43;">CUCUMBER </span><span style="color:#db7c6d;">as ???
+</span><span>
+</span><span>    </span><span style="color:#a3cbe3;">mod </span><span>fruits {
+</span><span>        </span><span style="color:#dbbb3d;">pub </span><span style="color:#a3cbe3;">const </span><span style="font-weight:bold;color:#a2ba43;">PEAR</span><span>: </span><span style="color:#db7c6d;">&amp;</span><span style="color:#dbbb3d;">&#39;static </span><span style="color:#a3cbe3;">str </span><span style="color:#db7c6d;">= </span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>Pear</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>;
+</span><span>        </span><span style="color:#dbbb3d;">pub </span><span style="color:#a3cbe3;">const </span><span style="font-weight:bold;color:#a2ba43;">APPLE</span><span>: </span><span style="color:#db7c6d;">&amp;</span><span style="color:#dbbb3d;">&#39;static </span><span style="color:#a3cbe3;">str </span><span style="color:#db7c6d;">= </span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>Apple</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>;
+</span><span>    }
+</span><span>
+</span><span>    </span><span style="color:#a3cbe3;">mod </span><span>veggies {
+</span><span>        </span><span style="color:#dbbb3d;">pub </span><span style="color:#a3cbe3;">const </span><span style="font-weight:bold;color:#a2ba43;">CUCUMBER</span><span>: </span><span style="color:#db7c6d;">&amp;</span><span style="color:#dbbb3d;">&#39;static </span><span style="color:#a3cbe3;">str </span><span style="color:#db7c6d;">= </span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>Cucumber</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>;
+</span><span>        </span><span style="color:#dbbb3d;">pub </span><span style="color:#a3cbe3;">const </span><span style="font-weight:bold;color:#a2ba43;">CARROT</span><span>: </span><span style="color:#db7c6d;">&amp;</span><span style="color:#dbbb3d;">&#39;static </span><span style="color:#a3cbe3;">str </span><span style="color:#db7c6d;">= </span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>Carrot</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>;
+</span><span>    }
+</span><span>}
+</span><span>
+</span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">main</span><span>() {
+</span><span>    println!(
+</span><span>        </span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>favorite snacks: </span><span style="font-weight:bold;color:#a2ba43;">{}</span><span> and </span><span style="font-weight:bold;color:#a2ba43;">{}</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>,
+</span><span>        delicious_snacks::fruit,
+</span><span>        delicious_snacks::veggie
+</span><span>    );
+</span><span>}
+</span></code></pre>
 <p>Our instructions here are to bring our module into scope by using <code>use</code> and <code>as</code> keywords. We can see and incomplete <code>use</code> statement on line 11. Let's take a quick look at the errors.</p>
 <h2 id="modules2-rs-errors">modules2.rs errors</h2>
-<pre data-lang="zsh" class="language-zsh "><code class="language-zsh" data-lang="zsh">⚠️  Compiling of exercises&#x2F;modules&#x2F;modules2.rs failed! Please try again. Here is the output:
-error: expected identifier, found `?`
-  --&gt; exercises&#x2F;modules&#x2F;modules2.rs:10:31
-   |
-10 |     use self::fruits::PEAR as ???
-   |                               ^ expected identifier
-
-error: aborting due to previous error
-</code></pre>
+<pre data-lang="zsh" style="background-color:#31333d;color:#ffffffc4;" class="language-zsh "><code class="language-zsh" data-lang="zsh"><span style="font-weight:bold;color:#a3cbe3;">⚠️</span><span>  Compiling of exercises/modules/modules2.rs failed! Please try again. Here is the output:
+</span><span style="font-weight:bold;color:#a3cbe3;">error:</span><span> expected identifier, found `</span><span style="font-weight:bold;color:#a3cbe3;">?</span><span>`
+</span><span>  </span><span style="font-weight:bold;color:#a3cbe3;">--</span><span style="color:#db7c6d;">&gt;</span><span> exercises/modules/modules2.rs:10:31
+</span><span>   </span><span style="color:#db7c6d;">|
+</span><span style="font-weight:bold;color:#a3cbe3;">10 </span><span style="color:#db7c6d;">|     </span><span style="font-weight:bold;color:#a3cbe3;">use</span><span> self::fruits::PEAR as </span><span style="color:#db7c6d;">???
+</span><span>   </span><span style="color:#db7c6d;">|                               </span><span style="font-weight:bold;color:#a3cbe3;">^</span><span> expected identifier
+</span><span>
+</span><span style="font-weight:bold;color:#a3cbe3;">error:</span><span> aborting due to previous error
+</span></code></pre>
 <p>The compiler confirms what we already know, but it actually gives us a big hint in telling us that it expects an identifier. So, let's add the identifier.</p>
 <h2 id="modules2-rs-solution">modules2.rs solution</h2>
-<p>By looking at our code we can understand what the code is expecting as an identifier. It specifically shows in our <code>main()</code> function that we need to print the <code>delicious_snacks::fruit,</code> and the <code>delicious_snacks::veggie,</code> so this is a clear indication that we must identify our cucumber &quot;as&quot; a <code>veggie</code>. We also need to add the <code>pub</code> keyword to make sure that they can be accessed outside of <code>delicious_snacks</code>.</p>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">mod delicious_snacks {
-    &#x2F;&#x2F; TODO: Fix these use statements
-    pub use self::fruits::PEAR as fruit;
-    pub use self::veggies::CUCUMBER as veggie; &#x2F;&#x2F; adding veggie identifier here
-
-    mod fruits {
-        pub const PEAR: &amp;&#x27;static str = &quot;Pear&quot;;
-        pub const APPLE: &amp;&#x27;static str = &quot;Apple&quot;;
-    }
-
-    mod veggies {
-        pub const CUCUMBER: &amp;&#x27;static str = &quot;Cucumber&quot;;
-        pub const CARROT: &amp;&#x27;static str = &quot;Carrot&quot;;
-    }
-}
-
-fn main() {
-    println!(
-        &quot;favorite snacks: {} and {}&quot;,
-        delicious_snacks::fruit,
-        delicious_snacks::veggie
-    );
-}
-</code></pre>
+<p>By looking at our code we can understand what the code is expecting as an identifier. It specifically shows in our <code>main()</code> function that we need to print the <code>delicious_snacks::fruit,</code> and the <code>delicious_snacks::veggie,</code> so this is a clear indication that we must identify our cucumber "as" a <code>veggie</code>. We also need to add the <code>pub</code> keyword to make sure that they can be accessed outside of <code>delicious_snacks</code>.</p>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#a3cbe3;">mod </span><span>delicious_snacks {
+</span><span>    </span><span style="color:#707180;">// TODO: Fix these use statements
+</span><span>    </span><span style="color:#dbbb3d;">pub </span><span style="color:#db7c6d;">use </span><span style="font-weight:bold;color:#a3cbe3;">self</span><span>::fruits::</span><span style="font-weight:bold;color:#a2ba43;">PEAR </span><span style="color:#db7c6d;">as</span><span> fruit;
+</span><span>    </span><span style="color:#dbbb3d;">pub </span><span style="color:#db7c6d;">use </span><span style="font-weight:bold;color:#a3cbe3;">self</span><span>::veggies::</span><span style="font-weight:bold;color:#a2ba43;">CUCUMBER </span><span style="color:#db7c6d;">as</span><span> veggie; </span><span style="color:#707180;">// adding veggie identifier here
+</span><span>
+</span><span>    </span><span style="color:#a3cbe3;">mod </span><span>fruits {
+</span><span>        </span><span style="color:#dbbb3d;">pub </span><span style="color:#a3cbe3;">const </span><span style="font-weight:bold;color:#a2ba43;">PEAR</span><span>: </span><span style="color:#db7c6d;">&amp;</span><span style="color:#dbbb3d;">&#39;static </span><span style="color:#a3cbe3;">str </span><span style="color:#db7c6d;">= </span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>Pear</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>;
+</span><span>        </span><span style="color:#dbbb3d;">pub </span><span style="color:#a3cbe3;">const </span><span style="font-weight:bold;color:#a2ba43;">APPLE</span><span>: </span><span style="color:#db7c6d;">&amp;</span><span style="color:#dbbb3d;">&#39;static </span><span style="color:#a3cbe3;">str </span><span style="color:#db7c6d;">= </span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>Apple</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>;
+</span><span>    }
+</span><span>
+</span><span>    </span><span style="color:#a3cbe3;">mod </span><span>veggies {
+</span><span>        </span><span style="color:#dbbb3d;">pub </span><span style="color:#a3cbe3;">const </span><span style="font-weight:bold;color:#a2ba43;">CUCUMBER</span><span>: </span><span style="color:#db7c6d;">&amp;</span><span style="color:#dbbb3d;">&#39;static </span><span style="color:#a3cbe3;">str </span><span style="color:#db7c6d;">= </span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>Cucumber</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>;
+</span><span>        </span><span style="color:#dbbb3d;">pub </span><span style="color:#a3cbe3;">const </span><span style="font-weight:bold;color:#a2ba43;">CARROT</span><span>: </span><span style="color:#db7c6d;">&amp;</span><span style="color:#dbbb3d;">&#39;static </span><span style="color:#a3cbe3;">str </span><span style="color:#db7c6d;">= </span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>Carrot</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>;
+</span><span>    }
+</span><span>}
+</span><span>
+</span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">main</span><span>() {
+</span><span>    println!(
+</span><span>        </span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>favorite snacks: </span><span style="font-weight:bold;color:#a2ba43;">{}</span><span> and </span><span style="font-weight:bold;color:#a2ba43;">{}</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>,
+</span><span>        delicious_snacks::fruit,
+</span><span>        delicious_snacks::veggie
+</span><span>    );
+</span><span>}
+</span></code></pre>
 <p>And it works, we're printing out of favorite snacks a pear and cucumber using the <code>as</code> keyword.</p>
-<pre data-lang="zsh" class="language-zsh "><code class="language-zsh" data-lang="zsh">Output:
-====================
-favorite snacks: Pear and Cucumber
-
-====================
-</code></pre>
+<pre data-lang="zsh" style="background-color:#31333d;color:#ffffffc4;" class="language-zsh "><code class="language-zsh" data-lang="zsh"><span style="font-weight:bold;color:#a3cbe3;">Output:
+</span><span style="color:#db7c6d;">=</span><span>===================
+</span><span style="font-weight:bold;color:#a3cbe3;">favorite</span><span> snacks: Pear and Cucumber
+</span><span>
+</span><span style="color:#db7c6d;">=</span><span>===================
+</span></code></pre>
 <h2 id="modules3-rs">modules3.rs</h2>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">&#x2F;&#x2F; modules3.rs
-&#x2F;&#x2F; You can use the &#x27;use&#x27; keyword to bring module paths from modules from anywhere
-&#x2F;&#x2F; and especially from the Rust standard library into your scope.
-&#x2F;&#x2F; Bring SystemTime and UNIX_EPOCH
-&#x2F;&#x2F; from the std::time module. Bonus style points if you can do it with one line!
-&#x2F;&#x2F; Execute `rustlings hint modules3` or use the `hint` watch subcommand for a hint.
-
-&#x2F;&#x2F; I AM NOT DONE
-
-&#x2F;&#x2F; TODO: Complete this use statement
-use ???
-
-fn main() {
-    match SystemTime::now().duration_since(UNIX_EPOCH) {
-        Ok(n) =&gt; println!(&quot;1970-01-01 00:00:00 UTC was {} seconds ago!&quot;, n.as_secs()),
-        Err(_) =&gt; panic!(&quot;SystemTime before UNIX EPOCH!&quot;),
-    }
-}
-
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#707180;">// modules3.rs
+</span><span style="color:#707180;">// You can use the &#39;use&#39; keyword to bring module paths from modules from anywhere
+</span><span style="color:#707180;">// and especially from the Rust standard library into your scope.
+</span><span style="color:#707180;">// Bring SystemTime and UNIX_EPOCH
+</span><span style="color:#707180;">// from the std::time module. Bonus style points if you can do it with one line!
+</span><span style="color:#707180;">// Execute `rustlings hint modules3` or use the `hint` watch subcommand for a hint.
+</span><span>
+</span><span style="color:#707180;">// I AM NOT DONE
+</span><span>
+</span><span style="color:#707180;">// TODO: Complete this use statement
+</span><span style="color:#db7c6d;">use ???
+</span><span>
+</span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">main</span><span>() {
+</span><span>    </span><span style="color:#db7c6d;">match </span><span>SystemTime::now().</span><span style="color:#db7c6d;">duration_since</span><span>(</span><span style="font-weight:bold;color:#a2ba43;">UNIX_EPOCH</span><span>) {
+</span><span>        </span><span style="color:#e7e7e7;">Ok</span><span>(n) </span><span style="color:#db7c6d;">=&gt; </span><span>println!(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>1970-01-01 00:00:00 UTC was </span><span style="font-weight:bold;color:#a2ba43;">{}</span><span> seconds ago!</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>, n.</span><span style="color:#db7c6d;">as_secs</span><span>()),
+</span><span>        </span><span style="color:#e7e7e7;">Err</span><span>(</span><span style="color:#db7c6d;">_</span><span>) </span><span style="color:#db7c6d;">=&gt; </span><span>panic!(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>SystemTime before UNIX EPOCH!</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>),
+</span><span>    }
+</span><span>}
+</span><span>
+</span></code></pre>
 <p>In this third exercise, we encounter code that involves the use of <code>UNIX_EPOCH</code> and <code>SystemTime</code>. Let's take a closer look at what these terms mean and how they relate to each other.</p>
 <p><code>UNIX_EPOCH</code> represents a specific point in time: the start of the Unix time system. In Unix-based operating systems, time is often measured as the number of seconds that have elapsed since January 1, 1970, at 00:00:00 UTC (Coordinated Universal Time). This point in time is commonly referred to as the Unix epoch.</p>
 <p>On the other hand, <code>SystemTime</code> is a type provided by the Rust standard library that represents the system's current time or a specific point in time. It is a flexible type that can handle different platforms and allows us to perform various operations on time values.</p>
@@ -306,34 +310,34 @@ fn main() {
 <p>Now that we have a better understanding of <code>UNIX_EPOCH</code> and <code>SystemTime</code>, let's proceed with the code solution to complete the exercise.</p>
 <h2 id="modules3-rs-errors">modules3.rs errors</h2>
 <p>When analyzing the error messages in the <code>modules3.rs</code> exercise, we can see that they don't provide any additional insights beyond the fact that an import statement is expected after the <code>use</code> keyword. The error message explicitly states that an identifier is anticipated after the <code>use</code> keyword. Therefore, to resolve this issue, we need to provide a valid identifier in our import statement.</p>
-<pre data-lang="zsh" class="language-zsh "><code class="language-zsh" data-lang="zsh">⚠️  Compiling of exercises&#x2F;modules&#x2F;modules3.rs failed! Please try again. Here is the output:
-error: expected identifier, found `?`
-  --&gt; exercises&#x2F;modules&#x2F;modules3.rs:11:5
-   |
-11 | use ???
-   |     ^ expected identifier
-
-error: aborting due to previous error
-</code></pre>
+<pre data-lang="zsh" style="background-color:#31333d;color:#ffffffc4;" class="language-zsh "><code class="language-zsh" data-lang="zsh"><span style="font-weight:bold;color:#a3cbe3;">⚠️</span><span>  Compiling of exercises/modules/modules3.rs failed! Please try again. Here is the output:
+</span><span style="font-weight:bold;color:#a3cbe3;">error:</span><span> expected identifier, found `</span><span style="font-weight:bold;color:#a3cbe3;">?</span><span>`
+</span><span>  </span><span style="font-weight:bold;color:#a3cbe3;">--</span><span style="color:#db7c6d;">&gt;</span><span> exercises/modules/modules3.rs:11:5
+</span><span>   </span><span style="color:#db7c6d;">|
+</span><span style="font-weight:bold;color:#a3cbe3;">11 </span><span style="color:#db7c6d;">| </span><span style="font-weight:bold;color:#a3cbe3;">use </span><span style="color:#db7c6d;">???
+</span><span>   </span><span style="color:#db7c6d;">|     </span><span style="font-weight:bold;color:#a3cbe3;">^</span><span> expected identifier
+</span><span>
+</span><span style="font-weight:bold;color:#a3cbe3;">error:</span><span> aborting due to previous error
+</span></code></pre>
 <h2 id="modules3-rs-solution">modules3.rs solution</h2>
 <p>Our hints are pretty direct we need to import from the <code>std::time</code> module both <code>UNIX_EPOCH</code> and <code>SystemTime</code> into our code, and in order to save space and time we should it in one line. The way we do this is by including adding curly braces<code>{}</code> into our import statement and separating each item with a comma, easy enough.</p>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">use std::time::{SystemTime, UNIX_EPOCH};
-
-fn main() {
-    match SystemTime::now().duration_since(UNIX_EPOCH) {
-        Ok(n) =&gt; println!(&quot;19-01-01 00:00:00 UTC was {} seconds ago!&quot;, n.as_secs()),
-        Err(_) =&gt; panic!(&quot;SystemTime before UNIX EPOCH!&quot;),
-    }
-}
-
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#db7c6d;">use </span><span>std::time::{SystemTime, </span><span style="font-weight:bold;color:#a2ba43;">UNIX_EPOCH</span><span>};
+</span><span>
+</span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">main</span><span>() {
+</span><span>    </span><span style="color:#db7c6d;">match </span><span>SystemTime::now().</span><span style="color:#db7c6d;">duration_since</span><span>(</span><span style="font-weight:bold;color:#a2ba43;">UNIX_EPOCH</span><span>) {
+</span><span>        </span><span style="color:#e7e7e7;">Ok</span><span>(n) </span><span style="color:#db7c6d;">=&gt; </span><span>println!(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>19-01-01 00:00:00 UTC was </span><span style="font-weight:bold;color:#a2ba43;">{}</span><span> seconds ago!</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>, n.</span><span style="color:#db7c6d;">as_secs</span><span>()),
+</span><span>        </span><span style="color:#e7e7e7;">Err</span><span>(</span><span style="color:#db7c6d;">_</span><span>) </span><span style="color:#db7c6d;">=&gt; </span><span>panic!(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>SystemTime before UNIX EPOCH!</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>),
+</span><span>    }
+</span><span>}
+</span><span>
+</span></code></pre>
 <p>This is the output we get</p>
-<pre data-lang="zsh" class="language-zsh "><code class="language-zsh" data-lang="zsh">Output:
-====================
-1970-01-01 00:00:00 UTC was 1687044064 seconds ago!
-
-====================
-</code></pre>
+<pre data-lang="zsh" style="background-color:#31333d;color:#ffffffc4;" class="language-zsh "><code class="language-zsh" data-lang="zsh"><span style="font-weight:bold;color:#a3cbe3;">Output:
+</span><span style="color:#db7c6d;">=</span><span>===================
+</span><span style="font-weight:bold;color:#a3cbe3;">1970-01-01</span><span> 00:00:00 UTC was 1687044064 seconds ago!
+</span><span>
+</span><span style="color:#db7c6d;">=</span><span>===================
+</span></code></pre>
 <h2 id="conclusion">Conclusion</h2>
 <p>In this blog post, we explored three exercises related to Rust's module system. Here are the key takeaways:</p>
 <ul>
@@ -367,7 +371,7 @@ fn main() {
 		
     </p>
     
-    <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>1437 Words</p>
+    <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>910 Words</p>
     
     <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2023-07-17</p>
     
@@ -390,7 +394,7 @@ fn main() {
 
 
 <footer id="site-footer" class="section-inner thin animated fadeIn faster">
-  <p>&copy; 2024 <a href="https:&#x2F;&#x2F;desmodrone.github.io">erick</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
+  <p>&copy; 2026 <a href="https:&#x2F;&#x2F;desmodrone.github.io">erick</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
   <p>Made with <a href="https://www.getzola.org" target="_blank" rel="noopener">Zola</a> &#183; Theme <a href="https://github.com/VersBinarii/hermit_zola" target="_blank" rel="noopener">Hermit_Zola</a>
 	
 	&#183; <a href="https://desmodrone.github.io/rss.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>

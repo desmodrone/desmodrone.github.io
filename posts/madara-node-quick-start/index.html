@@ -27,6 +27,10 @@
   <link rel="alternate" type="application/rss+xml" title="RSS" href="https://desmodrone.github.io/rss.xml">
   
 
+  
+  <link rel="canonical" href="https://desmodrone.github.io/posts/madara-node-quick-start/">
+  
+
   <body id="page">
 
 	
@@ -120,7 +124,7 @@
 		<small> - 
 <span class="reading-time" title="Estimated read time">
   
-  6 min read
+  4 min read
   
 </span>
 </small>
@@ -149,8 +153,8 @@
 <li><a href="https://github.com/keep-starknet-strange/madara/tree/main">Karnot/Madara</a></li>
 </ul>
 <h2 id="clone-the-madara-repo">Clone the <a href="https://github.com/keep-starknet-strange/madara/tree/main">Madara Repo</a></h2>
-<pre data-lang="zsh" class="language-zsh "><code class="language-zsh" data-lang="zsh">git clone git@github.com:keep-starknet-strange&#x2F;madara.git
-</code></pre>
+<pre data-lang="zsh" style="background-color:#31333d;color:#ffffffc4;" class="language-zsh "><code class="language-zsh" data-lang="zsh"><span style="font-weight:bold;color:#a3cbe3;">git</span><span> clone git@github.com:keep-starknet-strange/madara.git
+</span></code></pre>
 <h2 id="starting-madara">Starting Madara</h2>
 <p>Once cloned, from inside the <code>madara</code> folder of this newly cloned repo run the following command.
 Replace the <code>/User/desmo/madara-state</code> with the location where you want to store your Madara state: <code>/home/user/directory</code></p>
@@ -158,99 +162,99 @@ Replace the <code>/User/desmo/madara-state</code> with the location where you wa
 <p>Note:
 These commands are different than the commands given in the Madara repo and allow us to save the node's state locally.</p>
 </blockquote>
-<pre data-lang="zsh" class="language-zsh "><code class="language-zsh" data-lang="zsh">cargo run --release -- setup --from-local .&#x2F;configs&#x2F; --chain=dev --base-path=&#x2F;Users&#x2F;desmo&#x2F;madara-state
-</code></pre>
-<pre data-lang="zsh" class="language-zsh "><code class="language-zsh" data-lang="zsh">cargo run --release -- --alice --base-path &#x2F;Users&#x2F;desmo&#x2F;madara-state --rpc-cors=all --chain=dev
-</code></pre>
+<pre data-lang="zsh" style="background-color:#31333d;color:#ffffffc4;" class="language-zsh "><code class="language-zsh" data-lang="zsh"><span style="font-weight:bold;color:#a3cbe3;">cargo</span><span> run</span><span style="color:#ffffff;"> --release</span><span style="color:#db7c6d;"> --</span><span> setup --from-local ./configs/ --chain=dev --base-path=/Users/desmo/madara-state
+</span></code></pre>
+<pre data-lang="zsh" style="background-color:#31333d;color:#ffffffc4;" class="language-zsh "><code class="language-zsh" data-lang="zsh"><span style="font-weight:bold;color:#a3cbe3;">cargo</span><span> run</span><span style="color:#ffffff;"> --release</span><span style="color:#db7c6d;"> --</span><span> --alice --base-path /Users/desmo/madara-state --rpc-cors=all --chain=dev
+</span></code></pre>
 <p>This starts the chain and is pointing at the location of where we stored the state you should replace the again with what you used in the previous command.</p>
 <p>If successful you should get an output similar to this:</p>
-<pre data-lang="zsh" class="language-zsh "><code class="language-zsh" data-lang="zsh">    Finished release [optimized] target(s) in 1.80s
-     Running `target&#x2F;release&#x2F;madara --alice --base-path &#x2F;Users&#x2F;desmo&#x2F;madara-state --rpc-cors=all --chain=dev`
-2024-03-06 17:54:44 Madara initialized w&#x2F;o DA layer
-2024-03-06 17:54:44 Madara initialized w&#x2F;o settlement layer
-2024-03-06 17:54:44 Madara Node
-2024-03-06 17:54:44 ✌️  version 0.7.0-5e68494fe9d
-2024-03-06 17:54:44 ❤️  by Abdelhamid Bakhta &lt;@keep-starknet-strange&gt;:Substrate DevHub &lt;https:&#x2F;&#x2F;github.com&#x2F;substrate-developer-hub&gt;, 2017-2024
-2024-03-06 17:54:44 📋 Chain specification: Development
-2024-03-06 17:54:44 🏷  Node name: Alice
-2024-03-06 17:54:44 👤 Role: AUTHORITY
-2024-03-06 17:54:44 💾 Database: RocksDb at &#x2F;Users&#x2F;desmo&#x2F;madara-state&#x2F;chains&#x2F;dev&#x2F;db&#x2F;full
-2024-03-06 17:54:44 🧪 Using the following development accounts:
-2024-03-06 17:54:44 🧪 NO VALIDATE with address: 0x1 and no pk
-2024-03-06 17:54:44 🧪 ARGENT with address: 0x2 and pk: 0xc1cf1490de1352865301bb8705143f3ef938f97fdf892f1090dcb5ac7bcd1d
-2024-03-06 17:54:44 🧪 OZ with address: 0x3 and pk: 0xc1cf1490de1352865301bb8705143f3ef938f97fdf892f1090dcb5ac7bcd1d
-2024-03-06 17:54:44 🧪 CAIRO 1 with address: 0x4 and no pk
-2024-03-06 17:54:44 Using default protocol ID &quot;sup&quot; because none is configured in the chain specs
-2024-03-06 17:54:44 🏷  Local node identity is: 12D3KooWLngNFrmtGSXsdWV8RG1aKbNs7dHrt8NfBmt9TCtHc4CY
-</code></pre>
+<pre data-lang="zsh" style="background-color:#31333d;color:#ffffffc4;" class="language-zsh "><code class="language-zsh" data-lang="zsh"><span>    </span><span style="font-weight:bold;color:#a3cbe3;">Finished</span><span> release </span><span style="color:#db7c6d;">[</span><span>optimized</span><span style="color:#db7c6d;">]</span><span> target(s) </span><span style="font-weight:bold;color:#a3cbe3;">in</span><span> 1.80s
+</span><span>     </span><span style="font-weight:bold;color:#a3cbe3;">Running </span><span>`</span><span style="font-weight:bold;color:#a3cbe3;">target/release/madara</span><span style="color:#ffffff;"> --alice --base-path</span><span> /Users/desmo/madara-state</span><span style="color:#ffffff;"> --rpc-cors</span><span style="color:#db7c6d;">=</span><span>all</span><span style="color:#ffffff;"> --chain</span><span style="color:#db7c6d;">=</span><span>dev`
+</span><span style="font-weight:bold;color:#a3cbe3;">2024-03-06</span><span> 17:54:44 Madara initialized w/o DA layer
+</span><span style="font-weight:bold;color:#a3cbe3;">2024-03-06</span><span> 17:54:44 Madara initialized w/o settlement layer
+</span><span style="font-weight:bold;color:#a3cbe3;">2024-03-06</span><span> 17:54:44 Madara Node
+</span><span style="font-weight:bold;color:#a3cbe3;">2024-03-06</span><span> 17:54:44 ✌️  version 0.7.0-5e68494fe9d
+</span><span style="font-weight:bold;color:#a3cbe3;">2024-03-06</span><span> 17:54:44 ❤️  by Abdelhamid Bakhta </span><span style="color:#db7c6d;">&lt;</span><span>@keep-starknet-strange</span><span style="color:#db7c6d;">&gt;</span><span>:Substrate DevHub </span><span style="color:#db7c6d;">&lt;</span><span>https://github.com/substrate-developer-hub</span><span style="color:#db7c6d;">&gt;</span><span>, 2017-2024
+</span><span style="font-weight:bold;color:#a3cbe3;">2024-03-06</span><span> 17:54:44 📋 Chain specification: Development
+</span><span style="font-weight:bold;color:#a3cbe3;">2024-03-06</span><span> 17:54:44 🏷  Node name: Alice
+</span><span style="font-weight:bold;color:#a3cbe3;">2024-03-06</span><span> 17:54:44 👤 Role: AUTHORITY
+</span><span style="font-weight:bold;color:#a3cbe3;">2024-03-06</span><span> 17:54:44 💾 Database: RocksDb at /Users/desmo/madara-state/chains/dev/db/full
+</span><span style="font-weight:bold;color:#a3cbe3;">2024-03-06</span><span> 17:54:44 🧪 Using the following development accounts:
+</span><span style="font-weight:bold;color:#a3cbe3;">2024-03-06</span><span> 17:54:44 🧪 NO VALIDATE with address: 0x1 and no pk
+</span><span style="font-weight:bold;color:#a3cbe3;">2024-03-06</span><span> 17:54:44 🧪 ARGENT with address: 0x2 and pk: 0xc1cf1490de1352865301bb8705143f3ef938f97fdf892f1090dcb5ac7bcd1d
+</span><span style="font-weight:bold;color:#a3cbe3;">2024-03-06</span><span> 17:54:44 🧪 OZ with address: 0x3 and pk: 0xc1cf1490de1352865301bb8705143f3ef938f97fdf892f1090dcb5ac7bcd1d
+</span><span style="font-weight:bold;color:#a3cbe3;">2024-03-06</span><span> 17:54:44 🧪 CAIRO 1 with address: 0x4 and no pk
+</span><span style="font-weight:bold;color:#a3cbe3;">2024-03-06</span><span> 17:54:44 Using default protocol ID </span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>sup</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span> because none is configured in the chain specs
+</span><span style="font-weight:bold;color:#a3cbe3;">2024-03-06</span><span> 17:54:44 🏷  Local node identity is: 12D3KooWLngNFrmtGSXsdWV8RG1aKbNs7dHrt8NfBmt9TCtHc4CY
+</span></code></pre>
 <h2 id="creating-our-contract">Creating our Contract</h2>
 <p>Now that we've successfully launched our node we'll build a contract, it can be any contract but let's start with a simple contract from the <a href="https://starknet-by-example.voyager.online/ch00/basics/counter.html">Starknet by Example</a> a counter-contract in which we'll make some simple modifications.</p>
 <h3 id="scarb-commands">Scarb Commands</h3>
 <p>Let's start by creating our project using scarb</p>
-<pre data-lang="zsh" class="language-zsh "><code class="language-zsh" data-lang="zsh">scarb new counter_contract
-</code></pre>
+<pre data-lang="zsh" style="background-color:#31333d;color:#ffffffc4;" class="language-zsh "><code class="language-zsh" data-lang="zsh"><span style="font-weight:bold;color:#a3cbe3;">scarb</span><span> new counter_contract
+</span></code></pre>
 <p>then go into your <code>counter_contract</code> and open your newly created project with your favorite editor.</p>
 <h3 id="modifying-scarb-toml">Modifying <code>scarb.toml</code></h3>
 <p>We need to add a couple of lines to our <code>toml</code> file to make it compatible with our Madara node.</p>
-<pre data-lang="toml" class="language-toml "><code class="language-toml" data-lang="toml">[package]
-name = &quot;counter_contract&quot;
-version = &quot;0.1.0&quot;
-
-# See more keys and their definitions at https:&#x2F;&#x2F;docs.swmansion.com&#x2F;scarb&#x2F;docs&#x2F;reference&#x2F;manifest.html
-
-[dependencies]
-starknet = &quot;&gt;=2.1.0&quot;
-
-[[target.starknet-contract]]
-casm = true
-</code></pre>
+<pre data-lang="toml" style="background-color:#31333d;color:#ffffffc4;" class="language-toml "><code class="language-toml" data-lang="toml"><span>[package]
+</span><span style="color:#db7c6d;">name </span><span>= </span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>counter_contract</span><span style="font-weight:bold;color:#dbbb3d;">&quot;
+</span><span style="color:#db7c6d;">version </span><span>= </span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>0.1.0</span><span style="font-weight:bold;color:#dbbb3d;">&quot;
+</span><span>
+</span><span style="color:#707180;"># See more keys and their definitions at https://docs.swmansion.com/scarb/docs/reference/manifest.html
+</span><span>
+</span><span>[dependencies]
+</span><span style="color:#db7c6d;">starknet </span><span>= </span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>&gt;=2.1.0</span><span style="font-weight:bold;color:#dbbb3d;">&quot;
+</span><span>
+</span><span>[[target.starknet-contract]]
+</span><span style="color:#db7c6d;">casm </span><span>= </span><span style="color:#ffffff;">true
+</span></code></pre>
 <h3 id="modifying-lib-rs">Modifying <code>lib.rs</code></h3>
 <p>If you're running your own <code>hello_world</code> (or different) contract you don't have to do this but if you're following along we need to modify the counter contract by removing and adding small parts of code.</p>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">#[starknet::interface]
-&#x2F;&#x2F; remove pub modifier
-trait ISimpleCounter&lt;TContractState&gt; {
-    fn get_current_count(self: @TContractState) -&gt; u128;
-    fn increment(ref self: TContractState);
-    fn decrement(ref self: TContractState);
-}
-
-#[starknet::contract]
-&#x2F;&#x2F; remove pub modifier
-mod SimpleCounter {
-    #[storage]
-    struct Storage {
-        &#x2F;&#x2F; Counter variable
-        counter: u128,
-    }
-
-    #[constructor]
-    &#x2F;&#x2F; remove the `init_valule` parameter
-    fn constructor(ref self: ContractState) {
-        &#x2F;&#x2F; Store initial value
-        self.counter.write(1); &#x2F;&#x2F; add `1` here
-    }
-
-	&#x2F;&#x2F; this macro is important to make sure tha we can access
-	&#x2F;&#x2F; these functions externally
-    #[external(v0)]
-    impl SimpleCounter of super::ISimpleCounter&lt;ContractState&gt; {
-        fn get_current_count(self: @ContractState) -&gt; u128 {
-            return self.counter.read();
-        }
-
-        fn increment(ref self: ContractState) {
-            &#x2F;&#x2F; Store counter value + 1
-            let counter = self.counter.read() + 1;
-            self.counter.write(counter);
-        }
-        fn decrement(ref self: ContractState) {
-            &#x2F;&#x2F; Store counter value - 1
-            let counter = self.counter.read() - 1;
-            self.counter.write(counter);
-        }
-    }
-}
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span>#[</span><span style="font-weight:bold;color:#a3cbe3;">starknet</span><span>::</span><span style="font-weight:bold;color:#a3cbe3;">interface</span><span>]
+</span><span style="color:#707180;">// remove pub modifier
+</span><span style="color:#a3cbe3;">trait </span><span>ISimpleCounter&lt;TContractState&gt; {
+</span><span>    </span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">get_current_count</span><span>(</span><span style="color:#ffffff;">self</span><span>: @TContractState) -&gt; </span><span style="color:#a3cbe3;">u128</span><span>;
+</span><span>    </span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">increment</span><span>(</span><span style="color:#dbbb3d;">ref </span><span style="color:#ffffff;">self</span><span>: TContractState);
+</span><span>    </span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">decrement</span><span>(</span><span style="color:#dbbb3d;">ref </span><span style="color:#ffffff;">self</span><span>: TContractState);
+</span><span>}
+</span><span>
+</span><span>#[</span><span style="font-weight:bold;color:#a3cbe3;">starknet</span><span>::</span><span style="font-weight:bold;color:#a3cbe3;">contract</span><span>]
+</span><span style="color:#707180;">// remove pub modifier
+</span><span style="color:#a3cbe3;">mod </span><span>SimpleCounter {
+</span><span>    #[</span><span style="font-weight:bold;color:#a3cbe3;">storage</span><span>]
+</span><span>    </span><span style="color:#a3cbe3;">struct </span><span>Storage {
+</span><span>        </span><span style="color:#707180;">// Counter variable
+</span><span>        </span><span style="font-weight:bold;color:#a3cbe3;">counter</span><span>: </span><span style="color:#a3cbe3;">u128</span><span>,
+</span><span>    }
+</span><span>
+</span><span>    #[</span><span style="font-weight:bold;color:#a3cbe3;">constructor</span><span>]
+</span><span>    </span><span style="color:#707180;">// remove the `init_valule` parameter
+</span><span>    </span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">constructor</span><span>(</span><span style="color:#dbbb3d;">ref </span><span style="color:#ffffff;">self</span><span>: ContractState) {
+</span><span>        </span><span style="color:#707180;">// Store initial value
+</span><span>        </span><span style="font-weight:bold;color:#a3cbe3;">self</span><span>.counter.</span><span style="color:#db7c6d;">write</span><span>(</span><span style="color:#db7c6d;">1</span><span>); </span><span style="color:#707180;">// add `1` here
+</span><span>    }
+</span><span>
+</span><span>	</span><span style="color:#707180;">// this macro is important to make sure tha we can access
+</span><span>	</span><span style="color:#707180;">// these functions externally
+</span><span>    #[</span><span style="font-weight:bold;color:#a3cbe3;">external</span><span>(v0)]
+</span><span>    </span><span style="color:#a3cbe3;">impl </span><span>SimpleCounter of super::ISimpleCounter&lt;ContractState&gt; {
+</span><span>        </span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">get_current_count</span><span>(</span><span style="color:#ffffff;">self</span><span>: @ContractState) -&gt; </span><span style="color:#a3cbe3;">u128 </span><span>{
+</span><span>            </span><span style="color:#db7c6d;">return </span><span style="font-weight:bold;color:#a3cbe3;">self</span><span>.counter.</span><span style="color:#db7c6d;">read</span><span>();
+</span><span>        }
+</span><span>
+</span><span>        </span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">increment</span><span>(</span><span style="color:#dbbb3d;">ref </span><span style="color:#ffffff;">self</span><span>: ContractState) {
+</span><span>            </span><span style="color:#707180;">// Store counter value + 1
+</span><span>            </span><span style="color:#a3cbe3;">let</span><span> counter </span><span style="color:#db7c6d;">= </span><span style="font-weight:bold;color:#a3cbe3;">self</span><span>.counter.</span><span style="color:#db7c6d;">read</span><span>() </span><span style="color:#db7c6d;">+ 1</span><span>;
+</span><span>            </span><span style="font-weight:bold;color:#a3cbe3;">self</span><span>.counter.</span><span style="color:#db7c6d;">write</span><span>(counter);
+</span><span>        }
+</span><span>        </span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">decrement</span><span>(</span><span style="color:#dbbb3d;">ref </span><span style="color:#ffffff;">self</span><span>: ContractState) {
+</span><span>            </span><span style="color:#707180;">// Store counter value - 1
+</span><span>            </span><span style="color:#a3cbe3;">let</span><span> counter </span><span style="color:#db7c6d;">= </span><span style="font-weight:bold;color:#a3cbe3;">self</span><span>.counter.</span><span style="color:#db7c6d;">read</span><span>() </span><span style="color:#db7c6d;">- 1</span><span>;
+</span><span>            </span><span style="font-weight:bold;color:#a3cbe3;">self</span><span>.counter.</span><span style="color:#db7c6d;">write</span><span>(counter);
+</span><span>        }
+</span><span>    }
+</span><span>}
+</span></code></pre>
 <p>In the comments in the code you can see the modifications we've made, but to make it explicit we've:</p>
 <ol>
 <li>Remove the <code>pub</code> modifier in the <code>trait ISimpleCounter</code> and <code>mod SimpleCounter</code></li>
@@ -259,103 +263,103 @@ mod SimpleCounter {
 </ol>
 <h3 id="building-our-lib-rs">Building our <code>lib.rs</code></h3>
 <p>Once the contract is ready you can simply build the contract using</p>
-<pre data-lang="zsh" class="language-zsh "><code class="language-zsh" data-lang="zsh">scarb build
-</code></pre>
+<pre data-lang="zsh" style="background-color:#31333d;color:#ffffffc4;" class="language-zsh "><code class="language-zsh" data-lang="zsh"><span style="font-weight:bold;color:#a3cbe3;">scarb</span><span> build
+</span></code></pre>
 <p>If all goes well you should have 3 new files in your newly generated <code>target/dev</code> folder</p>
-<pre data-lang="zsh" class="language-zsh "><code class="language-zsh" data-lang="zsh">counter_contract.starknet_artifacts.json
-counter_contract_SimpleCounter.sierra.json #ABI file
-counter_contract_SimpleCounter.casm.json
-</code></pre>
+<pre data-lang="zsh" style="background-color:#31333d;color:#ffffffc4;" class="language-zsh "><code class="language-zsh" data-lang="zsh"><span style="font-weight:bold;color:#a3cbe3;">counter_contract.starknet_artifacts.json
+</span><span style="font-weight:bold;color:#a3cbe3;">counter_contract_SimpleCounter.sierra.json </span><span style="color:#707180;">#ABI file
+</span><span style="font-weight:bold;color:#a3cbe3;">counter_contract_SimpleCounter.casm.json
+</span></code></pre>
 <p>With these contracts exported we can move on to the next steps which are declaring and deploying and for this we need the <em>Karnot: Madara get Started</em> repo.</p>
 <h2 id="setting-up-karnot-madara-get-started">Setting up <a href="https://github.com/karnotxyz/madara-get-started">Karnot/madara-get-started</a></h2>
 <p>We start by cloning the repo, you probably want to do this outside of your <code>madara</code> node directory</p>
-<pre data-lang="zsh" class="language-zsh "><code class="language-zsh" data-lang="zsh">git clone git@github.com:karnotxyz&#x2F;madara-get-started.git
-</code></pre>
+<pre data-lang="zsh" style="background-color:#31333d;color:#ffffffc4;" class="language-zsh "><code class="language-zsh" data-lang="zsh"><span style="font-weight:bold;color:#a3cbe3;">git</span><span> clone git@github.com:karnotxyz/madara-get-started.git
+</span></code></pre>
 <p>and</p>
-<pre data-lang="zsh" class="language-zsh "><code class="language-zsh" data-lang="zsh">npm i
-</code></pre>
+<pre data-lang="zsh" style="background-color:#31333d;color:#ffffffc4;" class="language-zsh "><code class="language-zsh" data-lang="zsh"><span style="font-weight:bold;color:#a3cbe3;">npm</span><span> i
+</span></code></pre>
 <blockquote>
 <p>[!Note]
 You should to be running Node v20.5.1 - so make sure you're running that version before running the Node commands by using either <code>asdf</code> or <code>nvm</code></p>
 </blockquote>
 <h3 id="cleaning-the-contracts-folder">Cleaning the Contracts Folder</h3>
 <p>In the <code>madara-get-started/contracts</code> folder you have some pre-built contracts</p>
-<pre data-lang="zsh" class="language-zsh "><code class="language-zsh" data-lang="zsh">➜  madara-get-started git:(main) ls .&#x2F;contracts&#x2F;*
-.&#x2F;contracts&#x2F;ERC20.json                              .&#x2F;contracts&#x2F;OpenZeppelinAccountCairoOne.sierra.json
-.&#x2F;contracts&#x2F;OpenZeppelinAccountCairoOne.casm.json
-</code></pre>
+<pre data-lang="zsh" style="background-color:#31333d;color:#ffffffc4;" class="language-zsh "><code class="language-zsh" data-lang="zsh"><span style="font-weight:bold;color:#a3cbe3;">➜</span><span>  madara-get-started git:(main) </span><span style="font-weight:bold;color:#a3cbe3;">ls</span><span> ./contracts/</span><span style="color:#db7c6d;">*
+</span><span style="font-weight:bold;color:#a3cbe3;">./contracts/ERC20.json</span><span>                              ./contracts/OpenZeppelinAccountCairoOne.sierra.json
+</span><span style="font-weight:bold;color:#a3cbe3;">./contracts/OpenZeppelinAccountCairoOne.casm.json
+</span></code></pre>
 <p>remove the contracts from your contracts folder</p>
-<pre data-lang="zsh" class="language-zsh "><code class="language-zsh" data-lang="zsh">rm .&#x2F;contracts&#x2F;*
-</code></pre>
+<pre data-lang="zsh" style="background-color:#31333d;color:#ffffffc4;" class="language-zsh "><code class="language-zsh" data-lang="zsh"><span style="font-weight:bold;color:#a3cbe3;">rm</span><span> ./contracts/</span><span style="color:#db7c6d;">*
+</span></code></pre>
 <p>Now you need to go back to your <code>counter_contract</code> project and get get the contracts you built in the <code>target/dev</code> folder and put these contracts:</p>
-<pre data-lang="zsh" class="language-zsh "><code class="language-zsh" data-lang="zsh">counter_contract.starknet_artifacts.json
-counter_contract_SimpleCounter.sierra.json
-counter_contract_SimpleCounter.casm.json
-</code></pre>
+<pre data-lang="zsh" style="background-color:#31333d;color:#ffffffc4;" class="language-zsh "><code class="language-zsh" data-lang="zsh"><span style="font-weight:bold;color:#a3cbe3;">counter_contract.starknet_artifacts.json
+</span><span style="font-weight:bold;color:#a3cbe3;">counter_contract_SimpleCounter.sierra.json
+</span><span style="font-weight:bold;color:#a3cbe3;">counter_contract_SimpleCounter.casm.json
+</span></code></pre>
 <p>into the <code>madara-get-started/contracts</code> folder</p>
 <h2 id="making-changes-to-madara">Making Changes to Madara</h2>
 <p>Before we try and declare and deploy let's make sure we have our environment variables set by running on your terminal:</p>
-<pre data-lang="zsh" class="language-zsh "><code class="language-zsh" data-lang="zsh">export STARKNET_RPC=&quot;http:&#x2F;&#x2F;localhost:9944&#x2F;&quot;
-</code></pre>
+<pre data-lang="zsh" style="background-color:#31333d;color:#ffffffc4;" class="language-zsh "><code class="language-zsh" data-lang="zsh"><span style="color:#dbbb3d;">export </span><span style="font-weight:bold;color:#a3cbe3;">STARKNET_RPC</span><span style="color:#db7c6d;">=</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>http://localhost:9944/</span><span style="font-weight:bold;color:#dbbb3d;">&quot;
+</span></code></pre>
 <p>You can also set-up a more permanent solution but for now this works.
 Confirm that all is correct by running</p>
-<pre data-lang="zsh" class="language-zsh "><code class="language-zsh" data-lang="zsh">echo $STARKNET_RPC
-</code></pre>
+<pre data-lang="zsh" style="background-color:#31333d;color:#ffffffc4;" class="language-zsh "><code class="language-zsh" data-lang="zsh"><span style="color:#db7c6d;">echo </span><span style="font-weight:bold;color:#dbbb3d;">$</span><span style="font-weight:bold;color:#a3cbe3;">STARKNET_RPC
+</span></code></pre>
 <p>You should get the <code>http://localhost:9944/</code> back.</p>
 <h3 id="changing-the-chainid">Changing the ChainId</h3>
 <p>Now that we've confirmed that we're set the correct <code>STARNKET_RPC</code> we need to go into our <code>madera</code> directory and open up the <code>pallets.rs</code> file which can be found at <code>madara/crates/runtime/src/pallets.rs</code></p>
 <p>Here we're going to change the <code>SN_GOERLI_CHAIN_ID</code> to <code>MADARA_CHAIN_ID</code> you can search, but I found them on line <code>13</code> and line <code>164</code></p>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">&#x2F;&#x2F; line 13
-pub use mp_chain_id::MADARA_CHAIN_ID;
-
-...
-&#x2F;&#x2F; line 164
-pub const ChainId: Felt252Wrapper = MADARA_CHAIN_ID;
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#707180;">// line 13
+</span><span style="color:#dbbb3d;">pub </span><span style="color:#db7c6d;">use </span><span>mp_chain_id::</span><span style="font-weight:bold;color:#a2ba43;">MADARA_CHAIN_ID</span><span>;
+</span><span>
+</span><span style="color:#db7c6d;">...
+</span><span style="color:#707180;">// line 164
+</span><span style="color:#dbbb3d;">pub </span><span style="color:#a3cbe3;">const</span><span> ChainId: Felt252Wrapper </span><span style="color:#db7c6d;">= </span><span style="font-weight:bold;color:#a2ba43;">MADARA_CHAIN_ID</span><span>;
+</span></code></pre>
 <p>Save this file and close it now we're ready to re-launch the node</p>
 <p>Go ahead and stop your previous Madara node using ctrl+C and from inside of your <code>madara</code> folder run the same command we ran earlier to start the node:</p>
-<pre data-lang="zsh" class="language-zsh "><code class="language-zsh" data-lang="zsh">cargo run --release -- --alice --base-path &#x2F;Users&#x2F;desmo&#x2F;madara-state --rpc-cors=all --chain=dev
-</code></pre>
+<pre data-lang="zsh" style="background-color:#31333d;color:#ffffffc4;" class="language-zsh "><code class="language-zsh" data-lang="zsh"><span style="font-weight:bold;color:#a3cbe3;">cargo</span><span> run</span><span style="color:#ffffff;"> --release</span><span style="color:#db7c6d;"> --</span><span> --alice --base-path /Users/desmo/madara-state --rpc-cors=all --chain=dev
+</span></code></pre>
 <p>It should pick up from where your node left off but now with the correct chain ID.</p>
 <h2 id="declaring-and-deploying-the-contracts">Declaring and Deploying the Contracts</h2>
 <p>Now we need to go back to your <code>madara-get-started</code> folder and and run the scripts with node. Remember to be on the correct version of <code>v.20.5.1</code> and run:</p>
-<pre data-lang="zsh" class="language-zsh "><code class="language-zsh" data-lang="zsh">node scripts&#x2F;declare.js .&#x2F;contracts&#x2F;counter_contract_SimpleCounter.sierra.json .&#x2F;contracts&#x2F;counter_contract_SimpleCounter.casm.json
-</code></pre>
+<pre data-lang="zsh" style="background-color:#31333d;color:#ffffffc4;" class="language-zsh "><code class="language-zsh" data-lang="zsh"><span style="font-weight:bold;color:#a3cbe3;">node</span><span> scripts/declare.js ./contracts/counter_contract_SimpleCounter.sierra.json ./contracts/counter_contract_SimpleCounter.casm.json
+</span></code></pre>
 <p>the <code>.seirra.json</code> and <code>.casm.json</code> files should be the name of your contract name, if you're following along using the <code>counter_contract</code> example it should be the same as above and you should be able to run the scripts just the same, but if for whatever reason they're in a different location you can use the command with the correct locations</p>
-<pre data-lang="zsh" class="language-zsh "><code class="language-zsh" data-lang="zsh">node scripts&#x2F;declare.js &lt;path_to_sierra&gt; &lt;path_to_casm&gt;
-</code></pre>
+<pre data-lang="zsh" style="background-color:#31333d;color:#ffffffc4;" class="language-zsh "><code class="language-zsh" data-lang="zsh"><span style="font-weight:bold;color:#a3cbe3;">node</span><span> scripts/declare.js </span><span style="color:#db7c6d;">&lt;</span><span>path_to_sierra</span><span style="color:#db7c6d;">&gt; &lt;</span><span>path_to_casm</span><span style="color:#db7c6d;">&gt;
+</span></code></pre>
 <p>If that works you should see something like this</p>
-<pre data-lang="zsh" class="language-zsh "><code class="language-zsh" data-lang="zsh">This is the declare result -  {
-  transaction_hash: &#x27;0x4d9495073404c0ed2fd42bec07fc5c91d32005fedc20702d6f90612a69d78ce&#x27;,
-  class_hash: &#x27;0x5c9b0add4b036cef0eef4fa593f29da8554c162186be99c563c3ef10d31628d&#x27;
-}
-</code></pre>
+<pre data-lang="zsh" style="background-color:#31333d;color:#ffffffc4;" class="language-zsh "><code class="language-zsh" data-lang="zsh"><span style="font-weight:bold;color:#a3cbe3;">This</span><span> is the declare result -  {
+</span><span>  transaction_hash: </span><span style="font-weight:bold;color:#dbbb3d;">&#39;</span><span>0x4d9495073404c0ed2fd42bec07fc5c91d32005fedc20702d6f90612a69d78ce</span><span style="font-weight:bold;color:#dbbb3d;">&#39;</span><span>,
+</span><span>  class_hash: </span><span style="font-weight:bold;color:#dbbb3d;">&#39;</span><span>0x5c9b0add4b036cef0eef4fa593f29da8554c162186be99c563c3ef10d31628d</span><span style="font-weight:bold;color:#dbbb3d;">&#39;
+</span><span>}
+</span></code></pre>
 <p>Once that is done we should be able to deploy the contract with</p>
-<pre data-lang="zsh" class="language-zsh "><code class="language-zsh" data-lang="zsh">node scripts&#x2F;deploy.js .&#x2F;contracts&#x2F;counter_contract_SimpleCounter.sierra.json
-</code></pre>
+<pre data-lang="zsh" style="background-color:#31333d;color:#ffffffc4;" class="language-zsh "><code class="language-zsh" data-lang="zsh"><span style="font-weight:bold;color:#a3cbe3;">node</span><span> scripts/deploy.js ./contracts/counter_contract_SimpleCounter.sierra.json
+</span></code></pre>
 <p>If successful we should get something like this:</p>
-<pre data-lang="zsh" class="language-zsh "><code class="language-zsh" data-lang="zsh">This is the deploy result -  {
-  transaction_hash: &#x27;0x46803b2cb6d9b20902a04f6f23db165846e90a6f6096a5435198773c78912a2&#x27;,
-  contract_address: [
-    &#x27;0x18a91f3352b686058894699654e470dfa65f20da5bc08317fb1a6aa3faaee78&#x27;
-  ]
-}
-</code></pre>
+<pre data-lang="zsh" style="background-color:#31333d;color:#ffffffc4;" class="language-zsh "><code class="language-zsh" data-lang="zsh"><span style="font-weight:bold;color:#a3cbe3;">This</span><span> is the deploy result -  {
+</span><span>  transaction_hash: </span><span style="font-weight:bold;color:#dbbb3d;">&#39;</span><span>0x46803b2cb6d9b20902a04f6f23db165846e90a6f6096a5435198773c78912a2</span><span style="font-weight:bold;color:#dbbb3d;">&#39;</span><span>,
+</span><span>  contract_address: [
+</span><span>    </span><span style="font-weight:bold;color:#dbbb3d;">&#39;</span><span>0x18a91f3352b686058894699654e470dfa65f20da5bc08317fb1a6aa3faaee78</span><span style="font-weight:bold;color:#dbbb3d;">&#39;
+</span><span>  ]
+</span><span>}
+</span></code></pre>
 <h2 id="contract-interaction">Contract Interaction</h2>
 <p>Now we should be able to interact with our contract using <code>starkli</code></p>
-<pre data-lang="zsh" class="language-zsh "><code class="language-zsh" data-lang="zsh">starkli call 0x18a91f3352b686058894699654e470dfa65f20da5bc08317fb1a6aa3faaee78 get_current_count
-</code></pre>
+<pre data-lang="zsh" style="background-color:#31333d;color:#ffffffc4;" class="language-zsh "><code class="language-zsh" data-lang="zsh"><span style="font-weight:bold;color:#a3cbe3;">starkli</span><span> call 0x18a91f3352b686058894699654e470dfa65f20da5bc08317fb1a6aa3faaee78 get_current_count
+</span></code></pre>
 <p>and that should output</p>
-<pre data-lang="zsh" class="language-zsh "><code class="language-zsh" data-lang="zsh">[
-    &quot;0x0000000000000000000000000000000000000000000000000000000000000001&quot;
-]
-</code></pre>
-<p>and this shows our &quot;counter&quot; working as we have <code>1</code> as our output which is the <code>1</code> we passed through on the initial value</p>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">fn constructor(ref self: ContractState) {
-        &#x2F;&#x2F; Store initial value
-        self.counter.write(1); &#x2F;&#x2F; add `1` here
-    }
-</code></pre>
+<pre data-lang="zsh" style="background-color:#31333d;color:#ffffffc4;" class="language-zsh "><code class="language-zsh" data-lang="zsh"><span style="color:#db7c6d;">[
+</span><span>    </span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>0x0000000000000000000000000000000000000000000000000000000000000001</span><span style="font-weight:bold;color:#dbbb3d;">&quot;
+</span><span style="font-weight:bold;color:#a3cbe3;">]
+</span></code></pre>
+<p>and this shows our "counter" working as we have <code>1</code> as our output which is the <code>1</code> we passed through on the initial value</p>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">constructor</span><span>(</span><span style="color:#dbbb3d;">ref </span><span style="color:#ffffff;">self</span><span>: ContractState) {
+</span><span>        </span><span style="color:#707180;">// Store initial value
+</span><span>        </span><span style="font-weight:bold;color:#a3cbe3;">self</span><span>.counter.</span><span style="color:#db7c6d;">write</span><span>(</span><span style="color:#db7c6d;">1</span><span>); </span><span style="color:#707180;">// add `1` here
+</span><span>    }
+</span></code></pre>
 <p>Now all we have to do is deploy some more sophisticated contracts!</p>
 
 	</div>
@@ -385,7 +389,7 @@ pub const ChainId: Felt252Wrapper = MADARA_CHAIN_ID;
 		
     </p>
     
-    <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>1507 Words</p>
+    <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>956 Words</p>
     
     <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2024-03-19</p>
     
@@ -408,7 +412,7 @@ pub const ChainId: Felt252Wrapper = MADARA_CHAIN_ID;
 
 
 <footer id="site-footer" class="section-inner thin animated fadeIn faster">
-  <p>&copy; 2024 <a href="https:&#x2F;&#x2F;desmodrone.github.io">erick</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
+  <p>&copy; 2026 <a href="https:&#x2F;&#x2F;desmodrone.github.io">erick</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
   <p>Made with <a href="https://www.getzola.org" target="_blank" rel="noopener">Zola</a> &#183; Theme <a href="https://github.com/VersBinarii/hermit_zola" target="_blank" rel="noopener">Hermit_Zola</a>
 	
 	&#183; <a href="https://desmodrone.github.io/rss.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>

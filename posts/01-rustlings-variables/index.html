@@ -27,6 +27,10 @@
   <link rel="alternate" type="application/rss+xml" title="RSS" href="https://desmodrone.github.io/rss.xml">
   
 
+  
+  <link rel="canonical" href="https://desmodrone.github.io/posts/01-rustlings-variables/">
+  
+
   <body id="page">
 
 	
@@ -120,7 +124,7 @@
 		<small> - 
 <span class="reading-time" title="Estimated read time">
   
-  2 min read
+  1 min read
   
 </span>
 </small>
@@ -140,75 +144,75 @@ You can however, make a variable mutable by adding <code>mut</code> in front of 
 <li><a href="https://doc.rust-lang.org/book/ch03-01-variables-and-mutability.html">Variables and Mutability</a></li>
 </ul>
 <h2 id="variables1-rs"><code>variables1.rs</code></h2>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">&#x2F;&#x2F; variables1.rs
-&#x2F;&#x2F; Make me compile!
-&#x2F;&#x2F; Execute `rustlings hint variables1` or use the `hint` watch subcommand for a hint.
-
-fn main() {
-    let x = 5; &#x2F;&#x2F; very simple excerize that is missing the `let`
-    println!(&quot;x has the value {}&quot;, x);
-}
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#707180;">// variables1.rs
+</span><span style="color:#707180;">// Make me compile!
+</span><span style="color:#707180;">// Execute `rustlings hint variables1` or use the `hint` watch subcommand for a hint.
+</span><span>
+</span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">main</span><span>() {
+</span><span>    </span><span style="color:#a3cbe3;">let</span><span> x </span><span style="color:#db7c6d;">= 5</span><span>; </span><span style="color:#707180;">// very simple excerize that is missing the `let`
+</span><span>    println!(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>x has the value </span><span style="font-weight:bold;color:#a2ba43;">{}</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>, x);
+</span><span>}
+</span></code></pre>
 <p>Adding the <code>let</code> to the statement allows <code>x</code> to bind to <code>5</code>, very straight forward solution</p>
 <h2 id="variables2-rs"><code>variables2.rs</code></h2>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">&#x2F;&#x2F; variables2.rs
-&#x2F;&#x2F; Execute `rustlings hint variables2` or use the `hint` watch subcommand for a hint.
-
-fn main() {
-    let x: u8 = 5; &#x2F;&#x2F; you could also just write `let x = 5`
-    if x == 10 {
-        println!(&quot;x is ten!&quot;);
-    } else {
-        println!(&quot;x is not ten!&quot;);
-    }
-}
-
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#707180;">// variables2.rs
+</span><span style="color:#707180;">// Execute `rustlings hint variables2` or use the `hint` watch subcommand for a hint.
+</span><span>
+</span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">main</span><span>() {
+</span><span>    </span><span style="color:#a3cbe3;">let</span><span> x: </span><span style="color:#a3cbe3;">u8 </span><span style="color:#db7c6d;">= 5</span><span>; </span><span style="color:#707180;">// you could also just write `let x = 5`
+</span><span>    </span><span style="color:#db7c6d;">if</span><span> x </span><span style="color:#db7c6d;">== 10 </span><span>{
+</span><span>        println!(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>x is ten!</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>);
+</span><span>    } </span><span style="color:#db7c6d;">else </span><span>{
+</span><span>        println!(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>x is not ten!</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>);
+</span><span>    }
+</span><span>}
+</span><span>
+</span></code></pre>
 <p>This is basically the opposite of what we saw before with the variable binding in the <code>variables1.rs</code> example, except in this case we're missing the number that <code>x</code> should be bound to.</p>
 <h2 id="variables3-rs"><code>variables3.rs</code></h2>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">&#x2F;&#x2F; variables3.rs
-&#x2F;&#x2F; Execute `rustlings hint variables3` or use the `hint` watch subcommand for a hint.
-
-fn main() {
-    let x: i32 = -123; &#x2F;&#x2F; adding `= -123` for the code to compile.
-    println!(&quot;Number {}&quot;, x);
-}
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#707180;">// variables3.rs
+</span><span style="color:#707180;">// Execute `rustlings hint variables3` or use the `hint` watch subcommand for a hint.
+</span><span>
+</span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">main</span><span>() {
+</span><span>    </span><span style="color:#a3cbe3;">let</span><span> x: </span><span style="color:#a3cbe3;">i32 </span><span style="color:#db7c6d;">= -123</span><span>; </span><span style="color:#707180;">// adding `= -123` for the code to compile.
+</span><span>    println!(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>Number </span><span style="font-weight:bold;color:#a2ba43;">{}</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>, x);
+</span><span>}
+</span></code></pre>
 <p>Since we have <code>x</code> as an <code>i32</code> let's have some fun and add a negative number. Again this was missing the second half of the statement.</p>
 <h2 id="variables4-rs"><code>variables4.rs</code></h2>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">&#x2F;&#x2F; variables4.rs
-&#x2F;&#x2F; Execute `rustlings hint variables4` or use the `hint` watch subcommand for a hint.
-
-fn main() {
-    let mut x = 3; &#x2F;&#x2F; mut is the key here
-    println!(&quot;Number {}&quot;, x);
-    x = 5; &#x2F;&#x2F; don&#x27;t change this line
-    println!(&quot;Number {}&quot;, x);
-}
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#707180;">// variables4.rs
+</span><span style="color:#707180;">// Execute `rustlings hint variables4` or use the `hint` watch subcommand for a hint.
+</span><span>
+</span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">main</span><span>() {
+</span><span>    </span><span style="color:#a3cbe3;">let </span><span style="color:#dbbb3d;">mut</span><span> x </span><span style="color:#db7c6d;">= 3</span><span>; </span><span style="color:#707180;">// mut is the key here
+</span><span>    println!(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>Number </span><span style="font-weight:bold;color:#a2ba43;">{}</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>, x);
+</span><span>    x </span><span style="color:#db7c6d;">= 5</span><span>; </span><span style="color:#707180;">// don&#39;t change this line
+</span><span>    println!(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>Number </span><span style="font-weight:bold;color:#a2ba43;">{}</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>, x);
+</span><span>}
+</span></code></pre>
 <p>As the opening text declares variables are immutable by default so this code doesn't compile because <code>x</code> is being bound twice to different numbers without declaring it <code>mut</code>, this code will not compile.</p>
 <h2 id="variables5-rs"><code>variables5.rs</code></h2>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">&#x2F;&#x2F; variables5.rs
-&#x2F;&#x2F; Execute `rustlings hint variables5` or use the `hint` watch subcommand for a hint.
-
-fn main() {
-    let number = &quot;T-H-R-E-E&quot;; &#x2F;&#x2F; don&#x27;t change this line
-    println!(&quot;Spell a Number : {}&quot;, number);
-    let number = 3; &#x2F;&#x2F; don&#x27;t rename this variable
-    println!(&quot;Number plus two is : {}&quot;, number + 2);
-}
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#707180;">// variables5.rs
+</span><span style="color:#707180;">// Execute `rustlings hint variables5` or use the `hint` watch subcommand for a hint.
+</span><span>
+</span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">main</span><span>() {
+</span><span>    </span><span style="color:#a3cbe3;">let</span><span> number </span><span style="color:#db7c6d;">= </span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>T-H-R-E-E</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>; </span><span style="color:#707180;">// don&#39;t change this line
+</span><span>    println!(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>Spell a Number : </span><span style="font-weight:bold;color:#a2ba43;">{}</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>, number);
+</span><span>    </span><span style="color:#a3cbe3;">let</span><span> number </span><span style="color:#db7c6d;">= 3</span><span>; </span><span style="color:#707180;">// don&#39;t rename this variable
+</span><span>    println!(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>Number plus two is : </span><span style="font-weight:bold;color:#a2ba43;">{}</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>, number </span><span style="color:#db7c6d;">+ 2</span><span>);
+</span><span>}
+</span></code></pre>
 <p>In this exercise we don't rename the variable <code>number</code> but we shadow it by declaring it again with <code>let</code> this allows us to change the type from a <code>&amp;Str</code> to a integer.</p>
 <h2 id="variables6-rs"><code>variables6.rs</code></h2>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">&#x2F;&#x2F; variables6.rs
-&#x2F;&#x2F; Execute `rustlings hint variables6` or use the `hint` watch subcommand for a hint.
-
-
-const NUMBER: i32 = 3; &#x2F;&#x2F; added `:i32`
-fn main() {
-    println!(&quot;Number {}&quot;, NUMBER);
-}
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#707180;">// variables6.rs
+</span><span style="color:#707180;">// Execute `rustlings hint variables6` or use the `hint` watch subcommand for a hint.
+</span><span>
+</span><span>
+</span><span style="color:#a3cbe3;">const </span><span style="font-weight:bold;color:#a2ba43;">NUMBER</span><span>: </span><span style="color:#a3cbe3;">i32 </span><span style="color:#db7c6d;">= 3</span><span>; </span><span style="color:#707180;">// added `:i32`
+</span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">main</span><span>() {
+</span><span>    println!(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>Number </span><span style="font-weight:bold;color:#a2ba43;">{}</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>, </span><span style="font-weight:bold;color:#a2ba43;">NUMBER</span><span>);
+</span><span>}
+</span></code></pre>
 <p>Constants are another type of variable that is available, but these are <em>always</em> immutable they're declared with <code>const</code> instead of let and types must always be annotated. So we have to add <code>: i32</code> to make the code compile.</p>
 <h2 id="conclusion">Conclusion</h2>
 <p>Understanding variables and their mutability is an essential aspect of learning Rust. This blog post covered the Rustlings exercises that demonstrated the usage of variables in different scenarios, including how to declare and shadow variables, work with constants, and use the <code>mut</code> keyword to make variables mutable. These fundamental concepts lay the groundwork for grasping more advanced topics in Rust programming.</p>
@@ -232,7 +236,7 @@ fn main() {
 		
     </p>
     
-    <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>609 Words</p>
+    <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>382 Words</p>
     
     <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2023-04-17</p>
     
@@ -255,7 +259,7 @@ fn main() {
 
 
 <footer id="site-footer" class="section-inner thin animated fadeIn faster">
-  <p>&copy; 2024 <a href="https:&#x2F;&#x2F;desmodrone.github.io">erick</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
+  <p>&copy; 2026 <a href="https:&#x2F;&#x2F;desmodrone.github.io">erick</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
   <p>Made with <a href="https://www.getzola.org" target="_blank" rel="noopener">Zola</a> &#183; Theme <a href="https://github.com/VersBinarii/hermit_zola" target="_blank" rel="noopener">Hermit_Zola</a>
 	
 	&#183; <a href="https://desmodrone.github.io/rss.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>

@@ -27,6 +27,10 @@
   <link rel="alternate" type="application/rss+xml" title="RSS" href="https://desmodrone.github.io/rss.xml">
   
 
+  
+  <link rel="canonical" href="https://desmodrone.github.io/posts/05-rustlings-primitive-types/">
+  
+
   <body id="page">
 
 	
@@ -120,7 +124,7 @@
 		<small> - 
 <span class="reading-time" title="Estimated read time">
   
-  10 min read
+  6 min read
   
 </span>
 </small>
@@ -141,150 +145,150 @@ compiler. In this section, we'll go through the most important ones.</p>
 <li><a href="https://doc.rust-lang.org/stable/book/ch04-03-slices.html">The Slice Type</a></li>
 </ul>
 <h2 id="primitive-types1-rs"><code>primitive_types1.rs</code></h2>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">&#x2F;&#x2F; primitive_types1.rs
-&#x2F;&#x2F; Fill in the rest of the line that has code missing!
-&#x2F;&#x2F; No hints, there&#x27;s no tricks, just get used to typing these :)
-
-&#x2F;&#x2F; I AM NOT DONE
-
-fn main() {
-    &#x2F;&#x2F; Booleans (`bool`)
-
-    let is_morning = true;
-    if is_morning {
-        println!(&quot;Good morning!&quot;);
-    }
-
-    let &#x2F;&#x2F; Finish the rest of this line like the example! Or make it be false!
-    if is_evening {
-        println!(&quot;Good evening!&quot;);
-    }
-}
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#707180;">// primitive_types1.rs
+</span><span style="color:#707180;">// Fill in the rest of the line that has code missing!
+</span><span style="color:#707180;">// No hints, there&#39;s no tricks, just get used to typing these :)
+</span><span>
+</span><span style="color:#707180;">// I AM NOT DONE
+</span><span>
+</span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">main</span><span>() {
+</span><span>    </span><span style="color:#707180;">// Booleans (`bool`)
+</span><span>
+</span><span>    </span><span style="color:#a3cbe3;">let</span><span> is_morning </span><span style="color:#db7c6d;">= </span><span style="color:#ffffff;">true</span><span>;
+</span><span>    </span><span style="color:#db7c6d;">if</span><span> is_morning {
+</span><span>        println!(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>Good morning!</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>);
+</span><span>    }
+</span><span>
+</span><span>    </span><span style="color:#a3cbe3;">let </span><span style="color:#707180;">// Finish the rest of this line like the example! Or make it be false!
+</span><span>    </span><span style="color:#db7c6d;">if</span><span> is_evening {
+</span><span>        println!(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>Good evening!</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>);
+</span><span>    }
+</span><span>}
+</span></code></pre>
 <p>In the code comments it's clear that we are looking at <strong>Booleans</strong> which are a type that is either <code>true</code> or <code>false</code> . With that in mind, let's take a look at what the errors are to make sure we have a complete picture.</p>
 <h2 id="primitive-trype1-rs-errors"><code>primitive_trype1.rs</code> errors</h2>
-<pre data-lang="zsh" class="language-zsh "><code class="language-zsh" data-lang="zsh">⚠️  Compiling of exercises&#x2F;primitive_types&#x2F;primitive_types1.rs failed! Please try again. Here&#x27;s the output:
-error: expected identifier, found keyword `if`
-  --&gt; exercises&#x2F;primitive_types&#x2F;primitive_types1.rs:16:5
-   |
-16 |     if is_evening {
-   |     ^^ expected identifier, found keyword
-
-error: expected one of `:`, `;`, `=`, `@`, or `|`, found `is_evening`
-  --&gt; exercises&#x2F;primitive_types&#x2F;primitive_types1.rs:16:8
-   |
-16 |     if is_evening {
-   |        ^^^^^^^^^^ expected one of `:`, `;`, `=`, `@`, or `|`
-
-error: aborting due to 2 previous errors
-</code></pre>
-<p>These errors point to the fact that the <code>if_evening</code> portion of the code is incomplete, in fact it's almost like the compiler is saying &quot;wait a minute, shouldn't you let me know what <code>is_evening</code> is?&quot; instead, it found the keyword <code>if</code>.</p>
+<pre data-lang="zsh" style="background-color:#31333d;color:#ffffffc4;" class="language-zsh "><code class="language-zsh" data-lang="zsh"><span style="font-weight:bold;color:#a3cbe3;">⚠️</span><span>  Compiling of exercises/primitive_types/primitive_types1.rs failed! Please try again. Here</span><span style="font-weight:bold;color:#dbbb3d;">&#39;</span><span>s the output:
+</span><span>error: expected identifier, found keyword `if`
+</span><span>  --&gt; exercises/primitive_types/primitive_types1.rs:16:5
+</span><span>   |
+</span><span>16 |     if is_evening {
+</span><span>   |     ^^ expected identifier, found keyword
+</span><span>
+</span><span>error: expected one of `:`, `;`, `=`, `@`, or `|`, found `is_evening`
+</span><span>  --&gt; exercises/primitive_types/primitive_types1.rs:16:8
+</span><span>   |
+</span><span>16 |     if is_evening {
+</span><span>   |        ^^^^^^^^^^ expected one of `:`, `;`, `=`, `@`, or `|`
+</span><span>
+</span><span>error: aborting due to 2 previous errors
+</span></code></pre>
+<p>These errors point to the fact that the <code>if_evening</code> portion of the code is incomplete, in fact it's almost like the compiler is saying "wait a minute, shouldn't you let me know what <code>is_evening</code> is?" instead, it found the keyword <code>if</code>.</p>
 <h2 id="primitive-types1-rs-solution"><code>primitive_types1.rs</code> solution</h2>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">&#x2F;&#x2F; primitive_types1.rs
-&#x2F;&#x2F; Fill in the rest of the line that has code missing!
-&#x2F;&#x2F; No hints, there&#x27;s no tricks, just get used to typing these :)
-
-&#x2F;&#x2F; I AM NOT DONE
-
-fn main() {
-    &#x2F;&#x2F; Booleans (`bool`)
-
-    let is_morning = true;
-    if is_morning {
-        println!(&quot;Good morning!&quot;);
-    }
-
-    let is_evening = false; &#x2F;&#x2F; easy enough to complete this as above
-    if is_evening {
-        println!(&quot;Good evening!&quot;);
-    }
-}
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#707180;">// primitive_types1.rs
+</span><span style="color:#707180;">// Fill in the rest of the line that has code missing!
+</span><span style="color:#707180;">// No hints, there&#39;s no tricks, just get used to typing these :)
+</span><span>
+</span><span style="color:#707180;">// I AM NOT DONE
+</span><span>
+</span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">main</span><span>() {
+</span><span>    </span><span style="color:#707180;">// Booleans (`bool`)
+</span><span>
+</span><span>    </span><span style="color:#a3cbe3;">let</span><span> is_morning </span><span style="color:#db7c6d;">= </span><span style="color:#ffffff;">true</span><span>;
+</span><span>    </span><span style="color:#db7c6d;">if</span><span> is_morning {
+</span><span>        println!(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>Good morning!</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>);
+</span><span>    }
+</span><span>
+</span><span>    </span><span style="color:#a3cbe3;">let</span><span> is_evening </span><span style="color:#db7c6d;">= </span><span style="color:#ffffff;">false</span><span>; </span><span style="color:#707180;">// easy enough to complete this as above
+</span><span>    </span><span style="color:#db7c6d;">if</span><span> is_evening {
+</span><span>        println!(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>Good evening!</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>);
+</span><span>    }
+</span><span>}
+</span></code></pre>
 <p>This works out pretty quickly, by just defining what <code>is_evening</code> is with <code>let is_evening = false;</code> we get the code to compile and it prints:</p>
-<pre data-lang="zsh" class="language-zsh "><code class="language-zsh" data-lang="zsh">🎉 🎉  The code is compiling! 🎉 🎉
-
-Output:
-====================
-Good morning!
-
-====================
-</code></pre>
+<pre data-lang="zsh" style="background-color:#31333d;color:#ffffffc4;" class="language-zsh "><code class="language-zsh" data-lang="zsh"><span style="font-weight:bold;color:#a3cbe3;">🎉</span><span> 🎉  The code is compiling! 🎉 🎉
+</span><span>
+</span><span style="font-weight:bold;color:#a3cbe3;">Output:
+</span><span style="color:#db7c6d;">=</span><span>===================
+</span><span style="font-weight:bold;color:#a3cbe3;">Good</span><span> morning!
+</span><span>
+</span><span style="color:#db7c6d;">=</span><span>===================
+</span></code></pre>
 <p>Great, but what would happen if we make the both of them <code>true</code>? Let's find out.</p>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">
-fn main() {
-    &#x2F;&#x2F; Booleans (`bool`)
-
-    let is_morning = true;
-    if is_morning {
-        println!(&quot;Good morning!&quot;);
-    }
-
-    let is_evening = true; &#x2F;&#x2F; making both `true`
-    if is_evening {
-        println!(&quot;Good evening!&quot;);
-    }
-}
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span>
+</span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">main</span><span>() {
+</span><span>    </span><span style="color:#707180;">// Booleans (`bool`)
+</span><span>
+</span><span>    </span><span style="color:#a3cbe3;">let</span><span> is_morning </span><span style="color:#db7c6d;">= </span><span style="color:#ffffff;">true</span><span>;
+</span><span>    </span><span style="color:#db7c6d;">if</span><span> is_morning {
+</span><span>        println!(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>Good morning!</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>);
+</span><span>    }
+</span><span>
+</span><span>    </span><span style="color:#a3cbe3;">let</span><span> is_evening </span><span style="color:#db7c6d;">= </span><span style="color:#ffffff;">true</span><span>; </span><span style="color:#707180;">// making both `true`
+</span><span>    </span><span style="color:#db7c6d;">if</span><span> is_evening {
+</span><span>        println!(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>Good evening!</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>);
+</span><span>    }
+</span><span>}
+</span></code></pre>
 <p>This time we get a slightly different print, but the code still compiles.</p>
-<pre data-lang="zsh" class="language-zsh "><code class="language-zsh" data-lang="zsh">🎉 🎉  The code is compiling! 🎉 🎉
-
-Output:
-====================
-Good morning!
-Good evening!
-
-====================
-</code></pre>
+<pre data-lang="zsh" style="background-color:#31333d;color:#ffffffc4;" class="language-zsh "><code class="language-zsh" data-lang="zsh"><span style="font-weight:bold;color:#a3cbe3;">🎉</span><span> 🎉  The code is compiling! 🎉 🎉
+</span><span>
+</span><span style="font-weight:bold;color:#a3cbe3;">Output:
+</span><span style="color:#db7c6d;">=</span><span>===================
+</span><span style="font-weight:bold;color:#a3cbe3;">Good</span><span> morning!
+</span><span style="font-weight:bold;color:#a3cbe3;">Good</span><span> evening!
+</span><span>
+</span><span style="color:#db7c6d;">=</span><span>===================
+</span></code></pre>
 <p>Simple enough, we're on to the next one.</p>
 <h2 id="primitive-types2-rs"><code>primitive_types2.rs</code></h2>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">&#x2F;&#x2F; primitive_types2.rs
-&#x2F;&#x2F; Fill in the rest of the line that has code missing!
-&#x2F;&#x2F; No hints, there&#x27;s no tricks, just get used to typing these :)
-
-&#x2F;&#x2F; I AM NOT DONE
-
-fn main() {
-    &#x2F;&#x2F; Characters (`char`)
-
-    &#x2F;&#x2F; Note the _single_ quotes, these are different from the double quotes
-    &#x2F;&#x2F; you&#x27;ve been seeing around.
-    let my_first_initial = &#x27;C&#x27;;
-    if my_first_initial.is_alphabetic() {
-        println!(&quot;Alphabetical!&quot;);
-    } else if my_first_initial.is_numeric() {
-        println!(&quot;Numerical!&quot;);
-    } else {
-        println!(&quot;Neither alphabetic nor numeric!&quot;);
-    }
-
-    let &#x2F;&#x2F; Finish this line like the example! What&#x27;s your favorite character?
-    &#x2F;&#x2F; Try a letter, try a number, try a special character, try a character
-    &#x2F;&#x2F; from a different language than your own, try an emoji!
-    if your_character.is_alphabetic() {
-        println!(&quot;Alphabetical!&quot;);
-    } else if your_character.is_numeric() {
-        println!(&quot;Numerical!&quot;);
-    } else {
-        println!(&quot;Neither alphabetic nor numeric!&quot;);
-    }
-}
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#707180;">// primitive_types2.rs
+</span><span style="color:#707180;">// Fill in the rest of the line that has code missing!
+</span><span style="color:#707180;">// No hints, there&#39;s no tricks, just get used to typing these :)
+</span><span>
+</span><span style="color:#707180;">// I AM NOT DONE
+</span><span>
+</span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">main</span><span>() {
+</span><span>    </span><span style="color:#707180;">// Characters (`char`)
+</span><span>
+</span><span>    </span><span style="color:#707180;">// Note the _single_ quotes, these are different from the double quotes
+</span><span>    </span><span style="color:#707180;">// you&#39;ve been seeing around.
+</span><span>    </span><span style="color:#a3cbe3;">let</span><span> my_first_initial </span><span style="color:#db7c6d;">= </span><span style="font-weight:bold;color:#dbbb3d;">&#39;</span><span>C</span><span style="font-weight:bold;color:#dbbb3d;">&#39;</span><span>;
+</span><span>    </span><span style="color:#db7c6d;">if</span><span> my_first_initial.</span><span style="color:#db7c6d;">is_alphabetic</span><span>() {
+</span><span>        println!(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>Alphabetical!</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>);
+</span><span>    } </span><span style="color:#db7c6d;">else if</span><span> my_first_initial.</span><span style="color:#db7c6d;">is_numeric</span><span>() {
+</span><span>        println!(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>Numerical!</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>);
+</span><span>    } </span><span style="color:#db7c6d;">else </span><span>{
+</span><span>        println!(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>Neither alphabetic nor numeric!</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>);
+</span><span>    }
+</span><span>
+</span><span>    </span><span style="color:#a3cbe3;">let </span><span style="color:#707180;">// Finish this line like the example! What&#39;s your favorite character?
+</span><span>    </span><span style="color:#707180;">// Try a letter, try a number, try a special character, try a character
+</span><span>    </span><span style="color:#707180;">// from a different language than your own, try an emoji!
+</span><span>    </span><span style="color:#db7c6d;">if</span><span> your_character.</span><span style="color:#db7c6d;">is_alphabetic</span><span>() {
+</span><span>        println!(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>Alphabetical!</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>);
+</span><span>    } </span><span style="color:#db7c6d;">else if</span><span> your_character.</span><span style="color:#db7c6d;">is_numeric</span><span>() {
+</span><span>        println!(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>Numerical!</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>);
+</span><span>    } </span><span style="color:#db7c6d;">else </span><span>{
+</span><span>        println!(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>Neither alphabetic nor numeric!</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>);
+</span><span>    }
+</span><span>}
+</span></code></pre>
 <p>Again we have no hints, so we have pay close attention to the code and the errors we get from the Rust compiler.</p>
-<pre data-lang="zsh" class="language-zsh "><code class="language-zsh" data-lang="zsh">⚠️  Compiling of exercises&#x2F;primitive_types&#x2F;primitive_types2.rs failed! Please try again. Here&#x27;s the output:
-error: expected identifier, found keyword `if`
-  --&gt; exercises&#x2F;primitive_types&#x2F;primitive_types2.rs:24:5
-   |
-24 |     if your_character.is_alphabetic() {
-   |     ^^ expected identifier, found keyword
-
-error: expected one of `:`, `;`, `=`, `@`, or `|`, found `your_character`
-  --&gt; exercises&#x2F;primitive_types&#x2F;primitive_types2.rs:24:8
-   |
-24 |     if your_character.is_alphabetic() {
-   |        ^^^^^^^^^^^^^^ expected one of `:`, `;`, `=`, `@`, or `|`
-
-error: aborting due to 2 previous errors
-</code></pre>
+<pre data-lang="zsh" style="background-color:#31333d;color:#ffffffc4;" class="language-zsh "><code class="language-zsh" data-lang="zsh"><span style="font-weight:bold;color:#a3cbe3;">⚠️</span><span>  Compiling of exercises/primitive_types/primitive_types2.rs failed! Please try again. Here</span><span style="font-weight:bold;color:#dbbb3d;">&#39;</span><span>s the output:
+</span><span>error: expected identifier, found keyword `if`
+</span><span>  --&gt; exercises/primitive_types/primitive_types2.rs:24:5
+</span><span>   |
+</span><span>24 |     if your_character.is_alphabetic() {
+</span><span>   |     ^^ expected identifier, found keyword
+</span><span>
+</span><span>error: expected one of `:`, `;`, `=`, `@`, or `|`, found `your_character`
+</span><span>  --&gt; exercises/primitive_types/primitive_types2.rs:24:8
+</span><span>   |
+</span><span>24 |     if your_character.is_alphabetic() {
+</span><span>   |        ^^^^^^^^^^^^^^ expected one of `:`, `;`, `=`, `@`, or `|`
+</span><span>
+</span><span>error: aborting due to 2 previous errors
+</span></code></pre>
 <p>This looks similar to what we got in our previous exercise, essentially telling us that the <code>your_character</code> part of the code is incomplete.</p>
 <p>Let's go through the comments in the code.</p>
 <ul>
@@ -293,284 +297,284 @@ error: aborting due to 2 previous errors
 <li>The third comment tells us to finish the <code>let</code> statement using the example we've seen but use our favorite character.</li>
 </ul>
 <p>Looking at how the rest of the code is written, to make it easier on us, we can use the <code>your_character</code> variable that is being used, but of course as the errors tells us, is undefined. Let's define it.</p>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">
-fn main() {
-
-    let my_first_initial = &#x27;C&#x27;;
-    if my_first_initial.is_alphabetic() {
-        println!(&quot;Alphabetical!&quot;);
-    } else if my_first_initial.is_numeric() {
-        println!(&quot;Numerical!&quot;);
-    } else {
-        println!(&quot;Neither alphabetic nor numeric!&quot;);
-    }
-
-    let your_character = &#x27;🦀&#x27;; &#x2F;&#x2F; we define it as a crab emoji just for fun.
-    if your_character.is_alphabetic() {
-        println!(&quot;Alphabetical!&quot;);
-    } else if your_character.is_numeric() {
-        println!(&quot;Numerical!&quot;);
-    } else {
-        println!(&quot;Neither alphabetic nor numeric!&quot;);
-    }
-}
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span>
+</span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">main</span><span>() {
+</span><span>
+</span><span>    </span><span style="color:#a3cbe3;">let</span><span> my_first_initial </span><span style="color:#db7c6d;">= </span><span style="font-weight:bold;color:#dbbb3d;">&#39;</span><span>C</span><span style="font-weight:bold;color:#dbbb3d;">&#39;</span><span>;
+</span><span>    </span><span style="color:#db7c6d;">if</span><span> my_first_initial.</span><span style="color:#db7c6d;">is_alphabetic</span><span>() {
+</span><span>        println!(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>Alphabetical!</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>);
+</span><span>    } </span><span style="color:#db7c6d;">else if</span><span> my_first_initial.</span><span style="color:#db7c6d;">is_numeric</span><span>() {
+</span><span>        println!(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>Numerical!</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>);
+</span><span>    } </span><span style="color:#db7c6d;">else </span><span>{
+</span><span>        println!(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>Neither alphabetic nor numeric!</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>);
+</span><span>    }
+</span><span>
+</span><span>    </span><span style="color:#a3cbe3;">let</span><span> your_character </span><span style="color:#db7c6d;">= </span><span style="font-weight:bold;color:#dbbb3d;">&#39;</span><span>🦀</span><span style="font-weight:bold;color:#dbbb3d;">&#39;</span><span>; </span><span style="color:#707180;">// we define it as a crab emoji just for fun.
+</span><span>    </span><span style="color:#db7c6d;">if</span><span> your_character.</span><span style="color:#db7c6d;">is_alphabetic</span><span>() {
+</span><span>        println!(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>Alphabetical!</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>);
+</span><span>    } </span><span style="color:#db7c6d;">else if</span><span> your_character.</span><span style="color:#db7c6d;">is_numeric</span><span>() {
+</span><span>        println!(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>Numerical!</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>);
+</span><span>    } </span><span style="color:#db7c6d;">else </span><span>{
+</span><span>        println!(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>Neither alphabetic nor numeric!</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>);
+</span><span>    }
+</span><span>}
+</span></code></pre>
 <h2 id="primitive-types3-rs"><code>primitive_types3.rs</code></h2>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">&#x2F;&#x2F; primitive_types3.rs
-&#x2F;&#x2F; Create an array with at least 100 elements in it where the ??? is.
-&#x2F;&#x2F; Execute `rustlings hint primitive_types3` or use the `hint` watch subcommand for a hint.
-
-&#x2F;&#x2F; I AM NOT DONE
-
-fn main() {
-    let a = ???
-
-    if a.len() &gt;= 100 {
-        println!(&quot;Wow, that&#x27;s a big array!&quot;);
-    } else {
-        println!(&quot;Meh, I eat arrays like that for breakfast.&quot;);
-    }
-}
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#707180;">// primitive_types3.rs
+</span><span style="color:#707180;">// Create an array with at least 100 elements in it where the ??? is.
+</span><span style="color:#707180;">// Execute `rustlings hint primitive_types3` or use the `hint` watch subcommand for a hint.
+</span><span>
+</span><span style="color:#707180;">// I AM NOT DONE
+</span><span>
+</span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">main</span><span>() {
+</span><span>    </span><span style="color:#a3cbe3;">let</span><span> a </span><span style="color:#db7c6d;">= ???
+</span><span>
+</span><span>    </span><span style="color:#db7c6d;">if</span><span> a.</span><span style="color:#db7c6d;">len</span><span>() </span><span style="color:#db7c6d;">&gt;= 100 </span><span>{
+</span><span>        println!(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>Wow, that&#39;s a big array!</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>);
+</span><span>    } </span><span style="color:#db7c6d;">else </span><span>{
+</span><span>        println!(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>Meh, I eat arrays like that for breakfast.</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>);
+</span><span>    }
+</span><span>}
+</span></code></pre>
 <p>Here we have clear instructions on what we need to do, and we even have a hint if we need it. But let's look at the errors first:</p>
-<pre data-lang="zsh" class="language-zsh "><code class="language-zsh" data-lang="zsh">⚠️  Compiling of exercises&#x2F;primitive_types&#x2F;primitive_types3.rs failed! Please try again. Here&#x27;s the output:
-error: expected expression, found `?`
- --&gt; exercises&#x2F;primitive_types&#x2F;primitive_types3.rs:8:13
-  |
-8 |     let a = ???
-  |             ^ expected expression
-
-error: aborting due to previous error
-</code></pre>
+<pre data-lang="zsh" style="background-color:#31333d;color:#ffffffc4;" class="language-zsh "><code class="language-zsh" data-lang="zsh"><span style="font-weight:bold;color:#a3cbe3;">⚠️</span><span>  Compiling of exercises/primitive_types/primitive_types3.rs failed! Please try again. Here</span><span style="font-weight:bold;color:#dbbb3d;">&#39;</span><span>s the output:
+</span><span>error: expected expression, found `?`
+</span><span> --&gt; exercises/primitive_types/primitive_types3.rs:8:13
+</span><span>  |
+</span><span>8 |     let a = ???
+</span><span>  |             ^ expected expression
+</span><span>
+</span><span>error: aborting due to previous error
+</span></code></pre>
 <p>Short and sweet, we see that on line 8, there's an expected expression where we need to replace the <code>???</code> question marks. So what kind of expression do we need, well the instructions tell us it should be an array with at least 100 elements in it.</p>
 <h2 id="array-review">Array Review</h2>
 <p>Let's quickly review the ways that we can create an array in Rust.</p>
 <p>One of the simplest ways we can create an array in Rust is by using the <code>[]</code> square brackets and listing the elements inside of it, like this:</p>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">let a = [1, 2, 3, 4, 5, 6];
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#a3cbe3;">let</span><span> a </span><span style="color:#db7c6d;">= </span><span>[</span><span style="color:#db7c6d;">1</span><span>, </span><span style="color:#db7c6d;">2</span><span>, </span><span style="color:#db7c6d;">3</span><span>, </span><span style="color:#db7c6d;">4</span><span>, </span><span style="color:#db7c6d;">5</span><span>, </span><span style="color:#db7c6d;">6</span><span>];
+</span></code></pre>
 <p>We can also define the array's type by using another set of square brackets before the definition of the array, in a similar what that you define types when defining variables.</p>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">let a: [i32; 6] = [1, 2, 3, 4, 5, 6];
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#a3cbe3;">let</span><span> a: [</span><span style="color:#a3cbe3;">i32</span><span>; </span><span style="color:#db7c6d;">6</span><span>] </span><span style="color:#db7c6d;">= </span><span>[</span><span style="color:#db7c6d;">1</span><span>, </span><span style="color:#db7c6d;">2</span><span>, </span><span style="color:#db7c6d;">3</span><span>, </span><span style="color:#db7c6d;">4</span><span>, </span><span style="color:#db7c6d;">5</span><span>, </span><span style="color:#db7c6d;">6</span><span>];
+</span></code></pre>
 <p>These are both valid, but remember in our exercise we have to make an array with at least 100 elements in it -- there must be a better way. Luckily there is, as long as we want the array to contain the same value we can initialize the array like this:</p>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">let a = [3;5];
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#a3cbe3;">let</span><span> a </span><span style="color:#db7c6d;">= </span><span>[</span><span style="color:#db7c6d;">3</span><span>;</span><span style="color:#db7c6d;">5</span><span>];
+</span></code></pre>
 <p>This will give us an array called <code>a</code> with that will contain <code>5</code> elements with their value set to <code>3</code> this is the same as writing</p>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">let a = [3, 3, 3, 3, 3];
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#a3cbe3;">let</span><span> a </span><span style="color:#db7c6d;">= </span><span>[</span><span style="color:#db7c6d;">3</span><span>, </span><span style="color:#db7c6d;">3</span><span>, </span><span style="color:#db7c6d;">3</span><span>, </span><span style="color:#db7c6d;">3</span><span>, </span><span style="color:#db7c6d;">3</span><span>];
+</span></code></pre>
 <p>but clearly in a more concise way.</p>
 <h2 id="primitive-types3-rs-solution"><code>primitive_types3.rs</code> Solution</h2>
 <p>Now that we have this information fresh in our minds we can clearly see the winning solution for our problem of having 100 elements in an array.
 Let's do it.</p>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">
-fn main() {
-    let a = [1; 100];
-
-    if a.len() &gt;= 100 {
-        println!(&quot;Wow, that is a big array!&quot;);
-    } else {
-        println!(&quot;Meh, I eat arrays like that for breakfast.&quot;);
-    }
-}
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span>
+</span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">main</span><span>() {
+</span><span>    </span><span style="color:#a3cbe3;">let</span><span> a </span><span style="color:#db7c6d;">= </span><span>[</span><span style="color:#db7c6d;">1</span><span>; </span><span style="color:#db7c6d;">100</span><span>];
+</span><span>
+</span><span>    </span><span style="color:#db7c6d;">if</span><span> a.</span><span style="color:#db7c6d;">len</span><span>() </span><span style="color:#db7c6d;">&gt;= 100 </span><span>{
+</span><span>        println!(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>Wow, that is a big array!</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>);
+</span><span>    } </span><span style="color:#db7c6d;">else </span><span>{
+</span><span>        println!(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>Meh, I eat arrays like that for breakfast.</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>);
+</span><span>    }
+</span><span>}
+</span></code></pre>
 <p>We get this back from the compiler:</p>
-<pre data-lang="zsh" class="language-zsh "><code class="language-zsh" data-lang="zsh">Output:
-====================
-Wow, that is a big array!
-
-====================
-</code></pre>
+<pre data-lang="zsh" style="background-color:#31333d;color:#ffffffc4;" class="language-zsh "><code class="language-zsh" data-lang="zsh"><span style="font-weight:bold;color:#a3cbe3;">Output:
+</span><span style="color:#db7c6d;">=</span><span>===================
+</span><span style="font-weight:bold;color:#a3cbe3;">Wow,</span><span> that is a big array!
+</span><span>
+</span><span style="color:#db7c6d;">=</span><span>===================
+</span></code></pre>
 <p>and just to confirm, what if we make the array less than 100 elements? Let's just change the <code>100</code> to <code>99</code> like this: <code>let a = [1; 99];</code></p>
-<pre data-lang="zsh" class="language-zsh "><code class="language-zsh" data-lang="zsh">Output:
-====================
-Meh, I eat arrays like that for breakfast.
-
-====================
-</code></pre>
+<pre data-lang="zsh" style="background-color:#31333d;color:#ffffffc4;" class="language-zsh "><code class="language-zsh" data-lang="zsh"><span style="font-weight:bold;color:#a3cbe3;">Output:
+</span><span style="color:#db7c6d;">=</span><span>===================
+</span><span style="font-weight:bold;color:#a3cbe3;">Meh,</span><span> I eat arrays like that for breakfast.
+</span><span>
+</span><span style="color:#db7c6d;">=</span><span>===================
+</span></code></pre>
 <h2 id="primitive-types4-rs"><code>primitive_types4.rs</code></h2>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">&#x2F;&#x2F; primitive_types4.rs
-&#x2F;&#x2F; Get a slice out of Array a where the ??? is so that the test passes.
-&#x2F;&#x2F; Execute `rustlings hint primitive_types4` or use the `hint` watch subcommand for a hint.
-
-&#x2F;&#x2F; I AM NOT DONE
-
-#[test]
-fn slice_out_of_array() {
-    let a = [1, 2, 3, 4, 5];
-
-    let nice_slice = ???
-
-    assert_eq!([2, 3, 4], nice_slice)
-}
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#707180;">// primitive_types4.rs
+</span><span style="color:#707180;">// Get a slice out of Array a where the ??? is so that the test passes.
+</span><span style="color:#707180;">// Execute `rustlings hint primitive_types4` or use the `hint` watch subcommand for a hint.
+</span><span>
+</span><span style="color:#707180;">// I AM NOT DONE
+</span><span>
+</span><span>#[</span><span style="font-weight:bold;color:#a3cbe3;">test</span><span>]
+</span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">slice_out_of_array</span><span>() {
+</span><span>    </span><span style="color:#a3cbe3;">let</span><span> a </span><span style="color:#db7c6d;">= </span><span>[</span><span style="color:#db7c6d;">1</span><span>, </span><span style="color:#db7c6d;">2</span><span>, </span><span style="color:#db7c6d;">3</span><span>, </span><span style="color:#db7c6d;">4</span><span>, </span><span style="color:#db7c6d;">5</span><span>];
+</span><span>
+</span><span>    </span><span style="color:#a3cbe3;">let</span><span> nice_slice </span><span style="color:#db7c6d;">= ???
+</span><span>
+</span><span>    assert_eq!([</span><span style="color:#db7c6d;">2</span><span>, </span><span style="color:#db7c6d;">3</span><span>, </span><span style="color:#db7c6d;">4</span><span>], nice_slice)
+</span><span>}
+</span></code></pre>
 <h2 id="primitive-types4-rs-error"><code>primitive_types4.rs</code> error</h2>
-<pre data-lang="zsh" class="language-zsh "><code class="language-zsh" data-lang="zsh">⚠️  Compiling of exercises&#x2F;primitive_types&#x2F;primitive_types4.rs failed! Please try again. Here&#x27;s the output:
-error: expected expression, found `?`
-  --&gt; exercises&#x2F;primitive_types&#x2F;primitive_types4.rs:11:22
-   |
-11 |     let nice_slice = ???
-   |                      ^ expected expression
-
-error: aborting due to previous error
-</code></pre>
+<pre data-lang="zsh" style="background-color:#31333d;color:#ffffffc4;" class="language-zsh "><code class="language-zsh" data-lang="zsh"><span style="font-weight:bold;color:#a3cbe3;">⚠️</span><span>  Compiling of exercises/primitive_types/primitive_types4.rs failed! Please try again. Here</span><span style="font-weight:bold;color:#dbbb3d;">&#39;</span><span>s the output:
+</span><span>error: expected expression, found `?`
+</span><span>  --&gt; exercises/primitive_types/primitive_types4.rs:11:22
+</span><span>   |
+</span><span>11 |     let nice_slice = ???
+</span><span>   |                      ^ expected expression
+</span><span>
+</span><span>error: aborting due to previous error
+</span></code></pre>
 <p>In this piece of code we see almost the exact same set-up having to define a variable, in this case we need to define it with a slice. Remembering a slice is essentially how we refer to part of an array, remember when we had the 100 element array in the previous exercise, or even a bigger array that had thousands of elements. Well what if only needed to access part of the array? We would use a slice in this scenario so let's do it.</p>
 <p>We define a slice by using <code>&amp;[ ]</code> the <code>&amp;</code> makes it like a reference, so we don't have ownership of the array, but we can go deeper into this another time, let's just define this slice.</p>
 <p>The error code is also very straightforward, we're being told that we're missing an expression.</p>
 <h2 id="primitive-types4-rs-solution"><code>primitive_types4.rs</code> solution</h2>
 <p>we get a hint by the <code>assert_eq!</code> part of the code as to what it's looking for, elements <code>2</code>, <code>3</code>, and <code>4</code> so that's what we'll do.</p>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">fn slice_out_of_array() {
-    let a = [1, 2, 3, 4, 5];
-
-    let nice_slice = &amp;a[1..4]; &#x2F;&#x2F; using `a&amp;[]` to create a slice we use the `..` to define the range
-
-    assert_eq!([2, 3, 4], nice_slice)
-}
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">slice_out_of_array</span><span>() {
+</span><span>    </span><span style="color:#a3cbe3;">let</span><span> a </span><span style="color:#db7c6d;">= </span><span>[</span><span style="color:#db7c6d;">1</span><span>, </span><span style="color:#db7c6d;">2</span><span>, </span><span style="color:#db7c6d;">3</span><span>, </span><span style="color:#db7c6d;">4</span><span>, </span><span style="color:#db7c6d;">5</span><span>];
+</span><span>
+</span><span>    </span><span style="color:#a3cbe3;">let</span><span> nice_slice </span><span style="color:#db7c6d;">= &amp;</span><span>a[</span><span style="color:#db7c6d;">1..4</span><span>]; </span><span style="color:#707180;">// using `a&amp;[]` to create a slice we use the `..` to define the range
+</span><span>
+</span><span>    assert_eq!([</span><span style="color:#db7c6d;">2</span><span>, </span><span style="color:#db7c6d;">3</span><span>, </span><span style="color:#db7c6d;">4</span><span>], nice_slice)
+</span><span>}
+</span></code></pre>
 <p>So in this case we define the range to to be between <code>1 and 4</code> but remember that the first element in the array is at index <code>0</code> and element <code>4</code> is index <code>5</code>. Rust excludes the final element and therefore we get numbers <code>2, 3, 4</code> which correspond to index <code>1, 2, 3</code>.</p>
 <p>All we get on this one is that the test is passing and code is compiling.</p>
-<pre data-lang="zsh" class="language-zsh "><code class="language-zsh" data-lang="zsh">🎉 🎉  The code is compiling, and the tests pass! 🎉 🎉
-</code></pre>
+<pre data-lang="zsh" style="background-color:#31333d;color:#ffffffc4;" class="language-zsh "><code class="language-zsh" data-lang="zsh"><span style="font-weight:bold;color:#a3cbe3;">🎉</span><span> 🎉  The code is compiling, and the tests pass! 🎉 🎉
+</span></code></pre>
 <p>Just to confirm what we're talking about above, let's use a different slice range that what know is the solution, let's use <code>&amp;a[0..5]</code> and see what happens.</p>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">let nice_slice = &amp;a[0..5];
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#a3cbe3;">let</span><span> nice_slice </span><span style="color:#db7c6d;">= &amp;</span><span>a[</span><span style="color:#db7c6d;">0..5</span><span>];
+</span></code></pre>
 <h2 id="test-failed">Test Failed</h2>
-<pre data-lang="zsh" class="language-zsh "><code class="language-zsh" data-lang="zsh">running 1 test
-test slice_out_of_array ... FAILED
-
-successes:
-
-successes:
-
-failures:
-
----- slice_out_of_array stdout ----
-thread &#x27;slice_out_of_array&#x27; panicked at &#x27;assertion failed: `(left == right)`
-  left: `[2, 3, 4]`,
- right: `[1, 2, 3, 4, 5]`&#x27;, exercises&#x2F;primitive_types&#x2F;primitive_types4.rs:13:5
-note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
-
-
-failures:
-    slice_out_of_array
-
-test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
-</code></pre>
+<pre data-lang="zsh" style="background-color:#31333d;color:#ffffffc4;" class="language-zsh "><code class="language-zsh" data-lang="zsh"><span style="font-weight:bold;color:#a3cbe3;">running</span><span> 1 test
+</span><span style="font-weight:bold;color:#a3cbe3;">test</span><span> slice_out_of_array ... FAILED
+</span><span>
+</span><span style="font-weight:bold;color:#a3cbe3;">successes:
+</span><span>
+</span><span style="font-weight:bold;color:#a3cbe3;">successes:
+</span><span>
+</span><span style="font-weight:bold;color:#a3cbe3;">failures:
+</span><span>
+</span><span style="font-weight:bold;color:#a3cbe3;">----</span><span> slice_out_of_array stdout ----
+</span><span style="font-weight:bold;color:#a3cbe3;">thread </span><span style="font-weight:bold;color:#dbbb3d;">&#39;</span><span>slice_out_of_array</span><span style="font-weight:bold;color:#dbbb3d;">&#39;</span><span> panicked at </span><span style="font-weight:bold;color:#dbbb3d;">&#39;</span><span>assertion failed: `(left == right)`
+</span><span>  left: `[2, 3, 4]`,
+</span><span> right: `[1, 2, 3, 4, 5]`</span><span style="font-weight:bold;color:#dbbb3d;">&#39;</span><span>, exercises/primitive_types/primitive_types4.rs:13:5
+</span><span style="font-weight:bold;color:#a3cbe3;">note:</span><span> run with `</span><span style="font-weight:bold;color:#a3cbe3;">RUST_BACKTRACE</span><span style="color:#db7c6d;">=</span><span>1` environment variable to display a backtrace
+</span><span>
+</span><span>
+</span><span style="font-weight:bold;color:#a3cbe3;">failures:
+</span><span>    </span><span style="font-weight:bold;color:#a3cbe3;">slice_out_of_array
+</span><span>
+</span><span style="font-weight:bold;color:#a3cbe3;">test</span><span> result: FAILED. 0 passed</span><span style="color:#db7c6d;">; </span><span style="font-weight:bold;color:#a3cbe3;">1</span><span> failed</span><span style="color:#db7c6d;">; </span><span style="font-weight:bold;color:#a3cbe3;">0</span><span> ignored</span><span style="color:#db7c6d;">; </span><span style="font-weight:bold;color:#a3cbe3;">0</span><span> measured</span><span style="color:#db7c6d;">; </span><span style="font-weight:bold;color:#a3cbe3;">0</span><span> filtered out</span><span style="color:#db7c6d;">; </span><span style="font-weight:bold;color:#a3cbe3;">finished</span><span> in 0.00s
+</span></code></pre>
 <p>As expected the test fails, and we see the elements that we select by using the <code>&amp;a[0..5]</code> makes the test panic because the <code>assertion failed: (left == right)</code> in our code the left doesn't equal the right and we can see that we are accessing the elements starting at index <code>0</code> and ending at index <code>5</code>.</p>
 <h2 id="primitive-types5-rs"><code>primitive_types5.rs</code></h2>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">&#x2F;&#x2F; primitive_types5.rs
-&#x2F;&#x2F; Destructure the `cat` tuple so that the println will work.
-&#x2F;&#x2F; Execute `rustlings hint primitive_types5` or use the `hint` watch subcommand for a hint.
-
-&#x2F;&#x2F; I AM NOT DONE
-
-fn main() {
-    let cat = (&quot;Furry McFurson&quot;, 3.5);
-    let &#x2F;* your pattern here *&#x2F; = cat;
-
-    println!(&quot;{} is {} years old.&quot;, name, age);
-}
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#707180;">// primitive_types5.rs
+</span><span style="color:#707180;">// Destructure the `cat` tuple so that the println will work.
+</span><span style="color:#707180;">// Execute `rustlings hint primitive_types5` or use the `hint` watch subcommand for a hint.
+</span><span>
+</span><span style="color:#707180;">// I AM NOT DONE
+</span><span>
+</span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">main</span><span>() {
+</span><span>    </span><span style="color:#a3cbe3;">let</span><span> cat </span><span style="color:#db7c6d;">= </span><span>(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>Furry McFurson</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>, </span><span style="color:#db7c6d;">3.5</span><span>);
+</span><span>    </span><span style="color:#a3cbe3;">let </span><span style="color:#707180;">/* your pattern here */ </span><span style="color:#db7c6d;">=</span><span> cat;
+</span><span>
+</span><span>    println!(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span style="font-weight:bold;color:#a2ba43;">{}</span><span> is </span><span style="font-weight:bold;color:#a2ba43;">{}</span><span> years old.</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>, name, age);
+</span><span>}
+</span></code></pre>
 <h2 id="primitive-types5-rs-error"><code>primitive_types5.rs</code> error</h2>
-<pre data-lang="zsh" class="language-zsh "><code class="language-zsh" data-lang="zsh">⚠️  Compiling of exercises&#x2F;primitive_types&#x2F;primitive_types5.rs failed! Please try again. Here&#x27;s the output:
-error: expected pattern, found `=`
- --&gt; exercises&#x2F;primitive_types&#x2F;primitive_types5.rs:9:33
-  |
-9 |     let &#x2F;* your pattern here *&#x2F; = cat;
-  |                                 ^ expected pattern
-
-error: aborting due to previous error
-</code></pre>
+<pre data-lang="zsh" style="background-color:#31333d;color:#ffffffc4;" class="language-zsh "><code class="language-zsh" data-lang="zsh"><span style="font-weight:bold;color:#a3cbe3;">⚠️</span><span>  Compiling of exercises/primitive_types/primitive_types5.rs failed! Please try again. Here</span><span style="font-weight:bold;color:#dbbb3d;">&#39;</span><span>s the output:
+</span><span>error: expected pattern, found `=`
+</span><span> --&gt; exercises/primitive_types/primitive_types5.rs:9:33
+</span><span>  |
+</span><span>9 |     let /* your pattern here */ = cat;
+</span><span>  |                                 ^ expected pattern
+</span><span>
+</span><span>error: aborting due to previous error
+</span></code></pre>
 <p>Our instructions are to destructure the <code>cat</code> tuple so that the <code>println</code> will work, seems simple enough we have a clear indication in the code where this should take place, in our <code>let</code> variable assignment on line 8.</p>
 <h2 id="the-tuple-type">The Tuple Type</h2>
-<p>So let's quickly recap a Tuple and how we destructure it. A tuple is a compound type meaning that it can group together elements of different types, for example in our <code>let cat = (&quot;Furry McFurson&quot;, 3.5)</code> we can see that we have a &amp;str and a floating-point type.
+<p>So let's quickly recap a Tuple and how we destructure it. A tuple is a compound type meaning that it can group together elements of different types, for example in our <code>let cat = ("Furry McFurson", 3.5)</code> we can see that we have a &amp;str and a floating-point type.
 Let's keep things simple for now and not go too deep into the <code>&amp;str</code> and what it means, for now we know it represents a string in our code.</p>
 <p>So, another way we could have defined this tuple to be more explicit would have been like so (similar to our array in a previous exercise, where we defined the type for an array):</p>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">let cat: (&amp;str, f64) = (&quot;Furry McFurson&quot;, 3.5);
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#a3cbe3;">let</span><span> cat: (</span><span style="color:#db7c6d;">&amp;</span><span style="color:#a3cbe3;">str</span><span>, </span><span style="color:#a3cbe3;">f64</span><span>) </span><span style="color:#db7c6d;">= </span><span>(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>Furry McFurson</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>, </span><span style="color:#db7c6d;">3.5</span><span>);
+</span></code></pre>
 <p>When we bind tuple to a variable, like in this case <code>cat</code> the variable is bound to the entire tuple as it's considered a single compound element. So to get a single element out of the tuple we have to <em>destructure</em> the tuple by sort of inverting the variable like this:</p>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">let (a, b) = variable
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#a3cbe3;">let </span><span>(a, b) </span><span style="color:#db7c6d;">=</span><span> variable
+</span></code></pre>
 <h2 id="primitive-types5-rs-solution"><code>primitive_types5.rs</code> solution</h2>
 <p>In our case we can see that in the <code>println!</code> statement we are looking for a <code>name</code> and <code>age</code> elements, so let's plug these into our code.</p>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">fn main() {
-    let cat = (&quot;Furry McFurson&quot;, 3.5);
-    let (name, age) = cat;
-
-    println!(&quot;{} is {} years old.&quot;, name, age);
-}
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">main</span><span>() {
+</span><span>    </span><span style="color:#a3cbe3;">let</span><span> cat </span><span style="color:#db7c6d;">= </span><span>(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>Furry McFurson</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>, </span><span style="color:#db7c6d;">3.5</span><span>);
+</span><span>    </span><span style="color:#a3cbe3;">let </span><span>(name, age) </span><span style="color:#db7c6d;">=</span><span> cat;
+</span><span>
+</span><span>    println!(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span style="font-weight:bold;color:#a2ba43;">{}</span><span> is </span><span style="font-weight:bold;color:#a2ba43;">{}</span><span> years old.</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>, name, age);
+</span><span>}
+</span></code></pre>
 <p>Let's check our output</p>
-<pre data-lang="zsh" class="language-zsh "><code class="language-zsh" data-lang="zsh">Output:
-====================
-Furry McFurson is 3.5 years old.
-
-====================
-</code></pre>
+<pre data-lang="zsh" style="background-color:#31333d;color:#ffffffc4;" class="language-zsh "><code class="language-zsh" data-lang="zsh"><span style="font-weight:bold;color:#a3cbe3;">Output:
+</span><span style="color:#db7c6d;">=</span><span>===================
+</span><span style="font-weight:bold;color:#a3cbe3;">Furry</span><span> McFurson is 3.5 years old.
+</span><span>
+</span><span style="color:#db7c6d;">=</span><span>===================
+</span></code></pre>
 <h2 id="primitive-types6-rs"><code>primitive_types6.rs</code></h2>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">&#x2F;&#x2F; primitive_types6.rs
-&#x2F;&#x2F; Use a tuple index to access the second element of `numbers`.
-&#x2F;&#x2F; You can put the expression for the second element where ??? is so that the test passes.
-&#x2F;&#x2F; Execute `rustlings hint primitive_types6` or use the `hint` watch subcommand for a hint.
-
-&#x2F;&#x2F; I AM NOT DONE
-
-#[test]
-fn indexing_tuple() {
-    let numbers = (1, 2, 3);
-    &#x2F;&#x2F; Replace below ??? with the tuple indexing syntax.
-    let second = ???;
-
-    assert_eq!(2, second,
-        &quot;This is not the 2nd number in the tuple!&quot;)
-}
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#707180;">// primitive_types6.rs
+</span><span style="color:#707180;">// Use a tuple index to access the second element of `numbers`.
+</span><span style="color:#707180;">// You can put the expression for the second element where ??? is so that the test passes.
+</span><span style="color:#707180;">// Execute `rustlings hint primitive_types6` or use the `hint` watch subcommand for a hint.
+</span><span>
+</span><span style="color:#707180;">// I AM NOT DONE
+</span><span>
+</span><span>#[</span><span style="font-weight:bold;color:#a3cbe3;">test</span><span>]
+</span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">indexing_tuple</span><span>() {
+</span><span>    </span><span style="color:#a3cbe3;">let</span><span> numbers </span><span style="color:#db7c6d;">= </span><span>(</span><span style="color:#db7c6d;">1</span><span>, </span><span style="color:#db7c6d;">2</span><span>, </span><span style="color:#db7c6d;">3</span><span>);
+</span><span>    </span><span style="color:#707180;">// Replace below ??? with the tuple indexing syntax.
+</span><span>    </span><span style="color:#a3cbe3;">let</span><span> second </span><span style="color:#db7c6d;">= ???</span><span>;
+</span><span>
+</span><span>    assert_eq!(</span><span style="color:#db7c6d;">2</span><span>, second,
+</span><span>        </span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>This is not the 2nd number in the tuple!</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>)
+</span><span>}
+</span></code></pre>
 <h2 id="primitive-types6-rs-error"><code>primitive_types6.rs</code> error</h2>
-<pre data-lang="zsh" class="language-zsh "><code class="language-zsh" data-lang="zsh">⚠️  Compiling of exercises&#x2F;primitive_types&#x2F;primitive_types6.rs failed! Please try again. Here&#x27;s the output:
-error: expected expression, found `?`
-  --&gt; exercises&#x2F;primitive_types&#x2F;primitive_types6.rs:12:18
-   |
-12 |     let second = ???;
-   |                  ^ expected expression
-
-error: aborting due to previous error
-</code></pre>
+<pre data-lang="zsh" style="background-color:#31333d;color:#ffffffc4;" class="language-zsh "><code class="language-zsh" data-lang="zsh"><span style="font-weight:bold;color:#a3cbe3;">⚠️</span><span>  Compiling of exercises/primitive_types/primitive_types6.rs failed! Please try again. Here</span><span style="font-weight:bold;color:#dbbb3d;">&#39;</span><span>s the output:
+</span><span>error: expected expression, found `?`
+</span><span>  --&gt; exercises/primitive_types/primitive_types6.rs:12:18
+</span><span>   |
+</span><span>12 |     let second = ???;
+</span><span>   |                  ^ expected expression
+</span><span>
+</span><span>error: aborting due to previous error
+</span></code></pre>
 <p>Our instructions say to use a tuple index to access the second element of <code>numbers</code> and we can use place the expression in line 12 where the <code>let second = ???</code>, simple enough.</p>
 <h2 id="tuple-indexing">Tuple Indexing</h2>
 <p>But how do we access a tuple directly? By using the variable a period <code>.</code> followed by the index value.</p>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">let indexing = variable.0
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#a3cbe3;">let</span><span> indexing </span><span style="color:#db7c6d;">=</span><span> variable.</span><span style="color:#db7c6d;">0
+</span></code></pre>
 <p>Alright then, let's apply this to our problem.</p>
 <h2 id="primitive-types6-rs-solution"><code>primitive_types6.rs</code> solution</h2>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">#[test]
-fn indexing_tuple() {
-    let numbers = (1, 2, 3);
-
-    let second = numbers.1; &#x2F;&#x2F; using the tuple indexing syntax to get the 2nd element which is at index `1`
-
-    assert_eq!(2, second, &quot;This is not the 2nd number in the tuple!&quot;)
-}
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span>#[</span><span style="font-weight:bold;color:#a3cbe3;">test</span><span>]
+</span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">indexing_tuple</span><span>() {
+</span><span>    </span><span style="color:#a3cbe3;">let</span><span> numbers </span><span style="color:#db7c6d;">= </span><span>(</span><span style="color:#db7c6d;">1</span><span>, </span><span style="color:#db7c6d;">2</span><span>, </span><span style="color:#db7c6d;">3</span><span>);
+</span><span>
+</span><span>    </span><span style="color:#a3cbe3;">let</span><span> second </span><span style="color:#db7c6d;">=</span><span> numbers.</span><span style="color:#db7c6d;">1</span><span>; </span><span style="color:#707180;">// using the tuple indexing syntax to get the 2nd element which is at index `1`
+</span><span>
+</span><span>    assert_eq!(</span><span style="color:#db7c6d;">2</span><span>, second, </span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>This is not the 2nd number in the tuple!</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>)
+</span><span>}
+</span></code></pre>
 <p>The only tricky part is to remember that indexes start at <code>0</code> so the second element is at index <code>1</code>. So if we were for example to change the <code>number.1</code> to <code>number.2</code>, if we mistakenly thought the correct index was <code>2</code> we'd get this text in our test:</p>
-<pre data-lang="zsh" class="language-zsh "><code class="language-zsh" data-lang="zsh">running 1 test
-test indexing_tuple ... FAILED
-
-successes:
-
-successes:
-
-failures:
-
----- indexing_tuple stdout ----
-thread &#x27;indexing_tuple&#x27; panicked at &#x27;assertion failed: `(left == right)`
-  left: `2`,
- right: `3`: This is not the 2nd number in the tuple!&#x27;, exercises&#x2F;primitive_types&#x2F;primitive_types6.rs:14:5
-note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
-
-
-failures:
-    indexing_tuple
-
-test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
-</code></pre>
+<pre data-lang="zsh" style="background-color:#31333d;color:#ffffffc4;" class="language-zsh "><code class="language-zsh" data-lang="zsh"><span style="font-weight:bold;color:#a3cbe3;">running</span><span> 1 test
+</span><span style="font-weight:bold;color:#a3cbe3;">test</span><span> indexing_tuple ... FAILED
+</span><span>
+</span><span style="font-weight:bold;color:#a3cbe3;">successes:
+</span><span>
+</span><span style="font-weight:bold;color:#a3cbe3;">successes:
+</span><span>
+</span><span style="font-weight:bold;color:#a3cbe3;">failures:
+</span><span>
+</span><span style="font-weight:bold;color:#a3cbe3;">----</span><span> indexing_tuple stdout ----
+</span><span style="font-weight:bold;color:#a3cbe3;">thread </span><span style="font-weight:bold;color:#dbbb3d;">&#39;</span><span>indexing_tuple</span><span style="font-weight:bold;color:#dbbb3d;">&#39;</span><span> panicked at </span><span style="font-weight:bold;color:#dbbb3d;">&#39;</span><span>assertion failed: `(left == right)`
+</span><span>  left: `2`,
+</span><span> right: `3`: This is not the 2nd number in the tuple!</span><span style="font-weight:bold;color:#dbbb3d;">&#39;</span><span>, exercises/primitive_types/primitive_types6.rs:14:5
+</span><span style="font-weight:bold;color:#a3cbe3;">note:</span><span> run with `</span><span style="font-weight:bold;color:#a3cbe3;">RUST_BACKTRACE</span><span style="color:#db7c6d;">=</span><span>1` environment variable to display a backtrace
+</span><span>
+</span><span>
+</span><span style="font-weight:bold;color:#a3cbe3;">failures:
+</span><span>    </span><span style="font-weight:bold;color:#a3cbe3;">indexing_tuple
+</span><span>
+</span><span style="font-weight:bold;color:#a3cbe3;">test</span><span> result: FAILED. 0 passed</span><span style="color:#db7c6d;">; </span><span style="font-weight:bold;color:#a3cbe3;">1</span><span> failed</span><span style="color:#db7c6d;">; </span><span style="font-weight:bold;color:#a3cbe3;">0</span><span> ignored</span><span style="color:#db7c6d;">; </span><span style="font-weight:bold;color:#a3cbe3;">0</span><span> measured</span><span style="color:#db7c6d;">; </span><span style="font-weight:bold;color:#a3cbe3;">0</span><span> filtered out</span><span style="color:#db7c6d;">; </span><span style="font-weight:bold;color:#a3cbe3;">finished</span><span> in 0.00s
+</span></code></pre>
 <p>With the correct index number we don't get anything special but a celebratory <code>code is compiling </code> message.</p>
 <h2 id="conclusion">Conclusion</h2>
 <p>In this post, we tackled various exercises related to primitive types in Rust. We explored arrays, tuples, slices, and tuple indexing while understanding how to create and manipulate them. We also learned about the error messages provided by the Rust compiler and how to interpret and resolve them to make our code work as expected.</p>
@@ -596,7 +600,7 @@ test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; 
 		
     </p>
     
-    <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>2643 Words</p>
+    <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>1482 Words</p>
     
     <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2023-05-03</p>
     
@@ -619,7 +623,7 @@ test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; 
 
 
 <footer id="site-footer" class="section-inner thin animated fadeIn faster">
-  <p>&copy; 2024 <a href="https:&#x2F;&#x2F;desmodrone.github.io">erick</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
+  <p>&copy; 2026 <a href="https:&#x2F;&#x2F;desmodrone.github.io">erick</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
   <p>Made with <a href="https://www.getzola.org" target="_blank" rel="noopener">Zola</a> &#183; Theme <a href="https://github.com/VersBinarii/hermit_zola" target="_blank" rel="noopener">Hermit_Zola</a>
 	
 	&#183; <a href="https://desmodrone.github.io/rss.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>

@@ -27,6 +27,10 @@
   <link rel="alternate" type="application/rss+xml" title="RSS" href="https://desmodrone.github.io/rss.xml">
   
 
+  
+  <link rel="canonical" href="https://desmodrone.github.io/posts/07-rustlings-move-semantics2/">
+  
+
   <body id="page">
 
 	
@@ -120,7 +124,7 @@
 		<small> - 
 <span class="reading-time" title="Estimated read time">
   
-  9 min read
+  4 min read
   
 </span>
 </small>
@@ -143,148 +147,148 @@ These exercises are adapted from <a href="https://github.com/pnkfelix">pnkfelix<
 <h2 id="move-semantics-part-2">Move Semantics Part 2</h2>
 <p>We've already covered the first three exercises of <a href="https://desmodrone.github.io/posts/07-rustlings-move-semantics1/">Move Semantics</a> in part one, in this episode we tackle the next three. Let's get started!</p>
 <h2 id="move-semantics4-rs"><code>move_semantics4.rs</code></h2>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">&#x2F;&#x2F; move_semantics4.rs
-&#x2F;&#x2F; Refactor this code so that instead of passing `vec0` into the `fill_vec` function,
-&#x2F;&#x2F; the Vector gets created in the function itself and passed back to the main
-&#x2F;&#x2F; function.
-&#x2F;&#x2F; Execute `rustlings hint move_semantics4` or use the `hint` watch subcommand for a hint.
-
-&#x2F;&#x2F; I AM NOT DONE
-
-fn main() {
-    let vec0 = Vec::new();
-
-    let mut vec1 = fill_vec(vec0);
-
-    println!(&quot;{} has length {} content `{:?}`&quot;, &quot;vec1&quot;, vec1.len(), vec1);
-
-    vec1.push(88);
-
-    println!(&quot;{} has length {} content `{:?}`&quot;, &quot;vec1&quot;, vec1.len(), vec1);
-}
-
-&#x2F;&#x2F; `fill_vec()` no longer takes `vec: Vec&lt;i32&gt;` as argument
-fn fill_vec() -&gt; Vec&lt;i32&gt; {
-    let mut vec = vec;
-
-    vec.push(22);
-    vec.push(44);
-    vec.push(66);
-
-    vec
-}
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#707180;">// move_semantics4.rs
+</span><span style="color:#707180;">// Refactor this code so that instead of passing `vec0` into the `fill_vec` function,
+</span><span style="color:#707180;">// the Vector gets created in the function itself and passed back to the main
+</span><span style="color:#707180;">// function.
+</span><span style="color:#707180;">// Execute `rustlings hint move_semantics4` or use the `hint` watch subcommand for a hint.
+</span><span>
+</span><span style="color:#707180;">// I AM NOT DONE
+</span><span>
+</span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">main</span><span>() {
+</span><span>    </span><span style="color:#a3cbe3;">let</span><span> vec0 </span><span style="color:#db7c6d;">= </span><span style="color:#e7e7e7;">Vec</span><span>::new();
+</span><span>
+</span><span>    </span><span style="color:#a3cbe3;">let </span><span style="color:#dbbb3d;">mut</span><span> vec1 </span><span style="color:#db7c6d;">= fill_vec</span><span>(vec0);
+</span><span>
+</span><span>    println!(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span style="font-weight:bold;color:#a2ba43;">{}</span><span> has length </span><span style="font-weight:bold;color:#a2ba43;">{}</span><span> content `</span><span style="font-weight:bold;color:#a2ba43;">{:?}</span><span>`</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>, </span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>vec1</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>, vec1.</span><span style="color:#db7c6d;">len</span><span>(), vec1);
+</span><span>
+</span><span>    vec1.</span><span style="color:#db7c6d;">push</span><span>(</span><span style="color:#db7c6d;">88</span><span>);
+</span><span>
+</span><span>    println!(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span style="font-weight:bold;color:#a2ba43;">{}</span><span> has length </span><span style="font-weight:bold;color:#a2ba43;">{}</span><span> content `</span><span style="font-weight:bold;color:#a2ba43;">{:?}</span><span>`</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>, </span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>vec1</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>, vec1.</span><span style="color:#db7c6d;">len</span><span>(), vec1);
+</span><span>}
+</span><span>
+</span><span style="color:#707180;">// `fill_vec()` no longer takes `vec: Vec&lt;i32&gt;` as argument
+</span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">fill_vec</span><span>() -&gt; </span><span style="color:#e7e7e7;">Vec</span><span>&lt;</span><span style="color:#a3cbe3;">i32</span><span>&gt; {
+</span><span>    </span><span style="color:#a3cbe3;">let </span><span style="color:#dbbb3d;">mut</span><span> vec </span><span style="color:#db7c6d;">=</span><span> vec;
+</span><span>
+</span><span>    vec.</span><span style="color:#db7c6d;">push</span><span>(</span><span style="color:#db7c6d;">22</span><span>);
+</span><span>    vec.</span><span style="color:#db7c6d;">push</span><span>(</span><span style="color:#db7c6d;">44</span><span>);
+</span><span>    vec.</span><span style="color:#db7c6d;">push</span><span>(</span><span style="color:#db7c6d;">66</span><span>);
+</span><span>
+</span><span>    vec
+</span><span>}
+</span></code></pre>
 <p>Our instructions here are to refactor our code so that instead of passing <code>vec0</code> into the <code>fill_vec</code> function, the Vector gets created in the function itself and passed back to the main function.</p>
 <h2 id="move-semantics4-rs-errors"><code>move_semantics4.rs</code> errors</h2>
-<pre data-lang="zsh" class="language-zsh "><code class="language-zsh" data-lang="zsh">⚠️  Compiling of exercises&#x2F;move_semantics&#x2F;move_semantics4.rs failed! Please try again. Here is the output:
-error[E0423]: expected value, found macro `vec`
-  --&gt; exercises&#x2F;move_semantics&#x2F;move_semantics4.rs:23:19
-   |
-23 |     let mut vec = vec;
-   |                   ^^^ not a value
-
-error[E0061]: this function takes 0 arguments but 1 argument was supplied
-  --&gt; exercises&#x2F;move_semantics&#x2F;move_semantics4.rs:12:20
-   |
-12 |     let mut vec1 = fill_vec(vec0);
-   |                    ^^^^^^^^ ---- argument of type `Vec&lt;_&gt;` unexpected
-   |
-note: function defined here
-  --&gt; exercises&#x2F;move_semantics&#x2F;move_semantics4.rs:22:4
-   |
-22 | fn fill_vec() -&gt; Vec&lt;i32&gt; {
-   |    ^^^^^^^^
-help: remove the extra argument
-   |
-12 |     let mut vec1 = fill_vec();
-   |                            ~~
-
-error: aborting due to 2 previous errors
-</code></pre>
+<pre data-lang="zsh" style="background-color:#31333d;color:#ffffffc4;" class="language-zsh "><code class="language-zsh" data-lang="zsh"><span style="font-weight:bold;color:#a3cbe3;">⚠️</span><span>  Compiling of exercises/move_semantics/move_semantics4.rs failed! Please try again. Here is the output:
+</span><span style="font-weight:bold;color:#a3cbe3;">error[E0423]:</span><span> expected value, found macro `</span><span style="font-weight:bold;color:#a3cbe3;">vec</span><span>`
+</span><span>  </span><span style="font-weight:bold;color:#a3cbe3;">--</span><span style="color:#db7c6d;">&gt;</span><span> exercises/move_semantics/move_semantics4.rs:23:19
+</span><span>   </span><span style="color:#db7c6d;">|
+</span><span style="font-weight:bold;color:#a3cbe3;">23 </span><span style="color:#db7c6d;">|     let</span><span> mut vec </span><span style="color:#db7c6d;">=</span><span> vec;
+</span><span>   </span><span style="color:#db7c6d;">|                   </span><span style="font-weight:bold;color:#a3cbe3;">^^^</span><span> not a value
+</span><span>
+</span><span style="font-weight:bold;color:#a3cbe3;">error[E0061]:</span><span> this function takes 0 arguments but 1 argument was supplied
+</span><span>  </span><span style="font-weight:bold;color:#a3cbe3;">--</span><span style="color:#db7c6d;">&gt;</span><span> exercises/move_semantics/move_semantics4.rs:12:20
+</span><span>   </span><span style="color:#db7c6d;">|
+</span><span style="font-weight:bold;color:#a3cbe3;">12 </span><span style="color:#db7c6d;">|     let</span><span> mut vec1 </span><span style="color:#db7c6d;">=</span><span> fill_vec(vec0);
+</span><span>   </span><span style="color:#db7c6d;">|                    </span><span style="font-weight:bold;color:#a3cbe3;">^^^^^^^^</span><span> ---- argument of type `</span><span style="font-weight:bold;color:#a3cbe3;">Vec</span><span style="color:#db7c6d;">&lt;</span><span>_</span><span style="color:#db7c6d;">&gt;</span><span>` unexpected
+</span><span>   </span><span style="color:#db7c6d;">|
+</span><span style="font-weight:bold;color:#a3cbe3;">note:</span><span> function defined here
+</span><span>  </span><span style="font-weight:bold;color:#a3cbe3;">--</span><span style="color:#db7c6d;">&gt;</span><span> exercises/move_semantics/move_semantics4.rs:22:4
+</span><span>   </span><span style="color:#db7c6d;">|
+</span><span style="font-weight:bold;color:#a3cbe3;">22 </span><span style="color:#db7c6d;">| </span><span style="font-weight:bold;color:#a3cbe3;">fn</span><span> fill_vec() </span><span style="font-weight:bold;color:#a3cbe3;">-</span><span style="color:#db7c6d;">&gt;</span><span> Vec</span><span style="color:#db7c6d;">&lt;</span><span>i32</span><span style="color:#db7c6d;">&gt; </span><span>{
+</span><span>   |    ^^^^^^^^
+</span><span>help: remove the extra argument
+</span><span>   |
+</span><span>12 |     let mut vec1 = fill_vec();
+</span><span>   |                            </span><span style="font-weight:bold;color:#a3cbe3;">~~
+</span><span>
+</span><span>error: aborting due to 2 previous errors
+</span></code></pre>
 <p>Error's are telling us that on line 23, <code>vec</code> is not a value in addition it tells us that the function <code>fill_vec()</code> takes 0 arguments but one is being supplied. So let's remove the argument on line 12 from the <code>fill_vec(vec0)</code>.</p>
 <p>After we do that we still get some errors, but they're different now.</p>
-<pre data-lang="zsh" class="language-zsh "><code class="language-zsh" data-lang="zsh">⚠️  Compiling of exercises&#x2F;move_semantics&#x2F;move_semantics4.rs failed! Please try again. Here is the output:
-error[E0423]: expected value, found macro `vec`
-  --&gt; exercises&#x2F;move_semantics&#x2F;move_semantics4.rs:23:19
-   |
-23 |     let mut vec = vec;
-   |                   ^^^ not a value
-
-error[E0282]: type annotations needed for `Vec&lt;T&gt;`
-  --&gt; exercises&#x2F;move_semantics&#x2F;move_semantics4.rs:10:9
-   |
-10 |     let vec0 = Vec::new();
-   |         ^^^^
-   |
-help: consider giving `vec0` an explicit type, where the type for type parameter `T` is specified
-   |
-10 |     let vec0: Vec&lt;T&gt; = Vec::new();
-   |             ++++++++
-
-error: aborting due to 2 previous errors
-</code></pre>
+<pre data-lang="zsh" style="background-color:#31333d;color:#ffffffc4;" class="language-zsh "><code class="language-zsh" data-lang="zsh"><span style="font-weight:bold;color:#a3cbe3;">⚠️</span><span>  Compiling of exercises/move_semantics/move_semantics4.rs failed! Please try again. Here is the output:
+</span><span style="font-weight:bold;color:#a3cbe3;">error[E0423]:</span><span> expected value, found macro `</span><span style="font-weight:bold;color:#a3cbe3;">vec</span><span>`
+</span><span>  </span><span style="font-weight:bold;color:#a3cbe3;">--</span><span style="color:#db7c6d;">&gt;</span><span> exercises/move_semantics/move_semantics4.rs:23:19
+</span><span>   </span><span style="color:#db7c6d;">|
+</span><span style="font-weight:bold;color:#a3cbe3;">23 </span><span style="color:#db7c6d;">|     let</span><span> mut vec </span><span style="color:#db7c6d;">=</span><span> vec;
+</span><span>   </span><span style="color:#db7c6d;">|                   </span><span style="font-weight:bold;color:#a3cbe3;">^^^</span><span> not a value
+</span><span>
+</span><span style="font-weight:bold;color:#a3cbe3;">error[E0282]:</span><span> type annotations needed for `</span><span style="font-weight:bold;color:#a3cbe3;">Vec</span><span style="color:#db7c6d;">&lt;</span><span>T</span><span style="color:#db7c6d;">&gt;</span><span>`
+</span><span>  </span><span style="font-weight:bold;color:#a3cbe3;">--</span><span style="color:#db7c6d;">&gt;</span><span> exercises/move_semantics/move_semantics4.rs:10:9
+</span><span>   </span><span style="color:#db7c6d;">|
+</span><span style="font-weight:bold;color:#a3cbe3;">10 </span><span style="color:#db7c6d;">|     let</span><span> vec0 </span><span style="color:#db7c6d;">=</span><span> Vec</span><span style="color:#db7c6d;">::</span><span>new();
+</span><span>   </span><span style="color:#db7c6d;">|         </span><span style="font-weight:bold;color:#a3cbe3;">^^^^
+</span><span>   </span><span style="color:#db7c6d;">|
+</span><span style="font-weight:bold;color:#a3cbe3;">help:</span><span> consider giving `</span><span style="font-weight:bold;color:#a3cbe3;">vec0</span><span>` an explicit type, where the type for type parameter `</span><span style="font-weight:bold;color:#a3cbe3;">T</span><span>` is specified
+</span><span>   </span><span style="color:#db7c6d;">|
+</span><span style="font-weight:bold;color:#a3cbe3;">10 </span><span style="color:#db7c6d;">|     let</span><span> vec0</span><span style="color:#db7c6d;">:</span><span> Vec</span><span style="color:#db7c6d;">&lt;</span><span>T</span><span style="color:#db7c6d;">&gt; =</span><span> Vec</span><span style="color:#db7c6d;">::</span><span>new();
+</span><span>   </span><span style="color:#db7c6d;">|             </span><span style="font-weight:bold;color:#a3cbe3;">++++++++
+</span><span>
+</span><span style="font-weight:bold;color:#a3cbe3;">error:</span><span> aborting due to 2 previous errors
+</span></code></pre>
 <p>The error's start point us to using generics with <code>Vec&lt;T&gt;</code> but our solution should be must simpler than that, since our instructions are to refactor our code to not create <code>vec0</code> but to create a new vector in our <code>fill_vec()</code> function.</p>
 <p>Let's see what happens if we simple remove the <code>let vec0 = Vec::new();</code> line from our code but and add the <code>let mut vec = Vec::new();</code> to our <code>fill_vec()</code> function. Hey guess what? It works. Below is the update code solution.</p>
 <h2 id="move-semantics4-solution"><code>move_semantics4</code> solution</h2>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">fn main() {
-	&#x2F;&#x2F; removed previous vector creation here
-    let mut vec1 = fill_vec();
-
-    println!(&quot;{} has length {} content `{:?}`&quot;, &quot;vec1&quot;, vec1.len(), vec1);
-
-    vec1.push(88);
-
-    println!(&quot;{} has length {} content `{:?}`&quot;, &quot;vec1&quot;, vec1.len(), vec1);
-}
-
-fn fill_vec() -&gt; Vec&lt;i32&gt; {
-    let mut vec = Vec::new(); &#x2F;&#x2F; added vector creation within the function
-
-    vec.push(22);
-    vec.push(44);
-    vec.push(66);
-
-    vec
-}
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">main</span><span>() {
+</span><span>	</span><span style="color:#707180;">// removed previous vector creation here
+</span><span>    </span><span style="color:#a3cbe3;">let </span><span style="color:#dbbb3d;">mut</span><span> vec1 </span><span style="color:#db7c6d;">= fill_vec</span><span>();
+</span><span>
+</span><span>    println!(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span style="font-weight:bold;color:#a2ba43;">{}</span><span> has length </span><span style="font-weight:bold;color:#a2ba43;">{}</span><span> content `</span><span style="font-weight:bold;color:#a2ba43;">{:?}</span><span>`</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>, </span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>vec1</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>, vec1.</span><span style="color:#db7c6d;">len</span><span>(), vec1);
+</span><span>
+</span><span>    vec1.</span><span style="color:#db7c6d;">push</span><span>(</span><span style="color:#db7c6d;">88</span><span>);
+</span><span>
+</span><span>    println!(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span style="font-weight:bold;color:#a2ba43;">{}</span><span> has length </span><span style="font-weight:bold;color:#a2ba43;">{}</span><span> content `</span><span style="font-weight:bold;color:#a2ba43;">{:?}</span><span>`</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>, </span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>vec1</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>, vec1.</span><span style="color:#db7c6d;">len</span><span>(), vec1);
+</span><span>}
+</span><span>
+</span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">fill_vec</span><span>() -&gt; </span><span style="color:#e7e7e7;">Vec</span><span>&lt;</span><span style="color:#a3cbe3;">i32</span><span>&gt; {
+</span><span>    </span><span style="color:#a3cbe3;">let </span><span style="color:#dbbb3d;">mut</span><span> vec </span><span style="color:#db7c6d;">= </span><span style="color:#e7e7e7;">Vec</span><span>::new(); </span><span style="color:#707180;">// added vector creation within the function
+</span><span>
+</span><span>    vec.</span><span style="color:#db7c6d;">push</span><span>(</span><span style="color:#db7c6d;">22</span><span>);
+</span><span>    vec.</span><span style="color:#db7c6d;">push</span><span>(</span><span style="color:#db7c6d;">44</span><span>);
+</span><span>    vec.</span><span style="color:#db7c6d;">push</span><span>(</span><span style="color:#db7c6d;">66</span><span>);
+</span><span>
+</span><span>    vec
+</span><span>}
+</span></code></pre>
 <p>This is our output:</p>
-<pre data-lang="zsh" class="language-zsh "><code class="language-zsh" data-lang="zsh">Output:
-====================
-vec1 has length 3 content `[22, 44, 66]`
-vec1 has length 4 content `[22, 44, 66, 88]`
-
-====================
-</code></pre>
+<pre data-lang="zsh" style="background-color:#31333d;color:#ffffffc4;" class="language-zsh "><code class="language-zsh" data-lang="zsh"><span style="font-weight:bold;color:#a3cbe3;">Output:
+</span><span style="color:#db7c6d;">=</span><span>===================
+</span><span style="font-weight:bold;color:#a3cbe3;">vec1</span><span> has length 3 content `</span><span style="font-weight:bold;color:#a3cbe3;">[22,</span><span> 44, 66]`
+</span><span style="font-weight:bold;color:#a3cbe3;">vec1</span><span> has length 4 content `</span><span style="font-weight:bold;color:#a3cbe3;">[22,</span><span> 44, 66, 88]`
+</span><span>
+</span><span style="color:#db7c6d;">=</span><span>===================
+</span></code></pre>
 <h2 id="move-semantics5-rs"><code>move_semantics5.rs</code></h2>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">&#x2F;&#x2F; move_semantics5.rs
-&#x2F;&#x2F; Make me compile only by reordering the lines in `main()`, but without
-&#x2F;&#x2F; adding, changing or removing any of them.
-&#x2F;&#x2F; Execute `rustlings hint move_semantics5` or use the `hint` watch subcommand for a hint.
-
-&#x2F;&#x2F; I AM NOT DONE
-
-fn main() {
-    let mut x = 100;
-    let y = &amp;mut x;
-    let z = &amp;mut x;
-    *y += 100;
-    *z += 1000;
-    assert_eq!(x, 1200);
-}
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#707180;">// move_semantics5.rs
+</span><span style="color:#707180;">// Make me compile only by reordering the lines in `main()`, but without
+</span><span style="color:#707180;">// adding, changing or removing any of them.
+</span><span style="color:#707180;">// Execute `rustlings hint move_semantics5` or use the `hint` watch subcommand for a hint.
+</span><span>
+</span><span style="color:#707180;">// I AM NOT DONE
+</span><span>
+</span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">main</span><span>() {
+</span><span>    </span><span style="color:#a3cbe3;">let </span><span style="color:#dbbb3d;">mut</span><span> x </span><span style="color:#db7c6d;">= 100</span><span>;
+</span><span>    </span><span style="color:#a3cbe3;">let</span><span> y </span><span style="color:#db7c6d;">= &amp;</span><span style="color:#dbbb3d;">mut</span><span> x;
+</span><span>    </span><span style="color:#a3cbe3;">let</span><span> z </span><span style="color:#db7c6d;">= &amp;</span><span style="color:#dbbb3d;">mut</span><span> x;
+</span><span>    </span><span style="color:#db7c6d;">*</span><span>y </span><span style="color:#db7c6d;">+= 100</span><span>;
+</span><span>    </span><span style="color:#db7c6d;">*</span><span>z </span><span style="color:#db7c6d;">+= 1000</span><span>;
+</span><span>    assert_eq!(x, </span><span style="color:#db7c6d;">1200</span><span>);
+</span><span>}
+</span></code></pre>
 <p>This looks like an easy one, no need to write anything we just need to re-order the sequence of the lines. Let's look at the errors and see if we can get any hints on what we need to do.</p>
 <h2 id="move-semantics5-rs-errors"><code>move_semantics5.rs</code> errors</h2>
-<pre data-lang="zsh" class="language-zsh "><code class="language-zsh" data-lang="zsh">⚠️  Compiling of exercises&#x2F;move_semantics&#x2F;move_semantics5.rs failed! Please try again. Here is the output:
-error[E0499]: cannot borrow `x` as mutable more than once at a time
-  --&gt; exercises&#x2F;move_semantics&#x2F;move_semantics5.rs:11:13
-   |
-10 |     let y = &amp;mut x;
-   |             ------ first mutable borrow occurs here
-11 |     let z = &amp;mut x;
-   |             ^^^^^^ second mutable borrow occurs here
-12 |     *y += 100;
-   |     --------- first borrow later used here
-</code></pre>
+<pre data-lang="zsh" style="background-color:#31333d;color:#ffffffc4;" class="language-zsh "><code class="language-zsh" data-lang="zsh"><span style="font-weight:bold;color:#a3cbe3;">⚠️</span><span>  Compiling of exercises/move_semantics/move_semantics5.rs failed! Please try again. Here is the output:
+</span><span style="font-weight:bold;color:#a3cbe3;">error[E0499]:</span><span> cannot borrow `</span><span style="font-weight:bold;color:#a3cbe3;">x</span><span>` as mutable more than once at a time
+</span><span>  </span><span style="font-weight:bold;color:#a3cbe3;">--</span><span style="color:#db7c6d;">&gt;</span><span> exercises/move_semantics/move_semantics5.rs:11:13
+</span><span>   </span><span style="color:#db7c6d;">|
+</span><span style="font-weight:bold;color:#a3cbe3;">10 </span><span style="color:#db7c6d;">|     let</span><span> y </span><span style="color:#db7c6d;">= &amp;</span><span>mut x;
+</span><span>   </span><span style="color:#db7c6d;">|             </span><span style="font-weight:bold;color:#a3cbe3;">------</span><span> first mutable borrow occurs here
+</span><span style="font-weight:bold;color:#a3cbe3;">11 </span><span style="color:#db7c6d;">|     let</span><span> z </span><span style="color:#db7c6d;">= &amp;</span><span>mut x;
+</span><span>   </span><span style="color:#db7c6d;">|             </span><span style="font-weight:bold;color:#a3cbe3;">^^^^^^</span><span> second mutable borrow occurs here
+</span><span style="font-weight:bold;color:#a3cbe3;">12 </span><span style="color:#db7c6d;">|     </span><span style="font-weight:bold;color:#a3cbe3;">*y</span><span> += 100</span><span style="color:#db7c6d;">;
+</span><span>   </span><span style="color:#db7c6d;">|     </span><span style="font-weight:bold;color:#a3cbe3;">---------</span><span> first borrow later used here
+</span></code></pre>
 <p>The Rust compiler tells us that we are borrowing <code>x</code> mutably too many times, so let's go step by step and see what is happening on each line.</p>
 <ol>
 <li>We declare a mutable variable <code>x</code> and assign it the value <code>100</code>.</li>
@@ -301,15 +305,15 @@ error[E0499]: cannot borrow `x` as mutable more than once at a time
 <p>So how do we solve this? Let's try by dereferencing <code>y</code> before we try to borrow it again with <code>z</code> by moving the line <code>*y += 100;</code>
 above the 2nd attempt mutable borrow which is <code>let z = &amp;mut x;</code>. Doing so should allow us to compile.</p>
 <h2 id="move-semantics5-rs-solution"><code>move_semantics5.rs</code> solution</h2>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">fn main() {
-    let mut x = 100;
-    let y = &amp;mut x;
-    *y += 100;
-    let z = &amp;mut x;
-    *z += 1000;
-    assert_eq!(x, 1200);
-}
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">main</span><span>() {
+</span><span>    </span><span style="color:#a3cbe3;">let </span><span style="color:#dbbb3d;">mut</span><span> x </span><span style="color:#db7c6d;">= 100</span><span>;
+</span><span>    </span><span style="color:#a3cbe3;">let</span><span> y </span><span style="color:#db7c6d;">= &amp;</span><span style="color:#dbbb3d;">mut</span><span> x;
+</span><span>    </span><span style="color:#db7c6d;">*</span><span>y </span><span style="color:#db7c6d;">+= 100</span><span>;
+</span><span>    </span><span style="color:#a3cbe3;">let</span><span> z </span><span style="color:#db7c6d;">= &amp;</span><span style="color:#dbbb3d;">mut</span><span> x;
+</span><span>    </span><span style="color:#db7c6d;">*</span><span>z </span><span style="color:#db7c6d;">+= 1000</span><span>;
+</span><span>    assert_eq!(x, </span><span style="color:#db7c6d;">1200</span><span>);
+</span><span>}
+</span></code></pre>
 <p>It compiles! We don't get an output because there is not <code>println!</code> statement instead we have an <code>assert_eq!</code>.</p>
 <p>The code compiles successfully because it follows the borrowing rules in Rust. Here's a step-by-step explanation:</p>
 <ol>
@@ -322,200 +326,200 @@ above the 2nd attempt mutable borrow which is <code>let z = &amp;mut x;</code>. 
 </ol>
 <p>Let's move on to our final <code>move_semantics</code> exercise.</p>
 <h2 id="move-semantics6-rs"><code>move_semantics6.rs</code></h2>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">&#x2F;&#x2F; move_semantics6.rs
-&#x2F;&#x2F; Execute `rustlings hint move_semantics6` or use the `hint` watch subcommand for a hint.
-&#x2F;&#x2F; You can&#x27;t change anything except adding or removing references.
-
-&#x2F;&#x2F; I AM NOT DONE
-
-fn main() {
-    let data = &quot;Rust is great!&quot;.to_string();
-
-    get_char(data);
-
-    string_uppercase(&amp;data);
-}
-
-&#x2F;&#x2F; Should not take ownership
-fn get_char(data: String) -&gt; char {
-    data.chars().last().unwrap()
-}
-
-&#x2F;&#x2F; Should take ownership
-fn string_uppercase(mut data: &amp;String) {
-    data = &amp;data.to_uppercase();
-
-    println!(&quot;{}&quot;, data);
-}
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#707180;">// move_semantics6.rs
+</span><span style="color:#707180;">// Execute `rustlings hint move_semantics6` or use the `hint` watch subcommand for a hint.
+</span><span style="color:#707180;">// You can&#39;t change anything except adding or removing references.
+</span><span>
+</span><span style="color:#707180;">// I AM NOT DONE
+</span><span>
+</span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">main</span><span>() {
+</span><span>    </span><span style="color:#a3cbe3;">let</span><span> data </span><span style="color:#db7c6d;">= </span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>Rust is great!</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>.</span><span style="color:#db7c6d;">to_string</span><span>();
+</span><span>
+</span><span>    </span><span style="color:#db7c6d;">get_char</span><span>(data);
+</span><span>
+</span><span>    </span><span style="color:#db7c6d;">string_uppercase</span><span>(</span><span style="color:#db7c6d;">&amp;</span><span>data);
+</span><span>}
+</span><span>
+</span><span style="color:#707180;">// Should not take ownership
+</span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">get_char</span><span>(</span><span style="color:#ffffff;">data</span><span>: String) -&gt; </span><span style="color:#a3cbe3;">char </span><span>{
+</span><span>    data.</span><span style="color:#db7c6d;">chars</span><span>().</span><span style="color:#db7c6d;">last</span><span>().</span><span style="color:#db7c6d;">unwrap</span><span>()
+</span><span>}
+</span><span>
+</span><span style="color:#707180;">// Should take ownership
+</span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">string_uppercase</span><span>(</span><span style="color:#dbbb3d;">mut </span><span style="color:#ffffff;">data</span><span>: </span><span style="color:#db7c6d;">&amp;</span><span>String) {
+</span><span>    data </span><span style="color:#db7c6d;">= &amp;</span><span>data.</span><span style="color:#db7c6d;">to_uppercase</span><span>();
+</span><span>
+</span><span>    println!(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span style="font-weight:bold;color:#a2ba43;">{}</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>, data);
+</span><span>}
+</span></code></pre>
 <p>Our instructions are to not change anything but the references, so we'll look at the errors to get a better understanding as to where we are having issues.</p>
 <h2 id="move-semantics6-rs-errors"><code>move_semantics6.rs</code> errors</h2>
-<pre data-lang="zsh" class="language-zsh "><code class="language-zsh" data-lang="zsh">⚠️  Compiling of exercises&#x2F;move_semantics&#x2F;move_semantics6.rs failed! Please try again. Here is the output:
-error[E0382]: borrow of moved value: `data`
-  --&gt; exercises&#x2F;move_semantics&#x2F;move_semantics6.rs:12:22
-   |
-8  |     let data = &quot;Rust is great!&quot;.to_string();
-   |         ---- move occurs because `data` has type `String`, which does not implement the `Copy` trait
-9  |
-10 |     get_char(data);
-   |              ---- value moved here
-11 |
-12 |     string_uppercase(&amp;data);
-   |                      ^^^^^ value borrowed here after move
-   |
-note: consider changing this parameter type in function `get_char` to borrow instead if owning the value is not necessary
-  --&gt; exercises&#x2F;move_semantics&#x2F;move_semantics6.rs:16:19
-   |
-16 | fn get_char(data: String) -&gt; char {
-   |    --------       ^^^^^^ this parameter takes ownership of the value
-   |    |
-   |    in this function
-help: consider cloning the value if the performance cost is acceptable
-   |
-10 |     get_char(data.clone());
-   |                  ++++++++
-
-error[E0716]: temporary value dropped while borrowed
-  --&gt; exercises&#x2F;move_semantics&#x2F;move_semantics6.rs:22:13
-   |
-21 | fn string_uppercase(mut data: &amp;String) {
-   |                               - let us call the lifetime of this reference `&#x27;1`
-22 |     data = &amp;data.to_uppercase();
-   |     --------^^^^^^^^^^^^^^^^^^^- temporary value is freed at the end of this statement
-   |     |       |
-   |     |       creates a temporary value which is freed while still in use
-   |     assignment requires that borrow lasts for `&#x27;1`
-
-error: aborting due to 2 previous errors
-</code></pre>
+<pre data-lang="zsh" style="background-color:#31333d;color:#ffffffc4;" class="language-zsh "><code class="language-zsh" data-lang="zsh"><span style="font-weight:bold;color:#a3cbe3;">⚠️</span><span>  Compiling of exercises/move_semantics/move_semantics6.rs failed! Please try again. Here is the output:
+</span><span style="font-weight:bold;color:#a3cbe3;">error[E0382]:</span><span> borrow of moved value: `</span><span style="font-weight:bold;color:#a3cbe3;">data</span><span>`
+</span><span>  </span><span style="font-weight:bold;color:#a3cbe3;">--</span><span style="color:#db7c6d;">&gt;</span><span> exercises/move_semantics/move_semantics6.rs:12:22
+</span><span>   </span><span style="color:#db7c6d;">|
+</span><span style="font-weight:bold;color:#a3cbe3;">8  </span><span style="color:#db7c6d;">|     let</span><span> data </span><span style="color:#db7c6d;">= </span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>Rust is great!</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>.to_string();
+</span><span>   </span><span style="color:#db7c6d;">|         </span><span style="font-weight:bold;color:#a3cbe3;">----</span><span> move occurs because `</span><span style="font-weight:bold;color:#a3cbe3;">data</span><span>` has type `</span><span style="font-weight:bold;color:#a3cbe3;">String</span><span>`, which does not implement the `</span><span style="font-weight:bold;color:#a3cbe3;">Copy</span><span>` trait
+</span><span style="font-weight:bold;color:#a3cbe3;">9  </span><span style="color:#db7c6d;">|
+</span><span style="font-weight:bold;color:#a3cbe3;">10 </span><span style="color:#db7c6d;">|     </span><span style="font-weight:bold;color:#a3cbe3;">get_char</span><span>(data)</span><span style="color:#db7c6d;">;
+</span><span>   </span><span style="color:#db7c6d;">|              </span><span style="font-weight:bold;color:#a3cbe3;">----</span><span> value moved here
+</span><span style="font-weight:bold;color:#a3cbe3;">11 </span><span style="color:#db7c6d;">|
+</span><span style="font-weight:bold;color:#a3cbe3;">12 </span><span style="color:#db7c6d;">|     </span><span style="font-weight:bold;color:#a3cbe3;">string_uppercase</span><span>(</span><span style="color:#db7c6d;">&amp;</span><span style="font-weight:bold;color:#a3cbe3;">data</span><span>)</span><span style="color:#db7c6d;">;
+</span><span>   </span><span style="color:#db7c6d;">|                      </span><span style="font-weight:bold;color:#a3cbe3;">^^^^^</span><span> value borrowed here after move
+</span><span>   </span><span style="color:#db7c6d;">|
+</span><span style="font-weight:bold;color:#a3cbe3;">note:</span><span> consider changing this parameter type in function `</span><span style="font-weight:bold;color:#a3cbe3;">get_char</span><span>` to borrow instead if owning the value is not necessary
+</span><span>  </span><span style="font-weight:bold;color:#a3cbe3;">--</span><span style="color:#db7c6d;">&gt;</span><span> exercises/move_semantics/move_semantics6.rs:16:19
+</span><span>   </span><span style="color:#db7c6d;">|
+</span><span style="font-weight:bold;color:#a3cbe3;">16 </span><span style="color:#db7c6d;">| </span><span style="font-weight:bold;color:#a3cbe3;">fn</span><span> get_char(data: String) </span><span style="font-weight:bold;color:#a3cbe3;">-</span><span style="color:#db7c6d;">&gt;</span><span> char {
+</span><span>   |    --------       ^^^^^^ this parameter takes ownership of the value
+</span><span>   |    |
+</span><span>   |    in this function
+</span><span>help: consider cloning the value if the performance cost is acceptable
+</span><span>   |
+</span><span>10 |     get_char(data.clone());
+</span><span>   |                  ++++++++
+</span><span>
+</span><span>error</span><span style="color:#db7c6d;">[</span><span>E0716</span><span style="color:#db7c6d;">]</span><span>: temporary value dropped while borrowed
+</span><span>  --&gt; exercises/move_semantics/move_semantics6.rs:22:13
+</span><span>   |
+</span><span>21 | fn string_uppercase(mut data: &amp;String) {
+</span><span>   |                               - let us call the lifetime of this reference `</span><span style="font-weight:bold;color:#dbbb3d;">&#39;</span><span>1`
+</span><span>22 |     data = &amp;data.to_uppercase();
+</span><span>   |     --------^^^^^^^^^^^^^^^^^^^- temporary value is freed at the end of this statement
+</span><span>   |     |       |
+</span><span>   |     |       creates a temporary value which is freed while still in use
+</span><span>   |     assignment requires that borrow lasts for `</span><span style="font-weight:bold;color:#dbbb3d;">&#39;</span><span style="font-weight:bold;color:#a3cbe3;">1</span><span>`
+</span><span>
+</span><span>error: aborting due to 2 previous errors
+</span></code></pre>
 <p>Alright let's go down the list understanding what there errors are telling us and see how we can fix them.</p>
-<pre data-lang="zsh" class="language-zsh "><code class="language-zsh" data-lang="zsh">8  |     let data = &quot;Rust is great!&quot;.to_string();
-   |         ---- move occurs because `data` has type `String`, which does not implement the `Copy` trait
-9  |
-10 |     get_char(data);
-   |              ---- value moved here
-11 |
-12 |     string_uppercase(&amp;data);
-   |                      ^^^^^ value borrowed here after move
-   note: consider changing this parameter type in function `get_char` to borrow instead if owning the value is not necessary
-  --&gt; exercises&#x2F;move_semantics&#x2F;move_semantics6.rs:16:19
-</code></pre>
+<pre data-lang="zsh" style="background-color:#31333d;color:#ffffffc4;" class="language-zsh "><code class="language-zsh" data-lang="zsh"><span style="font-weight:bold;color:#a3cbe3;">8  </span><span style="color:#db7c6d;">|     let</span><span> data </span><span style="color:#db7c6d;">= </span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>Rust is great!</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>.to_string();
+</span><span>   </span><span style="color:#db7c6d;">|         </span><span style="font-weight:bold;color:#a3cbe3;">----</span><span> move occurs because `</span><span style="font-weight:bold;color:#a3cbe3;">data</span><span>` has type `</span><span style="font-weight:bold;color:#a3cbe3;">String</span><span>`, which does not implement the `</span><span style="font-weight:bold;color:#a3cbe3;">Copy</span><span>` trait
+</span><span style="font-weight:bold;color:#a3cbe3;">9  </span><span style="color:#db7c6d;">|
+</span><span style="font-weight:bold;color:#a3cbe3;">10 </span><span style="color:#db7c6d;">|     </span><span style="font-weight:bold;color:#a3cbe3;">get_char</span><span>(data)</span><span style="color:#db7c6d;">;
+</span><span>   </span><span style="color:#db7c6d;">|              </span><span style="font-weight:bold;color:#a3cbe3;">----</span><span> value moved here
+</span><span style="font-weight:bold;color:#a3cbe3;">11 </span><span style="color:#db7c6d;">|
+</span><span style="font-weight:bold;color:#a3cbe3;">12 </span><span style="color:#db7c6d;">|     </span><span style="font-weight:bold;color:#a3cbe3;">string_uppercase</span><span>(</span><span style="color:#db7c6d;">&amp;</span><span style="font-weight:bold;color:#a3cbe3;">data</span><span>)</span><span style="color:#db7c6d;">;
+</span><span>   </span><span style="color:#db7c6d;">|                      </span><span style="font-weight:bold;color:#a3cbe3;">^^^^^</span><span> value borrowed here after move
+</span><span>   </span><span style="font-weight:bold;color:#a3cbe3;">note:</span><span> consider changing this parameter type in function `</span><span style="font-weight:bold;color:#a3cbe3;">get_char</span><span>` to borrow instead if owning the value is not necessary
+</span><span>  </span><span style="font-weight:bold;color:#a3cbe3;">--</span><span style="color:#db7c6d;">&gt;</span><span> exercises/move_semantics/move_semantics6.rs:16:19
+</span></code></pre>
 <p>here the compiler is telling us clearly where to look <code>data</code> does not implement the copy trait so we when we pass it through as a parameter in <code>get_char(data),</code> it becomes owned by <code>get_char()</code></p>
 <p>In the next batch of errors we get a suggestion about cloning, but we know that we can't change any of the code other than changing the references, so this is not the path we want to take.</p>
-<pre data-lang="zsh" class="language-zsh "><code class="language-zsh" data-lang="zsh">16 | fn get_char(data: String) -&gt; char {
-   |    --------       ^^^^^^ this parameter takes ownership of the value
-   |    |
-   |    in this function
-help: consider cloning the value if the performance cost is acceptable
-   |
-10 |     get_char(data.clone());
-   |                  ++++++++
-
-error[E0716]: temporary value dropped while borrowed
-</code></pre>
-<pre data-lang="zsh" class="language-zsh "><code class="language-zsh" data-lang="zsh"> |
-21 | fn string_uppercase(mut data: &amp;String) {
-   |                               - let us call the lifetime of this reference `&#x27;1&#x27;`
-22 |     data = &amp;data.to_uppercase();
-   |     --------^^^^^^^^^^^^^^^^^^^- temporary value is freed at the end of this statement
-   |     |       |
-   |     |       creates a temporary value which is freed while still in use
-   |     assignment requires that borrow lasts for `&#x27;1`
-</code></pre>
+<pre data-lang="zsh" style="background-color:#31333d;color:#ffffffc4;" class="language-zsh "><code class="language-zsh" data-lang="zsh"><span style="font-weight:bold;color:#a3cbe3;">16 </span><span style="color:#db7c6d;">| </span><span style="font-weight:bold;color:#a3cbe3;">fn</span><span> get_char(data: String) </span><span style="font-weight:bold;color:#a3cbe3;">-</span><span style="color:#db7c6d;">&gt;</span><span> char {
+</span><span>   |    --------       ^^^^^^ this parameter takes ownership of the value
+</span><span>   |    |
+</span><span>   |    in this function
+</span><span>help: consider cloning the value if the performance cost is acceptable
+</span><span>   |
+</span><span>10 |     get_char(data.clone());
+</span><span>   |                  ++++++++
+</span><span>
+</span><span>error</span><span style="color:#db7c6d;">[</span><span>E0716</span><span style="color:#db7c6d;">]</span><span>: temporary value dropped while borrowed
+</span></code></pre>
+<pre data-lang="zsh" style="background-color:#31333d;color:#ffffffc4;" class="language-zsh "><code class="language-zsh" data-lang="zsh"><span> </span><span style="color:#db7c6d;">|
+</span><span style="font-weight:bold;color:#a3cbe3;">21 </span><span style="color:#db7c6d;">| </span><span style="font-weight:bold;color:#a3cbe3;">fn</span><span> string_uppercase(mut data: </span><span style="color:#db7c6d;">&amp;</span><span style="font-weight:bold;color:#a3cbe3;">String</span><span>) {
+</span><span>   </span><span style="color:#db7c6d;">|                               </span><span style="font-weight:bold;color:#a3cbe3;">-</span><span> let us call the lifetime of this reference `</span><span style="font-weight:bold;color:#dbbb3d;">&#39;</span><span>1</span><span style="font-weight:bold;color:#dbbb3d;">&#39;</span><span>`
+</span><span style="font-weight:bold;color:#a3cbe3;">22 </span><span style="color:#db7c6d;">|     </span><span style="font-weight:bold;color:#a3cbe3;">data</span><span> = </span><span style="color:#db7c6d;">&amp;</span><span style="color:#a2ba43;">data.to_uppercase</span><span>();
+</span><span>   |     --------^^^^^^^^^^^^^^^^^^^- temporary value is freed at the end of this statement
+</span><span>   |     |       |
+</span><span>   |     |       creates a temporary value which is freed while still in use
+</span><span>   |     assignment requires that borrow lasts for `&#39;1`
+</span></code></pre>
 <p>We now get a message about the lifetime of a reference which we haven't covered yet so let's just keep this in mind for now, but again our task is to essentially just change how the functions handle ownership. So let's go back and look at the functions in the code:</p>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">&#x2F;&#x2F; Should not take ownership
-fn get_char(data: String) -&gt; char {
-    data.chars().last().unwrap()
-}
-
-&#x2F;&#x2F; Should take ownership
-fn string_uppercase(mut data: &amp;String) {
-    data = &amp;data.to_uppercase();
-
-    println!(&quot;{}&quot;, data);
-}
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#707180;">// Should not take ownership
+</span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">get_char</span><span>(</span><span style="color:#ffffff;">data</span><span>: String) -&gt; </span><span style="color:#a3cbe3;">char </span><span>{
+</span><span>    data.</span><span style="color:#db7c6d;">chars</span><span>().</span><span style="color:#db7c6d;">last</span><span>().</span><span style="color:#db7c6d;">unwrap</span><span>()
+</span><span>}
+</span><span>
+</span><span style="color:#707180;">// Should take ownership
+</span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">string_uppercase</span><span>(</span><span style="color:#dbbb3d;">mut </span><span style="color:#ffffff;">data</span><span>: </span><span style="color:#db7c6d;">&amp;</span><span>String) {
+</span><span>    data </span><span style="color:#db7c6d;">= &amp;</span><span>data.</span><span style="color:#db7c6d;">to_uppercase</span><span>();
+</span><span>
+</span><span>    println!(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span style="font-weight:bold;color:#a2ba43;">{}</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>, data);
+</span><span>}
+</span></code></pre>
 <p>Looking at these two code blocks it looks straightforward, it's clear that we must change where the <code>&amp;</code> symbol is being used and essentially swap positions in each function to this:</p>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">&#x2F;&#x2F; Should not take ownership
-fn get_char(data: &amp;String) -&gt; char {
-    data.chars().last().unwrap()
-}
-
-&#x2F;&#x2F; Should take ownership
-fn string_uppercase(mut data: String) {
-    data = data.to_uppercase();
-
-    println!(&quot;{}&quot;, data);
-}
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#707180;">// Should not take ownership
+</span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">get_char</span><span>(</span><span style="color:#ffffff;">data</span><span>: </span><span style="color:#db7c6d;">&amp;</span><span>String) -&gt; </span><span style="color:#a3cbe3;">char </span><span>{
+</span><span>    data.</span><span style="color:#db7c6d;">chars</span><span>().</span><span style="color:#db7c6d;">last</span><span>().</span><span style="color:#db7c6d;">unwrap</span><span>()
+</span><span>}
+</span><span>
+</span><span style="color:#707180;">// Should take ownership
+</span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">string_uppercase</span><span>(</span><span style="color:#dbbb3d;">mut </span><span style="color:#ffffff;">data</span><span>: String) {
+</span><span>    data </span><span style="color:#db7c6d;">=</span><span> data.</span><span style="color:#db7c6d;">to_uppercase</span><span>();
+</span><span>
+</span><span>    println!(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span style="font-weight:bold;color:#a2ba43;">{}</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>, data);
+</span><span>}
+</span></code></pre>
 <p>Once we've done this we get new error's but it should be pretty clear what we need to do in the <code>fn main()</code></p>
-<pre data-lang="zsh" class="language-zsh "><code class="language-zsh" data-lang="zsh">⚠️  Compiling of exercises&#x2F;move_semantics&#x2F;move_semantics6.rs failed! Please try again. Here is the output:
-error[E0308]: mismatched types
-  --&gt; exercises&#x2F;move_semantics&#x2F;move_semantics6.rs:10:14
-   |
-10 |     get_char(data);
-   |     -------- ^^^^
-   |     |        |
-   |     |        expected `&amp;String`, found struct `String`
-   |     |        help: consider borrowing here: `&amp;data`
-   |     arguments to this function are incorrect
-   |
-note: function defined here
-  --&gt; exercises&#x2F;move_semantics&#x2F;move_semantics6.rs:16:4
-   |
-16 | fn get_char(data: &amp;String) -&gt; char {
-   |    ^^^^^^^^ -------------
-
-error[E0308]: mismatched types
-  --&gt; exercises&#x2F;move_semantics&#x2F;move_semantics6.rs:12:22
-   |
-12 |     string_uppercase(&amp;data);
-   |     ---------------- ^^^^^ expected struct `String`, found `&amp;String`
-   |     |
-   |     arguments to this function are incorrect
-   |
-note: function defined here
-  --&gt; exercises&#x2F;move_semantics&#x2F;move_semantics6.rs:21:4
-   |
-21 | fn string_uppercase(mut data: String) {
-   |    ^^^^^^^^^^^^^^^^ ----------------
-help: consider removing the borrow
-   |
-12 -     string_uppercase(&amp;data);
-12 +     string_uppercase(data);
-   |
-
-error: aborting due to 2 previous errors
-</code></pre>
+<pre data-lang="zsh" style="background-color:#31333d;color:#ffffffc4;" class="language-zsh "><code class="language-zsh" data-lang="zsh"><span style="font-weight:bold;color:#a3cbe3;">⚠️</span><span>  Compiling of exercises/move_semantics/move_semantics6.rs failed! Please try again. Here is the output:
+</span><span style="font-weight:bold;color:#a3cbe3;">error[E0308]:</span><span> mismatched types
+</span><span>  </span><span style="font-weight:bold;color:#a3cbe3;">--</span><span style="color:#db7c6d;">&gt;</span><span> exercises/move_semantics/move_semantics6.rs:10:14
+</span><span>   </span><span style="color:#db7c6d;">|
+</span><span style="font-weight:bold;color:#a3cbe3;">10 </span><span style="color:#db7c6d;">|     </span><span style="font-weight:bold;color:#a3cbe3;">get_char</span><span>(data)</span><span style="color:#db7c6d;">;
+</span><span>   </span><span style="color:#db7c6d;">|     </span><span style="font-weight:bold;color:#a3cbe3;">--------</span><span> ^^^^
+</span><span>   </span><span style="color:#db7c6d;">|     |        |
+</span><span>   </span><span style="color:#db7c6d;">|     |        </span><span style="font-weight:bold;color:#a3cbe3;">expected </span><span>`</span><span style="color:#db7c6d;">&amp;</span><span style="font-weight:bold;color:#a3cbe3;">String</span><span>`, found struct `</span><span style="font-weight:bold;color:#a3cbe3;">String</span><span>`
+</span><span>   </span><span style="color:#db7c6d;">|     |        </span><span style="font-weight:bold;color:#a3cbe3;">help:</span><span> consider borrowing here: `</span><span style="color:#db7c6d;">&amp;</span><span style="font-weight:bold;color:#a3cbe3;">data</span><span>`
+</span><span>   </span><span style="color:#db7c6d;">|     </span><span style="font-weight:bold;color:#a3cbe3;">arguments</span><span> to this function are incorrect
+</span><span>   </span><span style="color:#db7c6d;">|
+</span><span style="font-weight:bold;color:#a3cbe3;">note:</span><span> function defined here
+</span><span>  </span><span style="font-weight:bold;color:#a3cbe3;">--</span><span style="color:#db7c6d;">&gt;</span><span> exercises/move_semantics/move_semantics6.rs:16:4
+</span><span>   </span><span style="color:#db7c6d;">|
+</span><span style="font-weight:bold;color:#a3cbe3;">16 </span><span style="color:#db7c6d;">| </span><span style="font-weight:bold;color:#a3cbe3;">fn</span><span> get_char(data: </span><span style="color:#db7c6d;">&amp;</span><span style="font-weight:bold;color:#a3cbe3;">String</span><span>) </span><span style="font-weight:bold;color:#a3cbe3;">-</span><span style="color:#db7c6d;">&gt;</span><span> char {
+</span><span>   |    ^^^^^^^^ -------------
+</span><span>
+</span><span>error</span><span style="color:#db7c6d;">[</span><span>E0308</span><span style="color:#db7c6d;">]</span><span>: mismatched types
+</span><span>  --&gt; exercises/move_semantics/move_semantics6.rs:12:22
+</span><span>   |
+</span><span>12 |     string_uppercase(&amp;data);
+</span><span>   |     ---------------- ^^^^^ expected struct `</span><span style="font-weight:bold;color:#a3cbe3;">String</span><span>`, found `</span><span style="color:#db7c6d;">&amp;</span><span style="font-weight:bold;color:#a3cbe3;">String</span><span>`
+</span><span>   |     |
+</span><span>   |     arguments to this function are incorrect
+</span><span>   |
+</span><span>note: function defined here
+</span><span>  --&gt; exercises/move_semantics/move_semantics6.rs:21:4
+</span><span>   |
+</span><span>21 | fn string_uppercase(mut data: String) {
+</span><span>   |    ^^^^^^^^^^^^^^^^ ----------------
+</span><span>help: consider removing the borrow
+</span><span>   |
+</span><span>12 -     string_uppercase(&amp;data);
+</span><span>12 +     string_uppercase(data);
+</span><span>   |
+</span><span>
+</span><span>error: aborting due to 2 previous errors
+</span></code></pre>
 <p>The compiler gives us great information on what we should do literally showing us what we can do to make the code compile. So let's try it.</p>
 <h2 id="move-semantics6-rs-solution"><code>move_semantics6.rs</code> solution</h2>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">fn main() {
-    let data = &quot;Rust is great!&quot;.to_string();
-
-    get_char(&amp;data);
-
-    string_uppercase(data);
-}
-
-&#x2F;&#x2F; Should not take ownership
-fn get_char(data: &amp;String) -&gt; char {
-    data.chars().last().unwrap()
-}
-
-&#x2F;&#x2F; Should take ownership
-fn string_uppercase(mut data: String) {
-    data = data.to_uppercase();
-
-    println!(&quot;{}&quot;, data);
-}
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">main</span><span>() {
+</span><span>    </span><span style="color:#a3cbe3;">let</span><span> data </span><span style="color:#db7c6d;">= </span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>Rust is great!</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>.</span><span style="color:#db7c6d;">to_string</span><span>();
+</span><span>
+</span><span>    </span><span style="color:#db7c6d;">get_char</span><span>(</span><span style="color:#db7c6d;">&amp;</span><span>data);
+</span><span>
+</span><span>    </span><span style="color:#db7c6d;">string_uppercase</span><span>(data);
+</span><span>}
+</span><span>
+</span><span style="color:#707180;">// Should not take ownership
+</span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">get_char</span><span>(</span><span style="color:#ffffff;">data</span><span>: </span><span style="color:#db7c6d;">&amp;</span><span>String) -&gt; </span><span style="color:#a3cbe3;">char </span><span>{
+</span><span>    data.</span><span style="color:#db7c6d;">chars</span><span>().</span><span style="color:#db7c6d;">last</span><span>().</span><span style="color:#db7c6d;">unwrap</span><span>()
+</span><span>}
+</span><span>
+</span><span style="color:#707180;">// Should take ownership
+</span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">string_uppercase</span><span>(</span><span style="color:#dbbb3d;">mut </span><span style="color:#ffffff;">data</span><span>: String) {
+</span><span>    data </span><span style="color:#db7c6d;">=</span><span> data.</span><span style="color:#db7c6d;">to_uppercase</span><span>();
+</span><span>
+</span><span>    println!(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span style="font-weight:bold;color:#a2ba43;">{}</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>, data);
+</span><span>}
+</span></code></pre>
 <p>There we have it our solution is to again swap the <code>&amp;</code> symbol's position to match that of the function's signature to make sure that we are borrowing and taking ownership as the function expects. With that we get our print out:</p>
-<pre data-lang="zsh" class="language-zsh "><code class="language-zsh" data-lang="zsh">Output:
-====================
-RUST IS GREAT!
-
-====================
-</code></pre>
+<pre data-lang="zsh" style="background-color:#31333d;color:#ffffffc4;" class="language-zsh "><code class="language-zsh" data-lang="zsh"><span style="font-weight:bold;color:#a3cbe3;">Output:
+</span><span style="color:#db7c6d;">=</span><span>===================
+</span><span style="font-weight:bold;color:#a3cbe3;">RUST</span><span> IS GREAT!
+</span><span>
+</span><span style="color:#db7c6d;">=</span><span>===================
+</span></code></pre>
 <h3 id="conclusion">Conclusion</h3>
 <p>Rust's move semantics are important for understanding memory management and ownership in the language. By leveraging references, borrowing, and ownership, Rust ensures memory safety and eliminates many common programming errors like null pointer dereferences and dangling references.</p>
 <p>In this blog post, we explored three exercises related to move semantics. We refactored code, re-ordered lines, and adjusted ownership to solve the problems. Through these exercises, we gained a better understanding of how move semantics work in Rust and how to manipulate ownership and references effectively.</p>
@@ -547,7 +551,7 @@ RUST IS GREAT!
 		
     </p>
     
-    <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>2294 Words</p>
+    <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>1185 Words</p>
     
     <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2023-05-24</p>
     
@@ -570,7 +574,7 @@ RUST IS GREAT!
 
 
 <footer id="site-footer" class="section-inner thin animated fadeIn faster">
-  <p>&copy; 2024 <a href="https:&#x2F;&#x2F;desmodrone.github.io">erick</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
+  <p>&copy; 2026 <a href="https:&#x2F;&#x2F;desmodrone.github.io">erick</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
   <p>Made with <a href="https://www.getzola.org" target="_blank" rel="noopener">Zola</a> &#183; Theme <a href="https://github.com/VersBinarii/hermit_zola" target="_blank" rel="noopener">Hermit_Zola</a>
 	
 	&#183; <a href="https://desmodrone.github.io/rss.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>

@@ -27,6 +27,10 @@
   <link rel="alternate" type="application/rss+xml" title="RSS" href="https://desmodrone.github.io/rss.xml">
   
 
+  
+  <link rel="canonical" href="https://desmodrone.github.io/posts/10-rustlings-strings/">
+  
+
   <body id="page">
 
 	
@@ -120,7 +124,7 @@
 		<small> - 
 <span class="reading-time" title="Estimated read time">
   
-  7 min read
+  4 min read
   
 </span>
 </small>
@@ -141,296 +145,296 @@ to identify and create them, as well as use them.</p>
 <li><a href="https://doc.rust-lang.org/book/ch08-02-strings.html">Strings</a></li>
 </ul>
 <h2 id="strings1-rs">strings1.rs</h2>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">&#x2F;&#x2F; strings1.rs
-&#x2F;&#x2F; Make me compile without changing the function signature!
-&#x2F;&#x2F; Execute `rustlings hint strings1` or use the `hint` watch subcommand for a hint.
-
-&#x2F;&#x2F; I AM NOT DONE
-
-fn main() {
-    let answer = current_favorite_color();
-    println!(&quot;My current favorite color is {}&quot;, answer);
-}
-
-fn current_favorite_color() -&gt; String {
-    &quot;blue&quot;
-}
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#707180;">// strings1.rs
+</span><span style="color:#707180;">// Make me compile without changing the function signature!
+</span><span style="color:#707180;">// Execute `rustlings hint strings1` or use the `hint` watch subcommand for a hint.
+</span><span>
+</span><span style="color:#707180;">// I AM NOT DONE
+</span><span>
+</span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">main</span><span>() {
+</span><span>    </span><span style="color:#a3cbe3;">let</span><span> answer </span><span style="color:#db7c6d;">= current_favorite_color</span><span>();
+</span><span>    println!(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>My current favorite color is </span><span style="font-weight:bold;color:#a2ba43;">{}</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>, answer);
+</span><span>}
+</span><span>
+</span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">current_favorite_color</span><span>() -&gt; String {
+</span><span>    </span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>blue</span><span style="font-weight:bold;color:#dbbb3d;">&quot;
+</span><span>}
+</span></code></pre>
 <p>Our instructions are pretty straight forward we must make this code compile without changing the function signature.
 As always we'll take a look at the errors to and see if we get any hints.</p>
 <h2 id="strings1-rs-errors">strings1.rs errors</h2>
-<pre data-lang="zsh" class="language-zsh "><code class="language-zsh" data-lang="zsh">⚠️  Compiling of exercises&#x2F;strings&#x2F;strings1.rs failed! Please try again. Here is the output:
-error[E0308]: mismatched types
-  --&gt; exercises&#x2F;strings&#x2F;strings1.rs:13:5
-   |
-12 | fn current_favorite_color() -&gt; String {
-   |                                ------ expected `String` because of return type
-13 |     &quot;blue&quot;
-   |     ^^^^^^- help: try using a conversion method: `.to_string()`
-   |     |
-   |     expected struct `String`, found `&amp;str`
-
-error: aborting due to previous error
-</code></pre>
+<pre data-lang="zsh" style="background-color:#31333d;color:#ffffffc4;" class="language-zsh "><code class="language-zsh" data-lang="zsh"><span style="font-weight:bold;color:#a3cbe3;">⚠️</span><span>  Compiling of exercises/strings/strings1.rs failed! Please try again. Here is the output:
+</span><span style="font-weight:bold;color:#a3cbe3;">error[E0308]:</span><span> mismatched types
+</span><span>  </span><span style="font-weight:bold;color:#a3cbe3;">--</span><span style="color:#db7c6d;">&gt;</span><span> exercises/strings/strings1.rs:13:5
+</span><span>   </span><span style="color:#db7c6d;">|
+</span><span style="font-weight:bold;color:#a3cbe3;">12 </span><span style="color:#db7c6d;">| </span><span style="font-weight:bold;color:#a3cbe3;">fn</span><span> current_favorite_color() </span><span style="font-weight:bold;color:#a3cbe3;">-</span><span style="color:#db7c6d;">&gt;</span><span> String {
+</span><span>   |                                ------ expected `</span><span style="font-weight:bold;color:#a3cbe3;">String</span><span>` because of return type
+</span><span>13 |     </span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>blue</span><span style="font-weight:bold;color:#dbbb3d;">&quot;
+</span><span>   |     ^^^^^^- help: try using a conversion method: `</span><span style="color:#a2ba43;">.to_string</span><span>()`
+</span><span>   |     |
+</span><span>   |     expected struct `String`, found `&amp;str`
+</span><span>
+</span><span>error: aborting due to previous error
+</span></code></pre>
 <p>We do get a hint, it tells us to try using a conversion method: <code>.to_string()</code>, so why not let's try that.</p>
 <h2 id="strings1-rs-solution">strings1.rs solution</h2>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">fn main() {
-    let answer = current_favorite_color();
-    println!(&quot;My current favorite color is {}&quot;, answer);
-}
-
-fn current_favorite_color() -&gt; String {
-    &quot;blue&quot;.to_string()
-}
-</code></pre>
-<p>Just like this, it works appending our <code>&quot;blue&quot;</code> string with <code>.to_string</code> converts our <code>&amp;str</code> to a <code>String</code>.</p>
-<p><strong>Converting <code>&amp;str</code> to <code>String</code> with <code>.to_string()</code>:</strong> The method <code>.to_string()</code> is used to convert a <code>&amp;str</code> (string slice) to an owned <code>String</code>. In Rust, <code>&amp;str</code> represents a string slice, which is an immutable reference to a string. A <code>&amp;str</code> is a view into a string, and is usually used in program arguments and for reading strings from files or other I/O operations. On the other hand, <code>String</code> is a growable, mutable, owned, heap allocated data structure. When you call <code>.to_string()</code> on a <code>&amp;str</code>, you essentially allocate a chunk of heap memory, copy the contents of the <code>&amp;str</code> to that newly allocated memory, and return a <code>String</code> that owns that heap memory. This is why <code>&quot;blue&quot;.to_string()</code> gives you an owned <code>String</code>.</p>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">main</span><span>() {
+</span><span>    </span><span style="color:#a3cbe3;">let</span><span> answer </span><span style="color:#db7c6d;">= current_favorite_color</span><span>();
+</span><span>    println!(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>My current favorite color is </span><span style="font-weight:bold;color:#a2ba43;">{}</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>, answer);
+</span><span>}
+</span><span>
+</span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">current_favorite_color</span><span>() -&gt; String {
+</span><span>    </span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>blue</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>.</span><span style="color:#db7c6d;">to_string</span><span>()
+</span><span>}
+</span></code></pre>
+<p>Just like this, it works appending our <code>"blue"</code> string with <code>.to_string</code> converts our <code>&amp;str</code> to a <code>String</code>.</p>
+<p><strong>Converting <code>&amp;str</code> to <code>String</code> with <code>.to_string()</code>:</strong> The method <code>.to_string()</code> is used to convert a <code>&amp;str</code> (string slice) to an owned <code>String</code>. In Rust, <code>&amp;str</code> represents a string slice, which is an immutable reference to a string. A <code>&amp;str</code> is a view into a string, and is usually used in program arguments and for reading strings from files or other I/O operations. On the other hand, <code>String</code> is a growable, mutable, owned, heap allocated data structure. When you call <code>.to_string()</code> on a <code>&amp;str</code>, you essentially allocate a chunk of heap memory, copy the contents of the <code>&amp;str</code> to that newly allocated memory, and return a <code>String</code> that owns that heap memory. This is why <code>"blue".to_string()</code> gives you an owned <code>String</code>.</p>
 <p>This is the output:</p>
-<pre data-lang="zsh" class="language-zsh "><code class="language-zsh" data-lang="zsh">Output:
-====================
-My current favorite color is blue
-
-====================
-</code></pre>
+<pre data-lang="zsh" style="background-color:#31333d;color:#ffffffc4;" class="language-zsh "><code class="language-zsh" data-lang="zsh"><span style="font-weight:bold;color:#a3cbe3;">Output:
+</span><span style="color:#db7c6d;">=</span><span>===================
+</span><span style="font-weight:bold;color:#a3cbe3;">My</span><span> current favorite color is blue
+</span><span>
+</span><span style="color:#db7c6d;">=</span><span>===================
+</span></code></pre>
 <h2 id="strings2-rs">strings2.rs</h2>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">&#x2F;&#x2F; strings2.rs
-&#x2F;&#x2F; Make me compile without changing the function signature!
-&#x2F;&#x2F; Execute `rustlings hint strings2` or use the `hint` watch subcommand for a hint.
-
-&#x2F;&#x2F; I AM NOT DONE
-
-fn main() {
-    let word = String::from(&quot;green&quot;); &#x2F;&#x2F; Try not changing this line :)
-    if is_a_color_word(word) {
-        println!(&quot;That is a color word I know!&quot;);
-    } else {
-        println!(&quot;That is not a color word I know.&quot;);
-    }
-}
-
-fn is_a_color_word(attempt: &amp;str) -&gt; bool {
-    attempt == &quot;green&quot; || attempt == &quot;blue&quot; || attempt == &quot;red&quot;
-}
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#707180;">// strings2.rs
+</span><span style="color:#707180;">// Make me compile without changing the function signature!
+</span><span style="color:#707180;">// Execute `rustlings hint strings2` or use the `hint` watch subcommand for a hint.
+</span><span>
+</span><span style="color:#707180;">// I AM NOT DONE
+</span><span>
+</span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">main</span><span>() {
+</span><span>    </span><span style="color:#a3cbe3;">let</span><span> word </span><span style="color:#db7c6d;">= </span><span style="color:#e7e7e7;">String</span><span>::from(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>green</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>); </span><span style="color:#707180;">// Try not changing this line :)
+</span><span>    </span><span style="color:#db7c6d;">if is_a_color_word</span><span>(word) {
+</span><span>        println!(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>That is a color word I know!</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>);
+</span><span>    } </span><span style="color:#db7c6d;">else </span><span>{
+</span><span>        println!(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>That is not a color word I know.</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>);
+</span><span>    }
+</span><span>}
+</span><span>
+</span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">is_a_color_word</span><span>(</span><span style="color:#ffffff;">attempt</span><span>: </span><span style="color:#db7c6d;">&amp;</span><span style="color:#a3cbe3;">str</span><span>) -&gt; </span><span style="color:#a3cbe3;">bool </span><span>{
+</span><span>    attempt </span><span style="color:#db7c6d;">== </span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>green</span><span style="font-weight:bold;color:#dbbb3d;">&quot; </span><span style="color:#db7c6d;">||</span><span> attempt </span><span style="color:#db7c6d;">== </span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>blue</span><span style="font-weight:bold;color:#dbbb3d;">&quot; </span><span style="color:#db7c6d;">||</span><span> attempt </span><span style="color:#db7c6d;">== </span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>red</span><span style="font-weight:bold;color:#dbbb3d;">&quot;
+</span><span>}
+</span></code></pre>
 <p>We have another exercise that asks for a similar request: <code>compile without changing the function signature!</code></p>
 <h2 id="strings2-rs-errors">strings2.rs errors</h2>
-<pre data-lang="zsh" class="language-zsh "><code class="language-zsh" data-lang="zsh">⚠️  Compiling of exercises&#x2F;strings&#x2F;strings2.rs failed! Please try again. Here is the output:
-error[E0308]: mismatched types
-  --&gt; exercises&#x2F;strings&#x2F;strings2.rs:9:24
-   |
-9  |     if is_a_color_word(word) {
-   |        --------------- ^^^^
-   |        |               |
-   |        |               expected `&amp;str`, found struct `String`
-   |        |               help: consider borrowing here: `&amp;word`
-   |        arguments to this function are incorrect
-   |
-note: function defined here
-  --&gt; exercises&#x2F;strings&#x2F;strings2.rs:16:4
-   |
-16 | fn is_a_color_word(attempt: &amp;str) -&gt; bool {
-   |    ^^^^^^^^^^^^^^^ -------------
-</code></pre>
+<pre data-lang="zsh" style="background-color:#31333d;color:#ffffffc4;" class="language-zsh "><code class="language-zsh" data-lang="zsh"><span style="font-weight:bold;color:#a3cbe3;">⚠️</span><span>  Compiling of exercises/strings/strings2.rs failed! Please try again. Here is the output:
+</span><span style="font-weight:bold;color:#a3cbe3;">error[E0308]:</span><span> mismatched types
+</span><span>  </span><span style="font-weight:bold;color:#a3cbe3;">--</span><span style="color:#db7c6d;">&gt;</span><span> exercises/strings/strings2.rs:9:24
+</span><span>   </span><span style="color:#db7c6d;">|
+</span><span style="font-weight:bold;color:#a3cbe3;">9  </span><span style="color:#db7c6d;">|     if </span><span style="font-weight:bold;color:#a3cbe3;">is_a_color_word</span><span>(word) {
+</span><span>   </span><span style="color:#db7c6d;">|        </span><span style="font-weight:bold;color:#a3cbe3;">---------------</span><span> ^^^^
+</span><span>   </span><span style="color:#db7c6d;">|        |               |
+</span><span>   </span><span style="color:#db7c6d;">|        |               </span><span style="font-weight:bold;color:#a3cbe3;">expected </span><span>`</span><span style="color:#db7c6d;">&amp;</span><span style="font-weight:bold;color:#a3cbe3;">str</span><span>`, found struct `</span><span style="font-weight:bold;color:#a3cbe3;">String</span><span>`
+</span><span>   </span><span style="color:#db7c6d;">|        |               </span><span style="font-weight:bold;color:#a3cbe3;">help:</span><span> consider borrowing here: `</span><span style="color:#db7c6d;">&amp;</span><span style="font-weight:bold;color:#a3cbe3;">word</span><span>`
+</span><span>   </span><span style="color:#db7c6d;">|        </span><span style="font-weight:bold;color:#a3cbe3;">arguments</span><span> to this function are incorrect
+</span><span>   </span><span style="color:#db7c6d;">|
+</span><span style="font-weight:bold;color:#a3cbe3;">note:</span><span> function defined here
+</span><span>  </span><span style="font-weight:bold;color:#a3cbe3;">--</span><span style="color:#db7c6d;">&gt;</span><span> exercises/strings/strings2.rs:16:4
+</span><span>   </span><span style="color:#db7c6d;">|
+</span><span style="font-weight:bold;color:#a3cbe3;">16 </span><span style="color:#db7c6d;">| </span><span style="font-weight:bold;color:#a3cbe3;">fn</span><span> is_a_color_word(attempt: </span><span style="color:#db7c6d;">&amp;</span><span style="font-weight:bold;color:#a3cbe3;">str</span><span>) </span><span style="font-weight:bold;color:#a3cbe3;">-</span><span style="color:#db7c6d;">&gt;</span><span> bool {
+</span><span>   |    ^^^^^^^^^^^^^^^ -------------
+</span></code></pre>
 <p>So, we're being told a couple of things, that the arguments in our function are incorrect and that the the compiler is expecting a <code>&amp;str</code> but it's finding a <code>String</code> instead. So let's try making it an <code>&amp;str</code> by adding a reference to <code>word</code>.</p>
 <h2 id="strings2-rs-solution">strings2.rs solution</h2>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">fn main() {
-    let word = String::from(&quot;green&quot;); &#x2F;&#x2F; Try not changing this line :)
-    if is_a_color_word(&amp;word) { &#x2F;&#x2F; added `&amp;` to `word`
-        println!(&quot;That is a color word I know!&quot;);
-    } else {
-        println!(&quot;That is not a color word I know.&quot;);
-    }
-}
-
-fn is_a_color_word(attempt: &amp;str) -&gt; bool {
-    attempt == &quot;green&quot; || attempt == &quot;blue&quot; || attempt == &quot;red&quot;
-}
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">main</span><span>() {
+</span><span>    </span><span style="color:#a3cbe3;">let</span><span> word </span><span style="color:#db7c6d;">= </span><span style="color:#e7e7e7;">String</span><span>::from(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>green</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>); </span><span style="color:#707180;">// Try not changing this line :)
+</span><span>    </span><span style="color:#db7c6d;">if is_a_color_word</span><span>(</span><span style="color:#db7c6d;">&amp;</span><span>word) { </span><span style="color:#707180;">// added `&amp;` to `word`
+</span><span>        println!(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>That is a color word I know!</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>);
+</span><span>    } </span><span style="color:#db7c6d;">else </span><span>{
+</span><span>        println!(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>That is not a color word I know.</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>);
+</span><span>    }
+</span><span>}
+</span><span>
+</span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">is_a_color_word</span><span>(</span><span style="color:#ffffff;">attempt</span><span>: </span><span style="color:#db7c6d;">&amp;</span><span style="color:#a3cbe3;">str</span><span>) -&gt; </span><span style="color:#a3cbe3;">bool </span><span>{
+</span><span>    attempt </span><span style="color:#db7c6d;">== </span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>green</span><span style="font-weight:bold;color:#dbbb3d;">&quot; </span><span style="color:#db7c6d;">||</span><span> attempt </span><span style="color:#db7c6d;">== </span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>blue</span><span style="font-weight:bold;color:#dbbb3d;">&quot; </span><span style="color:#db7c6d;">||</span><span> attempt </span><span style="color:#db7c6d;">== </span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>red</span><span style="font-weight:bold;color:#dbbb3d;">&quot;
+</span><span>}
+</span></code></pre>
 <p><strong>The <code>&amp;</code> operator to create a reference:</strong> The <code>&amp;</code> operator in Rust is used to create a reference to a value. When you write <code>&amp;word</code> in the call to <code>is_a_color_word(&amp;word)</code>, you are passing a reference to <code>word</code> rather than <code>word</code> itself. This is important because the function <code>is_a_color_word</code> is expecting a <code>&amp;str</code> (a string slice), not a <code>String</code>. If you tried to pass <code>word</code> directly, Rust would raise a type mismatch error because <code>word</code> is a <code>String</code> and not a <code>&amp;str</code>. By using <code>&amp;</code>, you're allowing <code>is_a_color_word</code> to borrow <code>word</code> as a <code>&amp;str</code> for the duration of the function call.</p>
 <p>With that we're compiling here too, simple enough, we get the following print out:</p>
-<pre data-lang="zsh" class="language-zsh "><code class="language-zsh" data-lang="zsh">Output:
-====================
-That is a color word I know!
-
-====================
-</code></pre>
-<p>If we change the line <code>let word = String::from(&quot;red&quot;)</code> or <code>&quot;blue&quot;</code> we'd continue to get the same printout but, if we change it say to <code>purple</code> we get this:</p>
-<pre data-lang="zsh" class="language-zsh "><code class="language-zsh" data-lang="zsh">Output:
-====================
-That is not a color word I know.
-
-====================
-</code></pre>
+<pre data-lang="zsh" style="background-color:#31333d;color:#ffffffc4;" class="language-zsh "><code class="language-zsh" data-lang="zsh"><span style="font-weight:bold;color:#a3cbe3;">Output:
+</span><span style="color:#db7c6d;">=</span><span>===================
+</span><span style="font-weight:bold;color:#a3cbe3;">That</span><span> is a color word I know!
+</span><span>
+</span><span style="color:#db7c6d;">=</span><span>===================
+</span></code></pre>
+<p>If we change the line <code>let word = String::from("red")</code> or <code>"blue"</code> we'd continue to get the same printout but, if we change it say to <code>purple</code> we get this:</p>
+<pre data-lang="zsh" style="background-color:#31333d;color:#ffffffc4;" class="language-zsh "><code class="language-zsh" data-lang="zsh"><span style="font-weight:bold;color:#a3cbe3;">Output:
+</span><span style="color:#db7c6d;">=</span><span>===================
+</span><span style="font-weight:bold;color:#a3cbe3;">That</span><span> is not a color word I know.
+</span><span>
+</span><span style="color:#db7c6d;">=</span><span>===================
+</span></code></pre>
 <h2 id="strings3-rs">strings3.rs</h2>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">&#x2F;&#x2F; strings3.rs
-&#x2F;&#x2F; Execute `rustlings hint strings3` or use the `hint` watch subcommand for a hint.
-
-&#x2F;&#x2F; I AM NOT DONE
-
-fn trim_me(input: &amp;str) -&gt; String {
-    &#x2F;&#x2F; TODO: Remove whitespace from both ends of a string!
-    input.().to_string()
-}
-
-fn compose_me(input: &amp;str) -&gt; String {
-    &#x2F;&#x2F; TODO: Add &quot; world!&quot; to the string! There&#x27;s multiple ways to do this!
-    let mut result = input.to_owned();
-    result.push_str(&quot; world!&quot;);
-    result
-}
-
-fn replace_me(input: &amp;str) -&gt; String {
-    &#x2F;&#x2F; TODO: Replace &quot;cars&quot; in the string with &quot;balloons&quot;!
-    input.replace(&quot;cars&quot;, &quot;balloons&quot;)
-}
-
-#[cfg(test)]
-mod tests {
-    use super::*;
-
-    #[test]
-    fn trim_a_string() {
-        assert_eq!(trim_me(&quot;Hello!     &quot;), &quot;Hello!&quot;);
-        assert_eq!(trim_me(&quot;  What&#x27;s up!&quot;), &quot;What&#x27;s up!&quot;);
-        assert_eq!(trim_me(&quot;   Hola!  &quot;), &quot;Hola!&quot;);
-    }
-
-    #[test]
-    fn compose_a_string() {
-        assert_eq!(compose_me(&quot;Hello&quot;), &quot;Hello world!&quot;);
-        assert_eq!(compose_me(&quot;Goodbye&quot;), &quot;Goodbye world!&quot;);
-    }
-
-    #[test]
-    fn replace_a_string() {
-        assert_eq!(replace_me(&quot;I think cars are cool&quot;), &quot;I think balloons are cool&quot;);
-        assert_eq!(replace_me(&quot;I love to look at cars&quot;), &quot;I love to look at balloons&quot;);
-    }
-}
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#707180;">// strings3.rs
+</span><span style="color:#707180;">// Execute `rustlings hint strings3` or use the `hint` watch subcommand for a hint.
+</span><span>
+</span><span style="color:#707180;">// I AM NOT DONE
+</span><span>
+</span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">trim_me</span><span>(</span><span style="color:#ffffff;">input</span><span>: </span><span style="color:#db7c6d;">&amp;</span><span style="color:#a3cbe3;">str</span><span>) -&gt; String {
+</span><span>    </span><span style="color:#707180;">// TODO: Remove whitespace from both ends of a string!
+</span><span>    input.().</span><span style="color:#db7c6d;">to_string</span><span>()
+</span><span>}
+</span><span>
+</span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">compose_me</span><span>(</span><span style="color:#ffffff;">input</span><span>: </span><span style="color:#db7c6d;">&amp;</span><span style="color:#a3cbe3;">str</span><span>) -&gt; String {
+</span><span>    </span><span style="color:#707180;">// TODO: Add &quot; world!&quot; to the string! There&#39;s multiple ways to do this!
+</span><span>    </span><span style="color:#a3cbe3;">let </span><span style="color:#dbbb3d;">mut</span><span> result </span><span style="color:#db7c6d;">=</span><span> input.</span><span style="color:#db7c6d;">to_owned</span><span>();
+</span><span>    result.</span><span style="color:#db7c6d;">push_str</span><span>(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span> world!</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>);
+</span><span>    result
+</span><span>}
+</span><span>
+</span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">replace_me</span><span>(</span><span style="color:#ffffff;">input</span><span>: </span><span style="color:#db7c6d;">&amp;</span><span style="color:#a3cbe3;">str</span><span>) -&gt; String {
+</span><span>    </span><span style="color:#707180;">// TODO: Replace &quot;cars&quot; in the string with &quot;balloons&quot;!
+</span><span>    input.</span><span style="color:#db7c6d;">replace</span><span>(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>cars</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>, </span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>balloons</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>)
+</span><span>}
+</span><span>
+</span><span>#[</span><span style="font-weight:bold;color:#a3cbe3;">cfg</span><span>(test)]
+</span><span style="color:#a3cbe3;">mod </span><span>tests {
+</span><span>    </span><span style="color:#db7c6d;">use super</span><span>::</span><span style="color:#db7c6d;">*</span><span>;
+</span><span>
+</span><span>    #[</span><span style="font-weight:bold;color:#a3cbe3;">test</span><span>]
+</span><span>    </span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">trim_a_string</span><span>() {
+</span><span>        assert_eq!(</span><span style="color:#db7c6d;">trim_me</span><span>(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>Hello!     </span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>), </span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>Hello!</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>);
+</span><span>        assert_eq!(</span><span style="color:#db7c6d;">trim_me</span><span>(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>  What&#39;s up!</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>), </span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>What&#39;s up!</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>);
+</span><span>        assert_eq!(</span><span style="color:#db7c6d;">trim_me</span><span>(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>   Hola!  </span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>), </span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>Hola!</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>);
+</span><span>    }
+</span><span>
+</span><span>    #[</span><span style="font-weight:bold;color:#a3cbe3;">test</span><span>]
+</span><span>    </span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">compose_a_string</span><span>() {
+</span><span>        assert_eq!(</span><span style="color:#db7c6d;">compose_me</span><span>(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>Hello</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>), </span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>Hello world!</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>);
+</span><span>        assert_eq!(</span><span style="color:#db7c6d;">compose_me</span><span>(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>Goodbye</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>), </span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>Goodbye world!</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>);
+</span><span>    }
+</span><span>
+</span><span>    #[</span><span style="font-weight:bold;color:#a3cbe3;">test</span><span>]
+</span><span>    </span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">replace_a_string</span><span>() {
+</span><span>        assert_eq!(</span><span style="color:#db7c6d;">replace_me</span><span>(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>I think cars are cool</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>), </span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>I think balloons are cool</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>);
+</span><span>        assert_eq!(</span><span style="color:#db7c6d;">replace_me</span><span>(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>I love to look at cars</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>), </span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>I love to look at balloons</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>);
+</span><span>    }
+</span><span>}
+</span></code></pre>
 <p>So here we have to make our code compile and pass the tests, we get a list of <code>TODO</code> items on how to finish our functions.</p>
 <h2 id="strings3-rs-errors">strings3.rs errors</h2>
-<pre data-lang="zsh" class="language-zsh "><code class="language-zsh" data-lang="zsh">⚠️  Compiling of exercises&#x2F;strings&#x2F;strings3.rs failed! Please try again. Here is the output:
-error: expected expression, found `?`
- --&gt; exercises&#x2F;strings&#x2F;strings3.rs:8:5
-  |
-8 |     ???
-  |     ^ expected expression
-
-error: expected expression, found `?`
-  --&gt; exercises&#x2F;strings&#x2F;strings3.rs:13:5
-   |
-13 |     ???
-   |     ^ expected expression
-
-error: expected expression, found `?`
-  --&gt; exercises&#x2F;strings&#x2F;strings3.rs:18:5
-   |
-18 |     ???
-   |     ^ expected expression
-
-error: aborting due to 3 previous errors
-</code></pre>
+<pre data-lang="zsh" style="background-color:#31333d;color:#ffffffc4;" class="language-zsh "><code class="language-zsh" data-lang="zsh"><span style="font-weight:bold;color:#a3cbe3;">⚠️</span><span>  Compiling of exercises/strings/strings3.rs failed! Please try again. Here is the output:
+</span><span style="font-weight:bold;color:#a3cbe3;">error:</span><span> expected expression, found `</span><span style="font-weight:bold;color:#a3cbe3;">?</span><span>`
+</span><span> </span><span style="font-weight:bold;color:#a3cbe3;">--</span><span style="color:#db7c6d;">&gt;</span><span> exercises/strings/strings3.rs:8:5
+</span><span>  </span><span style="color:#db7c6d;">|
+</span><span style="font-weight:bold;color:#a3cbe3;">8 </span><span style="color:#db7c6d;">|     </span><span style="font-weight:bold;color:#a3cbe3;">???
+</span><span>  </span><span style="color:#db7c6d;">|     </span><span style="font-weight:bold;color:#a3cbe3;">^</span><span> expected expression
+</span><span>
+</span><span style="font-weight:bold;color:#a3cbe3;">error:</span><span> expected expression, found `</span><span style="font-weight:bold;color:#a3cbe3;">?</span><span>`
+</span><span>  </span><span style="font-weight:bold;color:#a3cbe3;">--</span><span style="color:#db7c6d;">&gt;</span><span> exercises/strings/strings3.rs:13:5
+</span><span>   </span><span style="color:#db7c6d;">|
+</span><span style="font-weight:bold;color:#a3cbe3;">13 </span><span style="color:#db7c6d;">|     </span><span style="font-weight:bold;color:#a3cbe3;">???
+</span><span>   </span><span style="color:#db7c6d;">|     </span><span style="font-weight:bold;color:#a3cbe3;">^</span><span> expected expression
+</span><span>
+</span><span style="font-weight:bold;color:#a3cbe3;">error:</span><span> expected expression, found `</span><span style="font-weight:bold;color:#a3cbe3;">?</span><span>`
+</span><span>  </span><span style="font-weight:bold;color:#a3cbe3;">--</span><span style="color:#db7c6d;">&gt;</span><span> exercises/strings/strings3.rs:18:5
+</span><span>   </span><span style="color:#db7c6d;">|
+</span><span style="font-weight:bold;color:#a3cbe3;">18 </span><span style="color:#db7c6d;">|     </span><span style="font-weight:bold;color:#a3cbe3;">???
+</span><span>   </span><span style="color:#db7c6d;">|     </span><span style="font-weight:bold;color:#a3cbe3;">^</span><span> expected expression
+</span><span>
+</span><span style="font-weight:bold;color:#a3cbe3;">error:</span><span> aborting due to 3 previous errors
+</span></code></pre>
 <p>Our errors are clearly due to the missing function bodies.</p>
 <h2 id="strings3-rs-solution">strings3.rs solution</h2>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">fn trim_me(input: &amp;str) -&gt; String {
-    &#x2F;&#x2F; TODO: Remove whitespace from both ends of a string!
-    input.trim().to_string()
-}
-
-fn compose_me(input: &amp;str) -&gt; String {
-    &#x2F;&#x2F; TODO: Add &quot; world!&quot; to the string! There&#x27;s multiple ways to do this!
-    let mut result = input.to_string();
-    result.push_str(&quot; world!&quot;);
-    result
-}
-
-fn replace_me(input: &amp;str) -&gt; String {
-    &#x2F;&#x2F; TODO: Replace &quot;cars&quot; in the string with &quot;balloons&quot;!
-    input.replace(&quot;cars&quot;, &quot;ballons&quot;)
-}
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">trim_me</span><span>(</span><span style="color:#ffffff;">input</span><span>: </span><span style="color:#db7c6d;">&amp;</span><span style="color:#a3cbe3;">str</span><span>) -&gt; String {
+</span><span>    </span><span style="color:#707180;">// TODO: Remove whitespace from both ends of a string!
+</span><span>    input.</span><span style="color:#db7c6d;">trim</span><span>().</span><span style="color:#db7c6d;">to_string</span><span>()
+</span><span>}
+</span><span>
+</span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">compose_me</span><span>(</span><span style="color:#ffffff;">input</span><span>: </span><span style="color:#db7c6d;">&amp;</span><span style="color:#a3cbe3;">str</span><span>) -&gt; String {
+</span><span>    </span><span style="color:#707180;">// TODO: Add &quot; world!&quot; to the string! There&#39;s multiple ways to do this!
+</span><span>    </span><span style="color:#a3cbe3;">let </span><span style="color:#dbbb3d;">mut</span><span> result </span><span style="color:#db7c6d;">=</span><span> input.</span><span style="color:#db7c6d;">to_string</span><span>();
+</span><span>    result.</span><span style="color:#db7c6d;">push_str</span><span>(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span> world!</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>);
+</span><span>    result
+</span><span>}
+</span><span>
+</span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">replace_me</span><span>(</span><span style="color:#ffffff;">input</span><span>: </span><span style="color:#db7c6d;">&amp;</span><span style="color:#a3cbe3;">str</span><span>) -&gt; String {
+</span><span>    </span><span style="color:#707180;">// TODO: Replace &quot;cars&quot; in the string with &quot;balloons&quot;!
+</span><span>    input.</span><span style="color:#db7c6d;">replace</span><span>(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>cars</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>, </span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>ballons</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>)
+</span><span>}
+</span></code></pre>
 <p>To pass the test and finalize the functions we have to use <code>methods</code> on each of the <code>input</code> parameters that are being passed through.</p>
 <p>In our first function <code>trim_me</code> as the comment states we have to remove whitespace from the string. The <code>trim()</code> method does just that and we can use <code>.to_string</code> to convert our parameter <code>input</code> from a <code>&amp;str</code> to a <code>String</code>.</p>
-<p>In the <code>compose_me</code> there are a few different ways to solve this, I chose to create a new variable <code>result</code> that contains the <code>input.to_string()</code> and then we use the <code>push_str</code> method on <code>result</code> to add the &quot;<code>world!</code>&quot; to our newly created <code>String</code>. Then finally return the <code>result</code>.</p>
-<p>Finally in our <code>replace_me</code> function we use the <code>replace()</code> method to simply replace <code>&quot;cars&quot;</code> to: <code>&quot;balloons&quot;</code> and that should do it.</p>
+<p>In the <code>compose_me</code> there are a few different ways to solve this, I chose to create a new variable <code>result</code> that contains the <code>input.to_string()</code> and then we use the <code>push_str</code> method on <code>result</code> to add the "<code>world!</code>" to our newly created <code>String</code>. Then finally return the <code>result</code>.</p>
+<p>Finally in our <code>replace_me</code> function we use the <code>replace()</code> method to simply replace <code>"cars"</code> to: <code>"balloons"</code> and that should do it.</p>
 <h2 id="strings4-rs">strings4.rs</h2>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">&#x2F;&#x2F; strings4.rs
-
-&#x2F;&#x2F; Ok, here are a bunch of values-- some are `String`s, some are `&amp;str`s. Your
-&#x2F;&#x2F; task is to call one of these two functions on each value depending on what
-&#x2F;&#x2F; you think each value is. That is, add either `string_slice` or `string`
-&#x2F;&#x2F; before the parentheses on each line. If you&#x27;re right, it will compile!
-&#x2F;&#x2F; No hints this time!
-
-&#x2F;&#x2F; I AM NOT DONE
-
-fn string_slice(arg: &amp;str) {
-    println!(&quot;{}&quot;, arg);
-}
-fn string(arg: String) {
-    println!(&quot;{}&quot;, arg);
-}
-
-fn main() {
-    &amp;str(&quot;blue&quot;);
-    ???(&quot;red&quot;.to_string());
-    ???(String::from(&quot;hi&quot;));
-    ???(&quot;rust is fun!&quot;.to_owned());
-    ???(&quot;nice weather&quot;.into());
-    ???(format!(&quot;Interpolation {}&quot;, &quot;Station&quot;));
-    ???(&amp;String::from(&quot;abc&quot;)[0..1]);
-    ???(&quot;  hello there &quot;.trim());
-    ???(&quot;Happy Monday!&quot;.to_string().replace(&quot;Mon&quot;, &quot;Tues&quot;));
-    ???(&quot;mY sHiFt KeY iS sTiCkY&quot;.to_lowercase());
-}
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#707180;">// strings4.rs
+</span><span>
+</span><span style="color:#707180;">// Ok, here are a bunch of values-- some are `String`s, some are `&amp;str`s. Your
+</span><span style="color:#707180;">// task is to call one of these two functions on each value depending on what
+</span><span style="color:#707180;">// you think each value is. That is, add either `string_slice` or `string`
+</span><span style="color:#707180;">// before the parentheses on each line. If you&#39;re right, it will compile!
+</span><span style="color:#707180;">// No hints this time!
+</span><span>
+</span><span style="color:#707180;">// I AM NOT DONE
+</span><span>
+</span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">string_slice</span><span>(</span><span style="color:#ffffff;">arg</span><span>: </span><span style="color:#db7c6d;">&amp;</span><span style="color:#a3cbe3;">str</span><span>) {
+</span><span>    println!(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span style="font-weight:bold;color:#a2ba43;">{}</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>, arg);
+</span><span>}
+</span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">string</span><span>(</span><span style="color:#ffffff;">arg</span><span>: String) {
+</span><span>    println!(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span style="font-weight:bold;color:#a2ba43;">{}</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>, arg);
+</span><span>}
+</span><span>
+</span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">main</span><span>() {
+</span><span>    </span><span style="color:#db7c6d;">&amp;</span><span style="color:#a3cbe3;">str</span><span>(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>blue</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>);
+</span><span>    </span><span style="color:#db7c6d;">???</span><span>(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>red</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>.</span><span style="color:#db7c6d;">to_string</span><span>());
+</span><span>    </span><span style="color:#db7c6d;">???</span><span>(</span><span style="color:#e7e7e7;">String</span><span>::from(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>hi</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>));
+</span><span>    </span><span style="color:#db7c6d;">???</span><span>(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>rust is fun!</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>.</span><span style="color:#db7c6d;">to_owned</span><span>());
+</span><span>    </span><span style="color:#db7c6d;">???</span><span>(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>nice weather</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>.</span><span style="color:#db7c6d;">into</span><span>());
+</span><span>    </span><span style="color:#db7c6d;">???</span><span>(format!(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>Interpolation </span><span style="font-weight:bold;color:#a2ba43;">{}</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>, </span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>Station</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>));
+</span><span>    </span><span style="color:#db7c6d;">???</span><span>(</span><span style="color:#db7c6d;">&amp;</span><span style="color:#e7e7e7;">String</span><span>::from(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>abc</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>)[</span><span style="color:#db7c6d;">0..1</span><span>]);
+</span><span>    </span><span style="color:#db7c6d;">???</span><span>(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>  hello there </span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>.</span><span style="color:#db7c6d;">trim</span><span>());
+</span><span>    </span><span style="color:#db7c6d;">???</span><span>(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>Happy Monday!</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>.</span><span style="color:#db7c6d;">to_string</span><span>().</span><span style="color:#db7c6d;">replace</span><span>(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>Mon</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>, </span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>Tues</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>));
+</span><span>    </span><span style="color:#db7c6d;">???</span><span>(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>mY sHiFt KeY iS sTiCkY</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>.</span><span style="color:#db7c6d;">to_lowercase</span><span>());
+</span><span>}
+</span></code></pre>
 <p>Alright this seems easy enough we have to understand if the value is a <code>&amp;str</code> or a <code>String</code></p>
 <h2 id="strings4-rs-errors">strings4.rs errors</h2>
-<pre data-lang="zsh" class="language-zsh "><code class="language-zsh" data-lang="zsh">⚠️  Compiling of exercises&#x2F;strings&#x2F;strings4.rs failed! Please try again. Here is the output:
-error: expected expression, found `?`
-  --&gt; exercises&#x2F;strings&#x2F;strings4.rs:19:5
-   |
-19 |     ???(&quot;blue&quot;);
-   |     ^ expected expression
-
-error: aborting due to previous error
-</code></pre>
+<pre data-lang="zsh" style="background-color:#31333d;color:#ffffffc4;" class="language-zsh "><code class="language-zsh" data-lang="zsh"><span style="font-weight:bold;color:#a3cbe3;">⚠️</span><span>  Compiling of exercises/strings/strings4.rs failed! Please try again. Here is the output:
+</span><span style="font-weight:bold;color:#a3cbe3;">error:</span><span> expected expression, found `</span><span style="font-weight:bold;color:#a3cbe3;">?</span><span>`
+</span><span>  </span><span style="font-weight:bold;color:#a3cbe3;">--</span><span style="color:#db7c6d;">&gt;</span><span> exercises/strings/strings4.rs:19:5
+</span><span>   </span><span style="color:#db7c6d;">|
+</span><span style="font-weight:bold;color:#a3cbe3;">19 </span><span style="color:#db7c6d;">|     </span><span style="font-weight:bold;color:#a3cbe3;">???</span><span>(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>blue</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>)</span><span style="color:#db7c6d;">;
+</span><span>   </span><span style="color:#db7c6d;">|     </span><span style="font-weight:bold;color:#a3cbe3;">^</span><span> expected expression
+</span><span>
+</span><span style="font-weight:bold;color:#a3cbe3;">error:</span><span> aborting due to previous error
+</span></code></pre>
 <p>We have one error, but it is obvious that we'll have a few more after where we have the question marks.</p>
 <h2 id="strings4-rs-solution">strings4.rs solution</h2>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">fn string_slice(arg: &amp;str) {
-    println!(&quot;{}&quot;, arg);
-}
-fn string(arg: String) {
-    println!(&quot;{}&quot;, arg);
-}
-
-fn main() {
-    string_slice(&quot;blue&quot;);
-    string(&quot;red&quot;.to_string());
-    string(String::from(&quot;hi&quot;));
-    string(&quot;rust is fun!&quot;.to_owned());
-    string_slice(&quot;nice weather&quot;.into());
-    string(format!(&quot;Interpolation {}&quot;, &quot;Station&quot;));
-    string_slice(&amp;String::from(&quot;abc&quot;)[0..1]);
-    string_slice(&quot;  hello there &quot;.trim());
-    string(&quot;Happy Monday!&quot;.to_string().replace(&quot;Mon&quot;, &quot;Tues&quot;));
-    string(&quot;mY sHiFt KeY iS sTiCkY&quot;.to_lowercase());
-}
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">string_slice</span><span>(</span><span style="color:#ffffff;">arg</span><span>: </span><span style="color:#db7c6d;">&amp;</span><span style="color:#a3cbe3;">str</span><span>) {
+</span><span>    println!(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span style="font-weight:bold;color:#a2ba43;">{}</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>, arg);
+</span><span>}
+</span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">string</span><span>(</span><span style="color:#ffffff;">arg</span><span>: String) {
+</span><span>    println!(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span style="font-weight:bold;color:#a2ba43;">{}</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>, arg);
+</span><span>}
+</span><span>
+</span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">main</span><span>() {
+</span><span>    </span><span style="color:#db7c6d;">string_slice</span><span>(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>blue</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>);
+</span><span>    </span><span style="color:#db7c6d;">string</span><span>(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>red</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>.</span><span style="color:#db7c6d;">to_string</span><span>());
+</span><span>    </span><span style="color:#db7c6d;">string</span><span>(</span><span style="color:#e7e7e7;">String</span><span>::from(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>hi</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>));
+</span><span>    </span><span style="color:#db7c6d;">string</span><span>(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>rust is fun!</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>.</span><span style="color:#db7c6d;">to_owned</span><span>());
+</span><span>    </span><span style="color:#db7c6d;">string_slice</span><span>(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>nice weather</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>.</span><span style="color:#db7c6d;">into</span><span>());
+</span><span>    </span><span style="color:#db7c6d;">string</span><span>(format!(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>Interpolation </span><span style="font-weight:bold;color:#a2ba43;">{}</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>, </span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>Station</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>));
+</span><span>    </span><span style="color:#db7c6d;">string_slice</span><span>(</span><span style="color:#db7c6d;">&amp;</span><span style="color:#e7e7e7;">String</span><span>::from(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>abc</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>)[</span><span style="color:#db7c6d;">0..1</span><span>]);
+</span><span>    </span><span style="color:#db7c6d;">string_slice</span><span>(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>  hello there </span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>.</span><span style="color:#db7c6d;">trim</span><span>());
+</span><span>    </span><span style="color:#db7c6d;">string</span><span>(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>Happy Monday!</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>.</span><span style="color:#db7c6d;">to_string</span><span>().</span><span style="color:#db7c6d;">replace</span><span>(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>Mon</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>, </span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>Tues</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>));
+</span><span>    </span><span style="color:#db7c6d;">string</span><span>(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>mY sHiFt KeY iS sTiCkY</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>.</span><span style="color:#db7c6d;">to_lowercase</span><span>());
+</span><span>}
+</span></code></pre>
 <p><strong>Choosing between <code>string_slice</code> and <code>string</code> in <code>strings4.rs</code>:</strong> The <code>string_slice</code> function takes a <code>&amp;str</code> (string slice) argument, while <code>string</code> function takes a <code>String</code> argument. When you're calling these functions in <code>main()</code>, you need to determine whether each argument is a <code>&amp;str</code> or a <code>String</code>.</p>
 <ul>
 <li>
-<p>For instance, <code>&quot;blue&quot;</code> is a <code>&amp;str</code>, because it's a string literal. In Rust, string literals are string slices.</p>
+<p>For instance, <code>"blue"</code> is a <code>&amp;str</code>, because it's a string literal. In Rust, string literals are string slices.</p>
 </li>
 <li>
-<p><code>&quot;red&quot;.to_string()</code>, on the other hand, is a <code>String</code>. As explained earlier, <code>.to_string()</code> is a method that converts a <code>&amp;str</code> to a <code>String</code> by allocating heap memory and copying the string there.</p>
+<p><code>"red".to_string()</code>, on the other hand, is a <code>String</code>. As explained earlier, <code>.to_string()</code> is a method that converts a <code>&amp;str</code> to a <code>String</code> by allocating heap memory and copying the string there.</p>
 </li>
 <li>
-<p><code>String::from(&quot;hi&quot;)</code> is also a <code>String</code>. <code>String::from</code> is a function that performs the same task as <code>.to_string()</code>, creating an owned string from a string literal or a string slice.</p>
+<p><code>String::from("hi")</code> is also a <code>String</code>. <code>String::from</code> is a function that performs the same task as <code>.to_string()</code>, creating an owned string from a string literal or a string slice.</p>
 </li>
 <li>
-<p><code>&quot;nice weather&quot;.into()</code> is an interesting case. The <code>.into()</code> method is a very generic conversion method that converts between various types. In this context, it will automatically be resolved to <code>String</code>, so it should be passed to <code>string</code> function. However, it's worth noting that this automatic resolution is based on the current context and it can lead to potential confusion if the type resolution is ambiguous.</p>
+<p><code>"nice weather".into()</code> is an interesting case. The <code>.into()</code> method is a very generic conversion method that converts between various types. In this context, it will automatically be resolved to <code>String</code>, so it should be passed to <code>string</code> function. However, it's worth noting that this automatic resolution is based on the current context and it can lead to potential confusion if the type resolution is ambiguous.</p>
 </li>
 </ul>
 <h2 id="conclusion">Conclusion</h2>
@@ -459,7 +463,7 @@ fn main() {
 		
     </p>
     
-    <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>1811 Words</p>
+    <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>1014 Words</p>
     
     <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2023-06-28</p>
     
@@ -482,7 +486,7 @@ fn main() {
 
 
 <footer id="site-footer" class="section-inner thin animated fadeIn faster">
-  <p>&copy; 2024 <a href="https:&#x2F;&#x2F;desmodrone.github.io">erick</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
+  <p>&copy; 2026 <a href="https:&#x2F;&#x2F;desmodrone.github.io">erick</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
   <p>Made with <a href="https://www.getzola.org" target="_blank" rel="noopener">Zola</a> &#183; Theme <a href="https://github.com/VersBinarii/hermit_zola" target="_blank" rel="noopener">Hermit_Zola</a>
 	
 	&#183; <a href="https://desmodrone.github.io/rss.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>

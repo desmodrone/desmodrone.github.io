@@ -27,6 +27,10 @@
   <link rel="alternate" type="application/rss+xml" title="RSS" href="https://desmodrone.github.io/rss.xml">
   
 
+  
+  <link rel="canonical" href="https://desmodrone.github.io/posts/02-rustlings-functions/">
+  
+
   <body id="page">
 
 	
@@ -120,7 +124,7 @@
 		<small> - 
 <span class="reading-time" title="Estimated read time">
   
-  6 min read
+  3 min read
   
 </span>
 </small>
@@ -138,308 +142,308 @@
 <li><a href="https://doc.rust-lang.org/book/ch03-03-how-functions-work.html">How Functions Work</a></li>
 </ul>
 <h2 id="functions1-rs"><code>functions1.rs</code></h2>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">&#x2F;&#x2F; functions1.rs
-&#x2F;&#x2F; Execute `rustlings hint functions1` or use the `hint` watch subcommand for a hint.
-
-&#x2F;&#x2F; I AM NOT DONE
-
-fn main() {
-    call_me();
-}
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#707180;">// functions1.rs
+</span><span style="color:#707180;">// Execute `rustlings hint functions1` or use the `hint` watch subcommand for a hint.
+</span><span>
+</span><span style="color:#707180;">// I AM NOT DONE
+</span><span>
+</span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">main</span><span>() {
+</span><span>    </span><span style="color:#db7c6d;">call_me</span><span>();
+</span><span>}
+</span></code></pre>
 <h3 id="rust-error-for-function1-rs">Rust Error for <code>function1.rs</code></h3>
 <p>Let's take a look at the compiler output so we can see what it's telling us fix.</p>
-<pre data-lang="zsh" class="language-zsh "><code class="language-zsh" data-lang="zsh">⚠️ Compiling of exercises&#x2F;functions&#x2F;functions1.rs failed! Please try again. Here&#x27;s the output:
-error[E0425]: cannot find function `call_me` in this scope
- --&gt; exercises&#x2F;functions&#x2F;functions1.rs:7:5
-  |
-7 |     call_me();
-  |     ^^^^^^^ not found in this scope
-
-error: aborting due to previous error
-
-For more information about this error, try `rustc --explain E0425`.
-</code></pre>
+<pre data-lang="zsh" style="background-color:#31333d;color:#ffffffc4;" class="language-zsh "><code class="language-zsh" data-lang="zsh"><span style="font-weight:bold;color:#a3cbe3;">⚠️</span><span> Compiling of exercises/functions/functions1.rs failed! Please try again. Here</span><span style="font-weight:bold;color:#dbbb3d;">&#39;</span><span>s the output:
+</span><span>error[E0425]: cannot find function `call_me` in this scope
+</span><span> --&gt; exercises/functions/functions1.rs:7:5
+</span><span>  |
+</span><span>7 |     call_me();
+</span><span>  |     ^^^^^^^ not found in this scope
+</span><span>
+</span><span>error: aborting due to previous error
+</span><span>
+</span><span>For more information about this error, try `rustc --explain E0425`.
+</span></code></pre>
 <p>So what is this telling us? It's essentially saying that <code>call me</code> is not defined within <code>fn main()</code> because we're trying to call it, but it doesn't know what to do with it. So let's fix it.</p>
 <h2 id="function1-rs-solution"><code>function1.rs</code> Solution</h2>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">&#x2F;&#x2F; functions1.rs
-&#x2F;&#x2F; Execute `rustlings hint functions1` or use the `hint` watch subcommand for a hint.
-
-fn main() {
-    fn call_me() {  &#x2F;&#x2F; we define a basic function called call_me()
-    }
-    call_me();
-}
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#707180;">// functions1.rs
+</span><span style="color:#707180;">// Execute `rustlings hint functions1` or use the `hint` watch subcommand for a hint.
+</span><span>
+</span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">main</span><span>() {
+</span><span>    </span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">call_me</span><span>() {  </span><span style="color:#707180;">// we define a basic function called call_me()
+</span><span>    }
+</span><span>    </span><span style="color:#db7c6d;">call_me</span><span>();
+</span><span>}
+</span></code></pre>
 <p>It's easy enough we create a functioned called <code>call_me()</code> inside of our <code>fn main()</code> so when we call it, the compiler knows where to look. Of course at this point it's not doing much of anything.</p>
 <p>We can modify this a little and make the function do something, like this:</p>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">fn main() {
-    fn call_me() {
-        println!(&quot;Call me please&quot;) &#x2F;&#x2F; add a println! with at string inside the call_me() function
-    }
-    call_me();
-}
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">main</span><span>() {
+</span><span>    </span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">call_me</span><span>() {
+</span><span>        println!(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>Call me please</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>) </span><span style="color:#707180;">// add a println! with at string inside the call_me() function
+</span><span>    }
+</span><span>    </span><span style="color:#db7c6d;">call_me</span><span>();
+</span><span>}
+</span></code></pre>
 <p>Putting a <code>println!</code> with some text will print out the text when <code>call_me()</code> is called. In this case: <code>Call me please</code> or if we wanted to some math, we could do:</p>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">&#x2F;&#x2F; functions1.rs
-&#x2F;&#x2F; Execute `rustlings hint functions1` or use the `hint` watch subcommand for a hint.
-
-fn main() {
-    fn call_me() {
-        println!(&quot;{}&quot;, 4+4) &#x2F;&#x2F; here we change the string into a simple addition
-    }
-    call_me();
-}
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#707180;">// functions1.rs
+</span><span style="color:#707180;">// Execute `rustlings hint functions1` or use the `hint` watch subcommand for a hint.
+</span><span>
+</span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">main</span><span>() {
+</span><span>    </span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">call_me</span><span>() {
+</span><span>        println!(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span style="font-weight:bold;color:#a2ba43;">{}</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>, </span><span style="color:#db7c6d;">4+4</span><span>) </span><span style="color:#707180;">// here we change the string into a simple addition
+</span><span>    }
+</span><span>    </span><span style="color:#db7c6d;">call_me</span><span>();
+</span><span>}
+</span></code></pre>
 <p>This would print: <code>8</code></p>
 <h2 id="function2-rs"><code>function2.rs</code></h2>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">&#x2F;&#x2F; functions2.rs
-&#x2F;&#x2F; Execute `rustlings hint functions2` or use the `hint` watch subcommand for a hint.
-
-&#x2F;&#x2F; I AM NOT DONE
-
-fn main() {
-    call_me(3);
-}
-
-fn call_me(num:) {
-    for i in 0..num {
-        println!(&quot;Ring! Call number {}&quot;, i + 1);
-    }
-}
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#707180;">// functions2.rs
+</span><span style="color:#707180;">// Execute `rustlings hint functions2` or use the `hint` watch subcommand for a hint.
+</span><span>
+</span><span style="color:#707180;">// I AM NOT DONE
+</span><span>
+</span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">main</span><span>() {
+</span><span>    </span><span style="color:#db7c6d;">call_me</span><span>(</span><span style="color:#db7c6d;">3</span><span>);
+</span><span>}
+</span><span>
+</span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">call_me</span><span>(</span><span style="color:#ffffff;">num</span><span>:) {
+</span><span>    </span><span style="color:#db7c6d;">for</span><span> i </span><span style="color:#db7c6d;">in 0..</span><span>num {
+</span><span>        println!(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>Ring! Call number </span><span style="font-weight:bold;color:#a2ba43;">{}</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>, i </span><span style="color:#db7c6d;">+ 1</span><span>);
+</span><span>    }
+</span><span>}
+</span></code></pre>
 <h3 id="rust-errors-for-function2-rs">Rust Errors for <code>function2.rs</code></h3>
-<pre data-lang="zsh" class="language-zsh "><code class="language-zsh" data-lang="zsh">⚠️  Compiling of exercises&#x2F;functions&#x2F;functions2.rs failed! Please try again. Here&#x27;s the output:
-error: expected type, found `)`
-  --&gt; exercises&#x2F;functions&#x2F;functions2.rs:10:16
-   |
-10 | fn call_me(num:) {
-   |                ^ expected type
-
-error[E0425]: cannot find value `num` in this scope
-  --&gt; exercises&#x2F;functions&#x2F;functions2.rs:11:17
-   |
-11 |     for i in 0..num {
-   |                 ^^^ not found in this scope
-   |
-help: you might have meant to write `.` instead of `..`
-   |
-11 -     for i in 0..num {
-11 +     for i in 0.num {
-   |
-
-error: aborting due to 2 previous errors
-
-For more information about this error, try `rustc --explain E0425`.
-</code></pre>
+<pre data-lang="zsh" style="background-color:#31333d;color:#ffffffc4;" class="language-zsh "><code class="language-zsh" data-lang="zsh"><span style="font-weight:bold;color:#a3cbe3;">⚠️</span><span>  Compiling of exercises/functions/functions2.rs failed! Please try again. Here</span><span style="font-weight:bold;color:#dbbb3d;">&#39;</span><span>s the output:
+</span><span>error: expected type, found `)`
+</span><span>  --&gt; exercises/functions/functions2.rs:10:16
+</span><span>   |
+</span><span>10 | fn call_me(num:) {
+</span><span>   |                ^ expected type
+</span><span>
+</span><span>error[E0425]: cannot find value `num` in this scope
+</span><span>  --&gt; exercises/functions/functions2.rs:11:17
+</span><span>   |
+</span><span>11 |     for i in 0..num {
+</span><span>   |                 ^^^ not found in this scope
+</span><span>   |
+</span><span>help: you might have meant to write `.` instead of `..`
+</span><span>   |
+</span><span>11 -     for i in 0..num {
+</span><span>11 +     for i in 0.num {
+</span><span>   |
+</span><span>
+</span><span>error: aborting due to 2 previous errors
+</span><span>
+</span><span>For more information about this error, try `rustc --explain E0425`.
+</span></code></pre>
 <p>Alright so I've got a couple of errors here:</p>
 <ul>
 <li>Line 10, there's a type expected, so we fix that by adding <code>i32</code></li>
 </ul>
 <p>Adding the type solved all of our problems, nothing else do here.</p>
 <h2 id="function2-rs-solution"><code>function2.rs</code> Solution</h2>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">&#x2F;&#x2F; functions2.rs
-&#x2F;&#x2F; Execute `rustlings hint functions2` or use the `hint` watch subcommand for a hint.
-
-fn main() {
-    call_me(3);
-}
-
-fn call_me(num: i32) { &#x2F;&#x2F; added the `i32` type here
-    for i in 0..num {
-        println!(&quot;Ring! Call number {}&quot;, i + 1);
-    }
-}
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#707180;">// functions2.rs
+</span><span style="color:#707180;">// Execute `rustlings hint functions2` or use the `hint` watch subcommand for a hint.
+</span><span>
+</span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">main</span><span>() {
+</span><span>    </span><span style="color:#db7c6d;">call_me</span><span>(</span><span style="color:#db7c6d;">3</span><span>);
+</span><span>}
+</span><span>
+</span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">call_me</span><span>(</span><span style="color:#ffffff;">num</span><span>: </span><span style="color:#a3cbe3;">i32</span><span>) { </span><span style="color:#707180;">// added the `i32` type here
+</span><span>    </span><span style="color:#db7c6d;">for</span><span> i </span><span style="color:#db7c6d;">in 0..</span><span>num {
+</span><span>        println!(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>Ring! Call number </span><span style="font-weight:bold;color:#a2ba43;">{}</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>, i </span><span style="color:#db7c6d;">+ 1</span><span>);
+</span><span>    }
+</span><span>}
+</span></code></pre>
 <p>This reminds us that Rust's function signatures require type annotations. Once we fixed the function's signature we get the following:</p>
-<pre data-lang="zsh" class="language-zsh "><code class="language-zsh" data-lang="zsh">Output:
-====================
-Ring! Call number 1
-Ring! Call number 2
-Ring! Call number 3
-
-====================
-</code></pre>
+<pre data-lang="zsh" style="background-color:#31333d;color:#ffffffc4;" class="language-zsh "><code class="language-zsh" data-lang="zsh"><span style="font-weight:bold;color:#a3cbe3;">Output:
+</span><span style="color:#db7c6d;">=</span><span>===================
+</span><span style="font-weight:bold;color:#a3cbe3;">Ring!</span><span> Call number 1
+</span><span style="font-weight:bold;color:#a3cbe3;">Ring!</span><span> Call number 2
+</span><span style="font-weight:bold;color:#a3cbe3;">Ring!</span><span> Call number 3
+</span><span>
+</span><span style="color:#db7c6d;">=</span><span>===================
+</span></code></pre>
 <h2 id="function3-rs"><code>function3.rs</code></h2>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">&#x2F;&#x2F; functions3.rs
-&#x2F;&#x2F; Execute `rustlings hint functions3` or use the `hint` watch subcommand for a hint.
-
-&#x2F;&#x2F; I AM NOT DONE
-
-fn main() {
-    call_me();
-}
-
-fn call_me(num: u32) {
-    for i in 0..num {
-        println!(&quot;Ring! Call number {}&quot;, i + 1);
-    }
-}
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#707180;">// functions3.rs
+</span><span style="color:#707180;">// Execute `rustlings hint functions3` or use the `hint` watch subcommand for a hint.
+</span><span>
+</span><span style="color:#707180;">// I AM NOT DONE
+</span><span>
+</span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">main</span><span>() {
+</span><span>    </span><span style="color:#db7c6d;">call_me</span><span>();
+</span><span>}
+</span><span>
+</span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">call_me</span><span>(</span><span style="color:#ffffff;">num</span><span>: </span><span style="color:#a3cbe3;">u32</span><span>) {
+</span><span>    </span><span style="color:#db7c6d;">for</span><span> i </span><span style="color:#db7c6d;">in 0..</span><span>num {
+</span><span>        println!(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>Ring! Call number </span><span style="font-weight:bold;color:#a2ba43;">{}</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>, i </span><span style="color:#db7c6d;">+ 1</span><span>);
+</span><span>    }
+</span><span>}
+</span></code></pre>
 <h3 id="rust-errors-for-function3-rs">Rust errors for <code>function3.rs</code></h3>
-<pre data-lang="zsh" class="language-zsh "><code class="language-zsh" data-lang="zsh">⚠️  Compiling of exercises&#x2F;functions&#x2F;functions3.rs failed! Please try again. Here&#x27;s the output:
-error[E0061]: this function takes 1 argument but 0 arguments were supplied
-  --&gt; exercises&#x2F;functions&#x2F;functions3.rs:7:5
-   |
-7  |     call_me();
-   |     ^^^^^^^-- an argument of type `u32` is missing
-   |
-note: function defined here
-  --&gt; exercises&#x2F;functions&#x2F;functions3.rs:10:4
-   |
-10 | fn call_me(num: u32) {
-   |    ^^^^^^^ --------
-help: provide the argument
-   |
-7  |     call_me(&#x2F;* u32 *&#x2F;);
-   |            ~~~~~~~~~~~
-
-error: aborting due to previous error
-
-For more information about this error, try `rustc --explain E0061`.
-</code></pre>
+<pre data-lang="zsh" style="background-color:#31333d;color:#ffffffc4;" class="language-zsh "><code class="language-zsh" data-lang="zsh"><span style="font-weight:bold;color:#a3cbe3;">⚠️</span><span>  Compiling of exercises/functions/functions3.rs failed! Please try again. Here</span><span style="font-weight:bold;color:#dbbb3d;">&#39;</span><span>s the output:
+</span><span>error[E0061]: this function takes 1 argument but 0 arguments were supplied
+</span><span>  --&gt; exercises/functions/functions3.rs:7:5
+</span><span>   |
+</span><span>7  |     call_me();
+</span><span>   |     ^^^^^^^-- an argument of type `u32` is missing
+</span><span>   |
+</span><span>note: function defined here
+</span><span>  --&gt; exercises/functions/functions3.rs:10:4
+</span><span>   |
+</span><span>10 | fn call_me(num: u32) {
+</span><span>   |    ^^^^^^^ --------
+</span><span>help: provide the argument
+</span><span>   |
+</span><span>7  |     call_me(/* u32 */);
+</span><span>   |            ~~~~~~~~~~~
+</span><span>
+</span><span>error: aborting due to previous error
+</span><span>
+</span><span>For more information about this error, try `rustc --explain E0061`.
+</span></code></pre>
 <p>Once again the Rust compiler comes through with a very clear suggestion pointing out that <code>call_me()</code> is missing an argument of type <code>u32</code> it even provides <code>help</code> in the last segment showing us where to put the <code>u32</code>: <code>call_me(/* u32 */);</code> How great is that. So what <code>u32</code> should we put in there? Let's try <code>6</code>.</p>
 <h2 id="functions3-rs-solution"><code>functions3.rs</code> Solution</h2>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">&#x2F;&#x2F; functions3.rs
-&#x2F;&#x2F; Execute `rustlings hint functions3` or use the `hint` watch subcommand for a hint.
-
-fn main() {
-    call_me(6); &#x2F;&#x2F; we&#x27;ve added 6 here
-}
-
-fn call_me(num: u32) {
-    for i in 0..num {
-        println!(&quot;Ring! Call number {}&quot;, i + 1);
-    }
-}
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#707180;">// functions3.rs
+</span><span style="color:#707180;">// Execute `rustlings hint functions3` or use the `hint` watch subcommand for a hint.
+</span><span>
+</span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">main</span><span>() {
+</span><span>    </span><span style="color:#db7c6d;">call_me</span><span>(</span><span style="color:#db7c6d;">6</span><span>); </span><span style="color:#707180;">// we&#39;ve added 6 here
+</span><span>}
+</span><span>
+</span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">call_me</span><span>(</span><span style="color:#ffffff;">num</span><span>: </span><span style="color:#a3cbe3;">u32</span><span>) {
+</span><span>    </span><span style="color:#db7c6d;">for</span><span> i </span><span style="color:#db7c6d;">in 0..</span><span>num {
+</span><span>        println!(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>Ring! Call number </span><span style="font-weight:bold;color:#a2ba43;">{}</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>, i </span><span style="color:#db7c6d;">+ 1</span><span>);
+</span><span>    }
+</span><span>}
+</span></code></pre>
 <p>And just like that we're back in business. Our <code>fn main()</code> runs and calls <code>call_me</code> six times because that's the number we've passed in to <code>call_me(6)</code>.</p>
-<pre data-lang="zsh" class="language-zsh "><code class="language-zsh" data-lang="zsh">Output:
-====================
-Ring! Call number 1
-Ring! Call number 2
-Ring! Call number 3
-Ring! Call number 4
-Ring! Call number 5
-Ring! Call number 6
-
-====================
-</code></pre>
+<pre data-lang="zsh" style="background-color:#31333d;color:#ffffffc4;" class="language-zsh "><code class="language-zsh" data-lang="zsh"><span style="font-weight:bold;color:#a3cbe3;">Output:
+</span><span style="color:#db7c6d;">=</span><span>===================
+</span><span style="font-weight:bold;color:#a3cbe3;">Ring!</span><span> Call number 1
+</span><span style="font-weight:bold;color:#a3cbe3;">Ring!</span><span> Call number 2
+</span><span style="font-weight:bold;color:#a3cbe3;">Ring!</span><span> Call number 3
+</span><span style="font-weight:bold;color:#a3cbe3;">Ring!</span><span> Call number 4
+</span><span style="font-weight:bold;color:#a3cbe3;">Ring!</span><span> Call number 5
+</span><span style="font-weight:bold;color:#a3cbe3;">Ring!</span><span> Call number 6
+</span><span>
+</span><span style="color:#db7c6d;">=</span><span>===================
+</span></code></pre>
 <p>Just to be clear in this case we could put any <code>u32</code> we wanted, including <code>0</code>, but that doesn't print anything. We can't pass in a negative number in this case either because defined a <code>u32</code> and exceeding the limit of a <code>u32</code> would also fail.</p>
 <h2 id="function4-rs"><code>function4.rs</code></h2>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">&#x2F;&#x2F; functions4.rs
-&#x2F;&#x2F; Execute `rustlings hint functions4` or use the `hint` watch subcommand for a hint.
-
-&#x2F;&#x2F; This store is having a sale where if the price is an even number, you get
-&#x2F;&#x2F; 10 Rustbucks off, but if it&#x27;s an odd number, it&#x27;s 3 Rustbucks off.
-&#x2F;&#x2F; (Don&#x27;t worry about the function bodies themselves, we&#x27;re only interested
-&#x2F;&#x2F; in the signatures for now. If anything, this is a good way to peek ahead
-&#x2F;&#x2F; to future exercises!)
-
-&#x2F;&#x2F; I AM NOT DONE
-
-fn main() {
-    let original_price = 51;
-    println!(&quot;Your sale price is {}&quot;, sale_price(original_price));
-}
-
-fn sale_price(price: i32) -&gt; {
-    if is_even(price) {
-        price - 10
-    } else {
-        price - 3
-    }
-}
-
-fn is_even(num: i32) -&gt; bool {
-    num % 2 == 0
-}
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#707180;">// functions4.rs
+</span><span style="color:#707180;">// Execute `rustlings hint functions4` or use the `hint` watch subcommand for a hint.
+</span><span>
+</span><span style="color:#707180;">// This store is having a sale where if the price is an even number, you get
+</span><span style="color:#707180;">// 10 Rustbucks off, but if it&#39;s an odd number, it&#39;s 3 Rustbucks off.
+</span><span style="color:#707180;">// (Don&#39;t worry about the function bodies themselves, we&#39;re only interested
+</span><span style="color:#707180;">// in the signatures for now. If anything, this is a good way to peek ahead
+</span><span style="color:#707180;">// to future exercises!)
+</span><span>
+</span><span style="color:#707180;">// I AM NOT DONE
+</span><span>
+</span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">main</span><span>() {
+</span><span>    </span><span style="color:#a3cbe3;">let</span><span> original_price </span><span style="color:#db7c6d;">= 51</span><span>;
+</span><span>    println!(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>Your sale price is </span><span style="font-weight:bold;color:#a2ba43;">{}</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>, </span><span style="color:#db7c6d;">sale_price</span><span>(original_price));
+</span><span>}
+</span><span>
+</span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">sale_price</span><span>(</span><span style="color:#ffffff;">price</span><span>: </span><span style="color:#a3cbe3;">i32</span><span>) -&gt; {
+</span><span>    </span><span style="color:#db7c6d;">if is_even</span><span>(price) {
+</span><span>        price </span><span style="color:#db7c6d;">- 10
+</span><span>    } </span><span style="color:#db7c6d;">else </span><span>{
+</span><span>        price </span><span style="color:#db7c6d;">- 3
+</span><span>    }
+</span><span>}
+</span><span>
+</span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">is_even</span><span>(</span><span style="color:#ffffff;">num</span><span>: </span><span style="color:#a3cbe3;">i32</span><span>) -&gt; </span><span style="color:#a3cbe3;">bool </span><span>{
+</span><span>    num </span><span style="color:#db7c6d;">% 2 == 0
+</span><span>}
+</span></code></pre>
 <p>We're getting a little more instruction here, but as always the key lies in looking at the Rust compiler</p>
-<pre data-lang="zsh" class="language-zsh "><code class="language-zsh" data-lang="zsh">⚠️  Compiling of exercises&#x2F;functions&#x2F;functions4.rs failed! Please try again. Here&#x27;s the output:
-error: expected type, found `{`
-  --&gt; exercises&#x2F;functions&#x2F;functions4.rs:17:30
-   |
-17 | fn sale_price(price: i32) -&gt; {
-   |                              ^ expected type
-
-error: aborting due to previous error
-</code></pre>
+<pre data-lang="zsh" style="background-color:#31333d;color:#ffffffc4;" class="language-zsh "><code class="language-zsh" data-lang="zsh"><span style="font-weight:bold;color:#a3cbe3;">⚠️</span><span>  Compiling of exercises/functions/functions4.rs failed! Please try again. Here</span><span style="font-weight:bold;color:#dbbb3d;">&#39;</span><span>s the output:
+</span><span>error: expected type, found `{`
+</span><span>  --&gt; exercises/functions/functions4.rs:17:30
+</span><span>   |
+</span><span>17 | fn sale_price(price: i32) -&gt; {
+</span><span>   |                              ^ expected type
+</span><span>
+</span><span>error: aborting due to previous error
+</span></code></pre>
 <p>Looks pretty straight forward, line 17 is missing a type in the function's signature, looks like we should expect to return an <code>i32</code>, so let's try that.</p>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">fn main() {
-    let original_price = 51;
-    println!(&quot;Your sale price is {}&quot;, sale_price(original_price));
-}
-
-fn sale_price(price: i32) -&gt; i32 { &#x2F;&#x2F; added return type here: `i32`
-    if is_even(price) {
-        price - 10
-    } else {
-        price - 3
-    }
-}
-
-fn is_even(num: i32) -&gt; bool {
-    num % 2 == 0
-}
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">main</span><span>() {
+</span><span>    </span><span style="color:#a3cbe3;">let</span><span> original_price </span><span style="color:#db7c6d;">= 51</span><span>;
+</span><span>    println!(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>Your sale price is </span><span style="font-weight:bold;color:#a2ba43;">{}</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>, </span><span style="color:#db7c6d;">sale_price</span><span>(original_price));
+</span><span>}
+</span><span>
+</span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">sale_price</span><span>(</span><span style="color:#ffffff;">price</span><span>: </span><span style="color:#a3cbe3;">i32</span><span>) -&gt; </span><span style="color:#a3cbe3;">i32 </span><span>{ </span><span style="color:#707180;">// added return type here: `i32`
+</span><span>    </span><span style="color:#db7c6d;">if is_even</span><span>(price) {
+</span><span>        price </span><span style="color:#db7c6d;">- 10
+</span><span>    } </span><span style="color:#db7c6d;">else </span><span>{
+</span><span>        price </span><span style="color:#db7c6d;">- 3
+</span><span>    }
+</span><span>}
+</span><span>
+</span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">is_even</span><span>(</span><span style="color:#ffffff;">num</span><span>: </span><span style="color:#a3cbe3;">i32</span><span>) -&gt; </span><span style="color:#a3cbe3;">bool </span><span>{
+</span><span>    num </span><span style="color:#db7c6d;">% 2 == 0
+</span><span>}
+</span></code></pre>
 <p>And it works. Nothing too difficult, if you look at the <code>is_even</code> function there the function is returning a <code>bool</code> instead of an <code>i32</code></p>
-<pre data-lang="zsh" class="language-zsh "><code class="language-zsh" data-lang="zsh">Output:
-====================
-Your sale price is 48
-
-====================
-</code></pre>
+<pre data-lang="zsh" style="background-color:#31333d;color:#ffffffc4;" class="language-zsh "><code class="language-zsh" data-lang="zsh"><span style="font-weight:bold;color:#a3cbe3;">Output:
+</span><span style="color:#db7c6d;">=</span><span>===================
+</span><span style="font-weight:bold;color:#a3cbe3;">Your</span><span> sale price is 48
+</span><span>
+</span><span style="color:#db7c6d;">=</span><span>===================
+</span></code></pre>
 <h2 id="function5-rs"><code>function5.rs</code></h2>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">&#x2F;&#x2F; functions5.rs
-&#x2F;&#x2F; Execute `rustlings hint functions5` or use the `hint` watch subcommand for a hint.
-
-&#x2F;&#x2F; I AM NOT DONE
-
-fn main() {
-    let answer = square(3);
-    println!(&quot;The square of 3 is {}&quot;, answer);
-}
-
-fn square(num: i32) -&gt; i32 {
-    num * num;
-}
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#707180;">// functions5.rs
+</span><span style="color:#707180;">// Execute `rustlings hint functions5` or use the `hint` watch subcommand for a hint.
+</span><span>
+</span><span style="color:#707180;">// I AM NOT DONE
+</span><span>
+</span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">main</span><span>() {
+</span><span>    </span><span style="color:#a3cbe3;">let</span><span> answer </span><span style="color:#db7c6d;">= square</span><span>(</span><span style="color:#db7c6d;">3</span><span>);
+</span><span>    println!(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>The square of 3 is </span><span style="font-weight:bold;color:#a2ba43;">{}</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>, answer);
+</span><span>}
+</span><span>
+</span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">square</span><span>(</span><span style="color:#ffffff;">num</span><span>: </span><span style="color:#a3cbe3;">i32</span><span>) -&gt; </span><span style="color:#a3cbe3;">i32 </span><span>{
+</span><span>    num </span><span style="color:#db7c6d;">*</span><span> num;
+</span><span>}
+</span></code></pre>
 <h3 id="function5-rs-errors"><code>function5.rs</code> Errors</h3>
-<pre data-lang="zsh" class="language-zsh "><code class="language-zsh" data-lang="zsh">⚠️  Compiling of exercises&#x2F;functions&#x2F;functions5.rs failed! Please try again. Here&#x27;s the output:
-error[E0308]: mismatched types
-  --&gt; exercises&#x2F;functions&#x2F;functions5.rs:11:24
-   |
-11 | fn square(num: i32) -&gt; i32 {
-   |    ------              ^^^ expected `i32`, found `()`
-   |    |
-   |    implicitly returns `()` as its body has no tail or `return` expression
-12 |     num * num;
-   |              - help: remove this semicolon to return this value
-
-error: aborting due to previous error
-
-For more information about this error, try `rustc --explain E0308`.
-</code></pre>
+<pre data-lang="zsh" style="background-color:#31333d;color:#ffffffc4;" class="language-zsh "><code class="language-zsh" data-lang="zsh"><span style="font-weight:bold;color:#a3cbe3;">⚠️</span><span>  Compiling of exercises/functions/functions5.rs failed! Please try again. Here</span><span style="font-weight:bold;color:#dbbb3d;">&#39;</span><span>s the output:
+</span><span>error[E0308]: mismatched types
+</span><span>  --&gt; exercises/functions/functions5.rs:11:24
+</span><span>   |
+</span><span>11 | fn square(num: i32) -&gt; i32 {
+</span><span>   |    ------              ^^^ expected `i32`, found `()`
+</span><span>   |    |
+</span><span>   |    implicitly returns `()` as its body has no tail or `return` expression
+</span><span>12 |     num * num;
+</span><span>   |              - help: remove this semicolon to return this value
+</span><span>
+</span><span>error: aborting due to previous error
+</span><span>
+</span><span>For more information about this error, try `rustc --explain E0308`.
+</span></code></pre>
 <p>This is once again a very helpful explanation from the compiler, if we look at the <code>help: remove this semicolon to return this value</code> note, it tells why we are getting the error on line 11. Because with a <code>;</code> semicolon this function has no return value and this function expects a return value as we have defined in the function signature. So how do we solve this?</p>
 <p>The easiest way is to remove the semicolon as the Rust compiler suggests, but just so we have another solution we can also use the <code>return</code> keyword. From my understanding it's more idiomatic to just remove the <code>;</code> but I wanted to also bring up the possibility of using <code>return</code>.</p>
 <p>The reason this happens in Rust is because the compiler distinguishes between expressions and statements. Expressions return a value based on their operands(s), and statements simply return a <code>()</code> type.</p>
 <h2 id="function5-rs-solution"><code>function5.rs</code> Solution</h2>
-<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">fn main() {
-    let answer = square(3);
-    println!(&quot;The square of 3 is {}&quot;, answer);
-}
-
-fn square(num: i32) -&gt; i32 {
-    num * num
-}
-</code></pre>
-<pre data-lang="zsh" class="language-zsh "><code class="language-zsh" data-lang="zsh">Output:
-====================
-The square of 3 is 9
-
-====================
-</code></pre>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">main</span><span>() {
+</span><span>    </span><span style="color:#a3cbe3;">let</span><span> answer </span><span style="color:#db7c6d;">= square</span><span>(</span><span style="color:#db7c6d;">3</span><span>);
+</span><span>    println!(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>The square of 3 is </span><span style="font-weight:bold;color:#a2ba43;">{}</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>, answer);
+</span><span>}
+</span><span>
+</span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">square</span><span>(</span><span style="color:#ffffff;">num</span><span>: </span><span style="color:#a3cbe3;">i32</span><span>) -&gt; </span><span style="color:#a3cbe3;">i32 </span><span>{
+</span><span>    num </span><span style="color:#db7c6d;">*</span><span> num
+</span><span>}
+</span></code></pre>
+<pre data-lang="zsh" style="background-color:#31333d;color:#ffffffc4;" class="language-zsh "><code class="language-zsh" data-lang="zsh"><span style="font-weight:bold;color:#a3cbe3;">Output:
+</span><span style="color:#db7c6d;">=</span><span>===================
+</span><span style="font-weight:bold;color:#a3cbe3;">The</span><span> square of 3 is 9
+</span><span>
+</span><span style="color:#db7c6d;">=</span><span>===================
+</span></code></pre>
 <h2 id="conclusion">Conclusion</h2>
 <p>In this blog post, we've explored various Rust functions and the importance of function signatures, including specifying the correct types for both input parameters and return values. We have also seen how the Rust compiler provides helpful error messages and suggestions to guide us in fixing issues with our code. Additionally, we've briefly touched upon the differences between expressions and statements in Rust, which determine whether a value is returned or not.</p>
 <p>Remember that Rust functions are powerful tools for writing clean, maintainable code. Keep practicing and exploring different function patterns, and you'll soon become proficient in writing complex Rust programs.</p>
@@ -461,7 +465,7 @@ The square of 3 is 9
 		
     </p>
     
-    <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>1568 Words</p>
+    <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>712 Words</p>
     
     <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2023-04-19</p>
     
@@ -484,7 +488,7 @@ The square of 3 is 9
 
 
 <footer id="site-footer" class="section-inner thin animated fadeIn faster">
-  <p>&copy; 2024 <a href="https:&#x2F;&#x2F;desmodrone.github.io">erick</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
+  <p>&copy; 2026 <a href="https:&#x2F;&#x2F;desmodrone.github.io">erick</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
   <p>Made with <a href="https://www.getzola.org" target="_blank" rel="noopener">Zola</a> &#183; Theme <a href="https://github.com/VersBinarii/hermit_zola" target="_blank" rel="noopener">Hermit_Zola</a>
 	
 	&#183; <a href="https://desmodrone.github.io/rss.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
