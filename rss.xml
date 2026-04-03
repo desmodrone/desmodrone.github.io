@@ -7,7 +7,83 @@
       <generator>Zola</generator>
       <language>en</language>
       <atom:link href="https://desmodrone.github.io/rss.xml" rel="self" type="application/rss+xml"/>
-      <lastBuildDate>Wed, 01 Apr 2026 00:00:00 +0000</lastBuildDate>
+      <lastBuildDate>Fri, 03 Apr 2026 00:00:00 +0000</lastBuildDate>
+      <item>
+          <title>Minimal Starknet Wallet PoC in Leptos</title>
+          <pubDate>Fri, 03 Apr 2026 00:00:00 +0000</pubDate>
+          <author>Unknown</author>
+          <link>https://desmodrone.github.io/posts/starknet-wallet-poc-note/</link>
+          <guid>https://desmodrone.github.io/posts/starknet-wallet-poc-note/</guid>
+          <description xml:base="https://desmodrone.github.io/posts/starknet-wallet-poc-note/">&lt;h2 id=&quot;the-tight-tolerance&quot;&gt;The Tight Tolerance&lt;&#x2F;h2&gt;
+&lt;p&gt;I needed a clean way to connect Starknet browser wallets like ArgentX and Braavos to a Leptos frontend without dragging a heavy JavaScript toolchain into the Rust build.&lt;&#x2F;p&gt;
+&lt;p&gt;For this phase, the goal was not a full production wallet layer. It was a proof of concept that could answer one question clearly: can a Rust and WebAssembly frontend talk to injected Starknet wallets in a way that is simple enough to inspect, simple enough to debug, and stable enough to build on?&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;a-small-bridge-not-a-bigger-toolchain&quot;&gt;A Small Bridge, Not a Bigger Toolchain&lt;&#x2F;h2&gt;
+&lt;p&gt;The simplest working path was a thin JavaScript bridge plus &lt;code&gt;wasm-bindgen&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;The implementation broke into four parts:&lt;&#x2F;p&gt;
+&lt;ol&gt;
+&lt;li&gt;A plain &lt;code&gt;starknetWallet.js&lt;&#x2F;code&gt; file in &lt;code&gt;frontend&#x2F;public&#x2F;&lt;&#x2F;code&gt; that talks directly to the injected wallet object on &lt;code&gt;window&lt;&#x2F;code&gt;.&lt;&#x2F;li&gt;
+&lt;li&gt;A Rust &lt;code&gt;wallet_api.rs&lt;&#x2F;code&gt; module with &lt;code&gt;#[wasm_bindgen]&lt;&#x2F;code&gt; bindings for the bridge functions.&lt;&#x2F;li&gt;
+&lt;li&gt;A Leptos wallet component that stores the connected address in reactive state and updates the UI from async wallet actions.&lt;&#x2F;li&gt;
+&lt;li&gt;A small &lt;code&gt;index.html&lt;&#x2F;code&gt; change so the bridge script loads before the WASM app starts.&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;p&gt;This worked well for an MVP because it avoided bundlers, NPM packages, and extra frontend indirection. For this kind of bridge, I did not need a bigger machine. I needed a small adapter with tight tolerances and a failure surface I could actually inspect. The Rust side only needed to know that the JavaScript world exposed a few predictable functions, and &lt;code&gt;wasm-bindgen&lt;&#x2F;code&gt; handled the string and promise boundary.&lt;&#x2F;p&gt;
+&lt;p&gt;One useful detail from testing: Braavos injected compatibility properties that made the wallet discovery path look like ArgentX at first glance. That looked odd in logs, but it turned out to be a real ecosystem quirk rather than a bug in the bridge.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;where-the-fit-was-loose&quot;&gt;Where the Fit Was Loose&lt;&#x2F;h2&gt;
+&lt;p&gt;The first pass also surfaced a few real issues:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;Disconnect handling initially broke because the browser was serving an older cached &lt;code&gt;starknetWallet.js&lt;&#x2F;code&gt;. Rust expected a JavaScript &lt;code&gt;Promise&lt;&#x2F;code&gt;, but the stale script returned &lt;code&gt;undefined&lt;&#x2F;code&gt;, which caused a &lt;code&gt;.then(...)&lt;&#x2F;code&gt; runtime error inside the WASM boundary.&lt;&#x2F;li&gt;
+&lt;li&gt;The disconnect path was swallowing errors too aggressively, which meant the Rust UI could think it had disconnected cleanly even if the JavaScript layer failed.&lt;&#x2F;li&gt;
+&lt;li&gt;The connect button was vulnerable to duplicate clicks while a wallet prompt was pending.&lt;&#x2F;li&gt;
+&lt;li&gt;The &quot;already connected&quot; check on mount was only backed by in-memory state, so it was not durable across refreshes.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;The caching issue was the most instructive one. Rust expected a Promise. The browser served an older bridge file that returned &lt;code&gt;undefined&lt;&#x2F;code&gt;. That is exactly the kind of mismatch that can waste an afternoon if the glue layer is doing too much behind the curtain. Once the script URL was versioned to force a fresh load, the Rust and JavaScript sides lined up again and the disconnect flow started behaving correctly.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;what-i-checked&quot;&gt;What I Checked&lt;&#x2F;h2&gt;
+&lt;p&gt;The manual verification flow was straightforward:&lt;&#x2F;p&gt;
+&lt;ol&gt;
+&lt;li&gt;Run &lt;code&gt;trunk serve&lt;&#x2F;code&gt; in the frontend.&lt;&#x2F;li&gt;
+&lt;li&gt;Open the app in a browser with ArgentX or Braavos installed.&lt;&#x2F;li&gt;
+&lt;li&gt;Click the connect button and approve the wallet request.&lt;&#x2F;li&gt;
+&lt;li&gt;Confirm the Starknet address renders in the Leptos UI.&lt;&#x2F;li&gt;
+&lt;li&gt;Click disconnect and verify that the UI state and wallet bridge state both clear correctly.&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;p&gt;That was enough to prove the main architectural point: a Leptos frontend can bridge into Starknet browser wallets with a very small JavaScript layer and standard &lt;code&gt;wasm-bindgen&lt;&#x2F;code&gt; bindings.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;next-tuning-pass&quot;&gt;Next Tuning Pass&lt;&#x2F;h2&gt;
+&lt;p&gt;The next useful move is not adding more abstraction. It is tightening the edge cases in the current bridge so the flow is durable under refresh, pending actions, and JS-side failures before building more product logic on top of it.&lt;&#x2F;p&gt;
+&lt;p&gt;If there is a cleaner pattern for making the reconnect state survive refresh without bloating the bridge, that is the next thing worth tuning.&lt;&#x2F;p&gt;
+</description>
+      </item>
+      <item>
+          <title>Testing Summary Validation</title>
+          <pubDate>Fri, 03 Apr 2026 00:00:00 +0000</pubDate>
+          <author>Unknown</author>
+          <link>https://desmodrone.github.io/posts/testing-summary-validation/</link>
+          <guid>https://desmodrone.github.io/posts/testing-summary-validation/</guid>
+          <description xml:base="https://desmodrone.github.io/posts/testing-summary-validation/">&lt;h2 id=&quot;hook&quot;&gt;Hook&lt;&#x2F;h2&gt;
+&lt;p&gt;This is a simple summary validation file for Rustync.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;setup&quot;&gt;Setup&lt;&#x2F;h2&gt;
+&lt;p&gt;It exists to prove the summary content path can render to Zola.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;core-build&quot;&gt;Core Build&lt;&#x2F;h2&gt;
+&lt;p&gt;The summary uses the same content loader and Zola template path as notes.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;debugging-notes&quot;&gt;Debugging Notes&lt;&#x2F;h2&gt;
+&lt;p&gt;This should stay minimal until the cross-target exporters are implemented.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;result&quot;&gt;Result&lt;&#x2F;h2&gt;
+&lt;p&gt;If this builds, the next step is to extend summary generation to other targets.&lt;&#x2F;p&gt;
+</description>
+      </item>
+      <item>
+          <title>Testing Validation</title>
+          <pubDate>Thu, 02 Apr 2026 00:00:00 +0000</pubDate>
+          <author>Unknown</author>
+          <link>https://desmodrone.github.io/posts/testing-validation/</link>
+          <guid>https://desmodrone.github.io/posts/testing-validation/</guid>
+          <description xml:base="https://desmodrone.github.io/posts/testing-validation/">&lt;h2 id=&quot;problem&quot;&gt;Problem&lt;&#x2F;h2&gt;
+&lt;p&gt;Briefly state what you were trying to do.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;what-worked&quot;&gt;What Worked&lt;&#x2F;h2&gt;
+&lt;p&gt;Capture the working setup, fix, or implementation detail.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;caveats&quot;&gt;Caveats&lt;&#x2F;h2&gt;
+&lt;p&gt;List the failure mode, gotcha, or next thing to check.&lt;&#x2F;p&gt;
+</description>
+      </item>
       <item>
           <title>A Rust-Powered Starfield in the Browser with Macroquad + WASM</title>
           <pubDate>Wed, 01 Apr 2026 00:00:00 +0000</pubDate>
