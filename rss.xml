@@ -53,38 +53,6 @@
 </description>
       </item>
       <item>
-          <title>Testing Summary Validation</title>
-          <pubDate>Fri, 03 Apr 2026 00:00:00 +0000</pubDate>
-          <author>Unknown</author>
-          <link>https://desmodrone.github.io/posts/testing-summary-validation/</link>
-          <guid>https://desmodrone.github.io/posts/testing-summary-validation/</guid>
-          <description xml:base="https://desmodrone.github.io/posts/testing-summary-validation/">&lt;h2 id=&quot;hook&quot;&gt;Hook&lt;&#x2F;h2&gt;
-&lt;p&gt;This is a simple summary validation file for Rustync.&lt;&#x2F;p&gt;
-&lt;h2 id=&quot;setup&quot;&gt;Setup&lt;&#x2F;h2&gt;
-&lt;p&gt;It exists to prove the summary content path can render to Zola.&lt;&#x2F;p&gt;
-&lt;h2 id=&quot;core-build&quot;&gt;Core Build&lt;&#x2F;h2&gt;
-&lt;p&gt;The summary uses the same content loader and Zola template path as notes.&lt;&#x2F;p&gt;
-&lt;h2 id=&quot;debugging-notes&quot;&gt;Debugging Notes&lt;&#x2F;h2&gt;
-&lt;p&gt;This should stay minimal until the cross-target exporters are implemented.&lt;&#x2F;p&gt;
-&lt;h2 id=&quot;result&quot;&gt;Result&lt;&#x2F;h2&gt;
-&lt;p&gt;If this builds, the next step is to extend summary generation to other targets.&lt;&#x2F;p&gt;
-</description>
-      </item>
-      <item>
-          <title>Testing Validation</title>
-          <pubDate>Thu, 02 Apr 2026 00:00:00 +0000</pubDate>
-          <author>Unknown</author>
-          <link>https://desmodrone.github.io/posts/testing-validation/</link>
-          <guid>https://desmodrone.github.io/posts/testing-validation/</guid>
-          <description xml:base="https://desmodrone.github.io/posts/testing-validation/">&lt;h2 id=&quot;problem&quot;&gt;Problem&lt;&#x2F;h2&gt;
-&lt;p&gt;Briefly state what you were trying to do.&lt;&#x2F;p&gt;
-&lt;h2 id=&quot;what-worked&quot;&gt;What Worked&lt;&#x2F;h2&gt;
-&lt;p&gt;Capture the working setup, fix, or implementation detail.&lt;&#x2F;p&gt;
-&lt;h2 id=&quot;caveats&quot;&gt;Caveats&lt;&#x2F;h2&gt;
-&lt;p&gt;List the failure mode, gotcha, or next thing to check.&lt;&#x2F;p&gt;
-</description>
-      </item>
-      <item>
           <title>A Rust-Powered Starfield in the Browser with Macroquad + WASM</title>
           <pubDate>Wed, 01 Apr 2026 00:00:00 +0000</pubDate>
           <author>Unknown</author>
