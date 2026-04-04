@@ -14,8 +14,8 @@
           <author>Unknown</author>
           <link>https://desmodrone.github.io/posts/starknet-wallet-poc-note/</link>
           <guid>https://desmodrone.github.io/posts/starknet-wallet-poc-note/</guid>
-          <description xml:base="https://desmodrone.github.io/posts/starknet-wallet-poc-note/">&lt;h2 id=&quot;the-tight-tolerance&quot;&gt;The Tight Tolerance&lt;&#x2F;h2&gt;
-&lt;p&gt;I needed a clean way to connect Starknet browser wallets like ArgentX and Braavos to a Leptos frontend without dragging a heavy JavaScript toolchain into the Rust build.&lt;&#x2F;p&gt;
+          <description xml:base="https://desmodrone.github.io/posts/starknet-wallet-poc-note/">&lt;h2 id=&quot;the-connection-problem&quot;&gt;The Connection Problem&lt;&#x2F;h2&gt;
+&lt;p&gt;I needed a clean way to connect Starknet browser wallets like ArgentX and Braavos to a Leptos frontend without adding more tooling than the bridge actually needed.&lt;&#x2F;p&gt;
 &lt;p&gt;For this phase, the goal was not a full production wallet layer. It was a proof of concept that could answer one question clearly: can a Rust and WebAssembly frontend talk to injected Starknet wallets in a way that is simple enough to inspect, simple enough to debug, and stable enough to build on?&lt;&#x2F;p&gt;
 &lt;h2 id=&quot;a-small-bridge-not-a-bigger-toolchain&quot;&gt;A Small Bridge, Not a Bigger Toolchain&lt;&#x2F;h2&gt;
 &lt;p&gt;The simplest working path was a thin JavaScript bridge plus &lt;code&gt;wasm-bindgen&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
