@@ -124,7 +124,7 @@
 		<small> - 
 <span class="reading-time" title="Estimated read time">
   
-  2 min read
+  3 min read
   
 </span>
 </small>
@@ -149,6 +149,37 @@
 <li>A small <code>index.html</code> change so the bridge script loads before the WASM app starts.</li>
 </ol>
 <p>This worked well for an MVP because it avoided bundlers, NPM packages, and extra frontend indirection. For this kind of bridge, I did not need a bigger machine. I needed a small adapter with tight tolerances and a failure surface I could actually inspect. The Rust side only needed to know that the JavaScript world exposed a few predictable functions, and <code>wasm-bindgen</code> handled the string and promise boundary.</p>
+<p>The Rust side of that contract was small enough to stay readable:</p>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span>#[</span><span style="font-weight:bold;color:#a3cbe3;">wasm_bindgen</span><span>]
+</span><span style="color:#db7c6d;">extern </span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>C</span><span style="font-weight:bold;color:#dbbb3d;">&quot; </span><span>{
+</span><span>    #[</span><span style="font-weight:bold;color:#a3cbe3;">wasm_bindgen</span><span>(catch)]
+</span><span>    </span><span style="color:#dbbb3d;">pub</span><span> async </span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">connectStarknetWallet</span><span>() -&gt; </span><span style="color:#e7e7e7;">Result</span><span>&lt;JsValue, JsValue&gt;;
+</span><span>
+</span><span>    </span><span style="color:#dbbb3d;">pub </span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">getStarknetAddress</span><span>() -&gt; </span><span style="color:#e7e7e7;">Option</span><span>&lt;</span><span style="color:#e7e7e7;">String</span><span>&gt;;
+</span><span>
+</span><span>    #[</span><span style="font-weight:bold;color:#a3cbe3;">wasm_bindgen</span><span>(catch)]
+</span><span>    </span><span style="color:#dbbb3d;">pub</span><span> async </span><span style="color:#a3cbe3;">fn </span><span style="color:#a2ba43;">disconnectStarknetWallet</span><span>() -&gt; </span><span style="color:#e7e7e7;">Result</span><span>&lt;JsValue, JsValue&gt;;
+</span><span>}
+</span></code></pre>
+<p>That kept the boundary honest. Rust did not need to understand the wallet object directly. It only needed a few stable bridge functions and the right Promise behavior on the JavaScript side.</p>
+<p>On the Leptos side, the whole flow was just signal state plus an async action:</p>
+<pre data-lang="rust" style="background-color:#31333d;color:#ffffffc4;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#a3cbe3;">let </span><span>(address, set_address) </span><span style="color:#db7c6d;">= create_signal</span><span>(</span><span style="color:#e7e7e7;">None</span><span>::&lt;</span><span style="color:#e7e7e7;">String</span><span>&gt;);
+</span><span>
+</span><span style="color:#a3cbe3;">let</span><span> connect </span><span style="color:#db7c6d;">= create_action</span><span>(</span><span style="color:#dbbb3d;">move </span><span style="color:#db7c6d;">|_</span><span>: </span><span style="color:#db7c6d;">&amp;</span><span>()</span><span style="color:#db7c6d;">| </span><span>{
+</span><span>    async </span><span style="color:#dbbb3d;">move </span><span>{
+</span><span>        </span><span style="color:#db7c6d;">match </span><span>wallet_api::connectStarknetWallet().await {
+</span><span>            </span><span style="color:#e7e7e7;">Ok</span><span>(val) </span><span style="color:#db7c6d;">=&gt; </span><span>{
+</span><span>                </span><span style="color:#db7c6d;">if </span><span style="color:#a3cbe3;">let </span><span style="color:#e7e7e7;">Some</span><span>(addr) </span><span style="color:#db7c6d;">=</span><span> val.</span><span style="color:#db7c6d;">as_string</span><span>() {
+</span><span>                    set_address.</span><span style="color:#db7c6d;">set</span><span>(</span><span style="color:#e7e7e7;">Some</span><span>(addr));
+</span><span>                }
+</span><span>            }
+</span><span>            </span><span style="color:#e7e7e7;">Err</span><span>(err) </span><span style="color:#db7c6d;">=&gt; </span><span>{
+</span><span>                leptos::logging::error</span><span style="color:#db7c6d;">!</span><span>(</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>Failed to connect wallet: {:?}</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>, err);
+</span><span>            }
+</span><span>        }
+</span><span>    }
+</span><span>});
+</span></code></pre>
 <p>One useful detail from testing: Braavos injected compatibility properties that made the wallet discovery path look like ArgentX at first glance. That looked odd in logs, but it turned out to be a real ecosystem quirk rather than a bug in the bridge.</p>
 <h2 id="where-the-fit-was-loose">Where the Fit Was Loose</h2>
 <p>The first pass also surfaced a few real issues:</p>
@@ -159,6 +190,9 @@
 <li>The "already connected" check on mount was only backed by in-memory state, so it was not durable across refreshes.</li>
 </ul>
 <p>The caching issue was the most instructive one. Rust expected a Promise. The browser served an older bridge file that returned <code>undefined</code>. That is exactly the kind of mismatch that can waste an afternoon if the glue layer is doing too much behind the curtain. Once the script URL was versioned to force a fresh load, the Rust and JavaScript sides lined up again and the disconnect flow started behaving correctly.</p>
+<p>The fix itself was not glamorous, but it made the runtime contract explicit again:</p>
+<pre data-lang="html" style="background-color:#31333d;color:#ffffffc4;" class="language-html "><code class="language-html" data-lang="html"><span style="font-weight:bold;color:#dbbb3d;">&lt;</span><span style="color:#db7c6d;">script </span><span style="color:#e8a64b;">src</span><span style="font-weight:bold;color:#db7c6d;">=</span><span style="font-weight:bold;color:#dbbb3d;">&quot;</span><span>/starknetWallet.js?v=2</span><span style="font-weight:bold;color:#dbbb3d;">&quot;&gt;&lt;/</span><span style="color:#db7c6d;">script</span><span style="font-weight:bold;color:#dbbb3d;">&gt;
+</span></code></pre>
 <h2 id="what-i-checked">What I Checked</h2>
 <p>The manual verification flow was straightforward:</p>
 <ol>
@@ -177,7 +211,7 @@
 	<hr class="post-end">
 	<footer class="post-info">
     
-    <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>627 Words</p>
+    <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>700 Words</p>
     
     <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2026-04-03</p>
     

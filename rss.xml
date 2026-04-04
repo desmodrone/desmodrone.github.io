@@ -27,6 +27,37 @@
 &lt;li&gt;A small &lt;code&gt;index.html&lt;&#x2F;code&gt; change so the bridge script loads before the WASM app starts.&lt;&#x2F;li&gt;
 &lt;&#x2F;ol&gt;
 &lt;p&gt;This worked well for an MVP because it avoided bundlers, NPM packages, and extra frontend indirection. For this kind of bridge, I did not need a bigger machine. I needed a small adapter with tight tolerances and a failure surface I could actually inspect. The Rust side only needed to know that the JavaScript world exposed a few predictable functions, and &lt;code&gt;wasm-bindgen&lt;&#x2F;code&gt; handled the string and promise boundary.&lt;&#x2F;p&gt;
+&lt;p&gt;The Rust side of that contract was small enough to stay readable:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; style=&quot;background-color:#31333d;color:#ffffffc4;&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;&lt;span&gt;#[&lt;&#x2F;span&gt;&lt;span style=&quot;font-weight:bold;color:#a3cbe3;&quot;&gt;wasm_bindgen&lt;&#x2F;span&gt;&lt;span&gt;]
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#db7c6d;&quot;&gt;extern &lt;&#x2F;span&gt;&lt;span style=&quot;font-weight:bold;color:#dbbb3d;&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;span&gt;C&lt;&#x2F;span&gt;&lt;span style=&quot;font-weight:bold;color:#dbbb3d;&quot;&gt;&amp;quot; &lt;&#x2F;span&gt;&lt;span&gt;{
+&lt;&#x2F;span&gt;&lt;span&gt;    #[&lt;&#x2F;span&gt;&lt;span style=&quot;font-weight:bold;color:#a3cbe3;&quot;&gt;wasm_bindgen&lt;&#x2F;span&gt;&lt;span&gt;(catch)]
+&lt;&#x2F;span&gt;&lt;span&gt;    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#dbbb3d;&quot;&gt;pub&lt;&#x2F;span&gt;&lt;span&gt; async &lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3cbe3;&quot;&gt;fn &lt;&#x2F;span&gt;&lt;span style=&quot;color:#a2ba43;&quot;&gt;connectStarknetWallet&lt;&#x2F;span&gt;&lt;span&gt;() -&amp;gt; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#e7e7e7;&quot;&gt;Result&lt;&#x2F;span&gt;&lt;span&gt;&amp;lt;JsValue, JsValue&amp;gt;;
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#dbbb3d;&quot;&gt;pub &lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3cbe3;&quot;&gt;fn &lt;&#x2F;span&gt;&lt;span style=&quot;color:#a2ba43;&quot;&gt;getStarknetAddress&lt;&#x2F;span&gt;&lt;span&gt;() -&amp;gt; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#e7e7e7;&quot;&gt;Option&lt;&#x2F;span&gt;&lt;span&gt;&amp;lt;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#e7e7e7;&quot;&gt;String&lt;&#x2F;span&gt;&lt;span&gt;&amp;gt;;
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;    #[&lt;&#x2F;span&gt;&lt;span style=&quot;font-weight:bold;color:#a3cbe3;&quot;&gt;wasm_bindgen&lt;&#x2F;span&gt;&lt;span&gt;(catch)]
+&lt;&#x2F;span&gt;&lt;span&gt;    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#dbbb3d;&quot;&gt;pub&lt;&#x2F;span&gt;&lt;span&gt; async &lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3cbe3;&quot;&gt;fn &lt;&#x2F;span&gt;&lt;span style=&quot;color:#a2ba43;&quot;&gt;disconnectStarknetWallet&lt;&#x2F;span&gt;&lt;span&gt;() -&amp;gt; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#e7e7e7;&quot;&gt;Result&lt;&#x2F;span&gt;&lt;span&gt;&amp;lt;JsValue, JsValue&amp;gt;;
+&lt;&#x2F;span&gt;&lt;span&gt;}
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;That kept the boundary honest. Rust did not need to understand the wallet object directly. It only needed a few stable bridge functions and the right Promise behavior on the JavaScript side.&lt;&#x2F;p&gt;
+&lt;p&gt;On the Leptos side, the whole flow was just signal state plus an async action:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; style=&quot;background-color:#31333d;color:#ffffffc4;&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;&lt;span style=&quot;color:#a3cbe3;&quot;&gt;let &lt;&#x2F;span&gt;&lt;span&gt;(address, set_address) &lt;&#x2F;span&gt;&lt;span style=&quot;color:#db7c6d;&quot;&gt;= create_signal&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#e7e7e7;&quot;&gt;None&lt;&#x2F;span&gt;&lt;span&gt;::&amp;lt;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#e7e7e7;&quot;&gt;String&lt;&#x2F;span&gt;&lt;span&gt;&amp;gt;);
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3cbe3;&quot;&gt;let&lt;&#x2F;span&gt;&lt;span&gt; connect &lt;&#x2F;span&gt;&lt;span style=&quot;color:#db7c6d;&quot;&gt;= create_action&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#dbbb3d;&quot;&gt;move &lt;&#x2F;span&gt;&lt;span style=&quot;color:#db7c6d;&quot;&gt;|_&lt;&#x2F;span&gt;&lt;span&gt;: &lt;&#x2F;span&gt;&lt;span style=&quot;color:#db7c6d;&quot;&gt;&amp;amp;&lt;&#x2F;span&gt;&lt;span&gt;()&lt;&#x2F;span&gt;&lt;span style=&quot;color:#db7c6d;&quot;&gt;| &lt;&#x2F;span&gt;&lt;span&gt;{
+&lt;&#x2F;span&gt;&lt;span&gt;    async &lt;&#x2F;span&gt;&lt;span style=&quot;color:#dbbb3d;&quot;&gt;move &lt;&#x2F;span&gt;&lt;span&gt;{
+&lt;&#x2F;span&gt;&lt;span&gt;        &lt;&#x2F;span&gt;&lt;span style=&quot;color:#db7c6d;&quot;&gt;match &lt;&#x2F;span&gt;&lt;span&gt;wallet_api::connectStarknetWallet().await {
+&lt;&#x2F;span&gt;&lt;span&gt;            &lt;&#x2F;span&gt;&lt;span style=&quot;color:#e7e7e7;&quot;&gt;Ok&lt;&#x2F;span&gt;&lt;span&gt;(val) &lt;&#x2F;span&gt;&lt;span style=&quot;color:#db7c6d;&quot;&gt;=&amp;gt; &lt;&#x2F;span&gt;&lt;span&gt;{
+&lt;&#x2F;span&gt;&lt;span&gt;                &lt;&#x2F;span&gt;&lt;span style=&quot;color:#db7c6d;&quot;&gt;if &lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3cbe3;&quot;&gt;let &lt;&#x2F;span&gt;&lt;span style=&quot;color:#e7e7e7;&quot;&gt;Some&lt;&#x2F;span&gt;&lt;span&gt;(addr) &lt;&#x2F;span&gt;&lt;span style=&quot;color:#db7c6d;&quot;&gt;=&lt;&#x2F;span&gt;&lt;span&gt; val.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#db7c6d;&quot;&gt;as_string&lt;&#x2F;span&gt;&lt;span&gt;() {
+&lt;&#x2F;span&gt;&lt;span&gt;                    set_address.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#db7c6d;&quot;&gt;set&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#e7e7e7;&quot;&gt;Some&lt;&#x2F;span&gt;&lt;span&gt;(addr));
+&lt;&#x2F;span&gt;&lt;span&gt;                }
+&lt;&#x2F;span&gt;&lt;span&gt;            }
+&lt;&#x2F;span&gt;&lt;span&gt;            &lt;&#x2F;span&gt;&lt;span style=&quot;color:#e7e7e7;&quot;&gt;Err&lt;&#x2F;span&gt;&lt;span&gt;(err) &lt;&#x2F;span&gt;&lt;span style=&quot;color:#db7c6d;&quot;&gt;=&amp;gt; &lt;&#x2F;span&gt;&lt;span&gt;{
+&lt;&#x2F;span&gt;&lt;span&gt;                leptos::logging::error&lt;&#x2F;span&gt;&lt;span style=&quot;color:#db7c6d;&quot;&gt;!&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;font-weight:bold;color:#dbbb3d;&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;span&gt;Failed to connect wallet: {:?}&lt;&#x2F;span&gt;&lt;span style=&quot;font-weight:bold;color:#dbbb3d;&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;span&gt;, err);
+&lt;&#x2F;span&gt;&lt;span&gt;            }
+&lt;&#x2F;span&gt;&lt;span&gt;        }
+&lt;&#x2F;span&gt;&lt;span&gt;    }
+&lt;&#x2F;span&gt;&lt;span&gt;});
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
 &lt;p&gt;One useful detail from testing: Braavos injected compatibility properties that made the wallet discovery path look like ArgentX at first glance. That looked odd in logs, but it turned out to be a real ecosystem quirk rather than a bug in the bridge.&lt;&#x2F;p&gt;
 &lt;h2 id=&quot;where-the-fit-was-loose&quot;&gt;Where the Fit Was Loose&lt;&#x2F;h2&gt;
 &lt;p&gt;The first pass also surfaced a few real issues:&lt;&#x2F;p&gt;
@@ -37,6 +68,9 @@
 &lt;li&gt;The &quot;already connected&quot; check on mount was only backed by in-memory state, so it was not durable across refreshes.&lt;&#x2F;li&gt;
 &lt;&#x2F;ul&gt;
 &lt;p&gt;The caching issue was the most instructive one. Rust expected a Promise. The browser served an older bridge file that returned &lt;code&gt;undefined&lt;&#x2F;code&gt;. That is exactly the kind of mismatch that can waste an afternoon if the glue layer is doing too much behind the curtain. Once the script URL was versioned to force a fresh load, the Rust and JavaScript sides lined up again and the disconnect flow started behaving correctly.&lt;&#x2F;p&gt;
+&lt;p&gt;The fix itself was not glamorous, but it made the runtime contract explicit again:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;html&quot; style=&quot;background-color:#31333d;color:#ffffffc4;&quot; class=&quot;language-html &quot;&gt;&lt;code class=&quot;language-html&quot; data-lang=&quot;html&quot;&gt;&lt;span style=&quot;font-weight:bold;color:#dbbb3d;&quot;&gt;&amp;lt;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#db7c6d;&quot;&gt;script &lt;&#x2F;span&gt;&lt;span style=&quot;color:#e8a64b;&quot;&gt;src&lt;&#x2F;span&gt;&lt;span style=&quot;font-weight:bold;color:#db7c6d;&quot;&gt;=&lt;&#x2F;span&gt;&lt;span style=&quot;font-weight:bold;color:#dbbb3d;&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;span&gt;&#x2F;starknetWallet.js?v=2&lt;&#x2F;span&gt;&lt;span style=&quot;font-weight:bold;color:#dbbb3d;&quot;&gt;&amp;quot;&amp;gt;&amp;lt;&#x2F;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#db7c6d;&quot;&gt;script&lt;&#x2F;span&gt;&lt;span style=&quot;font-weight:bold;color:#dbbb3d;&quot;&gt;&amp;gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
 &lt;h2 id=&quot;what-i-checked&quot;&gt;What I Checked&lt;&#x2F;h2&gt;
 &lt;p&gt;The manual verification flow was straightforward:&lt;&#x2F;p&gt;
 &lt;ol&gt;
